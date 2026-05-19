@@ -81,11 +81,50 @@
         .community-card:active {
             transform: scale(0.98);
         }
-    </style>
+    
+        
+        /* ===== DESKTOP NÂNG CẤP ===== */
+        @media screen and (min-width:1024px){
+
+            body{
+                padding:40px;
+            }
+
+            .max-w-7xl{
+                max-width:1450px !important;
+            }
+
+            .card-custom{
+                padding:35px !important;
+                border-radius:28px;
+            }
+
+            h1{
+                font-size:3rem !important;
+            }
+
+            h2{
+                font-size:2rem !important;
+            }
+
+            p{
+                font-size:1.08rem !important;
+                line-height:2 !important;
+            }
+
+            .menu-desktop{
+                display:grid;
+                grid-template-columns:repeat(2,1fr);
+                gap:20px;
+            }
+
+        }
+
+</style>
 </head>
 <body class="min-h-screen py-6 px-4 flex justify-center">
 
-    <div class="max-w-md w-full space-y-4">
+    <div class="w-full max-w-7xl space-y-6">
         
         <div class="card-custom p-6 border-t-[6px] border-red-700">
             <div class="text-center mb-4">
@@ -248,6 +287,40 @@
         </div>
 
     </div>
+
+
+        
+        <!-- HỆ SINH THÁI -->
+        <div class="card-custom p-6">
+            <h2 class="text-center font-black text-red-800 uppercase mb-6">
+                HỆ SINH THÁI MẬT MÃ CUỘC ĐỜI
+            </h2>
+
+            <div class="menu-desktop space-y-3">
+
+                <a href="/matmacuocdoi/saohan"
+                class="btn-action bg-red-700 text-white">
+                SAO HẠN
+                </a>
+
+                <a href="/matmacuocdoi/vochong"
+                class="btn-action bg-blue-700 text-white">
+                VỢ CHỒNG
+                </a>
+
+                <a href="/matmacuocdoi/matmacuocdoi"
+                class="btn-action bg-yellow-600 text-black">
+                MẬT MÃ CUỘC ĐỜI
+                </a>
+
+                <a href="https://youtube.com"
+                class="btn-action bg-black text-white">
+                YOUTUBE
+                </a>
+
+            </div>
+        </div>
+
 
 </body>
 </html>
