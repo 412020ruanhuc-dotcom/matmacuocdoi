@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Tra Cứu Phong Thủy Cao Cấp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #d4af37;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            margin: 0;
+            padding: 20px 10px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            max-width: 1100px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .header-section {
+            background: var(--bg-gradient);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent);
+        }
+        .header-section h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .search-container {
+            padding: 25px;
+            background: white;
+            display: flex;
+            justify-content: center;
+        }
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid #e2e8f0;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.15);
+        }
+        .table-scroll {
+            max-height: 700px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) #f1f5f9;
+        }
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        thead th {
+            position: sticky;
+            top: 0;
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 18px 10px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 20;
+        }
+        tbody tr {
+            transition: background 0.2s;
+        }
+        tbody tr:nth-child(even) { background: #f8fafc; }
+        tbody tr:hover { background: #fffbeb; }
+        tbody td {
+            padding: 16px 10px;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1rem;
+        }
+        .col-year { font-weight: 800; color: #0f172a; font-size: 1.1rem; }
+        .col-canchi { color: #64748b; font-weight: 500; }
+        .col-nam { color: #2563eb; font-weight: 600; }
+        .col-nu { color: #db2777; font-weight: 600; }
+        .col-sanh { 
+            background: rgba(16, 185, 129, 0.05); 
+            color: #059669; 
+            font-weight: 700;
+            border-left: 2px solid #10b981;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <div class="header-section">
+            <h1>MẬT MÃ Cung Sanh - Cung Phi</h1>
+            <p class="text-slate-400 mt-2 text-sm">MẬT MÃ CUỘC ĐỜI - TỬ VI - PHONG THỦY - NĂNG LƯỢNG SỐ</p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Nhập năm sinh (VD: 1971) hoặc Can Chi...">
+            </div>
+        </div>
+
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Năm</th>
+                        <th style="width: 20%;">Can Chi</th>
+                        <th style="width: 20%;">Nam (Cung Phi)</th>
+                        <th style="width: 20%;">Nữ (Cung Phi)</th>
+                        <th style="width: 25%; background: #064e3b;">Cung Sanh</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Nội dung bảng được render bởi JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Dữ liệu đã được cập nhật chính xác theo bản sửa lỗi của bạn
+        const data = [
+            { y: 1924, c: "Giáp Tý", m: "Tốn", f: "Khôn", e: "Chấn" },
+            { y: 1925, c: "Ất Sửu", m: "Chấn", f: "Chấn", e: "Tốn" },
+            { y: 1926, c: "Bính Dần", m: "Khôn", f: "Tốn", e: "Khảm" },
+            { y: 1927, c: "Đinh Mão", m: "Khảm", f: "Cấn", e: "Càn" },
+            { y: 1928, c: "Mậu Thìn", m: "Ly", f: "Càn", e: "Đoài" },
+            { y: 1929, c: "Kỷ Tỵ", m: "Cấn", f: "Đoài", e: "Cấn" },
+            { y: 1930, c: "Canh Ngọ", m: "Đoài", f: "Cấn", e: "Ly" },
+            { y: 1931, c: "Tân Mùi", m: "Càn", f: "Ly", e: "Khảm" },
+            { y: 1932, c: "Nhâm Thân", m: "Khôn", f: "Khảm", e: "Khôn" },
+            { y: 1933, c: "Quý Dậu", m: "Tốn", f: "Khôn", e: "Chấn" },
+            { y: 1934, c: "Giáp Tuất", m: "Chấn", f: "Chấn", e: "Càn" },
+            { y: 1935, c: "Ất Hợi", m: "Khôn", f: "Tốn", e: "Đoài" },
+            { y: 1936, c: "Bính Tý", m: "Khảm", f: "Cấn", e: "Cấn" },
+            { y: 1937, c: "Đinh Sửu", m: "Ly", f: "Càn", e: "Ly" },
+            { y: 1938, c: "Mậu Dần", m: "Cấn", f: "Đoài", e: "Khảm" },
+            { y: 1939, c: "Kỷ Mão", m: "Đoài", f: "Cấn", e: "Khôn" },
+            { y: 1940, c: "Canh Thìn", m: "Càn", f: "Ly", e: "Chấn" },
+            { y: 1941, c: "Tân Tỵ", m: "Khôn", f: "Khảm", e: "Tốn" },
+            { y: 1942, c: "Nhâm Ngọ", m: "Tốn", f: "Khôn", e: "Ly" },
+            { y: 1943, c: "Quý Mùi", m: "Chấn", f: "Chấn", e: "Càn" },
+            { y: 1944, c: "Giáp Thân", m: "Khôn", f: "Tốn", e: "Khôn" },
+            { y: 1945, c: "Ất Dậu", m: "Khảm", f: "Cấn", e: "Chấn" },
+            { y: 1946, c: "Bính Tuất", m: "Ly", f: "Càn", e: "Tốn" },
+            { y: 1947, c: "Đinh Hợi", m: "Cấn", f: "Đoài", e: "Cấn" },
+            { y: 1948, c: "Mậu Tý", m: "Đoài", f: "Cấn", e: "Càn" },
+            { y: 1949, c: "Kỷ Sửu", m: "Càn", f: "Ly", e: "Đoài" },
+            { y: 1950, c: "Canh Dần", m: "Khôn", f: "Khảm", e: "Cấn" },
+            { y: 1951, c: "Tân Mão", m: "Tốn", f: "Khôn", e: "Ly" },
+            { y: 1952, c: "Nhâm Thìn", m: "Chấn", f: "Chấn", e: "Khảm" },
+            { y: 1953, c: "Quý Tỵ", m: "Khôn", f: "Tốn", e: "Khôn" },
+            { y: 1954, c: "Giáp Ngọ", m: "Khảm", f: "Cấn", e: "Ly" },
+            { y: 1955, c: "Ất Mùi", m: "Ly", f: "Càn", e: "Khảm" },
+            { y: 1956, c: "Bính Thân", m: "Cấn", f: "Đoài", e: "Khôn" },
+            { y: 1957, c: "Đinh Dậu", m: "Đoài", f: "Cấn", e: "Chấn" },
+            { y: 1958, c: "Mậu Tuất", m: "Càn", f: "Ly", e: "Tốn" },
+            { y: 1959, c: "Kỷ Hợi", m: "Khôn", f: "Khảm", e: "Cấn" },
+            { y: 1960, c: "Canh Tý", m: "Tốn", f: "Khôn", e: "Càn" },
+            { y: 1961, c: "Tân Sửu", m: "Chấn", f: "Chấn", e: "Đoài" },
+            { y: 1962, c: "Nhâm Dần", m: "Khôn", f: "Tốn", e: "Cấn" },
+            { y: 1963, c: "Quý Mão", m: "Khảm", f: "Cấn", e: "Ly" },
+            { y: 1964, c: "Giáp Thìn", m: "Ly", f: "Càn", e: "Tốn" },
+            { y: 1965, c: "Ất Tỵ", m: "Cấn", f: "Đoài", e: "Đoài" },
+            { y: 1966, c: "Bính Ngọ", m: "Đoài", f: "Cấn", e: "Càn" },
+            { y: 1967, c: "Đinh Mùi", m: "Càn", f: "Ly", e: "Đoài" },
+            { y: 1968, c: "Mậu Thân", m: "Khôn", f: "Khảm", e: "Cấn" },
+            { y: 1969, c: "Kỷ Dậu", m: "Tốn", f: "Khôn", e: "Ly" },
+            { y: 1970, c: "Canh Tuất", m: "Chấn", f: "Chấn", e: "Khảm" },
+            { y: 1971, c: "Tân Hợi", m: "Khôn", f: "Tốn", e: "Khôn" },
+            { y: 1972, c: "Nhâm Tý", m: "Khảm", f: "Cấn", e: "Khôn" },
+            { y: 1973, c: "Quý Sửu", m: "Ly", f: "Càn", e: "Tốn" },
+            { y: 1974, c: "Giáp Dần", m: "Cấn", f: "Đoài", e: "Cấn" },
+            { y: 1975, c: "Ất Mão", m: "Đoài", f: "Cấn", e: "Ly" },
+            { y: 1976, c: "Bính Thìn", m: "Càn", f: "Ly", e: "Khảm" },
+            { y: 1977, c: "Đinh Tỵ", m: "Khôn", f: "Khảm", e: "Khôn" },
+            { y: 1978, c: "Mậu Ngọ", m: "Tốn", f: "Khôn", e: "Chấn" },
+            { y: 1979, c: "Kỷ Mùi", m: "Chấn", f: "Chấn", e: "Tốn" },
+            { y: 1980, c: "Canh Thân", m: "Khôn", f: "Tốn", e: "Khôn" },
+            { y: 1981, c: "Tân Dậu", m: "Khảm", f: "Cấn", e: "Khôn" },
+            { y: 1982, c: "Nhâm Tuất", m: "Ly", f: "Càn", e: "Đoài" },
+            { y: 1983, c: "Quý Hợi", m: "Cấn", f: "Đoài", e: "Cấn" },
+            { y: 1984, c: "Giáp Tý", m: "Đoài", f: "Cấn", e: "Chấn" },
+            { y: 1985, c: "Ất Sửu", m: "Càn", f: "Ly", e: "Tốn" },
+            { y: 1986, c: "Bính Dần", m: "Khôn", f: "Khảm", e: "Khảm" },
+            { y: 1987, c: "Đinh Mão", m: "Tốn", f: "Khôn", e: "Càn" },
+            { y: 1988, c: "Mậu Thìn", m: "Chấn", f: "Chấn", e: "Đoài" },
+            { y: 1989, c: "Kỷ Tỵ", m: "Khôn", f: "Tốn", e: "Cấn" },
+            { y: 1990, c: "Canh Ngọ", m: "Khảm", f: "Cấn", e: "Ly" },
+            { y: 1991, c: "Tân Mùi", m: "Ly", f: "Càn", e: "Khảm" },
+            { y: 1992, c: "Nhâm Thân", m: "Cấn", f: "Đoài", e: "Khôn" },
+            { y: 1993, c: "Quý Dậu", m: "Đoài", f: "Cấn", e: "Chấn" },
+            { y: 1994, c: "Giáp Tuất", m: "Càn", f: "Ly", e: "Càn" },
+            { y: 1995, c: "Ất Hợi", m: "Khôn", f: "Khảm", e: "Đoài" },
+            { y: 1996, c: "Bính Tý", m: "Tốn", f: "Khôn", e: "Cấn" },
+            { y: 1997, c: "Đinh Sửu", m: "Chấn", f: "Chấn", e: "Ly" },
+            { y: 1998, c: "Mậu Dần", m: "Khôn", f: "Tốn", e: "Khảm" },
+            { y: 1999, c: "Kỷ Mão", m: "Khảm", f: "Cấn", e: "Khôn" },
+            { y: 2000, c: "Canh Thìn", m: "Ly", f: "Càn", e: "Chấn" },
+            { y: 2001, c: "Tân Tỵ", m: "Cấn", f: "Đoài", e: "Tốn" },
+            { y: 2002, c: "Nhâm Ngọ", m: "Đoài", f: "Cấn", e: "Ly" },
+            { y: 2003, c: "Quý Mùi", m: "Càn", f: "Ly", e: "Càn" },
+            { y: 2004, c: "Giáp Thân", m: "Khôn", f: "Khảm", e: "Khôn" },
+            { y: 2005, c: "Ất Dậu", m: "Tốn", f: "Khôn", e: "Chấn" },
+            { y: 2006, c: "Bính Tuất", m: "Chấn", f: "Chấn", e: "Tốn" },
+            { y: 2007, c: "Đinh Hợi", m: "Khôn", f: "Tốn", e: "Cấn" },
+            { y: 2008, c: "Mậu Tý", m: "Khảm", f: "Cấn", e: "Càn" },
+            { y: 2009, c: "Kỷ Sửu", m: "Ly", f: "Càn", e: "Đoài" },
+            { y: 2010, c: "Canh Dần", m: "Cấn", f: "Đoài", e: "Cấn" },
+            { y: 2011, c: "Tân Mão", m: "Đoài", f: "Cấn", e: "Ly" },
+            { y: 2012, c: "Nhâm Thìn", m: "Càn", f: "Ly", e: "Khảm" },
+            { y: 2013, c: "Quý Tỵ", m: "Khôn", f: "Khảm", e: "Khôn" },
+            { y: 2014, c: "Giáp Ngọ", m: "Tốn", f: "Khôn", e: "Ly" },
+            { y: 2015, c: "Ất Mùi", m: "Chấn", f: "Chấn", e: "Khảm" },
+            { y: 2016, c: "Bính Thân", m: "Khôn", f: "Tốn", e: "Khôn" },
+            { y: 2017, c: "Đinh Dậu", m: "Khảm", f: "Cấn", e: "Chấn" },
+            { y: 2018, c: "Mậu Tuất", m: "Ly", f: "Càn", e: "Tốn" },
+            { y: 2019, c: "Kỷ Hợi", m: "Cấn", f: "Đoài", e: "Cấn" },
+            { y: 2020, c: "Canh Tý", m: "Đoài", f: "Cấn", e: "Càn" },
+            { y: 2021, c: "Tân Sửu", m: "Càn", f: "Ly", e: "Đoài" },
+            { y: 2022, c: "Nhâm Dần", m: "Khôn", f: "Khảm", e: "Cấn" },
+            { y: 2023, c: "Quý Mão", m: "Tốn", f: "Khôn", e: "Ly" },
+            { y: 2024, c: "Giáp Thìn", m: "Chấn", f: "Chấn", e: "Tốn" },
+            { y: 2025, c: "Ất Tỵ", m: "Khôn", f: "Tốn", e: "Đoài" },
+            { y: 2026, c: "Bính Ngọ", m: "Khảm", f: "Cấn", e: "Càn" },
+            { y: 2027, c: "Đinh Mùi", m: "Ly", f: "Càn", e: "Đoài" },
+            { y: 2028, c: "Mậu Thân", m: "Cấn", f: "Đoài", e: "Cấn" },
+            { y: 2029, c: "Kỷ Dậu", m: "Đoài", f: "Cấn", e: "Ly" },
+            { y: 2030, c: "Canh Tuất", m: "Càn", f: "Ly", e: "Khảm" },
+            { y: 2031, c: "Tân Hợi", m: "Khôn", f: "Khảm", e: "Khôn" },
+            { y: 2032, c: "Nhâm Tý", m: "Tốn", f: "Khôn", e: "Khôn" },
+            { y: 2033, c: "Quý Sửu", m: "Chấn", f: "Chấn", e: "Tốn" },
+            { y: 2034, c: "Giáp Dần", m: "Khôn", f: "Tốn", e: "Cấn" },
+            { y: 2035, c: "Ất Mão", m: "Khảm", f: "Cấn", e: "Ly" },
+            { y: 2036, c: "Bính Thìn", m: "Ly", f: "Càn", e: "Khảm" },
+            { y: 2037, c: "Đinh Tỵ", m: "Cấn", f: "Đoài", e: "Khôn" },
+            { y: 2038, c: "Mậu Ngọ", m: "Đoài", f: "Cấn", e: "Chấn" },
+            { y: 2039, c: "Kỷ Mùi", m: "Càn", f: "Ly", e: "Tốn" },
+            { y: 2040, c: "Canh Thân", m: "Khôn", f: "Khảm", e: "Khôn" },
+            { y: 2041, c: "Tân Dậu", m: "Tốn", f: "Khôn", e: "Khôn" },
+            { y: 2042, c: "Nhâm Tuất", m: "Chấn", f: "Chấn", e: "Đoài" },
+            { y: 2043, c: "Quý Hợi", m: "Khôn", f: "Tốn", e: "Cấn" }
+        ];
+
+        const tableBody = document.getElementById('tableBody');
+        const searchInput = document.getElementById('searchInput');
+
+        function renderTable(keyword = "") {
+            const kw = keyword.toLowerCase().trim();
+            const filtered = data.filter(item => 
+                item.y.toString().includes(kw) || 
+                item.c.toLowerCase().includes(kw)
+            );
+
+            tableBody.innerHTML = filtered.map(item => `
+                <tr>
+                    <td class="col-year">${item.y}</td>
+                    <td class="col-canchi">${item.c}</td>
+                    <td class="col-nam">${item.m}</td>
+                    <td class="col-nu">${item.f}</td>
+                    <td class="col-sanh">${item.e}</td>
+                </tr>
+            `).join('');
+        }
+
+        searchInput.addEventListener('input', (e) => renderTable(e.target.value));
+
+        // Khởi tạo bảng lần đầu
+        renderTable();
+    </script>
+</body>
+</html>
