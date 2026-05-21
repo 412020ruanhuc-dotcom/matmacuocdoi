@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Năng Lượng Số & Tử Vi</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; padding: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input, select, button { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #ff0000; color: white; font-weight: bold; cursor: pointer; border: none; }
+    </style>
+</head>
+<body>
+
+    <h2 style="text-align: center; color: #ff0000;">TRA CỨU NĂNG LƯỢNG SỐ</h2>
+
+    <form id="formTraCuu">
+        <!-- 1. Nhập Số Điện Thoại -->
+        <div class="form-group">
+            <label>Số điện thoại cần xem:</label>
+            <input type="text" id="sodt" placeholder="Ví dụ: 0789414153" required>
+        </div>
+
+        <!-- 2. Nhập Ngày Tháng Năm Sinh -->
+        <div class="form-group">
+            <label>Ngày sinh (Dương lịch):</label>
+            <input type="date" id="ngaysinh" required>
+        </div>
+
+        <!-- 3. Chọn Giới Tính -->
+        <div class="form-group">
+            <label>Giới tính:</label>
+            <select id="gioitinh">
+                <option value="nam">Nam</option>
+                <option value="nu">Nữ</option>
+            </select>
+        </div>
+
+        <!-- 4. Chọn Mục Đích Cần Xem -->
+        <div class="form-group">
+            <label>Mục đích cần xem nhất:</label>
+            <select id="mucdich">
+                <option value="giadao">Gia đạo - Hôn nhân</option>
+                <option value="congdanh">Công danh - Sự nghiệp</option>
+                <option value="tailoc">Tài lộc - May mắn</option>
+            </select>
+        </div>
+
+        <!-- Nút bấm xem kết quả -->
+        <button type="button" onclick="xemKetQua()">XEM KẾT QUẢ NGAY</button>
+    </form>
+
+    <script>
+        function xemKetQua() {
+            // Lấy dữ liệu người dùng nhập vào
+            var sodt = document.getElementById('sodt').value;
+            var ngaysinh = document.getElementById('ngaysinh').value;
+            var gioitinh = document.getElementById('gioitinh').value;
+            var mucdich = document.getElementById('mucdich').value;
+
+            // Thông báo tạm thời khi kích hoạt nút bấm
+            alert("Hệ thống đã nhận thông tin:\n- Số ĐT: " + sodt + "\n- Mục đích xem: " + mucdich + "\n\n(Bước tiếp theo cháu sẽ viết đoạn mã tính toán kết quả cho chú).");
+        }
+    </script>
+
+</body>
+</html>
