@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Ngày Xấu Hôm Nay</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #ffffff;
+    margin: 0;
+    padding: 15px;
+    text-align: center;
+}
+
+h1 {
+    color: #dc2626;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+}
+
+.box {
+    background: #f8fafc;
+    padding: 18px;
+    margin: 15px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #2563eb;
+}
+
+select, button {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+button {
+    background: linear-gradient(45deg,#dc2626,#2563eb);
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+.result {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+.ad {
+    margin:20px 0;
+    padding:10px;
+    background:#eee;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⚠️ CHECK NGÀY XẤU HÔM NAY</h1>
+
+<div class="container">
+
+<!-- INPUT -->
+<div class="box">
+<select id="month">
+<option value="">Chọn tháng</option>
+<script>
+for(let i=1;i<=12;i++){
+document.write(`<option value="${i}">Tháng ${i}</option>`);
+}
+</script>
+</select>
+
+<select id="day">
+<option value="">Chọn địa chi</option>
+<option>Tý</option><option>Sửu</option><option>Dần</option>
+<option>Mão</option><option>Thìn</option><option>Tỵ</option>
+<option>Ngọ</option><option>Mùi</option><option>Thân</option>
+<option>Dậu</option><option>Tuất</option><option>Hợi</option>
+</select>
+
+<button onclick="checkAll()">KIỂM TRA NGAY</button>
+
+<div id="result" class="result"></div>
+</div>
+
+<!-- QUẢ TÚ -->
+<div class="box"><h2>Quả Tú</h2><div id="qtu"></div></div>
+
+<!-- TAM NƯƠNG -->
+<div class="box"><h2>Tam Nương</h2><div id="tn"></div></div>
+
+<!-- NGUYỆT KỴ -->
+<div class="box"><h2>Nguyệt Kỵ</h2><div id="nk"></div></div>
+
+<!-- ADS -->
+<div class="ad">
+👉 Vị trí quảng cáo Google Adsense
+</div>
+
+<button onclick="share()">📤 Chia sẻ kết quả</button>
+
+</div>
+
+<script>
+const DATA = {
+quaTu: {
+1:["Thìn","Tuất"],2:["Tỵ","Hợi"],3:["Tỵ","Ngọ"],
+4:["Sửu","Mùi"],5:["Dần","Thân"],6:["Mão","Dần"],
+7:["Thìn","Tuất"],8:["Tỵ","Hợi"],9:["Tỵ","Ngọ"],
+10:["Sửu","Mùi"],11:["Dần","Thân"],12:["Thân","Tuất"]
+},
+tamNuong: ["3","7","13","18","22","27"],
+nguyetKy: ["5","14","23"]
+};
+
+function checkAll(){
+let m = month.value;
+let d = day.value;
+
+if(!m || !d){
+result.innerHTML="⚠️ Chọn đủ!";
+return;
+}
+
+// QUẢ TÚ
+if(DATA.quaTu[m].includes(d)){
+qtu.innerHTML="❌ Phạm Quả Tú";
+}else qtu.innerHTML="✅ Không phạm";
+
+// TAM NƯƠNG (demo logic đơn giản)
+tn.innerHTML="⚠️ Cần nhập ngày số để check chuẩn";
+
+// NGUYỆT KỴ
+nk.innerHTML="⚠️ Cần nhập ngày số để check chuẩn";
+
+result.innerHTML="👉 Kéo xuống xem chi tiết 👇";
+}
+
+// SHARE
+function share(){
+navigator.clipboard.writeText(location.href);
+alert("Đã copy link!");
+}
+</script>
+
+</body>
+</html>
