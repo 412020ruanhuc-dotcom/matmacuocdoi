@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tool Tra Cứu Tử Vi</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #0f172a;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    color: #facc15;
+}
+
+.box {
+    background: #1e293b;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 400px;
+}
+
+select, button {
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    background: #facc15;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔮 TOOL TRA CỨU TỬ VI</h1>
+
+<!-- MODULE 1: QUẢ TÚ -->
+<div class="box">
+    <h2>Tra Quả Tú</h2>
+
+    <select id="month">
+        <option value="">Chọn tháng</option>
+        <script>
+            for(let i=1;i<=12;i++){
+                document.write(`<option value="${i}">Tháng ${i}</option>`);
+            }
+        </script>
+    </select>
+
+    <select id="day">
+        <option value="">Chọn địa chi</option>
+        <option>Tý</option><option>Sửu</option><option>Dần</option>
+        <option>Mão</option><option>Thìn</option><option>Tỵ</option>
+        <option>Ngọ</option><option>Mùi</option><option>Thân</option>
+        <option>Dậu</option><option>Tuất</option><option>Hợi</option>
+    </select>
+
+    <button onclick="checkQuaTu()">Tra cứu</button>
+
+    <div class="result" id="kq_quatu"></div>
+</div>
+
+<script>
+// ===== DATA CHỈ CẦN THÊM Ở ĐÂY =====
+const DATA = {
+
+    quaTu: {
+        1: ["Thìn", "Tuất"],
+        2: ["Tỵ", "Hợi"],
+        3: ["Tỵ", "Ngọ"],
+        4: ["Sửu", "Mùi"],
+        5: ["Dần", "Thân"],
+        6: ["Mão", "Dần"],
+        7: ["Thìn", "Tuất"],
+        8: ["Tỵ", "Hợi"],
+        9: ["Tỵ", "Ngọ"],
+        10: ["Sửu", "Mùi"],
+        11: ["Dần", "Thân"],
+        12: ["Thân", "Tuất"]
+    }
+
+    // 👉 SAU NÀY BẠN CHỈ CẦN THÊM:
+    // tamNuong: {...}
+    // hoangOc: {...}
+    // kimLau: {...}
+};
+
+// ===== FUNCTION =====
+function checkQuaTu() {
+    let m = document.getElementById("month").value;
+    let d = document.getElementById("day").value;
+    let kq = document.getElementById("kq_quatu");
+
+    if(!m || !d){
+        kq.innerHTML = "⚠️ Chọn đầy đủ!";
+        kq.style.color = "orange";
+        return;
+    }
+
+    if(DATA.quaTu[m].includes(d)){
+        kq.innerHTML = "❌ Ngày QUẢ TÚ - tránh tình cảm!";
+        kq.style.color = "red";
+    } else {
+        kq.innerHTML = "✅ Không phải Quả Tú";
+        kq.style.color = "#00ffcc";
+    }
+}
+</script>
+
+</body>
+</html>
