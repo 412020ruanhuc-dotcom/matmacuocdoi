@@ -2,242 +2,210 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tra Cứu Cung Sanh Vợ Chồng - Phong Thủy Chính Tông</title>
+    <title>Bảng Tra Cứu Phong Thủy</title>
     <style>
-        :root {
-            --primary-color: #8b0000;
-            --secondary-color: #b8860b;
-            --bg-color: #fcf8f2;
-            --text-color: #333;
-            --good-color: #2e7d32;
-            --bad-color: #c62828;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 20px;
+            padding: 0;
         }
         
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
+        /* Thanh tiêu đề chính màu xanh lam */
+        .header-row {
             display: flex;
-            justify-content: center;
+            background-color: #0066ff;
+            color: white;
+            font-weight: bold;
+            text-align: center;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 100%;
-            border-top: 5px solid var(--primary-color);
-        }
-
-        h1 {
-            color: var(--primary-color);
-            text-align: center;
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: var(--secondary-color);
-            font-style: italic;
-            margin-bottom: 25px;
             font-size: 14px;
         }
-
-        .input-group {
-            margin-bottom: 15px;
+        
+        /* Hàng dữ liệu chính */
+        .data-row {
+            display: flex;
+            border-bottom: 1px solid #333333;
+            align-items: stretch;
+            font-size: 14px;
         }
+        
+        /* Cấu trúc độ rộng các cột xếp ngang */
+        .col-nam { width: 120px; text-align: center; padding: 10px 0; color: #333333; }
+        .col-can { width: 100px; text-align: center; padding: 10px 0; color: #333333; border-left: 1px solid #333333; }
+        .col-chi { width: 100px; text-align: center; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #333333; border-left: 1px solid #333333; }
+        .col-cung { width: 160px; text-align: center; padding: 10px 0; color: #ff6600; font-weight: bold; text-decoration: underline; border-left: 1px solid #333333; }
+        .col-mang { width: 110px; text-align: center; padding: 10px 0; color: #333333; border-left: 1px solid #333333; }
+        .col-nu { width: 130px; text-align: center; padding: 10px 0; color: #cc0066; border-left: 1px solid #333333; }
+        .col-nam-trach { width: 130px; text-align: center; padding: 10px 0; color: #0066cc; border-left: 1px solid #333333; background-color: #e6f2ff; }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #444;
+        /* Tiêu đề phụ của Cung Trạch */
+        .cung-trach-parent {
+            width: 260px;
+            border-left: 1px solid #333333;
         }
+        .cung-trach-title {
+            padding: 5px 0;
+            border-bottom: 1px solid white;
+        }
+        .cung-trach-sub {
+            display: flex;
+        }
+        .sub-nu { width: 130px; padding: 5px 0; }
+        .sub-nam { width: 130px; padding: 5px 0; border-left: 1px solid white; }
 
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #a00000;
-        }
-
-        .result-box {
-            margin-top: 25px;
-            padding: 15px;
-            border-radius: 6px;
-            background-color: #f9f9f9;
-            border-left: 4px solid #ccc;
-            display: none;
-        }
-
-        .cung-hien-thi {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-
-        .cung-hien-thi span {
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .ket-luan {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 15px;
-            padding: 10px;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .tot {
-            background-color: #e8f5e9;
-            color: var(--good-color);
-        }
-
-        .xau {
-            background-color: #ffebee;
-            color: var(--bad-color);
-        }
+        /* Xuống dòng trong cùng một ô năm sinh */
+        .line { display: block; padding: 2px 0; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Tra Cứu Cung Sanh Vợ Chồng</h1>
-    <div class="subtitle">Hệ thống tính toán chuẩn Lục Thập Hoa Giáp & Bát Trạch cổ</div>
-
-    <div class="input-group">
-        <label for="namChong">Năm sinh Âm Lịch của Chồng:</label>
-        <input type="number" id="namChong" placeholder="Ví dụ: 1984" min="1900" max="2100">
+    <div class="header-row">
+        <div style="width: 120px; padding: 15px 0;">NĂM SINH</div>
+        <div style="width: 100px; padding: 15px 0; border-left: 1px solid white;">CAN</div>
+        <div style="width: 100px; padding: 15px 0; border-left: 1px solid white;">CHI</div>
+        <div style="width: 160px; padding: 5px 0; border-left: 1px solid white;">CUNG SANH<br>Hôn nhân<br><span style="font-size:11px; color:#ffff00;">Click ⬇</span></div>
+        <div style="width: 110px; padding: 15px 0; border-left: 1px solid white;">MẠNG</div>
+        <div class="cung-trach-parent">
+            <div class="cung-trach-title">CUNG TRẠCH<br>Nhà ở</div>
+            <div class="cung-trach-sub">
+                <div class="sub-nu">NỮ</div>
+                <div class="sub-nam">NAM</div>
+            </div>
+        </div>
     </div>
 
-    <div class="input-group">
-        <label for="namVo">Năm sinh Âm Lịch của Vợ:</label>
-        <input type="number" id="namVo" placeholder="Ví dụ: 1987" min="1900" max="2100">
+    <div class="data-row" style="border-top: 1px solid #333333;">
+        <div class="col-nam">
+            <span class="line">1984</span><span class="line">1996</span><span class="line">2008</span><span class="line">1960</span><span class="line">1972</span>
+        </div>
+        <div class="col-can">
+            <span class="line">Giáp</span><span class="line">Bính</span><span class="line">Mậu</span><span class="line">Canh</span><span class="line">Nhâm</span>
+        </div>
+        <div class="col-chi">TÝ</div>
+        <div class="col-cung">
+            <span class="line">Chấn (Mộc)</span><span class="line">Cấn (Thổ)</span><span class="line">Càn (Kim)</span><span class="line">Càn (Kim)</span><span class="line">Chấn (Mộc)</span>
+        </div>
+        <div class="col-mang">
+            <span class="line">Kim</span><span class="line">Thủy</span><span class="line">Hỏa</span><span class="line">Thổ</span><span class="line">Mộc</span>
+        </div>
+        <div class="col-nu">
+            <span class="line">Cấn (Thổ)</span><span class="line">Khôn (Thổ)</span><span class="line">Cấn (Thổ)</span><span class="line">Khôn (Thổ)</span><span class="line">Cấn (Thổ)</span>
+        </div>
+        <div class="col-nam-trach">
+            <span class="line">Đoài (Kim)</span><span class="line">Tốn (Mộc)</span><span class="line">Đoài (Kim)</span><span class="line">Tốn (Mộc)</span><span class="line">Khảm (Thủy)</span>
+        </div>
     </div>
 
-    <button onclick="tinhToanPhongThuy()">Xem Kết Quả</button>
-
-    <div id="resultBox" class="result-box">
-        <div class="cung-hien-thi">Cung Sanh của Chồng: <span id="resChong">...</span></div>
-        <div class="cung-hien-thi">Cung Sanh của Vợ: <span id="resVo">...</span></div>
-        <div id="resKetLuan" class="ket-luan">...</div>
+    <div class="data-row">
+        <div class="col-nam">
+            <span class="line">1985</span><span class="line">1997</span><span class="line">2009</span><span class="line">1961</span><span class="line">1973</span>
+        </div>
+        <div class="col-can">
+            <span class="line">Ất</span><span class="line">Đinh</span><span class="line">Kỷ</span><span class="line">Tân</span><span class="line">Quý</span>
+        </div>
+        <div class="col-chi">SỬU</div>
+        <div class="col-cung">
+            <span class="line">Tốn (Mộc)</span><span class="line" style="color:#ff0000; text-decoration:none;">LY (Hỏa)</span><span class="line">Đoài (Kim)</span><span class="line">Đoài (Kim)</span><span class="line">Tốn (Mộc)</span>
+        </div>
+        <div class="col-mang">
+            <span class="line">Kim</span><span class="line">Thủy</span><span class="line">Hỏa</span><span class="line">Thổ</span><span class="line">Mộc</span>
+        </div>
+        <div class="col-nu">
+            <span class="line">Ly (Hỏa)</span><span class="line">Càn (Kim)</span><span class="line">Ly (Hỏa)</span><span class="line">Chấn (Mộc)</span><span class="line">Càn (Kim)</span>
+        </div>
+        <div class="col-nam-trach">
+            <span class="line">Càn (Kim)</span><span class="line">Ly (Hỏa)</span><span class="line">Càn (Kim)</span><span class="line">Chấn (Mộc)</span><span class="line">Ly (Hỏa)</span>
+        </div>
     </div>
-</div>
 
-<script>
-    // Bảng mã hóa 60 năm Lục Thập Hoa Giáp bất biến (Từ Giáp Tý đến Quý Hợi)
-    const bang60Cung = [
-        "Chấn", "Chấn", "Tốn", "Tốn", "Khảm", "Khảm", "Ly", "Ly", "Cấn", "Cấn",
-        "Đoài", "Đoài", "Càn", "Càn", "Khôn", "Khôn", "Chấn", "Chấn", "Tốn", "Tốn",
-        "Khảm", "Khảm", "Ly", "Ly", "Cấn", "Cấn", "Đoài", "Đoài", "Càn", "Càn",
-        "Khôn", "Khôn", "Chấn", "Chấn", "Tốn", "Tốn", "Khảm", "Khảm", "Ly", "Ly",
-        "Cấn", "Cấn", "Đoài", "Đoài", "Càn", "Càn", "Khôn", "Khôn", "Chấn", "Chấn",
-        "Tốn", "Tốn", "Khảm", "Khảm", "Ly", "Ly", "Cấn", "Cấn", "Đoài", "Đoài"
-    ];
+    <div class="data-row">
+        <div class="col-nam">
+            <span class="line">1974</span><span class="line">1986</span><span class="line">1998</span><span class="line">1950 -2010</span><span class="line">1962</span>
+        </div>
+        <div class="col-can">
+            <span class="line">Giáp</span><span class="line">Bính</span><span class="line">Mậu</span><span class="line">Canh</span><span class="line">Nhâm</span>
+        </div>
+        <div class="col-chi">DẦN</div>
+        <div class="col-cung">
+            <span class="line">Cấn (Thổ)</span><span class="line">Khảm (Thủy)</span><span class="line">Khảm (Thủy)</span><span class="line">Cấn (Thổ)</span><span class="line">Cấn (Thổ)</span>
+        </div>
+        <div class="col-mang">
+            <span class="line">Thủy</span><span class="line">Hỏa</span><span class="line">Thổ</span><span class="line">Mộc</span><span class="line">Kim</span>
+        </div>
+        <div class="col-nu">
+            <span class="line">Đoài (Kim)</span><span class="line">Khảm (Thủy)</span><span class="line">Tốn (Mộc)</span><span class="line">Khảm (Thủy)</span><span class="line">Tốn (Mộc)</span>
+        </div>
+        <div class="col-nam-trach">
+            <span class="line">Cấn (Thổ)</span><span class="line">Khôn (Thổ)</span><span class="line">Cấn (Thổ)</span><span class="line">Khôn (Thổ)</span><span class="line">Khôn (Thổ)</span>
+        </div>
+    </div>
 
-    // ĐÃ SỬA: Ma trận tính duyên phận chuẩn xác theo Bát Trạch cổ học
-    const maTranBatTrach = {
-        "Càn": {
-            "Càn": "Phục Vị (Tốt)", "Khảm": "Lục Sát (Xấu)", "Cấn": "Thiên Y (Tốt)", "Chấn": "Ngũ Quỷ (Xấu)", 
-            "Tốn": "Họa Hại (Xấu)", "Ly": "Tuyệt Mệnh (Xấu)", "Khôn": "Diên Niên (Tốt)", "Đoài": "Sinh Khí (Tốt)"
-        },
-        "Khảm": {
-            "Càn": "Lục Sát (Xấu)", "Khảm": "Phục Vị (Tốt)", "Cấn": "Ngũ Quỷ (Xấu)", "Chấn": "Thiên Y (Tốt)", 
-            "Tốn": "Sinh Khí (Tốt)", "Ly": "Diên Niên (Tốt)", "Khôn": "Tuyệt Mệnh (Xấu)", "Đoài": "Họa Hại (Xấu)"
-        },
-        "Cấn": {
-            "Càn": "Thiên Y (Tốt)", "Khảm": "Ngũ Quỷ (Xấu)", "Cấn": "Phục Vị (Tốt)", "Chấn": "Lục Sát (Xấu)", 
-            "Tốn": "Tuyệt Mệnh (Xấu)", "Ly": "Họa Hại (Xấu)", "Khôn": "Sinh Khí (Tốt)", "Đoài": "Diên Niên (Tốt)"
-        },
-        "Chấn": {
-            "Càn": "Ngũ Quỷ (Xấu)", "Khảm": "Thiên Y (Tốt)", "Cấn": "Lục Sát (Xấu)", "Chấn": "Phục Vị (Tốt)", 
-            "Tốn": "Diên Niên (Tốt)", "Ly": "Sinh Khí (Tốt)", "Khôn": "Họa Hại (Xấu)", "Đoài": "Tuyệt Mệnh (Xấu)"
-        },
-        "Tốn": {
-            "Càn": "Họa Hại (Xấu)", "Khảm": "Sinh Khí (Tốt)", "Cấn": "Tuyệt Mệnh (Xấu)", "Chấn": "Diên Niên (Tốt)", 
-            "Tốn": "Phục Vị (Tốt)", "Ly": "Thiên Y (Tốt)", "Khôn": "Ngũ Quỷ (Xấu)", "Đoài": "Lục Sát (Xấu)"
-        },
-        "Ly": {
-            "Càn": "Tuyệt Mệnh (Xấu)", "Khảm": "Diên Niên (Tốt)", "Cấn": "Họa Hại (Xấu)", "Chấn": "Sinh Khí (Tốt)", 
-            "Tốn": "Thiên Y (Tốt)", "Ly": "Phục Vị (Tốt)", "Khôn": "Lục Sát (Xấu)", "Đoài": "Ngũ Quỷ (Xấu)"
-        },
-        "Khôn": {
-            "Càn": "Diên Niên (Tốt)", "Khảm": "Tuyệt Mệnh (Xấu)", "Cấn": "Sinh Khí (Tốt)", "Chấn": "Họa Hại (Xấu)", 
-            "Tốn": "Ngũ Quỷ (Xấu)", "Ly": "Lục Sát (Xấu)", "Khôn": "Phục Vị (Tốt)", "Đoài": "Thiên Y (Tốt)"
-        },
-        "Đoài": {
-            "Càn": "Sinh Khí (Tốt)", "Khảm": "Họa Hại (Xấu)", "Cấn": "Diên Niên (Tốt)", "Chấn": "Tuyệt Mệnh (Xấu)", 
-            "Tốn": "Lục Sát (Xấu)", "Ly": "Ngũ Quỷ (Xấu)", "Khôn": "Thiên Y (Tốt)", "Đoài": "Phục Vị (Tốt)"
-        }
-    };
+    <div class="data-row">
+        <div class="col-nam">
+            <span class="line">1975</span><span class="line">1987</span><span class="line">1999</span><span class="line">1951</span><span class="line">1963</span>
+        </div>
+        <div class="col-can">
+            <span class="line">Ất</span><span class="line">Đinh</span><span class="line">Kỷ</span><span class="line">Tân</span><span class="line">Quý</span>
+        </div>
+        <div class="col-chi">MÃO</div>
+        <div class="col-cung">
+            <span class="line" style="color:#ff0000; text-decoration:none;">LY</span><span class="line">Càn (Kim)</span><span class="line">Khôn (Thổ)</span><span class="line" style="color:#ff0000; text-decoration:none;">LY</span><span class="line" style="color:#ff0000; text-decoration:none;">LY</span>
+        </div>
+        <div class="col-mang">
+            <span class="line">Thủy</span><span class="line">Hỏa</span><span class="line">Thổ</span><span class="line">Mộc</span><span class="line">Kim</span>
+        </div>
+        <div class="col-nu">
+            <span class="line">Cấn (Thổ)</span><span class="line">Khôn (Thổ)</span><span class="line">Cấn (Thổ)</span><span class="line">Khảm (Thủy)</span><span class="line">Cấn (Thổ)</span>
+        </div>
+        <div class="col-nam-trach">
+            <span class="line">Đoài (Kim)</span><span class="line">Tốn (Mộc)</span><span class="line">Khảm (Thủy)</span><span class="line">Tốn (Mộc)</span><span class="line">Khảm (Thủy)</span>
+        </div>
+    </div>
 
-    function laySoDu(nam) {
-        let sd = (nam - 1984) % 60;
-        return sd < 0 ? sd + 60 : sd;
-    }
+    <div class="data-row">
+        <div class="col-nam">
+            <span class="line">1964</span><span class="line">1976</span><span class="line">1988</span><span class="line">2000</span><span class="line">1952</span>
+        </div>
+        <div class="col-can">
+            <span class="line">Giáp</span><span class="line">Bính</span><span class="line">Mậu</span><span class="line">Canh</span><span class="line">Nhâm</span>
+        </div>
+        <div class="col-chi">THÌN</div>
+        <div class="col-cung">
+            <span class="line">Tốn (Mộc)</span><span class="line">Khảm (Thủy)</span><span class="line">Đoài (Kim)</span><span class="line">Chấn (Mộc)</span><span class="line">Khảm (Thủy)</span>
+        </div>
+        <div class="col-mang">
+            <span class="line">Hỏa</span><span class="line">Thổ</span><span class="line">Mộc</span><span class="line">Kim</span><span class="line">Thủy</span>
+        </div>
+        <div class="col-nu">
+            <span class="line">Càn (Kim)</span><span class="line">Ly (Hỏa)</span><span class="line">Chấn (Mộc)</span><span class="line">Ly (Hỏa)</span><span class="line">Chấn (Mộc)</span>
+        </div>
+        <div class="col-nam-trach">
+            <span class="line">Ly (Hỏa)</span><span class="line">Càn (Kim)</span><span class="line">Chấn (Mộc)</span><span class="line">Càn (Kim)</span><span class="line">Chấn (Mộc)</span>
+        </div>
+    </div>
 
-    function tinhToanPhongThuy() {
-        const namChong = parseInt(document.getElementById('namChong').value);
-        const namVo = parseInt(document.getElementById('namVo').value);
-
-        if (isNaN(namChong) || isNaN(namVo)) {
-            alert("Vui lòng nhập đầy đủ năm sinh của cả vợ và chồng!");
-            return;
-        }
-
-        const cungChong = bang60Cung[laySoDu(namChong)];
-        const cungVo = bang60Cung[laySoDu(namVo)];
-        const ketQua = maTranBatTrach[cungChong][cungVo];
-
-        // Hiển thị dữ liệu lên giao diện
-        document.getElementById('resChong').innerText = cungChong;
-        document.getElementById('resVo').innerText = cungVo;
-        
-        const elementKetLuan = document.getElementById('resKetLuan');
-        elementKetLuan.innerText = "Kết quả phối hợp: " + ketQua;
-
-        // Đổi màu sắc dựa trên kết quả Tốt hay Xấu
-        if (ketQua.includes("Tốt")) {
-            elementKetLuan.className = "ket-luan tot";
-            document.getElementById('resultBox').style.borderLeft = "4px solid var(--good-color)";
-        } else {
-            elementKetLuan.className = "ket-luan xau";
-            document.getElementById('resultBox').style.borderLeft = "4px solid var(--bad-color)";
-        }
-
-        // Hiện hộp kết quả
-        document.getElementById('resultBox').style.display = "block";
-    }
-</script>
+    <div class="data-row" style="border-bottom: 2px solid #333333;">
+        <div class="col-nam">
+            <span class="line">1965</span><span class="line">1977</span><span class="line">1989</span><span class="line">2001</span><span class="line">1953 -2013</span>
+        </div>
+        <div class="col-can">
+            <span class="line">Ất</span><span class="line">Đinh</span><span class="line">Kỷ</span><span class="line">Tân</span><span class="line">Quý</span>
+        </div>
+        <div class="col-chi">TỴ</div>
+        <div class="col-cung">
+            <span class="line">Đoài (Kim)</span><span class="line">Khôn (Thổ)</span><span class="line">Cấn (Thổ)</span><span class="line">Tốn (Mộc)</span><span class="line">Khôn (Thổ)</span>
+        </div>
+        <div class="col-mang">
+            <span class="line">Hỏa</span><span class="line">Thổ</span><span class="line">Mộc</span><span class="line">Kim</span><span class="line">Thủy</span>
+        </div>
+        <div class="col-nu">
+            <span class="line">Đoài (Kim)</span><span class="line">Khảm (Thủy)</span><span class="line">Tốn (Mộc)</span><span class="line">Đoài (Kim)</span><span class="line">Tốn (Mộc)</span>
+        </div>
+        <div class="col-nam-trach">
+            <span class="line">Cấn (Thổ)</span><span class="line">Khôn (Thổ)</span><span class="line">Khôn (Thổ)</span><span class="line">Càn (Kim)</span><span class="line">Khôn (Thổ)</span>
+        </div>
+    </div>
 
 </body>
 </html>
