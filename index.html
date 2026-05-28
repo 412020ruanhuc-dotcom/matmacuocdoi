@@ -161,6 +161,28 @@
         </div>
     </div>
 
+    <!-- Ô BẤM MỚI NẰM DƯỚI GIỚI THIỆU - TRÊN CỘNG ĐỒNG -->
+<div style="text-align: center; margin: 20px auto; padding: 15px; max-width: 100%; border: 2px dashed #ff4757; background-color: #fff1f2; border-radius: 8px; animation: blink 1.5s infinite alternate; cursor: pointer;" onclick="var x = document.getElementById('bai-viet-moi'); if(x.style.display==='none'){x.style.display='block';}else{x.style.display='none';}">
+    <span style="color: #ff4757; font-weight: bold; font-size: 18px; display: block;">
+        ✨ CHIA SẺ VÀ TÂM SỰ TỪ NGHỊCH CẢNH ✨
+    </span>
+</div>
+
+<!-- Ô CHỨA BÀI VIẾT CỦA CHÚ -->
+<div id="bai-viet-moi" style="display: none; margin: 15px auto; padding: 20px; max-width: 100%; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; line-height: 1.8; color: #333; text-align: justify; white-space: pre-line;">
+
+CHÚ XÓA DÒNG CHỮ NÀY ĐI RỒI DÁN BÀI VIẾT DÀI CỦA CHÚ VÀO ĐÂY
+
+</div>
+
+<!-- HIỆU ỨNG NHẤP NHÁY -->
+<style>
+@keyframes blink {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.02); }
+}
+</style>
+
     <!-- CỘNG ĐỒNG -->
     <div class="pt-4 space-y-3 text-center">
 
