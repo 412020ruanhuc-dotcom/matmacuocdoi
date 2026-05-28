@@ -162,14 +162,21 @@
     </div>
 
     <!-- Ô BẤM MỚI NẰM DƯỚI GIỚI THIỆU - TRÊN CỘNG ĐỒNG -->
-<div style="text-align: center; margin: 20px auto; padding: 15px; max-width: 100%; border: 2px dashed #ff4757; background-color: #fff1f2; border-radius: 8px; animation: blink 1.5s infinite alternate; cursor: pointer;" onclick="var x = document.getElementById('bai-viet-moi'); if(x.style.display==='none'){x.style.display='block';}else{x.style.display='none';}">
-    <span style="color: #ff4757; font-weight: bold; font-size: 18px; display: block;">
-        ✨ CHIA SẺ VÀ TÂM SỰ TỪ NGHỊCH CẢNH ✨
-    </span>
-</div>
-
-<!-- Ô CHỨA BÀI VIẾT CỦA CHÚ -->
-<div id="bai-viet-moi" style="display: none; margin: 15px auto; padding: 20px; max-width: 100%; background-color: #ffffff; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; line-height: 1.8; color: #333; text-align: justify; white-space: pre-line;">
+<div style="margin: 20px auto; padding: 2px; max-width: 100%;"> 
+    <!-- 1. PHẦN Ô BẤM MỚI SIÊU ĐẸP -->
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px; background-color: #fff1f2; border: 2px dashed #ff4757; border-radius: 16px; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.05); animation: pulseSlow 2s infinite ease-in-out;" onclick="var c = this.nextElementSibling; if(c.style.display==='none' || c.style.display===''){c.style.display='block'; this.querySelector('.nut-dau').innerHTML='−';}else{c.style.display='none'; this.querySelector('.nut-dau').innerHTML='+';}"> 
+        <div style="display: flex; align-items: center; gap: 12px;"> 
+            <div style="font-size: 24px;">📖</div> 
+            <div style="text-align: left;"> 
+                <div style="color: #dc2626; font-weight: 900; text-transform: uppercase; font-size: 16px; letter-spacing: 0.5px;">CHIA SẺ & TÂM SỰ TỪ NGHỊCH CẢNH</div> 
+                <div style="color: #6b7280; font-size: 13px; font-weight: 500; margin-top: 2px;">Bấm vào đây để mở xem toàn bộ bài viết</div> 
+            </div> 
+        </div> 
+        <div class="nut-dau" style="font-size: 24px; font-weight: 900; color: #ef4444; padding: 0 8px;">+</div> 
+    </div> 
+    
+    <!-- 2. PHẦN VỎ BỌC MỚI CHO BÀI VIẾT (CHỮ TO RÕ, ĐẸP MẮT) -->
+    <div style="display: none; margin-top: 12px; padding: 20px; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 16px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); font-size: 18px; line-height: 1.8; color: #1f2937; text-align: justify; white-space: pre-line;">
 
  CHIA SẺ VÀ TÂM SỰ TỪ NGỊCH CẢNH
        Em Viết Chay Không Chỉnh Sửa Gì Có Thiếu Dấu,Sai Chính Tả Thông Cảm Nhé .Vì Em Muốn Tất Cả Tự Nhiên
@@ -243,7 +250,14 @@ Kính Chúc Anh Chị Sưc Khỏe Bình An -Hạnh Phúc!
 📌 Dưới đây là các kênh mạng xã hội . Anh Chị Tham Khảo Và ủng Hộ Em .Xin cảm ơn!    
 
 </div>
-
+</div> </div>
+<style>
+@keyframes pulseSlow {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.95; transform: scale(1.01); }
+}
+</style>
+    
 <!-- HIỆU ỨNG NHẤP NHÁY -->
 <style>
 @keyframes blink {
