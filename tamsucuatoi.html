@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TÂM SỰ</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f3f3f3;
+padding:20px;
+}
+
+.tamsu-box{
+background:#fff;
+border:3px solid red;
+border-radius:20px;
+overflow:hidden;
+max-width:900px;
+margin:auto;
+}
+
+.tamsu-header{
+padding:20px;
+cursor:pointer;
+background:#fff;
+color:red;
+font-size:24px;
+font-weight:bold;
+}
+
+.tamsu-content{
+display:none;
+padding:25px;
+line-height:1.8;
+font-size:18px;
+white-space:pre-wrap;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="tamsu-box">
+
+<div class="tamsu-header" onclick="moTamSu()">
+📖 CHIA SẺ & TÂM SỰ TỪ NGHỊCH CẢNH
+</div>
+
+<div class="tamsu-content" id="tamsu">
+
+CHIA SẺ VÀ TÂM SỰ TỪ NGỊCH CẢNH
+
+Em Viết Chay Không Chỉnh Sửa Gì Có Thiếu Dấu,Sai Chính Tả Thông Cảm Nhé .Vì Em Muốn Tất Cả Tự Nhiên
+
+📌CÁC CẶP VỢ CHỒNG SAU ĐÂY CHÚ Ý 😀
+
+Chồng 1971 Láy Vợ Những Tuổi Sau .Hay Khắc Khẩu...
+
+DÁN TOÀN BỘ BÀI VIẾT CỦA BẠN VÀO ĐÂY
+
+</div>
+
+</div>
+
+<script>
+
+function moTamSu(){
+
+var x = document.getElementById("tamsu");
+
+if(x.style.display==="block"){
+x.style.display="none";
+}else{
+x.style.display="block";
+}
+
+}
+
+</script>
+
+</body>
+</html>
+```
