@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bộ Biên Soạn & Xuất Lịch 12 Tháng 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        /* Cấu hình hiển thị bản in để xuất PDF 12 trang hoàn hảo */
+        @media print {
+            body {
+                background-color: #fff;
+                color: #000;
+                margin: 0;
+                padding: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-container {
+                display: block !important;
+                width: 100% !important;
+            }
+            .page-break {
+                page-break-after: always;
+                break-inside: avoid;
+                margin: 0;
+                padding: 10mm 0;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                box-sizing: border-box;
+            }
+            /* Đảm bảo bảng hiển thị sắc nét khi in */
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                font-size: 11px !important;
+            }
+            th, td {
+                border: 1px solid #000 !important;
+                padding: 4px 6px !important;
+                color: #000 !important;
+            }
+            th {
+                background-color: #f3f4f6 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            /* Ẩn placeholder và đường viền phụ khi in */
+            [contenteditable="true"] {
+                outline: none !important;
+                border: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- HEADER (Không in) -->
+    <header class="no-print bg-gradient-to-r from-red-700 to-amber-700 text-white shadow-lg py-4 px-6 flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center space-x-3">
+            <div class="bg-amber-500 text-red-900 p-2 rounded-full shadow-inner">
+                <i class="fa-solid fa-calendar-days text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-wide">BỘ BIÊN SOẠN & XUẤT LỊCH 12 THÁNG</h1>
+                <p class="text-xs text-amber-200">Tạo sách PDF lật 12 trang - Tự do chỉnh sửa mọi chi tiết</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <button onclick="triggerPrint()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-medium px-4 py-2 rounded-lg shadow transition flex items-center gap-2">
+                <i class="fa-solid fa-file-pdf"></i> Xuất file PDF (In 12 Trang)
+            </button>
+            <button onclick="exportJSON()" class="bg-slate-800 hover:bg-slate-700 text-white text-sm px-3 py-2 rounded-lg border border-slate-600 transition flex items-center gap-1">
+                <i class="fa-solid fa-download"></i> Lưu dữ liệu (.json)
+            </button>
+            <label class="cursor-pointer bg-slate-800 hover:bg-slate-700 text-white text-sm px-3 py-2 rounded-lg border border-slate-600 transition flex items-center gap-1">
+                <i class="fa-solid fa-upload"></i> Mở file đã lưu
+                <input type="file" id="importFile" accept=".json" class="hidden" onchange="importJSON(event)">
+            </label>
+        </div>
+    </header>
+
+    <!-- MAIN EDITOR CONTAINER -->
+    <div class="flex-grow flex no-print">
+        
+        <!-- SIDEBAR: LIST OF MONTHS (Không in) -->
+        <aside class="w-64 bg-slate-900 text-slate-300 flex flex-col border-r border-slate-800">
+            <div class="p-4 bg-slate-950 border-b border-slate-800">
+                <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Danh Sách 12 Tháng</span>
+            </div>
+            <nav class="flex-grow overflow-y-auto p-2 space-y-1" id="monthTabsContainer">
+                <!-- Sẽ được điền bằng Javascript -->
+            </nav>
+            <div class="p-4 bg-slate-950 border-t border-slate-800 text-xs text-center text-slate-500">
+                Thiết kế bởi Gemini • 2026
+            </div>
+        </aside>
+
+        <!-- MAIN WORKSPACE -->
+        <main class="flex-grow p-6 overflow-y-auto">
+            
+            <!-- THÔNG TIN CHUNG & TRÌNH TẠO NHANH -->
+            <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-200 mb-6">
+                <h3 class="text-md font-bold text-slate-700 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i>
+                    Công cụ hỗ trợ điền lịch nhanh cho tháng đang chọn
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-500 mb-1">Ngày Dương Lịch bắt đầu:</label>
+                        <input type="date" id="autoStartDate" value="2026-06-15" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-500 mb-1">Tổng số ngày của tháng:</label>
+                        <select id="autoTotalDays" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                            <option value="29">29 ngày (Tháng thiếu)</option>
+                            <option value="30" selected>30 ngày (Tháng đủ)</option>
+                            <option value="31">31 ngày</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button onclick="autoFillDates()" class="w-full bg-amber-600 hover:bg-amber-500 text-white font-medium text-sm py-2 px-4 rounded-lg shadow-sm transition flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-bolt"></i> Tự động điền ngày & thứ
+                        </button>
+                    </div>
+                    <div>
+                        <button onclick="addNewRow()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium text-sm py-2 px-4 rounded-lg border border-slate-300 transition flex items-center justify-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Thêm 1 dòng trống
+                        </button>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-2">
+                    * Mẹo: Bạn chỉ cần nhập ngày bắt đầu (ví dụ 15/06/2026), hệ thống sẽ tự động tăng dần ngày và tính Thứ chuẩn xác nhất. Sau đó bạn chỉ cần điền Âm lịch, Can Chi và Hung Tinh xịt.
+                </p>
+            </div>
+
+            <!-- BẢNG BIÊN SOẠN THỰC TẾ -->
+            <div class="bg-white rounded-xl shadow-md border border-slate-200 p-8 max-w-5xl mx-auto overflow-x-auto relative">
+                <!-- Watermark chế độ chỉnh sửa -->
+                <span class="absolute top-2 right-2 bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded-full font-bold">Chế độ biên soạn trực tiếp</span>
+                
+                <!-- Header Lịch -->
+                <div class="text-center mb-4">
+                    <h2 class="text-2xl font-bold text-red-700 tracking-wide title-font uppercase" id="editHeader" contenteditable="true" placeholder="BẤM VÀO ĐỂ SỬA TIÊU ĐỀ">
+                        XEM NGÀY TỐT XẤU THÁNG 5 NĂM 2026 - BÍNH NGỌ - 0989.34.9119
+                    </h2>
+                    <p class="text-sm italic text-slate-600 font-medium mt-1" id="editSubtitle" contenteditable="true" placeholder="BẤM VÀO ĐỂ SỬA THÔNG TIN CHI TIẾT (TIẾT KHÍ, THÁNG THIẾU/ĐỦ...)">
+                        THÁNG 5 GIÁP NGỌ ( THIẾU ) Tiết Mang Chủng khởi ngày 6/6/2026; Tiết khi Hạ Chí khởi ngày 21/6/2026
+                    </p>
+                </div>
+
+                <!-- Bảng Ngày -->
+                <table class="w-full border-collapse border border-slate-300 text-sm">
+                    <thead>
+                        <tr class="bg-slate-100 text-slate-700 font-bold">
+                            <th class="border border-slate-300 px-2 py-2 text-center w-12">STT</th>
+                            <th class="border border-slate-300 px-3 py-2 text-center w-16">THỨ</th>
+                            <th class="border border-slate-300 px-3 py-2 text-center w-24">DƯƠNG LỊCH</th>
+                            <th class="border border-slate-300 px-3 py-2 text-center w-24">ÂM LỊCH</th>
+                            <th class="border border-slate-300 px-4 py-2 text-left w-36">(CAN - CHI)</th>
+                            <th class="border border-slate-300 px-4 py-2 text-left w-40">HUNG TINH</th>
+                            <th class="border border-slate-300 px-4 py-2 text-left w-40">VẠN XẤU KHÁC</th>
+                            <th class="border border-slate-300 px-3 py-2 text-left w-32">ĐÁNH GIÁ</th>
+                            <th class="border border-slate-300 px-3 py-2 text-left w-32">GIỜ TỐT</th>
+                            <th class="border border-slate-300 px-2 py-2 text-center w-12 no-print">XÓA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="editorTableBody">
+                        <!-- Các dòng ngày sẽ được tự động điền bằng JS -->
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- KHU VỰC IN: 12 TRANG HOÀN CHỈNH SẼ ĐƯỢC CHUẨN BỊ SẴN Ở ĐÂY (Chỉ hiển thị khi in hoặc lưu PDF) -->
+    <div id="printContainer" class="hidden print-container">
+        <!-- Javascript sẽ tự động kết xuất 12 trang vào đây trước khi lệnh in được kích hoạt -->
+    </div>
+
+    <!-- CUSTOM TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-2 transition-all transform translate-y-20 opacity-0 pointer-events-none z-50">
+        <span id="toastIcon"><i class="fa-solid fa-circle-check text-emerald-400"></i></span>
+        <span id="toastMessage" class="text-sm font-medium">Đã lưu thay đổi!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Cấu trúc dữ liệu mẫu của tháng 5 (được chụp trong ảnh)
+        const sampleMonth5 = [
+            { stt: 1, thu: "T2", duonglich: "15/6", amlich: "1", canchi: "Canh Thân", hungtinh: "SÁT CHỦ", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 2, thu: "T3", duonglich: "16/6", amlich: "2", canchi: "Tân Dậu", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 3, thu: "T4", duonglich: "17/6", amlich: "3", canchi: "Nhâm Tuất", hungtinh: "", vanxau: "TAM NƯƠNG", danhgia: "", giotot: "" },
+            { stt: 4, thu: "T5", duonglich: "18/6", amlich: "4", canchi: "Quý Hợi", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 5, thu: "T6", duonglich: "19/6", amlich: "5", canchi: "Giáp Tý", hungtinh: "THỤ TỬ", vanxau: "NGUYỆT PHÁ", danhgia: "DƯƠNG CÔNG KỴ", giotot: "NGUYỆT KỴ" },
+            { stt: 6, thu: "T7", duonglich: "20/6", amlich: "6", canchi: "Ất Sửu", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 7, thu: "CN", duonglich: "21/6", amlich: "7", canchi: "Bính Dần", hungtinh: "", vanxau: "TAM NƯƠNG", danhgia: "", giotot: "" },
+            { stt: 8, thu: "T2", duonglich: "22/6", amlich: "8", canchi: "Đinh Mão", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 9, thu: "T3", duonglich: "23/6", amlich: "9", canchi: "Mậu Thìn", hungtinh: "CON NƯỚC", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 10, thu: "T4", duonglich: "24/6", amlich: "10", canchi: "Kỷ Tỵ", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 11, thu: "T5", duonglich: "25/6", amlich: "11", canchi: "Canh Ngọ", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 12, thu: "T6", duonglich: "26/6", amlich: "12", canchi: "Tân Mùi", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 13, thu: "T7", duonglich: "27/6", amlich: "13", canchi: "Nhâm Thân", hungtinh: "SÁT CHỦ", vanxau: "TAM NƯƠNG", danhgia: "", giotot: "" },
+            { stt: 14, thu: "CN", duonglich: "28/6", amlich: "14", canchi: "Quý Dậu", hungtinh: "", vanxau: "", danhgia: "NGUYỆT KỴ", giotot: "" },
+            { stt: 15, thu: "T2", duonglich: "29/6", amlich: "15", canchi: "Giáp Tuất", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 16, thu: "T3", duonglich: "30/6", amlich: "16", canchi: "Ất Hợi", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 17, thu: "T4", duonglich: "1/7", amlich: "17", canchi: "Bính Tý", hungtinh: "THỤ TỬ", vanxau: "NGUYỆT PHÁ", danhgia: "", giotot: "" },
+            { stt: 18, thu: "T5", duonglich: "2/7", amlich: "18", canchi: "Đinh Sửu", hungtinh: "", vanxau: "TAM NƯƠNG", danhgia: "", giotot: "" },
+            { stt: 19, thu: "T6", duonglich: "3/7", amlich: "19", canchi: "Mậu Dần", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 20, thu: "T7", duonglich: "4/7", amlich: "20", canchi: "Kỷ Mão", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 21, thu: "CN", duonglich: "5/7", amlich: "21", canchi: "Canh Thìn", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 22, thu: "T2", duonglich: "6/7", amlich: "22", canchi: "Tân Tỵ", hungtinh: "", vanxau: "TAM NƯƠNG", danhgia: "", giotot: "" },
+            { stt: 23, thu: "T3", duonglich: "7/7", amlich: "23", canchi: "Nhâm Ngọ", hungtinh: "CON NƯỚC", vanxau: "", danhgia: "NGUYỆT KỴ", giotot: "" },
+            { stt: 24, thu: "T4", duonglich: "8/7", amlich: "24", canchi: "Quý Mùi", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 25, thu: "T5", duonglich: "9/7", amlich: "25", canchi: "Giáp Thân", hungtinh: "SÁT CHỦ", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 26, thu: "T6", duonglich: "10/7", amlich: "26", canchi: "Ất Dậu", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 27, thu: "T7", duonglich: "11/7", amlich: "27", canchi: "Bính Tuất", hungtinh: "", vanxau: "TAM NƯƠNG", danhgia: "", giotot: "" },
+            { stt: 28, thu: "CN", duonglich: "12/7", amlich: "28", canchi: "Đinh Hợi", hungtinh: "", vanxau: "", danhgia: "", giotot: "" },
+            { stt: 29, thu: "T2", duonglich: "13/7", amlich: "29", canchi: "Mậu Tý", hungtinh: "THỤ TỬ", vanxau: "NGUYỆT PHÁ", danhgia: "", giotot: "" },
+            { stt: 30, thu: "T3", duonglich: "14/7", amlich: "1/6", canchi: "Kỷ Sửu", hungtinh: "", vanxau: "", danhgia: "", giotot: "" }
+        ];
+
+        // Khởi tạo cơ sở dữ liệu rỗng cho 12 tháng
+        let calendarData = [];
+        
+        // Sinh mốc dữ liệu ban đầu cho cả năm
+        function initCalendar() {
+            for (let i = 1; i <= 12; i++) {
+                if (i === 5) {
+                    // Ưu tiên dữ liệu mẫu đã có
+                    calendarData.push({
+                        monthId: 5,
+                        monthName: "Tháng 5 (Bính Ngọ)",
+                        header: "XEM NGÀY TỐT XẤU THÁNG 5 NĂM 2026 - BÍNH NGỌ - 0989.34.9119",
+                        subtitle: "THÁNG 5 GIÁP NGỌ ( THIẾU ) Tiết Mang Chủng khởi ngày 6/6/2026; Tiết khi Hạ Chí khởi ngày 21/6/2026",
+                        days: JSON.parse(JSON.stringify(sampleMonth5))
+                    });
+                } else {
+                    // Tạo tạm dữ liệu trống cho các tháng khác
+                    const placeholderDays = [];
+                    for (let d = 1; d <= 30; d++) {
+                        placeholderDays.push({
+                            stt: d,
+                            thu: "",
+                            duonglich: "",
+                            amlich: `${d}`,
+                            canchi: "",
+                            hungtinh: "",
+                            vanxau: "",
+                            danhgia: "",
+                            giotot: ""
+                        });
+                    }
+                    calendarData.push({
+                        monthId: i,
+                        monthName: `Tháng ${i}`,
+                        header: `XEM NGÀY TỐT XẤU THÁNG ${i} NĂM 2026 - BÍNH NGỌ - 0989.34.9119`,
+                        subtitle: `THÁNG ${i} LỊCH VIỆT NAM KHỞI SẮC - CLICK ĐỂ SỬA THÔNG TIN CHI TIẾT`,
+                        days: placeholderDays
+                    });
+                }
+            }
+        }
+
+        let currentActiveMonth = 5; // Mặc định hiển thị Tháng 5 trước
+
+        // Hiển thị danh sách các Tab Tháng bên lề trái
+        function renderMonthTabs() {
+            const container = document.getElementById("monthTabsContainer");
+            container.innerHTML = "";
+            calendarData.forEach(month => {
+                const isActive = month.monthId === currentActiveMonth;
+                const tab = document.createElement("button");
+                tab.className = `w-full text-left px-3 py-2.5 rounded-lg text-sm font-medium transition flex justify-between items-center ${
+                    isActive 
+                    ? "bg-amber-600 text-white shadow-md font-semibold" 
+                    : "text-slate-400 hover:bg-slate-800 hover:text-white"
+                }`;
+                tab.onclick = () => selectMonth(month.monthId);
+                tab.innerHTML = `
+                    <span class="flex items-center gap-2">
+                        <i class="fa-regular ${isActive ? 'fa-folder-open' : 'fa-folder'}"></i>
+                        ${month.monthName}
+                    </span>
+                    <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-400">${month.days.length} ngày</span>
+                `;
+                container.appendChild(tab);
+            });
+        }
+
+        // Chọn tháng để biên tập
+        function selectMonth(id) {
+            // Lưu dữ liệu của tháng hiện tại từ giao diện trước khi chuyển
+            saveCurrentState();
+            currentActiveMonth = id;
+            renderMonthTabs();
+            renderActiveMonthData();
+        }
+
+        // Đổ dữ liệu của tháng đang chọn ra bảng chỉnh sửa
+        function renderActiveMonthData() {
+            const month = calendarData.find(m => m.monthId === currentActiveMonth);
+            if (!month) return;
+
+            // Điền Header và Subtitle
+            const headerEl = document.getElementById("editHeader");
+            const subtitleEl = document.getElementById("editSubtitle");
+            headerEl.innerText = month.header;
+            subtitleEl.innerText = month.subtitle;
+
+            // Điền nội dung bảng
+            const tbody = document.getElementById("editorTableBody");
+            tbody.innerHTML = "";
+
+            month.days.forEach((day, index) => {
+                const row = document.createElement("tr");
+                row.className = "hover:bg-slate-50 transition";
+                row.innerHTML = `
+                    <td class="border border-slate-300 px-2 py-1 text-center font-semibold text-slate-500 bg-slate-50">${day.stt}</td>
+                    <td class="border border-slate-300 px-3 py-1 text-center font-bold text-slate-700" contenteditable="true" data-field="thu" data-index="${index}">${day.thu}</td>
+                    <td class="border border-slate-300 px-3 py-1 text-center font-medium" contenteditable="true" data-field="duonglich" data-index="${index}">${day.duonglich}</td>
+                    <td class="border border-slate-300 px-3 py-1 text-center font-medium" contenteditable="true" data-field="amlich" data-index="${index}">${day.amlich}</td>
+                    <td class="border border-slate-300 px-4 py-1 text-left text-slate-800" contenteditable="true" data-field="canchi" data-index="${index}">${day.canchi}</td>
+                    <td class="border border-slate-300 px-4 py-1 text-left text-red-600 font-bold" contenteditable="true" data-field="hungtinh" data-index="${index}">${day.hungtinh}</td>
+                    <td class="border border-slate-300 px-4 py-1 text-left text-amber-700 font-medium" contenteditable="true" data-field="vanxau" data-index="${index}">${day.vanxau}</td>
+                    <td class="border border-slate-300 px-3 py-1 text-left" contenteditable="true" data-field="danhgia" data-index="${index}">${day.danhgia}</td>
+                    <td class="border border-slate-300 px-3 py-1 text-left text-slate-500 text-xs" contenteditable="true" data-field="giotot" data-index="${index}">${day.giotot}</td>
+                    <td class="border border-slate-300 px-2 py-1 text-center no-print">
+                        <button onclick="deleteRow(${index})" class="text-red-500 hover:text-red-700 p-1 transition">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Lưu thông tin đang chỉnh sửa tạm thời vào bộ nhớ ứng dụng
+        function saveCurrentState() {
+            const monthIndex = calendarData.findIndex(m => m.monthId === currentActiveMonth);
+            if (monthIndex === -1) return;
+
+            // Lưu Header & Subtitle
+            calendarData[monthIndex].header = document.getElementById("editHeader").innerText.trim();
+            calendarData[monthIndex].subtitle = document.getElementById("editSubtitle").innerText.trim();
+
+            // Lưu chi tiết từng ngày
+            const editableCells = document.querySelectorAll("[data-field]");
+            editableCells.forEach(cell => {
+                const dayIndex = parseInt(cell.getAttribute("data-index"));
+                const field = cell.getAttribute("data-field");
+                const val = cell.innerText.trim();
+                
+                if (calendarData[monthIndex].days[dayIndex]) {
+                    calendarData[monthIndex].days[dayIndex][field] = val;
+                }
+            });
+        }
+
+        // Tự động điền ngày thứ chuẩn xác
+        function autoFillDates() {
+            const startDateStr = document.getElementById("autoStartDate").value;
+            const totalDays = parseInt(document.getElementById("autoTotalDays").value);
+            if (!startDateStr) {
+                showToast("Vui lòng chọn ngày Dương lịch bắt đầu!", "fa-circle-exclamation", "text-red-400");
+                return;
+            }
+
+            const monthIndex = calendarData.findIndex(m => m.monthId === currentActiveMonth);
+            if (monthIndex === -1) return;
+
+            const days = [];
+            const dayNames = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+            let currentDate = new Date(startDateStr);
+
+            for (let i = 1; i <= totalDays; i++) {
+                const currentDay = currentDate.getDate();
+                const currentMonth = currentDate.getMonth() + 1;
+                const thu = dayNames[currentDate.getDay()];
+
+                days.push({
+                    stt: i,
+                    thu: thu,
+                    duonglich: `${currentDay}/${currentMonth}`,
+                    amlich: `${i}`, // Tạm thời điền số ngày làm lịch âm
+                    canchi: "",
+                    hungtinh: "",
+                    vanxau: "",
+                    danhgia: "",
+                    giotot: ""
+                });
+
+                // Tăng lên 1 ngày
+                currentDate.setDate(currentDate.getDate() + 1);
+            }
+
+            calendarData[monthIndex].days = days;
+            renderActiveMonthData();
+            showToast("Đã tự động tính và cập nhật Dương lịch & Thứ!", "fa-bolt", "text-amber-400");
+        }
+
+        // Thêm một dòng rỗng vào cuối bảng
+        function addNewRow() {
+            const monthIndex = calendarData.findIndex(m => m.monthId === currentActiveMonth);
+            if (monthIndex === -1) return;
+
+            saveCurrentState();
+            const nextSTT = calendarData[monthIndex].days.length + 1;
+            calendarData[monthIndex].days.push({
+                stt: nextSTT,
+                thu: "",
+                duonglich: "",
+                amlich: "",
+                canchi: "",
+                hungtinh: "",
+                vanxau: "",
+                danhgia: "",
+                giotot: ""
+            });
+
+            renderActiveMonthData();
+            showToast(`Đã thêm dòng thứ ${nextSTT}!`, "fa-plus", "text-blue-400");
+        }
+
+        // Xóa một dòng bất kỳ
+        function deleteRow(index) {
+            const monthIndex = calendarData.findIndex(m => m.monthId === currentActiveMonth);
+            if (monthIndex === -1) return;
+
+            saveCurrentState();
+            calendarData[monthIndex].days.splice(index, 1);
+            
+            // Đánh lại số thứ tự (STT)
+            calendarData[monthIndex].days.forEach((day, idx) => {
+                day.stt = idx + 1;
+            });
+
+            renderActiveMonthData();
+            showToast("Đã xóa dòng thành công!", "fa-trash-can", "text-red-400");
+        }
+
+        // Xuất file cấu hình JSON tải về máy để lưu trữ lâu dài
+        function exportJSON() {
+            saveCurrentState();
+            const jsonString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(calendarData, null, 2));
+            const downloadAnchor = document.createElement("a");
+            downloadAnchor.setAttribute("href", jsonString);
+            downloadAnchor.setAttribute("download", "lich_12_thang_2026.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("Đã xuất file .json thành công!", "fa-circle-down", "text-emerald-400");
+        }
+
+        // Nhập cấu hình JSON đã lưu trước đây để chỉnh sửa tiếp
+        function importJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const parsedData = JSON.parse(e.target.result);
+                    if (Array.isArray(parsedData) && parsedData.length === 12) {
+                        calendarData = parsedData;
+                        currentActiveMonth = 1;
+                        renderMonthTabs();
+                        renderActiveMonthData();
+                        showToast("Đã mở dữ liệu thành công từ file!", "fa-folder-open", "text-emerald-400");
+                    } else {
+                        showToast("File không hợp lệ! Vui lòng chọn đúng file lịch JSON 12 tháng.", "fa-triangle-exclamation", "text-red-400");
+                    }
+                } catch (err) {
+                    showToast("Lỗi giải mã file dữ liệu!", "fa-triangle-exclamation", "text-red-400");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Hàm hỗ trợ thông báo tùy chỉnh (Toast)
+        function showToast(message, iconClass = "fa-circle-check", textClass = "text-emerald-400") {
+            const toast = document.getElementById("toast");
+            const msgEl = document.getElementById("toastMessage");
+            const iconEl = document.getElementById("toastIcon");
+
+            iconEl.innerHTML = `<i class="fa-solid ${iconClass} ${textClass}"></i>`;
+            msgEl.innerText = message;
+
+            toast.classList.remove("translate-y-20", "opacity-0", "pointer-events-none");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-20", "opacity-0", "pointer-events-none");
+            }, 3000);
+        }
+
+        // HÀM QUAN TRỌNG NHẤT: DỰNG layout 12 TRANG IN VÀ KÍCH HOẠT PRINT TO PDF
+        function triggerPrint() {
+            // Bước 1: Lưu trạng thái hiện tại
+            saveCurrentState();
+
+            // Bước 2: Dựng HTML của cả 12 tháng vào khu vực in riêng biệt
+            const printContainer = document.getElementById("printContainer");
+            printContainer.innerHTML = "";
+
+            calendarData.forEach(month => {
+                // Tạo một trang mới (page-break-after: always) cho mỗi tháng
+                const page = document.createElement("div");
+                page.className = "page-break";
+
+                // Nội dung bảng và tiêu đề tháng
+                page.innerHTML = `
+                    <div style="text-align: center; margin-bottom: 12px;">
+                        <h2 style="font-size: 18px; font-weight: bold; color: #b91c1c; font-family: 'Playfair Display', serif; text-transform: uppercase; margin: 0;">
+                            ${month.header}
+                        </h2>
+                        <p style="font-size: 10px; font-style: italic; color: #475569; margin: 4px 0 0 0;">
+                            ${month.subtitle}
+                        </p>
+                    </div>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+                        <thead>
+                            <tr style="background-color: #f1f5f9;">
+                                <th style="border: 1px solid #000; padding: 4px; text-align: center; width: 5%;">STT</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: center; width: 8%;">THỨ</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: center; width: 12%;">DƯƠNG</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: center; width: 12%;">ÂM</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: left; width: 18%;">(CAN - CHI)</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: left; width: 15%;">HUNG TINH</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: left; width: 15%;">VẠN XẤU KHÁC</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: left; width: 15%;">ĐÁNH GIÁ</th>
+                                <th style="border: 1px solid #000; padding: 4px; text-align: left; width: 15%;">GIỜ TỐT</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${month.days.map(day => `
+                                <tr>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: center; font-weight: bold;">${day.stt}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: center;">${day.thu || ''}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: center;">${day.duonglich || ''}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: center;">${day.amlich || ''}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: left;">${day.canchi || ''}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: left; font-weight: bold; color: #b91c1c;">${day.hungtinh || ''}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: left; color: #b45309;">${day.vanxau || ''}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: left;">${day.danhgia || ''}</td>
+                                    <td style="border: 1px solid #000; padding: 4px; text-align: left; font-size: 10px;">${day.giotot || ''}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                `;
+                printContainer.appendChild(page);
+            });
+
+            // Bước 3: Gọi lệnh in của trình duyệt
+            setTimeout(() => {
+                window.print();
+            }, 500);
+        }
+
+        // Khởi chạy khi tải trang xong
+        window.onload = function() {
+            initCalendar();
+            renderMonthTabs();
+            renderActiveMonthData();
+        };
+    </script>
+</body>
+</html>
