@@ -7,8 +7,8 @@
     <style>
         body { font-family: Arial, sans-serif; margin: 10px; background-color: #f4f4f4; }
         .container { max-width: 960px; margin: 0 auto; background: #fff; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #111; margin-bottom: 5px; font-size: 1.3em; font-weight: bold; }
-        .sub-title { text-align: center; font-style: italic; color: #555; margin-bottom: 20px; font-size: 0.95em; line-height: 1.5; }
+        h2 { text-align: center; color: #111; margin-bottom: 2px; font-size: 1.3em; font-weight: bold; }
+        .sub-title { text-align: center; font-style: normal; color: #333333; margin-bottom: 0px; font-size: 1.25em; font-weight: 800; line-height: 1.4; }
         table { width: 100%; border-collapse: collapse; margin-bottom: 10px; table-layout: fixed; }
         th, td { border: 1px solid #999; padding: 6px 4px; text-align: center; vertical-align: middle; font-size: 0.95em; }
         th { background-color: #1565c0; color: white; font-weight: bold; }
@@ -21,24 +21,27 @@
 <body>
 <div class="container">
     <h2>BẢNG TRA TUỔI – CUNG SANH – CUNG TRẠCH</h2>
-    <div class="sub-title" style="font-size: 1.25em; font-weight: 800; color: #333333; line-height: 1.5; text-align: center; margin: 10px 0 12px 0;">
-    Cung Sanh chỉ ứng dụng cho hôn nhân /<br>
-    Trạch Cung, tên gọi là Phi cung ứng dụng cho phong thuỷ nhà ở<br><br>
-    <span style="color: #111; font-weight: normal; font-size: 0.9em; font-style: italic;">Tìm năm sinh, chọn cung Nam và Nữ, tra cứu kết quả bên dưới trang</span>
-    <br><br>
-    <!-- ĐOẠN KHÓA CHẶT ĐỘ RỘNG VỪA KHÍT VỚI BẢNG GỐC -->
-    <div style="font-size: 0.85em; text-align: center; max-width: 100%; margin: 0 auto; padding-top: 5px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+    
+    <div class="sub-title">
+        Cung Sanh chỉ ứng dụng cho hôn nhân /<br>
+        Trạch Cung, tên gọi là Phi cung ứng dụng cho phong thuỷ nhà ở<br>
+        <span style="color: #444; font-weight: normal; font-size: 0.75em; display: block; margin-top: 3px; font-style: normal;">Tìm năm sinh, chọn cung Nam và Nữ, tra cứu kết quả bên dưới trang</span>
+    </div>
+
+    <!-- ĐOẠN ZALO VÀ WEBSITE CHÈN VÀO GIỮA - ÉP SÁT XUỐNG MẶT BẢNG -->
+    <div style="font-size: 0.85em; text-align: center; max-width: 100%; margin: 8px auto 8px auto; padding: 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
         <div>
             <span style="color: #1565c0; font-weight: bold;">📞 Zalo hỗ trợ:</span>
-            <a href="https://zalo.me/0849328628" target="_blank" style="color: #1565c0; text-decoration: none; font-weight: bold; margin-left: 5px;">0849.328.628</a>
-            <span style="color: #1565c0; margin: 0 5px;">|</span>
+            <a href="https://zalo.me/0849328628" target="_blank" style="color: #1565c0; text-decoration: none; font-weight: bold; margin-left: 3px;">0849.328.628</a>
+            <span style="color: #1565c0; margin: 0 3px;">|</span>
             <a href="https://zalo.me/0789414153" target="_blank" style="color: #1565c0; text-decoration: none; font-weight: bold;">0789.41.41.53</a>
         </div>
         <div>
             <span style="color: #b30000; font-weight: bold;">🌐 Website:</span>
-            <a href="https://matmacuocdoi.vn" target="_blank" style="color: #b30000; text-decoration: underline; font-weight: bold; margin-left: 5px;">matmacuocdoi.vn</a>
+            <a href="https://matmacuocdoi.vn" target="_blank" style="color: #b30000; text-decoration: underline; font-weight: bold; margin-left: 3px;">matmacuocdoi.vn</a>
         </div>
     </div>
+
     <table>
         <colgroup>
             <col style="width: 16%;">
@@ -280,7 +283,6 @@
 </div>
 
 <script>
-    // TRỌN BỘ DỮ LIỆU KẾT NỐI 8 CUNG NAM CHUẨN XÁC THEO NÚT BẤM CỦA CHÚ
     const duLieuTho = {
         CAN_KIM: {
             tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG CÀN",
@@ -367,7 +369,7 @@
                 { q: "Trai cung Khôn lấy gái cung ĐOÀI (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true },
                 { q: "Trai cung Khôn lấy gái cung CÀN (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
                 { q: "Trai cung Khôn lấy gái cung KHẢM (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Khôn lấy gái cung CẤN (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Sinh Khí vào đây...)", cat: true },
+                { q: "Trai cung Khôn lấy gái cung CẤN (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
                 { q: "Trai cung Khôn lấy gái cung CHẤN (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
                 { q: "Trai cung Khôn lấy gái cung TỐN (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false },
                 { q: "Trai cung Khôn lấy gái cung LY (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false }
