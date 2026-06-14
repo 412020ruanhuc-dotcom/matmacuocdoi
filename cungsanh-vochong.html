@@ -432,7 +432,7 @@
     // Click từ bảng chính -> Hiện tầng 1 (Danh sách quẻ của Cung)
     function chuyenDenCung(maCung) {
         cungHienTai = maCung;
-        const duLieu = banDoPhongThuy[maCung];
+       const duLieu = DU_LIEU_CUNG_MENH[maCung];
         if (!duLieu) {
             alert("Dữ liệu cung này đang được cập nhật!");
             return;
