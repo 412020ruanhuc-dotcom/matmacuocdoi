@@ -438,18 +438,16 @@
         let htmlDanhSach = '';
         
         duLieu.cacQue.forEach((que, index) => {
-            // Cháu gộp sẵn mọi thứ, chú chỉ việc dán là xong
+            // Cháu dùng dấu nháy đơn trong chuỗi để không bị vướng lỗi code của chú
+            let tho = que.tho.replace(/'/g, "\\'");
             htmlDanhSach += `
                 <div class="dong-hon-nhan">
                     <strong>${que.nhan}</strong>
-                    <button style="color: ${que.mau};" onclick="document.getElementById('khoi-danh-sach-links').innerHTML = '<div style=white-space:pre-line;color:${que.mau}>${que.tho}</div>'">
+                    <button style="color: ${que.mau};" onclick="document.getElementById('khoi-danh-sach-links').innerHTML = '<div style=white-space:pre-line;color:${que.mau}>${tho}</div>'">
                         ${que.bien}
                     </button>
                 </div>
             `;
-        });
-        document.getElementById('khoi-danh-sach-links').innerHTML = htmlDanhSach;
-    }
         });
         document.getElementById('khoi-danh-sach-links').innerHTML = htmlDanhSach;
     }
