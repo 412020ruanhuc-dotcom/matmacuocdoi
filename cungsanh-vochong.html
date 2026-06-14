@@ -16,6 +16,19 @@
         .btn-link { background: none; border: none; font-weight: bold; cursor: pointer; display: block; width: 100%; text-align: center; font-size: 1em; text-decoration: underline; line-height: 1.6; padding: 0; }
         .m-cam-chan, .m-cam-can, .m-cam-ton, .m-cam-ly, .m-cam-doai, .m-cam-kham, .m-cam-khon { color: #cc9900; }
         .vung-gop { display: block; line-height: 1.6; }
+        
+        /* Tầng 1: Vùng danh sách 8 hướng hôn nhân của cung */
+        .vung-danh-sach-cung { display: none; margin-top: 25px; padding: 15px; border: 2px solid #1565c0; background-color: #f9fbfd; border-radius: 12px; }
+        .tieu-de-cung { color: #1565c0; font-size: 1.4em; font-weight: bold; margin-bottom: 5px; text-align: left; }
+        .huong-dan-click { font-size: 0.9em; color: #555; margin-bottom: 15px; font-style: italic; }
+        .dong-hon-nhan { font-size: 1.1em; margin: 10px 0; text-align: left; color: #222; }
+        .nut-bam-que { background: none; border: none; font-weight: bold; cursor: pointer; text-decoration: underline; font-size: 1em; padding: 0; }
+        
+        /* Tầng 2: Vùng hiện bài thơ chi tiết */
+        .vung-bai-tho-chi-tiet { display: none; margin-top: 20px; padding: 15px; border: 2px solid #FFD700; background-color: #fffdf5; border-radius: 12px; }
+        
+        /* Định dạng các nút quay về trang chủ / bảng tra */
+        .nut-quay-ve-link { background: none; border: none; color: #1565c0; font-weight: bold; text-decoration: underline; font-size: 1.05em; cursor: pointer; padding: 0; display: inline-block; margin-top: 15px; }
     </style>
 </head>
 <body>
@@ -28,7 +41,7 @@
         <span style="color: #444; font-weight: normal; font-size: 0.75em; display: block; margin-top: 3px; font-style: normal;">Tìm năm sinh, chọn cung Nam và Nữ, tra cứu kết quả bên dưới trang</span>
     </div>
 
-    <!-- ĐOẠN ZALO VÀ WEBSITE CHÈN VÀO GIỮA - ÉP SÁT XUỐNG MẶT BẢNG -->
+    <!-- THÔNG TIN LIÊN HỆ -->
     <div style="font-size: 0.85em; text-align: center; max-width: 100%; margin: 8px auto 8px auto; padding: 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
         <div>
             <span style="color: #1565c0; font-weight: bold;">📞 Zalo hỗ trợ:</span>
@@ -42,6 +55,7 @@
         </div>
     </div>
 
+    <!-- BẢNG CHÍNH ĐẦU TRANG -->
     <table>
         <colgroup>
             <col style="width: 16%;">
@@ -73,11 +87,11 @@
                 <td class="bg-chi">TÝ</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-chan" onclick="motho('CHAN')">Chấn (Mộc)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_KIM')">Càn (Kim)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_KIM')">Càn (Kim)</button>
-                        <button class="btn-link m-cam-chan" onclick="motho('CHAN')">Chấn (Mộc)</button>
+                        <button class="btn-link m-cam-chan" onclick="chuyenDenCung('CHAN')">Chấn (Mộc)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_KIM')">Càn (Kim)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_KIM')">Càn (Kim)</button>
+                        <button class="btn-link m-cam-chan" onclick="chuyenDenCung('CHAN')">Chấn (Mộc)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Kim<br>Thủy<br>Hỏa<br>Thổ<br>Mộc</span></td>
@@ -90,11 +104,11 @@
                 <td class="bg-chi">SỬU</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-ton" onclick="motho('TON')">Tốn (Mộc)</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY (Hỏa)</button>
-                        <button class="btn-link m-cam-doai" onclick="motho('DOAI')">Đoài (Kim)</button>
-                        <button class="btn-link m-cam-doai" onclick="motho('DOAI')">Đoài (Kim)</button>
-                        <button class="btn-link m-cam-ton" onclick="motho('TON')">Tốn (Mộc)</button>
+                        <button class="btn-link m-cam-ton" onclick="chuyenDenCung('TON')">Tốn (Mộc)</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY (Hỏa)</button>
+                        <button class="btn-link m-cam-doai" onclick="chuyenDenCung('DOAI')">Đoài (Kim)</button>
+                        <button class="btn-link m-cam-doai" onclick="chuyenDenCung('DOAI')">Đoài (Kim)</button>
+                        <button class="btn-link m-cam-ton" onclick="chuyenDenCung('TON')">Tốn (Mộc)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Kim<br>Thủy<br>Hỏa<br>Thổ<br>Mộc</span></td>
@@ -107,11 +121,11 @@
                 <td class="bg-chi">DẦN</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-kham" onclick="motho('KHAM')">Khảm (Thủy)</button>
-                        <button class="btn-link m-cam-kham" onclick="motho('KHAM')">Khảm (Thủy)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-kham" onclick="chuyenDenCung('KHAM')">Khảm (Thủy)</button>
+                        <button class="btn-link m-cam-kham" onclick="chuyenDenCung('KHAM')">Khảm (Thủy)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Thủy<br>Hỏa<br>Thổ<br>Mộc<br>Kim</span></td>
@@ -124,11 +138,11 @@
                 <td class="bg-chi">MÃO</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_KIM')">Càn (Kim)</button>
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_KIM')">Càn (Kim)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Thủy<br>Hỏa<br>Thổ<br>Mộc<br>Kim</span></td>
@@ -141,11 +155,11 @@
                 <td class="bg-chi">THÌN</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-ton" onclick="motho('TON')">Tốn (Mộc)</button>
-                        <button class="btn-link m-cam-kham" onclick="motho('KHAM')">Khảm (Thủy)</button>
-                        <button class="btn-link m-cam-doai" onclick="motho('DOAI')">Đoài (Kim)</button>
-                        <button class="btn-link m-cam-chan" onclick="motho('CHAN')">Chấn (Mộc)</button>
-                        <button class="btn-link m-cam-kham" onclick="motho('KHAM')">Khảm (Thủy)</button>
+                        <button class="btn-link m-cam-ton" onclick="chuyenDenCung('TON')">Tốn (Mộc)</button>
+                        <button class="btn-link m-cam-kham" onclick="chuyenDenCung('KHAM')">Khảm (Thủy)</button>
+                        <button class="btn-link m-cam-doai" onclick="chuyenDenCung('DOAI')">Đoài (Kim)</button>
+                        <button class="btn-link m-cam-chan" onclick="chuyenDenCung('CHAN')">Chấn (Mộc)</button>
+                        <button class="btn-link m-cam-kham" onclick="chuyenDenCung('KHAM')">Khảm (Thủy)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Hỏa<br>Thủy<br>Mộc<br>Kim<br>Thổ</span></td>
@@ -158,11 +172,11 @@
                 <td class="bg-chi">TỴ</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-doai" onclick="motho('DOAI')">Đoài (Kim)</button>
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-ton" onclick="motho('TON')">Tốn (Mộc)</button>
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-doai" onclick="chuyenDenCung('DOAI')">Đoài (Kim)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-ton" onclick="chuyenDenCung('TON')">Tốn (Mộc)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Hỏa<br>Thủy<br>Mộc<br>Kim<br>Thủy</span></td>
@@ -175,11 +189,11 @@
                 <td class="bg-chi">NGỌ</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_KIM')">Càn (Kim)</button>
-                        <button class="btn-link m-cam-chan" onclick="motho('CHAN')">Chấn (Mộc)</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_KIM')">Càn (Kim)</button>
+                        <button class="btn-link m-cam-chan" onclick="chuyenDenCung('CHAN')">Chấn (Mộc)</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Kim<br>Thủy<br>Hỏa<br>Thổ<br>Mộc</span></td>
@@ -192,11 +206,11 @@
                 <td class="bg-chi">MÙI</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-kham" onclick="motho('KHAM')">Khảm (Thủy)</button>
-                        <button class="btn-link m-cam-doai" onclick="motho('DOAI')">Đoài (Kim)</button>
-                        <button class="btn-link m-cam-ton" onclick="motho('TON')">Tốn (Mộc)</button>
-                        <button class="btn-link m-cam-kham" onclick="motho('KHAM')">Khảm (Thủy)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_KIM')">Càn (Kim)</button>
+                        <button class="btn-link m-cam-kham" onclick="chuyenDenCung('KHAM')">Khảm (Thủy)</button>
+                        <button class="btn-link m-cam-doai" onclick="chuyenDenCung('DOAI')">Đoài (Kim)</button>
+                        <button class="btn-link m-cam-ton" onclick="chuyenDenCung('TON')">Tốn (Mộc)</button>
+                        <button class="btn-link m-cam-kham" onclick="chuyenDenCung('KHAM')">Khảm (Thủy)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_KIM')">Càn (Kim)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Kim<br>Thủy<br>Hỏa<br>Thần<br>Mộc</span></td>
@@ -209,11 +223,11 @@
                 <td class="bg-chi">THÂN</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Thủy<br>Hỏa<br>Thổ<br>Mộc<br>Kim</span></td>
@@ -226,11 +240,11 @@
                 <td class="bg-chi">DẬU</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-chan" onclick="motho('CHAN')">Chấn (Mộc)</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_KIM')">Càn (Kim)</button>
-                        <button class="btn-link m-cam-chan" onclick="motho('CHAN')">Chấn (Mộc)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-chan" onclick="chuyenDenCung('CHAN')">Chấn (Mộc)</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_KIM')">Càn (Kim)</button>
+                        <button class="btn-link m-cam-chan" onclick="chuyenDenCung('CHAN')">Chấn (Mộc)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Thủy<br>Hỏa<br>Thổ<br>Mộc<br>Kim</span></td>
@@ -243,11 +257,11 @@
                 <td class="bg-chi">TUẤT</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_KIM')">Càn (Kim)</button>
-                        <button class="btn-link m-cam-ton" onclick="motho('TON')">Tốn (Mộc)</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
-                        <button class="btn-link m-cam-kham" onclick="motho('KHAM')">Khảm (Thủy)</button>
-                        <button class="btn-link m-cam-ly" onclick="motho('LY')">LY</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_KIM')">Càn (Kim)</button>
+                        <button class="btn-link m-cam-ton" onclick="chuyenDenCung('TON')">Tốn (Mộc)</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
+                        <button class="btn-link m-cam-kham" onclick="chuyenDenCung('KHAM')">Khảm (Thủy)</button>
+                        <button class="btn-link m-cam-ly" onclick="chuyenDenCung('LY')">LY</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Hỏa<br>ThổMộc<br>Kim<br>Thủy</span></td>
@@ -260,11 +274,11 @@
                 <td class="bg-chi">HỢI</td>
                 <td>
                     <span class="vung-gop">
-                        <button class="btn-link m-cam-doai" onclick="motho('DOAI')">Đoài (Kim)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-khon" onclick="motho('KHON')">Khôn (Thổ)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
-                        <button class="btn-link m-cam-can" onclick="motho('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-doai" onclick="chuyenDenCung('DOAI')">Đoài (Kim)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-khon" onclick="chuyenDenCung('KHON')">Khôn (Thổ)</button>
+                        <button class="btn-link m-cam-can" onclick="v">Cấn (Thổ)</button>
+                        <button class="btn-link m-cam-can" onclick="chuyenDenCung('CAN_THO')">Cấn (Thổ)</button>
                     </span>
                 </td>
                 <td><span class="vung-gop">Hỏa<br>Thổ<br>Mộc<br>Kim<br>Thủy</span></td>
@@ -274,154 +288,162 @@
         </tbody>
     </table>
 
-    <div id="vung-que-tho" style="display: none; margin-top: 25px; padding: 15px; border: 2px solid #FFD700; background-color: #fffdf5; border-radius: 12px;">
-        <div id="tieu-de-que" style="color: #b30000; font-size: 1.4em; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #FFD700; padding-bottom: 5px; text-align: center;"></div>
-        <div id="noi-dung-que"></div>
-        <button onclick="dongQue()" style="display: block; margin: 20px auto 0 auto; background-color: #f2f2f2; color: #0066cc; border: 1px solid #ccc; padding: 10px 20px; font-weight: bold; font-size: 16px; cursor: pointer; border-radius: 6px;">:: Trở lên bảng tra cung ↩</button>
+    <!-- TẦNG 1: HIỆN DANH SÁCH CÁC CẶP HÔN NHÂN CỦA CUNG ĐƯỢC CHỌN -->
+    <div id="vung-danh-sach" class="vung-danh-sach-cung">
+        <div id="ten-cung-duoc-chon" class="tieu-de-cung"></div>
+        <div class="huong-dan-click">(Click vào chữ <span style="font-weight: bold; text-decoration: underline;">có màu gạch chân</span> để xem quẻ chi tiết của cung)</div>
+        <div id="khoi-danh-sach-links"></div>
+        
+        <!-- Nút quay lại trang chủ ở Tầng 1 -->
+        <div style="margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 10px;">
+            <button class="nut-quay-ve-link" onclick="dongToanBo()">:: trở lên bảng tra cung ⬆</button>
+        </div>
+    </div>
+
+    <!-- TẦNG 2: NƠI HIỆN BÀI THƠ CHI TIẾT (Theo phong cách ảnh_26.png) -->
+    <div id="vung-tho-chi-tiet" class="vung-bai-tho-chi-tiet">
+        <div id="tieu-de-que-chi-tiet" style="color: #b30000; font-size: 1.3em; font-weight: bold; margin-bottom: 12px; border-bottom: 2px solid #FFD700; padding-bottom: 5px;"></div>
+        <div id="noi-dung-tho-chi-tiet" style="font-size: 22px; line-height: 1.7; color: #222; font-style: italic; white-space: pre-line; margin-bottom: 20px;"></div>
+        
+        <!-- Bộ nút điều hướng dưới đáy bài thơ như web mẫu -->
+        <div style="border-top: 1px dashed #ccc; padding-top: 15px; display: flex; flex-direction: column; gap: 8px;">
+            <div>
+                <button onclick="quayLaiDanhSach()" style="background-color: #f2f2f2; color: #1565c0; border: 1px solid #ccc; padding: 6px 12px; font-weight: bold; cursor: pointer; border-radius: 6px; font-size: 0.95em;">↩ Quay lại danh sách cung</button>
+            </div>
+            <div>
+                <button class="nut-quay-ve-link" onclick="dongToanBo()">:: trở lên bảng tra cung ⬆</button>
+            </div>
+        </div>
     </div>
 
 </div>
 
 <script>
-    const duLieuTho = {
+    // Bản đồ dữ liệu chuẩn hóa cấu trúc 2 tầng
+    const banDoPhongThuy = {
         CAN_KIM: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG CÀN",
-            baiHoc: [
-                { q: "Trai cung Càn lấy gái cung CÀN (Phục Vị) ☑", t: "Lưỡng Càn phục vị tốt vừa thôi\nSợ lúc tuổi già chẳng đủ đôi\nCon cháu trung bình không bao phát\nRuộng vườn nhà cửa lập hai nơi.\nBậc trung được số giàu sang tuổi già\nVợ chồng bạch thủ thanh gia\nTrung niên gầy dựng cửa nhà yên vui", cat: true },
-                { q: "Trai cung Càn gái cung KHẢM (Lục sát) ⚠️", t: "Luồng thủy triều nguyên phước đức sinh\nChăn nuôi lục sát nghiệp không thành\nDâu hiền rể thảo nên khoa cử\nThôn ấp ngợi khen lộc sẵn thành\nLục sát phạm ắt phu thê buồn thảm\nKim cải dở dang nửa đời\nDuyên nợ đổi đời tương tư ly tán.", cat: false },
-                { q: "Trai cung Càn lấy gái cung CẤN (Thiên Y) ☑", t: "Cung vị trường sinh được hợp hòa\nGiàu sang nhờ cậy ở tay bà\nChứa nhiều phúc đức cho con cháu\nSung sướng cùng nhau đến tuổi già.\nMay mắn cuộc đời vượng tài phấn chấn\nTình yêu lửa đượm hương nồng\nRể thảo, dâu hiền an nhàn hậu vận.", cat: true },
-                { q: "Trai cung Càn lấy gái cung CHẤN (Ngũ quỷ) ⚠️", t: "Khẩu thiệt giao tranh có đấu tranh\nVợ chồng ngũ quỷ họa tương sinh\nCửa nhà ruộng đất rồi tiêu sạch\nTử biệt sinh ly khó tạo thành.\nTrước sau bất tường nợ duyên lận đận\nTâm ý chồng vợ không hòa\nKhiến nên sinh kế quanh năm túng quẩn.", cat: false },
-                { q: "Trai cung Càn lấy gái cung TỐN (Hoạ hại) ⚠️", t: "Càn Tốn hai cung khắc rõ ràng\nCưỡng cầu kết hợp thế sao an\nNếu không họa hại liên miên đến\nCũng sẽ chia ly người một đi.\nTrước hợp sau lìa vô cùng khốn đốn\nCon cái trưởng thành cút côi\nHình ngục oan khiến vợ chồng thương tổn.", cat: false },
-                { q: "Trai cung Càn lấy gái cung ĐOÀI (Sinh Khí) ☑", t: "Vàng thoi, vàng khối lại sinh vàng\nPhúc lộc diên niên tuổi thọ khang\nCon cháu nên danh hưng tổ nghiệp\nCàn, Đoài phối hợp chắc giàu sang.\nÊm ấm gia đạo trong ngoài yên vui\nNợ duyên gắn bó trọn đời\nThê vinh tứ quí số người giàu sang.", cat: true },
-                { q: "Trai cung Càn lấy gái cung LY (Tuyệt mệnh) ⚠️", t: "Càn, Ly tuyệt mạng ở sao yên\nSinh nở nguy nan lắm lụy phiền\nTử biệt sinh ly như đợi sẵn\nKhó nghèo, đắc thọ, phú quy thiên.\nNợ duyên cầm chắc sầu bi khóc thầm\nÁi ân lỡ nhịp sắc cầm\nMới hay căn kiếp số phần hẩm hiu", cat: false },
-                { q: "Trai cung Càn lấy gái cung KHÔN (Diên Niên) ☑", t: "Thiên địa càn khôn hợp một nhà\nVân hành san khí phát tam đa\nNhiều tài, nhiều lộc, nhiều con cái\nPhát đạt giàu sang thẳng đến già.\nĐược số phước đức trường tồn ấm no\nTài lộc như nước tràn vô\nCửa nhà đồ sộ quy mô ruộng vườn.", cat: true }
+            ten: "3. Cung Càn",
+            cacQue: [
+                { nhan: "Trai cung Càn lấy gái cung CÀN", bien: "Phục Vị", mau: "#cc9900", tho: "Lưỡng Càn phục vị tốt vừa thôi\nSợ lúc tuổi già chẳng đủ đôi\nCon cháu trung bình không bao phát\nRuộng vườn nhà cửa lập hai nơi.\nBậc trung được số giàu sang tuổi già\nVợ chồng bạch thủ thanh gia\nTrung niên gầy dựng cửa nhà yên vui" },
+                { nhan: "Trai cung Càn lấy gái cung KHẢM", bien: "Lục sát", mau: "#ff3333", tho: "Luồng thủy triều nguyên phước đức sinh\nChăn nuôi lục sát nghiệp không thành\nDâu hiền rể thảo nên khoa cử\nThôn ấp ngợi khen lộc sẵn thành\nLục sát phạm ắt phu thê buồn thảm\nKim cải dở dang nửa đời\nDuyên nợ đổi đời tương tư ly tán." },
+                { nhan: "Trai cung Càn lấy gái cung CẤN", bien: "Thiên Y", mau: "#0066cc", tho: "Cung vị trường sinh được hợp hòa\nGiàu sang nhờ cậy ở tay bà\nChứa nhiều phúc đức cho con cháu\nSung sướng cùng nhau đến tuổi già.\nMay mắn cuộc đời vượng tài phấn chấn\nTình yêu lửa đượm hương nồng\nRể thảo, dâu hiền an nhàn hậu vận." },
+                { nhan: "Trai cung Càn lấy gái cung CHẤN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Khẩu thiệt giao tranh có đấu tranh\nVợ chồng ngũ quỷ họa tương sinh\nCửa nhà ruộng đất rồi tiêu sạch\nTử biệt sinh ly khó tạo thành.\nTrước sau bất tường nợ duyên lận đận\nTâm ý chồng vợ không hòa\nKhiến nên sinh kế quanh năm túng quẩn." },
+                { nhan: "Trai cung Càn lấy gái cung TỐN", bien: "Hoạ hại", mau: "#ff3333", tho: "Càn Tốn hai cung khắc rõ ràng\nCưỡng cầu kết hợp thế sao an\nNếu không họa hại liên miên đến\nCũng sẽ chia ly người một đi.\nTrước hợp sau lìa vô cùng khốn đốn\nCon cái trưởng thành cút côi\nHình ngục oan khiến vợ chồng thương tổn." },
+                { nhan: "Trai cung Càn lấy gái cung ĐOÀI", bien: "Sinh Khí", mau: "#0066cc", tho: "Vàng thoi, vàng khối lại sinh vàng\nPhúc lộc diên niên tuổi thọ khang\nCon cháu nên danh hưng tổ nghiệp\nCàn, Đoài phối hợp chắc giàu sang.\nÊm ấm gia đạo trong ngoài yên vui\nNợ duyên gắn bó trọn đời\nThê vinh tứ quí số người giàu sang." },
+                { nhan: "Trai cung Càn lấy gái cung LY", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Càn, Ly tuyệt mạng ở sao yên\nSinh nở nguy nan lắm lụy phiền\nTử biệt sinh ly như đợi sẵn\nKhó nghèo, đắc thọ, phú quy thiên.\nNợ duyên cầm chắc sầu bi khóc thầm\nÁi ân lỡ nhịp sắc cầm\nMới hay căn kiếp số phần hẩm hiu" },
+                { nhan: "Trai cung Càn lấy gái cung KHÔN", bien: "Diên Niên", mau: "#cc9900", tho: "Thiên địa càn khôn hợp một nhà\nVân hành san khí phát tam đa\nNhiều tài, nhiều lộc, nhiều con cái\nPhát đạt giàu sang thẳng đến già.\nĐược số phước đức trường tồn ấm no\nTài lộc như nước tràn vô\nCửa nhà đồ sộ quy mô ruộng vườn." }
             ]
         },
         CHAN: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG CHẤN",
-            baiHoc: [
-                { q: "Trai cung Chấn lấy gái cung CHẤN (Phục Vị) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Chấn gái cung KHẢM (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true },
-                { q: "Trai cung Chấn lấy gái cung TỐN (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
-                { q: "Trai cung Chấn lấy gái cung KHÔN (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
-                { q: "Trai cung Chấn lấy gái cung LY (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Sinh Khí vào đây...)", cat: true },
-                { q: "Trai cung Chấn lấy gái cung CÀN (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false },
-                { q: "Trai cung Chấn lấy gái cung ĐOÀI (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Chấn lấy gái cung CẤN (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false }
+            ten: "4. Cung Chấn",
+            cacQue: [
+                { nhan: "Trai cung Chấn lấy gái cung CHẤN", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ Phục Vị điền vào đây...)" },
+                { nhan: "Trai cung Chấn lấy gái cung KHẢM", bien: "Thiên Y", mau: "#0066cc", tho: "(Thơ quẻ Thiên Y điền vào đây...)" },
+                { nhan: "Trai cung Chấn lấy gái cung TỐN", bien: "Diên Niên", mau: "#cc9900", tho: "(Thơ quẻ Diên Niên điền vào đây...)" },
+                { nhan: "Trai cung Chấn lấy gái cung KHÔN", bien: "Họa hại", mau: "#ff3333", tho: "(Thơ quẻ Họa Hại điền vào đây...)" },
+                { nhan: "Trai cung Chấn lấy gái cung LY", bien: "Sinh Khí", mau: "#0066cc", tho: "(Thơ quẻ Sinh Khí điền vào đây...)" },
+                { nhan: "Trai cung Chấn lấy gái cung CÀN", bien: "Lục sát", mau: "#ff3333", tho: "(Thơ quẻ Lục Sát điền vào đây...)" },
+                { nhan: "Trai cung Chấn lấy gái cung ĐOÀI", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "(Thơ quẻ Tuyệt Mệnh điền vào đây...)" },
+                { nhan: "Trai cung Chấn lấy gái cung CẤN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "(Thơ quẻ Ngũ Quỷ điền vào đây...)" }
             ]
         },
         TON: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG TỐN",
-            baiHoc: [
-                { q: "Trai cung Tốn lấy gái cung TỐN (Phục Vị) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Tốn lấy gái cung CHẤN (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
-                { q: "Trai cung Tốn lấy gái cung KHÔN (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false },
-                { q: "Trai cung Tốn lấy gái cung KHẢM (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Sinh Khí vào đây...)", cat: true },
-                { q: "Trai cung Tốn lấy gái cung CÀN (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
-                { q: "Trai cung Tốn lấy gái cung LY (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true },
-                { q: "Trai cung Tốn lấy gái cung CÀN (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Tốn lấy gái cung ĐOÀI (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false }
+            ten: "5. Cung Tốn",
+            cacQue: [
+                { nhan: "Trai cung Tốn lấy gái cung TỐN", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ Phục Vị...)" },
+                { nhan: "Trai cung Tốn lấy gái cung CHẤN", bien: "Diên Niên", mau: "#cc9900", tho: "(Thơ quẻ Diên Niên...)" },
+                { nhan: "Trai cung Tốn lấy gái cung KHÔN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "(Thơ quẻ Ngũ Quỷ...)" },
+                { nhan: "Trai cung Tốn lấy gái cung KHẢM", bien: "Sinh Khí", mau: "#0066cc", tho: "(Thơ quẻ Sinh Khí...)" },
+                { nhan: "Trai cung Tốn lấy gái cung CÀN", bien: "Họa hại", mau: "#ff3333", tho: "(Thơ quẻ Họa Hại...)" },
+                { nhan: "Trai cung Tốn lấy gái cung LY", bien: "Thiên Y", mau: "#0066cc", tho: "(Thơ quẻ Thiên Y...)" }
             ]
         },
         LY: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG LY",
-            baiHoc: [
-                { q: "Trai cung Ly lấy gái cung LY (Phục Vị) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Ly lấy gái cung KHÔN (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false },
-                { q: "Trai cung Ly lấy gái cung ĐOÀI (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false },
-                { q: "Trai cung Ly lấy gái cung CÀN (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Ly lấy gái cung KHẢM (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
-                { q: "Trai cung Ly lấy gái cung CẤN (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
-                { q: "Trai cung Ly lấy gái cung CHẤN (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Sinh Khí vào đây...)", cat: true },
-                { q: "Trai cung Ly lấy gái cung TỐN (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true }
+            ten: "6. Cung Ly",
+            cacQue: [
+                { nhan: "Trai cung Ly lấy gái cung LY", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
             ]
         },
         DOAI: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG ĐOÀI",
-            baiHoc: [
-                { q: "Trai cung Đoài lấy gái cung ĐOÀI (Phục Vị) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Đoài lấy gái cung CÀN (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Sinh Khí vào đây...)", cat: true },
-                { q: "Trai cung Đoài lấy gái cung KHẢM (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
-                { q: "Trai cung Đoài lấy gái cung CẤN (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
-                { q: "Trai cung Đoài lấy gái cung CHẤN (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Đoài lấy gái cung TỐN (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false },
-                { q: "Trai cung Đoài lấy gái cung LY (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false },
-                { q: "Trai cung Đoài lấy gái cung KHÔN (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true }
+            ten: "7. Cung Đoài",
+            cacQue: [
+                { nhan: "Trai cung Đoài lấy gái cung ĐOÀI", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
             ]
         },
         KHAM: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG KHẢM",
-            baiHoc: [
-                { q: "Trai cung Khảm lấy gái cung KHẢM (Phục Vị) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Khảm lấy gái cung CẤN (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false },
-                { q: "Trai cung Khảm lấy gái cung CHẤN (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true },
-                { q: "Trai cung Khảm lấy gái cung TỐN (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Sinh Khí vào đây...)", cat: true },
-                { q: "Trai cung Khảm lấy gái cung LY (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
-                { q: "Trai cung Khảm lấy gái cung KHÔN (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Khảm lấy gái cung ĐOÀI (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
-                { q: "Trai cung Khảm lấy gái cung CÀN (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false }
+            ten: "8. Cung Khảm",
+            cacQue: [
+                { nhan: "Trai cung Khảm lấy gái cung KHẢM", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
             ]
         },
         KHON: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG KHÔN",
-            baiHoc: [
-                { q: "Trai cung Khôn lấy gái cung KHÔN (Phục Vị) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Khôn lấy gái cung ĐOÀI (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true },
-                { q: "Trai cung Khôn lấy gái cung CÀN (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
-                { q: "Trai cung Khôn lấy gái cung KHẢM (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Khôn lấy gái cung CẤN (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Khôn lấy gái cung CHẤN (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
-                { q: "Trai cung Khôn lấy gái cung TỐN (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false },
-                { q: "Trai cung Khôn lấy gái cung LY (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false }
+            ten: "9. Cung Khôn",
+            cacQue: [
+                { nhan: "Trai cung Khôn lấy gái cung KHÔN", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
             ]
         },
         CAN_THO: {
-            tieuDe: "BÁT SAN GIAO HỢP - Tra theo cung Nam: CUNG CẤN",
-            baiHoc: [
-                { q: "Trai cung Cấn lấy gái cung CẤN (Phục Vị) ☑", t: "(Chú dán bài thơ quẻ Phục Vị vào đây...)", cat: true },
-                { q: "Trai cung Cấn lấy gái cung CHẤN (Lục sát) ⚠️", t: "(Chú dán bài thơ quẻ Lục Sát vào đây...)", cat: false },
-                { q: "Trai cung Cấn lấy gái cung TỐN (Tuyệt mệnh) ⚠️", t: "(Chú dán bài thơ quẻ Tuyệt Mệnh vào đây...)", cat: false },
-                { q: "Trai cung Cấn lấy gái cung LY (Họa hại) ⚠️", t: "(Chú dán bài thơ quẻ Họa Hại vào đây...)", cat: false },
-                { q: "Trai cung Cấn lấy gái cung KHÔN (Sinh Khí) ☑", t: "(Chú dán bài thơ quẻ Sinh Khí vào đây...)", cat: true },
-                { q: "Trai cung Cấn lấy gái cung ĐOÀI (Diên Niên) ☑", t: "(Chú dán bài thơ quẻ Diên Niên vào đây...)", cat: true },
-                { q: "Trai cung Cấn lấy gái cung CÀN (Thiên Y) ☑", t: "(Chú dán bài thơ quẻ Thiên Y vào đây...)", cat: true },
-                { q: "Trai cung Cấn lấy gái cung KHẢM (Ngũ quỷ) ⚠️", t: "(Chú dán bài thơ quẻ Ngũ Quỷ vào đây...)", cat: false }
+            ten: "10. Cung Cấn",
+            cacQue: [
+                { nhan: "Trai cung Cấn lấy gái cung CẤN", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" },
+                { nhan: "Trai cung Cấn lấy gái cung ĐOÀI", bien: "Diên niên", mau: "#cc9900", tho: "Cấn, Đoài số thấy được diên niên\nChồng mộc vợ kim khắc ưu phiền\nGiàu có ắt là cam hiếm muộn\nGặp nhau xa xứ mới là yên.\nĐẹp duyên cá nước tiền tài hưng vượng\nSố này thời vận đáng mừng\nNhiều con, nhiều của bậc trung thanh nhàn." },
+                { nhan: "Trai cung Cấn lấy gái cung CÀN", bien: "Thiên Y", mau: "#0066cc", tho: "Thủy năng dưỡng mộc vợ nuôi chồng\nBởi mệnh cùng cao bà hiếp ông\nCon cháu đầy nhà nhờ phước đức\nRể hiền, dâu thảo rạng gia phong.\nPhu thê dẫu có nghèo nàn không lo\nTrung niên được của trời cho\nHậu vận sung mãn quy mô ruộng vườn." },
+                { nhan: "Trai cung Cấn lấy gái cung KHẢM", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Cấn, Khảm giao hòa sự khó hòa\nBiến hình ngũ quỷ họa không xa\nTuy sinh mà khắc vì phương vị\nCháu con suy vì hại thất gia.\nDuyên nợ nửa đời chuốc nhiều ảm đạm\nSố ắt dời đổi hai lần\nNếu không thì phải lâm vòng hoạn nạn." }
             ]
         }
     };
 
-    function motho(maCung) {
-        const vungTho = document.getElementById('vung-que-tho');
-        const txtTieuDe = document.getElementById('tieu-de-que');
-        const txtNoiDung = document.getElementById('noi-dung-que');
-        
-        if (duLieuTho[maCung]) {
-            txtTieuDe.innerText = duLieuTho[maCung].tieuDe;
-            let chuoiHtml = '';
-            
-            duLieuTho[maCung].baiHoc.forEach(item => {
-                let mauNen = item.cat ? '#f1fdf5' : '#fff5f5';
-                let mauVien = item.cat ? '#2e7d32' : '#c62828';
-                let mauChu = item.cat ? '#1b5e20' : '#b71c1c';
-                
-                chuoiHtml += `
-                    <div style="background-color: ${mauNen}; border-left: 6px solid ${mauVien}; padding: 15px; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: left;">
-                        <span style="color: ${mauChu}; font-size: 20px; font-weight: bold; display: block; margin-bottom: 12px;">${item.q}</span>
-                        <div style="font-size: 22px; line-height: 1.7; color: #222; font-style: italic; white-space: pre-line; padding-left: 10px;">${item.t}</div>
-                    </div>
-                `;
-            });
-            
-            txtNoiDung.innerHTML = chuoiHtml;
-            vungTho.style.display = 'block';
-            vungTho.scrollIntoView({ behavior: 'smooth' });
-        } else {
-            alert("Mã cung này chưa được thiết lập dữ liệu!");
+    let cungHienTai = '';
+
+    // Click từ bảng chính -> Hiện tầng 1 (Danh sách quẻ của Cung)
+    function chuyenDenCung(maCung) {
+        cungHienTai = maCung;
+        const duLieu = banDoPhongThuy[maCung];
+        if (!duLieu) {
+            alert("Dữ liệu cung này đang được cập nhật!");
+            return;
         }
+
+        document.getElementById('ten-cung-duoc-chon').innerText = duLieu.ten;
+        let htmlDanhSach = '';
+        
+        duLieu.cacQue.forEach((que, index) => {
+            htmlDanhSach += `
+                <div class="dong-hon-nhan">
+                    <strong>${que.nhan}</strong> 
+                    (<button class="nut-bam-que" style="color: ${que.mau};" onclick="xemChiTietTho(${index})">${que.bien}</button>)
+                </div>
+            `;
+        });
+
+        document.getElementById('khoi-danh-sach-links').innerHTML = htmlDanhSach;
+        document.getElementById('vung-danh-sach').style.display = 'block';
+        document.getElementById('vung-tho-chi-tiet').style.display = 'none'; 
+        
+        document.getElementById('vung-danh-sach').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function dongQue() {
-        document.getElementById('vung-que-tho').style.display = 'none';
+    // Click vào chữ màu -> Hiện tầng 2 (Bài thơ chi tiết nằm ngay dưới)
+    function xemChiTietTho(index) {
+        const queDuocChon = banDoPhongThuy[cungHienTai].cacQue[index];
+        
+        document.getElementById('tieu-de-que-chi-tiet').innerHTML = `<strong>${queDuocChon.nhan} (<span style="color: ${queDuocChon.mau};">${queDuocChon.bien}</span>)</strong>`;
+        document.getElementById('noi-dung-tho-chi-tiet').innerText = queDuocChon.tho;
+        
+        document.getElementById('vung-tho-chi-tiet').style.display = 'block';
+        document.getElementById('vung-tho-chi-tiet').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Nút quay lại danh sách cung ở tầng 2
+    function quayLaiDanhSach() {
+        document.getElementById('vung-tho-chi-tiet').style.display = 'none';
+        document.getElementById('vung-danh-sach').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Nút đóng hết quay thẳng lên bảng chính đầu trang (Link trang chủ)
+    function dongToanBo() {
+        document.getElementById('vung-danh-sach').style.display = 'none';
+        document.getElementById('vung-tho-chi-tiet').style.display = 'none';
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
