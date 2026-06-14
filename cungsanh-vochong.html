@@ -442,11 +442,12 @@
         let htmlDanhSach = '';
         
         duLieu.cacQue.forEach((que, index) => {
-            htmlDanhSach += `
-                <div class="dong-hon-nhan">
-                    <strong>${que.nhan}</strong> 
-                    (<button class="nut-bam-que" style="color: ${que.mau};" onclick="xemChiTietTho(${index})">${que.bien}</button>)
-                </div>
+           htmlDanhSach += `
+                    <div class="dong-hon-nhan">
+                        <strong>${que.nhan}</strong>
+                        <button style="color: ${que.mau};" onclick="hienThiTho('${que.tho.replace(/'/g, "\\'")}')">${que.bien}</button>
+                    </div>
+                `;
             `;
         });
 
