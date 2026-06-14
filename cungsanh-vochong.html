@@ -429,27 +429,27 @@
 
   let cungHienTai = '';
 
-    // Click từ bảng chính -> Hiện tầng 1 (Danh sách quẻ của Cung)
     function chuyenDenCung(maCung) {
         cungHienTai = maCung;
         const duLieu = DU_LIEU_CUNG_MENH[maCung];
-        if (!duLieu) {
-            alert("Dữ liệu cung này đang được cập nhật!");
-            return;
-        }
+        if (!duLieu) { alert("Dữ liệu đang cập nhật!"); return; }
 
         document.getElementById('ten-cung-duoc-chon').innerText = duLieu.ten;
         let htmlDanhSach = '';
         
         duLieu.cacQue.forEach((que, index) => {
-            // Chuyển dấu xuống dòng trong thơ thành thẻ <br> để trình duyệt hiểu
-            let thoHienThi = que.tho.replace(/\n/g, '<br>').replace(/'/g, "\\'");
+            // Cháu gộp sẵn mọi thứ, chú chỉ việc dán là xong
             htmlDanhSach += `
                 <div class="dong-hon-nhan">
                     <strong>${que.nhan}</strong>
-                    <button style="color: ${que.mau};" onclick="hienThiTho('${thoHienThi}')">${que.bien}</button>
+                    <button style="color: ${que.mau};" onclick="document.getElementById('khoi-danh-sach-links').innerHTML = '<div style=white-space:pre-line;color:${que.mau}>${que.tho}</div>'">
+                        ${que.bien}
+                    </button>
                 </div>
             `;
+        });
+        document.getElementById('khoi-danh-sach-links').innerHTML = htmlDanhSach;
+    }
         });
         document.getElementById('khoi-danh-sach-links').innerHTML = htmlDanhSach;
     }
