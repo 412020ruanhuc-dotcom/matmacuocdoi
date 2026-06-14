@@ -321,77 +321,112 @@
 <script>
     // Bản đồ dữ liệu chuẩn hóa cấu trúc 2 tầng
     const banDoPhongThuy = {
-        CAN_KIM: {
-            ten: "3. Cung Càn",
-            cacQue: [
-                { nhan: "Trai cung Càn lấy gái cung CÀN", bien: "Phục Vị", mau: "#cc9900", tho: "Lưỡng Càn phục vị tốt vừa thôi\nSợ lúc tuổi già chẳng đủ đôi\nCon cháu trung bình không bao phát\nRuộng vườn nhà cửa lập hai nơi.\nBậc trung được số giàu sang tuổi già\nVợ chồng bạch thủ thanh gia\nTrung niên gầy dựng cửa nhà yên vui" },
-                { nhan: "Trai cung Càn lấy gái cung KHẢM", bien: "Lục sát", mau: "#ff3333", tho: "Luồng thủy triều nguyên phước đức sinh\nChăn nuôi lục sát nghiệp không thành\nDâu hiền rể thảo nên khoa cử\nThôn ấp ngợi khen lộc sẵn thành\nLục sát phạm ắt phu thê buồn thảm\nKim cải dở dang nửa đời\nDuyên nợ đổi đời tương tư ly tán." },
-                { nhan: "Trai cung Càn lấy gái cung CẤN", bien: "Thiên Y", mau: "#0066cc", tho: "Cung vị trường sinh được hợp hòa\nGiàu sang nhờ cậy ở tay bà\nChứa nhiều phúc đức cho con cháu\nSung sướng cùng nhau đến tuổi già.\nMay mắn cuộc đời vượng tài phấn chấn\nTình yêu lửa đượm hương nồng\nRể thảo, dâu hiền an nhàn hậu vận." },
-                { nhan: "Trai cung Càn lấy gái cung CHẤN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Khẩu thiệt giao tranh có đấu tranh\nVợ chồng ngũ quỷ họa tương sinh\nCửa nhà ruộng đất rồi tiêu sạch\nTử biệt sinh ly khó tạo thành.\nTrước sau bất tường nợ duyên lận đận\nTâm ý chồng vợ không hòa\nKhiến nên sinh kế quanh năm túng quẩn." },
-                { nhan: "Trai cung Càn lấy gái cung TỐN", bien: "Hoạ hại", mau: "#ff3333", tho: "Càn Tốn hai cung khắc rõ ràng\nCưỡng cầu kết hợp thế sao an\nNếu không họa hại liên miên đến\nCũng sẽ chia ly người một đi.\nTrước hợp sau lìa vô cùng khốn đốn\nCon cái trưởng thành cút côi\nHình ngục oan khiến vợ chồng thương tổn." },
-                { nhan: "Trai cung Càn lấy gái cung ĐOÀI", bien: "Sinh Khí", mau: "#0066cc", tho: "Vàng thoi, vàng khối lại sinh vàng\nPhúc lộc diên niên tuổi thọ khang\nCon cháu nên danh hưng tổ nghiệp\nCàn, Đoài phối hợp chắc giàu sang.\nÊm ấm gia đạo trong ngoài yên vui\nNợ duyên gắn bó trọn đời\nThê vinh tứ quí số người giàu sang." },
-                { nhan: "Trai cung Càn lấy gái cung LY", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Càn, Ly tuyệt mạng ở sao yên\nSinh nở nguy nan lắm lụy phiền\nTử biệt sinh ly như đợi sẵn\nKhó nghèo, đắc thọ, phú quy thiên.\nNợ duyên cầm chắc sầu bi khóc thầm\nÁi ân lỡ nhịp sắc cầm\nMới hay căn kiếp số phần hẩm hiu" },
-                { nhan: "Trai cung Càn lấy gái cung KHÔN", bien: "Diên Niên", mau: "#cc9900", tho: "Thiên địa càn khôn hợp một nhà\nVân hành san khí phát tam đa\nNhiều tài, nhiều lộc, nhiều con cái\nPhát đạt giàu sang thẳng đến già.\nĐược số phước đức trường tồn ấm no\nTài lộc như nước tràn vô\nCửa nhà đồ sộ quy mô ruộng vườn." }
-            ]
-        },
-        CHAN: {
-            ten: "4. Cung Chấn",
-            cacQue: [
-                { nhan: "Trai cung Chấn lấy gái cung CHẤN", bien: "Phục Vị", mau: "#cc9900", tho: "Rừng cao gió mạnh vụt ào ào\nHoa trái tơi bời cành lá hao\nLập nghiệp gian nan mới đạt chí\nPhước lành cũng được hưởng về sau\nTrong tình duyên nợ, tiền hậu như nhứt\nCó số no ấm cả đời\nGia đạo yên vui trên hòa dưới thuận. " }," },
-                { nhan: "Trai cung Chấn lấy gái cung KHẢM", bien: "Thiên Y", mau: "#0066cc", tho: "Chấn, Khảm thiên y ấy lộc trời\nCậy nhờ nước tưới lá hoa tươi\nCháu con thông tuệ đề khoa bảng\nLộc hưởng vinh sang phúc để đời\nTrăm tuổi phu thê tình nghĩa nồng thấm\nVinh hiển thụ hưởng vững bền\nRể thảo dâu hiền cả nhà êm ấm." },
-                { nhan: "Trai cung Chấn lấy gái cung TỐN", bien: "Diên Niên", mau: "#cc9900", tho: "Mộc, hỏa tương sinh nhưng nghịch thường\nCung chồng kém vợ phải chịu nhường\nDầu cho cách trở rồi sau hợp\nCon cháu diên niên phước thọ trường\nTrung niên hậu vận sang giàu hưởng trọn\nCuộc tình bền vững mặn nồng\nSanh trai đầu lòng trưởng thành quan lớn." },
-                { nhan: "Trai cung Chấn lấy gái cung KHÔN", bien: "Họa hại", mau: "#ff3333", tho: "Chấn, Khôn họa hại khó hòa duyên\nMộc, thổ tương hiềm lắm lụy phiền\nNhà cửa, ruộng vườn có cũng hết\nCháu con đau ốm khổ liên miên\nNợ duyên khốn đốn dập dồn oan thiên\nTrong ngoài thất thế đảo điên\nTai ương bịnh tật dính liền bên lưng. " },
-                { nhan: "Trai cung Chấn lấy gái cung LY", bien: "Sinh Khí", mau: "#0066cc", tho: "Chấn, Ly sinh khí được giao hòa\nPhát đạt giàu sang rạng thất gia\nCon cháu lâu bền danh vọng lớn\nTương lai thơm nức tiếng tăm nhà\nHiệp hôn quan hệ trọn đời thủy chung\nMạng phú quý, cháu con hùng\nLớn lên số ắt phước hồng quyền uy. " },
-                { nhan: "Trai cung Chấn lấy gái cung CÀN", bien: "Lục sát", mau: "#ff3333", tho: "Chấn, Càn lục sát họa đeo dày\nChồng vợ bất hòa lắm đắng cay\nNếu được giàu sang thì cách trở\nGần nhau lệ đổ suốt canh dài\nCó số phu thê âm thầm tủi hận\nGia đạo lục đục bất hòa\nĐời sống cơ hàn, con cái lận đận.  " },
-                { nhan: "Trai cung Chấn lấy gái cung ĐOÀI", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Chấn, Đoài tuyệt mạng khó gần nhau\nMộc khắc kim thường biết nói sao\nNếu đã lỡ mà đeo khổ lụy\nCháu con hoạn nạn lại xa nhau\nDuyên nợ trước sau thiệt thòi lứa đôi\nVợ chồng không ở trọn đời\nCháu con bất lợi, cút côi lụy phiền. " },
-                { nhan: "Trai cung Chấn lấy gái cung CẤN", bien: "Ngũ quỷ", mau: "#ff3333", tho: " Chấn, Cấn kết duyên ngũ quỷ sinh\nCửa nhà sự nghiệp lập sao thành\nCháu con bịnh tật, tài hao tán\nChồng vợ khổ sầu lệ trắng canh\nGia đình xáo trộn điêu tàn lửa hương\nNửa chừng xuân mộng thê lương\nUyên ương bỏ gánh cang thường từ đây. " }
-            ]
-        },
-        TON: {
-            ten: "5. Cung Tốn",
-            cacQue: [
-                { nhan: "Trai cung Tốn lấy gái cung TỐN", bien: "Phục Vị", mau: "#cc9900", tho: "Hai Tốn yêu nhau hóa hại nhau\nGần nhau thì chịu số thương đau\nCửa nhà thiếu hụt con đau bịnh\nGần khó xa ra mới được giàu\nBình thường đời sống, thân danh tốt\nBa sinh duyên đẹp tình nồng\nSự nghiệp tử tôn tấn tài vượng lộc." },
-                { nhan: "Trai cung Tốn lấy gái cung CHẤN", bien: "Diên Niên", mau: "#cc9900", tho: "Phước đức cũng nhờ ở tổ tông\nTốn, Chấn phối hợp đẹp mây rồng\nCửa nhà thịnh vượng con cháu quý\nĐại phú do thiên tiểu phú cần\nĐược số phú quí trọn đời an phận\nTiền bạc điền sản thặng dư\nDuyên nợ vợ chồng trăm năm viên mãn" },
-                { nhan: "Trai cung Tốn lấy gái cung KHÔN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Ngũ quỷ hình tượng ám ảnh hoài\nRốt rồi nam bắc cũng chia tay\nNếu còn vương vấn dây con cái\nCũng phải bôn ba đến xứ ngoài\nSanh cơ khốn đốn bôn chôn cũng hoài\nNợ duyên vốn đã an bài\nTrung niên ắt phải đổi thay cuộc tình. " },
-                { nhan: "Trai cung Tốn lấy gái cung KHẢM", bien: "Sinh Khí", mau: "#0066cc", tho: "Sinh khí xa xa thấy rạng rồi\nVợ chồng duyên số tự nơi trời\nCửa nhà rạng rỡ công danh đẹp\nCon cháu vinh sang nối nghiệp đời\nTiền định phu thê hiệp vầy duyên thắm\nTài lộc phát vượng huy hoàng\nCon cái lớn lên sống đời nhung gấm. " },
-                { nhan: "Trai cung Tốn lấy gái cung CÀN", bien: "Họa hại", mau: "#ff3333", tho: "Tốn, Càn thủy hỏa khó yên thân\nHọa hại thường sinh biết mấy lần\nNhà cửa lạnh lùng tiền của hết\nCháu con thôi cũng chịu cơ bần\nYêu đương tác hợp buồn than đêm ngày\nTriền miên tai ách không hay\nNợ duyên sầu muộn đắng cay cuộc đời. " },
-                { nhan: "Trai cung Tốn lấy gái cung LY", bien: "Thiên Y", mau: "#0066cc", tho: "Tốn, Ly phối ngẫu vốn tương hòa\nCưới hỏi ba năm rạng cửa nhà\nCon cháu học hành đều đỗ đạt\nRạng danh nhờ lập nghiệp phương xa\nMạng trường, thân thế ai bì được đâu\nUy quyền tiền bạc bền lâu\nNợ duyên hạnh hưởng sang giàu trăm năm. " }
-            ]
-        },
-        LY: {
-            ten: "6. Cung Ly",
-            cacQue: [
-                { nhan: "Trai cung Ly lấy gái cung LY", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
-            ]
-        },
-        DOAI: {
-            ten: "7. Cung Đoài",
-            cacQue: [
-                { nhan: "Trai cung Đoài lấy gái cung ĐOÀI", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
-            ]
-        },
-        KHAM: {
-            ten: "8. Cung Khảm",
-            cacQue: [
-                { nhan: "Trai cung Khảm lấy gái cung KHẢM", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
-            ]
-        },
-        KHON: {
-            ten: "9. Cung Khôn",
-            cacQue: [
-                { nhan: "Trai cung Khôn lấy gái cung KHÔN", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" }
-            ]
-        },
-        CAN_THO: {
-            ten: "10. Cung Cấn",
-            cacQue: [
-                { nhan: "Trai cung Cấn lấy gái cung CẤN", bien: "Phục Vị", mau: "#cc9900", tho: "(Thơ quẻ...)" },
-                { nhan: "Trai cung Cấn lấy gái cung ĐOÀI", bien: "Diên niên", mau: "#cc9900", tho: "Cấn, Đoài số thấy được diên niên\nChồng mộc vợ kim khắc ưu phiền\nGiàu có ắt là cam hiếm muộn\nGặp nhau xa xứ mới là yên.\nĐẹp duyên cá nước tiền tài hưng vượng\nSố này thời vận đáng mừng\nNhiều con, nhiều của bậc trung thanh nhàn." },
-                { nhan: "Trai cung Cấn lấy gái cung CÀN", bien: "Thiên Y", mau: "#0066cc", tho: "Thủy năng dưỡng mộc vợ nuôi chồng\nBởi mệnh cùng cao bà hiếp ông\nCon cháu đầy nhà nhờ phước đức\nRể hiền, dâu thảo rạng gia phong.\nPhu thê dẫu có nghèo nàn không lo\nTrung niên được của trời cho\nHậu vận sung mãn quy mô ruộng vườn." },
-                { nhan: "Trai cung Cấn lấy gái cung KHẢM", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Cấn, Khảm giao hòa sự khó hòa\nBiến hình ngũ quỷ họa không xa\nTuy sinh mà khắc vì phương vị\nCháu con suy vì hại thất gia.\nDuyên nợ nửa đời chuốc nhiều ảm đạm\nSố ắt dời đổi hai lần\nNếu không thì phải lâm vòng hoạn nạn." }
-            ]
-        }
-    };
+        const DU_LIEU_CUNG_MENH = {
+    CAN: {
+        ten: "1. Cung Càn",
+        cacQue: [
+            { nhan: "Trai cung Càn lấy gái cung CÀN", bien: "Phục Vị", mau: "#cc9900", tho: "Lưỡng Càn tốt số cả đời an\nTrên thuận dưới hòa hưởng lộc ban\nPhúc đức đầy nhà thêm quý tử\nCông danh hiển hách rạng vinh quang.\nSố được giàu sang trung niên phát đạt\nGia đạo tiền định an bài\nMột đời keo sơn áo cơm no ấm." },
+            { nhan: "Trai cung Càn lấy gái cung KHẢM", bien: "Lục sát", mau: "#ff3333", tho: "Càn, Khảm lục sát chớ nên gần\nBởi mệnh tương xung chẳng kết thân\nNếu ép duyên nhau đời khốn khổ\nNợ nần chồng chất, hại cho thân.\nSống đời ly tán vợ chồng cách biệt\nCửa nhà điền sản hư hao\nCon cái lớn lên chẳng nhờ cậy được." },
+            { nhan: "Trai cung Càn lấy gái cung CẤN", bien: "Thiên Y", mau: "#0066cc", tho: "Thiên y hội ngộ Càn, Cấn rồi\nSố trời định phận hưởng giàu sôi\nCon cháu thông minh tài đức vẹn\nCửa nhà hưng vượng đẹp như mơ.\nĐược số phước đức tiền tài dư dật\nVinh hiển thụ hưởng bền lâu\nCháu con thành danh rạng rỡ gia phong." },
+            { nhan: "Trai cung Càn lấy gái cung CHẤN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Càn, Chấn kết duyên ngũ quỷ hoài\nSự nghiệp tiêu tan lộc chẳng tài\nChồng vợ biệt ly đời lạnh lẽo\nCon cái hư hèn, khổ đắng cay.\nNợ duyên vất vả dập dồn tai ách\nCuộc sống lận đận long đong\nTrước sau gia đình tán gia bại sản." },
+            { nhan: "Trai cung Càn lấy gái cung TỐN", bien: "Hoạ hại", mau: "#ff3333", tho: "Càn, Tốn họa hại khó bình yên\nKết lại duyên nhau lắm lụy phiền\nCửa nhà xơ xác, đời cơ cực\nCon cái bệnh đau, họa liên miên.\nSống kiếp bần hàn nợ duyên trắc trở\nĐời người ảm đạm sầu bi\nThân danh sự nghiệp tiêu tan hết." },
+            { nhan: "Trai cung Càn lấy gái cung LY", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Càn, Ly tuyệt mệnh biết làm sao\nKết hợp tình duyên tự thuở nào\nChồng vợ biệt ly đời sầu thảm\nCháu con nối bước lụy hư hao.\nCăn phần khó tránh tang thương ly biệt\nTrong hai chắc mất một người\nUyên ương vĩnh biệt chẳng thể đoàn viên." },
+            { nhan: "Trai cung Càn lấy gái cung KHÔN", bien: "Diên Niên", mau: "#cc9900", tho: "Thiên địa càn khôn hợp một nhà\nVân hành san khí phát tam đa\nNhiều tài, nhiều lộc, nhiều con cái\nPhát đạt giàu sang thẳng đến già.\nĐược số phước đức trường tồn ấm no\nTài lộc như nước tràn vô\nCửa nhà đồ sộ quy mô ruộng vườn." },
+            { nhan: "Trai cung Càn lấy gái cung ĐOÀI", bien: "Sinh khí", mau: "#0066cc", tho: "Càn, Đoài sinh khí được giao hòa\nPhát đạt giàu sang rạng thất gia\nCon cháu lâu bền danh vọng lớn\nTương lai thơm nức tiếng tăm nhà.\nHiệp hôn quan hệ trọn đời thủy chung\nMạng phú quý, cháu con hùng\nLớn lên số ắt phước hồng quyền uy." }
+        ]
+    },
+    KHAM: {
+        ten: "2. Cung Khảm",
+        cacQue: [
+            { nhan: "Trai cung Khảm lấy gái cung KHẢM", bien: "Phục Vị", mau: "#cc9900", tho: "Lưỡng Khảm trùng cung cũng tạm nhàn\nCưới nhau sớm phải chịu trùng tang\nNếu bằng biệt lập xa cha mẹ\nCháu con rồi sau cũng có đàn.\nBình thường cuộc sống nợ duyên êm ấm\nGia đạo tiền định an bài\nMột đời keo sơn áo cơm no ấm." },
+            { nhan: "Trai cung Khảm lấy gái cung LY", bien: "Hoạ hại", mau: "#ff3333", tho: "Khảm, Ly thủy hỏa chớ nên gần\nPhước đức dẫu nhiều cũng cách phân\nNếu số xa quê mà gặp gỡ\nCũng cho là tạm sống thanh bần.\nẤm êm bỗng chốc tai ách buộc ràng\nSố phần chồng vợ đeo mang\nSuốt đời khổ hận sầu than đêm ngày." },
+            { nhan: "Trai cung Khảm lấy gái cung CẤN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Cấn, Khảm hình tương số định rồi\nLấy nhau chỉ để lụy nhau thôi\nCửa nhà xơ xác thân cơ cực\nNgũ quỷ đeo theo cứ báo đời.\nGiàu có mấy lần rồi cũng phá sản\nDuyên nợ ắt phải lỡ làng\nCon cái lớn lên đàn điếm du đãng." },
+            { nhan: "Trai cung Khảm lấy gái cung KHÔN", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Khảm, Khôn tuyệt mệnh biết làm sao\nDẫu bị oan gia tự thuở nào\nKết hợp cũng thành sinh tử biệt\nCháu con nối bước xuống âm tào.\nLo âu mắc phải dồn dập ốm đau\nTiền bạc hết, biệt ly sầu\nKhông chồng thì vợ cũng vào cõi âm." },
+            { nhan: "Trai cung Khảm lấy vợ cung Chấn", bien: "Thiên Y", mau: "#0066cc", tho: "Nước gặp gió to dậy sóng lên\nThiên y Chấn, Khảm số làm nên\nCháu con đông đúc tài miên thạch\nHoè quế y quan rực trước thềm.\nQuan lộc uy quyền đời sống sung mãn\nThế vinh tử quý rõ ràng\nDuyên nợ vợ chồng da mồi tóc bạc." },
+            { nhan: "Trai cung Khảm lấy vợ cung Đoài", bien: "Diên niên", mau: "#cc9900", tho: "Thủy, Kim phối ngẫu hợp tương sinh\nTrường thọ diên niên số đã dành\nCháu con hiền hiếu nên danh phận\nVườn, ruộng, chăn nuôi bại hóa thành.\nThủy chung như nhứt ai bì phong lưu\nVợ chồng có số sang giàu\nHưởng của phụ ẩm trước sau an nhàn." },
+            { nhan: "Trai cung Khảm lấy vợ cung Tốn", bien: "Sinh khí", mau: "#0066cc", tho: "Khảm, Tốn nên duyên phước lớn thay\nThiên y, quan lộc hưởng lâu dài\nCửa nhà khang lệ, chăn nuôi vượng\nCon cái thông minh đủ trí tài.\nMạng thọ duyên bền sống vui yên ổn\nSố không sang nhưng no lành\nGia đạo hòa thuận con cái giỏi." },
+            { nhan: "Trai cung Khảm lấy vợ cung Càn", bien: "Lục sát", mau: "#ff3333", tho: "Đăng hỏa Khảm, Càn số nghịch sinh\nLương duyên phú quý sớm nên danh\nCó điều trai phải nhường cung vợ\nNể mặt nhau cho mọi sự lành.\nTang thương từ thuở hai đàn hiệp hôn\nBuồn cho duyên nợ long đong\nBất hòa tâm lý vợ chồng đảo điên." }
+        ]
+    },
+    CAN_THO: {
+        ten: "3. Cung Cấn",
+        cacQue: [
+            { nhan: "Trai cung Cấn lấy gái cung CẤN", bien: "Phục Vị", mau: "#cc9900", tho: "Duyên hòa lưỡng Cấn thật gian nan\nMột khúc tương tư mấy nhịp đàn\nNghèo khổ gần nhau, giàu cách trở\nXa quê hòa hiệp số thanh nhàn.\nSố được vui hưởng thê hòa phu thuận\nPhong lưu nhàn hạ bậc trung\nMột đời ái tình nợ duyên an phận." },
+            { nhan: "Trai cung Cấn lấy gái cung TỐN", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Hai cung tuyệt mệnh chớ nên gần\nCưỡng ép rồi sau họa hại thân\nBịnh hoạn liên miên tiền của sạch\nChồng bên núi Sở vợ sông Tần.\nCăn phần khó tránh tang tóc tổn thương\nTrong hai chắc mất một người\nTử biệt đừng mong tìm phương chạy trốn." },
+            { nhan: "Trai cung Cấn lấy gái cung CHẤN", bien: "Lục sát", mau: "#ff3333", tho: "Lục sát tương hình kết lứa đôi\nCông danh sự nghiệp nước mây trời\nMẹ cha, con cháu đều suy bại\nKhốn khổ bi ai suốt cuộc đời.\nSản nghiệp sẵn sàng lần hồi tẩu tán\nPhu phụ tâm lý nghịch thường\nTrước sau hạnh phúc gia đình hư nát." },
+            { nhan: "Trai cung Cấn lấy gái cung LY", bien: "Hoạ hại", mau: "#ff3333", tho: "Cấn, Ly phước đức vốn tương sinh\nPhối hợp hòa vui sự nghiệp thành\nNhà cửa khang trang, vườn đất rộng\nCháu con hiền hiếu lập nên danh.\nBất tường tai ách sầu bi gia đình\nYêu đương một tấm chân tình\nCũng chưa được đôi mình sánh đôi." },
+            { nhan: "Trai cung Cấn lấy gái cung KHÔN", bien: "Sinh khí", mau: "#0066cc", tho: "Cây khô gặp lửa gọi tương sinh\nSớm gặp bại suy, muộn mới thành\nSinh khí tuy nhiều nhưng phải chậm\nCháu con rồi cũng có uy danh.\nSống đời loan phụng phước tồn hậu lai\nQuan lộc có hươởg hoạch tài\nNhà cao cửa rộng quyền uy vô cùng." },
+            { nhan: "Trai cung Cấn lấy gái cung ĐOÀI", bien: "Diên niên", mau: "#cc9900", tho: "Cấn, Đoài số thấy được diên niên\nChồng mộc vợ kim khắc ưu phiền\nGiàu có ắt là cam hiếm muộn\nGặp nhau xa xứ mới là yên.\nĐẹp duyên cá nước tiền tài hưng vượng\nSố này thời vận đáng mừng\nNhiều con, nhiều của bậc trung thanh nhàn." },
+            { nhan: "Trai cung Cấn lấy gái cung CÀN", bien: "Thiên Y", mau: "#0066cc", tho: "Thủy năng dưỡng mộc vợ nuôi chồng\nBởi mệnh cùng cao bà hiếp ông\nCon cháu đầy nhà nhờ phước đức\nRể hiền, dâu thảo rạng gia phong.\nPhu thê dẫu có nghèo nàn không lo\nTrung niên được của trời cho\nHậu vận sung mãn quy mô ruộng vườn." },
+            { nhan: "Trai cung Cấn lấy gái cung KHẢM", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Cấn, Khảm giao hòa sự khó hòa\nBiến hình ngũ quỷ họa không xa\nTuy sinh mà khắc vì phương vị\nCháu con suy vì hại thất gia.\nDuyên nợ nữa đời chuốc nhiều ảm đạm\nSố ắt dời đổi hai lần\nNếu không thì phải lâm vòng hoạn nạn." }
+        ]
+    },
+    CHAN: {
+        ten: "4. Cung Chấn",
+        cacQue: [
+            { nhan: "Trai cung Chấn lấy gái cung CHẤN", bien: "Phục Vị", mau: "#cc9900", tho: "Rừng cao gió mạnh vụt ào ào\nHoa trái tơi bời cành lá hao\nLập nghiệp gian nan mới đạt chí\nPhước lành cũng được hưởng về sau.\nTrong tình duyên nợ, tiền hậu như nhứt\nCó số no ấm cả đời\nGia đạo yên vui trên hòa dưới thuận." },
+            { nhan: "Trai cung Chấn lấy gái cung KHẢM", bien: "Thiên Y", mau: "#0066cc", tho: "Chấn, Khảm thiên y ấy lộc trời\nCậy nhờ nước tưới lá hoa tươi\nCháu con thông tuệ đề khoa bảng\nLộc hưởng vinh sang phúc để đời.\nTrăm tuổi phu thê tình nghĩa nồng thấm\nVinh hiển thụ hưởng vững bền\nRể thảo dâu hiền cả nhà êm ấm." },
+            { nhan: "Trai cung Chấn lấy gái cung TỐN", bien: "Diên niên", mau: "#cc9900", tho: "Mộc, hỏa tương sinh nhưng nghịch thường\nCung chồng kém vợ phải chịu nhường\nDầu cho cách trở rồi sau hợp\nCon cháu diên niên phước thọ trường.\nTrung niên hậu vận sang giàu hưởng trọn\nCuộc tình bền vững mặn nồng\nSanh trai đầu lòng trưởng thành quan lớn." },
+            { nhan: "Trai cung Chấn lấy gái cung KHÔN", bien: "Hoạ hại", mau: "#ff3333", tho: "Chấn, Khôn họa hại khó hòa duyên\nMộc, thổ tương hiềm lắm lụy phiền\nNhà cửa, ruộng vườn có cũng hết\nCháu con đau ốm khổ liên miên.\nNợ duyên khốn đốn dập dồn oan thiên\nTrong ngoài thất thế đảo điên\nTai ương bịnh tật dính liền bên lưng." },
+            { nhan: "Trai cung Chấn lấy gái cung LY", bien: "Sinh khí", mau: "#0066cc", tho: "Chấn, Ly sinh khí được giao hòa\nPhát đạt giàu sang rạng thất gia\nCon cháu lâu bền danh vọng lớn\nTương lai thơm nức tiếng tăm nhà.\nHiệp hôn quan hệ trọn đời thủy chung\nMạng phú quý, cháu con hùng\nLớn lên số ắt phước hồng quyền uy." },
+            { nhan: "Trai cung Chấn lấy gái cung CÀN", bien: "Lục sát", mau: "#ff3333", tho: "Chấn, Càn lục sát họa đeo dày\nChồng vợ bất hòa lắm đắng cay\nNếu được giàu sang thì cách trở\nGần nhau lệ đổ suốt canh dài.\nCó số phu thê âm thầm tủi hận\nGia đạo lục đục bất hòa\nĐời sống cơ hàn, con cái lận đận." },
+            { nhan: "Trai cung Chấn lấy gái cung ĐOÀI", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Chấn, Đoài tuyệt mạng khó gần nhau\nMộc khắc kim thường biết nói sao\nNếu đã lỡ mà đeo khổ lụy\nCháu con hoạn nạn lại xa nhau.\nDuyên nợ trước sau thiệt thòi lứa đôi\nVợ chồng không ở trọn đời\nCháu con bất lợi, cút côi lụy phiền." },
+            { nhan: "Trai cung Chấn lấy gái cung CẤN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Chấn, Cấn kết duyên ngũ quỷ sinh\nCửa nhà sự nghiệp lập sao thành\nCháu con bịnh tật, tài hao tán\nChồng vợ khổ sầu lệ trắng canh.\nGia đình xáo trộn điêu tàn lửa hương\nNửa chừng xuân mộng thê lương\nUyên ương bỏ gánh cang thường từ đây." }
+        ]
+    },
+    TON: {
+        ten: "5. Cung Tốn",
+        cacQue: [
+            { nhan: "Trai cung Tốn lấy gái cung TỐN", bien: "Phục Vị", mau: "#cc9900", tho: "Hai Tốn yêu nhau hóa hại nhau\nGần nhau thì chịu số thương đau\nCửa nhà thiếu hụt con đau bịnh\nGần khó xa ra mới được giàu.\nBình thường đời sống, thân danh tốt\nBa sinh duyên đẹp tình nồng\nSự nghiệp tử tôn tấn tài vượng lộc." },
+            { nhan: "Trai cung Tốn lấy gái cung CHẤN", bien: "Diên niên", mau: "#cc9900", tho: "Phước đức cũng nhờ ở tổ tông\nTốn, Chấn phối hợp đẹp mây rồng\nCửa nhà thịnh vượng con cháu quý\nĐại phú do thiên tiểu phú cần.\nĐược số phú quí trọn đời an phận\nTiền bạc điền sản thặng dư\nDuyên nợ vợ chồng trăm năm viên mãn" },
+            { nhan: "Trai cung Tốn lấy gái cung KHÔN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Ngũ quỷ hình tượng ám ảnh hoài\nRốt rồi nam bắc cũng chia tay\nNếu còn vương vấn dây con cái\nCũng phải bôn ba đến xứ ngoài.\nSanh cơ khốn đốn bôn chôn cũng hoài\nNợ duyên vốn đã an bài\nTrung niên ắt phải đổi thay cuộc tình." },
+            { nhan: "Trai cung Tốn lấy gái cung KHẢM", bien: "Sinh khí", mau: "#0066cc", tho: "Sinh khí xa xa thấy rạng rồi\nVợ chồng duyên số tự nơi trời\nCửa nhà rạng rỡ công danh đẹp\nCon cháu vinh sang nối nghiệp đời.\nTiền định phu thê hiệp vầy duyên thắm\nTài lộc phát vượng huy hoàng\nCon cái lớn lên sống đời nhung gấm." },
+            { nhan: "Trai cung Tốn lấy gái cung CÀN", bien: "Hoạ hại", mau: "#ff3333", tho: "Tốn, Càn thủy hỏa khó yên thân\nHọa hại thường sinh biết mấy lần\nNhà cửa lạnh lùng tiền của hết\nCháu con thôi cũng chịu cơ bần.\nYêu đương tác hợp buồn than đêm ngày\nTriền miên tai ách không hay\nNợ duyên sầu muộn đắng cay cuộc đời." },
+            { nhan: "Trai cung Tốn lấy gái cung LY", bien: "Thiên Y", mau: "#0066cc", tho: "Tốn, Ly phối ngẫu vốn tương hòa\nCưới hỏi ba năm rạng cửa nhà\nCon cháu học hành đều đỗ đạt\nRạng danh nhờ lập nghiệp phương xa.\nMạng trường, thân thế ai bì được đâu\nUy quyền tiền bạc bền lâu\nNợ duyên hạnh hưởng sang giàu trăm năm." },
+            { nhan: "Trai cung Tốn lấy gái cung CẤN", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Số ghi tuyệt mệnh khó nên duyên\nĐeo đẳng càng sinh nỗi lụy phiền\nBuồn khổ lại thêm nhiều hoạn nạn\nCon cháu vất vả có đâu yên.\nChưa chung gối chăn ái tình thỏa mãn\nSố góa lẻ mạng khó toàn\nDuyên nợ đôi đàng rã rời ân hận." },
+            { nhan: "Trai cung Tốn lấy gái cung ĐOÀI", bien: "Lục sát", mau: "#ff3333", tho: "Số sao cay đắng cực thân mình\nLục sát tương xung phạm khắc hình\nNhà cửa, ruộng vườn, tiền của sạch\nCháu con cơ cực, lắm lênh đênh.\nHiệp hôn đã thấy đeo đai khổ phiền\nCửa nhà sa sút ngửa nghiêng\nGây điều đổi nợ thay duyên phũ phàng." }
+        ]
+    },
+    LY: {
+        ten: "6. Cung Ly",
+        cacQue: [
+            { nhan: "Trai cung Ly lấy gái cung LY", bien: "Phục Vị", mau: "#cc9900", tho: "Lưỡng Ly chưa hợp thấy mòi suy\nHai hỏa gặp nhau tắt có khi\nNghèo khó bên nhau, giàu tử biệt\nVợ chồng đôi ngả, con phân ly.\nÁi tình, hương lửa trọn đời thủy chung\nTiền bạc giàu có bậc trung\nThân, danh hậu vận lẫy lừng tiếng thơm." },
+            { nhan: "Trai cung Ly lấy gái cung CÀN", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Ly, Càn thủy hỏa chớ nên gần\nPhận mỏng thà cam chịu rẽ phân\nNếu được cùng nhau đầu tóc bạc\nCháu con nghèo khó mạng cơ hàn.\nNợ duyên gãy gánh giữa đàng thảm thương\nCho hay cái số đoạn trường\nLụy phiền ly tán bất tường phu thê." },
+            { nhan: "Trai cung Ly lấy gái cung KHẢM", bien: "Diên niên", mau: "#cc9900", tho: "Chung thủy triều nguyên phước đức sanh\nĐường hoàng hoa lệ đẹp gia đình\nCháu con hiển đạt nên danh phận\nĐại phú do thiên, tiểu phú cần.\nĐược số hiển đạt phu vinh thê ấm\nTình yêu hương lửa mặn nồng\nTương lai con cái trưởng thành khoa bảng." },
+            { nhan: "Trai cung Ly lấy gái cung CẤN", bien: "Hoạ hại", mau: "#ff3333", tho: "Hai người khắc phá khó nên duyên\nHọa hại buồn thương lắm lụy phiền\nBịnh hoạn triền miên tiền của sạch\nCháu con nghèo khó lại không hiền.\nTiền hậu phu thê thủy chung bất nhứt\nSống đời tật ách đeo mang\nVợ chồng đa đoan thiệt thòi thân phận." },
+            { nhan: "Trai cung Ly lấy gái cung CHẤN", bien: "Sinh khí", mau: "#0066cc", tho: "Sanh khí một vầng ánh sáng tươi\nĐẹp duyên cầm sắt số do trời\nCửa nhà cao rộng con hiền hiếu\nLộc thọ vinh sang phước hưởng đời.\nÝ hợp tâm đầu làm nên gia thất\nTrọn đời nhàn hạ phong lưu\nTrung niên, hậu vận thành công mọi bề." },
+            { nhan: "Trai cung Ly lấy gái cung TỐN", bien: "Thiên Y", mau: "#0066cc", tho: "Trai Ly gái Tốn số trời dành\nSớm muộn rồi đây cũng rạng danh\nCon cháu nhờ ơn cha mẹ để\nVinh sang phước lộc thuở ngày xanh.\nCăn mạng nợ duyên trời cho yên ổn\nCả đời ấm cúng giàu sang\nCon cái gái trai vẹn toàn căn bổn." },
+            { nhan: "Trai cung Ly lấy gái cung KHÔN", bien: "Lục sát", mau: "#ff3333", tho: "Một giải ngân hà đã trải ra\nVì phương lục sát khó giao hòa\nChăn nuôi, vườn ruộng không nên nghiệp\nGặp gỡ xa quê tạm gọi là.\nKiết hung luân chuyển dập dồn âu lo\nTrai sa đọa, gái lẳng lơ\nTrước sau rồi cũng hững hờ nợ duyên." },
+            { nhan: "Trai cung Ly lấy gái cung ĐOÀI", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Mẹ cha tang tóc cháu con buồn\nNgũ quỷ phạm thì giọt lệ tuôn\nĐa sinh bịnh tật, đa tai nạn\nVui ở, buồn bay, mỏng cánh chuồn.\nCố công cho mấy ra gì kiếp sanh\nNợ duyên như sợi chỉ mành\nThân danh sự nghiệp bất thành không sai." }
+        ]
+    },
+    KHON: {
+        ten: "7. Cung Khôn",
+        cacQue: [
+            { nhan: "Trai cung Khôn lấy gái cung KHÔN", bien: "Phục Vị", mau: "#cc9900", tho: "Tai nạn liên miên, khổ dập dồn\nNếu tình duyên kết Khôn với Khôn\nCông danh sự nghiệp mòn con mắt\nKẻ ở, người đi cách nước non.\nKeo sơn gắn bó cháu con vẹn toàn\nTrung niên mấy lượt thăng trầm\nHậu vận phú quý trăm phần phong lưu." },
+            { nhan: "Trai cung Khôn lấy gái cung CÀN", bien: "Diên niên", mau: "#cc9900", tho: "Diên niên ấy phước lộc miên trường\nCon cháu lâu dài hướng thọ xương\nDựng nghiệp chuyên cần lại tính thiện\nTrai hiền, rể hiếu rạng gia tiên.\nHay duyên phải nợ tiền căn định phần\nBổn mạng lại có quý nhân\nĐược số phú quý vinh thân an nhàn." },
+            { nhan: "Trai cung Khôn lấy gái cung KHẢM", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Khảm, Khôn số khắc khó nên duyên\nNếu giàu thì yểu, khó nghèo yên\nCháu con vất vả thân đa bịnh\nGia đạo suy vì lắm lụy phiền.\nCăn phần duyên nợ chuốc lấy sầu thảm\nSố phải dở dang nửa đời\nChồng vợ hai người đổi dời ly tán." },
+            { nhan: "Trai cung Khôn lấy gái cung CẤN", bien: "Sinh khí", mau: "#0066cc", tho: "Phải chịu gian nan, cực buổi đầu\nBa năm nghĩ cũng chẳng bao lâu\nSau này phước lộc trời cho đó\nNhà cửa vinh quang lọ phải cầu.\nSinh cơ mọi bề thời hưng phấn chấn\nGia đạo trước sau hòa thuận\nThừa thãi trong ngoài ruộng vườn điền sản." },
+            { nhan: "Trai cung Khôn lấy gái cung CHẤN", bien: "Hoạ hại", mau: "#ff3333", tho: "Họa hại trùng trùng kéo tới đây\nChấn, Khôn khó hợp nợ duyên này\nSống lâu thêm khổ, sầu ly biệt\nCon cháu vô can bị vạ lây.\nKhông hình ngục thì cũng bị bịnh tật\nDuyên nợ lắm vấp buồn khổ\nĐời sống lầm thang, sinh cơ chật vật." },
+            { nhan: "Trai cung Khôn lấy gái cung LY", bien: "Lục sát", mau: "#ff3333", tho: "Lục sát hình xung khó kết thành\nNgân hà trắng xóa nước mênh mông\nTha phương gặp gỡ còn nhàn hạ\nMột xứ giao hòa, họa hại sinh.\nDuyên nợ ắt chịu sầu bi tháng ngày\nĐa truân hộ hụy nạn tai\nCăn định lục hại tương lai mơ hồ." },
+            { nhan: "Trai cung Khôn lấy gái cung ĐOÀI", bien: "Thiên Y", mau: "#0066cc", tho: "Thiên y kim, thổ lộc trời ban\nPhước thọ miên trường con cháu sang\nRuộng vườn, nhà cửa đầy mỹ lệ\nTrăm năm vui hưởng chữ bình an.\nMạng cường hưởng thọ, tài lộc bền lâu" },
+            { nhan: "Trai cung Khôn lấy gái cung TỐN", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Hồi ở xa nhau, thương nhớ nhau\nGần nhau không cãi cũng sinh đau\nTrong nhà ngũ quỷ năm phương dậy\nKết cuộc nhà xiêu, gió thổi nhào.\nCuộc đời vật chất số cực thiếu thốn\nDuyên nợ lận đận nghịch thường\nCon cái bất hòa lớn lên cùng khốn." }
+        ]
+    },
+    DOAI: {
+        ten: "8. Cung Đoài",
+        cacQue: [
+            { nhan: "Trai cung Đoài lấy gái cung ĐOÀI", bien: "Phục Vị", mau: "#cc9900", tho: "Nhật lạc non Đoài sương sắp rơi\nGặp nhau rồi cũng cách đôi nơi\nNếu không khăn trắng trùm lên tóc\nThì khổ triền miên cả cuộc đời.\nBình thường thì cũng tiền tài bậc trung\nGia đình thân mạng thung dung\nTrưởng thành con cháu đẹp lòng mẹ cha." },
+            { nhan: "Trai cung Đoài lấy gái cung CÀN", bien: "Sinh khí", mau: "#0066cc", tho: "Đoài, Càn phước đức lớn vô cùng\nKim thủy tương sinh được ở chung\nCon cháu sau này thành đại nghiệp\nTrai hiền, gái hiếu vẹn can tùng.\nHôn nhân bền vững lộc quan vượng tài\nSanh cơ vốn một lời hai\nLầu cao cửa rộng gái trai ngoan hiền." },
+            { nhan: "Trai cung Đoài lấy gái cung KHẢM", bien: "Hoạ hại", mau: "#ff3333", tho: "Đoài, Khảm họa hại mà tương sinh\nGặp nhau xa xứ chắc nên danh\nDẫu không phú quý, vinh hoa lớn\nCũng hưởng an khang, con cháu vinh.\nTai ương tật ách dồn dập thê thảm\nNửa đời thân phận sanh ly\nPhu thê lâm vòng trái ngang lãnh đạm." },
+            { nhan: "Trai cung Đoài lấy gái cung CẤN", bien: "Diên niên", mau: "#cc9900", tho: "Cháu quí, con vinh, phước đức nhân\nDiên niên ấy phước tự trời ban\nĐầu xanh yêu kính như đầu bạc\nKhông được giàu to cũng được sang.\nPhụ ấm sẵn dành bề tài lợi tấn\nGia đạo thê tử êm ấm\nDuyên nợ trọn đời lửa hương nồng thắm." },
+            { nhan: "Trai cung Đoài lấy gái cung CHẤN", bien: "Tuyệt mệnh", mau: "#ff3333", tho: "Mộc khắc kim thường quá rõ ràng\nChấn, Đoài tương hợp khó bình an\nNếu không nghèo khổ, nhiều đau bịnh\nẮt cũng chia ly người một đàng.\nChăn gối ái tình khó yên thân phận\nBỗn lụy phiền, duyên nợ lìa tan\nCầm bằng căn kiếp đa truân lận đận." },
+            { nhan: "Trai cung Đoài lấy gái cung TỐN", bien: "Lục sát", mau: "#ff3333", tho: "Trái số nên không trọn nợ duyên\nHình xung lục sát ở sao yên\nCông danh, tài lộc cầu không được\nTử biệt sinh ly con cháu phiền.\nXáo trộn gia đình sanh cơ khốn đốn\nCon cái lớn nhỏ bất tường\nTình nghĩa lạt phai lăng loàn hỗn độn." },
+            { nhan: "Trai cung Đoài lấy gái cung LY", bien: "Ngũ quỷ", mau: "#ff3333", tho: "Mẹ cha tang tóc cháu con buồn\nNgũ quỷ phạm thì giọt lệ tuôn\nĐa sinh bịnh tật, đa tai nạn\nVui ở, buồn bay, mỏng cánh chuồn.\nCố công cho mấy ra gì kiếp sanh\nNợ duyên như sợi chỉ mành\nThân danh sự nghiệp bất thành không sai." },
+            { nhan: "Trai cung Đoài lấy gái cung KHÔN", bien: "Thiên Y", mau: "#0066cc", tho: "Trời dành cung số được thiên y\nHợp mặt đủ đầy có thiếu chi\nNhà cửa đường hoàng, vườn ruộng tốt\nCháu con vinh hiển mấy ai bì.\nMột đàn thê tử vuông tròn giàu sang\nGia đình sau trước huy hoàng\nTrung niên hậu vận rõ ràng nghiệp danh." }
+        ]
+    }
+};
 
     let cungHienTai = '';
 
