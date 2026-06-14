@@ -427,12 +427,12 @@
     }
 };
 
-    let cungHienTai = '';
+  let cungHienTai = '';
 
     // Click từ bảng chính -> Hiện tầng 1 (Danh sách quẻ của Cung)
     function chuyenDenCung(maCung) {
         cungHienTai = maCung;
-       const duLieu = DU_LIEU_CUNG_MENH[maCung];
+        const duLieu = DU_LIEU_CUNG_MENH[maCung];
         if (!duLieu) {
             alert("Dữ liệu cung này đang được cập nhật!");
             return;
@@ -442,14 +442,23 @@
         let htmlDanhSach = '';
         
         duLieu.cacQue.forEach((que, index) => {
-           htmlDanhSach += `
-                    <div class="dong-hon-nhan">
-                        <strong>${que.nhan}</strong>
-                        <button style="color: ${que.mau};" onclick="hienThiTho('${que.tho.replace(/'/g, "\\'")}')">${que.bien}</button>
-                    </div>
-                `;
+            // Chuyển dấu xuống dòng trong thơ thành thẻ <br> để trình duyệt hiểu
+            let thoHienThi = que.tho.replace(/\n/g, '<br>').replace(/'/g, "\\'");
+            htmlDanhSach += `
+                <div class="dong-hon-nhan">
+                    <strong>${que.nhan}</strong>
+                    <button style="color: ${que.mau};" onclick="hienThiTho('${thoHienThi}')">${que.bien}</button>
+                </div>
             `;
         });
+        document.getElementById('khoi-danh-sach-links').innerHTML = htmlDanhSach;
+    }
+
+    // Lệnh này để khi bấm nút, bài thơ sẽ hiện ra ở chỗ chú muốn
+    function hienThiTho(noiDungTho) {
+        // Thay 'noi-dung-hien-thi' bằng ID của thẻ div chứa bài thơ trên trang của chú
+        document.getElementById('noi-dung-hien-thi').innerHTML = '<p>' + noiDungTho + '</p>';
+    }
 
         document.getElementById('khoi-danh-sach-links').innerHTML = htmlDanhSach;
         document.getElementById('vung-danh-sach').style.display = 'block';
