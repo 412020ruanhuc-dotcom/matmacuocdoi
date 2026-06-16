@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Hạn Chuẩn 100% - Update 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #f1f5f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .main-card { background: white; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-top: 8px solid #b91c1c; }
+        .han-box { border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; background: #fff; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .bad-news { color: #dc2626; font-weight: 800; }
+        .good-news { color: #059669; font-weight: 800; }
+        .label-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 4px; display: block; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+<div class="main-card w-full max-w-xl p-6 md:p-10">
+    <h2 class="text-3xl font-black text-center text-red-800 mb-2 uppercase">Tra Cứu Hạn 2026</h2>
+    <p class="text-center text-gray-500 text-sm mb-6 font-semibold italic">Dữ liệu Sao-Hạn theo bảng chuẩn & Logic Tứ Đại Hạn</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Năm sinh (Dương lịch):</label>
+            <input type="number" id="birthYear" value="1984" class="w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-red-500 outline-none text-center font-bold text-lg">
+        </div>
+        <div>
+            <label class="block text-sm font-bold text-gray-700 mb-1">Năm xem hạn:</label>
+            <!-- Cháu đã mở khóa ô này thành bg-white để chú tự gõ năm cần xem thoải mái -->
+            <input type="number" id="currentYear" value="2026" class="w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-red-500 outline-none text-center font-bold text-lg bg-white">
+        </div>
+        <div class="md:col-span-2">
+            <label class="block text-sm font-bold text-gray-700 mb-1">Giới tính:</label>
+            <select id="gender" class="w-full px-4 py-3 border-2 rounded-xl font-bold bg-white outline-none">
+                <option value="nam">Nam mạng</option>
+                <option value="nu">Nữ mạng</option>
+            </select>
+        </div>
+    </div>
+
+    <button onclick="calculate()" class="w-full bg-red-700 hover:bg-red-800 text-white font-black py-4 rounded-xl shadow-lg transition duration-300 uppercase text-lg mb-8">
+        Xem Kết Quả Chuẩn
+    </button>
+
+    <div id="resultArea" class="hidden space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="han-box bg-blue-50">
+                <span class="label-title">Sao Chiếu Mệnh</span>
+                <p id="resSao" class="text-xl font-black text-blue-900"></p>
+            </div>
+            <div class="han-box bg-orange-50">
+                <span class="label-title">Hạn Niên</span>
+                <p id="resHanNien" class="text-xl font-black text-orange-900"></p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="han-box">
+                <span class="label-title">Tam Tai</span>
+                <p id="resTamTai" class="text-lg"></p>
+            </div>
+            <div class="han-box">
+                <span class="label-title">Thái Tuế</span>
+                <p id="resThaiTue" class="text-lg"></p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div class="han-box">
+                <span class="label-title">Kim Lâu</span>
+                <p id="resKimLau" class="text-lg"></p>
+            </div>
+            <div class="han-box">
+                <span class="label-title">Hoang Ốc</span>
+                <p id="resHoangOc" class="text-lg"></p>
+            </div>
+        </div>
+
+        <div class="p-4 bg-gray-900 text-white rounded-xl text-center">
+            <p id="resTuoiMu" class="text-2xl font-black text-yellow-400"></p>
+            <p id="resCanChi" class="text-sm font-bold text-gray-400 uppercase tracking-widest mt-1"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const chiNames = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+    const canNames = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
+
+    function calculate() {
+        const birthYear = parseInt(document.getElementById('birthYear').value);
+        const currentYear = parseInt(document.getElementById('currentYear').value);
+        const gender = document.getElementById('gender').value;
+
+        if (!birthYear || !currentYear) return;
+        if (birthYear > currentYear) {
+            alert("Năm xem hạn phải lớn hơn năm sinh chứ chú ơi!");
+            return;
+        }
+
+        const tuoiMu = currentYear - birthYear + 1;
+
+        // 1. TUỔI MỤ & CAN CHI TỰ ĐỘNG
+        let indexCanSanh = (birthYear - 4) % 10;
+        if (indexCanSanh < 0) indexCanSanh += 10;
+        let indexChiSanh = (birthYear - 4) % 12;
+        if (indexChiSanh < 0) indexChiSanh += 12;
+
+        let indexCanHan = (currentYear - 4) % 10;
+        if (indexCanHan < 0) indexCanHan += 10;
+        let indexChiHan = (currentYear - 4) % 12;
+        if (indexChiHan < 0) indexChiHan += 12;
+
+        const can = canNames[indexCanSanh];
+        const chi = chiNames[indexChiSanh];
+        const canHan = canNames[indexCanHan];
+        const chiHan = chiNames[indexChiHan];
+
+        document.getElementById('resTuoiMu').innerText = tuoiMu + " Tuổi Mụ";
+        document.getElementById('resCanChi').innerText = "Tuổi " + can + " " + chi + " - Xem hạn năm " + canHan + " " + chiHan;
+
+        // 2. SAO & HẠN CỬU DIỆU TỰ ĐỘNG TRỌN ĐỜI
+        const saoNam = ["La Hầu", "Thổ Tú", "Thủy Diệu", "Thái Bạch", "Thái Dương", "Vân Hớn", "Kế Đô", "Thái Âm", "Mộc Đức"];
+        const saoNu = ["Kế Đô", "Vân Hớn", "Mộc Đức", "Thái Âm", "Thái Dương", "Thổ Tú", "La Hầu", "Thủy Diệu", "Thái Bạch"];
+        const hanNam = ["Tam Kheo", "Ngũ Mộ", "Thiên Tinh", "Tán Tận", "Huỳnh Tuyền", "Diêm Vương", "Ngũ Mộ", "Thiên La"];
+        const hanNu = ["Thiên La", "Ngũ Mộ", "Huỳnh Tuyền", "Tán Tận", "Tam Kheo", "Diêm Vương", "Ngũ Mộ", "Thiên Tinh"];
+
+        let chiSoSao = (tuoiMu - 10) % 9;
+        if (chiSoSao < 0) chiSoSao += 9;
+        let chiSoHan = (tuoiMu - 10) % 8;
+        if (chiSoHan < 0) chiSoHan += 8;
+
+        const sChieu = (gender === 'nam') ? saoNam[chiSoSao] : saoNu[chiSoSao];
+        const hNien = (gender === 'nam') ? hanNam[chiSoHan] : hanNu[chiSoHan];
+
+        document.getElementById('resSao').innerText = "S. " + sChieu;
+        document.getElementById('resHanNien').innerText = "H. " + hNien;
+
+        // 3. TAM TAI TỰ ĐỘNG
+        let ttText = "Không phạm";
+        let ttClass = "good-news";
+
+        let nhomTamTai = [];
+        if (["Thân", "Tý", "Thìn"].includes(chi)) nhomTamTai = ["Dần", "Mão", "Thìn"];
+        if (["Dần", "Ngọ", "Tuất"].includes(chi)) nhomTamTai = ["Thân", "Dậu", "Tuất"];
+        if (["Tỵ", "Dậu", "Sửu"].includes(chi)) nhomTamTai = ["Hợi", "Tý", "Sửu"];
+        if (["Hợi", "Mão", "Mùi"].includes(chi)) nhomTamTai = ["Tỵ", "Ngọ", "Mùi"];
+
+        if (nhomTamTai.includes(chiHan)) {
+            let thuTuTamTai = nhomTamTai.indexOf(chiHan) + 1;
+            ttText = "Phạm Tam Tai (Năm " + thuTuTamTai + ")";
+            ttClass = "bad-news";
+        }
+
+        document.getElementById('resTamTai').innerText = ttText;
+        document.getElementById('resTamTai').className = "text-lg " + ttClass;
+
+        // 4. THÁI TUẾ TỰ ĐỘNG
+        let thText = "Không phạm";
+        if (chi === chiHan) {
+            thText = "Trực Thái Tuế";
+        } else {
+            const viTriSanh = chiNames.indexOf(chi);
+            const viTriHan = chiNames.indexOf(chiHan);
+            if ((viTriSanh + 6) % 12 === viTriHan) thText = "Xung Thái Tuế";
+            else if ((viTriSanh + 3) % 12 === viTriHan || (viTriSanh + 9) % 12 === viTriHan) thText = "Hình Thái Tuế";
+            else if ((viTriSanh + 5) % 12 === viTriHan || (viTriSanh + 7) % 12 === viTriHan) thText = "Hại Thái Tuế";
+        }
+        document.getElementById('resThaiTue').innerText = thText;
+        document.getElementById('resThaiTue').className = "text-lg " + (thText === "Không phạm" ? "good-news" : "bad-news");
+
+        // 5. KIM LÂU TỰ ĐỘNG
+        const kLdu = tuoiMu % 9;
+        let klText = "Không phạm";
+        if ([1, 3, 6, 8].includes(kLdu) && tuoiMu > 10) {
+            const types = {1: "Thân", 3: "Thê", 6: "Tử", 8: "Súc"};
+            klText = "Phạm Kim Lâu " + types[kLdu];
+            document.getElementById('resKimLau').className = "text-lg bad-news";
+        } else {
+            document.getElementById('resKimLau').className = "text-lg good-news";
+        }
+        document.getElementById('resKimLau').innerText = klText;
+
+        // 6. HOANG ỐC TỰ ĐỘNG
+        const hoLabels = ["1. Nhất Cát (Tốt)", "2. Nhì Nghi (Tốt)", "3. Tam Địa Sát (Xấu)", "4. Tứ Tấn Tài (Tốt)", "5. Ngũ Thọ Tử (Xấu)", "6. Lục Hoang Ốc (Xấu)"];
+        let chuc = Math.floor(tuoiMu / 10);
+        let donvi = tuoiMu % 10;
+        let hoIdx = (chuc + donvi - 1) % 6;
+        if (donvi === 0) hoIdx = (chuc - 1) % 6;
+        if (tuoiMu < 10) hoIdx = (tuoiMu - 1) % 6;
+
+        document.getElementById('resHoangOc').innerText = hoLabels[hoIdx];
+        document.getElementById('resHoangOc').className = "text-lg " + ([2, 4, 5].includes(hoIdx) ? "bad-news" : "good-news");
+
+        document.getElementById('resultArea').classList.remove('hidden');
+    }
+</script>
+</body>
+</html>
