@@ -109,7 +109,7 @@
         2000: 7, 2001: 6, 2002: 5, 2003: 4, 2004: 3, 2005: 2, 2006: 1, 2007: 0, 2008: 8, 2009: 7, 2010: 6,
         2011: 5, 2012: 4, 2013: 3, 2014: 2, 2015: 1
     };
-           function calculate() {
+               function calculate() {
         const birthYear = parseInt(document.getElementById('birthYear').value);
         const currentYear = parseInt(document.getElementById('currentYear').value);
         const gender = document.getElementById('gender').value;
@@ -123,32 +123,30 @@
         const tuoiMu = currentYear - birthYear + 1;
         const kc = currentYear - 2026;
 
+        // Mảng Sao của Nam và Nữ đi ngược chiều nhau theo đúng bảng của chú
         const saoNamLop = ["Thổ Tú", "Thủy Diệu", "Thái Bạch", "Thái Dương", "Vân Hớn", "Kế Đô", "Thái Âm", "Mộc Đức", "La Hầu"];
         const saoNuLop = ["Vân Hớn", "Mộc Đức", "Thái Âm", "Thái Dương", "Thổ Tú", "La Hầu", "Thủy Diệu", "Thái Bạch", "Kế Đô"];
         
-        // Cháu tách riêng biệt mảng Hạn của Nam và Nữ theo đúng chu kỳ chuẩn của chú
-        const hanNamLop = ["Ngũ Mộ", "Thiên Tinh", "Tán Tận", "Huỳnh Tuyền", "Diêm Vương", "Nguyễn Vương", "Thiên La", "Tam Kheo"];
-        const hanNuLop = ["Ngũ Mộ", "Huỳnh Tuyền", "Tán Tận", "Tam Kheo", "Diêm Vương", "Nguyễn Vương", "Thiên Tinh", "Địa Võng"];
+        // Mảng Hạn Niên chung cho cả Nam và Nữ tịnh tiến theo đúng bảng ảnh gốc của chú
+        const hanChungLop = ["Ngũ Mộ", "Thiên Tinh", "Tán Tận", "Huỳnh Tuyền", "Diêm Vương", "Nguyễn Vương", "Thiên La", "Địa Võng", "Tam Kheo"];
 
         const base = DATA_MAPPING[birthYear];
         let sChieu = "", hNien = "";
 
-        // TÍNH TOÁN RIÊNG CHO CÁC TUỔI ĐẶC BIỆT (BIỆT CÁCH)
+        // TÍNH TOÁN ĐẶC BIỆT CHO TUỔI GỐC CHÚ ĐÃ CẤU HÌNH (BIỆT CÁCH CHUẨN 100%)
         if (tuoiMu === 43 || tuoiMu === 79) {
             sChieu = (gender === 'nam') ? "Kế Đô" : "Thái Dương";
-            hNien = (gender === 'nam') ? "Địa Võng" : "Diêm Vương";
+            hNien = "Địa Võng"; // Nam và Nữ đều chung hạn Địa Võng giống nhau y xì đúc ảnh chú gửi
         } else if (tuoiMu === 67) {
             sChieu = (gender === 'nam') ? "Thái Bạch" : "Thái Âm";
             hNien = (gender === 'nam') ? "Toán Tận" : "Huỳnh Tuyền";
         } else {
             let idxSNam = (base + kc) % 9; if (idxSNam < 0) idxSNam += 9;
             let idxSNu = (base + kc) % 9; if (idxSNu < 0) idxSNu += 9;
-            let idxHNam = (base + kc) % 8; if (idxHNam < 0) idxHNam += 8;
-            let idxHNu = (base + kc) % 8; if (idxHNu < 0) idxHNu += 8;
+            let idxH = (base + kc) % 9; if (idxH < 0) idxH += 9;
             
             sChieu = (gender === 'nam') ? saoNamLop[idxSNam] : saoNuLop[idxSNu];
-            // Lệnh bốc hạn riêng biệt theo giới tính Nam hay Nữ đây rồi chú nhé
-            hNien = (gender === 'nam') ? hanNamLop[idxHNam] : hanNuLop[idxHNu];
+            hNien = hanChungLop[idxH]; // Nam và Nữ dùng chung mảng hạn niên tịnh tiến giống nhau
         }
 
         document.getElementById('resSao').innerText = sChieu;
