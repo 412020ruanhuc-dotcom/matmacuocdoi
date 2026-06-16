@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tra Cứu Hạn Chuẩn 100% - Không Cần Mạng</title>
+    <title>Tra Cuu Han - MatmaCuocdoi.vn</title>
     <style>
         body { background-color: #f1f5f9; font-family: 'Segoe UI', Arial, sans-serif; margin: 0; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 90vh; }
         .main-card { background: white; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-top: 8px solid #b91c1c; width: 100%; max-width: 500px; padding: 30px; box-sizing: border-box; }
@@ -13,8 +13,7 @@
         .input-group label { display: block; font-size: 14px; font-weight: bold; color: #334155; margin-bottom: 5px; }
         .input-group input, .input-group select { width: 100%; padding: 12px; border: 2px solid #cbd5e1; border-radius: 12px; font-size: 16px; font-weight: bold; text-align: center; box-sizing: border-box; outline: none; background: white; }
         .input-group input:focus { border-color: #b91c1c; }
-        .btn-submit { width: 100%; bg-color: #b91c1c; background: #b91c1c; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(185, 28, 28, 0.3); }
-        .btn-submit:hover { background: #991b1b; }
+        .btn-submit { width: 100%; background: #b91c1c; color: white; border: none; padding: 15px; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(185, 28, 28, 0.3); }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
         .han-box { border-radius: 12px; padding: 15px; border: 1px solid #e2e8f0; background: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; }
         .bg-blue { background-color: #eff6ff; }
@@ -26,7 +25,7 @@
         .good-news { color: #059669; font-weight: 800; margin: 0; }
         .p-result { padding: 15px; background: #111827; color: white; border-radius: 12px; text-align: center; margin-top: 15px; }
         #resTuoiMu { font-size: 20px; font-weight: 900; color: #facc15; margin: 0 0 5px 0; }
-        #resCanChi { font-size: 12px; font-weight: bold; color: #9ca3af; text-transform: uppercase; tracking-spacing: 1px; margin: 0; }
+        #resCanChi { font-size: 12px; font-weight: bold; color: #9ca3af; text-transform: uppercase; margin: 0; }
         .hidden { display: none; }
     </style>
 </head>
@@ -34,7 +33,7 @@
 
 <div class="main-card">
     <h2>Tra Cứu Hạn Chuẩn 100%</h2>
-    <div class="subtitle">Dữ liệu chuẩn từ hệ thống MatmaCuocdoi.vn</div>
+    <div class="subtitle">Dữ liệu chuẩn xác từ hệ thống MatmaCuocdoi.vn</div>
 
     <div class="grid-2">
         <div class="input-group">
@@ -42,8 +41,8 @@
             <input type="number" id="birthYear" value="1984">
         </div>
         <div class="input-group">
-            <label>Năm xem hạn:</label>
-            <input type="number" id="currentYear" value="2026">
+            <label>Năm xem hạn (2026):</label>
+            <input type="number" id="currentYear" value="2026" readonly style="background: #e2e8f0; color: #64748b;">
         </div>
     </div>
     <div class="input-group">
@@ -100,58 +99,102 @@
     const chiNames = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
     const canNames = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
 
-    const DATA_MAPPING = {
-        1945: 0, 1946: 7, 1947: 6, 1948: 5, 1949: 4, 1950: 3, 1951: 2, 1952: 1, 1953: 0, 1954: 8, 1955: 7,
-        1956: 6, 1957: 5, 1958: 4, 1959: 3, 1960: 2, 1961: 1, 1962: 0, 1963: 8, 1964: 7, 1965: 6, 1966: 5,
-        1967: 4, 1968: 3, 1969: 2, 1970: 1, 1971: 0, 1972: 8, 1973: 7, 1974: 6, 1975: 5, 1976: 4, 1977: 3,
-        1978: 2, 1979: 1, 1980: 0, 1981: 8, 1982: 7, 1983: 6, 1984: 5, 1985: 4, 1986: 3, 1987: 2, 1988: 1,
-        1989: 0, 1990: 8, 1991: 7, 1992: 6, 1993: 5, 1994: 4, 1995: 3, 1996: 2, 1997: 1, 1998: 0, 1999: 8,
-        2000: 7, 2001: 6, 2002: 5, 2003: 4, 2004: 3, 2005: 2, 2006: 1, 2007: 0, 2008: 8, 2009: 7, 2010: 6,
-        2011: 5, 2012: 4, 2013: 3, 2014: 2, 2015: 1
+    // KHO DỮ LIỆU ĐƯỢC CHÁU NHẬP TAY CHUẨN XÁC 100% THEO ĐÚNG BẢNG ẢNH CỦA CHÚ
+    const DATA_2026 = {
+        1948: {sn: "Kế Đô", sl: "Thái Dương", hn: "Diêm Vương", hl: "Thiên La"},
+        1960: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1972: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        1984: {sn: "Kế Đô", sl: "Thái Dương", hn: "Địa Võng", hl: "Địa Võng"},
+        1996: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        2008: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        1949: {sn: "Vân Hớn", sl: "La Hầu", hn: "Địa Võng", hl: "Địa Võng"},
+        1961: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1973: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        1985: {sn: "Vân Hớn", sl: "La Hầu", hn: "Thiên La", hl: "Diêm Vương"},
+        1997: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        2009: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        1950: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Thiên La", hl: "Diêm Vương"},
+        1962: {sn: "Thổ Tú", sl: "Vân Hớn", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        1974: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        1986: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1998: {sn: "Thổ Tú", sl: "Vân Hớn", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        2101: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        1951: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1963: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        1975: {sn: "Kế Đô", sl: "Thái Dương", hn: "Địa Võng", hl: "Địa Võng"},
+        1987: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1999: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        2011: {sn: "Kế Đô", sl: "Thái Dương", hn: "Địa Võng", hl: "Địa Võng"},
+        1952: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        1964: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        1976: {sn: "Vân Hớn", sl: "La Hầu", hn: "Thiên La", hl: "Diêm Vương"},
+        1988: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        2000: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        2012: {sn: "Vân Hớn", sl: "La Hầu", hn: "Thiên La", hl: "Diêm Vương"},
+        1953: {sn: "Thổ Tú", sl: "Vân Hớn", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        1965: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        1977: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1989: {sn: "Thổ Tú", sl: "Vân Hớn", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        2001: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        2013: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1954: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        1966: {sn: "Kế Đô", sl: "Thái Dương", hn: "Địa Võng", hl: "Địa Võng"},
+        1978: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1990: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        2002: {sn: "Kế Đô", sl: "Thái Dương", hn: "Địa Võng", hl: "Địa Võng"},
+        2014: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1955: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        1967: {sn: "Vân Hớn", sl: "La Hầu", hn: "Thiên La", hl: "Diêm Vương"},
+        1979: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1991: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        2003: {sn: "Vân Hớn", sl: "La Hầu", hn: "Thiên La", hl: "Diêm Vương"},
+        2015: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        1956: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        1968: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1980: {sn: "Thổ Tú", sl: "Vân Hớn", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        1992: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        2004: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1945: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        1957: {sn: "Kế Đô", sl: "Thái Dương", hn: "Địa Võng", hl: "Địa Võng"},
+        1969: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1981: {sn: "La Hầu", sl: "Kế Đô", hn: "Tam Kheo", hl: "Thiên Tinh"},
+        1993: {sn: "Kế Đô", sl: "Thái Dương", hn: "Địa Võng", hl: "Địa Võng"},
+        2005: {sn: "Thái Bạch", sl: "Thái Âm", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1946: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        1958: {sn: "Vân Hớn", sl: "La Hầu", hn: "Địa Võng", hl: "Địa Võng"},
+        1970: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Thiên Tinh", hl: "Tam Kheo"},
+        1982: {sn: "Mộc Đức", sl: "Thủy Diệu", hn: "Huỳnh Tuyền", hl: "Toán Tận"},
+        1994: {sn: "Vân Hớn", sl: "La Hầu", hn: "Thiên La", hl: "Diêm Vương"},
+        2006: {sn: "Thủy Diệu", sl: "Mộc Đức", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        1947: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        1959: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        1971: {sn: "Thổ Tú", sl: "Vân Hớn", hn: "Ngũ Mộ", hl: "Ngũ Mộ"},
+        1983: {sn: "Thái Âm", sl: "Thái Bạch", hn: "Diêm Vương", hl: "Thiên La"},
+        1995: {sn: "Thái Dương", sl: "Thổ Tú", hn: "Toán Tận", hl: "Huỳnh Tuyền"},
+        2007: {sn: "Thổ Tú", sl: "Vân Hớn", hn: "Thiên Tinh", hl: "Thiên Tinh"}
     };
-               function calculate() {
+    function calculate() {
         const birthYear = parseInt(document.getElementById('birthYear').value);
         const currentYear = parseInt(document.getElementById('currentYear').value);
         const gender = document.getElementById('gender').value;
 
         if (!birthYear || !currentYear) return;
-        if (DATA_MAPPING[birthYear] === undefined) {
+        if (!DATA_2026[birthYear]) {
             alert("Dữ liệu năm sinh này chưa được nạp, chú chọn từ 1945 đến 2015 nhé!");
             return;
         }
 
         const tuoiMu = currentYear - birthYear + 1;
-        const kc = currentYear - 2026;
 
-        // Mảng Sao của Nam và Nữ đi ngược chiều nhau theo đúng bảng của chú
-        const saoNamLop = ["Thổ Tú", "Thủy Diệu", "Thái Bạch", "Thái Dương", "Vân Hớn", "Kế Đô", "Thái Âm", "Mộc Đức", "La Hầu"];
-        const saoNuLop = ["Vân Hớn", "Mộc Đức", "Thái Âm", "Thái Dương", "Thổ Tú", "La Hầu", "Thủy Diệu", "Thái Bạch", "Kế Đô"];
-        
-        // Mảng Hạn Niên chung cho cả Nam và Nữ tịnh tiến theo đúng bảng ảnh gốc của chú
-        const hanChungLop = ["Ngũ Mộ", "Thiên Tinh", "Tán Tận", "Huỳnh Tuyền", "Diêm Vương", "Nguyễn Vương", "Thiên La", "Địa Võng", "Tam Kheo"];
-
-        const base = DATA_MAPPING[birthYear];
-        let sChieu = "", hNien = "";
-
-        // TÍNH TOÁN ĐẶC BIỆT CHO TUỔI GỐC CHÚ ĐÃ CẤU HÌNH (BIỆT CÁCH CHUẨN 100%)
-        if (tuoiMu === 43 || tuoiMu === 79) {
-            sChieu = (gender === 'nam') ? "Kế Đô" : "Thái Dương";
-            hNien = "Địa Võng"; // Nam và Nữ đều chung hạn Địa Võng giống nhau y xì đúc ảnh chú gửi
-        } else if (tuoiMu === 67) {
-            sChieu = (gender === 'nam') ? "Thái Bạch" : "Thái Âm";
-            hNien = (gender === 'nam') ? "Toán Tận" : "Huỳnh Tuyền";
-        } else {
-            let idxSNam = (base + kc) % 9; if (idxSNam < 0) idxSNam += 9;
-            let idxSNu = (base + kc) % 9; if (idxSNu < 0) idxSNu += 9;
-            let idxH = (base + kc) % 9; if (idxH < 0) idxH += 9;
-            
-            sChieu = (gender === 'nam') ? saoNamLop[idxSNam] : saoNuLop[idxSNu];
-            hNien = hanChungLop[idxH]; // Nam và Nữ dùng chung mảng hạn niên tịnh tiến giống nhau
-        }
+        // 1. BỐC CHÍNH XÁC SAO VÀ HẠN TỪ KHO DỮ LIỆU GỐC CỦA CHÚ
+        const dataHienTai = DATA_2026[birthYear];
+        const sChieu = (gender === 'nam') ? dataHienTai.sn : dataHienTai.sl;
+        const hNien = (gender === 'nam') ? dataHienTai.hn : dataHienTai.hl;
 
         document.getElementById('resSao').innerText = sChieu;
         document.getElementById('resHanNien').innerText = hNien;
 
+        // 2. TÍNH CAN CHI TỰ ĐỘNG
         let indexCanSanh = (birthYear - 4) % 10; if (indexCanSanh < 0) indexCanSanh += 10;
         let indexChiSanh = (birthYear - 4) % 12; if (indexChiSanh < 0) indexChiSanh += 12;
         let indexCanHan = (currentYear - 4) % 10; if (indexCanHan < 0) indexCanHan += 10;
@@ -163,6 +206,7 @@
         document.getElementById('resTuoiMu').innerText = tuoiMu + " Tuổi Mụ";
         document.getElementById('resCanChi').innerText = "Tuổi " + can + " " + chi + " - Xem hạn năm " + canHan + " " + chiHan;
 
+        // 3. TAM TAI TỰ ĐỘNG
         let ttText = "Không phạm"; let ttClass = "good-news";
         let nhomTamTai = [];
         if (["Thân", "Tý", "Thìn"].includes(chi)) nhomTamTai = ["Dần", "Mão", "Thìn"];
@@ -177,6 +221,7 @@
         document.getElementById('resTamTai').innerText = ttText;
         document.getElementById('resTamTai').className = ttClass;
 
+        // 4. THÁI TUẾ TỰ ĐỘNG
         let thText = "Không phạm"; let thClass = "good-news";
         if (chi === chiHan) { thText = "Trực Thái Tuế"; thClass = "bad-news"; } 
         else {
@@ -188,6 +233,7 @@
         document.getElementById('resThaiTue').innerText = thText;
         document.getElementById('resThaiTue').className = thClass;
 
+        // 5. KIM LÂU TỰ ĐỘNG
         let klText = "Không phạm"; let klClass = "good-news";
         if (tuoiMu > 10) {
             const kLdu = tuoiMu % 9;
@@ -199,6 +245,7 @@
         document.getElementById('resKimLau').innerText = klText;
         document.getElementById('resKimLau').className = klClass;
 
+        // 6. HOANG ỐC TỰ ĐỘNG (Giữ nguyên logic chuẩn đếm đốt tay của chú)
         const hoLabels = ["1. Nhất Cát (Tốt)", "2. Nhì Nghi (Tốt)", "3. Tam Địa Sát (Xấu)", "4. Tứ Tấn Tài (Tốt)", "5. Ngũ Thọ Tử (Xấu)", "6. Lục Hoang Ốc (Xấu)"];
         let chuc = Math.floor(tuoiMu / 10); let donvi = tuoiMu % 10;
         let hoIdx = (chuc + donvi - 1) % 6;
