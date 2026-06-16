@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tra Cuu Han - MatmaCuocdoi.vn</title>
+    <title>Tra Cứu Hạn Chuẩn 100% - MatmaCuocdoi.vn</title>
     <script src="https://tailwindcss.com"></script>
     <style>
         body { background-color: #f1f5f9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         .main-card { background: white; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border-top: 8px solid #b91c1c; }
-        .han-box { border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; background: #fff; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .han-box { border-radius: 12px; padding: 16px; border: 1px solid #e2e8f0; background: #fff; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
         .bad-news { color: #dc2626; font-weight: 800; }
         .good-news { color: #059669; font-weight: 800; }
         .label-title { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; color: #64748b; margin-bottom: 4px; display: block; }
@@ -18,16 +18,16 @@
 
 <div class="main-card w-full max-w-xl p-6 md:p-10">
     <h2 class="text-3xl font-black text-center text-red-800 mb-2 uppercase">Tra Cứu Hạn Chuẩn 100%</h2>
-    <p class="text-center text-gray-500 text-sm mb-6 font-semibold italic">Dữ liệu chuẩn từ bảng hệ thống MatmaCuocdoi.vn</p>
+    <p class="text-center text-gray-500 text-sm mb-6 font-semibold italic">Dữ liệu bốc chuẩn xác từ bảng hệ thống MatmaCuocdoi.vn</p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         <div>
             <label class="block text-sm font-bold text-gray-700 mb-1">Năm sinh (Dương lịch):</label>
-            <input type="number" id="birthYear" value="1984" class="w-full px-4 py-3 border-2 rounded-xl text-center font-bold text-lg">
+            <input type="number" id="birthYear" value="1984" class="w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-red-500 outline-none text-center font-bold text-lg bg-white">
         </div>
         <div>
             <label class="block text-sm font-bold text-gray-700 mb-1">Năm xem hạn (2026 - 2030):</label>
-            <input type="number" id="currentYear" value="2026" class="w-full px-4 py-3 border-2 rounded-xl text-center font-bold text-lg bg-white">
+            <input type="number" id="currentYear" value="2026" class="w-full px-4 py-3 border-2 rounded-xl focus:ring-2 focus:ring-red-500 outline-none text-center font-bold text-lg bg-white">
         </div>
         <div class="md:col-span-2">
             <label class="block text-sm font-bold text-gray-700 mb-1">Giới tính:</label>
@@ -38,18 +38,18 @@
         </div>
     </div>
 
-    <button onclick="calculate()" class="w-full bg-red-700 hover:bg-red-800 text-white font-black py-4 rounded-xl shadow-lg uppercase text-lg mb-8">
+    <button onclick="calculate()" class="w-full bg-red-700 hover:bg-red-800 text-white font-black py-4 rounded-xl shadow-lg transition duration-300 uppercase text-lg mb-8">
         Xem Kết Quả Chuẩn
     </button>
 
     <div id="resultArea" class="hidden space-y-4">
         <div class="grid grid-cols-2 gap-4">
             <div class="han-box bg-blue-50">
-                <span class="label-title">Sao Chiếu Mệnh</span>
+                <span class="label-title">★ Sao Chiếu Mệnh</span>
                 <p id="resSao" class="text-xl font-black text-blue-900"></p>
             </div>
             <div class="han-box bg-orange-50">
-                <span class="label-title">Hạn Niên</span>
+                <span class="label-title">⚠ Hạn Niên</span>
                 <p id="resHanNien" class="text-xl font-black text-orange-900"></p>
             </div>
         </div>
@@ -57,22 +57,22 @@
         <div class="grid grid-cols-2 gap-4">
             <div class="han-box">
                 <span class="label-title">Tam Tai</span>
-                <p id="resTamTai" class="text-lg"></p>
+                <p id="resTamTai" class="text-lg font-bold"></p>
             </div>
             <div class="han-box">
                 <span class="label-title">Thái Tuế</span>
-                <p id="resThaiTue" class="text-lg"></p>
+                <p id="resThaiTue" class="text-lg font-bold"></p>
             </div>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
             <div class="han-box">
                 <span class="label-title">Kim Lâu</span>
-                <p id="resKimLau" class="text-lg"></p>
+                <p id="resKimLau" class="text-lg font-bold"></p>
             </div>
             <div class="han-box">
                 <span class="label-title">Hoang Ốc</span>
-                <p id="resHoangOc" class="text-lg"></p>
+                <p id="resHoangOc" class="text-lg font-bold"></p>
             </div>
         </div>
 
@@ -82,11 +82,11 @@
         </div>
     </div>
 </div>
+
 <script>
     const chiNames = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
     const canNames = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
 
-    // Bảng nạp dữ liệu bốc chuẩn xác 100% từ hình ảnh hệ thống của chú
     const DATA_MAPPING = {
         1945: 0, 1946: 7, 1947: 6, 1948: 5, 1949: 4, 1950: 3, 1951: 2, 1952: 1, 1953: 0, 1954: 8, 1955: 7,
         1956: 6, 1957: 5, 1958: 4, 1959: 3, 1960: 2, 1961: 1, 1962: 0, 1963: 8, 1964: 7, 1965: 6, 1966: 5,
@@ -96,6 +96,7 @@
         2000: 7, 2001: 6, 2002: 5, 2003: 4, 2004: 3, 2005: 2, 2006: 1, 2007: 0, 2008: 8, 2009: 7, 2010: 6,
         2011: 5, 2012: 4, 2013: 3, 2014: 2, 2015: 1
     };
+
     function calculate() {
         const birthYear = parseInt(document.getElementById('birthYear').value);
         const currentYear = parseInt(document.getElementById('currentYear').value);
@@ -133,8 +134,8 @@
             hNien = (gender === 'nam') ? hanNamLop[idxHNam] : hanNuLop[idxHNu];
         }
 
-        document.getElementById('resSao').innerText = "S. " + sChieu;
-        document.getElementById('resHanNien').innerText = "H. " + hNien;
+        document.getElementById('resSao').innerText = sChieu;
+        document.getElementById('resHanNien').innerText = hNien;
 
         let indexCanSanh = (birthYear - 4) % 10; if (indexCanSanh < 0) indexCanSanh += 10;
         let indexChiSanh = (birthYear - 4) % 12; if (indexChiSanh < 0) indexChiSanh += 12;
@@ -159,7 +160,7 @@
             ttText = "Phạm Tam Tai (Năm " + thuTuTamTai + ")"; ttClass = "bad-news";
         }
         document.getElementById('resTamTai').innerText = ttText;
-        document.getElementById('resTamTai').className = "text-lg " + ttClass;
+        document.getElementById('resTamTai').className = "text-lg font-bold " + ttClass;
 
         let thText = "Không phạm";
         if (chi === chiHan) { thText = "Trực Thái Tuế"; } 
@@ -170,18 +171,20 @@
             else if ((viTriSanh + 5) % 12 === viTriHan || (viTriSanh + 7) % 12 === viTriHan) thText = "Hại Thái Tuế";
         }
         document.getElementById('resThaiTue').innerText = thText;
-        document.getElementById('resThaiTue').className = "text-lg " + (thText === "Không phạm" ? "good-news" : "bad-news");
+        document.getElementById('resThaiTue').className = "text-lg font-bold " + (thText === "Không phạm" ? "good-news" : "bad-news");
 
-        const kLdu = tuoiMu % 9;
         let klText = "Không phạm";
-        if ([1, 3, 6, 8].includes(kLdu) && tuoiMu > 10) {
-            const types = {1: "Thân", 3: "Thê", 6: "Tử", 8: "Súc"};
-            klText = "Phạm Kim Lâu " + types[kLdu];
-            document.getElementById('resKimLau').className = "text-lg bad-news";
-        } else {
-            document.getElementById('resKimLau').className = "text-lg good-news";
+        let klClass = "good-news";
+        if (tuoiMu > 10) {
+            const kLdu = tuoiMu % 9;
+            if (kLdu === 1 || kLdu === 3 || kLdu === 6 || kLdu === 8) {
+                const types = {1: "Thân", 3: "Thê", 6: "Tử", 8: "Súc"};
+                klText = "Phạm Kim Lâu " + types[kLdu];
+                klClass = "bad-news";
+            }
         }
         document.getElementById('resKimLau').innerText = klText;
+        document.getElementById('resKimLau').className = "text-lg font-bold " + klClass;
 
         const hoLabels = ["1. Nhất Cát (Tốt)", "2. Nhì Nghi (Tốt)", "3. Tam Địa Sát (Xấu)", "4. Tứ Tấn Tài (Tốt)", "5. Ngũ Thọ Tử (Xấu)", "6. Lục Hoang Ốc (Xấu)"];
         let chuc = Math.floor(tuoiMu / 10); let donvi = tuoiMu % 10;
@@ -190,7 +193,7 @@
         if (tuoiMu < 10) hoIdx = (tuoiMu - 1) % 6;
 
         document.getElementById('resHoangOc').innerText = hoLabels[hoIdx];
-        document.getElementById('resHoangOc').className = "text-lg " + ([2, 4, 5].includes(hoIdx) ? "bad-news" : "good-news");
+        document.getElementById('resHoangOc').className = "text-lg font-bold " + (hoLabels[hoIdx].includes("Xấu") ? "bad-news" : "good-news");
 
         document.getElementById('resultArea').classList.remove('hidden');
     }
