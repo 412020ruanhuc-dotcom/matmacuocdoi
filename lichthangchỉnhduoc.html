@@ -23,7 +23,6 @@
             vertical-align: middle;
         }
         .btn-save { background-color: #4CAF50; color: white; border: none; font-size: 15px; padding: 10px 20px; }
-        .btn-share { background-color: #008CBA; color: white; border: none; font-size: 15px; padding: 10px 20px; }
         .btn-tool { background-color: #f0f0f0; color: #333; min-width: 35px; }
         .btn-tool:hover { background-color: #ddd; }
         
@@ -44,11 +43,12 @@
 <body>
 
 <div class="controls">
-    <button class="btn-save" onclick="saveData()">💾 LƯU THAY ĐỔI</button>
-    <button class="btn-share" onclick="sharePage()">🔗 TẠO LINK CHIA SẺ</button>
+    <!-- Chỉ giữ lại duy nhất nút Lưu thay đổi -->
+    <button class="btn-save" onclick="saveData()">💾 LƯU THAY ĐỔI VÀO MÁY</button>
     
     <span style="border-left: 2px solid #ccc; margin: 0 10px; padding-left: 10px;"></span>
     
+    <!-- Các công cụ chỉnh chữ PowerPoint -->
     <button class="btn-tool" onclick="formatDoc('bold')"><b>B</b></button>
     <button class="btn-tool" onclick="formatDoc('italic')"><i>I</i></button>
     <button class="btn-tool" onclick="formatDoc('underline')"><u>U</u></button>
@@ -77,6 +77,7 @@
     </div>
 
     <div class="grid-layout">
+        <!-- Cột 1 -->
         <div>
             <div class="box" style="margin-bottom:15px;">
                 <div class="box-title" contenteditable="true">NGÀY TAM NƯƠNG SÁT</div>
@@ -96,6 +97,7 @@
             </div>
         </div>
 
+        <!-- Cột 2 -->
         <div>
             <div class="box" style="margin-bottom:15px;">
                 <div class="box-title" contenteditable="true">NGÀY KIM THẦN THẤT SÁT</div>
@@ -111,6 +113,7 @@
             </div>
         </div>
 
+        <!-- Cột 3 -->
         <div>
             <div class="box" style="margin-bottom:15px;"><div class="box-title" contenteditable="true">NGÀY SÁT CHỦ DƯƠNG</div><div contenteditable="true">Bính Thìn &nbsp;&nbsp; 26/4<br>Mậu Thìn &nbsp;&nbsp; 9/5<br>Canh Thìn &nbsp;&nbsp; 21/5</div></div>
             <div class="box" style="margin-bottom:15px;"><div class="box-title" contenteditable="true">NGÀY SÁT CHỦ ÂM</div><div contenteditable="true">Canh Thân 1/5<br>Nhâm Thân 13/5</div></div>
@@ -120,6 +123,7 @@
             <div class="box"><div class="box-title" contenteditable="true">NGÀY TỨ LY - TỨ TUYỆT</div><div contenteditable="true">Ất Sửu &nbsp;&nbsp;&nbsp;&nbsp; 06/05</div></div>
         </div>
 
+        <!-- Cột 4 -->
         <div>
             <div class="box">
                 <div class="box-title" contenteditable="true">CÁC NGÀY ĐẸP THÁNG 5 - 2026</div>
@@ -144,37 +148,15 @@
         </div>
     </div>
 </div>
-
 <script>
     window.onload = function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const dataParam = urlParams.get('d');
-        if (dataParam) {
-            try {
-                const decoded = decodeURIComponent(atob(dataParam).split('').map(function(c) {
-                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                }).join(''));
-                if (decoded) { document.getElementById('main-content').innerHTML = decoded; return; }
-            } catch(e) { console.log(e); }
-        }
-        const localData = localStorage.getItem('lich_powerpoint_2026');
+        const localData = localStorage.getItem('lich_powerpoint_2026_sach');
         if (localData) { document.getElementById('main-content').innerHTML = localData; }
     }
     
     function saveData() { 
-        localStorage.setItem('lich_powerpoint_2026', document.getElementById('main-content').innerHTML); 
-        alert('💾 Đã lưu toàn bộ nội dung và màu sắc chú vừa chỉnh sửa vào trình duyệt!'); 
-    }
-
-    function sharePage() {
-        const content = document.getElementById('main-content').innerHTML;
-        const compressed = btoa(encodeURIComponent(content).replace(/%([0-9A-F]{2})/g, function(m, p1) {
-            return String.fromCharCode('0x' + p1);
-        }));
-        const shareUrl = window.location.origin + window.location.pathname + '?d=' + compressed;
-        navigator.clipboard.writeText(shareUrl).then(function() { 
-            alert('🔗 Đã copy đường dẫn chia sẻ! Chú hãy gửi link này qua Zalo để người khác xem được bản lịch màu sắc do chú sửa nhé.'); 
-        }).catch(function(err) { alert('Chú hãy copy trên thanh địa chỉ: ' + shareUrl); });
+        localStorage.setItem('lich_powerpoint_2026_sach', document.getElementById('main-content').innerHTML); 
+        alert('💾 Đã lưu toàn bộ nội dung và màu sắc vào máy chú thành công!'); 
     }
 
     function formatDoc(cmd, value) { document.execCommand(cmd, false, value || null); }
@@ -189,3 +171,5 @@
 </body>
 </html>
 
+<script>
+    // Tải lại dữ liệu cũ từ trình duyệt máy tính của chú
