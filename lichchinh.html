@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lich Ngay Tot Thang 5 Am Lich 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f7e7ce; color: #2b2b2b; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; border: 2px solid #bfa37a; padding: 15px; background: #fdf6ec; }
+        h1 { text-align: center; margin: 5px 0; text-transform: uppercase; }
+        .website-info { text-align: center; font-size: 14px; margin-bottom: 15px; }
+        .controls { position: sticky; top: 0; z-index: 1000; text-align: center; margin-bottom: 20px; background: #ffffff; padding: 12px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); border: 2px solid #4CAF50; }
+        .controls label { font-size: 13px; font-weight: bold; margin-left: 10px; color: #333; }
+        button, select, input[type="color"] { padding: 8px 12px; font-size: 14px; font-weight: bold; cursor: pointer; margin: 2px; border-radius: 4px; border: 1px solid #ccc; vertical-align: middle; }
+        .btn-main { background-color: #4CAF50; color: white; border: none; font-size: 15px; padding: 10px 20px; }
+        .btn-tool { background-color: #f0f0f0; color: #333; min-width: 35px; }
+        .btn-tool:hover { background-color: #ddd; }
+        .grid-layout { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+        .box { background-color: #edd0a3; border: 1px solid #bfa37a; padding: 10px; font-size: 14px; transition: background 0.3s; }
+        .box-title { font-weight: bold; text-transform: uppercase; border-bottom: 1px solid #bfa37a; padding-bottom: 5px; margin-bottom: 8px; text-align: center; }
+        .flex-sub { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .sub-box { border: 1px solid #bfa37a; padding: 5px; }
+        .sub-title { font-weight: bold; text-align: center; border-bottom: 1px solid #bfa37a; margin-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th, td { border: 1px solid #bfa37a; padding: 4px; text-align: left; }
+        th { background-color: #8ba8cc; text-align: center; }
+        [contenteditable="true"] { outline: none; padding: 2px; }
+        [contenteditable="true"]:focus { background-color: #fffde6; box-shadow: 0 0 5px #ffaa00; }
+    </style>
+</head>
+<body>
+
+<div class="controls">
+    <button class="btn-main" onclick="saveData()">💾 LƯU THAY ĐỔI</button>
+    <span style="border-left: 2px solid #ccc; margin: 0 10px; padding-left: 10px;"></span>
+    <button class="btn-tool" onclick="formatDoc('bold')"><b>B</b></button>
+    <button class="btn-tool" onclick="formatDoc('italic')"><i>I</i></button>
+    <button class="btn-tool" onclick="formatDoc('underline')"><u>U</u></button>
+    <label>Cỡ chữ:</label>
+    <select onchange="changeFontSize(this.value)">
+        <option value="3">Vừa</option>
+        <option value="2">Nhỏ</option>
+        <option value="4">Hơi To</option>
+        <option value="5">To</option>
+        <option value="6">Rất To</option>
+    </select>
+    <label>Màu chữ:</label>
+    <input type="color" onchange="formatDoc('foreColor', this.value)" value="#2b2b2b">
+    <label>Màu nền hộp:</label>
+    <input type="color" onchange="changeBoxBg(this.value)" value="#edd0a3">
+</div>
+
+<div class="container" id="main-content">
+    <h1 contenteditable="true">LỊCH NGÀY TỐT THÁNG 5 ÂM LỊCH NĂM 2026 THEO TIẾT KHÍ (Mang chủng-Tiểu thử)</h1>
+    <div class="website-info" contenteditable="true">
+        Website: https://matmacuocdoi.vn | Zalo: 0789.414.153<br>
+        Từ 20/4 đến 23/5 (âm) tương ứng với khoảng thời gian từ ngày 5/6 đến 7/7 dương lịch
+    </div>
+
+    <div class="grid-layout">
+        <div>
+            <div class="box" style="margin-bottom:15px;">
+                <div class="box-title" contenteditable="true">NGÀY TAM NƯƠNG SÁT</div>
+                <div contenteditable="true">Nhâm Tý &nbsp;&nbsp; 22/4<br>Đinh Tỵ &nbsp;&nbsp;&nbsp;&nbsp; 27/4<br>Nhâm Tuất 3/5<br>Bính Dần &nbsp;&nbsp; 7/5<br>Nhâm Thân 13/5<br>Đinh Sửu &nbsp;&nbsp; 18/5<br>Tân Tỵ &nbsp;&nbsp;&nbsp;&nbsp; 22/5</div>
+            </div>
+            <div class="box" style="margin-bottom:15px;">
+                <div class="box-title" contenteditable="true">NGÀY NGUYỆT KỴ 5-14-23</div>
+                <div contenteditable="true">Quý Sửu &nbsp;&nbsp; 23/4<br>Giáp Tý &nbsp;&nbsp;&nbsp;&nbsp; 5/5<br>Quý Dậu &nbsp;&nbsp; 14/5</div>
+            </div>
+            <div class="box" style="margin-bottom:15px;">
+                <div class="box-title" contenteditable="true">NGÀY CON NƯỚC</div>
+                <div contenteditable="true">Mậu Thìn &nbsp;&nbsp; 9/5<br>Quý Sửu &nbsp;&nbsp; 23/4</div>
+            </div>
+            <div class="box">
+                <div class="box-title" contenteditable="true">TRỰC PHÁ - NG.PHÁ</div>
+                <div contenteditable="true">Nhâm Tý &nbsp;&nbsp; 22/4<br>Giáp Tý &nbsp;&nbsp;&nbsp;&nbsp; 5/5<br>Bính Tý &nbsp;&nbsp;&nbsp;&nbsp; 17/5</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="box" style="margin-bottom:15px;">
+                <div class="box-title" contenteditable="true">NGÀY KIM THẦN THẤT SÁT</div>
+                <div class="flex-sub">
+                    <div class="sub-box"><div class="sub-title" contenteditable="true">Ngày KIM THẦN</div><div contenteditable="true">Nhâm Tý 22/4<br>Quý Sửu 23/4<br>Giáp Dần 24/4<br>Ất Mão 23/4<br>Giáp Tý 5/5<br>Ất Sửu 6/5<br>Bính Dần 7/5<br>Đinh Mão 8/5<br>Bính Tý 17/5</div></div>
+                    <div class="sub-box"><div class="sub-title" contenteditable="true">Ngày THẤT SÁT</div><div contenteditable="true">1. GIÁC Canh Ngọ 11/5<br>2. CANG Tân Mùi 12/5<br>3. KHUÊ Bính Thìn 26/4<br>4. LÂU Đinh Tỵ 20/4<br>5. NGƯU Canh Thân 20/4<br>6. QUỶ Giáp Tý 5/5<br>7. TINH Bính Dần 7/5<br>8. NGƯU Mậu Dần 19/5</div></div>
+                </div>
+                <div style="margin-top:10px; font-size:12px;" contenteditable="true"><strong>Ngày phạm Kim Thần Thất Sát:</strong><br>Giáp Tý 5/5, Bính Dần 7/5, Mậu Dần 19/5</div>
+            </div>
+            <div class="box">
+                <div class="box-title" contenteditable="true">NGÀY PHỤC ĐOẠN</div>
+                <div contenteditable="true">Bính, Mậu (Tý) - Hư | Canh, Nhâm (Ngọ) - Giác<br>Ất, Quý (Sửu) - Đẩu | Ất, Quý (Mùi) - Trương<br>Canh, Mậu (Dần) - Thất | Giáp, Bính (Thân) - Quỷ<br>Kỷ, Tân (Mão) - Nữ | Ất, Đinh (Dậu) - Chủy<br>Giáp, Nhâm (Thìn) - Cơ | Giáp, Nhâm (Tuất) - (Vị)<br>Tân, Quý (Tỵ) - Phòng | Đinh, Kỷ (Hợi) - Nguy<br><strong>Ngày phạm Phục Đoạn gồm:</strong><br>Canh Ngọ 11/5, Kỷ Mão 20/5</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="box" style="margin-bottom:15px;"><div class="box-title" contenteditable="true">NGÀY SÁT CHỦ DƯƠNG</div><div contenteditable="true">Bính Thìn &nbsp;&nbsp; 26/4<br>Mậu Thìn &nbsp;&nbsp; 9/5<br>Canh Thìn &nbsp;&nbsp; 21/5</div></div>
+            <div class="box" style="margin-bottom:15px;"><div class="box-title" contenteditable="true">NGÀY SÁT CHỦ ÂM</div><div contenteditable="true">Canh Thân 1/5<br>Nhâm Thân 13/5</div></div>
+            <div class="box" style="margin-bottom:15px;"><div class="box-title" contenteditable="true">NGÀY VÃNG VONG</div><div contenteditable="true">Ất Mão &nbsp;&nbsp;&nbsp;&nbsp; 25/4<br>Đinh Mão &nbsp;&nbsp; 8/5<br>Kỷ Mão &nbsp;&nbsp;&nbsp;&nbsp; 20/5</div></div>
+            <div class="box" style="margin-bottom:15px;"><div class="box-title" contenteditable="true">NGÀY THỤ TỬ</div><div contenteditable="true">Nhâm Tý &nbsp;&nbsp; 22/4<br>Giáp Tý &nbsp;&nbsp;&nbsp;&nbsp; 5/5<br>Bính Tý &nbsp;&nbsp;&nbsp;&nbsp; 17/5</div></div>
+            <div class="box" style="margin-bottom:15px;"><div class="box-title" contenteditable="true">NGÀY HỒNG SA SÁT</div><div contenteditable="true">Tân Dậu &nbsp;&nbsp; 2-5<br>Quý Dậu &nbsp;&nbsp; 14-5</div></div>
+            <div class="box"><div class="box-title" contenteditable="true">NGÀY TỨ LY - TỨ TUYỆT</div><div contenteditable="true">Ất Sửu &nbsp;&nbsp;&nbsp;&nbsp; 06/05</div></div>
+        </div>
+
+        <div>
+            <div class="box">
+                <div class="box-title" contenteditable="true">CÁC NGÀY ĐẸP THÁNG 5 - 2026</div>
+                <div style="text-align:center; font-size:12px; margin-bottom:5px;" contenteditable="true">(Ngày âm lịch - theo tiết khí)</div>
+                <table>
+                    <thead><tr><th contenteditable="true">NGÀY ĐẸP (ÂL)</th><th contenteditable="true">KỴ TUỔI</th></tr></thead>
+                    <tbody contenteditable="true">
+                        <tr><td>20/4 Canh Tuất</td><td>Bính Thìn, Giáp Thìn</td></tr>
+                        <tr><td>21/4 Tân Hợi</td><td>Đinh Tỵ, Ất Tỵ</td></tr>
+                        <tr><td>24/4 Giáp Dần</td><td>Canh Thân, Mậu Thân</td></tr>
+                        <tr><td>28/4 Mậu Ngọ</td><td>Giáp Tý, Nhâm Tý</td></tr>
+                        <tr><td>29/4 Kỷ Mùi</td><td>Quý Sửu, Ất Sửu</td></tr>
+                        <tr><td>2/5 Tân Dậu</td><td>Đinh Mão, Ất Mão</td></tr>
+                        <tr><td>4/5 Quý Hợi</td><td>Đinh Tỵ, Kỷ Tỵ</td></tr>
+                        <tr><td>6/5 Ất Sửu</td><td>Kỷ Mùi, Tân Mùi</td></tr>
+                        <tr><td>10/5 Kỷ Tỵ</td><td>Quý Hợi, Đinh Hợi</td></tr>
+                        <tr><td>12/5 Tân Mùi</td><td>Đinh Sửu, Ất Sửu</td></tr>
+                        <tr><td>16/5 Ất Hợi</td><td>Kỷ Tỵ, Tân Tỵ</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+        const localData = localStorage.getItem('lich_powerpoint_2026');
+        if (localData) { document.getElementById('main-content').innerHTML = localData; }
+    }
+    function saveData() { 
+        localStorage.setItem('lich_powerpoint_2026', document.getElementById('main-content').innerHTML); 
+        alert('💾 Đã lưu toàn bộ nội dung và màu sắc chú vừa chỉnh sửa!'); 
+    }
+    function formatDoc(cmd, value = null) { document.execCommand(cmd, false, value); }
+    function changeFontSize(size) { document.execCommand('fontSize', false, size); }
+    function changeBoxBg(color) {
+        const boxes = document.querySelectorAll('.box');
+        boxes.forEach(box => { box.style.backgroundColor = color; });
+    }
+</script>
+</body>
+</html>
+
