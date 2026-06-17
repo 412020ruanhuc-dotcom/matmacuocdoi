@@ -2,103 +2,158 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CÔNG CỤ TRÌNH CHIẾU MẬT MÃ CUỘC ĐỜI</title>
-    <script src="https://cloudflare.com"></script>
-    <script src="https://jsdelivr.net"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MẬT MÃ CUỘC ĐỜI - ƯU TIÊN ĐIỆN THOẠI</title>
     <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; background: linear-gradient(135deg, #fdfbf7 0%, #f5f7fa 100%); margin: 0; padding: 20px; color: #1f2937; }
-        .control-panel { background: #ffffff; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 930px; margin: 0 auto 20px auto; display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: center; border: 1px solid #e5e7eb; }
-        .control-group { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: bold; }
-        .control-group input[type="color"] { border: none; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; }
-        .control-group select { padding: 6px 12px; border-radius: 6px; border: 1px solid #ccc; }
-        .btn { padding: 8px 16px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: white; }
-        .btn-pdf { background-color: #ef4444; }
-        .btn-ppt { background-color: #3b82f6; }
-        .slide-container { width: 100%; max-width: 960px; margin: 0 auto; }
-        .slide { width: 100%; aspect-ratio: 16 / 9; background-color: #ffffff; box-sizing: border-box; padding: 40px; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-radius: 8px; margin-bottom: 30px; display: flex; flex-direction: column; border: 1px solid #e5e7eb; }
-        .slide-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #ef4444; padding-bottom: 10px; margin-bottom: 20px; }
-        .brand-link { color: #dc2626; font-weight: 900; text-decoration: none; font-size: 16px; }
-        .brand-zalo { color: #4b5563; font-weight: bold; font-size: 14px; }
-        .slide-title { color: #111827; font-size: 24px; font-weight: 800; margin: 0 0 20px 0; text-transform: uppercase; }
-        .slide-body { font-size: 17px; line-height: 1.8; text-align: justify; flex-grow: 1; white-space: pre-line; }
-        @media print { .control-panel { display: none; } body { padding: 0; } .slide { box-shadow: none; margin: 0; page-break-after: always; } }
+        /* Nền chính Trắng Ánh Kim tinh tế */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; 
+            background: linear-gradient(135deg, #fdfbf7, #f5f7fa); 
+            margin: 0; 
+            padding: 10px; 
+            box-sizing: border-box;
+        }
+        
+        /* THANH ĐIỀU KHIỂN TỰ CO NHỎ GỌN TRÊN ĐIỆN THOẠI */
+        .bảng-chỉnh { 
+            text-align: center; 
+            margin-bottom: 15px; 
+            padding: 8px; 
+            background: rgba(255, 255, 255, 0.95); 
+            border-radius: 10px; 
+            border: 1px solid #e5e7eb; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .bảng-chỉnh select, .bảng-chỉnh button { 
+            margin: 3px; 
+            padding: 6px 10px; 
+            font-weight: bold; 
+            font-size: 13px; 
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: white;
+            cursor: pointer;
+        }
+        .bảng-chỉnh input[type="color"] {
+            vertical-align: middle;
+            margin: 0 3px;
+            width: 28px;
+            height: 28px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-size { background: #f3f4f6; }
+        .btn-anh { background: #3b82f6; color: white; border: none !important; }
+        .btn-link { background: #8b5cf6; color: white; border: none !important; }
+        .btn-pdf { background: #ef4444; color: white; border: none !important; }
+
+        /* KHUNG TRAN GIAO DIỆN FULL MÀN HÌNH THEO ĐÚNG Ý CHÚ */
+        .khung-slide { 
+            width: 100%; 
+            box-sizing: border-box;
+        }
+
+        /* Ô viết bài tỷ lệ 16:9 mở rộng tối đa trên di động */
+        .ô-viết { 
+            background: white; 
+            aspect-ratio: 16 / 9; 
+            padding: 20px; 
+            margin-bottom: 15px; 
+            border-radius: 12px; 
+            border: 1px solid #e5e7eb; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
+            box-sizing: border-box; 
+            display: flex; 
+            flex-direction: column; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        /* Thương hiệu cố định trên đầu trang */
+        .đầu-trang { display: flex; justify-content: space-between; border-bottom: 2px solid #ef4444; padding-bottom: 6px; margin-bottom: 10px; font-size: 12px; font-weight: bold; }
+        .đầu-trang span { color: #dc2626; outline: none; }
+        .sđt { color: #4b5563 !important; }
+        
+        .tiêu-đề { font-size: 18px; margin: 0 0 10px 0; color: #111827; text-transform: uppercase; outline: none; font-weight: 800; }
+        .nội-dung { font-size: 15px; line-height: 1.6; text-align: justify; white-space: pre-line; color: #1f2937; flex-grow: 1; outline: none; }
+        .nội-dung a { color: #2563eb; text-decoration: underline; font-weight: bold; }
+
+        /* Vùng chứa ảnh bo tròn gọn gàng */
+        .khung-chứa-ảnh { margin-top: 8px; text-align: center; display: none; max-height: 40%; justify-content: center; }
+        .khung-chứa-ảnh img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 8px; }
+
+        /* Cấu hình khi xuất file PDF / In */
+        @media print { 
+            @page { size: landscape; margin: 0; }
+            body { padding: 0; background: none !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } 
+            .bảng-chỉnh { display: none !important; } 
+            .ô-viết { border: none !important; box-shadow: none !important; width: 100vw !important; height: 100vh !important; margin: 0 !important; border-radius: 0 !important; page-break-after: always !important; padding: 40px !important; } 
+        }
     </style>
 </head>
 <body>
-    <div class="control-panel">
-        <div class="control-group"><label>Màu chữ:</label><input type="color" id="textColor" value="#1f2937" oninput="changeTextColor(this.value)"></div>
-        <div class="control-group"><label>Màu ô:</label><input type="color" id="bgColor" value="#ffffff" oninput="changeBgColor(this.value)"></div>
-        <div class="control-group"><label>Phông chữ:</label><select id="fontSelect" onchange="changeFont(this.value)"><option value="'Segoe UI', sans-serif">Segoe UI</option><option value="Arial, sans-serif">Arial</option><option value="'Times New Roman', serif">Times New Roman</option></select></div>
-        <button class="btn btn-pdf" onclick="exportToPDF()">📕 Xuất file PDF</button>
-        <button class="btn btn-ppt" onclick="exportToPPTX()">📘 Xuất PowerPoint</button>
+
+    <!-- THANH ĐIỀU KHIỂN RẤT GỌN GÀNG TRÊN DI ĐỘNG -->
+    <div class="bảng-chỉnh">
+        <input type="color" id="mauChu" value="#1f2937" title="Đổi màu chữ" oninput="document.querySelectorAll('.nội-dung, .tiêu-đề, .đầu-trang span').forEach(x => x.style.color = this.value)">
+        <input type="color" id="mauNen" value="#ffffff" title="Đổi màu ô" oninput="document.querySelectorAll('.ô-viết').forEach(x => x.style.backgroundColor = this.value)">
+        <select onchange="document.getElementById('khung').style.fontFamily = this.value">
+            <option value="Arial">Arial</option>
+            <option value="'Times New Roman'">Times New Roman</option>
+        </select>
+        <button class="btn-size" onclick="doiCoChu(1)">A+</button>
+        <button class="btn-size" onclick="doiCoChu(-1)">A-</button>
+        <button class="btn-link" onclick="ganLinkChoChu()">🔗 Link</button>
+        <button class="btn-anh" onclick="document.getElementById('chonAnh').click()">🖼️ Ảnh</button>
+        <input type="file" id="chonAnh" accept="image/*" style="display: none;" onchange="taiAnhLen(this)">
+        <button class="btn-pdf" onclick="window.print()">🖨️ Xuất PDF</button>
     </div>
-    <div class="slide-container" id="slides-content">
-        <!-- SLIDE 1: GIỚI THIỆU -->
-        <div class="slide">
-            <div class="slide-header">
-                <a href="https://matmacuocdoi.vn" target="_blank" class="brand-link">🌐 MATMACUOCDOI.VN</a>
-                <span class="brand-zalo">📞 Zalo: 0789.414.153</span>
+
+    <!-- KHU VỰC TRÌNH CHIẾU TRÀN VIỀN (FULL 100% ĐIỆN THOẠI) -->
+    <div class="khung-slide" id="khung">
+        <div class="ô-viết">
+            <div class="đầu-trang">
+                <span contenteditable="true">🌐 MATMACUOCDOI.VN</span>
+                <span class="sđt" contenteditable="true">Zalo: 0789.414.153</span>
             </div>
-            <h2 class="slide-title">Phần 1: Giới Thiệu Bản Mệnh</h2>
-            <div class="slide-body">
-                Em Viết Chay Không Chỉnh Sửa Gì Có Thiếu Dấu, Sai Chính Tả Thông Cảm Nhé. Vì Em Muốn Tất Cả Tự Nhiên.
-                
-                📌 CÁC CẶP VỢ CHỒNG SAU ĐÂY CHÚ Ý 😀
-                Chồng 1971 Lấy Vợ Những Tuổi Sau. Hay Khắc Khẩu. Thời gian đầu yêu nhau say đắm hết mình ai cản cũng không nổi. Lấy nhau về nhiều đôi ăn nên làm ra mạnh mẽ, nhưng có cặp đôi trong 10 năm bắt đầu xảy ra chuyện... do nhiều yếu tố phát sinh như phá sản, ly hôn, ly thân, sinh ly tử biệt...
+            <h2 class="tiêu-đề" contenteditable="true">PHẦN 1: TIÊU ĐỀ ĐOẠN 1</h2>
+            <div class="nội-dung" contenteditable="true">Chú bấm vào đây gõ chữ, bôi đen gắn link, chèn ảnh bình thường. Khi xuất PDF trên điện thoại, chú cứ chọn in nằm ngang để ô giữ đúng tỷ lệ 16:9 siêu đẹp nhé...</div>
+            
+            <div class="khung-chứa-ảnh" id="vungAnh">
+                <img id="anhHienThi" src="" alt="Ảnh của chú">
             </div>
         </div>
-
-        <!-- SLIDE 2: NỘI DUNG TIẾP THEO -->
-        <div class="slide">
-            <div class="slide-header">
-                <a href="https://matmacuocdoi.vn" target="_blank" class="brand-link">🌐 MATMACUOCDOI.VN</a>
-                <span class="brand-zalo">📞 Zalo: 0789.414.153</span>
-            </div>
-            <h2 class="slide-title">Phần 2: Chu Kỳ Thời Gian 30 - 40 Năm</h2>
-            <div class="slide-body">
-                Có những cặp đôi tận 30-40 năm mới bắt đầu xảy ra vấn đề như trên: phá sản, ly hôn, ly thân, sinh ly tử biệt... 
-                Nhưng có những cặp đôi đến giờ vẫn tốt. Lý do là họ biết mệnh của nhau, vậy nên họ biết kìm chế nóng giận, biết điều tiết cảm xúc trước đối phương, biết làm thiện tích đức nên đỡ đi rất nhiều. Do nghiệp quả kiếp trước họ tốt nên kiếp này tự hóa giải.
-            </div>
-        </div>
-
-    </div> <!-- Hết danh sách slide -->
+    </div>
 
     <script>
-        function changeTextColor(color) {
-            document.querySelectorAll('.slide-body, .slide-title').forEach(b => b.style.color = color);
-        }
-        function changeBgColor(color) {
-            document.querySelectorAll('.slide').forEach(s => s.style.backgroundColor = color);
-        }
-        function changeFont(font) {
-            document.getElementById('slides-content').style.fontFamily = font;
-        }
-        function exportToPDF() {
-            const element = document.getElementById('slides-content');
-            const opt = {
-                margin: 10, filename: 'Mat-Ma-Cuoc-Doi.pdf',
-                image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
-            };
-            html2pdf().set(opt).from(element).save();
-        }
-        function exportToPPTX() {
-            let pptx = new PptxGenJS();
-            pptx.layout = 'LAYOUT_16x9';
-            document.querySelectorAll('.slide').forEach((slideHtml) => {
-                let slide = pptx.addSlide();
-                let currentBg = document.getElementById('bgColor').value;
-                let currentTextColor = document.getElementById('textColor').value;
-                slide.background = { color: currentBg };
-                slide.addText("🌐 MATMACUOCDOI.VN", { x: 0.5, y: 0.3, fontSize: 14, color: "DC2626", bold: true });
-                slide.addText("📞 Zalo: 0789.414.153", { x: 7.5, y: 0.3, fontSize: 12, color: "4B5563", align: "right" });
-                let titleText = slideHtml.querySelector('.slide-title').innerText;
-                let bodyText = slideHtml.querySelector('.slide-body').innerText;
-                slide.addText(titleText, { x: 0.5, y: 1.0, w: 9.0, fontSize: 22, color: currentTextColor.replace('#',''), bold: true });
-                slide.addText(bodyText, { x: 0.5, y: 1.8, w: 9.0, h: 4.5, fontSize: 14, color: currentTextColor.replace('#',''), align: "justify" });
+        function doiCoChu(buocNhảy) {
+            document.querySelectorAll('.nội-dung, .tiêu-đề, .đầu-trang span').forEach(txt => {
+                let coChuHienTai = parseFloat(window.getComputedStyle(txt).fontSize);
+                let coChuMoi = coChuHienTai + buocNhảy;
+                if (coChuMoi >= 10 && coChuMoi <= 35) { txt.style.fontSize = coChuMoi + 'px'; }
             });
-            pptx.writeFile({ fileName: "Mat-Ma-Cuoc-Doi.pptx" });
+        }
+
+        function taiAnhLen(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('anhHienThi').src = e.target.result;
+                    document.getElementById('vungAnh').style.display = 'flex';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function ganLinkChoChu() {
+            var url = prompt("Chú hãy dán hoặc nhập địa chỉ link vào đây:", "https://");
+            if (url && url !== "https://") { document.execCommand("createLink", false, url); }
         }
     </script>
 </body>
