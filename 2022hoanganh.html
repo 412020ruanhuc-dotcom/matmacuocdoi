@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MẬT MÃ CUỘC ĐỜI - POWERPOINT CHUYÊN NGHIỆP</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #fdfbf7, #f5f7fa); margin: 0; padding: 0; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        .top-bar { background: #ffffff; padding: 10px; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: center; gap: 8px; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.05); z-index: 10; }
+        .top-bar input[type="color"] { border: none; width: 30px; height: 30px; cursor: pointer; }
+        .top-bar select, .top-bar button { padding: 6px 12px; font-weight: bold; font-size: 13px; border-radius: 6px; border: 1px solid #ccc; background: white; cursor: pointer; }
+        .btn-add { background: #10b981 !important; color: white; border: none !important; }
+        .btn-del { background: #6b7280 !important; color: white; border: none !important; }
+        .btn-link { background: #8b5cf6 !important; color: white; border: none !important; }
+        .btn-anh { background: #3b82f6 !important; color: white; border: none !important; }
+        .btn-pdf { background: #ef4444 !important; color: white; border: none !important; }
+        .workspace { display: flex; flex: 1; overflow: hidden; width: 100%; }
+        .sidebar { width: 150px; background: #ffffff; border-right: 1px solid #e5e7eb; padding: 15px 10px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+        .thumb-item { padding: 10px; background: #f3f4f6; border: 2px solid #e5e7eb; border-radius: 8px; text-align: center; font-weight: bold; font-size: 13px; cursor: pointer; color: #4b5563; }
+        .thumb-item.active { background: #ffe4e6; border-color: #ef4444; color: #dc2626; }
+        .main-editor { flex: 1; padding: 20px; display: flex; justify-content: center; align-items: flex-start; overflow-y: auto; }
+        .ô-viết { background: white; width: 850px; height: 480px; padding: 40px; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 4px 20px rgba(0,0,0,0.06); box-sizing: border-box; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .đầu-trang { display: flex; justify-content: space-between; border-bottom: 2px solid #ef4444; padding-bottom: 6px; margin-bottom: 15px; font-size: 12px; font-weight: bold; }
+        .đầu-trang span { color: #dc2626; outline: none; }
+        .sđt { color: #4b5563 !important; }
+        .tiêu-đề { font-size: 24px; margin: 0 0 12px 0; color: #111827; text-transform: uppercase; outline: none; font-weight: 800; }
+        .nội-dung { font-size: 18px; line-height: 1.6; text-align: justify; white-space: pre-line; color: #1f2937; flex-grow: 1; outline: none; }
+        .nội-dung a { color: #2563eb; text-decoration: underline; font-weight: bold; }
+        .khung-chứa-ảnh { margin-top: 8px; text-align: center; display: none; max-height: 40%; justify-content: center; }
+        .khung-chứa-ảnh img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 8px; }
+        @media (max-width: 768px) {
+            body, .workspace { height: auto; overflow: auto; flex-direction: column; }
+            .sidebar { width: 100%; flex-direction: row; overflow-x: auto; padding: 10px; border-right: none; border-bottom: 1px solid #e5e7eb; }
+            .thumb-item { min-width: 80px; padding: 6px; }
+            .ô-viết { width: 100% !important; height: auto !important; aspect-ratio: 16 / 9; padding: 20px; }
+            .tiêu-đề { font-size: 18px; } .nội-dung { font-size: 15px; }
+        }
+        @media print { 
+            @page { size: landscape; margin: 0; }
+            body, .workspace, .main-editor { padding: 0; background: none !important; height: auto !important; display: block !important; overflow: visible !important; } 
+            .top-bar, .sidebar { display: none !important; } 
+            .ô-viết { display: flex !important; border: none !important; box-shadow: none !important; width: 100vw !important; height: 100vh !important; margin: 0 !important; border-radius: 0 !important; page-break-after: always !important; padding: 40px !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <button class="btn-add" onclick="themSlide()">➕ Thêm Slide</button>
+        <button class="btn-del" onclick="xoaSlideHienTai()">❌ Xóa Slide</button>
+        <input type="color" id="mauChu" value="#1f2937" oninput="doiMauChuToanBo(this.value)">
+        <input type="color" id="mauNen" value="#ffffff" oninput="doiMauNenToanBo(this.value)">
+        <select onchange="document.getElementById('khungSlide').style.fontFamily = this.value; luuDuLieu();">
+            <option value="Arial">Arial</option>
+            <option value="'Times New Roman'">Times New Roman</option>
+        </select>
+        <button onclick="doiCoChu(1)">A+</button>
+        <button onclick="doiCoChu(-1)">A-</button>
+        <button class="btn-link" onclick="ganLinkChoChuyenGia()">🔗 Gắn Link</button>
+        <button class="btn-anh" onclick="document.getElementById('chonAnh').click()">🖼️ Thêm Ảnh</button>
+        <input type="file" id="chonAnh" accept="image/*" style="display: none;" onchange="napAnhVaoSlide(this)">
+        <button class="btn-pdf" onclick="window.print()">🖨️ XUẤT PDF</button>
+    </div>
+    <div class="workspace">
+        <div class="sidebar" id="danhSachThumb"></div>
+        <div class="main-editor">
+            <div id="khungSlide">
+                <div class="ô-viết">
+                    <div class="đầu-trang">
+                        <span contenteditable="true" id="txtWeb" oninput="luuDuLieu()">🌐 MATMACUOCDOI.VN</span>
+                        <span class="sđt" contenteditable="true" id="txtZalo" oninput="luuDuLieu()">Zalo: 0789.414.153</span>
+                    </div>
+                    <h2 class="tiêu-đề" contenteditable="true" id="txtTieuDe" oninput="luuDuLieu()">TIÊU ĐỀ TRANG 1</h2>
+                    <div class="nội-dung" contenteditable="true" id="txtNoiDung" oninput="luuDuLieu()">Chú bấm nút "➕ Thêm Slide" màu xanh lá cây ở trên đầu để đẻ ra các trang mới. Cột bên trái sẽ tự động hiện danh sách quản lý trang chuẩn đét PowerPoint cho chú...</div>
+                    <div class="khung-chứa-ảnh" id="vungAnh"><img id="anhHienThi" src="" alt="Ảnh"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let slides = [{ tieuDe: "TIÊU ĐỀ TRANG 1", noiDung: "Chú bấm nút '➕ Thêm Slide' màu xanh lá cây ở trên đầu để đẻ ra các trang mới. Cột bên trái sẽ tự động hiện danh sách quản lý trang chuẩn đét PowerPoint cho chú...", anh: "" }];
+        let currentIdx = 0;
+        if(localStorage.getItem('ppt_slides')) { slides = JSON.parse(localStorage.getItem('ppt_slides')); }
+        function capNhatGiaoDien() {
+            let htmlThumb = "";
+            slides.forEach((s, idx) => { htmlThumb += `<div class="thumb-item ${idx===currentIdx?'active':''}" onclick="chuyenSlide(${idx})">Trang ${idx+1}</div>`; });
+            document.getElementById('danhSachThumb').innerHTML = htmlThumb;
+            let s = slides[currentIdx];
+            document.getElementById('txtTieuDe').innerText = s.tieuDe;
+            document.getElementById('txtNoiDung').innerHTML = s.noiDung;
+            if(s.anh) { document.getElementById('anhHienThi').src = s.anh; document.getElementById('vungAnh').style.display = 'flex'; }
+            else { document.getElementById('vungAnh').style.display = 'none'; }
+        }
+        function chuyenSlide(idx) { luuDuLieuHienTai(); currentIdx = idx; capNhatGiaoDien(); }
+        function luuDuLieuHienTai() { slides[currentIdx].tieuDe = document.getElementById('txtTieuDe').innerText; slides[currentIdx].noiDung = document.getElementById('txtNoiDung').innerHTML; }
+        function luuDuLieu() { luuDuLieuHienTai(); localStorage.setItem('ppt_slides', JSON.stringify(slides)); }
+        function themSlide() { luuDuLieuHienTai(); slides.push({ tieuDe: "TIÊU ĐỀ TRANG MỚI", noiDung: "Nhập nội dung mới vào đây...", anh: "" }); currentIdx = slides.length - 1; capNhatGiaoDien(); luuDuLieu(); }
+        function xoaSlideHienTai() { if(slides.length <= 1) return alert("Chú phải giữ lại ít nhất 1 trang!"); slides.splice(currentIdx, 1); currentIdx = 0; capNhatGiaoDien(); luuDuLieu(); }
+        function doiMauChuToanBo(val) { document.querySelectorAll('.nội-dung, .tiêu-đề, .đầu-trang span').forEach(x => x.style.color = val); }
+        function doiMauNenToanBo(val) { document.querySelectorAll('.ô-viết').forEach(x => x.style.backgroundColor = val); }
+        function doiCoChu(buoc) { document.querySelectorAll('.nội-dung, .tiêu-đề, .đầu-trang span').forEach(txt => { let cur = parseFloat(window.getComputedStyle(txt).fontSize); txt.style.fontSize = (cur + buoc) + 'px'; }); }
+        function napAnhVaoSlide(input) { if (input.files && input.files[0]) { var r = new FileReader(); r.onload = function (e) { document.getElementById('anhHienThi').src = e.target.result; document.getElementById('vungAnh').style.display = 'flex'; slides[currentIdx].anh = e.target.result; luuDuLieu(); }; r.readAsDataURL(input.files[0]); } }
+        function ganLinkChoChuyenGia() { var url = prompt("Chú hãy nhập địa chỉ link vào đây:", "https://"); if (url && url !== "https://") { document.execCommand("createLink", false, url); luuDuLieu(); } }
+        capNhatGiaoDien();
+    </script>
+</body>
+</html>
