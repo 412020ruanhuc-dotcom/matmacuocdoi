@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch Ngày Tốt 13 Trang - Thimozin Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-bg: #111111;
+            --slide-bg: #ffffff;
+            --accent-red: #8b0000;
+            --accent-gold: #c5a059;
+            --text-dark: #2d2d2d;
+            --overlay: rgba(0, 0, 0, 0.9);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--primary-bg);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Khung trình chiếu chuẩn 1280x720 hạn chế tối đa diện tích thừa */
+        .presentation-wrapper {
+            position: relative;
+            width: 1280px;
+            height: 720px;
+            background: var(--slide-bg);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        /* Thiết kế Slide cực kỳ khít, tận dụng tối đa diện tích hiển thị */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            padding: 30px 45px 25px 45px; /* Thu hẹp padding để tăng diện tích viết chữ */
+            flex-direction: column;
+            background: linear-gradient(rgba(255,255,255,0.96), rgba(255,255,255,0.96)),
+                        url('https://www.transparenttextures.com/patterns/p5.png');
+            border: 15px solid var(--accent-red);
+            outline: 5px solid var(--accent-gold);
+            outline-offset: -10px;
+        }
+
+        .slide.active { display: flex; animation: fadeIn 0.4s ease-out; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.99); } to { opacity: 1; transform: scale(1); } }
+
+        /* Typography */
+        h1 { font-family: 'Playfair Display', serif; color: var(--accent-red); font-size: 46px; text-transform: uppercase; text-align: center; line-height: 1.2; }
+        .slide-title { font-family: 'Playfair Display', serif; color: var(--accent-red); font-size: 34px; border-bottom: 2px solid var(--accent-gold); padding-bottom: 5px; margin-bottom: 12px; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+        h3 { color: var(--accent-gold); font-size: 22px; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+        p, li { font-size: 16px; color: var(--text-dark); line-height: 1.5; }
+
+        /* Cấu trúc lưới thông tin cực dày đặc, tận dụng triệt để không gian */
+        .grid-dense {
+            display: grid;
+            grid-template-columns: 1.12fr 1fr;
+            gap: 12px;
+            width: 100%;
+            flex-grow: 1;
+        }
+
+        .box-info { 
+            background: #fdfcf7; 
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-left: 6px solid var(--accent-red); 
+            padding: 12px 18px; 
+            border-radius: 0 8px 8px 0; 
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.03); 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .box-full {
+            grid-column: span 2;
+            background: #fffdf9;
+            border: 1px dashed var(--accent-gold);
+            border-radius: 6px;
+            padding: 10px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Nút điều khiển */
+        .controls { position: fixed; bottom: 15px; display: flex; gap: 12px; z-index: 1000; }
+        .btn { background: var(--accent-red); color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px; transition: 0.2s; display: flex; align-items: center; gap: 8px; text-transform: uppercase; }
+        .btn:hover { background: var(--accent-gold); transform: translateY(-1px); }
+        .btn-edit { background: #2c3e50; }
+        .btn-export { background: #1d6f42; }
+        
+        .page-num { position: absolute; bottom: 25px; right: 35px; font-weight: bold; color: var(--accent-gold); font-size: 18px; letter-spacing: 1px; }
+
+        /* Giao diện Chỉnh sửa Modal 13 Tab rộng rãi */
+        #editModal {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--overlay);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            width: 95%;
+            max-width: 1240px;
+            max-height: 94vh;
+            overflow-y: auto;
+            border-top: 8px solid var(--accent-red);
+        }
+
+        /* Thiết kế 13 Tab gọn gàng, chia lưới trực quan */
+        .modal-tabs {
+            display: grid;
+            grid-template-columns: repeat(13, 1fr);
+            gap: 4px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-gold);
+            padding-bottom: 8px;
+        }
+
+        .tab-btn {
+            background: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 8px 2px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 4px;
+            text-align: center;
+            transition: 0.15s;
+            color: #555;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-red);
+            color: white;
+            border-color: var(--accent-red);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Form thiết kế khít, trực quan */
+        .form-group { margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px; }
+        .form-group label { font-weight: bold; color: var(--accent-red); font-size: 13px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .section-desc { font-size: 13px; color: #666; margin-bottom: 15px; font-style: italic; }
+
+        /* Định vị vùng chỉnh sửa trực tiếp không bị lệch */
+        [contenteditable="true"]:focus {
+            outline: 2px solid var(--accent-gold);
+            background: rgba(197, 160, 89, 0.15);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="presentation-wrapper">
+    <!-- Slide 1: Bìa Giới Thiệu -->
+    <div class="slide active" id="slide-1">
+        <div style="text-align: center; margin-top: 80px;">
+            <span style="font-size: 16px; color: var(--accent-gold); font-weight: bold; letter-spacing: 3px;" contenteditable="true" id="s1-top-tag">HÀNH TRÌNH TÌM KIẾM CÁT KHÍ</span>
+            <h1 contenteditable="true" id="s1-title" style="margin-top: 15px;">LỊCH NGÀY CÁT TƯỜNG THÁNG 4<br>NĂM BÍNH NGỌ (2026)</h1>
+            <div style="width: 250px; height: 3px; background: var(--accent-gold); margin: 25px auto;"></div>
+            <p contenteditable="true" id="s1-subtitle" style="font-size: 26px; font-weight: 500; color: var(--accent-red);">LUẬN GIẢI NĂNG LƯỢNG SỐ MỆNH CÁT HUNG</p>
+            <div style="margin-top: 60px; padding: 15px; border-top: 1px dashed var(--accent-gold); display: inline-block; width: 600px;">
+                <p style="font-size: 16px;">
+                    Kênh Youtube: <strong contenteditable="true" id="s1-yt">Mật Mã Cuộc Đời</strong> | 
+                    Hỗ trợ Zalo: <strong contenteditable="true" id="s1-zalo">0789.414.153</strong>
+                </p>
+            </div>
+        </div>
+        <div class="page-num">01/13</div>
+    </div>
+
+    <!-- Slide 2: Ngày Cát Tường 1 -->
+    <div class="slide" id="slide-2">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s2-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 01</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s2-date">Mùng 02 - Nhâm Thìn</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s2-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s2-gio">Thân (15h - 17h), Dần (03h - 05h), Tỵ (09h - 11h)</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s2-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s2-ky">Mậu Tuất, Bính Tuất, Giáp Tuất</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s2-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s2-huong">Xuất hành hướng Nam nghênh đón Hỷ Thần - Hướng Tây nghênh đón Tài Thần.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s2-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s2-nen">Khai trương, giao dịch tài chính, ký kết hợp đồng đại sự, động thổ xây dựng.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s2-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s2-note">Người tuổi Tuất nên hạn chế đi xa hoặc tiến hành ký kết văn kiện lớn vào giờ Tuất.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">02/13</div>
+    </div>
+
+    <!-- Slide 3: Ngày Cát Tường 2 -->
+    <div class="slide" id="slide-3">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s3-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 02</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s3-date">Mùng 04 - Giáp Ngọ</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s3-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s3-gio">Mão (05h - 07h), Ngọ (11h - 13h), Thân (15h - 17h)</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s3-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s3-ky">Canh Tý, Mậu Tý, Bính Tý</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s3-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s3-huong">Hỷ Thần hướng Đông Nam - Tài Thần hướng Bắc.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s3-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s3-nen">Cầu tài lộc, cầu quan chức, xuất hành xuất ngoại, mưu sự đại sự hanh thông.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s3-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s3-note">Tránh các tranh chấp cự cãi vào đầu giờ chiều. Giữ tâm ý hòa hoãn cát lành.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">03/13</div>
+    </div>
+
+    <!-- Slide 4: Ngày Cát Tường 3 -->
+    <div class="slide" id="slide-4">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s4-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 03</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s4-date">Mùng 10 - Canh Tý</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s4-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s4-gio">Mão (05h - 07h), Thân (15h - 17h), Dậu (17h - 19h)</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s4-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s4-ky">Bính Ngọ, Giáp Ngọ, Nhâm Ngọ</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s4-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s4-huong">Hỷ Thần hướng Tây Bắc - Tài Thần hướng Đông Nam.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s4-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s4-nen">Cúng tế thần linh, giải hạn, sửa chữa nhà cửa, bồi đắp phúc đức gia đình.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s4-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s4-note">Tuổi Ngọ cần giữ gìn tiền bạc cận thận trong ngày này, tránh đầu tư mạo hiểm.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">04/13</div>
+    </div>
+
+    <!-- Slide 5: Ngày Cát Tường 4 -->
+    <div class="slide" id="slide-5">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s5-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 04</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s5-date">Ngày 11 - Tân Sửu</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s5-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s5-gio">Mão (05h - 07h), Tỵ (09h - 11h), Thân (15h - 17h)</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s5-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s5-ky">Đinh Mùi, Ất Mùi, Kỷ Mùi</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s5-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s5-huong">Hỷ Thần hướng Tây Southwest - Tài Thần hướng Tây.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s5-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s5-nen">Mua sắm tài sản giá trị lớn, dọn về nhà mới, hội họp đàm phán thương mại.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s5-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s5-note">Bản mệnh dẫu tốt nhưng cũng nên thận trọng trước lời mời đầu tư nhanh chóng.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">05/13</div>
+    </div>
+
+    <!-- Slide 6: Ngày Cát Tường 5 -->
+    <div class="slide" id="slide-6">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s6-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 05</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s6-date">Ngày 17 - Đinh Mùi</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s6-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s6-gio">Mão (05h - 07h), Tỵ (09h - 11h), Thân (15h - 17h), Tuất (19h - 21h)</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s6-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s6-ky">Tân Sửu, Quý Sửu, Kỷ Sửu</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s6-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s6-huong">Hỷ Thần hướng Nam - Tài Thần hướng Tây.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s6-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s6-nen">Động thổ, lợp nhà, tạ lễ tổ tiên, khởi công các công trình xây cất dân dụng.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s6-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s6-note">Tránh tiến hành hôn sự hay nạp lễ lớn trong khung giờ xung với tuổi Sửu.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">06/13</div>
+    </div>
+
+    <!-- Slide 7: Ngày Cát Tường 6 -->
+    <div class="slide" id="slide-7">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s7-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 06</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s7-date">Ngày 20 - Canh Tuất</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s7-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s7-gio">Dần (03h - 05h), Tỵ (09h - 11h), Thân (15h - 17h)</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s7-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s7-ky">Giáp Thìn, Mậu Thìn, Nhâm Thìn</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s7-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s7-huong">Hỷ Thần hướng Tây Bắc - Tài Thần hướng Đông Nam.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s7-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s7-nen">Nộp đơn từ, thi cử học hành, nhận chức, xuất hành giải quyết việc hành chính.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s7-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s7-note">Tránh đi về hướng Đông Bắc để bảo toàn năng lượng hanh thông.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">07/13</div>
+    </div>
+
+    <!-- Slide 8: Ngày Cát Tường 7 -->
+    <div class="slide" id="slide-8">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s8-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 07</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s8-date">Ngày 26 - Bính Thìn</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s8-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s8-gio">Dần (03h - 05h), Thân (15h - 17h), Dậu (17h - 19h)</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s8-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s8-ky">Canh Tuất, Nhâm Tuất, Mậu Tuất</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s8-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s8-huong">Hỷ Thần hướng Tây Nam - Tài Thần hướng Đông.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s8-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s8-nen">Khai bút đầu xuân, khai trương đại cát, cầu danh lộc, ký kết các dự án đặc quyền.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s8-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s8-note">Đây là ngày Thiên Đức hợp thần hộ trì, mưu sự đại cát cho người có tâm đức lành.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">08/13</div>
+    </div>
+
+    <!-- Slide 9: Ngày Cát Tường 8 -->
+    <div class="slide" id="slide-9">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s9-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 08</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s9-date">Ngày Khách Tùy Chọn 08</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s9-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s9-gio">Bấm nút "Chỉnh Sửa Toàn Bộ Trang" ở dưới để thay đổi thông tin giờ cát</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s9-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s9-ky">Nhập các tuổi xung kỵ của ngày tốt số 8 vào đây</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s9-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s9-huong">Nhập hướng Tài Thần và Hỷ Thần đại lợi phát đạt</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s9-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s9-nen">Ghi chú chi tiết các mưu sự khởi sự cát lợi trong ngày tốt thứ 8</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s9-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s9-note">Ghi chú lưu ý phòng tránh hoặc phong thủy ứng dụng bổ trợ.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">09/13</div>
+    </div>
+
+    <!-- Slide 10: Ngày Cát Tường 9 -->
+    <div class="slide" id="slide-10">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s10-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 09</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s10-date">Ngày Khách Tùy Chọn 09</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s10-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s10-gio">Nhập giờ hoàng đạo đại cát...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s10-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s10-ky">Nhập các tuổi đại kỵ của ngày tốt...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s10-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s10-huong">Hướng Đông - Tây - Nam - Bắc tùy ý tùy ngày.</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s10-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s10-nen">Lập danh sách những hành sự đại lợi.</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s10-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s10-note">Các vấn đề cần tránh hoặc lưu tâm đặc biệt.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">10/13</div>
+    </div>
+
+    <!-- Slide 11: Ngày Cát Tường 10 -->
+    <div class="slide" id="slide-11">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s11-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 10</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s11-date">Ngày Khách Tùy Chọn 10</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s11-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s11-gio">Nhập giờ lành hoàng đạo...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s11-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s11-ky">Nhập tuổi kỵ kỵ tinh...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s11-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s11-huong">Nhập hướng khí phát sinh...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s11-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s11-nen">Động thổ, nhập trạch, tạ trần...</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s11-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s11-note">Nội dung ghi chú phong thủy ngày 10.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">11/13</div>
+    </div>
+
+    <!-- Slide 12: Ngày Cát Tường 11 -->
+    <div class="slide" id="slide-12">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s12-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 11</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s12-date">Ngày Khách Tùy Chọn 11</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s12-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s12-gio">Chỉnh sửa giờ lành ngày tốt số 11...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s12-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s12-ky">Nhập tuổi đại kỵ của bản ngày tốt 11...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s12-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s12-huong">Cung đường hướng khí mang lại phúc tinh...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s12-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s12-nen">Khai trương kinh doanh, kích hoạt cung tài lộc hành môn...</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s12-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s12-note">Các thông tin cẩn trọng đề phòng cướp đoạt hoặc hao tổn cát khí.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">12/13</div>
+    </div>
+
+    <!-- Slide 13: Ngày Cát Tường 12 -->
+    <div class="slide" id="slide-13">
+        <h2 class="slide-title">
+            <span contenteditable="true" id="s13-title-main" style="color: var(--accent-red);">NGÀY ĐẠI CÁT SỐ 12</span>
+            <span style="color: var(--accent-gold); font-size: 20px;" contenteditable="true" id="s13-date">Ngày Khách Tùy Chọn 12</span>
+        </h2>
+        <div class="grid-dense">
+            <div class="box-info">
+                <h3><i class="fa-solid fa-clock"></i> <span contenteditable="true" id="s13-h-gio">Giờ Lành Hoàng Đạo</span></h3>
+                <p contenteditable="true" id="s13-gio">Nhập giờ hoàng đạo đẹp nhất ngày...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-ban"></i> <span contenteditable="true" id="s13-h-ky">Tuổi Xung Khắc (Đại Kỵ)</span></h3>
+                <p contenteditable="true" id="s13-ky">Kỵ tuổi nào thì ghi chú trực quan tại đây</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-compass"></i> <span contenteditable="true" id="s13-h-huong">Hướng Hỷ Thần / Tài Thần</span></h3>
+                <p contenteditable="true" id="s13-huong">Xuất hành hướng nào đón phú quý cát khánh...</p>
+            </div>
+            <div class="box-info">
+                <h3><i class="fa-solid fa-circle-check"></i> <span contenteditable="true" id="s13-h-nen">Việc Nên Làm (Cát Lợi)</span></h3>
+                <p contenteditable="true" id="s13-nen">Viết những hành vi mang lại may mắn, thuận hòa, đại kết đại lộc...</p>
+            </div>
+            <div class="box-full">
+                <span>
+                    <strong style="color: var(--accent-red);"><i class="fa-solid fa-triangle-exclamation"></i> <span contenteditable="true" id="s13-h-note">Chú Ý Đặc Biệt:</span></strong> 
+                    <span contenteditable="true" id="s13-note">Những kiêng kỵ sấm truyền phong thủy trong ngày thứ 12 này.</span>
+                </span>
+            </div>
+        </div>
+        <div class="page-num">13/13</div>
+    </div>
+</div>
+
+<!-- Nút chức năng điều khiển 13 Slide -->
+<div class="controls">
+    <button class="btn" onclick="changeSlide(-1)"><i class="fa-solid fa-arrow-left"></i> TRƯỚC</button>
+    <button class="btn btn-edit" onclick="openEditModal()"><i class="fa-solid fa-gears"></i> CHỈNH SỬA TOÀN BỘ 13 TRANG</button>
+    <button class="btn btn-export" onclick="downloadCSV()"><i class="fa-solid fa-file-excel"></i> XUẤT EXCEL</button>
+    <button class="btn" onclick="changeSlide(1)">SAU <i class="fa-solid fa-arrow-right"></i></button>
+</div>
+
+<div id="editModal">
+    <div class="modal-content">
+        <h2 style="color: var(--accent-red); margin-bottom: 5px;"><i class="fa-solid fa-sliders"></i> Bảng Quản Trị Hệ Thống Slide Đa Năng (Đúng 13 Trang)</h2>
+        <p class="section-desc">Thay đổi toàn bộ nội dung (bao gồm cả Tiêu đề đỏ, nhãn cảnh báo) cực kỳ nhanh chóng bằng cách chọn Tab dưới đây.</p>
+        
+        <!-- Thanh 13 Tabs điều hướng nhanh -->
+        <div class="modal-tabs">
+            <button class="tab-btn active" onclick="switchTab('tab-slide-1', this)">Trang 1</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-2', this)">Trang 2</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-3', this)">Trang 3</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-4', this)">Trang 4</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-5', this)">Trang 5</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-6', this)">Trang 6</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-7', this)">Trang 7</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-8', this)">Trang 8</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-9', this)">Trang 9</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-10', this)">Trang 10</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-11', this)">Trang 11</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-12', this)">Trang 12</button>
+            <button class="tab-btn" onclick="switchTab('tab-slide-13', this)">Trang 13</button>
+        </div>
+
+        <!-- TAB 1: Trang Giới Thiệu -->
+        <div id="tab-slide-1" class="tab-content active">
+            <h3 style="color: var(--accent-red); border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px;">Trang 1: Bìa Giới Thiệu Lịch</h3>
+            <div class="form-group">
+                <label>Dòng Tag Phụ Phía Trên</label>
+                <input type="text" id="in-s1-top-tag">
+            </div>
+            <div class="form-group">
+                <label>Tiêu Đề Chính (Dùng &lt;br&gt; để xuống dòng)</label>
+                <textarea id="in-s1-title" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Tiêu Đề Phụ Luận Giải</label>
+                <input type="text" id="in-s1-subtitle">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Kênh Youtube</label>
+                    <input type="text" id="in-s1-yt">
+                </div>
+                <div class="form-group">
+                    <label>Số Zalo</label>
+                    <input type="text" id="in-s1-zalo">
+                </div>
+            </div>
+        </div>
+
+        <!-- Khởi tạo các ô nhập cho trang 2 đến 13 (Tất cả nhãn và tiêu đề đỏ đều sửa được) -->
+        <!-- Tạo vòng lặp cấu trúc cho Tab bằng JavaScript động để tiết kiệm dòng code và bảo mật tuyệt đối -->
+        <div id="dynamic-tabs-container"></div>
+
+        <!-- Bộ nút Lưu & Thoát -->
+        <div style="margin-top: 25px; display: flex; gap: 10px; justify-content: flex-end;">
+            <button class="btn" style="background: #7f8c8d;" onclick="closeEditModal()">HỦY BỎ</button>
+            <button class="btn" style="background: #27ae60;" onclick="saveData()">LƯU & CẬP NHẬT 13 TRANG</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    // Tự động tạo form nhập liệu cho 12 Tab Ngày Cát Tường
+    window.onload = function() {
+        const container = document.getElementById('dynamic-tabs-container');
+        let htmlContent = '';
+        for (let i = 2; i <= 13; i++) {
+            htmlContent += `
+                <div id="tab-slide-${i}" class="tab-content">
+                    <h3 style="color: var(--accent-red); border-bottom: 1px solid #ddd; padding-bottom: 5px; margin-bottom: 15px;">Trang ${i}: Chi Tiết Ngày Cát Tường ${i - 1}</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tiêu Đề Đỏ (Ví dụ: NGÀY ĐẠI CÁT SỐ 01)</label>
+                            <input type="text" id="in-s${i}-title-main">
+                        </div>
+                        <div class="form-group">
+                            <label>Ngày Âm Lịch & Khí Tiết (Vàng)</label>
+                            <input type="text" id="in-s${i}-date">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nhãn Mục 1</label>
+                            <input type="text" id="in-s${i}-h-gio">
+                        </div>
+                        <div class="form-group">
+                            <label>Nội Dung Giờ Hoàng Đạo</label>
+                            <input type="text" id="in-s${i}-gio">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nhãn Mục 2</label>
+                            <input type="text" id="in-s${i}-h-ky">
+                        </div>
+                        <div class="form-group">
+                            <label>Nội Dung Tuổi Xung Khắc (Kỵ)</label>
+                            <input type="text" id="in-s${i}-ky">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nhãn Mục 3</label>
+                            <input type="text" id="in-s${i}-h-huong">
+                        </div>
+                        <div class="form-group">
+                            <label>Nội Dung Hướng Hỷ Thần / Tài Thần</label>
+                            <input type="text" id="in-s${i}-huong">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nhãn Mục 4</label>
+                            <input type="text" id="in-s${i}-h-nen">
+                        </div>
+                        <div class="form-group">
+                            <label>Nội Dung Việc Nên Làm</label>
+                            <input type="text" id="in-s${i}-nen">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nhãn Cảnh Báo (Đỏ)</label>
+                            <input type="text" id="in-s${i}-h-note">
+                        </div>
+                        <div class="form-group">
+                            <label>Nội Dung Chú Ý Đặc Biệt</label>
+                            <input type="text" id="in-s${i}-note">
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = htmlContent;
+    };
+
+    // Chuyển slide trình chiếu
+    function changeSlide(n) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide += n;
+        if (currentSlide >= slides.length) currentSlide = 0;
+        if (currentSlide < 0) currentSlide = slides.length - 1;
+        slides[currentSlide].classList.add('active');
+    }
+
+    // Chuyển đổi tab trong modal
+    function switchTab(tabId, btn) {
+        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        btn.classList.add('active');
+    }
+
+    // Đồng bộ nội dung hiện tại trên slide vào các ô input khi mở Modal quản trị
+    function openEditModal() {
+        // Slide 1
+        document.getElementById('in-s1-top-tag').value = document.getElementById('s1-top-tag').innerText.trim();
+        document.getElementById('in-s1-title').value = document.getElementById('s1-title').innerHTML.trim();
+        document.getElementById('in-s1-subtitle').value = document.getElementById('s1-subtitle').innerText.trim();
+        document.getElementById('in-s1-yt').value = document.getElementById('s1-yt').innerText.trim();
+        document.getElementById('in-s1-zalo').value = document.getElementById('s1-zalo').innerText.trim();
+
+        // Slide 2 đến 13
+        for (let i = 2; i <= 13; i++) {
+            document.getElementById(`in-s${i}-title-main`).value = document.getElementById(`s${i}-title-main`).innerText.trim();
+            document.getElementById(`in-s${i}-date`).value = document.getElementById(`s${i}-date`).innerText.trim();
+            
+            document.getElementById(`in-s${i}-h-gio`).value = document.getElementById(`s${i}-h-gio`).innerText.trim();
+            document.getElementById(`in-s${i}-gio`).value = document.getElementById(`s${i}-gio`).innerText.trim();
+            
+            document.getElementById(`in-s${i}-h-ky`).value = document.getElementById(`s${i}-h-ky`).innerText.trim();
+            document.getElementById(`in-s${i}-ky`).value = document.getElementById(`s${i}-ky`).innerText.trim();
+            
+            document.getElementById(`in-s${i}-h-huong`).value = document.getElementById(`s${i}-h-huong`).innerText.trim();
+            document.getElementById(`in-s${i}-huong`).value = document.getElementById(`s${i}-huong`).innerText.trim();
+            
+            document.getElementById(`in-s${i}-h-nen`).value = document.getElementById(`s${i}-h-nen`).innerText.trim();
+            document.getElementById(`in-s${i}-nen`).value = document.getElementById(`s${i}-nen`).innerText.trim();
+            
+            document.getElementById(`in-s${i}-h-note`).value = document.getElementById(`s${i}-h-note`).innerText.trim();
+            document.getElementById(`in-s${i}-note`).value = document.getElementById(`s${i}-note`).innerText.trim();
+        }
+
+        document.getElementById('editModal').style.display = 'flex';
+    }
+
+    function closeEditModal() {
+        document.getElementById('editModal').style.display = 'none';
+    }
+
+    // Đẩy dữ liệu ngược lại từ bảng chỉnh sửa lên slide trình chiếu
+    function saveData() {
+        // Cập nhật slide 1
+        document.getElementById('s1-top-tag').innerText = document.getElementById('in-s1-top-tag').value;
+        document.getElementById('s1-title').innerHTML = document.getElementById('in-s1-title').value;
+        document.getElementById('s1-subtitle').innerText = document.getElementById('in-s1-subtitle').value;
+        document.getElementById('s1-yt').innerText = document.getElementById('in-s1-yt').value;
+        document.getElementById('s1-zalo').innerText = document.getElementById('in-s1-zalo').value;
+
+        // Cập nhật slide 2 đến 13
+        for (let i = 2; i <= 13; i++) {
+            document.getElementById(`s${i}-title-main`).innerText = document.getElementById(`in-s${i}-title-main`).value;
+            document.getElementById(`s${i}-date`).innerText = document.getElementById(`in-s${i}-date`).value;
+            
+            document.getElementById(`s${i}-h-gio`).innerText = document.getElementById(`in-s${i}-h-gio`).value;
+            document.getElementById(`s${i}-gio`).innerText = document.getElementById(`in-s${i}-gio`).value;
+            
+            document.getElementById(`s${i}-h-ky`).innerText = document.getElementById(`in-s${i}-h-ky`).value;
+            document.getElementById(`s${i}-ky`).innerText = document.getElementById(`in-s${i}-ky`).value;
+            
+            document.getElementById(`s${i}-h-huong`).innerText = document.getElementById(`in-s${i}-h-huong`).value;
+            document.getElementById(`s${i}-huong`).innerText = document.getElementById(`in-s${i}-huong`).value;
+            
+            document.getElementById(`s${i}-h-nen`).innerText = document.getElementById(`s${i}-h-nen`).value;
+            document.getElementById(`s${i}-nen`).innerText = document.getElementById(`in-s${i}-nen`).value;
+            
+            document.getElementById(`s${i}-h-note`).innerText = document.getElementById(`in-s${i}-h-note`).value;
+            document.getElementById(`s${i}-note`).innerText = document.getElementById(`in-s${i}-note`).value;
+        }
+
+        closeEditModal();
+
+        // Tạo hiệu ứng báo lưu thành công trên nút
+        const btn = document.querySelector('.btn-edit');
+        const oldText = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> ĐÃ CẬP NHẬT 13 TRANG';
+        btn.style.background = '#27ae60';
+        setTimeout(() => {
+            btn.innerHTML = oldText;
+            btn.style.background = '#2c3e50';
+        }, 2000);
+    }
+
+    // Đọc động dữ liệu hiện hữu trên cả 13 trang để xuất sang Excel chuẩn xác
+    function downloadCSV() {
+        const headers = ["STT", "Trang", "Tên Sự Kiện / Tiêu Đề", "Ngày Âm Lịch / Mô Tả", "Nhãn Mục 1", "Mục 1", "Nhãn Mục 2", "Mục 2", "Nhãn Mục 3", "Mục 3", "Nhãn Mục 4", "Mục 4", "Nhãn Cảnh Báo", "Ghi Chú Đặc Biệt"];
+        let csvContent = "\uFEFF"; // Hỗ trợ hiển thị tiếng Việt UTF-8 có dấu trong Excel
+        csvContent += headers.map(h => `"${h}"`).join(",") + "\n";
+
+        // Trang 1: Trang Bìa
+        csvContent += `"1","Trang Bìa","${document.getElementById('s1-title').innerText.replace(/\n/g, ' ')}","${document.getElementById('s1-subtitle').innerText}","","","","","","","","Kênh Youtube: ${document.getElementById('s1-yt').innerText} | Zalo: ${document.getElementById('s1-zalo').innerText}","",""\n`;
+
+        // Trang 2 đến Trang 13
+        for (let i = 2; i <= 13; i++) {
+            const stt = i;
+            const title = document.getElementById(`s${i}-title-main`).innerText;
+            const date = document.getElementById(`s${i}-date`).innerText;
+            
+            const h_gio = document.getElementById(`s${i}-h-gio`).innerText;
+            const gio = document.getElementById(`s${i}-gio`).innerText;
+            
+            const h_ky = document.getElementById(`s${i}-h-ky`).innerText;
+            const ky = document.getElementById(`s${i}-ky`).innerText;
+            
+            const h_huong = document.getElementById(`s${i}-h-huong`).innerText;
+            const huong = document.getElementById(`s${i}-huong`).innerText;
+            
+            const h_nen = document.getElementById(`s${i}-h-nen`).innerText;
+            const nen = document.getElementById(`s${i}-nen`).innerText;
+            
+            const h_note = document.getElementById(`s${i}-h-note`).innerText;
+            const note = document.getElementById(`s${i}-note`).innerText;
+
+            csvContent += `"${stt}","Trang ${i}","${title}","${date}","${h_gio}","${gio}","${h_ky}","${ky}","${h_huong}","${huong}","${h_nen}","${nen}","${h_note}","${note}"\n`;
+        }
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", "Lich_Cat_Tuong_13_Trang_Premium.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+
+    // Lắng nghe phím bấm Mũi Tên Trái/Phải để chuyển slide nhanh
+    document.addEventListener('keydown', (e) => {
+        // Nếu người dùng đang tập trung vào ô gõ chữ thì không đổi slide
+        if (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA' || document.activeElement.isContentEditable) return;
+        if (e.key === 'ArrowRight') changeSlide(1);
+        if (e.key === 'ArrowLeft') changeSlide(-1);
+    });
+</script>
+</body>
+</html>
