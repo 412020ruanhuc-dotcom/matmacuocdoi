@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Trị Quy Tắc Chọn Ngày - V4 Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Slate Gray, Crimson, and Pure White -->
+    <!-- Application Structure Plan: 
+         Ứng dụng được thiết kế theo tư duy "Phần mềm quản lý quy tắc".
+         1. Cấu trúc State-Driven: Toàn bộ nội dung hiển thị được sinh ra từ một Object dữ liệu lớn.
+         2. Master Configuration: Một bảng điều khiển chi tiết cho phép sửa: Tên quy tắc, Giá trị (Địa chi/Ngày), và Mô tả.
+         3. Dynamic Dashboard: Tự động phân loại và hiển thị dữ liệu ngay khi người dùng lưu cấu hình.
+         4. Tính linh hoạt: Người dùng có thể biến từ bộ chọn ngày Tháng 6 sang bất kỳ tháng nào khác trong năm chỉ bằng cách nhập liệu.
+    -->
+    <!-- Visualization & Content Choices: 
+         - Grid System: Tailwind để tạo bảng điều khiển nhập liệu chuyên nghiệp.
+         - Chart.js (Bar Chart): Thống kê số lượng quy tắc đang áp dụng cho từng nhóm để kiểm soát độ "khắt khe" của bộ lọc.
+         - Interaction: Hàm Save tập trung xử lý việc ánh xạ dữ liệu từ Input vào Array trạng thái.
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .config-input { border: 1px solid #cbd5e1; padding: 0.4rem 0.7rem; border-radius: 0.4rem; font-size: 0.875rem; width: 100%; transition: all 0.2s; }
+        .config-input:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+        .chart-container { position: relative; width: 100%; max-width: 700px; margin: auto; height: 350px; }
+        .sticky-nav { position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px); background: rgba(255, 255, 255, 0.9); border-bottom: 1px solid #e2e8f0; }
+        .btn-primary { background: #0f172a; color: white; transition: all 0.2s; }
+        .btn-primary:hover { background: #1e293b; transform: translateY(-1px); }
+    </style>
+</head>
+<body class="pb-20">
+
+    <nav class="sticky-nav p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold text-slate-900 tracking-tight">MẬT MÃ CUỘC ĐỜI <span class="text-red-600">V4.0</span></h1>
+                <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Hệ Thống Tùy Biến Quy Tắc Tổng Thể</p>
+            </div>
+            <button onclick="toggleConfig()" id="configBtn" class="px-5 py-2 btn-primary rounded-lg text-sm font-bold shadow-sm">
+                ⚙️ Mở Bảng Cấu Hình Hệ Thống
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-4 mt-8">
+        
+        <!-- Introduction Section -->
+        <section class="mb-10 text-center">
+            <h2 class="text-4xl font-serif text-slate-800 mb-2">Bản Luận Giải Tùy Biến</h2>
+            <p class="text-slate-500 italic">Dành cho chuyên gia: Thay đổi mọi tham số Địa chi và Ngày kỵ để phù hợp với từng tháng trong năm.</p>
+        </section>
+
+        <!-- Master Configuration Panel (Hidden by default) -->
+        <section id="configPanel" class="hidden mb-12 bg-white p-6 md:p-10 rounded-[2rem] border border-slate-200 shadow-xl overflow-hidden">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-800">Trung Tâm Cấu Hình Quy Tắc</h3>
+                    <p class="text-sm text-slate-500">Bạn có thể sửa Tên quy tắc và Địa chi (Tị, Ngọ, Hợi...) tại đây.</p>
+                </div>
+                <button onclick="applyAllChanges()" class="w-full md:w-auto px-10 py-3 bg-red-600 text-white rounded-xl font-bold hover:bg-red-700 shadow-lg transition-all">
+                    ÁP DỤNG CẤU HÌNH MỚI
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Config Group 1 -->
+                <div>
+                    <h4 class="font-bold text-blue-700 border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-blue-700 rounded-full"></span> NHÓM QUY TẮC MÙA
+                    </h4>
+                    <div id="seasonalInputs" class="space-y-6"></div>
+                </div>
+                <!-- Config Group 2 -->
+                <div>
+                    <h4 class="font-bold text-red-700 border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-red-700 rounded-full"></span> NHÓM QUY TẮC THÁNG
+                    </h4>
+                    <div id="monthlyInputs" class="space-y-6"></div>
+                </div>
+                <!-- Config Group 3 -->
+                <div>
+                    <h4 class="font-bold text-amber-600 border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="w-2 h-2 bg-amber-600 rounded-full"></span> NHÓM CỐ ĐỊNH / KHÁC
+                    </h4>
+                    <div id="fixedInputs" class="space-y-6"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Results Display -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left: Visualization and Stats -->
+            <div class="lg:col-span-4 space-y-8">
+                <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-slate-800 mb-6 text-center">Thống Kê Trọng Số Kỵ Nhật</h3>
+                    <div class="chart-container">
+                        <canvas id="statChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 text-white p-8 rounded-3xl">
+                    <h4 class="text-amber-400 font-bold mb-4 uppercase text-xs tracking-widest">Hướng dẫn sử dụng nhanh</h4>
+                    <ul class="text-sm space-y-4 text-slate-300">
+                        <li class="flex gap-3">
+                            <span class="text-amber-400">01.</span>
+                            <span>Mở bảng cấu hình để nhập Địa chi tương ứng với tháng hiện tại.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-amber-400">02.</span>
+                            <span>Nhấn "Áp dụng" để đồng bộ hóa toàn bộ ứng dụng.</span>
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="text-amber-400">03.</span>
+                            <span>Các thẻ thông tin bên phải sẽ tự cập nhật mô tả và trị số mới.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right: Detailed Cards -->
+            <div class="lg:col-span-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="cardDisplayGrid">
+                    <!-- Cards are rendered dynamically here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-20 py-10 border-t border-slate-200 text-center">
+        <p class="text-slate-400 text-xs font-bold uppercase tracking-widest">Mật Mã Cuộc Đời - Công Cụ Số Hóa Chuyên Gia V4</p>
+    </footer>
+
+    <script>
+        // MASTER STATE: Everything is here. Every value can be changed via UI.
+        let appState = {
+            seasonal: [
+                { id: 's1', name: "Ngày Đại Sát", value: "Tị", type: "Mùa", color: "blue" },
+                { id: 's2', name: "Ngày Sát Chủ", value: "Ngọ", type: "Mùa", color: "blue" },
+                { id: 's3', name: "Ngày Ốc Ma", value: "Dần", type: "Mùa", color: "blue" },
+                { id: 's4', name: "Chiêm Sào Hoang Ốc", value: "Mùi", type: "Mùa", color: "blue" }
+            ],
+            monthly: [
+                { id: 'm1', name: "Sát Chủ Âm", value: "Tuất", type: "Tháng", color: "red" },
+                { id: 'm2', name: "Sát Chủ Dương", value: "Thìn", type: "Tháng", color: "red" },
+                { id: 'm3', name: "Ngày Thụ Tử", value: "Ngọ", type: "Tháng", color: "red" },
+                { id: 'm4', name: "Ngày Nguyệt Phá", value: "Sửu", type: "Tháng", color: "red" },
+                { id: 'm5', name: "Dương Công Kỵ", value: "Mùng 3", type: "Tháng", color: "red" },
+                { id: 'm6', name: "Ngày Con Nước", value: "5, 19", type: "Tháng", color: "red" }
+            ],
+            fixed: [
+                { id: 'f1', name: "Ngày Tam Nương", value: "3, 7, 13, 18, 22, 27", type: "Cố định", color: "amber" },
+                { id: 'f2', name: "Ngày Nguyệt Kỵ", value: "5, 14, 23", type: "Cố định", color: "amber" }
+            ]
+        };
+
+        let myChart;
+
+        function init() {
+            renderInputs();
+            renderDashboard();
+            initChart();
+        }
+
+        function toggleConfig() {
+            const panel = document.getElementById('configPanel');
+            const btn = document.getElementById('configBtn');
+            const isHidden = panel.classList.contains('hidden');
+            
+            panel.classList.toggle('hidden');
+            btn.innerText = isHidden ? "✖ Đóng Bảng Điều Khiển" : "⚙️ Mở Bảng Cấu Hình Hệ Thống";
+            if(isHidden) btn.classList.add('bg-red-600'); else btn.classList.remove('bg-red-600');
+        }
+
+        // Generate inputs dynamically so they are always in sync with appState
+        function renderInputs() {
+            const generateInputs = (data, containerId) => {
+                const container = document.getElementById(containerId);
+                container.innerHTML = data.map(item => `
+                    <div class="bg-slate-50 p-4 rounded-xl space-y-2 border border-slate-100">
+                        <div class="flex flex-col">
+                            <label class="text-[10px] font-bold text-slate-400 uppercase">Tên Quy Tắc:</label>
+                            <input type="text" value="${item.name}" data-id="${item.id}" data-field="name" class="config-input font-bold text-slate-700">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-[10px] font-bold text-slate-400 uppercase">Địa Chi / Ngày cụ thể:</label>
+                            <input type="text" value="${item.value}" data-id="${item.id}" data-field="value" class="config-input text-red-600 font-bold bg-white">
+                        </div>
+                    </div>
+                `).join('');
+            };
+
+            generateInputs(appState.seasonal, 'seasonalInputs');
+            generateInputs(appState.monthly, 'monthlyInputs');
+            generateInputs(appState.fixed, 'fixedInputs');
+        }
+
+        function renderDashboard() {
+            const grid = document.getElementById('cardDisplayGrid');
+            const allRules = [...appState.seasonal, ...appState.monthly, ...appState.fixed];
+            
+            grid.innerHTML = allRules.map(rule => {
+                let borderCol = rule.color === 'blue' ? 'border-blue-500' : (rule.color === 'red' ? 'border-red-500' : 'border-amber-500');
+                let textCol = rule.color === 'blue' ? 'text-blue-700' : (rule.color === 'red' ? 'text-red-700' : 'text-amber-700');
+                let bgCol = rule.color === 'blue' ? 'bg-blue-50' : (rule.color === 'red' ? 'bg-red-50' : 'bg-amber-50');
+
+                return `
+                    <div class="bg-white p-6 rounded-2xl border-l-8 ${borderCol} shadow-sm hover:shadow-md transition-shadow">
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">${rule.type}</span>
+                            <span class="px-2 py-1 rounded text-[10px] font-bold ${bgCol} ${textCol}">ACTIVE</span>
+                        </div>
+                        <h4 class="text-slate-600 text-sm font-semibold mb-1">${rule.name}</h4>
+                        <p class="text-3xl font-black ${textCol} tracking-tighter">Ngày ${rule.value}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function applyAllChanges() {
+            // Collecting data from all inputs
+            const inputs = document.querySelectorAll('.config-input');
+            inputs.forEach(input => {
+                const id = input.getAttribute('data-id');
+                const field = input.getAttribute('data-field');
+                const val = input.value;
+
+                // Find the rule in appState and update
+                Object.keys(appState).forEach(group => {
+                    const rule = appState[group].find(r => r.id === id);
+                    if (rule) rule[field] = val;
+                });
+            });
+
+            renderDashboard();
+            updateChart();
+            alert("Hệ thống đã cập nhật toàn bộ quy tắc mới!");
+            toggleConfig(); // Tự động đóng panel sau khi lưu
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('statChart').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Mùa Hạ/Quý', 'Tháng Hiện Tại', 'Cố Định'],
+                    datasets: [{
+                        label: 'Số lượng quy tắc áp dụng',
+                        data: [appState.seasonal.length, appState.monthly.length, appState.fixed.length],
+                        backgroundColor: ['#1d4ed8', '#dc2626', '#d97706'],
+                        borderRadius: 10,
+                        barThickness: 40
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, grid: { display: false } },
+                        x: { grid: { display: false } }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        function updateChart() {
+            myChart.data.datasets[0].data = [appState.seasonal.length, appState.monthly.length, appState.fixed.length];
+            myChart.update();
+        }
+
+        window.onload = init;
+    </script>
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</body>
+</html>
