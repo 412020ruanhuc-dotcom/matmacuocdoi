@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mật Mã Cuộc Đời | Hệ Thống Tử Vi & Năng Lượng Số Chính Thống</title>
+    <style>
+        /* Khóa chặt chống tràn - Đổi toàn bộ sang nền trắng sáng */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            overflow-x: hidden;
+        }
+        
+        /* Thanh Menu Ngang Trên Cùng Sáng Sủa */
+        .header-navbar {
+            background-color: #ffffff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #ce2424;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .brand-logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ce2424;
+            letter-spacing: 1px;
+        }
+        .nav-links a {
+            color: #555555;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ce2424;
+        }
+
+        /* Khung lớn chia 3 cột cố định trên Máy tính */
+        .web-layout {
+            display: flex;
+            padding: 25px;
+            max-width: 1440px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        /* 1️⃣ CỘT TRÁI (Danh mục tính năng - Rộng 22%) */
+        .col-left {
+            width: 22%;
+            flex-shrink: 0;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+        .col-left h3 {
+            color: #000000;
+            font-size: 16px;
+            margin-top: 0;
+            border-bottom: 2px solid #ce2424;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        .menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-list li {
+            padding: 12px 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        .menu-list li:hover {
+            border-color: #ce2424;
+            background: #fff5f5;
+        }
+        .menu-list a {
+            color: #333333;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+        }
+
+        /* 2️⃣ CỘT GIỮA (Khu tra cứu và Bài viết - Rộng 53%) */
+        .col-center {
+            width: 53%;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        /* Hộp tra cứu viền đỏ bo tròn nền sáng */
+        .ancient-search-box {
+            background-color: #ffffff;
+            padding: 40px 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #ce2424;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .ancient-search-box h1 {
+            color: #ce2424;
+            font-size: 28px;
+            margin: 0 0 10px 0;
+        }
+        .ancient-search-box p {
+            color: #555555;
+            font-style: italic;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .search-input-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        .search-input-wrapper input {
+            padding: 12px 15px;
+            width: 70%;
+            border-radius: 12px 0 0 12px;
+            border: 1px solid #ce2424;
+            font-size: 14px;
+            outline: none;
+            background: #ffffff;
+            color: #333333;
+        }
+        .btn-search-submit {
+            background: #ce2424;
+            color: white;
+            padding: 12px 25px;
+            border: 1px solid #ce2424;
+            border-left: none;
+            border-radius: 0 12px 12px 0;
+            font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-search-submit:hover {
+            background: #a81c1c;
+        }
+        .section-title {
+            color: #000000;
+            font-size: 18px;
+            text-transform: uppercase;
+            text-align: center;
+            margin: 10px 0 0 0;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .news-card {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            transition: 0.3s;
+        }
+        .news-card:hover {
+            border-color: #ce2424;
+        }
+        /* Khung ảnh bài viết mặc định không lo lỗi link mạng */
+        .news-card-img-placeholder {
+            width: 100%;
+            height: 140px;
+            background-color: #fff5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ce2424;
+            font-size: 35px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .news-card-body {
+            padding: 15px;
+        }
+        .news-card-body h4 {
+            color: #ce2424;
+            font-size: 15px;
+            margin: 0 0 8px 0;
+        }
+        .news-card-body p {
+            color: #666666;
+            font-size: 13px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* 3️⃣ CỘT PHẢI (Chuyên gia & Mạng xã hội - Rộng 25%) */
+        .col-right {
+            width: 25%;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .panel-box {
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .panel-box h3 {
+            color: #000000;
+            font-size: 14px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+        .expert-header-box {
+            background-color: #ce2424;
+            color: white;
+            padding: 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .expert-info {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .expert-info:last-child {
+            margin-bottom: 0;
+        }
+        .btn-zalo-contact {
+            display: block;
+            background: #2185d0;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(33,133,208,0.3);
+        }
+        .btn-zalo-contact:hover { background: #1671b5; }
+        
+        .social-buttons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 13px;
+            text-align: center;
+            border: 1px solid transparent;
+        }
+        .btn-youtube { background: #ffffff; color: #ff0000; border-color: #ff0000; }
+        .btn-tiktok { background: #ffffff; color: #000000; border-color: #000000; }
+        .btn-zalothanh { background: #ffffff; color: #0084ff; border-color: #0084ff; }
+        .btn-facebook { background: #ffffff; color: #1877f2; border-color: #1877f2; }
+
+        .footer-section {
+            background: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 30px;
+            font-size: 13px;
+            color: #666666;
+        }
+
+        /* Tự động co dọc thông minh trên Điện thoại */
+        @media (max-width: 992px) {
+            .web-layout { flex-direction: column; }
+            .col-left, .col-center, .col-right { width: 100%; }
+            .news-grid { grid-template-columns: 1fr; }
+            .header-navbar { flex-direction: column; gap: 10px; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- THANH MENU NGANG TRÊN CÙNG SÁNG SỦA -->
+    <div class="header-navbar">
+        <div class="brand-logo">MẬT MÃ CUỘC ĐỜI</div>
+        <div class="nav-links">
+            <a href="index.html">Trang chủ</a>
+            <a href="#">Giới thiệu</a>
+            <a href="#">Dịch vụ</a>
+            <a href="#">Tin tức</a>
+            <a href="#">Liên hệ</a>
+        </div>
+    </div>
+
+    <!-- KHUNG BAO BỌC 3 CỘT CHỐNG TRÀN NỀN SÁNG -->
+    <div class="web-layout">
+        
+        <!-- 1️⃣ CỘT TRÁI (DANH MỤC TRỰC QUAN VIỀN CONG) -->
+        <div class="col-left">
+            <h3>Danh Mục Tra Cứu</h3>
+            <ul class="menu-list">
+                <li><a href="TRACUU.html">🚩 Tra Cứu Sao Hạn 2026</a></li>
+                <li><a href="Tratuvi.html">📱 Luận Số Điện Thoại</a></li>
+                <li><a href="#">🪪 Giải Mã Số CCCD</a></li>
+                <li><a href="Tratuvi.html">🔮 Xem Lá Số Tử Vi</a></li>
+                <li><a href="#">📚 Thư Viện Tài Liệu PDF</a></li>
+            </ul>
+        </div>
+
+        <!-- 2️⃣ CỘT GIỮA (Ô TRA CỨU & BÀI VIẾT VIỀN ĐỎ) -->
+        <div class="col-center">
+            <div class="ancient-search-box">
+                <h1>MẬT MÃ CUỘC ĐỜI</h1>
+                <p>“Vận mệnh có thể dự đoán – Cải vận nằm trong chính lựa chọn của mỗi người”</p>
+                <div class="search-input-wrapper">
+                    <input type="text" placeholder="Nhập số điện thoại, biển số xe, số nhà hoặc tài khoản ngân hàng...">
+                    <button class="btn-search-submit">TRA CỨU</button>
+                </div>
+            </div>
+
+            <h2 class="section-title">Bài viết & Kiến thức nổi bật</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-card-img-placeholder">🪙</div>
+                    <div class="news-card-body">
+                        <h4>Phong Thuỷ Số Tài Khoản Ngân Hàng</h4>
+                        <p>Bí quyết tối ưu dòng tiền, kích hoạt tài lộc thông qua năng lượng bộ số tài khoản...</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-card-img-placeholder">📱</div>
+                    <div class="news-card-body">
+                        <h4>Đổi Số Đổi Vận Mệnh Bản Thân</h4>
+                        <p>Hướng dẫn lựa chọn số điện thoại hợp mệnh, trợ lực cho công danh sự nghiệp thông suốt...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 3️⃣ CỘT PHẢI (CHUYÊN GIA & MẠNG XÃ HỘI NỀN SÁNG) -->
+        <div class="col-right">
+            <div class="panel-box">
+                <h3>Đội Ngũ Chuyên Gia</h3>
+                
+                <!-- Chuyên gia Tuấn Anh -->
+                <div class="expert-info">
+                    <div class="expert-header-box">NGUYỄN TUẤN ANH</div>
+                    <p style="margin: 5px 0 10px 0; font-size: 13px; color: #666666;">Chuyên gia Tử Vi - Phong Thủy</p>
+                    <a href="https://zalo.me" class="btn-zalo-contact" target="_blank">💬 ZALO: 0789.414.153</a>
+                </div>
+                
+                <div style="height: 15px;"></div>
+                
+                <!-- Chuyên gia Nguyên Bảo -->
+                <div class="expert-info">
+                    <div class="expert-header-box">KIM NGUYÊN BẢO</div>
+                    <p style="margin: 5px 0 10px 0; font-size: 13px; color: #666666;">Chuyên gia Thiết Kế Năng Lượng Số</p>
+                    <a href="https://zalo.me" class="btn-zalo-contact" target="_blank">💬 ZALO: 0849.328.628</a>
+                </div>
+            </div>
+
+            <div class="panel-box">
+                <h3>Cộng Đồng & Giao Lưu</h3>
+                <div class="social-buttons-list">
+                    <a href="https://youtube.com" class="btn-social btn-youtube" target="_blank">▶️ YOUTUBE (Bài giảng Tử Vi)</a>
+                    <a href="https://tiktok.com" class="btn-social btn-tiktok" target="_blank">🎵 TIKTOK (Kênh 1 - Tử Vi)</a>
+                    <a href="https://tiktok.com" class="btn-social btn-tiktok" target="_blank">🎵 TIKTOK (Kênh 2 - Cải Vận)</a>
+                    <a href="https://zalo.me" class="btn-social btn-zalothanh" target="_blank">💬 NHÓM ZALO CỘNG ĐỒNG</a>
+                    <a href="https://facebook.com" class="btn-social btn-facebook" target="_blank">👥 CỘNG ĐỒNG FACEBOOK</a>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- Đóng thẻ web-layout -->
+
+    <!-- CHÂN TRANG SÁNG SỦA -->
+    <div class="footer-section">
+        <p style="margin: 0 0 5px 0; color: #ce2424; font-weight: bold;">MẬT MÃ CUỘC ĐỜI © 2026</p>
+        <p style="margin: 0;">Bản quyền chính thống, cam kết tính minh bạch trên tất cả các nền tảng số.</p>
+    </div>
+
+</body>
+</html>
