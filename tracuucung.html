@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Tra Cứu Tuổi - Cung Sanh - Cung Trạch - Thái Tuế - Tam Tai</title>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script src="https://phongthuycaivan.org/wp-content/themes/amlich/amlich.js"></script>
+
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #fff1f1; color: #333; margin: 20px; line-height: 1.5; }
+        h1, h2, h3 { color: #b30000; text-align: center; }
+        
+        /* Giao diện Bảng dữ liệu phong thủy - Tông màu đỏ truyền thống */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th, td { border: 1px solid #ff9999; padding: 10px; text-align: center; }
+        th { background-color: #cc0000; color: white; font-weight: bold; }
+        tr:nth-child(even) { background-color: #ffe6e6; }
+        
+        /* Phong cách cho các nút bấm & vùng tương tác Cục số */
+        .interactive-box { display: inline-block; padding: 8px 15px; margin: 5px; background: #cc0000; color: white; cursor: pointer; border-radius: 4px; font-weight: bold; }
+        .interactive-box:hover { background: #990000; }
+        
+        /* Cấu trúc hiển thị nội dung luận giải bài thơ */
+        .luan-giai-box { background: #fff; border-left: 5px solid #cc0000; padding: 15px; margin: 15px 0; border-radius: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .bai-tho { font-style: italic; color: #555; margin-bottom: 10px; font-weight: 500; white-space: pre-line; }
+        .ket-luan { font-weight: bold; color: #cc0000; }
+        
+        /* Popup thông tin phụ trợ */
+        .popup { position: relative; display: inline-block; cursor: pointer; }
+        .popup .popuptext { display: none; width: 260px; background-color: #555; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -130px; }
+        .popup .show { display: block; }
+    </style>
+</head>
+<body>
+
+    <h1>HỆ THỐNG TRA CỨU PHONG THỦY ĐA NĂNG</h1>
+    <h3>Tuổi – Cung Sanh – Cung Trạch | Thái Tuế – Tam Tai</h3>
+
+    <h2>1. Công cụ Tính toán Cục Số Tự động</h2>
+    <div style="text-align: center; margin-bottom: 25px; background: #fff; padding: 20px; border: 1px solid #ff9999; border-radius: 8px;">
+        <p>Nhập số gốc vào ô Thiên 1 / Lục 1 để thuật toán tự động dịch chuyển và đồng bộ dữ liệu:</p>
+        <label>Thiên 1: <input type="number" id="Thien1" value="1" oninput="sync()"></label> | 
+        <label>Thiên 2 (Đồng bộ): <input type="number" id="Thien2" readonly></label>
+        <br><br>
+        <label>Lục vị gốc (Lục 1): <input type="number" id="luc1" value="5" oninput="sync()"></label>
+        <br><br>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); max-width: 300px; margin: 0 auto; gap: 5px;">
+            <input type="text" id="luc8" readonly placeholder="Lục 8">
+            <input type="text" id="luc3" readonly placeholder="Lục 3">
+            <input type="text" id="luc4" readonly placeholder="Lục 4">
+            <input type="text" id="luc7" readonly placeholder="Lục 7">
+            <input type="text" id="luc1_display" readonly style="font-weight:bold; color:red;" placeholder="Gốc">
+            <input type="text" id="luc2" readonly placeholder="Lục 2">
+            <input type="text" id="luc6" readonly placeholder="Lục 6">
+            <input type="text" id="luc9" readonly placeholder="Lục 9">
+            <input type="text" id="luc5" readonly placeholder="Lục 5">
+        </div>
+    </div>
+
+    <h2>2. Bảng Tra Tuổi – Cung Sanh – Cung Trạch Mệnh</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Năm Sinh Chi Tiết</th>
+                <th>Thiên Can</th>
+                <th>Địa Chi</th>
+                <th>Cung Sanh (Hôn Nhân)</th>
+                <th>Mạng Ngũ Hành</th>
+                <th>Cung Trạch (NAM)</th>
+                <th>Cung Trạch (NỮ)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1960, 1972, 1984, 1996, 2008, 2020</td>
+                <td>Canh, Nhâm, Giáp, Bính, Mậu</td>
+                <td><strong>TÝ</strong></td>
+                <td>Chấn / Cấn / Càn / Càn / Chấn</td>
+                <td>Thổ / Mộc / Kim / Thủy / Hỏa</td>
+                <td>Tốn / Khảm / Đoài / Tốn / Khảm</td>
+                <td>Khôn / Cấn / Cấn / Khôn / Cấn</td>
+            </tr>
+            <tr>
+                <td>1961, 1973, 1985, 1997, 2009, 2021</td>
+                <td>Tân, Quý, Ất, Đinh, Kỷ</td>
+                <td><strong>SỬU</strong></td>
+                <td>Tốn / Ly / Khôn / Chấn / Khôn</td>
+                <td>Thổ / Mộc / Kim / Thủy / Hỏa</td>
+                <td>Chấn / Ly / Càn / Chấn / Ly</td>
+                <td>Chấn / Cấn / Ly / Chấn / Cấn</td>
+            </tr>
+            <tr>
+                <td>1962, 1974, 1986, 1998, 2010, 2022</td>
+                <td>Nhâm, Giáp, Bính, Mậu, Canh</td>
+                <td><strong>DẦN</strong></td>
+                <td>Khôn / Khảm / Khôn / Chấn / Khôn</td>
+                <td>Kim / Thủy / Hỏa / Thổ / Mộc</td>
+                <td>Khôn / Cấn / Khôn / Khôn / Khấn</td>
+                <td>Tốn / Đoài / Cấn / Tốn / Đoài</td>
+            </tr>
+            <tr>
+                <td>1963, 1975, 1987, 1999, 2011, 2023</td>
+                <td>Quý, Ất, Đinh, Kỷ, Tân</td>
+                <td><strong>MÃO</strong></td>
+                <td>Khảm / Ly / Khôn / Chấn / Tốn</td>
+                <td>Kim / Thủy / Hỏa / Thổ / Mộc</td>
+                <td>Khảm / Đoài / Tốn / Khảm / Đoài</td>
+                <td>Cấn / Cấn / Khôn / Cấn / Cấn</td>
+            </tr>
+        </tbody>
+    </table>
+<!-- Tiếp tục dữ liệu bảng tra cứu các tuổi còn lại -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Năm Sinh Chi Tiết</th>
+                    <th>Thiên Can</th>
+                    <th>Địa Chi</th>
+                    <th>Cung Sanh (Hôn Nhân)</th>
+                    <th>Mạng Ngũ Hành</th>
+                    <th>Cung Trạch (NAM)</th>
+                    <th>Cung Trạch (NỮ)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1964, 1976, 1988, 2000, 2012, 2024</td>
+                    <td>Giáp, Bính, Mậu, Canh, Nhâm</td>
+                    <td><strong>THÌN</strong></td>
+                    <td>Khôn / Tốn / Cấn / Ly / Càn</td>
+                    <td>Hỏa / Thổ / Mộc / Kim / Thủy</td>
+                    <td>Ly / Càn / Chấn / Ly / Càn</td>
+                    <td>Cấn / Ly / Chấn / Cấn / Ly</td>
+                </tr>
+                <tr>
+                    <td>1965, 1977, 1989, 2001, 2013, 2025</td>
+                    <td>Ất, Đinh, Kỷ, Tân, Quý</td>
+                    <td><strong>TỴ</strong></td>
+                    <td>Cấn / Khôn / Chấn / Ly / Tốn</td>
+                    <td>Hỏa / Thổ / Mộc / Kim / Thủy</td>
+                    <td>Cấn / Khôn / Khôn / Cấn / Khôn</td>
+                    <td>Đoài / Tốn / Đoài / Đoài / Tốn</td>
+                </tr>
+                <tr>
+                    <td>1966, 1978, 1990, 2002, 2014, 2026</td>
+                    <td>Bính, Mậu, Canh, Nhâm, Giáp</td>
+                    <td><strong>NGỌ</strong></td>
+                    <td>Đoài / Càn / Đoài / Ly / Khảm</td>
+                    <td>Thủy / Hỏa / Thổ / Mộc / Kim</td>
+                    <td>Đoài / Tốn / Khảm / Đoài / Tốn</td>
+                    <td>Cấn / Khôn / Cấn / Cấn / Khôn</td>
+                </tr>
+                <tr>
+                    <td>1967, 1979, 1991, 2003, 2015, 2027</td>
+                    <td>Đinh, Kỷ, Tân, Quý, Ất</td>
+                    <td><strong>MÙI</strong></td>
+                    <td>Càn / Khôn / Ly / Chấn / Tốn</td>
+                    <td>Thủy / Hỏa / Thổ / Mộc / Kim</td>
+                    <td>Càn / Chấn / Ly / Càn / Chấn</td>
+                    <td>Ly / Chấn / Cấn / Ly / Chấn</td>
+                </tr>
+                <tr>
+                    <td>1968, 1980, 1992, 2004, 2016, 2028</td>
+                    <td>Mậu, Canh, Nhâm, Giáp, Bính</td>
+                    <td><strong>THÂN</strong></td>
+                    <td>Khôn / Tốn / Khôn / Ly / Khôn</td>
+                    <td>Thổ / Mộc / Kim / Thủy / Hỏa</td>
+                    <td>Khôn / Khôn / Cấn / Khôn / Khôn</td>
+                    <td>Tốn / Đoài / Tốn / Tốn / Đoài</td>
+                </tr>
+                <tr>
+                    <td>1969, 1981, 1993, 2005, 2017, 2029</td>
+                    <td>Kỷ, Tân, Quý, Ất, Đinh</td>
+                    <td><strong>DẬU</strong></td>
+                    <td>Khảm / Ly / Khôn / Chấn / Tốn</td>
+                    <td>Thổ / Mộc / Kim / Thủy / Hỏa</td>
+                    <td>Khảm / Đoài / Tốn / Khảm / Đoài</td>
+                    <td>Cấn / Cấn / Khôn / Cấn / Cấn</td>
+                </tr>
+                <tr>
+                    <td>1970, 1982, 1994, 2006, 2018, 2030</td>
+                    <td>Canh, Nhâm, Giáp, Bính, Mậu</td>
+                    <td><strong>TUẤT</strong></td>
+                    <td>Chấn / Cấn / Càn / Càn / Chấn</td>
+                    <td>Kim / Thủy / Hỏa / Thổ / Mộc</td>
+                    <td>Chấn / Ly / Càn / Chấn / Ly</td>
+                    <td>Chấn / Cấn / Ly / Chấn / Cấn</td>
+                </tr>
+                <tr>
+                    <td>1971, 1983, 1995, 2007, 2019, 2031</td>
+                    <td>Tân, Quý, Ất, Đinh, Kỷ</td>
+                    <td><strong>HỢI</strong></td>
+                    <td>Khôn / Tốn / Cấn / Ly / Càn</td>
+                    <td>Kim / Thủy / Hỏa / Thổ / Mộc</td>
+                    <td>Khôn / Khôn / Cấn / Khôn / Khôn</td>
+                    <td>Tốn / Đoài / Tốn / Tốn / Đoài</td>
+                </tr>
+            </tbody>
+        </table>
+
+    <!-- Khu vực 3: Bảng Tra Cứu Thái Tuế - Tam Tai -->
+    <h2>3. Bảng Tra Cứu Hạn Thái Tuế & Tam Tai</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Địa Chi (Tuổi)</th>
+                <th>Xung Tuổi Dữ (Đại Kỵ)</th>
+                <th>Năm Phạm Thái Tuế & Tuế Phá</th>
+                <th>Các Năm Phạm Tam Tai (3 Năm Liên Tiếp)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>DẦN / NGỌ / TUẤT</strong><br>(Nhóm Tam Hợp Hỏa)</td>
+                <td>Thân / Tý / Thìn tương xung dữ dằn</td>
+                <td>Năm Dần (Trực Thái Tuế) <br> Năm Thân (Tuế Phá)</td>
+                <td>Gặp hạn vào các năm: <strong>THÂN - DẬU - TUẤT</strong></td>
+            </tr>
+            <tr>
+                <td><strong>THÂN / TÝ / THÌN</strong><br>(Nhóm Tam Hợp Thủy)</td>
+                <td>Dần / Ngọ / Tuất tương xung dữ dằn</td>
+                <td>Năm Thân (Trực Thái Tuế) <br> Năm Dần (Tuế Phá)</td>
+                <td>Gặp hạn vào các năm: <strong>DẦN - MÃO - THÌN</strong></td>
+            </tr>
+            <tr>
+                <td><strong>TỴ / DẬU / SỬU</strong><br>(Nhóm Tam Hợp Kim)</td>
+                <td>Hợi / Mão / Mùi tương xung dữ dằn</td>
+                <td>Năm Tỵ (Trực Thái Tuế) <br> Năm Hợi (Tuế Phá)</td>
+                <td>Gặp hạn vào các năm: <strong>HỢI - TÝ - SỬU</strong></td>
+            </tr>
+            <tr>
+                <td><strong>HỢI / MÃO / MÙI</strong><br>(Nhóm Tam Hợp Mộc)</td>
+                <td>Tỵ / Dậu / Sửu tương xung dữ dằn</td>
+                <td>Năm Hợi (Trực Thái Tuế) <br> Năm Tỵ (Tuế Phá)</td>
+                <td>Gặp hạn vào các năm: <strong>TỴ - NGỌ - MÙI</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Khu vực 4: Phần Luận Giải Bát San Giao Hợp (Bắt đầu cấu trúc hiển thị) -->
+    <h2>4. Luận Giải Bát San Giao Hợp Giữa Vợ Chồng</h2>
+    <div id="luan-giai-container">
+<!-- CÁC CẶP PHỐI CUNG BÁT TRẠCH -->
+
+        <!-- CHỒNG CUNG CÀN -->
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Càn (Phục Vị - Tốt)</h3>
+            <p class="bai-tho">"Càn gặp Càn là thế Phục Vi
+Duyên tình bền chặt chẳng phân ly
+Sự nghiệp dài lâu nhờ đức độ
+Con cháu hiền vinh, phúc lộc tùy."</p>
+            <p class="ket-luan">Ý nghĩa: Gia đình êm ấm, tiền tài vững chắc, hậu vận tốt đẹp nhờ phước đức tự thân.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Khảm (Lục Sát - Xấu)</h3>
+            <p class="bai-tho">"Càn Khảm giao hòa phạm Lục Sát
+Nhà cửa không yên, dạ rối bời
+Tiền bạc tiêu hao, đời trôi nổi
+Oan khiên đeo bám khổ không nguôi."</p>
+            <p class="ket-luan">Ý nghĩa: Dễ xảy ra tranh chấp, kiện tụng, tài lộc thất thoát, gia đạo bất hòa.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Cấn (Thiên Y - Tốt)</h3>
+            <p class="bai-tho">"Càn phối cùng Cấn được Thiên Y
+Phú quý thọ khang lộc tràn trề
+Bệnh tật tiêu trừ, gia đạo ấm
+Con hiền cháu thảo đẹp muôn bề."</p>
+            <p class="ket-luan">Ý nghĩa: Sức khỏe dồi dào, có quý nhân phù trợ, cuộc sống bình an, hưng thịnh.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Chấn (Ngũ Quỷ - Xấu)</h3>
+            <p class="bai-tho">"Càn Chấn chung đôi Ngũ Quỷ phòng
+Tai ương dồn dập, dạ lo đong
+Gia tài khánh kiệt, đời lưu lạc
+Hỏa hoạn bệnh đau mệt mỏi lòng."</p>
+            <p class="ket-luan">Ý nghĩa: Dễ mất việc, mất của, tranh chấp triền miên, đề phòng hỏa tai hay tai nạn.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Tốn (Họa Hại - Xấu)</h3>
+            <p class="bai-tho">"Càn Tốn gặp nhau Họa Hại mang
+Gia đình chia rẽ, dạ bàng hoàng
+Mưu sự khó thành, duyên trắc trở
+Suốt đời lận đận nợ gian nan."</p>
+            <p class="ket-luan">Ý nghĩa: Khó tích lũy của cải, người nhà dễ chia rẽ, thị phi bủa vây.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Ly (Tuyệt Mệnh - Rất Xấu)</h3>
+            <p class="bai-tho">"Càn Ly phối hợp Tuyệt Mệnh sầu
+Nước mắt tràn trề đổ về đâu
+Nửa đường đứt gánh, tình ly tán
+Sự nghiệp tiêu tan, dạ u sầu."</p>
+            <p class="ket-luan">Ý nghĩa: Đường con cái lận đận, duyên nợ dễ đứt gánh giữa đường, nguy hại sức khỏe.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Khôn (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Càn Khôn phối hợp đắc Diên Niên
+Gia thất an khang gặp thánh hiền
+Tài lộc dồi dào, danh vọng lớn
+Trăm năm tình nghĩa vẹn vuông tròn."</p>
+            <p class="ket-luan">Ý nghĩa: Mối quan hệ gia đình bền chặt, ngoại giao tốt, công danh sự nghiệp phát đạt.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Càn lấy Vợ Đoài (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Càn Đoài giao hảo hóa Sinh Khí
+Sự nghiệp hanh thông đại cát tường
+Phú quý giàu sang tràn ngập lối
+Con cái thành danh hiển mọi đường."</p>
+            <p class="ket-luan">Ý nghĩa: Thu hút tài lộc, danh tiếng, phát triển kinh doanh vượt bậc.</p>
+        </div>
+
+        <!-- CHỒNG CUNG KHẢM -->
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Khảm (Phục Vị - Tốt)</h3>
+            <p class="bai-tho">"Khảm phối cùng Khảm đắc Phục Vị
+Gia đạo yên bình, sống thảnh thơi
+Tiền của vừa tầm, lòng tự tại
+Con cái chăm ngoan gửi phước trời."</p>
+            <p class="ket-luan">Ý nghĩa: Cuộc sống bình ổn, gia đạo an vui, không quá sóng gió.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Cấn (Ngũ Quỷ - Xấu)</h3>
+            <p class="bai-tho">"Khảm Cấn cùng nhau Ngũ Quỷ sầu
+Làm ăn trắc trở héo hon lòng
+Anh em phản trắc, tiền hao hụt
+Mệt mỏi lo âu suốt đêm thâu."</p>
+            <p class="ket-luan">Ý nghĩa: Dễ bị tiểu nhân hãm hại, tổn hao tài sản, gia đình bất hòa.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Chấn (Thiên Y - Tốt)</h3>
+            <p class="bai-tho">"Khảm Chấn duyên nồng đắc Thiên Y
+Nhà cao cửa rộng lộc sum sê
+Sức khỏe dồi dào không đau ốm
+Tiền tài gõ cửa, vạn người mê."</p>
+            <p class="ket-luan">Ý nghĩa: Cuộc sống an nhàn, ít đau ốm bệnh tật, tài lộc dồi dào thịnh vượng.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Tốn (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Khảm Tốn kết duyên Sinh Khí bừng
+Kinh doanh phát đạt khách đón mừng
+Hào con hào của đều vượng phát
+Nghĩa tình chồng vợ ấm nồng chưng."</p>
+            <p class="ket-luan">Ý nghĩa: Phát triển sự nghiệp nhanh chóng, gia đình giàu sang phú quý.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Ly (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Khảm Ly phối ngẫu đắc Diên Niên
+Vợ chồng thủy chung sống dịu hiền
+Phước đức lâu dài cho con cháu
+Nhà cửa khang trang, vạn sự yên."</p>
+            <p class="ket-luan">Ý nghĩa: Tình cảm vợ chồng son sắt, các mối quan hệ xã hội tốt đẹp, gia đình hòa thuận.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Khôn (Tuyệt Mệnh - Rất Xấu)</h3>
+            <p class="bai-tho">"Khảm Khôn gặp gỡ Tuyệt Mệnh sầu
+Bệnh tật triền miên khó ngóc đầu
+Hao tài tốn của, duyên tan nát
+Khóc hận nghìn năm mối lệ sâu."</p>
+            <p class="ket-luan">Ý nghĩa: Gia đạo ly tán, sức khỏe suy kiệt, công việc làm ăn bế tắc đổ vỡ.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Đoài (Họa Hại - Xấu)</h3>
+            <p class="bai-tho">"Khảm Đoài kết hợp Họa Hại mang
+Tai tiếng thị phi suốt dặm đàng
+Lòng dạ nghi ngờ, tình rạn nứt
+Làm ăn thất bát, nợ dâng tràn."</p>
+            <p class="ket-luan">Ý nghĩa: Tai bay vạ gió, trong nhà hay xảy ra tranh cãi, thiếu thấu hiểu.</p>
+        </div>
+
+        <div class="luan-giai-box">
+            <h3>Chồng Khảm lấy Vợ Càn (Lục Sát - Xấu)</h3>
+            <p class="bai-tho">"Khảm Càn đôi lứa phạm Lục Sát
+Nhà cửa lạnh lùng, bóng cô đơn
+Sự nghiệp gập ghềnh, nhiều trở ngại
+Vợ chồng đứt gánh chịu tủi hờn."</p>
+            <p class="ket-luan">Ý nghĩa: Dễ gặp tranh chấp pháp lý, tai nạn, cuộc sống vợ chồng nguội lạnh.</p>
+        </div>
+<!-- CHỒNG CUNG CẤN -->
+        <div class="luan-giai-box">
+            <h3>Chồng Cấn lấy Vợ Khôn (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Cấn Khôn phối hợp đắc Sinh Khí
+Sự nghiệp hanh thông đại cát tường
+Gia đình êm ấm, giàu sang quý
+Con cái hiển đạt khắp muôn phương."</p>
+            <p class="ket-luan">Ý nghĩa: Nhà cửa vượng phát, tài lộc dồi dào, con cái học hành đỗ đạt.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Cấn lấy Vợ Đoài (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Cấn Đoài duyên nợ thật bền lâu
+Diên Niên hạnh phúc bắc nhịp cầu
+Trăm năm chồng vợ tình thâm thiết
+Bạc đầu nghĩa nặng dạ tâm giao."</p>
+            <p class="ket-luan">Ý nghĩa: Gia đình hòa thuận, trăm năm hạnh phúc, ít gặp sóng gió lớn.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Cấn lấy Vợ Cấn (Phục Vị - Tốt)</h3>
+            <p class="bai-tho">"Cấn gặp Cấn là thế Phục Vi
+Đời sống an nhàn, chẳng nghĩ suy
+Gia đạo trung bình tài lộc đủ
+Bình yên một thuở phúc từ bi."</p>
+            <p class="ket-luan">Ý nghĩa: Cuộc sống bình lặng, trung cát, gia đạo ít biến động.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Cấn lấy Vợ Chấn (Lục Sát - Xấu)</h3>
+            <p class="bai-tho">"Cấn Chấn chung nhà phạm Lục Sát
+Tai ương rình rập, tiếng thở dài
+Làm ăn thất bát, tình phai nhạt
+Cuộc đời trôi nổi kiếp lưu đày."</p>
+            <p class="ket-luan">Ý nghĩa: Gia đạo bất hòa, dễ xảy ra cãi vã, hao tốn tiền của vì những việc không đáng.</p>
+        </div>
+
+        <!-- CHỒNG CUNG CHẤN -->
+        <div class="luan-giai-box">
+            <h3>Chồng Chấn lấy Vợ Ly (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Chấn Ly phối ngẫu hóa Sinh Khí
+Tài lộc dồi dào, vạn sự hưng
+Sự nghiệp lẫy lừng vang bốn biển
+Gia đình hạnh phúc dạ mừng vui."</p>
+            <p class="ket-luan">Ý nghĩa: Chủ về tài lộc bùng nổ, công danh rạng rỡ, gia đình hạnh phúc viên mãn.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Chấn lấy Vợ Tốn (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Chấn Tốn kết giao đắc Diên Niên
+Tình sâu nghĩa nặng cảnh bình yên
+Con cháu thảo hiền, gia thất vững
+Sự nghiệp lâu dài, hưởng phúc thiên."</p>
+            <p class="ket-luan">Ý nghĩa: Vợ chồng hòa hợp, trường thọ, cuộc sống gia đình luôn ấm cúng.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Chấn lấy Vợ Chấn (Phục Vị - Tốt)</h3>
+            <p class="bai-tho">"Chấn gặp Chấn là thế Phục Vi
+Gia trung êm ấm, bước chân đi
+Làm ăn từ tốn nên cơ nghiệp
+Hậu vận an nhàn phúc tự tùy."</p>
+            <p class="ket-luan">Ý nghĩa: Mọi sự bình ổn, thích hợp duy trì sự nghiệp ổn định bền vững.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Chấn lấy Vợ Cấn (Ngũ Quỷ - Rất Xấu)</h3>
+            <p class="bai-tho">"Chấn Cấn kết duyên Ngũ Quỷ sinh
+Cửa nhà sự nghiệp lập sao thành
+Cháu con bịnh tật, tài hao tán
+Chồng vợ khổ sầu lệ trắng canh."</p>
+            <p class="ket-luan">Ý nghĩa: Gặp nhiều tai ương, hao tài tốn của, sức khỏe suy giảm sút sụt nghiêm trọng.</p>
+        </div>
+
+        <!-- CHỒNG CUNG TỐN -->
+        <div class="luan-giai-box">
+            <h3>Chồng Tốn lấy Vợ Khảm (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Tốn Khảm giao hòa Sinh Khí vượng
+Nhà cửa khang trang lộc dồi dào
+Công thành danh toại phơi phới sắc
+Gia đạo yên vui nghĩa khí cao."</p>
+            <p class="ket-luan">Ý nghĩa: Kinh doanh buôn bán thuận lợi, con cái đỗ đạt cao.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Tốn lấy Vợ Chấn (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Tốn Chấn duyên nồng đắc Diên Niên
+Yên vui hạnh phúc sống như tiên
+Trong ngoài êm ấm tình khăng khít
+Của cải tràn trề, vạn sự yên."</p>
+            <p class="ket-luan">Ý nghĩa: Cuộc sống an lành, duyên phận vợ chồng gắn kết không thể tách rời.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Tốn lấy Vợ Tốn (Phục Vị - Tốt)</h3>
+            <p class="bai-tho">"Tốn gặp Tốn hương lửa ấm nồng
+Phục Vi yên ổn vững lòng trông
+Vợ chồng đùm bọc qua ngày tháng
+Sự nghiệp vững vàng, chẳng lo không."</p>
+            <p class="ket-luan">Ý nghĩa: Gia đình bình an, thuận hòa, công việc đều đều vững chắc.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Tốn lấy Vợ Khôn (Ngũ Quỷ - Xấu)</h3>
+            <p class="bai-tho">"Tốn Khôn phối hợp phạm Ngũ Quỷ
+Tai họa liên miên, dạ sầu bi
+Tiền tài tiêu tán theo mây khói
+Nửa chừng xuân mộng biệt ly chia."</p>
+            <p class="ket-luan">Ý nghĩa: Đề phòng trộm cắp, mất việc làm, mâu thuẫn nội bộ gia đình sâu sắc.</p>
+        </div>
+
+        <!-- CHỒNG CUNG LY -->
+        <div class="luan-giai-box">
+            <h3>Chồng Ly lấy Vợ Chấn (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Ly Chấn chung đôi Sinh Khí bừng
+Làm ăn tấn tới khách đón mừng
+Hào con hào của đều hưng vượng
+Gia đình đầm ấm rộn tiếng cười."</p>
+            <p class="ket-luan">Ý nghĩa: Làm ăn gặp nhiều may mắn, gia sản tăng tiến nhanh chóng.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Ly lấy Vợ Khảm (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Ly Khảm giao duyên đắc Diên Niên
+Vợ chồng chung thủy nghĩa vẹn toàn
+Phước đức lâu bền cho con cháu
+Mọi đường danh lợi thảy đều yên."</p>
+            <p class="ket-luan">Ý nghĩa: Mối quan hệ gia đình khăng khít, đời sống tinh thần vô cùng viên mãn.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Ly lấy Vợ Ly (Phục Vị - Tốt)</h3>
+            <p class="bai-tho">"Ly gặp Ly là thế Phục Vi
+Gia trung rực rỡ chẳng lo chi
+Làm ăn từ tốn mà vững chắc
+Con cháu hiền lành phước đức tùy."</p>
+            <p class="ket-luan">Ý nghĩa: Sự nghiệp trung bình khá, cuộc sống êm ấm không sóng gió.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Ly lấy Vợ Càn (Tuyệt Mệnh - Rất Xấu)</h3>
+            <p class="bai-tho">"Ly Càn phối hợp Tuyệt Mệnh sầu
+Nước mắt tuôn rơi nát cõi lòng
+Đường đời đứt gánh tình ly tán
+Sự nghiệp tan tành hóa hư không."</p>
+            <p class="ket-luan">Ý nghĩa: Cực kỳ xấu về đường con cái và sức khỏe, gia đạo dễ phân ly.</p>
+        </div>
+
+        <!-- CHỒNG CUNG KHÔN -->
+        <div class="luan-giai-box">
+            <h3>Chồng Khôn lấy Vợ Cấn (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Khôn Cấn kết duyên Sinh Khí bừng
+Gia đình hưng vượng phúc trùng trùng
+Mua may bán đắt tiền như nước
+Con thảo cháu hiền ấm tổ tông."</p>
+            <p class="ket-luan">Ý nghĩa: Phú quý tự nhiên tới, gia đạo phát đạt, con cái thông minh sáng láng.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Khôn lấy Vợ Càn (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Khôn Càn phối hợp đắc Diên Niên
+Chồng vợ đồng lòng dựng cơ đồ
+Mọi bề thuận lợi danh vang vọng
+Gia môn hạnh phúc, lộc tràn trề."</p>
+            <p class="ket-luan">Ý nghĩa: Gia đình gắn kết chặt chẽ, được xã hội nể trọng, công việc thăng tiến vững chắc.</p>
+        </div>
+
+        <!-- CHỒNG CUNG ĐOÀI -->
+        <div class="luan-giai-box">
+            <h3>Chồng Đoài lấy Vợ Càn (Sinh Khí - Rất Tốt)</h3>
+            <p class="bai-tho">"Đoài Càn hòa hợp Sinh Khí lai
+Tài lộc dồi dào suốt tương lai
+Quan lộ hanh thông lừng danh tiếng
+Phú quý vinh hoa hưởng trọn đời."</p>
+            <p class="ket-luan">Ý nghĩa: Công danh rộng mở, tài lộc dồi dào phát đạt, con cái vinh hiển.</p>
+        </div>
+        <div class="luan-giai-box">
+            <h3>Chồng Đoài lấy Vợ Cấn (Diên Niên - Tốt)</h3>
+            <p class="bai-tho">"Đoài Cấn duyên tình đắc Diên Niên
+Sống đời hạnh phúc cảnh bình yên
+Bạc đầu nghĩa nặng tình son sắt
+Con cháu sum vầy hưởng lộc thiên."</p>
+            <p class="ket-luan">Ý nghĩa: Đời sống vợ chồng bền vững, gia đình an lành hạnh phúc trọn vẹn.</p>
+        </div>
+    </div> <!-- Đóng div luan-giai-container -->
+
+    <!-- PHẦN 5: JAVASCRIPT ĐỒNG BỘ LOGIC VÀ KÉO THẢ (DRAG & DROP) -->
+    <script>
+        // Thuật toán đồng bộ hóa dữ liệu Cục Số khi thay đổi đầu vào
+        function sync() {
+            var Thien1 = document.getElementById('Thien1');
+            var Thien2 = document.getElementById('Thien2');
+            
+            // Đồng bộ trực tiếp Thiên 1 sang Thiên 2
+            Thien2.value = Thien1.value;
+            
+            var luc1 = document.getElementById('luc1');
+            var luc1_val = parseFloat(luc1.value) || 0;
+            
+            // Cập nhật nhãn hiển thị cho ô gốc Lục 1
+            document.getElementById('luc1_display').value = "Gốc: " + luc1_val;
+            
+            // Thuật toán cộng/trừ tiến lùi tự động định vị 9 cung
+            document.getElementById('luc2').value = (luc1_val + 1);
+            document.getElementById('luc3').value = (luc1_val + 2);
+            document.getElementById('luc4').value = (luc1_val + 3);
+            document.getElementById('luc5').value = (luc1_val + 4);
+            document.getElementById('luc6').value = (luc1_val + 5);
+            document.getElementById('luc7').value = (luc1_val - 1);
+            document.getElementById('luc8').value = (luc1_val - 2);
+            document.getElementById('luc9').value = (luc1_val - 3);
+        }
+
+        // Khởi động các tính năng kéo thả giao diện (jQuery UI) sau khi tải trang
+        $(function() {
+            // Cho phép các ô số quản cục có thể kéo thả tự do để người dùng tự do sắp xếp hướng
+            $("input[readonly]").draggable({
+                containment: "parent",
+                cursor: "move",
+                revert: "invalid"
+            });
+            
+            // Chạy đồng bộ lần đầu tiên ngay khi load trang
+            sync();
+        });
+    </script>
+</body>
+</html>
