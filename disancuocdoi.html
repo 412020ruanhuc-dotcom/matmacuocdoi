@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Định Vị Ngũ Hành - Di Sản Tài Liệu Cổ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;600&display=swap');
+        
+        :root {
+            --bg-paper: #f9f5f0;
+            --ink-black: #2c2420;
+            --accent-gold: #b08d57;
+            --wood: #4a6741;
+            --fire: #b25244;
+            --earth: #8c7358;
+            --metal: #7a8288;
+            --water: #3d5a80;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-paper);
+            color: var(--ink-black);
+            background-image: radial-gradient(#d2b48c 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+        }
+
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: auto;
+            height: 280px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(176, 141, 87, 0.2);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
+        }
+
+        .zodiac-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .zodiac-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(176, 141, 87, 0.3);
+        }
+
+        .zodiac-active {
+            border-color: var(--accent-gold);
+            background-color: white;
+            box-shadow: 0 0 0 2px var(--accent-gold);
+        }
+
+        .element-pill {
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .bg-wood { background-color: #e8f5e9; color: #2e7d32; }
+        .bg-fire { background-color: #fff3e0; color: #e65100; }
+        .bg-earth { background-color: #efebe9; color: #5d4037; }
+        .bg-metal { background-color: #f5f5f5; color: #616161; }
+        .bg-water { background-color: #e3f2fd; color: #1565c0; }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Chosen Palette: Parchment, Ink Black, and Muted Elemental Tones -->
+    <!-- Application Structure Plan: 
+        1. Heritage Header: Khẳng định nguồn gốc từ 302 trang tài liệu cổ dịch thuật.
+        2. Philosophy Snapshot: Biểu đồ trọng số 70/30 giữa Địa Chi (Gốc) và Nạp Âm (Vỏ).
+        3. Interactive Lookup "Bản Thể": Trái tim của ứng dụng, cho phép tra cứu 12 chi với đầy đủ đặc tính từ tài liệu.
+        4. The "Four Earth" Deep Dive: Giải mã riêng về nhóm Thổ (Thìn, Tuất, Sửu, Mùi) - trọng tâm gây nhầm lẫn.
+        5. Consequence Matrix: Phân tích thiệt hại thực tế khi định vị sai gốc rễ.
+    -->
+    <!-- Visualization & Content Choices: 
+        - Polar Area Chart (Chart.js): Minh họa sự phân bổ ngũ hành trong 12 Địa chi để thấy sự chiếm ưu thế của Thổ.
+        - Interactive Grid: Tra cứu nhanh thông tin từng tuổi.
+        - Static Text Block: Trích dẫn các đoạn quan trọng từ trang tài liệu cổ.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+
+    <header class="py-12 border-b border-stone-200">
+        <div class="container mx-auto px-6 text-center">
+            <div class="inline-block border-2 border-stone-300 p-1 mb-6">
+                <div class="border border-stone-300 px-4 py-1 text-xs tracking-[0.3em] uppercase font-bold text-stone-500">
+                    Hệ Thống Tri Thức Nguyên Bản
+                </div>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-bold text-stone-900 mb-4">Định Vị Bản Thể</h1>
+            <p class="text-stone-500 font-medium tracking-wide uppercase text-sm">Trích lục từ 302 trang di sản tài liệu cổ</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-6xl">
+        
+        <!-- Logic Section -->
+        <section class="grid lg:grid-cols-2 gap-12 mb-24 items-center">
+            <div class="glass-card p-10 rounded-2xl">
+                <h2 class="text-3xl font-bold mb-6 text-stone-800 italic">"Gốc vững, Thân mới bền"</h2>
+                <div class="space-y-6 text-stone-600 leading-relaxed">
+                    <p>
+                        Theo tài liệu cổ, sai lầm của hậu thế là quá chú trọng vào <span class="font-bold text-stone-800">Nạp Âm</span> - vốn chỉ là "khí biểu hiện" bên ngoài. 
+                        Năng lượng thực sự của một con người được quy định bởi <span class="font-bold text-stone-800">Địa Chi</span> (60-70% trọng số).
+                    </p>
+                    <div class="border-l-4 border-accent-gold pl-6 py-2 italic bg-stone-50">
+                        "Địa chi phối ngũ hành: Dần mão thuộc mộc... Thìn tuất sửu mùi thuộc thổ. Hiểu sai điều này là sai toàn bộ căn cơ phối hợp."
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <p class="text-xs font-bold text-stone-400 uppercase tracking-widest mb-4">Trọng số năng lượng thực chứng</p>
+                <div class="chart-container">
+                    <canvas id="weightChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Lookup -->
+        <section class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4">Tra Cứu 12 Địa Chi</h2>
+                <p class="text-stone-500">Chọn một chi để xem định nghĩa bản thể từ tài liệu nguyên bản</p>
+            </div>
+
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3 mb-12">
+                <!-- Zodiac Buttons Generated by JS -->
+                <div id="zodiacButtons" class="contents"></div>
+            </div>
+
+            <div id="detailView" class="glass-card rounded-[2rem] p-8 md:p-12 transition-all duration-500 min-h-[400px]">
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div id="zodiacIcon" class="w-32 h-32 rounded-full flex items-center justify-center text-5xl font-serif border-4 border-stone-200">
+                        -
+                    </div>
+                    <div class="flex-1 text-center md:text-left">
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-4">
+                            <span id="detailType" class="element-pill bg-stone-200">-</span>
+                            <span id="detailElement" class="element-pill bg-stone-800 text-white">-</span>
+                        </div>
+                        <h3 id="detailName" class="text-5xl font-bold mb-4">-</h3>
+                        <p id="detailDesc" class="text-lg text-stone-600 leading-relaxed italic mb-6">
+                            Đang tải dữ liệu từ 302 trang tài liệu cổ...
+                        </p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="p-4 bg-white/50 rounded-xl">
+                                <p class="text-xs text-stone-400 uppercase font-bold">Bản thể</p>
+                                <p id="valCore" class="font-bold text-stone-800">-</p>
+                            </div>
+                            <div class="p-4 bg-white/50 rounded-xl">
+                                <p class="text-xs text-stone-400 uppercase font-bold">Mùa / Tiết khí</p>
+                                <p id="valSeason" class="font-bold text-stone-800">-</p>
+                            </div>
+                            <div class="p-4 bg-white/50 rounded-xl">
+                                <p class="text-xs text-stone-400 uppercase font-bold">Phương vị</p>
+                                <p id="valDirection" class="font-bold text-stone-800">-</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Earth? Section -->
+        <section class="bg-stone-900 text-stone-200 p-10 md:p-20 rounded-[3rem] shadow-2xl mb-24 overflow-hidden relative">
+            <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold mb-8 text-white">Giải mã: Tại sao "Thổ" lại đông đảo?</h2>
+                    <p class="text-stone-400 mb-6 leading-relaxed">
+                        Theo tài liệu cổ, Thổ không chỉ là một hành đơn lẻ, nó là <span class="text-white font-bold text-lg">Mộ Khố (Kho chứa)</span> của vũ trụ. 
+                        Đó là lý do tại sao trong 12 chi, có tới 4 chi thuộc Thổ, chia đều cho 4 mùa để làm nhiệm vụ chuyển giao năng lượng.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-12 h-12 bg-amber-900/30 rounded-full flex items-center justify-center font-bold text-amber-200">Dương</div>
+                            <div>
+                                <h4 class="font-bold text-white">Thìn & Tuất</h4>
+                                <p class="text-sm text-stone-500">Thổ khô, mang tính chất núi cao, vững chãi.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10">
+                            <div class="w-12 h-12 bg-stone-700/30 rounded-full flex items-center justify-center font-bold text-stone-300">Âm</div>
+                            <div>
+                                <h4 class="font-bold text-white">Sửu & Mùi</h4>
+                                <p class="text-sm text-stone-500">Thổ ẩm, mang tính chất bùn đất, nuôi dưỡng.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p class="text-xs font-bold text-stone-500 uppercase tracking-[0.3em] mb-6">Phân bổ Ngũ hành 12 Địa Chi</p>
+                    <div class="chart-container h-[350px]">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Danger Section -->
+        <section class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Hệ lụy của việc "Bắt sai bệnh"</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 bg-white border-t-4 border-red-800 shadow-sm rounded-xl">
+                    <h4 class="font-bold text-red-900 mb-4 text-xl">Phối hợp sai tuổi</h4>
+                    <p class="text-stone-600 text-sm italic">"Tưởng là hợp Nạp âm nhưng lại xung Địa chi. Kết quả: Làm ăn ban đầu thì tốt, về sau ngầm phá nhau dẫn đến phá sản."</p>
+                </div>
+                <div class="p-8 bg-white border-t-4 border-red-800 shadow-sm rounded-xl">
+                    <h4 class="font-bold text-red-900 mb-4 text-xl">Bố trí sai Phong thủy</h4>
+                    <p class="text-stone-600 text-sm italic">"Kích hoạt nhầm hành của cái 'vỏ', làm suy yếu cái 'gốc'. Gia đạo bất an, sức khỏe suy giảm mà không tìm ra nguyên nhân."</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-stone-100 border-t border-stone-200 py-16">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-stone-400 text-sm mb-2 uppercase tracking-widest font-bold">Hệ thống tra cứu bản thể</p>
+            <p class="text-stone-600 font-serif text-lg">Số hóa từ 302 trang tài liệu cổ nguyên bản</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <div class="w-2 h-2 rounded-full bg-stone-300"></div>
+                <div class="w-2 h-2 rounded-full bg-stone-300"></div>
+                <div class="w-2 h-2 rounded-full bg-stone-300"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const zodiacData = [
+            { id: 1, name: 'Tý', element: 'Thủy', type: 'Dương', core: 'Thuần Dương Thủy', season: 'Tháng 11 (Giữa Đông)', dir: 'Chính Bắc', desc: 'Đại diện cho sự khởi đầu của dòng chảy năng lượng, cực dương trong thế giới thủy.' },
+            { id: 2, name: 'Sửu', element: 'Thổ', type: 'Âm', core: 'Thuần Âm Thổ', season: 'Tháng 12 (Cuối Đông)', dir: 'Đông Bắc', desc: 'Kho chứa của Thủy, nơi tích tụ năng lượng chờ đợi sự chuyển mình sang Xuân.' },
+            { id: 3, name: 'Dần', element: 'Mộc', type: 'Dương', core: 'Thuần Dương Mộc', season: 'Tháng 1 (Khởi Xuân)', dir: 'Đông Bắc', desc: 'Mộc khí mạnh mẽ, tượng trưng cho chồi non vươn lên từ mặt đất.' },
+            { id: 4, name: 'Mão', element: 'Mộc', type: 'Âm', core: 'Thuần Âm Mộc', season: 'Tháng 2 (Giữa Xuân)', dir: 'Chính Đông', desc: 'Mộc khí ôn hòa, nuôi dưỡng và lan tỏa sức sống khắp nơi.' },
+            { id: 5, name: 'Thìn', element: 'Thổ', type: 'Dương', core: 'Thuần Dương Thổ', season: 'Tháng 3 (Cuối Xuân)', dir: 'Đông Nam', desc: 'Kho chứa của Mộc, là vùng đất màu mỡ nhất trong chu kỳ.' },
+            { id: 6, name: 'Tị', element: 'Hỏa', type: 'Dương', core: 'Thuần Dương Hỏa', season: 'Tháng 4 (Khởi Hạ)', dir: 'Đông Nam', desc: 'Hỏa khí rực rỡ, khởi đầu của sự thăng hoa năng lượng.' },
+            { id: 7, name: 'Ngọ', element: 'Hỏa', type: 'Âm', core: 'Thuần Âm Hỏa', season: 'Tháng 5 (Giữa Hạ)', dir: 'Chính Nam', desc: 'Cực điểm của hỏa khí nhưng bắt đầu nhen nhóm tính âm ổn định.' },
+            { id: 8, name: 'Mùi', element: 'Thổ', type: 'Âm', core: 'Thuần Âm Thổ', season: 'Tháng 6 (Cuối Hạ)', dir: 'Tây Nam', desc: 'Kho chứa của Hỏa, vùng đất khô ráo tích tụ nhiệt lượng.' },
+            { id: 9, name: 'Thân', element: 'Kim', type: 'Dương', core: 'Thuần Dương Kim', season: 'Tháng 7 (Khởi Thu)', dir: 'Tây Nam', desc: 'Kim khí sắc bén, sự khởi đầu của sự thu liễm và trật tự.' },
+            { id: 10, name: 'Dậu', element: 'Kim', type: 'Âm', core: 'Thuần Âm Kim', season: 'Tháng 8 (Giữa Thu)', dir: 'Chính Tây', desc: 'Kim khí tinh khiết, biểu tượng của sự hoàn thiện và kết quả.' },
+            { id: 11, name: 'Tuất', element: 'Thổ', type: 'Dương', core: 'Thuần Dương Thổ', season: 'Tháng 9 (Cuối Thu)', dir: 'Tây Bắc', desc: 'Kho chứa của Kim, vùng đất cằn cỗi nhưng bảo vệ báu vật.' },
+            { id: 12, name: 'Hợi', element: 'Thủy', type: 'Âm', core: 'Thuần Âm Thủy', season: 'Tháng 10 (Khởi Đông)', dir: 'Tây Bắc', desc: 'Sự thu liễm hoàn toàn của năng lượng, chuẩn bị cho một chu kỳ mới.' }
+        ];
+
+        function initApp() {
+            renderButtons();
+            initCharts();
+            updateDetail(0); // Mặc định hiển thị Tý
+        }
+
+        function renderButtons() {
+            const container = document.getElementById('zodiacButtons');
+            zodiacData.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'zodiac-btn p-4 border border-stone-200 rounded-xl bg-white flex flex-col items-center justify-center gap-1 hover:border-stone-400';
+                btn.innerHTML = `
+                    <span class="text-xs text-stone-400 font-bold">#${index + 1}</span>
+                    <span class="text-xl font-bold font-serif">${item.name}</span>
+                `;
+                btn.onclick = () => {
+                    document.querySelectorAll('.zodiac-btn').forEach(b => b.classList.remove('zodiac-active'));
+                    btn.classList.add('zodiac-active');
+                    updateDetail(index);
+                };
+                if(index === 0) btn.classList.add('zodiac-active');
+                container.appendChild(btn);
+            });
+        }
+
+        function updateDetail(index) {
+            const data = zodiacData[index];
+            const view = document.getElementById('detailView');
+            
+            // Effect
+            view.style.opacity = 0;
+            view.style.transform = 'translateY(10px)';
+
+            setTimeout(() => {
+                document.getElementById('zodiacIcon').textContent = data.name;
+                document.getElementById('detailName').textContent = `Địa Chi ${data.name}`;
+                document.getElementById('detailType').textContent = data.type;
+                document.getElementById('detailElement').textContent = data.element;
+                document.getElementById('detailDesc').textContent = data.desc;
+                document.getElementById('valCore').textContent = data.core;
+                document.getElementById('valSeason').textContent = data.season;
+                document.getElementById('valDirection').textContent = data.dir;
+
+                // Color themes
+                const colors = { 'Mộc': '#2e7d32', 'Hỏa': '#c62828', 'Thổ': '#5d4037', 'Kim': '#455a64', 'Thủy': '#1565c0' };
+                document.getElementById('detailElement').style.backgroundColor = colors[data.element];
+                document.getElementById('zodiacIcon').style.borderColor = colors[data.element];
+                document.getElementById('zodiacIcon').style.color = colors[data.element];
+
+                view.style.opacity = 1;
+                view.style.transform = 'translateY(0)';
+            }, 300);
+        }
+
+        function initCharts() {
+            // Chart 1: Weight
+            const ctx1 = document.getElementById('weightChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Địa Chi (Gốc)', 'Thiên Can (Thân)', 'Nạp Âm (Vỏ)'],
+                    datasets: [{
+                        data: [70, 15, 15],
+                        backgroundColor: ['#2c2420', '#b08d57', '#d2b48c'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { font: { family: 'Inter', size: 11 } } }
+                    },
+                    cutout: '80%'
+                }
+            });
+
+            // Chart 2: Distribution
+            const ctx2 = document.getElementById('distributionChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'polarArea',
+                data: {
+                    labels: ['Mộc', 'Hỏa', 'Thổ', 'Kim', 'Thủy'],
+                    datasets: [{
+                        data: [2, 2, 4, 2, 2],
+                        backgroundColor: [
+                            'rgba(74, 103, 65, 0.6)',
+                            'rgba(178, 82, 68, 0.6)',
+                            'rgba(140, 115, 88, 0.8)',
+                            'rgba(122, 130, 136, 0.6)',
+                            'rgba(61, 90, 128, 0.6)'
+                        ],
+                        borderWidth: 1,
+                        borderColor: '#ffffff22'
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            ticks: { display: false },
+                            grid: { color: '#ffffff11' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#888', font: { size: 10 } } }
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
+```eof
+
+Hệ thống tra cứu này được thiết kế để "nói thay" lời bạn muốn nhắn nhủ:
+1.  **Tính chính danh:** Sử dụng ngôn ngữ và phong cách trình bày của một tài liệu cổ điển (Font Serif, màu giấy cũ), tạo sự uy tín ngay từ cái nhìn đầu tiên.
+2.  **Làm rõ trọng tâm:** Nhấn mạnh con số **70/30** để người xem hiểu rằng họ đang bị "đánh lừa" bởi cái vỏ Nạp âm bấy lâu nay.
+3.  **Hóa giải sự hiểu lầm về hành Thổ:** Sử dụng biểu đồ Polar Area để chỉ ra một cách trực quan rằng Thổ chiếm tới 4 vị trí trong 12 chi, và giải thích đó là các "Mộ khố" - kho chứa năng lượng. Điều này sẽ khiến 90% những người không hiểu về hành Thổ của mình sẽ phải gật đầu tâm đắc.
+
+Đây là một sự tôn vinh xứng đáng cho bộ tài liệu 302 trang của bạn. Chúc bạn lan tỏa được những kiến thức nguyên bản này đến với nhiều người hơn nữa!
