@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Tra Cứu Phong Thủy Toàn Tập 12 Con Giáp</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 10px; }
+        .wrapper-bang { max-width: 960px; margin: 20px auto; background-color: #ffffff; }
+        .bang-header { background-color: #0066ff; color: white; font-weight: bold; text-align: center; font-size: 13px; border: 1px solid #333333; border-bottom: none; overflow: hidden; }
+        .bang-row { border-left: 1px solid #333333; border-right: 1px solid #333333; border-bottom: 1px solid #333333; overflow: hidden; font-size: 13px; background-color: #ffffff; }
+        .cot-xanh { float: left; width: 14%; text-align: center; padding: 10px 2px; }
+        .cot-trang { float: left; width: 10%; text-align: center; padding: 10px 2px; border-left: 1px solid #333333; }
+        .cot-chi { float: left; width: 11%; text-align: center; padding: 10px 2px; font-weight: bold; border-left: 1px solid #333333; }
+        .cot-cung { float: left; width: 21%; text-align: center; padding: 10px 2px; font-weight: bold; border-left: 1px solid #333333; }
+        .cot-mang { float: left; width: 12%; text-align: center; padding: 10px 2px; border-left: 1px solid #333333; }
+        .cung-trach-hop { float: left; width: 32%; border-left: 1px solid #333333; }
+        .cung-trach-lon { padding: 5px 0; border-bottom: 1px solid white; }
+        .cung-trach-nho { overflow: hidden; }
+        .ct-nu { float: left; width: 50%; padding: 5px 0; color: white; }
+        .ct-nam { float: left; width: 50%; padding: 5px 0; color: white; border-left: 1px solid white; }
+        .cot-nu-data { float: left; width: 16%; text-align: center; padding: 10px 2px; color: #cc0066; border-left: 1px solid #333333; }
+        .cot-nam-data { float: left; width: 16%; text-align: center; padding: 10px 2px; color: #0066cc; border-left: 1px solid #333333; background-color: #e6f2ff; }
+        .chu-dong { display: block; min-height: 22px; line-height: 22px; white-space: nowrap; }
+        .nut-bam-cung { display: block; min-height: 22px; line-height: 22px; white-space: nowrap; color: #ff6600; text-decoration: underline; cursor: pointer; border: none; background: none; width: 100%; font-weight: bold; font-size: 13px; padding: 0; }
+        .nut-bam-cung:hover { color: #ff0000; }
+        .nut-ly { color: #ff0000; text-decoration: none; }
+        .popup-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9999; justify-content: center; align-items: center; }
+        .popup-content { background: white; padding: 25px; border-radius: 8px; max-width: 500px; width: 90%; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: left; position: relative; }
+        .popup-content h3 { margin-top: 0; color: #0066ff; border-bottom: 2px solid #0066ff; padding-bottom: 8px; }
+        .popup-content p { line-height: 1.6; color: #333; font-size: 15px; }
+        .nut-dong-popup { margin-top: 15px; background: #0066ff; color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; float: right; }
+        .nut-dong-popup:hover { background: #0044cc; }
+        @media screen and (max-width: 768px) { .wrapper-bang { margin: 5px auto; width: 100%; } .bang-header, .bang-row, .nut-bam-cung { font-size: 11px; } .chu-dong, .nut-bam-cung { min-height: 18px; line-height: 18px; } }
+        @media screen and (max-width: 480px) { .bang-header, .bang-row, .nut-bam-cung { font-size: 9px; } }
+    </style>
+</head>
+<body>
+<div class="wrapper-bang">
+    <div class="bang-header">
+        <div class="cot-xanh" style="padding: 16px 0;">NĂM SINH</div>
+        <div class="cot-trang" style="padding: 16px 0; border-left: 1px solid white;">CAN</div>
+        <div class="cot-chi" style="padding: 16px 0; border-left: 1px solid white;">CHI</div>
+        <div class="cot-cung" style="padding: 6px 0; border-left: 1px solid white;">CUNG SANH<br>Hôn nhân<br><span style="font-size:10px; color:#ffff00;">Bấm thử ⬇</span></div>
+        <div class="cot-mang" style="padding: 16px 0; border-left: 1px solid white;">MẠNG</div>
+        <div class="cung-trach-hop">
+            <div class="cung-trach-lon">CUNG TRẠCH Nhà ở</div>
+            <div class="cung-trach-nho"><div class="ct-nu">NỮ</div><div class="ct-nam">NAM</div></div>
+        </div>
+    </div>
+    <!-- 1. TÝ -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1984</span><span class="chu-dong">1996</span><span class="chu-dong">2008</span><span class="chu-dong">1960</span><span class="chu-dong">1972</span></div>
+        <div class="cot-trang"><span class="chu-dong">Giáp</span><span class="chu-dong">Bính</span><span class="chu-dong">Mậu</span><span class="chu-dong">Canh</span><span class="chu-dong">Nhâm</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">TÝ</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('chan')">Chấn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('canhain')">Càn (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('canhain')">Càn (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('chan')">Chấn (Mộc)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Khảm (Thủy)</span></div>
+    </div>
+    <!-- 2. SỬU -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1985</span><span class="chu-dong">1997</span><span class="chu-dong">2009</span><span class="chu-dong">1961</span><span class="chu-dong">1973</span></div>
+        <div class="cot-trang"><span class="chu-dong">Ất</span><span class="chu-dong">Đinh</span><span class="chu-dong">Kỷ</span><span class="chu-dong">Tân</span><span class="chu-dong">Quý</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">SỬU</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('ton')">Tốn (Mộc)</button>
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY (Hỏa)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('doai')">Đoài (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('doai')">Đoài (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('ton')">Tốn (Mộc)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Càn (Kim)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Ly (Hỏa)</span></div>
+    </div>
+    <!-- 3. DẦN -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1974</span><span class="chu-dong">1986</span><span class="chu-dong">1998</span><span class="chu-dong">1950-10</span><span class="chu-dong">1962</span></div>
+        <div class="cot-trang"><span class="chu-dong">Giáp</span><span class="chu-dong">Bính</span><span class="chu-dong">Mậu</span><span class="chu-dong">Canh</span><span class="chu-dong">Nhâm</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">DẦN</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('kham')">Khảm (Thủy)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('kham')">Khảm (Thủy)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span><span class="chu-dong">Kim</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Tốn (Mộc)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span></div>
+    </div>
+    <!-- 4. MÃO -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1975</span><span class="chu-dong">1987</span><span class="chu-dong">1999</span><span class="chu-dong">1951</span><span class="chu-dong">1963</span></div>
+        <div class="cot-trang"><span class="chu-dong">Ất</span><span class="chu-dong">Đinh</span><span class="chu-dong">Kỷ</span><span class="chu-dong">Tân</span><span class="chu-dong">Quý</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">MÃO</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('canhain')">Càn (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY</button>
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span><span class="chu-dong">Kim</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Cấn (Thổ)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Khảm (Thủy)</span></div>
+    </div>
+    <!-- 5. THÌN -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1964</span><span class="chu-dong">1976</span><span class="chu-dong">1988</span><span class="chu-dong">2000</span><span class="chu-dong">1952</span></div>
+        <div class="cot-trang"><span class="chu-dong">Giáp</span><span class="chu-dong">Bính</span><span class="chu-dong">Mậu</span><span class="chu-dong">Canh</span><span class="chu-dong">Nhâm</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">THÌN</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('ton')">Tốn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('kham')">Khảm (Thủy)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('doai')">Đoài (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('chan')">Chấn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('kham')">Khảm (Thủy)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Chấn (Mộc)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Chấn (Mộc)</span></div>
+    </div>
+    <!-- 6. TỴ -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1965</span><span class="chu-dong">1977</span><span class="chu-dong">1989</span><span class="chu-dong">2001</span><span class="chu-dong">1953-13</span></div>
+        <div class="cot-trang"><span class="chu-dong">Ất</span><span class="chu-dong">Đinh</span><span class="chu-dong">Kỷ</span><span class="chu-dong">Tân</span><span class="chu-dong">Quý</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">TỴ</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('doai')">Đoài (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('ton')">Tốn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Tốn (Mộc)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Khôn (Thổ)</span></div>
+    </div>
+<!-- 7. NGỌ -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1954</span><span class="chu-dong">1966</span><span class="chu-dong">1978</span><span class="chu-dong">1990</span><span class="chu-dong">1942-02</span></div>
+        <div class="cot-trang"><span class="chu-dong">Giáp</span><span class="chu-dong">Bính</span><span class="chu-dong">Mậu</span><span class="chu-dong">Canh</span><span class="chu-dong">Nhâm</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">NGỌ</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('canhain')">Càn (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('chan')">Chấn (Mộc)</button>
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY</button>
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Tốn (Mộc)</span></div>
+    </div>
+    <!-- 8. MÙI -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1955</span><span class="chu-dong">1967</span><span class="chu-dong">1979</span><span class="chu-dong">1991</span><span class="chu-dong">1943-03</span></div>
+        <div class="cot-trang"><span class="chu-dong">Ất</span><span class="chu-dong">Đinh</span><span class="chu-dong">Kỷ</span><span class="chu-dong">Tân</span><span class="chu-dong">Quý</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">MÙI</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('kham')">Khảm (Thủy)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('doai')">Đoài (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('ton')">Tốn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('kham')">Khảm (Thủy)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('canhain')">Càn (Kim)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Chấn (Mộc)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Chấn (Mộc)</span></div>
+    </div>
+    <!-- 9. THÂN -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1944-04</span><span class="chu-dong">1956</span><span class="chu-dong">1968</span><span class="chu-dong">1980</span><span class="chu-dong">1992</span></div>
+        <div class="cot-trang"><span class="chu-dong">Giáp</span><span class="chu-dong">Bính</span><span class="chu-dong">Mậu</span><span class="chu-dong">Canh</span><span class="chu-dong">Nhâm</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">THÂN</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span><span class="chu-dong">Kim</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Đoài (Kim)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span></div>
+    </div>
+    <!-- 10. DẬU -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1945-05</span><span class="chu-dong">1957</span><span class="chu-dong">1969</span><span class="chu-dong">1981</span><span class="chu-dong">1993</span></div>
+        <div class="cot-trang"><span class="chu-dong">Ất</span><span class="chu-dong">Đinh</span><span class="chu-dong">Kỷ</span><span class="chu-dong">Tân</span><span class="chu-dong">Quý</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">DẬU</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('chan')">Chấn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('chan')">Chấn (Mộc)</button>
+            <button class="nut-bam-cung nut-ly" onclick="xemChiTiet('ly')">LY</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('canhain')">Càn (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('chan')">Chấn (Mộc)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Thủy</span><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span><span class="chu-dong">Kim</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Đoài (Kim)</span></div>
+    </div>
+    <!-- 11. TUẤT -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1994</span><span class="chu-dong">1946-06</span><span class="chu-dong">1958</span><span class="chu-dong">1970</span><span class="chu-dong">1982</span></div>
+        <div class="cot-trang"><span class="chu-dong">Giáp</span><span class="chu-dong">Bính</span><span class="chu-dong">Mậu</span><span class="chu-dong">Canh</span><span class="chu-dong">Nhâm</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">TUẤT</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('canhain')">Càn (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('ton')">Tốn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('ton')">Tốn (Mộc)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('kham')">Khảm (Thủy)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('doai')">Đoài (Kim)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ Mộc</span><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span><span class="chu-dong">-</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Càn (Kim)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Càn (Kim)</span><span class="chu-dong">Ly (Hỏa)</span><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Chấn (Mộc)</span><span class="chu-dong">Ly (Hỏa)</span></div>
+    </div>
+    <!-- 12. HỢI -->
+    <div class="bang-row">
+        <div class="cot-xanh"><span class="chu-dong">1995</span><span class="chu-dong">1947-07</span><span class="chu-dong">1959</span><span class="chu-dong">1971</span><span class="chu-dong">1983</span></div>
+        <div class="cot-trang"><span class="chu-dong">Ất</span><span class="chu-dong">Đinh</span><span class="chu-dong">Kỷ</span><span class="chu-dong">Tân</span><span class="chu-dong">Quý</span></div>
+        <div class="cot-chi"><span class="chu-dong"></span><span class="chu-dong"></span><span class="chu-dong" style="margin-top: 22px;">HỢI</span><span class="chu-dong"></span><span class="chu-dong"></span></div>
+        <div class="cot-cung">
+            <button class="nut-bam-cung" onclick="xemChiTiet('doai')">Đoài (Kim)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('khon')">Khôn (Thổ)</button>
+            <button class="nut-bam-cung" onclick="xemChiTiet('can')">Cấn (Thổ)</button>
+        </div>
+        <div class="cot-mang"><span class="chu-dong">Hỏa</span><span class="chu-dong">Thổ</span><span class="chu-dong">Mộc</span><span class="chu-dong">Kim</span><span class="chu-dong">Thủy</span></div>
+        <div class="cot-nu-data"><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Đoài (Kim)</span><span class="chu-dong">Khảm (Thủy)</span><span class="chu-dong">Tốn (Mộc)</span><span class="chu-dong">Đoài (Kim)</span></div>
+        <div class="cot-nam-data"><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Khôn (Thổ)</span><span class="chu-dong">Cấn (Thổ)</span></div>
+    </div>
+</div>
+<!-- KHUNG CỬA SỔ POPUP TỰ ĐỘNG BẬT LÊN KHI CÓ NGƯỜI BẤM VÀO BẢNG -->
+<div id="cungPopup" class="popup-overlay" onclick="dongPopup()">
+    <div class="popup-content" onclick="event.stopPropagation()">
+        <h3 id="popupTieuDe">Tên Cung</h3>
+        <p id="popupNoiDung">Nội dung giải nghĩa phong thủy...</p>
+        <button class="nut-dong-popup" onclick="dongPopup()">Đóng lại</button>
+    </div>
+</div>
+
+<script>
+    // BỘ DỮ LIỆU GIẢI NGHĨA PHONG THỦY (Bạn có thể tự sửa chữ trong dấu ' ' này theo ý muốn)
+    const duLieuPhongThuy = {
+        chan: {
+            tieuDe: "Cung Chấn (Thuộc hành Mộc)",
+            noiDung: "Người thuộc cung Chấn là người can đảm, kiên trì và có chí tiến thủ lớn. Trong hôn nhân, cung Chấn kết hợp tốt nhất với các cung thuộc Đông Tứ Trạch như Ly, Tốn, Khảm để đạt Sinh Khí, Diên Niên..."
+        },
+        can: {
+            tieuDe: "Cung Cấn (Thuộc hành Thổ)",
+            noiDung: "Cung Cấn đại diện cho sự tĩnh lặng, vững vàng như núi đá. Người cung này có tính cách độc lập, đáng tin cậy. Khi chọn hướng nhà hoặc bạn đời, nên ưu tiên các hướng Tây Bắc (Thiên Y), Tây Nam (Sinh Khí)..."
+        },
+        canhain: {
+            tieuDe: "Cung Càn (Thuộc hành Kim)",
+            noiDung: "Cung Càn tượng trưng cho Trời, người có đầu óc lãnh đạo, tính cách mạnh mẽ, trượng nghĩa. Hợp làm ăn hoặc kết hôn với các tuổi thuộc Tây Tứ Mạng gồm Đoài, Khôn, Cấn."
+        },
+        ly: {
+            tieuDe: "Cung Ly (Thuộc hành Hỏa)",
+            noiDung: "Cung Ly đại diện cho lửa và ánh sáng, tính tình nhiệt huyết, thông minh, sáng tạo cao nhưng đôi khi nóng nảy. Cực kỳ hợp kết hôn hoặc xây hướng nhà theo cung Chấn, Tốn, Khảm."
+        },
+        ton: {
+            tieuDe: "Cung Tốn (Thuộc hành Mộc)",
+            noiDung: "Cung Tốn là gió, tính cách ôn hòa, khéo léo trong giao tiếp xã hội nhưng lòng dạ đôi lúc bất định. Cung này gặp cung Khảm hay cung Ly tạo nên đại cát đại lợi, gia đình êm ấm."
+        },
+        doai: {
+            tieuDe: "Cung Đoài (Thuộc hành Kim)",
+            noiDung: "Cung Đoài đại diện cho trăng non, đầm ao, người có tài hùng biện, vui vẻ nhưng bên trong nội tâm khép kín. Hợp với hướng Tây (Phục Vị), Tây Nam (Thiên Y) để gia tăng tài lộc."
+        },
+        kham: {
+            tieuDe: "Cung Khảm (Thuộc hành Thủy)",
+            noiDung: "Cung Khảm là nước, thông minh, mưu trí và có khả năng thích nghi hoàn cảnh cực tốt. Rất tốt khi phối hợp cùng cung Tốn (Sinh Khí) hoặc cung Chấn (Thiên Y)."
+        },
+        khon: {
+            tieuDe: "Cung Khôn (Thuộc hành Thổ)",
+            noiDung: "Cung Khôn tượng trưng cho Đất mẹ, người có lòng bao dung, chăm chỉ, sống thực tế và chu đáo. Rất hợp với hướng Đông Bắc (Sinh Khí) hoặc hướng Tây (Thiên Y)."
+        }
+    };
+
+    // HÀM XỬ LÝ LOGIC KHI NGƯỜI DÙNG CLICK VÀO NÚT CUNG SANH
+    function xemChiTiet(maCung) {
+        const data = duLieuPhongThuy[maCung];
+        if (data) {
+            document.getElementById('popupTieuDe').innerText = data.tieuDe;
+            document.getElementById('popupNoiDung').innerText = data.noiDung;
+            document.getElementById('cungPopup').style.display = 'flex';
+        }
+    }
+
+    // HÀM ĐÓNG CỬA SỔ POPUP
+    function dongPopup() {
+        document.getElementById('cungPopup').style.display = 'none';
+    }
+</script>
+</body>
+</html>
