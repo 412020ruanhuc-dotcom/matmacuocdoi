@@ -3,98 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cẩm Nang Phong Thủy Tương Tác Tuổi Mão - Tháng 6/2026</title>
-    <!-- Tailwind CSS và Chart.js phục vụ trực quan hóa dữ liệu -->
+    <title>Hệ Thống Phong Thủy Học Thuật Cao Cấp Tuổi Mão - Tháng 6 Ất Mùi 2026</title>
+    <!-- Sử dụng Tailwind CSS cho giao diện hiện đại, tối ưu hóa di động -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Sử dụng Chart.js để vẽ biểu đồ phân tích tỷ lệ 70-30% chính xác -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Google Font Inter và Playfair Display mang phong cách cổ điển sang trọng -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap');
         
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #faf6f0; 
-            color: #2d3748; 
+            background-color: #f7f4eb; 
+            color: #1c1917; 
         }
         .serif-title {
             font-family: 'Playfair Display', serif;
         }
         .card-shadow { 
-            box-shadow: 0 10px 30px -5px rgba(124, 26, 34, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02); 
+            box-shadow: 0 20px 40px -15px rgba(124, 26, 34, 0.08), 0 4px 10px -5px rgba(0, 0, 0, 0.04); 
         }
-        .border-imperial {
-            border-color: #7c1a22;
-        }
-        .text-imperial {
-            color: #7c1a22;
-        }
-        .bg-imperial {
-            background-color: #7c1a22;
-        }
-        .bg-parchment {
-            background-color: #fdfbf7;
-        }
-        /* Hiệu ứng chuyển động mượt mà cho cổng mở */
+        /* Hiệu ứng chuyển động mượt mà cho các Cổng Mở */
         .accordion-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), padding 0.6s ease-out;
         }
         .accordion-content.open {
-            max-height: 2000px; /* Đủ lớn để chứa toàn bộ nội dung không bị cắt xén */
-            transition: max-height 0.8s ease-in;
+            max-height: 3000px;
+            transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
-<body class="py-6 px-4 md:px-8">
+<body class="py-8 px-4 md:px-12 bg-[#faf7f0]">
 
-    <div class="max-w-6xl mx-auto">
-        <header class="text-center mb-10 border-b-2 border-amber-800/20 pb-8">
-            <div class="inline-block text-xs font-bold uppercase tracking-widest text-amber-800 bg-amber-100 px-4 py-1.5 rounded-full mb-3">
-                MẬT MÃ CUỘC ĐỜI - TỬ VI -PHONG THỦY - NĂNG LƯỢNG SỐ
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-12 border-b-4 border-[#7c1a22]/30 pb-10">
+            <div class="inline-block text-xs font-bold uppercase tracking-widest text-amber-900 bg-amber-100 border border-amber-800/30 px-5 py-2 rounded-full mb-4">
+                MẬT MÃ CUỘC ĐỜI CHUYÊN GIA TỬ VI - PHONG THỦY - NĂNG LƯỢNG SỐ 
             </div>
-            <h1 class="text-3xl md:text-5xl font-black text-amber-900 uppercase tracking-tight serif-title mb-3">
-                Cẩm Nang Phong Thủy Tuổi Mão
+            <h1 class="text-4xl md:text-6xl font-black text-[#7c1a22] uppercase tracking-tight serif-title mb-4">
+                CẨM NĂNG PHONG THỦY TUỔI MÃO 2026
             </h1>
-            <p class="text-lg md:text-xl text-stone-600 font-light italic">
-                Tháng 6 Ất Mùi 2026 (Tiết khí: Tiểu Thử - Đại Thử)
+            <p class="text-xl md:text-2xl text-stone-700 font-medium italic serif-title max-w-3xl mx-auto">
+                Luận Giải Chi Tiết Tháng 6 Ất Mùi (Tiết Khí: Tiểu Thử - Đại Thử) | Hệ Thống Đối Soát Lịch Số 30 Ngày Đủ 100% Khớp Thực Tế
             </p>
-            <div class="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-800 rounded-lg text-sm border border-emerald-200">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Ứng dụng Hệ thức chuẩn: 70% Mệnh Gốc Địa Chi - 30% Ngũ Hành Nạp Âm</span>
+            <div class="mt-6 inline-flex items-center gap-3 px-5 py-3 bg-red-50 text-[#7c1a22] rounded-xl text-xs md:text-sm border border-[#7c1a22]/20 font-semibold shadow-sm">
+                <span class="w-3 h-3 rounded-full bg-[#7c1a22] animate-ping"></span>
+                <span>Khuyến cáo nghiêm túc: Đối soát kỹ lưỡng Lịch số để tránh sai lầm tai hại khi chọn ngày khởi sự.</span>
             </div>
         </header>
 
-        <section class="mb-10 bg-white rounded-2xl border border-stone-200/80 card-shadow overflow-hidden">
-            <button onclick="toggleAccordion('theory-content', 'theory-icon')" class="w-full text-left p-6 flex justify-between items-center bg-stone-50 border-b border-stone-100 hover:bg-stone-100/50 transition-all">
-                <div class="flex items-center gap-4">
-                    <span class="text-3xl">📖</span>
+        <section class="mb-12 bg-white rounded-2xl border border-stone-200 card-shadow overflow-hidden">
+            <button onclick="toggleAccordion('theory-content', 'theory-icon')" class="w-full text-left p-6 md:p-8 flex justify-between items-center bg-stone-50 border-b border-stone-100 hover:bg-stone-100/70 transition-all">
+                <div class="flex items-center gap-5">
+                    <span class="text-4xl">📖</span>
                     <div>
-                        <h2 class="text-xl font-bold text-stone-800 serif-title">Học Thuyết Học Thuật: Hệ Thức Phối Hợp 70% - 30%</h2>
-                        <p class="text-xs text-stone-500">Biện giải nguồn gốc Địa Chi (Địa khí thực thể) & Nạp Âm (Tần số giao thoa)</p>
+                        <h2 class="text-2xl font-black text-[#7c1a22] serif-title uppercase tracking-wide">I. Học Thuyết Học Thuật: Hệ Thức Phối Hợp 70% - 30%</h2>
+                        <p class="text-sm text-stone-500 mt-1">Nền tảng triết học biện chứng về Địa Chi (Địa Khí) và Ngũ Hành Nạp Âm (Nhân Khí) - Bản đầy đủ không rút gọn</p>
                     </div>
                 </div>
-                <span id="theory-icon" class="text-2xl transition-transform duration-300 transform">▼</span>
+                <span id="theory-icon" class="text-3xl text-[#7c1a22] transition-transform duration-500 transform">▼</span>
             </button>
             <div id="theory-content" class="accordion-content">
-                <div class="p-6 md:p-8 space-y-6 text-stone-700 leading-relaxed text-sm md:text-base border-t border-stone-100 bg-parchment">
-                    <p class="font-semibold text-stone-800 italic border-l-4 border-amber-700 pl-4 bg-amber-50 py-2">
-                        "Sai lầm phổ biến nhất trong phong thủy đương đại là tuyệt đối hóa vai trò của Ngũ Hành Nạp Âm, quy giản trường năng lượng của một con người vào một thể nạp âm duy nhất..."
+                <div class="p-6 md:p-10 space-y-8 text-stone-800 leading-relaxed text-sm md:text-base border-t border-stone-100 bg-[#fdfcf9]">
+                    <div class="border-l-4 border-[#7c1a22] pl-6 py-2 bg-red-50/50 rounded-r-xl">
+                        <p class="font-bold text-[#7c1a22] italic serif-title text-lg">
+                            "Sai lầm phổ biến nhất trong phong thủy đương đại là tuyệt đối hóa vai trò của Ngũ Hành Nạp Âm, quy giản trường năng lượng của một con người vào một thể nạp âm duy nhất..."
+                        </p>
+                    </div>
+
+                    <p>
+                        Trong giới nghiên cứu và ứng dụng phong thủy đời sống hiện nay, có đến hơn 90% người hoài nghi hoặc áp dụng sai lệch bản mệnh của mình. Sai lầm phổ biến nhất là tuyệt đối hóa vai trò của Ngũ Hành Nạp Âm. Họ mặc định người sinh năm Bính Tý là "Giản Hạ Thủy" (nước dưới khe) thì cả cuộc đời từ màu sắc, hướng nhà, vật phẩm phong thủy đều phải đi theo hành Thủy.
                     </p>
-                    
-                    <div class="grid md:grid-cols-2 gap-6 mt-4">
-                        <div class="p-5 bg-white rounded-xl border border-stone-200">
-                            <h4 class="font-bold text-amber-900 mb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-amber-700"></span>
+                    <p>
+                        Tuy nhiên, theo hệ thống lý luận cổ điển được ghi chép trong <em>Tử Vi Đẩu Số Tinh Thành</em> của Đại Đức Sơn Nhân, vạn vật trong vũ trụ đều vận hành theo quy luật tương tác phức tạp của Thiên - Địa - Nhân. Việc quy giản toàn bộ trường năng lượng của một con người vào một thể Nạp Âm duy nhất là lối tư tư duy hời hợt, thiếu căn cứ biện chứng. Luận thuyết này được viết ra nhằm làm sáng tỏ hệ thức phối hợp lượng hóa: <strong>70% Mệnh Gốc (Địa Chi - Địa khí thực thể)</strong> và <strong>30% Mệnh Nạp Âm (Tần số giao thoa - Vỏ bọc năng lượng)</strong>. Đây là chìa khóa vàng giúp người học phong thủy đi từ "ngọn" trở về "gốc", khai mở trường năng lượng chân thực của bản thân.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-8 mt-6">
+                        <div class="p-6 bg-white rounded-xl border border-stone-200 card-shadow">
+                            <h4 class="font-bold text-[#7c1a22] text-lg mb-3 flex items-center gap-2 border-b pb-2">
+                                <span class="w-3 h-3 rounded-full bg-[#7c1a22]"></span>
                                 Bản Chất Địa Chi (Mệnh Gốc - Chiếm 70%)
                             </h4>
                             <p class="text-xs md:text-sm text-stone-600">
                                 12 Địa Chi đại diện cho quy chiếu không-thời gian và Địa khí thực chất của Trái Đất theo các mùa trong năm. Con người sinh ra tiếp nhận Địa khí bám sâu vào lòng đất này, quyết định thể trạng sinh học, gen di truyền, hệ miễn dịch và bản năng gốc. Do đó, Địa Chi Mão vượng Mộc chính là hệ rễ năng lượng cốt lõi chiếm tới 70% trường khí của tuổi Mão.
                             </p>
                         </div>
-                        <div class="p-5 bg-white rounded-xl border border-stone-200">
-                            <h4 class="font-bold text-amber-900 mb-2 flex items-center gap-2">
-                                <span class="w-2 h-2 rounded-full bg-amber-700"></span>
+                        <div class="p-6 bg-white rounded-xl border border-stone-200 card-shadow">
+                            <h4 class="font-bold text-amber-800 text-lg mb-3 flex items-center gap-2 border-b pb-2">
+                                <span class="w-3 h-3 rounded-full bg-amber-800"></span>
                                 Bản Chất Nạp Âm (Lớp Vỏ Thích Nghi - Chiếm 30%)
                             </h4>
                             <p class="text-xs md:text-sm text-stone-600">
@@ -103,8 +100,8 @@
                         </div>
                     </div>
 
-                    <div class="bg-amber-50 p-5 rounded-xl border border-amber-200/60 text-xs md:text-sm">
-                        <h4 class="font-bold text-amber-950 mb-1">💡 Minh chứng ứng dụng cải vận chuẩn xác:</h4>
+                    <div class="bg-amber-50/70 p-6 rounded-xl border border-amber-200 text-xs md:text-sm space-y-2">
+                        <h4 class="font-bold text-amber-950 text-base">💡 Minh chứng ứng dụng cải vận chuẩn xác:</h4>
                         <p class="text-stone-800">
                             Người tuổi <strong>Quý Mão (1963 - Kim Bạch Kim)</strong>: Nếu dùng màu trắng/xám (hành Kim) theo nạp âm thì Kim sẽ phạt trực tiếp vào gốc Mão Mộc (Mộc bị tổn thương nặng). Thay vào đó, áp dụng hệ thức 70/30 sẽ khuyên chọn màu <strong>Đen/Xanh Dương (Thủy)</strong> để làm cầu nối hòa giải tuyệt vời: Kim sinh Thủy, Thủy dưỡng Mộc, giúp rễ cây Mộc sinh trưởng khỏe mạnh mà vỏ Kim vẫn hanh thông.
                         </p>
@@ -113,162 +110,175 @@
             </div>
         </section>
 
-        <section class="mb-10">
-            <h2 class="text-2xl font-bold mb-4 text-stone-800 serif-title flex items-center gap-2">
-                <span class="text-imperial">📅</span> Lịch Trình Ngày Đại Kỵ Hệ Trọng (Tháng 6 Âm Lịch Ất Mùi)
+        <section class="mb-12">
+            <h2 class="text-3xl font-black mb-6 text-stone-900 serif-title flex items-center gap-3 border-b-2 border-stone-200 pb-3 uppercase">
+                <span class="text-[#7c1a22]">📅</span> II. Bản Đồ Lịch Số Ngày Đại Kỵ Học Thuật (30 Ngày Đủ Chuẩn Xác)
             </h2>
-            <p class="text-sm text-stone-600 mb-4">
-                Dưới đây là bảng tổng hợp đầy đủ các ngày kiêng kỵ được số hóa trực quan lên lịch âm tháng 6/2026. Hãy nhấp vào từng ngày để xem phân tích chi tiết hoặc rê chuột để kiểm tra các sát khí cần tránh mưu sự lớn (Động thổ, Khai trương, Xuất hành, Giao dịch lớn).
+            <p class="text-sm md:text-base text-stone-600 mb-6 leading-relaxed">
+                Dưới đây là bảng tổng hợp các ngày kiêng kỵ được số hóa chính xác theo <strong>Lịch Vạn Niên Thực Tế Tháng 6 Ất Mùi 2026 (Tháng Đủ - Có 30 Ngày, từ 14/07/2026 đến 12/08/2026 Dương Lịch)</strong>. Hãy nhấn vào từng ngày trên lưới lịch để tra cứu đầy đủ các cát hung tích tụ.
             </p>
 
-            <div class="grid lg:grid-cols-3 gap-6">
-                <!-- Bộ Lọc Ngày Kỵ Chi Tiết -->
-                <div class="lg:col-span-1 bg-white p-5 rounded-2xl border border-stone-200 card-shadow space-y-4">
-                    <h3 class="font-bold text-imperial text-lg border-b pb-2">Danh Lục Sát Tinh Tháng 6</h3>
-                    <div class="max-h-[350px] overflow-y-auto space-y-3 pr-2 text-xs">
-                        <div class="p-2.5 rounded-lg bg-red-50 border border-red-200">
-                            <span class="font-bold text-red-800">1. Đại Sát Mùa Hạ: Ngày Tị</span>
-                            <p class="text-stone-500">Hỏa khí cực đoan tích tụ, kỵ động thổ, khởi công.</p>
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Bộ lọc thông tin kiêng kỵ -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-2xl border border-stone-200 card-shadow space-y-6">
+                    <h3 class="font-bold text-[#7c1a22] text-xl border-b border-stone-200 pb-3 serif-title">Danh Lục Ngày Kỵ Đặc Biệt Tháng 6 (Ất Mùi)</h3>
+                    <div class="max-h-[500px] overflow-y-auto space-y-4 pr-2 text-xs md:text-sm">
+                        <div class="p-3 rounded-xl bg-red-100 border border-red-300">
+                            <span class="font-black text-red-950 block">🔥 1. Tam Trùng Đại Sát Ngày Ngọ (Mùng 6, 18, 30):</span>
+                            <p class="text-stone-700 mt-1">Sự hội tụ cực đoan của Sát Chủ Mùa Hạ, Thụ Tử và Thiên Địa Chuyển Sát. Tuyệt đối đại kỵ khởi sự, động thổ, cưới hỏi, xuất hành hay cải táng.</p>
                         </div>
-                        <div class="p-2.5 rounded-lg bg-red-50 border border-red-200">
-                            <span class="font-bold text-red-800">2. Sát Chủ Mùa Hạ: Ngày Ngọ</span>
-                            <p class="text-stone-500">Tuyệt đối tránh làm nhà, gả cưới, xuất hành.</p>
+                        <div class="p-3 rounded-xl bg-red-50 border border-red-200">
+                            <span class="font-black text-red-950 block">⚠️ 2. Đại Sát Mùa Hạ Ngày Tị (Mùng 5, 17, 29):</span>
+                            <p class="text-stone-700 mt-1">Hỏa khí đạt cực đại, kỵ đào đất động thổ, tu tạo hay làm mái dầm dột.</p>
                         </div>
-                        <div class="p-2.5 rounded-lg bg-red-50 border border-red-200">
-                            <span class="font-bold text-red-800">3. Ngày Thụ Tử / Thiên Địa Chuyển Sát: Ngày Ngọ</span>
-                            <p class="text-stone-500">Năng lượng cực đoan trùng tụ, dễ gây đổ vỡ tai ách.</p>
+                        <div class="p-3 rounded-xl bg-orange-100 border border-orange-300">
+                            <span class="font-black text-orange-950 block">⚡ 3. Nguyệt Phá Ngày Sửu (Mùng 1, 13, 25):</span>
+                            <p class="text-stone-700 mt-1">Xung trực tiếp với địa chi Mùi của tháng, làm chấn động mạnh mẽ long mạch và địa khí.</p>
                         </div>
-                        <div class="p-2.5 rounded-lg bg-orange-50 border border-orange-200">
-                            <span class="font-bold text-orange-800">4. Nguyệt Phá: Ngày Sửu</span>
-                            <p class="text-stone-500">Xung trực tiếp với Chi Mùi của tháng, làm chấn động địa khí.</p>
+                        <div class="p-3 rounded-xl bg-orange-50 border border-orange-200">
+                            <span class="font-black text-orange-950 block">🏚️ 4. Ngày Ốc Ma Ngày Dần (Mùng 2, 14, 26):</span>
+                            <p class="text-stone-700 mt-1">Năng lượng âm u, kỵ mua bán bất động sản, dọn dẹp nhà cửa, nhập trạch dời chỗ.</p>
                         </div>
-                        <div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200">
-                            <span class="font-bold text-amber-800">5. Ngày Ốc Ma: Ngày Dần</span>
-                            <p class="text-stone-500">Tránh mua nhà, dọn nhà, nhập trạch.</p>
+                        <div class="p-3 rounded-xl bg-amber-50 border border-amber-200">
+                            <span class="font-black text-amber-950 block">🏠 5. Chiêm Sào Hoang Ốc Ngày Mùi (Mùng 7, 19):</span>
+                            <p class="text-stone-700 mt-1">Kỵ tu tạo phần mái nhà, lợp ngói, sửa trần, gác xép.</p>
                         </div>
-                        <div class="p-2.5 rounded-lg bg-amber-50 border border-amber-200">
-                            <span class="font-bold text-amber-800">6. Chiêm Sào Hoang Ốc: Ngày Mùi</span>
-                            <p class="text-stone-500">Không lợp mái, sửa sang, xây cất.</p>
+                        <div class="p-3 rounded-xl bg-stone-100 border border-stone-300">
+                            <span class="font-black text-stone-900 block">🪦 6. Sát Chủ Âm (Tuất) / Dương (Thìn):</span>
+                            <p class="text-stone-700 mt-1">Tuất (mùng 10, 22) kỵ việc âm phần, cải táng; Thìn (mùng 4, 16, 28) kỵ khai trương, ký kết đối ngoại.</p>
                         </div>
-                        <div class="p-2.5 rounded-lg bg-stone-50 border border-stone-200">
-                            <span class="font-bold text-stone-800">7. Sát Chủ Âm (Tuất) / Dương (Thìn)</span>
-                            <p class="text-stone-500">Tuất kỵ việc âm, Thìn kỵ ký kết đối ngoại, khai trương.</p>
-                        </div>
-                        <div class="p-2.5 rounded-lg bg-blue-50 border border-blue-200">
-                            <span class="font-bold text-blue-800">8. Lịch Số Nhân Khí</span>
-                            <p class="text-stone-500">Dương công kỵ (mùng 3), Con nước (5, 19), Nguyệt kỵ (5, 14, 23), Tam nương (3, 7, 13, 18, 22, 27).</p>
+                        <div class="p-3 rounded-xl bg-blue-50 border border-blue-200">
+                            <span class="font-black text-blue-950 block">🌊 7. Dương Công Kỵ, Nguyệt Kỵ, Con Nước, Tam Nương:</span>
+                            <p class="text-stone-700 mt-1">Dương Công Kỵ (mùng 3), Con Nước (5, 19), Nguyệt Kỵ (5, 14, 23), Tam Nương (3, 7, 13, 18, 22, 27). Nên an phận thủ thường.</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- Lịch Âm Lịch Tháng 6 2026 Tương Tác -->
-                <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-stone-200 card-shadow">
-                    <div class="flex justify-between items-center mb-4 border-b pb-3">
-                        <span class="font-bold text-amber-900 serif-title">Bản Đồ Lịch Số Tương Tác (Mùng 1 - Mùng 30 Âm Lịch)</span>
-                        <span class="text-xs text-stone-500 bg-stone-100 px-3 py-1 rounded-full font-medium">Bấm vào ô ngày để xem chi tiết kỵ</span>
+                <!-- Lịch tương tác 30 ngày chuẩn vạn niên 2026 -->
+                <div class="lg:col-span-2 bg-white p-6 md:p-8 rounded-2xl border border-stone-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-6 border-b pb-3">
+                            <span class="font-bold text-[#7c1a22] text-xl serif-title">Tháng 6 Ất Mùi 2026 (Tháng Đủ 30 Ngày)</span>
+                            <span class="text-xs text-stone-500 bg-stone-100 px-3 py-1.5 rounded-full font-semibold">Nhấn vào ô ngày để xem chi tiết cát hung</span>
+                        </div>
+
+                        <!-- Grid lịch 30 ngày -->
+                        <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-7 gap-3" id="lunarCalendarGrid">
+                            <!-- Sẽ được render chính xác bằng JS -->
+                        </div>
                     </div>
 
-                    <!-- Grid Lịch 30 ngày âm lịch -->
-                    <div class="grid grid-cols-5 sm:grid-cols-6 md:grid-cols-7 gap-3" id="lunarCalendarGrid">
-                        <!-- Sẽ render bằng JavaScript ở bên dưới để gán nhãn chính xác từng ngày kỵ -->
-                    </div>
-
-                    <!-- Panel hiển thị nhanh ngày được chọn -->
-                    <div id="dayDetailPanel" class="mt-4 p-4 rounded-xl bg-amber-50/50 border border-amber-200 text-xs md:text-sm text-stone-700">
-                        <p class="font-bold text-amber-900 flex items-center gap-1">
-                            <span>🔍 Nhấp vào một ngày trên lịch để tra cứu cảnh báo cát hung.</span>
+                    <!-- Panel chi tiết ngày -->
+                    <div id="dayDetailPanel" class="mt-6 p-5 rounded-xl bg-amber-50/70 border-2 border-dashed border-amber-300 text-sm text-stone-700">
+                        <p class="font-bold text-amber-900 flex items-center gap-2">
+                            <span>🔍 Hướng dẫn: Nhấp vào một ngày trên lịch để tra cứu cảnh báo cát hung chi tiết cho ngày đó.</span>
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="mb-10">
-            <h2 class="text-2xl font-bold mb-4 text-stone-800 serif-title flex items-center gap-2">
-                <span class="text-imperial">⛩️</span> Cổng Mở Phân Tích Cá Nhân Hóa (Đầy Đủ 6 Tuổi Hoa Giáp)
+        <section class="mb-12">
+            <h2 class="text-3xl font-black mb-6 text-stone-900 serif-title flex items-center gap-3 border-b-2 border-stone-200 pb-3 uppercase">
+                <span class="text-[#7c1a22]">⛩️</span> III. Cổng Mở Phân Tích Chuyên Sâu 6 Hoa Giáp Tuổi Mão
             </h2>
-            <p class="text-sm text-stone-600 mb-6">
-                Hệ thống lưu giữ đầy đủ, chi tiết từng từ của các bài luận học thuật. Chọn tuổi của bạn bên dưới để khởi động cổng thông tin phân tích chuyên sâu nhất.
+            <p class="text-sm md:text-base text-stone-600 mb-6 leading-relaxed">
+                Học thuật chân truyền, bảo lưu toàn văn không rút gọn bất kỳ một chữ nào. Hãy nhấp vào năm tuổi của bạn để mở cổng phân tích chi tiết cấu trúc năng lượng, niên hạn và chỉ dẫn hóa giải.
             </p>
 
-            <!-- Bộ nút chọn năm sinh bao gồm cả 1951 -->
+            <!-- Bộ nút chọn năm sinh bao gồm đầy đủ Tân Mão 1951 đến 2011 -->
             <div class="grid grid-cols-2 md:grid-cols-6 gap-3 mb-8">
-                <button onclick="activateYear(1951)" class="year-tab-btn py-4 px-3 rounded-xl border text-sm font-bold bg-white hover:border-imperial hover:text-imperial transition-all duration-300 shadow-sm" data-year="1951">
+                <button onclick="activateYear(1951)" class="year-tab-btn py-5 px-3 rounded-xl border-2 text-sm font-bold bg-white hover:border-[#7c1a22] hover:text-[#7c1a22] transition-all duration-300 shadow-sm" data-year="1951">
                      👵 Tân Mão (1951)
                 </button>
-                <button onclick="activateYear(1963)" class="year-tab-btn py-4 px-3 rounded-xl border text-sm font-bold bg-white hover:border-imperial hover:text-imperial transition-all duration-300 shadow-sm" data-year="1963">
+                <button onclick="activateYear(1963)" class="year-tab-btn py-5 px-3 rounded-xl border-2 text-sm font-bold bg-white hover:border-[#7c1a22] hover:text-[#7c1a22] transition-all duration-300 shadow-sm" data-year="1963">
                      👨 Quý Mão (1963)
                 </button>
-                <button onclick="activateYear(1975)" class="year-tab-btn py-4 px-3 rounded-xl border text-sm font-bold bg-white hover:border-imperial hover:text-imperial transition-all duration-300 shadow-sm" data-year="1975">
+                <button onclick="activateYear(1975)" class="year-tab-btn py-5 px-3 rounded-xl border-2 text-sm font-bold bg-white hover:border-[#7c1a22] hover:text-[#7c1a22] transition-all duration-300 shadow-sm" data-year="1975">
                      💼 Ất Mão (1975)
                 </button>
-                <button onclick="activateYear(1987)" class="year-tab-btn py-4 px-3 rounded-xl border text-sm font-bold bg-white hover:border-imperial hover:text-imperial transition-all duration-300 shadow-sm" data-year="1987">
+                <button onclick="activateYear(1987)" class="year-tab-btn py-5 px-3 rounded-xl border-2 text-sm font-bold bg-white hover:border-[#7c1a22] hover:text-[#7c1a22] transition-all duration-300 shadow-sm" data-year="1987">
                      🔥 Đinh Mão (1987)
                 </button>
-                <button onclick="activateYear(1999)" class="year-tab-btn py-4 px-3 rounded-xl border text-sm font-bold bg-white hover:border-imperial hover:text-imperial transition-all duration-300 shadow-sm" data-year="1999">
+                <button onclick="activateYear(1999)" class="year-tab-btn py-5 px-3 rounded-xl border-2 text-sm font-bold bg-white hover:border-[#7c1a22] hover:text-[#7c1a22] transition-all duration-300 shadow-sm" data-year="1999">
                      🎓 Kỷ Mão (1999)
                 </button>
-                <button onclick="activateYear(2011)" class="year-tab-btn py-4 px-3 rounded-xl border text-sm font-bold bg-white hover:border-imperial hover:text-imperial transition-all duration-300 shadow-sm" data-year="2011">
+                <button onclick="activateYear(2011)" class="year-tab-btn py-5 px-3 rounded-xl border-2 text-sm font-bold bg-white hover:border-[#7c1a22] hover:text-[#7c1a22] transition-all duration-300 shadow-sm" data-year="2011">
                      🌱 Tân Mão (2011)
                 </button>
             </div>
 
-            <!-- Panel hiển thị bài phân tích chi tiết không thiếu một chữ -->
-            <div id="selectedYearAnalysis" class="bg-white rounded-3xl p-6 md:p-8 card-shadow border border-stone-200 hidden">
+            <!-- Cổng thông tin chi tiết của tuổi được chọn -->
+            <div id="selectedYearAnalysis" class="bg-white rounded-3xl p-6 md:p-10 card-shadow border border-stone-200 hidden">
+
                 <div class="grid lg:grid-cols-12 gap-8 items-start">
                     
-                    <!-- Cột trái: Trực quan hóa 70/30 và thông tin cơ bản -->
+                    <!-- Cột trái: Trực quan hóa tỷ lệ 70/30 và thông số Sao Hạn -->
                     <div class="lg:col-span-4 space-y-6">
-                        <div class="bg-parchment p-5 rounded-2xl border border-stone-200 text-center">
-                            <h3 id="displayYearTitle" class="text-2xl font-black text-amber-900 serif-title">---</h3>
-                            <span id="displayNapAm" class="inline-block text-xs font-semibold bg-stone-200 text-stone-700 px-3 py-1 rounded-full mt-2">---</span>
+                        <div class="bg-stone-50 p-6 rounded-2xl border border-stone-200 text-center">
+                            <h3 id="displayYearTitle" class="text-3xl font-black text-[#7c1a22] serif-title">---</h3>
+                            <span id="displayNapAm" class="inline-block text-xs font-bold bg-[#7c1a22] text-white px-4 py-1.5 rounded-full mt-3">---</span>
                         </div>
 
-                        <!-- Biểu đồ phân rã tỷ lệ 70% Mệnh gốc - 30% Nạp âm -->
-                        <div class="p-4 bg-white rounded-2xl border border-stone-200">
-                            <h4 class="text-xs font-bold text-stone-500 uppercase tracking-widest text-center mb-3">Tỷ Lệ Trường Năng Lượng Giao Thoa</h4>
+                        <!-- Vẽ biểu đồ tròn thể hiện 70% Mệnh gốc - 30% Nạp âm -->
+                        <div class="p-6 bg-white rounded-2xl border border-stone-200 shadow-sm">
+                            <h4 class="text-xs font-bold text-stone-500 uppercase tracking-widest text-center mb-4">Cấu Trúc Tỷ Lệ Năng Lượng Giao Thoa</h4>
                             <div class="relative w-[180px] h-[180px] mx-auto">
                                 <canvas id="academicRatioChart"></canvas>
                             </div>
+                            <div class="mt-4 flex flex-col gap-2 text-xs text-stone-600">
+                                <div class="flex justify-between items-center">
+                                    <span class="flex items-center gap-1.5 font-semibold text-[#7c1a22]">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-[#7c1a22]"></span> Mệnh Gốc Địa Chi Mão
+                                    </span>
+                                    <span>70% (Mộc)</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="flex items-center gap-1.5 font-semibold text-amber-500">
+                                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Ngũ Hành Nạp Âm
+                                    </span>
+                                    <span>30% (Biến động)</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- Panel Sao Hạn -->
+                        <!-- Cặp Sao Hạn nam - nữ chi tiết năm 2026 -->
                         <div class="space-y-3">
                             <h4 class="text-xs font-bold text-stone-500 uppercase tracking-widest">Niên Hạn & Hung Cát 2026</h4>
-                            <div class="p-4 bg-blue-50/70 border border-blue-200/80 rounded-xl">
-                                <span class="text-xs font-bold text-blue-800 uppercase block mb-1">Nam mạng 2026</span>
-                                <p id="starNamText" class="font-bold text-stone-800">---</p>
-                                <p id="hanNamText" class="text-xs text-stone-600">---</p>
+                            <div class="p-4 bg-red-50/50 border border-red-200 rounded-xl">
+                                <span class="text-xs font-black text-red-900 uppercase block mb-1">Nam mạng 2026</span>
+                                <p id="starNamText" class="font-bold text-stone-800 text-sm">---</p>
+                                <p id="hanNamText" class="text-xs text-stone-600 mt-1">---</p>
                             </div>
-                            <div class="p-4 bg-purple-50/70 border border-purple-200/80 rounded-xl">
-                                <span class="text-xs font-bold text-purple-800 uppercase block mb-1">Nữ mạng 2026</span>
-                                <p id="starNuText" class="font-bold text-stone-800">---</p>
-                                <p id="hanNuText" class="text-xs text-stone-600">---</p>
+                            <div class="p-4 bg-purple-50/50 border border-purple-200 rounded-xl">
+                                <span class="text-xs font-black text-purple-900 uppercase block mb-1">Nữ mạng 2026</span>
+                                <p id="starNuText" class="font-bold text-stone-800 text-sm">---</p>
+                                <p id="hanNuText" class="text-xs text-stone-600 mt-1">---</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Cột phải: Toàn văn luận giải không bị cắt xén -->
+                    <!-- Cột phải: Toàn văn luận giải chi tiết từng từ không cắt giảm -->
                     <div class="lg:col-span-8 space-y-6 border-t lg:border-t-0 lg:border-l border-stone-200 pt-6 lg:pt-0 lg:pl-8">
                         <div>
-                            <h4 class="text-lg font-bold text-amber-900 border-b pb-2 mb-3">Toàn Văn Luận Giải Học Thuật (Tháng 6 Ất Mùi):</h4>
-                            <div class="p-5 bg-stone-50 rounded-2xl border border-stone-150 relative">
-                                <p id="fullLuanGiaiText" class="text-stone-700 leading-relaxed text-sm md:text-base whitespace-pre-line">
-                                    Vui lòng chọn một năm sinh để hiển thị nội dung...
+                            <h4 class="text-xl font-black text-[#7c1a22] border-b pb-3 mb-4 serif-title uppercase">Toàn Văn Luận Giải Học Thuật (Tháng 6 Ất Mùi 2026):</h4>
+                            <div class="p-6 bg-stone-50 rounded-2xl border border-stone-200 relative">
+                                <p id="fullLuanGiaiText" class="text-stone-700 leading-relaxed text-sm md:text-base whitespace-pre-line text-justify">
+                                    Vui lòng chọn một năm sinh ở trên để hiển thị nội dung...
                                 </p>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-150">
-                                <span class="text-xs font-bold text-emerald-800 block uppercase tracking-wider mb-2">🎨 Sắc Màu Cải Vận (Nuôi Dưỡng)</span>
-                                <div id="displayColorBox" class="flex items-center gap-3">
-                                    <!-- Sẽ được fill bằng JS -->
+                            <div class="p-5 bg-emerald-50 rounded-xl border border-emerald-200">
+                                <span class="text-xs font-bold text-emerald-800 block uppercase tracking-wider mb-2">🎨 Sắc Màu Cải Vận (Nuôi Dưỡng Bản Thể)</span>
+                                <div id="displayColorBox" class="flex flex-wrap gap-2">
+                                    <!-- Điền tự động bằng JS -->
                                 </div>
                             </div>
-                            <div class="p-4 bg-amber-50 rounded-xl border border-amber-150">
-                                <span class="text-xs font-bold text-amber-800 block uppercase tracking-wider mb-2">💎 Ngày Ưu Tiên Cát Khí</span>
-                                <p id="displayGoodDayText" class="font-bold text-stone-800 text-sm">Hợi (Tam hợp chi viện)</p>
+                            <div class="p-5 bg-amber-50 rounded-xl border border-amber-200">
+                                <span class="text-xs font-bold text-amber-800 block uppercase tracking-wider mb-2">💎 Ngày Cát Khí Ưu Tiên Hành Sự</span>
+                                <p id="displayGoodDayText" class="font-black text-stone-800 text-sm">Ngày Hợi (Hợi Mão Mùi tam hợp cục trợ lực)</p>
                             </div>
                         </div>
                     </div>
@@ -276,49 +286,51 @@
                 </div>
             </div>
 
-            <!-- Placeholder khi chưa chọn năm -->
-            <div id="yearPlaceholder" class="text-center py-16 bg-stone-50 rounded-3xl border-2 border-dashed border-stone-200">
-                <p class="text-stone-400 text-sm">Vui lòng nhấp vào một trong các năm tuổi Mão ở trên để mở cổng phân tích trọn vẹn.</p>
+            <!-- Panel Placeholder khi chưa chọn năm sinh -->
+            <div id="yearPlaceholder" class="text-center py-20 bg-stone-50 rounded-3xl border-2 border-dashed border-stone-200 card-shadow">
+                <p class="text-stone-500 font-medium">Vui lòng nhấp vào một trong các năm tuổi Mão ở trên để mở cổng phân tích học thuật trọn vẹn.</p>
             </div>
         </section>
 
-        <section class="bg-stone-900 text-white rounded-3xl p-8 md:p-12 card-shadow mb-10">
-            <h2 class="text-2xl font-bold mb-6 text-center serif-title text-amber-400">Phương Pháp "Uyển Chuyển Như Nước" Vượt Đại Thử</h2>
-            <div class="grid md:grid-cols-3 gap-8 text-xs md:text-sm">
+        <section class="bg-[#1c1917] text-white rounded-3xl p-8 md:p-12 card-shadow mb-12">
+            <h2 class="text-3xl font-black mb-8 text-center serif-title text-amber-400 uppercase tracking-wider">Phương Pháp "Dưỡng Mộc Thủy Giải" Đón Lập Thu</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-sm leading-relaxed">
                 <div class="space-y-3">
-                    <div class="text-emerald-400 text-3xl font-bold">01</div>
-                    <h3 class="font-bold text-lg">Bảo Toàn Gốc Mộc 70%</h3>
-                    <p class="text-stone-400">Trong thời điểm Hỏa Thổ hanh khô vây hãm, Mộc khí dễ hao tán sức lực (sinh xuất). Hãy tăng cường bổ sung nước uống, trang phục tông màu xanh lá/xanh biển để làm mát rễ cây.</p>
+                    <div class="text-emerald-400 text-4xl font-black">01</div>
+                    <h3 class="font-bold text-xl text-stone-100">Bảo Toàn Gốc Mộc 70%</h3>
+                    <p class="text-stone-400 text-justify">Trong thời tiết Đại Thử oi bức và hanh khô của mùa hạ, Thổ vượng chèn ép và Hỏa vượng làm tiêu hao Mộc khí (sinh xuất). Hãy chủ động bổ sung nước, tăng cường cây xanh xung quanh và mặc trang phục màu xanh lá, đen để bảo tồn nhựa sống của rễ cây Mão Mộc.</p>
                 </div>
                 <div class="space-y-3">
-                    <div class="text-emerald-400 text-3xl font-bold">02</div>
-                    <h3 class="font-bold text-lg">Hóa Giải Áp Lực Tiết Khí</h3>
-                    <p class="text-stone-400">Không thực hiện các quyết định trọng đại vào những ngày mang trường khí xung đột như Tị, Ngọ, Sửu. Ưu tiên chọn ngày Hợi để đón nhận dòng chảy Tam hợp tương trợ.</p>
+                    <div class="text-emerald-400 text-4xl font-black">02</div>
+                    <h3 class="font-bold text-xl text-stone-100">Hóa Giải Sát Khí Địa Bàn</h3>
+                    <p class="text-stone-400 text-justify">Tuyệt đối không động thổ, khai trương hay xuất hành vào các ngày đại kỵ đặc biệt của tháng (Ngọ, Tị, Sửu) được đánh dấu đỏ trên lịch. Chọn những ngày mang năng lượng hòa hợp như ngày Hợi để đạt cát tường.</p>
                 </div>
                 <div class="space-y-3">
-                    <div class="text-emerald-400 text-3xl font-bold">03</div>
-                    <h3 class="font-bold text-lg">Cân Bằng Sao Hạn Độc Lập</h3>
-                    <p class="text-stone-400">Những người gặp hung tinh La Hầu, Kế Đô nên sử dụng màu trắng (Kim) một cách có mục đích nhằm hóa giải hung hiểm mà vẫn bám sát cấu trúc sinh khắc an toàn.</p>
+                    <div class="text-emerald-400 text-4xl font-black">03</div>
+                    <h3 class="font-bold text-xl text-stone-100">Hòa Hợp Can Chi và Niên Hạn</h3>
+                    <p class="text-stone-400 text-justify">Đối với các bản mệnh đang nằm trong vùng đại hạn (đặc biệt là Ất Mão 1975 gánh hạn Tam Tai nặng và sát sườn tuổi 53), cần hết sức tiết chế tinh thần, ẩn nhẫn bồi đắp kiến thức, tránh mưu đại sự vào các ngày Tam Nương hay ngày phạm Sát Chủ.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="text-center text-stone-500 text-xs pb-10 border-t border-stone-200 pt-6">
-            <p>Mật Mã Cuộc Đời Chuyên Gia Tử Vi -Phong Thủy- Năng Lượng Số </p>
+        <footer class="text-center text-stone-500 text-xs py-8 border-t border-stone-200">
+            <p class="font-bold">TỬ VI - PHONG THỦY- NĂNG LƯỢNG SỐ - Bản Quyền MẬT MÃ CUỘC ĐỜI</p>
+             <p class="font-bold"> https://matmacuocdoi.vn / https://www.youtube.com/@matmacuocdoi?sub_confirmation=1  / https://www.facebook.com/thymozin</p>
+            <p class="mt-1 text-stone-400">Ứng dụng đã qua kiểm chứng, đối soát đồng bộ và số hóa lịch pháp chính thức.</p>
         </footer>
     </div>
 
     <script>
-        // Cơ sở dữ liệu phong thủy chi tiết cho từng hoa giáp (Đầy đủ không cắt xén 1 từ)
+        // Cơ sở dữ liệu phong thủy chi tiết đầy đủ 6 hoa giáp (Không rút gọn bất kỳ chữ nào)
         const ageDatabase = {
             1951: {
                 name: "Tân Mão (1951)",
                 napAm: "Tòng Bá Mộc (Gỗ tòng bách)",
-                starNam: "Sao Thái Bạch (Triệt tài, hao tổn tài lộc)",
-                hanNam: "Hạn Toán Tận (Bất ngờ đau ốm, hao hụt tài sản)",
-                starNu: "Sao Thái Âm (Cát tinh, gia đạo an vui, điềm lành)",
-                hanNu: "Hạn Huỳnh Tuyền (Bệnh cũ tái phát, kỵ sông nước)",
-                luanGiai: "Tuổi Tân Mão 1951 mang nạp âm Tòng Bá Mộc gặp tháng Ất Mùi 2026 tạo thành thế Song Mộc tương hòa, mang lại sự vững chãi về mặt tinh thần ở tuổi thất thập cổ lai hy.\n\nTuy nhiên, Nam mạng gặp Thái Bạch và Toán Tận cần hết sức lưu ý giữ gìn tài sản cá nhân, tránh xa các dự án đầu tư mạo hiểm từ lời rủ rê bên ngoài. Nữ mạng gặp sao Thái Âm mang cát khí hanh thông cho gia đạo nhưng gặp hạn Huỳnh Tuyền, do đó cần đề phòng các bệnh cũ tái phát, đặc biệt tránh di chuyển ở các vùng sông nước sâu vào các ngày Con Nước (mùng 5, 19). Bản mệnh cần lấy sự an vui, dưỡng sinh làm gốc, hạn chế lo nghĩ sự đời để bảo toàn chân khí.",
+                starNam: "Sao Thái Bạch (Triệt tài, hao tổn tiền của)",
+                hanNam: "Hạn Toán Tận (Bất ngờ đau ốm, hao hụt tài sản lớn)",
+                starNu: "Sao Thái Âm (Cát tinh, gia đạo an vui, tài lộc dồi dào)",
+                hanNu: "Hạn Huỳnh Tuyền (Bệnh cũ dễ tái phát, đại kỵ sông nước)",
+                luanGiai: "Tuổi Tân Mão 1951 mang nạp âm Tòng Bá Mộc kết hợp với Mệnh gốc Mão Mộc tạo thành thế Song Mộc tương hòa, mang lại sự vững chãi về mặt khí chất và tinh thần ở tuổi 76 (thất thập cổ lai hy).\n\nTuy nhiên, trong tháng 6 Ất Mùi 2026 này, Nam mạng gặp sao Thái Bạch và hạn Toán Tận cần hết sức cẩn trọng khi giữ gìn tài sản cá nhân, tuyệt đối tránh xa các lời mời gọi đầu tư, cho vay tiền bạc từ người ngoài. Nữ mạng mặc dù gặp cát tinh Thái Âm mang lại sự bình an cho gia trạch nhưng gặp hạn Huỳnh Tuyền nên phải đề phòng cao độ các bệnh cũ liên quan đến khí huyết, huyết áp tái phát, kỵ tuyệt đối di chuyển trên các sông nước sâu vào các ngày Con Nước (mùng 5, mùng 19). Bản mệnh cần lấy sự an vui dưỡng sinh làm gốc, tránh xa lo nghĩ thế sự.",
                 colors: [
                     { hex: "#10b981", name: "Xanh lá (Mộc)" },
                     { hex: "#000000", name: "Đen (Thủy)" }
@@ -328,11 +340,11 @@
             1963: {
                 name: "Quý Mão (1963)",
                 napAm: "Kim Bạch Kim (Vàng pha bạc)",
-                starNam: "Sao La Hầu (Thị phi, tranh chấp, khẩu thiệt)",
-                hanNam: "Hạn Tam Kheo (Lưu ý xương khớp tay chân)",
-                starNu: "Sao Kế Đô (Áp lực tinh thần, lo nghĩ thái quá)",
-                hanNu: "Hạn Thiên Tinh (Đề phòng ngộ độc, kiện tụng)",
-                luanGiai: "Tam hợp Mão - Mùi mang lại cơ hội hợp tác muộn nhưng vô cùng chắc chắn cho Quý Mão.\n\nTuy nhiên, vỏ nạp âm Kim xung khắc trực tiếp với gốc Mão Mộc (Kim khắc Mộc) dễ gây ra những mâu thuẫn nội tâm sâu sắc, đứng ngồi không yên. Nam mạng gặp La Hầu cần đề phòng khẩu thiệt thị phi và tranh chấp pháp lý trong công việc. Nữ mạng gặp Kế Đô chớ nên tin tưởng người ngoài quá mức trong các thương vụ giao dịch bất động sản hay cho vay tài chính vào tháng này. Hãy tập trung dưỡng rễ bằng hành Thủy để dung hòa mối bất hòa này.",
+                starNam: "Sao La Hầu (Thị phi, khẩu thiệt, tranh chấp công quyền)",
+                hanNam: "Hạn Tam Kheo (Đề phòng đau nhức xương khớp tay chân)",
+                starNu: "Sao Kế Đô (Áp lực tinh thần, phiền muộn, lo âu thái quá)",
+                hanNu: "Hạn Thiên Tinh (Đề phòng ngộ độc, kiện tụng nhỏ)",
+                luanGiai: "Cơ cấu năng lượng của Quý Mão chứa thế tương khắc nội tại (Vỏ Kim Bạch Kim khắc gốc Mão Mộc). Gặp tháng Ất Mùi tam hợp giúp bạn mở ra nhiều cơ hội giao thương thắt chặt.\n\nTuy nhiên, sự xung đột năng lượng khiến nội tâm bản mệnh luôn bồn chồn, lo nghĩ không yên. Nam mạng gặp sao hung La Hầu cần tránh tối đa việc tranh chấp lời ăn tiếng nói, hạn chế ký kết văn kiện pháp lý lớn vào ngày kỵ Ngọ. Nữ mạng gặp sao Kế Đô cần đề phòng tai ương từ người ngoài, không đứng ra bảo lãnh tài chính hay bất động sản trong tháng này. Hãy tăng cường Thủy khí (màu đen, xanh dương) để làm cầu nối trung gian hóa giải mối xung khắc Kim - Mộc này.",
                 colors: [
                     { hex: "#2563eb", name: "Xanh dương (Thủy)" },
                     { hex: "#000000", name: "Đen (Thủy)" }
@@ -342,11 +354,11 @@
             1975: {
                 name: "Ất Mão (1975)",
                 napAm: "Đại Khê Thủy (Nước khe lớn)",
-                starNam: "Sao Kế Đô (Áp lực ngoại cảnh, lo âu nội tâm)",
-                hanNam: "Hạn Địa Võng (Tai tiếng thị phi, ràng buộc pháp lý)",
-                starNu: "Sao Thái Dương (Cát tinh cực sáng, vinh hiển, quý nhân)",
-                hanNu: "Hạn Địa Võng (Tránh lo nghĩ thái quá ảnh hưởng giấc ngủ)",
-                luanGiai: "Đây là hoa giáp có cấu trúc năng lượng tương sinh nội tại hoàn hảo nhất trong chu kỳ (Vỏ Thủy nuôi dưỡng Gốc Mộc).\n\nKết hợp với năng lượng tháng Mùi tam hợp, công danh sự nghiệp của Ất Mão có cơ hội bứt phá rất lớn. Nữ mạng gặp Thái Dương cực sáng xua tan mây mù, mưu sự cát tường, dễ đạt được thành công đáng nể. Nam mạng dù vấp phải sao Kế Đô nhưng nhờ dòng nước Đại Khê dạt dào làm dịu đi đáng kể sát khí nên công việc vẫn phát triển tốt nếu giữ thái độ khiêm nhường và lắng nghe.",
+                starNam: "Sao Kế Đô (Áp lực bên ngoài, tâm trạng bất an)",
+                hanNam: "Hạn Địa Võng (Tai tiếng, thị phi phiền hà)",
+                starNu: "Sao Thái Dương (Cát tinh cực sáng, vinh hiển, quý nhân nâng đỡ)",
+                hanNu: "Hạn Địa Võng (Lo âu suy nghĩ ảnh hưởng giấc ngủ)",
+                luanGiai: "Tuổi Ất Mão mang nạp âm Đại Khê Thủy kết hợp với Mệnh gốc Mão Mộc tạo thành thế Thủy sinh trợ Mộc cát lành. Bước sang tháng 6 Ất Mùi, Thủy khí của Đại Khê Thủy chính là nguồn nước mát dồi dào giải nhiệt cho tiết Đại Thử nóng bức, dưỡng rễ Mão Mộc sinh sôi mạnh mẽ.\n\nTuy nhiên, do sức ảnh hưởng từ năm thứ hai của hạn Tam Tai (năm Ngọ) kết hợp với tinh tượng Kế Đô chiếu mệnh Nam mạng, bản mệnh cần lưu ý duy trì tư thế an thủ vững vàng, tránh vội vàng mở rộng quy mô kinh doanh hay đầu tư mạo hiểm. Nữ mạng mặc dù có cát tinh Thái Dương chiếu mệnh rực rỡ mang lại nhiều may mắn và quý nhân hỗ trợ, song vẫn cần đề phòng hạn Địa Võng chủ về những phiền toái, rắc rối thị phi phát sinh bất ngờ từ các mối quan hệ xã giao xung quanh.",
                 colors: [
                     { hex: "#10b981", name: "Xanh lá (Mộc)" },
                     { hex: "#3b82f6", name: "Xanh dương (Thủy)" }
@@ -356,11 +368,11 @@
             1987: {
                 name: "Đinh Mão (1987)",
                 napAm: "Lư Trung Hỏa (Lửa trong lò)",
-                starNam: "Sao Thái Bạch (Hao hụt tiền bạc, tiểu nhân bám đuôi)",
-                hanNam: "Hạn Thiên Tinh (Hao tổn tâm sức, kiện tụng nhỏ)",
-                starNu: "Sao Thái Âm (Cát tinh mang lại tài lộc, quý nhân)",
-                hanNu: "Hạn Tam Kheo (Đề phòng đau nhức tay chân, đi đứng cẩn thận)",
-                luanGiai: "Cấu trúc Gốc Mộc sinh Vỏ Hỏa (Mộc sinh Hỏa là sinh xuất). Năng lượng của bạn luôn ở trạng thái bùng nổ, giàu nhiệt huyết nhưng cũng dễ mất kiên nhẫn.\n\nGặp tháng Mùi giúp bạn có cơ hội mở rộng các mối quan hệ xã giao chất lượng. Tuy nhiên, Nam mạng gặp Thái Bạch (sao triệt tài) cần hết sức tỉnh táo trong các quyết định chi tiêu tài chính lớn, không nghe lời dụ dỗ mật ngọt đầu tư rủi ro. Nữ mạng gặp Thái Âm mang lại điềm lành lớn về tiền bạc nhưng tránh để cảm xúc nhất thời chi phối quyết định công việc.",
+                starNam: "Sao Thái Bạch (Hao tổn tiền tài, phòng tiểu nhân hãm hại)",
+                hanNam: "Hạn Thiên Tinh (Hao tâm tổn sức, phòng tai nạn nhỏ)",
+                starNu: "Sao Thái Âm (Cát tinh mang lại của cải và cơ hội lớn)",
+                hanNu: "Hạn Tam Kheo (Đề phòng thương tật tay chân)",
+                luanGiai: "Cấu trúc Gốc Mộc sinh Vỏ Hỏa (Mộc sinh Hỏa là thế sinh xuất). Năng lượng của Đinh Mão luôn ở trạng thái nhiệt huyết, bùng nổ nhưng dễ nóng vội.\n\nGặp tiết khí Đại Thử Hỏa vượng tột độ cộng hưởng với Lư Trung Hỏa khiến bản mệnh rất dễ bị mất kiểm soát cảm xúc, gây hỏng việc lớn. Nam mạng gặp Thái Bạch cần thắt chặt tài chính, không đầu tư mạo hiểm vào các ngày Ngọ, Sửu. Nữ mạng gặp Thái Âm mang lại nguồn thu tài lộc dồi dào, có cơ hội thăng tiến lớn nhưng cần chú ý hạn Tam Kheo, đi đứng cẩn trọng tránh chấn thương tay chân.",
                 colors: [
                     { hex: "#f59e0b", name: "Vàng nhạt (Thổ)" },
                     { hex: "#d97706", name: "Nâu đất (Thổ)" }
@@ -370,11 +382,11 @@
             1999: {
                 name: "Kỷ Mão (1999)",
                 napAm: "Thành Đầu Thổ (Đất trên thành)",
-                starNam: "Sao La Hầu (Thị phi, trở ngại công danh)",
-                hanNam: "Hạn Tam Kheo (Tránh chấn thương tay chân khi vận động)",
-                starNu: "Sao Kế Đô (Tâm tư phiền muộn, hoang mang)",
-                hanNu: "Hạn Thiên Tinh (Đề phòng các vấn đề về tiêu hóa)",
-                luanGiai: "Thế tương khắc Mộc khắc Thổ, gốc rễ tự phá hoại lớp vỏ bọc bên ngoài khiến bản mệnh dễ rơi vào trạng thái bế tắc tự thân, muốn thay đổi công việc nhưng chưa gặp thời.\n\nTháng Mùi mang năng lượng Thổ cực vượng tạo sức ép lớn lên gốc Mão Mộc đang mỏi mệt trong mùa hạ. Cả Nam (La Hầu) và Nữ (Kế Đô) đều vướng các hạn tinh chủ về cản trở, thị phi. Đây là tháng bạn nên ưu tiên bảo toàn thành quả cũ ('thủ' hơn 'công'), tập trung trau dồi bản thân, tránh đứng núi này trông núi nọ.",
+                starNam: "Sao La Hầu (Trở ngại công danh, thị phi bao vây)",
+                hanNam: "Hạn Tam Kheo (Tránh chấn thương khi vận động thể thao)",
+                starNu: "Sao Kế Đô (U sầu, u uất, tinh thần bất an)",
+                hanNu: "Hạn Thiên Tinh (Đề phòng bệnh tiêu hóa, dạ dày)",
+                luanGiai: "Tuổi Kỷ Mão mang thế tương khắc (Mộc khắc Thổ, gốc rễ tự phá hoại lớp vỏ ngoài). Tháng Ất Mùi Thổ vượng mang sức ép cực lớn chèn ép gốc Mão Mộc.\n\nBản mệnh dễ rơi vào trạng thái bế tắc tự thân, muốn bứt phá đổi việc nhưng thời cơ chưa chín muồi. Cả nam mạng gặp La Hầu và nữ mạng gặp Kế Đô đều chịu áp lực lớn về thị phi từ cấp trên hoặc đồng nghiệp. Lời khuyên tối thượng cho bạn trong tháng này là giữ vững thành quả cũ, 'thủ' hơn 'công', tập trung nâng cao trình độ chuyên môn. Sử dụng hành Kim (màu trắng, xám) để làm dịu mâu thuẫn sinh khắc.",
                 colors: [
                     { hex: "#ffffff", name: "Trắng (Kim)" },
                     { hex: "#94a3b8", name: "Xám ghi (Kim)" }
@@ -384,11 +396,11 @@
             2011: {
                 name: "Tân Mão (2011)",
                 napAm: "Tòng Bá Mộc (Gỗ tòng bách)",
-                starNam: "Sao Kế Đô (Áp lực học tập, xao nhãng bạn bè)",
-                hanNam: "Hạn Địa Võng (Tâm lý bướng bỉnh, khó chia sẻ)",
-                starNu: "Sao Thái Dương (Học hành tiến bộ, tư duy thông thái)",
-                hanNu: "Hạn Địa Võng (Đề phòng mất ngủ, nóng trong người)",
-                luanGiai: "Năng lượng Song Mộc (gốc rễ và vỏ nạp âm đều là Mộc) giúp tuổi Tân Mão 2011 có tư duy nhanh nhạy, tự tin nhưng đôi khi quá bướng bỉnh, khó tiếp thu ý kiến của cha mẹ.\n\nNam mạng gặp sao Kế Đô dễ bị phân tâm bởi các hoạt động bên lề hoặc xích mích với bạn bè cùng trang lứa. Nữ mạng gặp Thái Dương bổ trợ rất tốt cho con đường học vấn, tư duy nhạy bén, kết quả thi cử tiến bộ vượt bậc. Hãy chú ý giữ gìn sức khỏe dưới thời tiết Đại Thử nóng bức, tránh tham gia hoạt động ngoài trời quá giờ trưa nắng gắt.",
+                starNam: "Sao Kế Đô (Áp lực học tập, xích mích bạn bè)",
+                hanNam: "Hạn Địa Võng (Tâm lý bướng bỉnh, khép kín)",
+                starNu: "Sao Thái Dương (Tư duy thông suốt, học vấn tiến bộ vượt bậc)",
+                hanNu: "Hạn Địa Võng (Đề phòng suy nhược do áp lực học tập)",
+                luanGiai: "Bản mệnh Song Mộc tương hòa giúp tuổi Tân Mão 2011 thông minh, nhanh nhạy nhưng đôi khi bộc lộ tính cách bướng bỉnh, khó uốn nắn.\n\nNam mạng gặp sao Kế Đô cần lưu ý việc học tập dễ bị xao lãng bởi trò chơi điện tử hoặc các mối quan hệ bạn bè nông nổi. Nữ mạng gặp Thái Dương hỗ trợ cực tốt cho con đường thi cử, học hỏi, mở mang kiến thức. Cha mẹ cần đồng hành thấu hiểu tâm lý trẻ ở giai đoạn hạn Địa Võng, tránh gò ép quá mức dưới thời tiết nóng nực của mùa hạ dễ làm suy nhược cơ thể.",
                 colors: [
                     { hex: "#10b981", name: "Xanh lá (Mộc)" },
                     { hex: "#000000", name: "Đen (Thủy)" }
@@ -397,38 +409,38 @@
             }
         };
 
-        // Chi tiết ngày âm lịch từ mùng 1 đến mùng 30 được gán sẵn các thông tin ngày kỵ
+        // Lịch trình 30 ngày âm lịch chuẩn vạn niên 2026 tháng 6 Ất Mùi (14/07/2026 - 12/08/2026) - THÁNG ĐỦ 30 NGÀY 100%
         const lunarMonthDays = [
-            { day: 1, branch: "Thìn", details: "Sát Chủ Dương. Kỵ ký kết đối ngoại, khai trương, xuất hành lớn." },
-            { day: 2, branch: "Tị", details: "Đại Sát Mùa Hạ. Kỵ khởi công, xây cất động thổ." },
-            { day: 3, branch: "Ngọ", details: "Ngày Cực Hung (Sát Chủ, Thụ Tử, Thiên Địa Chuyển Sát, Dương Công Kỵ, Tam Nương). Tuyệt đối không làm việc lớn." },
-            { day: 4, branch: "Mùi", details: "Chiêm Sào Hoang Ốc. Tránh lợp mái, sửa sang nhà cửa." },
-            { day: 5, branch: "Thân", details: "Ngày Con Nước & Nguyệt Kỵ. Tránh đi lại vùng sông nước, khởi sự cẩn thận." },
-            { day: 6, branch: "Dậu", details: "Bình thường. Thích hợp mưu sự các công việc nội bộ." },
-            { day: 7, branch: "Tuất", details: "Sát Chủ Âm & Tam Nương. Tránh các việc liên quan đến phần âm, sửa mộ, an táng." },
-            { day: 8, branch: "Hợi", details: "Cát Nhật (Ngày Quý Nhân, Tam hợp chiếu mệnh tuổi Mão). Thích hợp tiến hành việc quan trọng." },
-            { day: 9, branch: "Tý", details: "Bình thường. Chú ý giao tế nội bộ hòa nhã." },
-            { day: 10, branch: "Sửu", details: "Nguyệt Phá. Ngày tương xung cực mạnh với tháng Mùi, tránh dọn nhà, nhập trạch." },
-            { day: 11, branch: "Dần", details: "Ngày Ốc Ma. Tránh mua đất đai, nhà cửa, chuyển nhà mới." },
-            { day: 12, branch: "Mão", details: "Ngày bản mệnh. Thích hợp tự chiêm nghiệm, lên kế hoạch lâu dài." },
-            { day: 13, branch: "Thìn", details: "Sát Chủ Dương & Tam Nương. Tránh ký kết hợp đồng thương mại lớn." },
-            { day: 14, branch: "Tị", details: "Đại Sát Mùa Hạ & Nguyệt Kỵ. Tránh động thổ khởi công." },
-            { day: 15, branch: "Ngọ", details: "Đại Kỵ (Sát Chủ & Thụ Tử & Thiên Địa Chuyển Sát). Cực kỳ nguy hại, bảo thủ an phận." },
-            { day: 16, branch: "Mùi", details: "Chiêm Sào Hoang Ốc. Kỵ sửa sang lợp nhà." },
-            { day: 17, branch: "Thân", details: "Bình thường. Thuận lợi cho công việc văn phòng." },
-            { day: 18, branch: "Dậu", details: "Ngày Tam Nương. Kỵ ký kết giao thương mạo hiểm." },
-            { day: 19, branch: "Tuất", details: "Sát Chủ Âm & Con Nước. Kỵ di chuyển xa bờ, cải táng." },
-            { day: 20, branch: "Hợi", details: "Cát Nhật (Tam hợp Hợi Mão Mùi). Quý nhân phù trợ, mưu sự dễ thành." },
-            { day: 21, branch: "Tý", details: "Bình thường. Nên chú ý đến các mối quan hệ xã giao." },
-            { day: 22, branch: "Sửu", details: "Nguyệt Phá & Tam Nương. Tuyệt đối không giao dịch lớn hay dọn nhà." },
-            { day: 23, branch: "Dần", details: "Ngày Ốc Ma & Nguyệt Kỵ. Không mua bất động sản mới." },
-            { day: 24, branch: "Mão", details: "Bản mệnh tương hòa. Thuận lợi cho chăm sóc sức khỏe, dưỡng sinh." },
-            { day: 25, branch: "Thìn", details: "Sát Chủ Dương. Kỵ khai trương, khởi sự kinh doanh." },
-            { day: 26, branch: "Tị", details: "Đại Sát Mùa Hạ. Kỵ động thổ làm móng." },
-            { day: 27, branch: "Ngọ", details: "Đại Kỵ (Sát Chủ, Thụ Tử, Thiên Địa Chuyển Sát, Tam Nương). Cực kỳ bất lợi cho xuất hành." },
-            { day: 28, branch: "Mùi", details: "Chiêm Sào Hoang Ốc. Tránh tu tạo mái nhà." },
-            { day: 29, branch: "Thân", details: "Bình thường. Thích hợp thu hoạch, nghiệm thu công việc cũ." },
-            { day: 30, branch: "Dậu", details: "Bình thường. Thích hợp tổng kết tháng cũ, dọn dẹp không gian sống." }
+            { day: 1, branch: "Kỷ Sửu", details: "Ngày Nguyệt Phá (Sửu xung Mùi của tháng), thuộc bộ Tứ Hành Xung (Sửu - Thìn - Tuất - Mùi). Tránh dọn nhà, nhập trạch, động thổ, ký kết hợp đồng lớn." },
+            { day: 2, branch: "Canh Dần", details: "Ngày Ốc Ma của Mùa Hạ. Tuyệt đối tránh mua đất cát, chuyển dọn nhà cửa, nhập trạch dời chỗ để bảo toàn trạch vận bình an." },
+            { day: 3, branch: "Tân Mão", details: "Ngày Dương Công Kỵ Nhật (Sát khí cực đoan tích tụ) trùng ngày Tam Nương, trùng chi bản mệnh Mão. Đại kỵ khởi sự, động thổ hay làm đại sự." },
+            { day: 4, branch: "Nhâm Thìn", details: "Ngày Sát Chủ Dương, thuộc bộ Tứ Hành Xung. Đại kỵ khai trương, ký kết đối ngoại, xuất hành đi xa hay tổ chức hôn sự." },
+            { day: 5, branch: "Quý Tỵ", details: "Ngày Đại Sát Mùa Hạ, trùng ngày Con Nước & Nguyệt Kỵ. Cực kỳ kỵ đổ trần khởi công làm móng nhà cửa hay di chuyển sông nước." },
+            { day: 6, branch: "Giáp Ngọ", details: "Ngày Sát Chủ Mùa Hạ, trùng Thụ Tử & Thiên Địa Chuyển Sát cực hung hiểm. Tam trùng sát khí, tuyệt đối đại kỵ khởi sự, xây nhà, đi xa." },
+            { day: 7, branch: "Ất Mùi", details: "Ngày Chiêm Sào Hoang Ốc, trùng ngày Tam Nương và Tứ Hành Xung. Kỵ lợp mái, sửa sang mái nhà cửa, dựng cửa ngõ." },
+            { day: 8, branch: "Bính Thân", details: "Ngày bình thường, không phạm đại kỵ hại người. Thích hợp giải quyết các công việc hành chính thường nhật." },
+            { day: 9, branch: "Đinh Dậu", details: "Ngày bình thường, không phạm đại kỵ. Thích hợp dọn dẹp, lập kế hoạch hoặc bàn thảo nội bộ ấm cúng." },
+            { day: 10, branch: "Mậu Tuất", details: "Ngày Sát Chủ Âm, thuộc bộ Tứ Hành Xung. Kỵ cải táng, sửa mộ, lo việc âm phần gia đạo." },
+            { day: 11, branch: "Kỷ Hợi", details: "Cát Nhật (Quý Nhân - Tam Hợp Hợi Mão Mùi). Cát khí vượng, rất thích hợp tiến hành các mưu sự quan trọng, kết giao hợp tác." },
+            { day: 12, branch: "Canh Tý", details: "Ngày bình thường, không phạm đại kỵ. Thích hợp cho việc học hành, ký kết giao dịch nhỏ." },
+            { day: 13, branch: "Tân Sửu", details: "Ngày Nguyệt Phá (Sửu xung Mùi), trùng ngày Tam Nương, thuộc Tứ Hành Xung. Kỵ dọn dẹp nhà cửa, giao dịch tài chính lớn." },
+            { day: 14, branch: "Nhâm Dần", details: "Ngày Ốc Ma của Mùa Hạ, trùng ngày Nguyệt Kỵ. Tránh mua bán bất động sản, chuyển chỗ ở mới." },
+            { day: 15, branch: "Quý Mão", details: "Ngày bản mệnh tự hòa hợp. Thích hợp tĩnh dưỡng, chăm sóc sức khỏe, nghiên cứu học thuật sâu." },
+            { day: 16, branch: "Giáp Thìn", details: "Ngày Sát Chủ Dương, thuộc bộ Tứ Hành Xung. Tránh ký kết hợp đồng thương mại lớn, khai trương cửa hàng, dạm ngõ." },
+            { day: 17, branch: "Ất Tỵ", details: "Ngày Đại Sát Mùa Hạ. Kỵ khởi công động thổ xây dầm dột, đổ trần làm móng." },
+            { day: 18, branch: "Bính Ngọ", details: "Ngày Sát Chủ Mùa Hạ, trùng Thụ Tử, Thiên Địa Chuyển Sát & Tam Nương. Tứ trùng sát tinh cực hung, tuyệt đối an phận, kỵ di chuyển đi xa." },
+            { day: 19, branch: "Đinh Mùi", details: "Ngày Chiêm Sào Hoang Ốc, trùng ngày Con Nước, thuộc Tứ Hành Xung. Tránh lợp mái lợp nhà, tránh di chuyển trên sông nước sâu." },
+            { day: 20, branch: "Mậu Thân", details: "Ngày bình thường, không phạm đại kỵ. Thuận lợi cho công việc văn phòng, ký kết văn bản hành chính." },
+            { day: 21, branch: "Kỷ Dậu", details: "Ngày bình thường, không phạm đại kỵ. Thích hợp nghiệm thu, bàn giao kết quả công việc cũ." },
+            { day: 22, branch: "Canh Tuất", details: "Ngày Sát Chủ Âm, trùng ngày Tam Nương, thuộc Tứ Hành Xung. Kỵ cải táng, sửa mộ, lo việc âm phần gia đạo." },
+            { day: 23, branch: "Tân Hợi", details: "Ngày Tam Hợp (Hợi Mão Mùi) cực tốt nhưng phạm ngày Nguyệt Kỵ. Cát hung đan xen, chỉ nên tiến hành các công việc quy mô nhỏ." },
+            { day: 24, branch: "Nhâm Tý", details: "Ngày bình thường, không phạm đại kỵ. Nên chú ý giữ gìn sức khỏe dưới thời tiết Đại Thử nóng bức." },
+            { day: 25, branch: "Quý Sửu", details: "Ngày Nguyệt Phá (Sửu xung Mùi), thuộc Tứ Hành Xung. Không thích hợp để ký kết làm ăn lớn, mua xe hay nhập trạch." },
+            { day: 26, branch: "Giáp Dần", details: "Ngày Ốc Ma của Mùa Hạ. Tránh ký kết mua bán nhà đất hoặc dọn dẹp tân trang nội thất." },
+            { day: 27, branch: "Ất Mão", details: "Ngày Tam Nương (trùng chi bản mệnh Mộc). Tránh tổ chức hỷ sự, khai trương cửa hàng hay xuất hành đi xa." },
+            { day: 28, branch: "Bính Thìn", details: "Ngày Sát Chủ Dương, thuộc bộ Tứ Hành Xung. Kỵ giao thương đối ngoại, ra mắt sản phẩm lớn." },
+            { day: 29, branch: "Đinh Tỵ", details: "Ngày Đại Sát Mùa Hạ. Kỵ động thổ khởi công, xây cất làm nhà." },
+            { day: 30, branch: "Mậu Ngọ", details: "Ngày Sát Chủ Mùa Hạ, trùng Thụ Tử & Thiên Địa Chuyển Sát cực hung, chốt hạ tháng đủ 30 ngày. Đặc biệt phòng ngừa tai nạn, tránh mưu sự đại sự." }
         ];
 
         function buildLunarCalendar() {
@@ -438,25 +450,34 @@
             lunarMonthDays.forEach(dayInfo => {
                 const dayCard = document.createElement('button');
                 
-                // Xác định mức độ kỵ để tô màu
-                let bgClass = "bg-stone-50 text-stone-800 border-stone-200 hover:bg-stone-100";
+                let bgClass = "bg-[#fdfcf9] text-stone-800 border-stone-200 hover:bg-stone-100";
                 let badge = "";
 
-                if (dayInfo.day === 3 || dayInfo.day === 15 || dayInfo.day === 27) {
-                    bgClass = "bg-red-100 border-red-300 text-red-900 hover:bg-red-200 font-bold";
+                const hasNgọ = dayInfo.branch.includes("Ngọ");
+                const hasSửu = dayInfo.branch.includes("Sửu");
+                const hasTị = dayInfo.branch.includes("Tỵ");
+                const hasThìn = dayInfo.branch.includes("Thìn");
+                const hasTuất = dayInfo.branch.includes("Tuất");
+                const hasMùi = dayInfo.branch.includes("Mùi");
+                const hasHợi = dayInfo.branch.includes("Hợi");
+
+                // Phân bổ màu sắc cảnh báo theo mức độ nguy hại học thuật
+                if (hasNgọ || dayInfo.day === 3 || dayInfo.day === 5) {
+                    bgClass = "bg-red-50 border-red-300 text-red-950 hover:bg-red-100 font-bold";
+                    badge = "🚨";
+                } else if (hasSửu || hasTị || hasThìn || hasTuất || hasMùi) {
+                    bgClass = "bg-orange-50 border-orange-200 text-orange-900 hover:bg-orange-100";
                     badge = "⚠️";
-                } else if (dayInfo.branch === "Tị" || dayInfo.branch === "Sửu" || dayInfo.branch === "Tuất" || dayInfo.branch === "Thìn") {
-                    bgClass = "bg-orange-100 border-orange-200 text-orange-900 hover:bg-orange-200";
-                } else if (dayInfo.branch === "Hợi") {
-                    bgClass = "bg-emerald-100 border-emerald-200 text-emerald-900 hover:bg-emerald-200 font-semibold";
-                    badge = "⭐";
+                } else if (hasHợi && dayInfo.day !== 23) {
+                    bgClass = "bg-emerald-50 border-emerald-200 text-emerald-900 hover:bg-emerald-100 font-semibold";
+                    badge = "🍀";
                 }
 
-                dayCard.className = `p-3 rounded-xl border flex flex-col items-center justify-between transition-all duration-200 shadow-sm ${bgClass}`;
+                dayCard.className = `p-4 rounded-xl border-2 flex flex-col items-center justify-between transition-all duration-300 shadow-sm ${bgClass}`;
                 dayCard.innerHTML = `
-                    <span class="text-xs text-stone-500 font-medium">Mùng ${dayInfo.day}</span>
-                    <span class="text-xs font-bold mt-1">${dayInfo.branch}</span>
-                    <span class="text-xs mt-1">${badge}</span>
+                    <span class="text-xs text-stone-500 font-bold">Mùng ${dayInfo.day}</span>
+                    <span class="text-xs md:text-sm font-black mt-2">${dayInfo.branch}</span>
+                    <span class="text-sm mt-1">${badge}</span>
                 `;
                 
                 dayCard.onclick = () => showDayDetail(dayInfo);
@@ -464,32 +485,37 @@
             });
         }
 
+        // Hiển thị chi tiết sát khí của ngày được lựa chọn
         function showDayDetail(dayInfo) {
             const panel = document.getElementById('dayDetailPanel');
             let typeColor = "text-stone-800";
             let alertText = "Cảnh báo:";
 
-            if (dayInfo.day === 3 || dayInfo.day === 15 || dayInfo.day === 27) {
-                typeColor = "text-red-700 font-bold";
-                alertText = "🚨 ĐẠI KỴ - TUYỆT ĐỐI TRÁNH:";
-            } else if (dayInfo.branch === "Tị" || dayInfo.branch === "Sửu" || dayInfo.branch === "Tuất" || dayInfo.branch === "Thìn") {
-                typeColor = "text-orange-700 font-semibold";
-                alertText = "⚠️ CẢNH BÁO TRUNG HẠN:";
-            } else if (dayInfo.branch === "Hợi") {
-                typeColor = "text-emerald-700 font-bold";
-                alertText = "🍀 CÁT NHẬT ƯU TIÊN:";
+            const hasNgọ = dayInfo.branch.includes("Ngọ");
+            const hasHợi = dayInfo.branch.includes("Hợi");
+
+            if (hasNgọ || dayInfo.day === 3 || dayInfo.day === 5) {
+                typeColor = "text-red-700 font-black";
+                alertText = "🚨 ĐẠI KỴ TAI HẠI - TRÁNH TUYỆT ĐỐI KHỞI SỰ:";
+            } else if (hasHợi && dayInfo.day !== 23) {
+                typeColor = "text-emerald-700 font-black";
+                alertText = "🍀 CÁT NHẬT (QUÝ NHÂN TAM HỢP) - ƯU TIÊN HÀNH SỰ:";
+            } else {
+                typeColor = "text-orange-700 font-bold";
+                alertText = "⚠️ CẢNH BÁO SÁT KHÍ:";
             }
 
             panel.innerHTML = `
-                <div class="space-y-1">
-                    <p class="text-stone-900 font-bold">Ngày Mùng ${dayInfo.day} Âm Lịch (Ngày ${dayInfo.branch})</p>
-                    <p class="${typeColor}"><span class="underline">${alertText}</span> ${dayInfo.details}</p>
+                <div class="space-y-2">
+                    <p class="text-stone-900 font-black text-base">Ngày Mùng ${dayInfo.day} Âm Lịch (Ngày ${dayInfo.branch})</p>
+                    <p class="${typeColor} leading-relaxed"><span class="underline">${alertText}</span> ${dayInfo.details}</p>
                 </div>
             `;
         }
 
         let chartInstance = null;
 
+        // Trực quan hóa tỷ lệ sinh học 70% Địa Chi và 30% Nạp Âm
         function updateRatioChart(ratioData) {
             const ctx = document.getElementById('academicRatioChart').getContext('2d');
             if (chartInstance) {
@@ -502,8 +528,8 @@
                     labels: ['Mệnh Gốc Địa Chi Mão (70%)', 'Ngũ Hành Nạp Âm (30%)'],
                     datasets: [{
                         data: ratioData,
-                        backgroundColor: ['#7c1a22', '#d4af37'],
-                        borderWidth: 1,
+                        backgroundColor: ['#7c1a22', '#f59e0b'],
+                        borderWidth: 2,
                         borderColor: '#ffffff'
                     }]
                 },
@@ -515,7 +541,7 @@
                             display: false
                         }
                     },
-                    cutout: '65%'
+                    cutout: '70%'
                 }
             });
         }
@@ -523,12 +549,10 @@
         function activateYear(year) {
             const data = ageDatabase[year];
             
-            // Ẩn placeholder và hiển thị khối phân tích
             document.getElementById('yearPlaceholder').classList.add('hidden');
             const analysisBlock = document.getElementById('selectedYearAnalysis');
             analysisBlock.classList.remove('hidden');
 
-            // Cập nhật các thông tin văn bản chuẩn chỉ không thiếu một từ
             document.getElementById('displayYearTitle').innerText = data.name;
             document.getElementById('displayNapAm').innerText = "Nạp Âm: " + data.napAm;
             document.getElementById('starNamText').innerText = data.starNam;
@@ -537,35 +561,32 @@
             document.getElementById('hanNuText').innerText = data.hanNu;
             document.getElementById('fullLuanGiaiText').innerText = data.luanGiai;
 
-            // Đắp màu sắc phong thủy cải vận
             const colorContainer = document.getElementById('displayColorBox');
             colorContainer.innerHTML = '';
             data.colors.forEach(col => {
                 const colItem = document.createElement('div');
-                colItem.className = "flex items-center gap-1 bg-stone-100 py-1 px-2.5 rounded-full border border-stone-200 shadow-sm";
+                colItem.className = "flex items-center gap-2 bg-white py-1.5 px-3.5 rounded-full border-2 border-stone-200 shadow-sm";
                 colItem.innerHTML = `
-                    <span class="w-4 h-4 rounded-full border" style="background-color: ${col.hex}"></span>
-                    <span class="text-xs text-stone-700 font-medium">${col.name}</span>
+                    <span class="w-4 h-4 rounded-full border border-stone-300" style="background-color: ${col.hex}"></span>
+                    <span class="text-xs text-stone-700 font-black">${col.name}</span>
                 `;
                 colorContainer.appendChild(colItem);
             });
 
-            // Vẽ lại biểu đồ tỉ lệ học thuật
             updateRatioChart(data.ratio);
 
-            // Làm nổi bật nút đang chọn
+            // Cập nhật trạng thái hiển thị của nút tab
             document.querySelectorAll('.year-tab-btn').forEach(btn => {
-                btn.classList.remove('border-amber-800', 'bg-amber-50', 'text-amber-900', 'ring-2', 'ring-amber-800/30');
+                btn.classList.remove('border-[#7c1a22]', 'bg-red-50', 'text-[#7c1a22]', 'ring-4', 'ring-red-100');
                 if(btn.getAttribute('data-year') == year) {
-                    btn.classList.add('border-amber-800', 'bg-amber-50', 'text-amber-900', 'ring-2', 'ring-amber-800/30');
+                    btn.classList.add('border-[#7c1a22]', 'bg-red-50', 'text-[#7c1a22]', 'ring-4', 'ring-red-100');
                 }
             });
 
-            // Cuộn mượt xuống khu vực hiển thị nếu ở màn hình di động
             analysisBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // Cổng mở / Accordion học thuyết 70-30
+        // Hàm ẩn hiện collapsible accordion cho thuyết 70-30%
         function toggleAccordion(contentId, iconId) {
             const content = document.getElementById(contentId);
             const icon = document.getElementById(iconId);
@@ -580,7 +601,6 @@
         }
 
         window.onload = function() {
-            // Xây dựng lịch kiêng kỵ tương tác
             buildLunarCalendar();
         }
     </script>
