@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra cứu Ngày Lành Tháng 7/2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chosen Palette: Serene Bamboo - Base: #FDFBF7, Text: #2D241E, Accents: #8C7851, #D9C5A0, #EAE2D6 -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #2D241E;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(140, 120, 81, 0.1);
+        }
+
+        .day-cell {
+            transition: all 0.3s ease;
+        }
+
+        .day-cell:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(140, 120, 81, 0.15);
+        }
+
+        .active-tab {
+            border-bottom: 3px solid #8C7851;
+            color: #8C7851;
+            font-weight: 600;
+        }
+
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+<!-- Application Structure Plan:
+    1. Header & Dashboard: Cung cấp cái nhìn tổng quan về tháng 7 Âm lịch (tháng thiếu, các con số thống kê).
+    2. Interactive Calendar: Trung tâm của ứng dụng, cho phép người dùng chọn ngày để xem chi tiết. Màu sắc phân biệt Đại Cát, Thứ Cát và Đại Kỵ.
+    3. Filter & Explore: Bộ lọc theo nhu cầu (Động thổ, Cưới hỏi, Khai trương) giúp thu hẹp danh sách ngày phù hợp.
+    4. Knowledge Base: Giải thích các thuật ngữ phong thủy xuất hiện trong báo cáo (Dương Công Kỵ, Sát Chủ, Thụ Tử).
+    5. Detailed Analysis: Biểu đồ phân bổ chất lượng ngày trong tháng để người dùng có cái nhìn trực quan về xu hướng tốt/xấu.
+-->
+
+<!-- Visualization & Content Choices:
+    1. Dashboard Cards: Thống kê nhanh số ngày Đại Cát, Thứ Cát.
+    2. Calendar Grid: Sử dụng HTML/Tailwind để tái hiện lịch tháng 7/2026, tương tác khi click sẽ hiện thông tin chi tiết.
+    3. Chart.js (Doughnut): Hiển thị tỷ lệ ngày Tốt/Xấu/Bình thường trong tháng.
+    4. Interactive Table: Liệt kê các ngày Đại Kỵ với lý do cụ thể (Tam Nương, Nguyệt Kỵ...).
+    5. Justification: Việc sử dụng lịch tương tác thay vì danh sách tĩnh giúp người dùng dễ dàng định vị thời gian thực tế. Biểu đồ tròn giúp nắm bắt nhanh mức độ "thuận lợi" của cả tháng.
+    - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. 
+-->
+
+<header class="py-8 px-4 bg-[#EAE2D6] shadow-sm">
+    <div class="max-w-6xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl font-bold text-[#5D4B33] mb-2 uppercase tracking-wide">Lịch Tiết Minh - Tháng 7 Âm Lịch 2026</h1>
+        <p class="text-lg text-[#8C7851]">Tháng Bính Thân — Phân tích Cát Hung theo Đổng Công Trạch Nhật</p>
+    </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-8">
+    
+    <!-- Section: Overview Dashboard -->
+    <section class="mb-12">
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">Tổng Quan Tháng</h2>
+            <p class="text-gray-600 italic">Tháng 7 là tháng thiếu (29 ngày), bắt đầu từ mùng 1 (Kỷ Mùi) đến 29 (Đinh Hợi). Đây là giai đoạn cần sự cẩn trọng cao độ nhưng vẫn sở hữu những "cửa sổ" đại cát cho đại sự.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center shadow-sm">
+                <span class="text-3xl mb-2">✨</span>
+                <h3 class="text-sm font-medium text-gray-500 uppercase">Ngày Đại Cát</h3>
+                <p class="text-4xl font-bold text-green-700 mt-1">02</p>
+                <p class="text-xs text-gray-400 mt-2">Mùng 9, 24</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center shadow-sm">
+                <span class="text-3xl mb-2">🌤️</span>
+                <h3 class="text-sm font-medium text-gray-500 uppercase">Ngày Thứ Cát</h3>
+                <p class="text-4xl font-bold text-blue-700 mt-1">03</p>
+                <p class="text-xs text-gray-400 mt-2">Mùng 1, 21, 25</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center shadow-sm border-red-100">
+                <span class="text-3xl mb-2">🚫</span>
+                <h3 class="text-sm font-medium text-gray-500 uppercase">Ngày Đại Kỵ</h3>
+                <p class="text-4xl font-bold text-red-700 mt-1">13</p>
+                <p class="text-xs text-gray-400 mt-2">Sát chủ, Tam nương...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Interactive Explorer -->
+    <section class="mb-12">
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">Tra Cứu Lịch Tương Tác</h2>
+            <p class="text-gray-600 italic">Chọn một ngày trong lịch để xem chi tiết các cát tinh chiếu, công việc phù hợp hoặc lý do đại kỵ. Màu sắc hiển thị mức độ tốt xấu của ngày.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Calendar Grid -->
+            <div class="lg:col-span-2 glass-card rounded-2xl p-6 shadow-sm overflow-hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-lg">Lịch Âm Tháng 7 / 2026</h3>
+                    <div class="flex space-x-2 text-xs">
+                        <span class="flex items-center"><span class="w-3 h-3 bg-green-200 rounded-full mr-1"></span> Tốt</span>
+                        <span class="flex items-center"><span class="w-3 h-3 bg-blue-100 rounded-full mr-1"></span> Khá</span>
+                        <span class="flex items-center"><span class="w-3 h-3 bg-red-100 rounded-full mr-1"></span> Xấu</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-7 gap-2 text-center text-sm font-semibold text-gray-400 mb-2">
+                    <div>CN</div><div>T2</div><div>T3</div><div>T4</div><div>T5</div><div>T6</div><div>T7</div>
+                </div>
+                <!-- Mocking the grid for July 2026 (Starts at Fri - based on 21/08/2026 as Aug 21, 2026 is Fri) -->
+                <!-- Lunar Day 1 (Kỷ Mùi) is approx Aug 13, 2026 (Thursday) -->
+                <div id="calendar-grid" class="grid grid-cols-7 gap-2">
+                    <!-- Placeholder days before 1st -->
+                    <div class="h-20 bg-gray-50 rounded-lg opacity-30"></div>
+                    <div class="h-20 bg-gray-50 rounded-lg opacity-30"></div>
+                    <div class="h-20 bg-gray-50 rounded-lg opacity-30"></div>
+                    <div class="h-20 bg-gray-50 rounded-lg opacity-30"></div>
+                    <!-- Calendar days generated by JS -->
+                </div>
+            </div>
+
+            <!-- Details Panel -->
+            <div id="details-panel" class="bg-white rounded-2xl p-6 border-2 border-dashed border-[#D9C5A0] shadow-sm">
+                <div class="flex flex-col items-center justify-center h-full text-center text-gray-500" id="empty-state">
+                    <span class="text-5xl mb-4">📅</span>
+                    <p>Vui lòng chọn một ngày trên lịch để xem phân tích chi tiết.</p>
+                </div>
+                <div id="data-state" class="hidden h-full">
+                    <div id="day-badge" class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase mb-4"></div>
+                    <h3 class="text-2xl font-bold text-[#5D4B33] mb-1" id="selected-day-title">Ngày mùng 9</h3>
+                    <p class="text-sm text-gray-500 mb-4" id="selected-can-chi">Can chi: Đinh Mão</p>
+                    
+                    <div class="space-y-6">
+                        <div id="detail-stars">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Cát tinh chiếu</h4>
+                            <p class="text-sm" id="stars-list"></p>
+                        </div>
+                        <div id="detail-tasks">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Công việc phù hợp</h4>
+                            <ul class="text-sm list-disc pl-5 space-y-1" id="tasks-list"></ul>
+                        </div>
+                        <div id="detail-taboos" class="p-4 bg-red-50 rounded-xl">
+                            <h4 class="text-xs font-bold text-red-700 uppercase tracking-wider mb-1">Cảnh báo</h4>
+                            <p class="text-sm text-red-800" id="taboo-reason"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Statistics & Insights -->
+    <section class="mb-12 bg-white rounded-2xl p-8 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Thống Kê Chất Lượng Tháng</h2>
+                <p class="text-gray-600 mb-6">Biểu đồ dưới đây thể hiện sự phân bổ giữa ngày Cát, ngày Bình thường và ngày Hung trong tháng 7 Âm lịch năm 2026. Có thể thấy, các ngày Đại Kỵ chiếm tỷ trọng khá lớn, nhấn mạnh lời khuyên "cẩn trọng" từ dân gian.</p>
+                <div class="chart-container">
+                    <canvas id="qualityChart"></canvas>
+                </div>
+            </div>
+            <div class="space-y-4">
+                <div class="p-4 border-l-4 border-amber-400 bg-amber-50">
+                    <h4 class="font-bold text-amber-800">Lưu ý về Ngày Mùng 1</h4>
+                    <p class="text-sm text-amber-700">Mặc dù có sao Thiên Thành, nhưng đây là ngày <strong>Dương Công Kỵ</strong>. Chúng tôi đã tách riêng ngày này để gia chủ tránh nhầm lẫn trong việc khởi công xây dựng.</p>
+                </div>
+                <div class="p-4 border-l-4 border-[#8C7851] bg-[#FDFBF7]">
+                    <h4 class="font-bold text-[#5D4B33]">Nguyên tắc Đổng Công</h4>
+                    <p class="text-sm text-[#8C7851]">Hệ thống tra cứu này ưu tiên các ngày có sự hội tụ của Huỳnh La, Tử Đàn, Thiên Hoàng và Địa Hoàng để đảm bảo cát khí cao nhất.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Detailed Taboo Guide -->
+    <section class="mb-8">
+        <h2 class="text-xl font-semibold mb-6">Cẩm Nang Ngày Hung Đại Kỵ</h2>
+        <p class="text-gray-600 italic mb-6">Để đảm bảo công việc diễn ra thuận lợi, gia chủ nên loại bỏ hoàn toàn các ngày hung bại dựa trên các tiêu chí dưới đây.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="p-5 glass-card rounded-xl">
+                <h3 class="font-bold text-red-700 mb-2">Sát Chủ & Thụ Tử</h3>
+                <p class="text-sm text-gray-600">Tuyệt đối không dùng cho việc đại sự, ảnh hưởng sức khỏe và tài lộc.</p>
+                <div class="mt-3 text-xs font-semibold px-2 py-1 bg-red-100 text-red-700 rounded inline-block">Ngày: 7, 19</div>
+            </div>
+            <div class="p-5 glass-card rounded-xl">
+                <h3 class="font-bold text-red-700 mb-2">Nguyệt Phá (Dần)</h3>
+                <p class="text-sm text-gray-600">Tháng Thân xung Dần. Chỉ nên phá dỡ, lấp giếng, không xây dựng.</p>
+                <div class="mt-3 text-xs font-semibold px-2 py-1 bg-red-100 text-red-700 rounded inline-block">Ngày: Dần</div>
+            </div>
+            <div class="p-5 glass-card rounded-xl">
+                <h3 class="font-bold text-red-700 mb-2">Dương Công Kỵ</h3>
+                <p class="text-sm text-gray-600">Kỵ nhất động thổ, đổ mái. Hậu quả có thể kéo dài khó lường.</p>
+                <div class="mt-3 text-xs font-semibold px-2 py-1 bg-red-100 text-red-700 rounded inline-block">Ngày: 1, 29</div>
+            </div>
+            <div class="p-5 glass-card rounded-xl">
+                <h3 class="font-bold text-red-700 mb-2">Tam Nương/Nguyệt Kỵ</h3>
+                <p class="text-sm text-gray-600">Cẩn thận việc đi lại, ký kết hợp đồng hoặc khai trương.</p>
+                <div class="mt-3 text-xs font-semibold px-2 py-1 bg-red-100 text-red-700 rounded inline-block">Nhiều ngày</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="mt-12 py-8 px-4 bg-[#2D241E] text-[#EAE2D6] text-center">
+    <p class="text-sm opacity-80">© 2026 Lịch Phong Thủy - Dự liệu dựa trên bản hiệu chỉnh tháng 7 Âm lịch năm 2026.</p>
+</footer>
+
+<script>
+    // Data Source from Report
+    const lunarDays = Array.from({length: 29}, (_, i) => {
+        const day = i + 1;
+        let data = {
+            id: day,
+            title: `Ngày mùng ${day}`,
+            canChi: "",
+            rating: "Bình thường", // Default
+            stars: "Đang cập nhật...",
+            tasks: ["Công việc nhỏ", "Giao dịch cá nhân"],
+            taboo: null
+        };
+
+        // Specific Data Points
+        if (day === 9) {
+            data.canChi = "Đinh Mão";
+            data.rating = "Đại Cát";
+            data.stars = "Huỳnh La, Tử Đàn, Thiên Hoàng, Địa Hoàng đồng chiếu.";
+            data.tasks = ["Sửa chữa", "Tạo tác", "An táng", "Cưới hỏi", "Khai trương", "Xuất hành", "Nhập trạch", "Động thổ"];
+        } else if (day === 24) {
+            data.canChi = "Nhâm Ngọ";
+            data.rating = "Đại Cát";
+            data.stars = "Nguyệt Đức hóa giải xung sát, phước đức quý nhân.";
+            data.tasks = ["Hội họp gia tộc", "Nhập trạch", "Động thổ", "Khởi công công trình"];
+        } else if (day === 21) {
+            data.canChi = "Kỷ Mão";
+            data.rating = "Thứ Cát";
+            data.tasks = ["Giao dịch", "Hội họp", "Thủ tục hành chính"];
+        } else if (day === 25) {
+            data.canChi = "Quý Mùi";
+            data.rating = "Thứ Cát";
+            data.stars = "Sự kết hợp Hỏa Tinh và Thiên Đức.";
+            data.tasks = ["Tu tạo", "Dựng cột", "Gác dông", "Nhập trạch", "Xuất hành"];
+        } else if (day === 1) {
+            data.canChi = "Kỷ Mùi";
+            data.rating = "Cảnh báo"; // Special case
+            data.stars = "Thiên Thành chiếu (Nhưng bị Dương Công Kỵ).";
+            data.tasks = ["Việc nhỏ", "Xuất hành nhẹ nhàng"];
+            data.taboo = "Ngày Dương Công Kỵ: Đặc biệt kỵ động thổ, đổ mái.";
+        } else if ([7, 19].includes(day)) {
+            data.rating = "Đại Kỵ";
+            data.taboo = "Ngày Sát Chủ & Thụ Tử: Tuyệt đối không khởi công, cưới hỏi.";
+        } else if ([3, 7, 13, 18, 22, 27].includes(day)) {
+            data.rating = "Đại Kỵ";
+            data.taboo = "Ngày Tam Nương: Hung tinh ảnh hưởng vạn sự.";
+        } else if ([5, 14, 23].includes(day)) {
+            data.rating = "Đại Kỵ";
+            data.taboo = "Ngày Nguyệt Kỵ: Mọi việc dang dở, khó thành.";
+        } else if (day === 29) {
+            data.rating = "Đại Kỵ";
+            data.taboo = "Ngày Dương Công Kỵ: Đại kỵ động thổ.";
+        }
+
+        // Add Can Chi placeholders for others (Simulated)
+        if (!data.canChi) data.canChi = "Can Chi trong tháng Bính Thân";
+
+        return data;
+    });
+
+    const calendarGrid = document.getElementById('calendar-grid');
+    const emptyState = document.getElementById('empty-state');
+    const dataState = document.getElementById('data-state');
+
+    function renderCalendar() {
+        lunarDays.forEach(day => {
+            const div = document.createElement('div');
+            let bgClass = "bg-white border-gray-100";
+            if (day.rating === "Đại Cát") bgClass = "bg-green-100 border-green-200 text-green-800";
+            else if (day.rating === "Thứ Cát") bgClass = "bg-blue-50 border-blue-100 text-blue-800";
+            else if (day.rating === "Đại Kỵ") bgClass = "bg-red-50 border-red-100 text-red-600";
+            else if (day.rating === "Cảnh báo") bgClass = "bg-amber-50 border-amber-200 text-amber-800";
+
+            div.className = `h-20 p-2 rounded-xl border-2 day-cell cursor-pointer flex flex-col justify-between ${bgClass}`;
+            div.innerHTML = `
+                <span class="font-bold text-lg">${day.id}</span>
+                <span class="text-[10px] leading-tight">${day.rating === "Đại Cát" ? "TỐT" : (day.rating === "Đại Kỵ" ? "KỴ" : "")}</span>
+            `;
+            div.onclick = () => showDetails(day);
+            calendarGrid.appendChild(div);
+        });
+    }
+
+    function showDetails(day) {
+        emptyState.classList.add('hidden');
+        dataState.classList.remove('hidden');
+
+        document.getElementById('selected-day-title').innerText = day.title;
+        document.getElementById('selected-can-chi').innerText = day.canChi;
+        
+        const badge = document.getElementById('day-badge');
+        badge.innerText = day.rating;
+        badge.className = "inline-block px-3 py-1 rounded-full text-xs font-bold uppercase mb-4 ";
+        if (day.rating === "Đại Cát") badge.classList.add('bg-green-600', 'text-white');
+        else if (day.rating === "Thứ Cát") badge.classList.add('bg-blue-600', 'text-white');
+        else if (day.rating === "Đại Kỵ") badge.classList.add('bg-red-600', 'text-white');
+        else badge.classList.add('bg-amber-500', 'text-white');
+
+        const starsContainer = document.getElementById('detail-stars');
+        if (day.stars !== "Đang cập nhật...") {
+            starsContainer.classList.remove('hidden');
+            document.getElementById('stars-list').innerText = day.stars;
+        } else {
+            starsContainer.classList.add('hidden');
+        }
+
+        const tasksList = document.getElementById('tasks-list');
+        tasksList.innerHTML = '';
+        day.tasks.forEach(t => {
+            const li = document.createElement('li');
+            li.innerText = t;
+            tasksList.appendChild(li);
+        });
+
+        const tabooContainer = document.getElementById('detail-taboos');
+        if (day.taboo) {
+            tabooContainer.classList.remove('hidden');
+            document.getElementById('taboo-reason').innerText = day.taboo;
+        } else {
+            tabooContainer.classList.add('hidden');
+        }
+    }
+
+    function initChart() {
+        const ctx = document.getElementById('qualityChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Đại Cát', 'Thứ Cát', 'Bình Thường', 'Đại Kỵ'],
+                datasets: [{
+                    data: [2, 3, 11, 13],
+                    backgroundColor: ['#15803d', '#1d4ed8', '#e5e7eb', '#b91c1c'],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            font: { size: 12, family: 'Inter' }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.label}: ${context.raw} ngày`;
+                            }
+                        }
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCalendar();
+        initChart();
+    });
+</script>
+</body>
+</html>
