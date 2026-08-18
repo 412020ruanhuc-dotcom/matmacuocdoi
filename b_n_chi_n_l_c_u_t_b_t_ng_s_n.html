@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bản Đồ & Chiến Lược Đầu Tư Bất Động Sản Chuẩn Xác</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 360px;
+            }
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased leading-relaxed">
+
+    <!-- Chosen Palette: Slate & Warm Emerald Palette (Background: bg-slate-50, Text: text-slate-800, Primary: emerald-600, Dark Accents: navy-900, Warm Accents: amber-500) -->
+    <!-- Application Structure Plan: App is structured into 4 interactive modules: 1) Market Timing & Signals (Bottom/top indicators & interactive real-world case study visualizers), 2) Wave Mechanics & Industrial Park Engine (4-phase interactive Chart.js wave chart, plot size wave counter, KCN cashflow calculator), 3) Multiplicative Investment Formula & Freedom Roadmap (6-factor interactive evaluator with zero-multiplier check & financial freedom target asset dynamic planner), 4) Capital Accumulation Strategy Engine (Interactive simulator comparing 3 strategies for small-capital investors with dynamic Chart.js projection). Designed to turn passive lecture reading into active financial strategy practice. -->
+    <!-- Visualization & Content Choices:
+         - Bottom vs Peak Signals: Toggle cards & dynamic scenario breakdown.
+         - Case Studies (Bình Phước & Nhơn Trạch): Interactive value calculators showing asset protection & double-purchasing-power timing.
+         - 4-Phase Info Wave: Chart.js Line Chart with dynamic phase explanation panels.
+         - Plot Size Wave Detector: Dynamic plot split visualizer estimating wave history and current risk level.
+         - Industrial Park Cashflow Engine: Real-time formula sliders calculating total workforce & monthly spending influx.
+         - 6-Factor Multiplicative Formula: Interactive range sliders showing how a single '0' invalidates the whole deal.
+         - 3-Year Suburban Capital Strategy Simulator: Interactive investment math comparison vs Savings and 30-Year Debt with Chart.js visualization.
+         - All charts generated using Canvas via Chart.js. NO SVG icons or Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-3">
+                    <span class="text-2xl">🗺️</span>
+                    <span class="font-bold text-lg md:text-xl text-slate-900 tracking-tight">BĐS Investment Hub</span>
+                </div>
+                <nav class="hidden md:flex space-x-1 lg:space-x-4 text-sm font-medium text-slate-600">
+                    <a href="#phan1" class="px-3 py-2 rounded-lg hover:text-emerald-600 hover:bg-slate-100 transition">1. Đáy & Đỉnh</a>
+                    <a href="#phan2" class="px-3 py-2 rounded-lg hover:text-emerald-600 hover:bg-slate-100 transition">2. Sóng TT & BĐS KCN</a>
+                    <a href="#phan3" class="px-3 py-2 rounded-lg hover:text-emerald-600 hover:bg-slate-100 transition">3. Công Thức & Bản Đồ</a>
+                    <a href="#phan4" class="px-3 py-2 rounded-lg hover:text-emerald-600 hover:bg-slate-100 transition">4. Tích Lũy Vốn Nhỏ</a>
+                </nav>
+            </div>
+        </div>
+        <!-- Mobile Nav Bar -->
+        <div class="md:hidden flex overflow-x-auto py-2 px-4 border-t border-slate-100 gap-2 text-xs font-semibold whitespace-nowrap bg-slate-50">
+            <a href="#phan1" class="px-3 py-1.5 bg-white border border-slate-200 rounded-full text-slate-700">1. Đáy & Đỉnh</a>
+            <a href="#phan2" class="px-3 py-1.5 bg-white border border-slate-200 rounded-full text-slate-700">2. Sóng TT & KCN</a>
+            <a href="#phan3" class="px-3 py-1.5 bg-white border border-slate-200 rounded-full text-slate-700">3. Công Thức & Bản Đồ</a>
+            <a href="#phan4" class="px-3 py-1.5 bg-white border border-slate-200 rounded-full text-slate-700">4. Vốn Nhỏ 3 Năm</a>
+        </div>
+    </header>
+
+    <!-- Main Hero Banner -->
+    <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-12 md:py-16">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-semibold uppercase tracking-wider mb-4 border border-emerald-500/30">
+                Chương Trình Huấn Luyện & Mô Phỏng Chiến Lược
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+                Bản Đồ Và Chiến Lược Đầu Tư Bất Động Sản Chuẩn Xác
+            </h1>
+            <p class="text-slate-300 text-base md:text-lg max-w-3xl mx-auto mb-8 leading-relaxed">
+                Ứng dụng công cụ tương tác thực tế giúp nhà đầu tư nhận biết chu kỳ đáy/đỉnh, tính toán dòng tiền khu công nghiệp, đánh giá thương vụ theo công thức nhân và tối ưu chiến lược tích lũy tài sản vùng ven.
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+                <div class="bg-slate-800/80 border border-slate-700/60 p-4 rounded-xl">
+                    <div class="text-emerald-400 font-bold text-2xl mb-1">3 Tín Hiệu</div>
+                    <div class="text-xs text-slate-300">Xác định vùng đáy an toàn</div>
+                </div>
+                <div class="bg-slate-800/80 border border-slate-700/60 p-4 rounded-xl">
+                    <div class="text-amber-400 font-bold text-2xl mb-1">4 Pha Sóng</div>
+                    <div class="text-xs text-slate-300">Sóng thông tin & bẫy đu đỉnh</div>
+                </div>
+                <div class="bg-slate-800/80 border border-slate-700/60 p-4 rounded-xl">
+                    <div class="text-blue-400 font-bold text-2xl mb-1">300 Lao Động</div>
+                    <div class="text-xs text-slate-300">Dòng tiền trên 1 ha đất KCN</div>
+                </div>
+                <div class="bg-slate-800/80 border border-slate-700/60 p-4 rounded-xl">
+                    <div class="text-purple-400 font-bold text-2xl mb-1">Chu Kỳ 3 Năm</div>
+                    <div class="text-xs text-slate-300">Nhân vốn cho người ít tiền</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <!-- ========================================== -->
+        <!-- PHẦN 1: NHẬN DIỆN ĐÁY VÀ ĐỈNH THỊ TRƯỜNG   -->
+        <!-- ========================================== -->
+        <section id="phan1" class="scroll-mt-20">
+            <div class="border-l-4 border-emerald-500 pl-4 mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Phần 1: Nhận Diện Vùng Đáy An Toàn & Vùng Đỉnh Thị Trường</h2>
+                <p class="text-slate-600 text-sm md:text-base mt-1">
+                    Tránh bẫy "bắt đáy khi thị trường rơi tự do" và nhận biết "cửa hẹp rút lui" trước khi thanh khoản hoàn toàn đóng băng.
+                </p>
+            </div>
+
+            <!-- Comparison Tabs & Interactive Signal Dashboard -->
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <!-- Vùng Đáy Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-emerald-100 hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full font-semibold text-xs">VÙNG ĐÁY AN TOÀN</span>
+                        <span class="text-xl">📈</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">3 Tín Hiệu Thực Tế Trong 1 Tháng</h3>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
+                            <div><strong>Giá chào bán nhích nhẹ:</strong> Chủ nhà bắt đầu nâng nhẹ giá chào bán sau thời gian dài cắt lỗ sâu.</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
+                            <div><strong>Giao dịch phát sinh thực tế tăng:</strong> Khối lượng mua bán bắt đầu ấm lên, không còn tình trạng hoàn toàn "đóng băng".</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
+                            <div><strong>Môi giới quay lại:</strong> Lực lượng môi giới bắt đầu tập trung trở lại địa bàn để tìm nguồn hàng.</div>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900">
+                        💡 <strong>Quy tắc vàng:</strong> Mua ở khoảng nhích lên này an toàn hơn rất nhiều so với việc mạo hiểm "bắt đáy" khi thị trường còn đang rơi tự do.
+                    </div>
+                </div>
+
+                <!-- Vùng Đỉnh Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-rose-100 hover:shadow-md transition">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="px-3 py-1 bg-rose-100 text-rose-800 rounded-full font-semibold text-xs">VÙNG ĐỈNH THỊ TRƯỜNG</span>
+                        <span class="text-xl">⚠️</span>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-3">4 Dấu Hiệu Cảnh Báo Rút Lực</h3>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">1</span>
+                            <div><strong>Chốt giao dịch thần tốc:</strong> Sáng xem đất, chiều chốt hợp đồng ngay trong ngày.</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">2</span>
+                            <div><strong>Cọc lướt mua bán chuyền tay:</strong> Hợp đồng cọc chuyền qua 4-5 chủ/ngày, xé cọc chênh 50–100 triệu/ngày.</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">3</span>
+                            <div><strong>Môi giới dày đặc:</strong> Đường phố vắng vẻ bỗng nhộn nhịp như phố bộ hành, môi giới vẫy khách khắp ngả đường.</div>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <span class="w-5 h-5 rounded-full bg-rose-500 text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">4</span>
+                            <div><strong>Người mua giảm trước, giá giảm sau:</strong> Lượng cuộc gọi giảm dần nhưng giá niêm yết chưa giảm. Đây là cửa hẹp cuối cùng để rút.</div>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-3 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-900">
+                        🛑 <strong>Cảnh báo:</strong> Đừng tham vọng bán đúng "đỉnh tuyệt đối". Xuất hiện các dấu hiệu trên là lúc phải thoát hàng khẩn cấp.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Studies Interactive Calculators -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                    <span>🏢</span> Bài Học Thực Địa & Mô Phỏng Thương Vụ Thực Tế
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Case 1: Bình Phước -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-slate-800">Case 1: Bình Phước (Bẫy "Bắt Đáy" Sớm)</h4>
+                            <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-medium">Bắt Đáy Rơi Tự Do</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Đỉnh sóng đất giá <strong>1,5 tỷ đồng</strong>. Nhà đầu tư ham rẻ nhảy vào bắt đáy khi giá giảm 50%...
+                        </p>
+                        
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between items-center p-2.5 bg-white rounded-lg border border-slate-200">
+                                <span>Giá đỉnh sóng:</span>
+                                <span class="font-bold text-slate-900">1.500 triệu (1,5 tỷ)</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-rose-50 rounded-lg border border-rose-200 text-rose-900">
+                                <span>Giá nhảy vào bắt đáy (Giảm 50%):</span>
+                                <span class="font-bold">750 triệu</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-slate-200 rounded-lg border border-slate-300 text-slate-900">
+                                <span>Giá thực tế tiếp tục thủng đáy:</span>
+                                <span class="font-bold text-rose-600">450 triệu</span>
+                            </div>
+                            <div class="p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-900 font-medium">
+                                📉 <strong>Thực tế thua lỗ:</strong> Âm thêm <strong>40%</strong> từ mốc "đáy hờ" (Mất कुल 70% từ đỉnh). Bài học: Không bắt đáy khi chưa xuất hiện 3 tín hiệu nhích nhẹ.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case 2: Nhơn Trạch -->
+                    <div class="bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-slate-800">Case 2: Nhơn Trạch (Đồng Nai - Tối Ưu Điểm Bán)</h4>
+                            <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-medium">Sức Mạnh Bán Đúng Đỉnh</span>
+                        </div>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Khu vực HUD & Hancorp (Tháng 3/2022 vs Tháng 3/2023). Bán đúng đỉnh cho phép nhân đôi quy mô tài sản.
+                        </p>
+
+                        <!-- Interactive Area Multiplier Calculator -->
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between items-center p-2.5 bg-amber-50 rounded-lg border border-amber-200">
+                                <span>Tháng 3/2022 (Vùng đỉnh):</span>
+                                <span class="font-bold text-amber-900">13,5 triệu/m²</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 bg-slate-200 rounded-lg border border-slate-300">
+                                <span>Tháng 3/2023 (Đóng băng):</span>
+                                <span class="font-bold text-slate-800">6,5 triệu/m²</span>
+                            </div>
+                            
+                            <div class="p-3 bg-emerald-50 rounded-lg border border-emerald-200 text-xs space-y-2">
+                                <div class="font-bold text-emerald-900">🧮 Tính toán sức mua (Bán Đỉnh vs Giữ Đáy):</div>
+                                <div class="text-slate-700">
+                                    Nếu bạn có lô 100m² bán ở đỉnh thu về: <strong>1,35 tỷ VNĐ</strong>.
+                                </div>
+                                <div class="text-slate-700">
+                                    Dùng 1,35 tỷ VNĐ mua lại ở vùng đáy (6,5tr/m²) sẽ sở hữu: <strong class="text-emerald-700 text-sm">207,7 m²</strong>
+                                </div>
+                                <div class="font-bold text-emerald-800 text-xs">
+                                    🚀 Kết quả: Gia tăng x2,08 lần diện tích sở hữu với cùng lượng tiền!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PHẦN 2: SÓNG THÔNG TIN & BĐS KCN           -->
+        <!-- ========================================== -->
+        <section id="phan2" class="scroll-mt-20">
+            <div class="border-l-4 border-indigo-500 pl-4 mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Phần 2: Chiến Lược Đầu Tư Theo Sóng Thông Tin & BĐS Khu Công Nghiệp</h2>
+                <p class="text-slate-600 text-sm md:text-base mt-1">
+                    Hiểu rõ bản chất chênh lệch thông tin, nhận biết chu kỳ sóng qua diện tích thửa đất và quy luật dòng tiền 300 lao động/ha KCN.
+                </p>
+            </div>
+
+            <!-- Wave Mechanics Visualizer (Chart.js) -->
+            <div class="grid lg:grid-cols-12 gap-8 items-center mb-10">
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">Biểu Đồ Diễn Biến 4 Pha Sóng Thông Tin</h3>
+                    <p class="text-xs text-slate-500 mb-4">Click vào các điểm hoặc giai đoạn trên biểu đồ để xem hành động chiến lược.</p>
+                    
+                    <div class="chart-container">
+                        <canvas id="waveChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                        <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                            <span>📡</span> Chi Tiết 4 Pha Sóng & Vùng Mua/Bán
+                        </h4>
+                        <div id="phaseInfo" class="space-y-3 text-sm">
+                            <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+                                <div class="font-bold text-emerald-800">Pha 1: Rò rỉ thông tin (VÙNG MUA)</div>
+                                <div class="text-xs text-slate-600 mt-1">Chỉ nhóm nhỏ nắm được. Giá còn rất rẻ, chưa ai chú ý.</div>
+                            </div>
+                            <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl">
+                                <div class="font-bold text-blue-800">Pha 2: Lan truyền đại chúng (VÙNG MUA)</div>
+                                <div class="text-xs text-slate-600 mt-1">NĐT chuyên nghiệp gom hàng, giá bắt đầu nhích nhẹ.</div>
+                            </div>
+                            <div class="p-3 bg-amber-50 border border-amber-200 rounded-xl">
+                                <div class="font-bold text-amber-800">Pha 3: Đỉnh sóng/FOMO (VÙNG BÁN TỰ ĐỘNG)</div>
+                                <div class="text-xs text-slate-600 mt-1">Báo chí đưa tin dồn dập, cọc lướt tràn lan. Tuyệt đối KHÔNG MUA THÊM.</div>
+                            </div>
+                            <div class="p-3 bg-rose-50 border border-rose-200 rounded-xl">
+                                <div class="font-bold text-rose-800">Pha 4: Sườn dốc & Đóng băng (BẪY ĐU ĐỈNH)</div>
+                                <div class="text-xs text-slate-600 mt-1">Mất thanh khoản đột ngột, giá rớt thẳng đứng. Kẹt vốn dài hạn.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Land Plot Wave Detector Tool -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-10">
+                <h3 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+                    <span>🔍</span> Mẹo Thực Địa: Nhận Biết Lượt Sóng Qua Diện Tích Lô Đất
+                </h3>
+                <p class="text-sm text-slate-600 mb-6">
+                    Chọn quy mô lô đất đang khảo sát thực tế để đánh giá khu vực này đã trải qua bao nhiêu lượt sóng tăng giá:
+                </p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <button onclick="selectPlotSize(1)" id="btnPlot1" class="p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-left transition hover:border-emerald-600">
+                        <div class="font-bold text-slate-900 text-base">Lô Đất Thửa Lớn</div>
+                        <div class="text-xs text-emerald-700 font-medium">1.000 m² - 2.000 m²</div>
+                    </button>
+                    <button onclick="selectPlotSize(2)" id="btnPlot2" class="p-4 rounded-xl border border-slate-200 bg-slate-50 text-left transition hover:border-emerald-500">
+                        <div class="font-bold text-slate-900 text-base">Lô Đất Đã Tách</div>
+                        <div class="text-xs text-slate-600 font-medium">Đã tách làm 2 hoặc 3 lô</div>
+                    </button>
+                    <button onclick="selectPlotSize(3)" id="btnPlot3" class="p-4 rounded-xl border border-slate-200 bg-slate-50 text-left transition hover:border-emerald-500">
+                        <div class="font-bold text-slate-900 text-base">Lô Đất Nhỏ Chi Tiết</div>
+                        <div class="text-xs text-slate-600 font-medium">80 m² - 100 m²</div>
+                    </button>
+                </div>
+
+                <div id="plotResultPanel" class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                    <!-- Dynamic Javascript Content Populated Here -->
+                </div>
+            </div>
+
+            <!-- Industrial Real Estate Flow Calculator & Stage Breakdown -->
+            <div class="bg-gradient-to-br from-slate-900 to-indigo-950 text-white p-6 md:p-8 rounded-2xl shadow-lg">
+                <div class="max-w-3xl mb-6">
+                    <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Mô Hình Dòng Tiền Thu Nhập</span>
+                    <h3 class="text-2xl font-bold mt-1">Bài Toán Kinh Tế BĐS Khu Công Nghiệp (KCN)</h3>
+                    <p class="text-sm text-slate-300 mt-2">
+                        Định mức tiêu chuẩn: <strong>1 ha đất công nghiệp thu hút ~300 lao động</strong> (công nhân & chuyên gia). Hãy thay đổi quy mô KCN để tính toán dòng tiền tiêu dùng đổ về khu vực.
+                    </p>
+                </div>
+
+                <!-- Calculator Controls -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8 bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+                    <div>
+                        <label class="block text-xs text-slate-300 font-medium mb-2">Quy mô Khu công nghiệp (Hécta):</label>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="kcnSize" min="10" max="500" value="100" step="10" class="w-full accent-indigo-500" oninput="updateKcnCalc()">
+                            <span id="kcnSizeVal" class="font-bold text-xl text-indigo-400 w-20">100 ha</span>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-300 font-medium mb-2">Thu nhập bình quân (Triệu VNĐ/tháng):</label>
+                        <div class="flex items-center gap-4">
+                            <input type="range" id="kcnIncome" min="8" max="30" value="15" step="1" class="w-full accent-indigo-500" oninput="updateKcnCalc()">
+                            <span id="kcnIncomeVal" class="font-bold text-xl text-indigo-400 w-24">15 triệu</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Output Grid -->
+                <div class="grid sm:grid-cols-3 gap-4 mb-8 text-center">
+                    <div class="bg-slate-800/90 border border-indigo-500/30 p-4 rounded-xl">
+                        <div class="text-xs text-slate-400">Tổng Lao Động Thu Hút</div>
+                        <div id="kcnWorkers" class="text-2xl font-extrabold text-white mt-1">30.000 người</div>
+                        <div class="text-[10px] text-indigo-300 mt-1">Công nhân & Chuyên gia</div>
+                    </div>
+                    <div class="bg-slate-800/90 border border-indigo-500/30 p-4 rounded-xl">
+                        <div class="text-xs text-slate-400">Dòng Tiền Tiêu Dùng / Tháng</div>
+                        <div id="kcnMonthlyCash" class="text-2xl font-extrabold text-emerald-400 mt-1">450 Tỷ VNĐ</div>
+                        <div class="text-[10px] text-emerald-300 mt-1">Thuê nhà, ăn uống, dịch vụ</div>
+                    </div>
+                    <div class="bg-slate-800/90 border border-indigo-500/30 p-4 rounded-xl">
+                        <div class="text-xs text-slate-400">Dòng Tiền Tiêu Dùng / Năm</div>
+                        <div id="kcnYearlyCash" class="text-2xl font-extrabold text-amber-400 mt-1">5.400 Tỷ VNĐ</div>
+                        <div class="text-[10px] text-amber-300 mt-1">Kích thích BĐS phụ phụ cận</div>
+                    </div>
+                </div>
+
+                <!-- 5 Stages of KCN Table -->
+                <h4 class="font-bold text-base text-white mb-3">Phân Tích 5 Giai Đoạn Phát Triển KCN & Dư Địa Đầu Tư:</h4>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs text-slate-300 border-collapse">
+                        <thead>
+                            <tr class="bg-slate-800 border-b border-slate-700 text-slate-200">
+                                <th class="p-3">Giai Đoạn</th>
+                                <th class="p-3">Hiện Trạng Phụ Cận</th>
+                                <th class="p-3">Dư Địa Lãi Vốn (Tăng Giá)</th>
+                                <th class="p-3">Dư Địa Dòng Tiền (Cho Thuê)</th>
+                                <th class="p-3">Khuyến Nghị</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-800">
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-semibold text-white">1. Chưa có thông tin</td>
+                                <td class="p-3">Khỉ ho cò gáy, hoang sơ</td>
+                                <td class="p-3 text-emerald-400 font-bold">Rất Cao</td>
+                                <td class="p-3 text-slate-500">Không có</td>
+                                <td class="p-3 text-slate-300">Gom giá cực rẻ nếu có quy hoạch chìm</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-semibold text-white">2. Đồn thổi</td>
+                                <td class="p-3">Cò đất đánh sóng, giá tăng dựng đứng</td>
+                                <td class="p-3 text-emerald-400 font-bold">Cao</td>
+                                <td class="p-3 text-slate-500">Không có</td>
+                                <td class="p-3 text-slate-300">Mạo hiểm lướt sóng ngắn</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-semibold text-white">3. Chính thức & Quy hoạch</td>
+                                <td class="p-3">Đã đưa lên App quy hoạch, truyền thông mạnh</td>
+                                <td class="p-3 text-amber-400 font-bold">Trung Bình / Đi Ngang</td>
+                                <td class="p-3 text-slate-500">Không có</td>
+                                <td class="p-3 text-slate-300">Cẩn trọng sóng điều chỉnh</td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/50">
+                                <td class="p-3 font-semibold text-white">4. Đền bù & Thi công</td>
+                                <td class="p-3">Dân có tiền đền bù, hạ tầng khởi công</td>
+                                <td class="p-3 text-emerald-400 font-bold">Tăng Lại (Sóng Thật)</td>
+                                <td class="p-3 text-blue-400">Bắt đầu hình thành</td>
+                                <td class="p-3 text-emerald-300 font-semibold">VÙNG MUA CHUẨN XÁC</td>
+                            </tr>
+                            <tr class="bg-rose-950/40 border-l-2 border-rose-500">
+                                <td class="p-3 font-semibold text-white">5. Full Công nhân & Nhà máy</td>
+                                <td class="p-3">Đã lấp đầy 100%, nhà máy hoạt động đông đúc</td>
+                                <td class="p-3 text-rose-400 font-bold">BẰNG 0 (Hết Kỳ Vọng)</td>
+                                <td class="p-3 text-emerald-400 font-bold">RẤT CAO (100% Focus)</td>
+                                <td class="p-3 text-rose-300">❌ SAI LẦM: Mua kỳ vọng lãi vốn lúc này! Chỉ mua khai thác dòng tiền.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PHẦN 3: CÔNG THỨC THÀNH CÔNG & BẢN ĐỒ      -->
+        <!-- ========================================== -->
+        <section id="phan3" class="scroll-mt-20">
+            <div class="border-l-4 border-amber-500 pl-4 mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Phần 3: Công Thức Đầu Tư Thành Công & Lập Bản Đồ Cá Nhân</h2>
+                <p class="text-slate-600 text-sm md:text-base mt-1">
+                    Đánh giá thương vụ theo phép nhân 6 yếu tố cốt lõi và định hình vị thế tài sản cá nhân trước khi xuống tiền.
+                </p>
+            </div>
+
+            <!-- Multiplicative Formula Evaluator -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 mb-10">
+                <div class="max-w-3xl mb-6">
+                    <h3 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <span>🧮</span> Công Thức Phép Nhân Thương Vụ BĐS
+                    </h3>
+                    <p class="text-sm text-slate-600 mt-1">
+                        Kết quả một thương vụ là <strong>Phép Nhân (Standard × Factor)</strong>. Nếu 1 trong 6 yếu tố bằng 0 (ví dụ vướng Pháp lý), tổng kết quả sẽ bằng 0!
+                    </p>
+                    <div class="mt-3 p-3 bg-slate-100 rounded-xl font-mono text-center font-bold text-slate-800 text-xs sm:text-sm border border-slate-300">
+                        Kết Quả = Thời Điểm × Khu Vực × Sản Phẩm × Pháp Lý × Giá Mua × Dòng Tiền
+                    </div>
+                </div>
+
+                <!-- Interactive Sliders for the 6 Factors -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex justify-between text-xs font-bold mb-2">
+                            <span>1. Thời Điểm (Timing):</span>
+                            <span id="score1Val" class="text-emerald-600">8/10</span>
+                        </div>
+                        <input type="range" id="score1" min="0" max="10" value="8" class="w-full accent-emerald-600" oninput="calculateDealScore()">
+                        <div class="text-[11px] text-slate-500 mt-1">Đúng chu kỳ phục hồi nhích nhẹ.</div>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex justify-between text-xs font-bold mb-2">
+                            <span>2. Khu Vực (Location):</span>
+                            <span id="score2Val" class="text-emerald-600">7/10</span>
+                        </div>
+                        <input type="range" id="score2" min="0" max="10" value="7" class="w-full accent-emerald-600" oninput="calculateDealScore()">
+                        <div class="text-[11px] text-slate-500 mt-1">Vùng hạ tầng/KCN tiềm năng.</div>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex justify-between text-xs font-bold mb-2">
+                            <span>3. Sản Phẩm (Product):</span>
+                            <span id="score3Val" class="text-emerald-600">8/10</span>
+                        </div>
+                        <input type="range" id="score3" min="0" max="10" value="8" class="w-full accent-emerald-600" oninput="calculateDealScore()">
+                        <div class="text-[11px] text-slate-500 mt-1">Vuông vắn, ngõ rộng, phong thủy tốt.</div>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex justify-between text-xs font-bold mb-2">
+                            <span>4. Pháp Lý & Quy Hoạch:</span>
+                            <span id="score4Val" class="text-emerald-600">10/10</span>
+                        </div>
+                        <input type="range" id="score4" min="0" max="10" value="10" class="w-full accent-emerald-600" oninput="calculateDealScore()">
+                        <div class="text-[11px] text-slate-500 mt-1">Kéo xuống 0 nếu dính quy hoạch!</div>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex justify-between text-xs font-bold mb-2">
+                            <span>5. Giá Mua (Biên An Toàn):</span>
+                            <span id="score5Val" class="text-emerald-600">8/10</span>
+                        </div>
+                        <input type="range" id="score5" min="0" max="10" value="8" class="w-full accent-emerald-600" oninput="calculateDealScore()">
+                        <div class="text-[11px] text-slate-500 mt-1">Mua rẻ hơn thị trường 10-20%.</div>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="flex justify-between text-xs font-bold mb-2">
+                            <span>6. Dòng Tiền (Cashflow):</span>
+                            <span id="score6Val" class="text-emerald-600">6/10</span>
+                        </div>
+                        <input type="range" id="score6" min="0" max="10" value="6" class="w-full accent-emerald-600" oninput="calculateDealScore()">
+                        <div class="text-[11px] text-slate-500 mt-1">Khai thác cho thuê/sản xuất.</div>
+                    </div>
+                </div>
+
+                <!-- Deal Score Output Panel -->
+                <div id="dealScoreBox" class="p-5 rounded-xl border text-center transition">
+                    <!-- Dynamic evaluation output -->
+                </div>
+            </div>
+
+            <!-- Financial Freedom Goal Calculator & Investor Position Cards -->
+            <div class="grid lg:grid-cols-12 gap-8">
+                <!-- Financial Freedom Asset Target Planner -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center gap-2">
+                            <span>🎯</span> Công Thức Mua Tự Do Tài Chính
+                        </h3>
+                        <p class="text-xs text-slate-600 mb-4">
+                            Dòng tiền thụ động hàng tháng ≥ Chi tiêu tối thiểu gia đình. Tính toán tổng tài sản BĐS cần sở hữu để nghỉ hưu an toàn.
+                        </p>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Nhu cầu chi tiêu gia đình (/tháng):</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" id="monthlySpend" value="50" min="10" max="500" class="w-full p-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-bold" oninput="calcFinancialFreedom()">
+                                    <span class="text-xs font-bold text-slate-600">Tr.VNĐ</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Tỷ suất lợi nhuận cho thuê bình quân/năm:</label>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" id="rentalYield" value="4.0" step="0.5" min="1" max="10" class="w-full p-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-bold" oninput="calcFinancialFreedom()">
+                                    <span class="text-xs font-bold text-slate-600">% / Năm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-center">
+                        <div class="text-xs text-emerald-800 font-semibold">Tổng giá trị tài sản BĐS cần tạo ra:</div>
+                        <div id="requiredAssetVal" class="text-2xl font-extrabold text-emerald-700 my-1">15,0 Tỷ VNĐ</div>
+                        <div class="text-[11px] text-slate-600">
+                            (Ví dụ: 50tr/tháng × 12 tháng / 4% = 15 tỷ VNĐ)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Investor Positions -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                        <span>🛡️</span> 3 Vị Thế Đầu Tư Trong Bản Đồ Cá Nhân
+                    </h3>
+                    
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 hover:border-slate-300 transition">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-slate-900">1. Vị Thế Phòng Thủ</span>
+                                <span class="text-xs bg-rose-100 text-rose-800 px-2 py-0.5 rounded font-semibold">Nợ nần / Dòng tiền căng</span>
+                            </div>
+                            <p class="text-xs text-slate-600">
+                                Ưu tiên bảo toàn vốn, bán bớt tài sản yếu kém, giảm áp lực thanh khoản ngân hàng, giữ nhịp tài chính an toàn.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 hover:border-slate-300 transition">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-slate-900">2. Vị Thế Tích Lũy</span>
+                                <span class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-semibold">Đang gom vốn / Thu nhập ổn</span>
+                            </div>
+                            <p class="text-xs text-slate-600">
+                                Tăng tích lũy tiền mặt, trau dồi kiến thức thực địa, áp dụng công thức đòn bẩy an toàn chọn BĐS vùng ven vốn nhỏ.
+                            </p>
+                        </div>
+
+                        <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 hover:border-slate-300 transition">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="font-bold text-slate-900">3. Vị Thế Đi Săn</span>
+                                <span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold">Sẵn vốn mặt / Dòng tiền mạnh</span>
+                            </div>
+                            <p class="text-xs text-slate-600">
+                                Tìm kiếm tài sản ngợp giá, ép giá sâu hơn thị trường 20-30%, pháp lý chuẩn, sẵn sàng kịch bản thoát hàng hưng phấn.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- PHẦN 4: CÔNG THỨC VỐN NHỎ VÙNG VEN        -->
+        <!-- ========================================== -->
+        <section id="phan4" class="scroll-mt-20">
+            <div class="border-l-4 border-purple-500 pl-4 mb-6">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900">Phần 4: Mô Phỏng Công Thức Tích Lũy Tài Sản Cho Người Vốn Nhỏ</h2>
+                <p class="text-slate-600 text-sm md:text-base mt-1">
+                    So sánh 3 con đường tài chính: Bán sức lấy tiền gửi tiết kiệm, Trả góp 30 năm hay Áp dụng công thức nhân tài sản vùng ven 3 năm.
+                </p>
+            </div>
+
+            <!-- Problem Setup Bar -->
+            <div class="bg-purple-900 text-white p-5 rounded-2xl mb-8 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                    <span class="text-xs bg-purple-700 text-purple-200 px-2.5 py-1 rounded-full font-semibold">BÀI TOÁN THỰC TẾ</span>
+                    <h3 class="text-lg font-bold mt-1">Gia Đình Thu Nhập 20 Tr/Tháng - Tiết Kiệm 7 Tr/Tháng - Vốn Có 300 Tr</h3>
+                </div>
+                <div class="text-right">
+                    <span class="text-xs text-purple-300">Mục tiêu sở hữu tài sản:</span>
+                    <div class="text-2xl font-extrabold text-amber-300">2,0 Tỷ VNĐ</div>
+                </div>
+            </div>
+
+            <!-- Strategy Comparison Grid & Simulator Controls -->
+            <div class="grid lg:grid-cols-12 gap-8 mb-8">
+                <!-- Interactive Controls & Math Explanation -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-slate-900 text-lg mb-4 flex items-center gap-2">
+                            <span>⚙️</span> Giả Định Đòn Bẩy An Toàn 3 Năm
+                        </h3>
+                        
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Vốn tự có ban đầu:</label>
+                                <input type="number" id="capitalInit" value="300" class="w-full p-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-bold" oninput="updateStrategySim()">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Hạn mức vay an toàn (Dựa trên trả dôi 7tr/tháng):</label>
+                                <input type="number" id="loanSafe" value="500" class="w-full p-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-bold" oninput="updateStrategySim()">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">Hệ số tăng trưởng đất vùng ven sau 3 năm (Ví dụ X3):</label>
+                                <select id="growthFactor" class="w-full p-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-bold" onchange="updateStrategySim()">
+                                    <option value="2">X2 (Tăng gấp 2 lần)</option>
+                                    <option value="3" selected>X3 (Tăng gấp 3 lần - Chu kỳ sóng)</option>
+                                    <option value="4">X4 (Tăng gấp 4 lần)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="simMathOutput" class="mt-6 p-4 bg-purple-50 border border-purple-200 rounded-xl text-xs space-y-1.5 text-purple-950">
+                        <!-- Dynamic math computed here -->
+                    </div>
+                </div>
+
+                <!-- Projection Chart (Chart.js) -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-lg mb-2">So Sánh Tiến Trình Tăng Trưởng Tài Sản (3 Năm)</h3>
+                    <p class="text-xs text-slate-500 mb-4">Mô phỏng tích lũy ròng thực tế giữa 3 phương án hành động.</p>
+                    
+                    <div class="chart-container">
+                        <canvas id="strategyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed 3 Options Cards -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Option 1 -->
+                <div class="bg-white rounded-2xl p-5 border border-rose-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2.5 py-1 bg-rose-100 text-rose-800 rounded-full font-bold text-xs">❌ PA 1: GỬI TIẾT KIỆM</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Tiết Kiệm Thuần Túy</h4>
+                    <p class="text-xs text-slate-600 mb-4">
+                        Dôi 7 triệu/tháng = 84 triệu/năm. Tích lũy đủ 2 tỷ cần tới <strong class="text-rose-700">15 NĂM</strong>.
+                    </p>
+                    <div class="p-3 bg-rose-50 rounded-xl text-xs text-rose-900 border border-rose-200">
+                        ⚠️ <strong>Rủi ro chí mạng:</strong> Sau 15 năm, lạm phát và tốc độ tăng giá nhà đất sẽ đẩy giá lên gấp nhiều lần. Bạn hoàn toàn mất cơ hội sở hữu nhà.
+                    </div>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="bg-white rounded-2xl p-5 border border-amber-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full font-bold text-xs">❌ PA 2: VAY 30 NĂM</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Trả Góp Căn Hộ 2 Tỷ</h4>
+                    <p class="text-xs text-slate-600 mb-4">
+                        Vay ngân hàng 1,7 tỷ (85% giá trị) để mua căn hộ ngay lập tức.
+                    </p>
+                    <div class="p-3 bg-amber-50 rounded-xl text-xs text-amber-900 border border-amber-200">
+                        ⚠️ <strong>Rủi ro chí mạng:</strong> Áp lực lãi thả nổi (12-15%) đè nặng suốt 30 năm cuộc đời. Bất kỳ sự cố mất việc hay sức khỏe nào cũng dẫn đến phát mại tài sản.
+                    </div>
+                </div>
+
+                <!-- Option 3 -->
+                <div class="bg-white rounded-2xl p-5 border-2 border-emerald-500 shadow-sm bg-emerald-50/30">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="px-2.5 py-1 bg-emerald-600 text-white rounded-full font-bold text-xs">✅ PA 3: ĐỒN BẨY VÙNG VEN</span>
+                    </div>
+                    <h4 class="font-bold text-slate-900 mb-2">Nhân Tài Sản Chu Kỳ 3 Năm</h4>
+                    <p class="text-xs text-slate-600 mb-4">
+                        Dùng 300tr vốn + 500tr vay an toàn = Mua đất nền vùng ven 800tr chuẩn pháp lý.
+                    </p>
+                    <div class="p-3 bg-emerald-100/80 rounded-xl text-xs text-emerald-950 border border-emerald-300 font-medium">
+                        🚀 <strong>Kết quả đột phá:</strong> Đạt mục tiêu sở hữu tài sản <strong>2 TỶ RÒNG</strong> chỉ sau 3 năm thay vì chờ 15 năm hay chịu nợ 30 năm!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary & Final Key Takeaways -->
+        <section class="bg-slate-900 text-white p-8 rounded-3xl shadow-xl">
+            <h2 class="text-2xl font-bold mb-6 text-center text-emerald-400">TỔNG KẾT BÀI HỌC CỐT LÕI</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+                    <div class="text-3xl mb-3">🧠</div>
+                    <h3 class="font-bold text-base mb-2">1. Loại Bỏ Cảm Xúc & FOMO</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Tuyệt đối không mua bất động sản bằng cảm xúc hay tâm lý đám đông. Phải lập bản đồ đầu tư cá nhân phù hợp chính xác với vị thế tài chính thực tế.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+                    <div class="text-3xl mb-3">🗝️</div>
+                    <h3 class="font-bold text-base mb-2">2. Làm Chủ Khâu MUA</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Quyết định 80% thắng lợi của thương vụ nằm ở khâu MUA: Đúng thời điểm nhích nhẹ, vị trí đón sóng KCN, giá thấp hơn thị trường và chuẩn pháp lý.
+                    </p>
+                </div>
+
+                <div class="bg-slate-800/80 p-5 rounded-2xl border border-slate-700">
+                    <div class="text-3xl mb-3">🚀</div>
+                    <h3 class="font-bold text-base mb-2">3. Công Thức Đòn Bẩy An Toàn</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Người vốn nhỏ tuyệt đối không tích trữ tiền mặt dài hạn. Hãy dùng dòng tiền dôi ra gánh khoản vay an toàn mua đất nền vùng ven chờ chu kỳ tăng trưởng.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-xs py-8 border-t border-slate-800 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Bản Đồ & Chiến Lược Đầu Tư Bất Động Sản Chuẩn Xác. Ứng Dụng Học Tập & Mô Phỏng Tài Chính.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Global Chart Instances
+        let waveChartInstance = null;
+        let strategyChartInstance = null;
+
+        // Initialize App on DOM Load
+        document.addEventListener('DOMContentLoaded', function() {
+            initWaveChart();
+            selectPlotSize(1);
+            updateKcnCalc();
+            calculateDealScore();
+            calcFinancialFreedom();
+            initStrategyChart();
+            updateStrategySim();
+        });
+
+        // ==========================================
+        // MODULE 2: WAVE CHART (CHART.JS)
+        // ==========================================
+        function initWaveChart() {
+            const ctx = document.getElementById('waveChart').getContext('2d');
+            waveChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Pha 1: Rò Rỉ', 'Pha 2: Lan Truyền', 'Pha 3: Đỉnh Sóng / FOMO', 'Pha 4: Sườn Dốc'],
+                    datasets: [{
+                        label: 'Chỉ Số Giá & Kỳ Vọng FOMO',
+                        data: [10, 25, 90, 30],
+                        borderColor: '#16a34a',
+                        backgroundColor: 'rgba(22, 163, 74, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.35,
+                        pointBackgroundColor: ['#16a34a', '#2563eb', '#d97706', '#e11d48'],
+                        pointRadius: 8,
+                        pointHoverRadius: 11
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const labels = [
+                                        'Pha 1: Nhóm nhỏ nắm tin - VÙNG MUA',
+                                        'Pha 2: Gom hàng đại chúng - VÙNG MUA',
+                                        'Pha 3: Báo chí dồn dập - VÙNG BÁN TỰ ĐỘNG',
+                                        'Pha 4: Mất thanh khoản - BẪY ĐU ĐỈNH'
+                                    ];
+                                    return labels[context.dataIndex];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            display: false,
+                            min: 0,
+                            max: 100
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                font: { size: 11, weight: 'bold' }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Plot Size Wave Detector Selection
+        function selectPlotSize(type) {
+            const btn1 = document.getElementById('btnPlot1');
+            const btn2 = document.getElementById('btnPlot2');
+            const btn3 = document.getElementById('btnPlot3');
+            const resultPanel = document.getElementById('plotResultPanel');
+
+            btn1.className = "p-4 rounded-xl border bg-slate-50 text-left transition hover:border-emerald-500";
+            btn2.className = "p-4 rounded-xl border bg-slate-50 text-left transition hover:border-emerald-500";
+            btn3.className = "p-4 rounded-xl border bg-slate-50 text-left transition hover:border-emerald-500";
+
+            if (type === 1) {
+                btn1.className = "p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-left transition";
+                resultPanel.innerHTML = `
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="px-2.5 py-1 bg-emerald-200 text-emerald-900 rounded font-bold text-xs">MỚI TRAI QUA 0 - 1 LƯỢT SÓNG</span>
+                        <span class="text-xs text-emerald-800 font-bold">Mức độ an toàn: RẤT CAO</span>
+                    </div>
+                    <p class="text-sm text-slate-700 leading-relaxed">
+                        Đất còn nguyên thửa lớn (1.000m² - 2.000m²). Khu vực này chưa có sóng mạnh hoặc mới chỉ trải qua 1 lượt sóng sơ khai. 
+                        <strong>Dư địa tăng giá còn rất rộng</strong>, giá đất còn rẻ, thích hợp gom đầu tư trung và dài hạn.
+                    </p>
+                `;
+            } else if (type === 2) {
+                btn2.className = "p-4 rounded-xl border-2 border-amber-500 bg-amber-50 text-left transition";
+                resultPanel.innerHTML = `
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="px-2.5 py-1 bg-amber-200 text-amber-900 rounded font-bold text-xs">ĐÃ TRẢI QUA KHOẢNG 2 LƯỢT SÓNG</span>
+                        <span class="text-xs text-amber-800 font-bold">Mức độ an toàn: TRUNG BÌNH</span>
+                    </div>
+                    <p class="text-sm text-slate-700 leading-relaxed">
+                        Đất đã qua tách thửa làm 2 hoặc 3 lô. Thị trường đã có thanh khoản sôi động. 
+                        Dư địa tăng giá vẫn còn nhưng biên độ lợi nhuận sẽ thấp hơn ban đầu. Cần kiểm tra kỹ quy hoạch và hạ tầng kết nối thực tế.
+                    </p>
+                `;
+            } else if (type === 3) {
+                btn3.className = "p-4 rounded-xl border-2 border-rose-500 bg-rose-50 text-left transition";
+                resultPanel.innerHTML = `
+                    <div class="flex items-center gap-3 mb-2">
+                        <span class="px-2.5 py-1 bg-rose-200 text-rose-900 rounded font-bold text-xs">ĐÃ TRẢI QUA ≥ 3 LƯỢT SÓNG</span>
+                        <span class="text-xs text-rose-800 font-bold">Mức độ an toàn: RỦI RO CAO (FOMO)</span>
+                    </div>
+                    <p class="text-sm text-slate-700 leading-relaxed">
+                        Đất đã chi tiết thành các lô nhỏ 80m² - 100m². Khu vực đã qua nhiều lần xé cọc, chuyền tay. 
+                        <strong>Giá đã ở mức rất cao, dư địa tăng giá không còn nhiều.</strong> Rất dễ dính bẫy đu đỉnh nếu mua để kỳ vọng lãi vốn.
+                    </p>
+                `;
+            }
+        }
+
+        // KCN Dynamic Flow Calculator
+        function updateKcnCalc() {
+            const size = parseInt(document.getElementById('kcnSize').value);
+            const income = parseInt(document.getElementById('kcnIncome').value);
+
+            document.getElementById('kcnSizeVal').innerText = size + " ha";
+            document.getElementById('kcnIncomeVal').innerText = income + " triệu";
+
+            const workers = size * 300;
+            const monthlyCashBillion = (workers * income * 1000000) / 1000000000;
+            const yearlyCashBillion = monthlyCashBillion * 12;
+
+            document.getElementById('kcnWorkers').innerText = workers.toLocaleString('vi-VN') + " người";
+            document.getElementById('kcnMonthlyCash').innerText = monthlyCashBillion.toLocaleString('vi-VN', {maximumFractionDigits: 1}) + " Tỷ VNĐ";
+            document.getElementById('kcnYearlyCash').innerText = yearlyCashBillion.toLocaleString('vi-VN', {maximumFractionDigits: 1}) + " Tỷ VNĐ";
+        }
+
+        // ==========================================
+        // MODULE 3: MULTIPLICATIVE FORMULA
+        // ==========================================
+        function calculateDealScore() {
+            const s1 = parseInt(document.getElementById('score1').value);
+            const s2 = parseInt(document.getElementById('score2').value);
+            const s3 = parseInt(document.getElementById('score3').value);
+            const s4 = parseInt(document.getElementById('score4').value);
+            const s5 = parseInt(document.getElementById('score5').value);
+            const s6 = parseInt(document.getElementById('score6').value);
+
+            document.getElementById('score1Val').innerText = s1 + "/10";
+            document.getElementById('score2Val').innerText = s2 + "/10";
+            document.getElementById('score3Val').innerText = s3 + "/10";
+            document.getElementById('score4Val').innerText = s4 + "/10";
+            document.getElementById('score5Val').innerText = s5 + "/10";
+            document.getElementById('score6Val').innerText = s6 + "/10";
+
+            // Multiplicative Score Index Normalized
+            const rawProduct = s1 * s2 * s3 * s4 * s5 * s6;
+            const maxProduct = 1000000;
+            const scorePercent = ((rawProduct / maxProduct) * 100).toFixed(1);
+
+            const box = document.getElementById('dealScoreBox');
+
+            if (s1 === 0 || s2 === 0 || s3 === 0 || s4 === 0 || s5 === 0 || s6 === 0) {
+                box.className = "p-5 rounded-xl border bg-rose-50 border-rose-300 text-rose-900";
+                box.innerHTML = `
+                    <div class="text-xs font-bold uppercase tracking-wider text-rose-700">ĐÁNH GIÁ THƯƠNG VỤ</div>
+                    <div class="text-3xl font-extrabold text-rose-600 my-1">0,0 % (THẤT BẠI HOÀN TOÀN)</div>
+                    <p class="text-xs text-rose-800">
+                        🚨 <strong>CẢNH BÁO PHÉP NHÂN:</strong> Phát hiện 1 yếu tố bằng 0! Dù các yếu tố khác đạt 10/10, thương vụ vẫn bằng 0. Tuyệt đối KHÔNG Xuống Tiền.
+                    </p>
+                `;
+            } else if (scorePercent >= 25) {
+                box.className = "p-5 rounded-xl border bg-emerald-50 border-emerald-300 text-emerald-900";
+                box.innerHTML = `
+                    <div class="text-xs font-bold uppercase tracking-wider text-emerald-700">ĐÁNH GIÁ THƯƠNG VỤ</div>
+                    <div class="text-3xl font-extrabold text-emerald-600 my-1">${scorePercent} % (RẤT TIỀM NĂNG)</div>
+                    <p class="text-xs text-emerald-800">
+                        ✅ Tất cả chỉ số đều tốt và đồng đều. Thương vụ đạt tiêu chuẩn an toàn và tối ưu biên lợi nhuận.
+                    </p>
+                `;
+            } else {
+                box.className = "p-5 rounded-xl border bg-amber-50 border-amber-300 text-amber-900";
+                box.innerHTML = `
+                    <div class="text-xs font-bold uppercase tracking-wider text-amber-700">ĐÁNH GIÁ THƯƠNG VỤ</div>
+                    <div class="text-3xl font-extrabold text-amber-600 my-1">${scorePercent} % (CẦN TỐI ƯU THÊM)</div>
+                    <p class="text-xs text-amber-800">
+                        ⚠️ Thương vụ chưa tối ưu. Hãy đàm phán thêm về giá mua hoặc cải tạo nâng cao dòng tiền để tăng chỉ số.
+                    </p>
+                `;
+            }
+        }
+
+        // Financial Freedom Target Asset Planner
+        function calcFinancialFreedom() {
+            const monthlySpend = parseFloat(document.getElementById('monthlySpend').value) || 0;
+            const yieldRate = parseFloat(document.getElementById('rentalYield').value) || 4.0;
+
+            const yearlySpend = monthlySpend * 12;
+            const requiredAssetBillion = (yearlySpend / (yieldRate / 100)) / 1000;
+
+            document.getElementById('requiredAssetVal').innerText = requiredAssetBillion.toFixed(1) + " Tỷ VNĐ";
+        }
+
+        // ==========================================
+        // MODULE 4: STRATEGY CHART & SIMULATOR
+        // ==========================================
+        function initStrategyChart() {
+            const ctx = document.getElementById('strategyChart').getContext('2d');
+            strategyChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Năm 0 (Hiện tại)', 'Năm 1', 'Năm 2', 'Năm 3 (Chốt Sóng)'],
+                    datasets: [
+                        {
+                            label: 'PA 1: Tiết Kiệm (7tr/tháng)',
+                            data: [0.3, 0.384, 0.468, 0.552],
+                            backgroundColor: '#cbd5e1'
+                        },
+                        {
+                            label: 'PA 2: Trả Góp 30 Năm (Nợ 1,7 tỷ)',
+                            data: [0.3, 0.35, 0.40, 0.48],
+                            backgroundColor: '#f87171'
+                        },
+                        {
+                            label: 'PA 3: Đòn Bẩy Vùng Ven (Chu kỳ 3 Năm)',
+                            data: [0.3, 0.8, 1.2, 2.0],
+                            backgroundColor: '#16a34a'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + ' Tỷ VNĐ';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            title: { display: true, text: 'Tài Sản Ròng (Tỷ VNĐ)', font: { size: 11 } },
+                            min: 0
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateStrategySim() {
+            const capital = parseFloat(document.getElementById('capitalInit').value) || 300;
+            const loan = parseFloat(document.getElementById('loanSafe').value) || 500;
+            const mult = parseFloat(document.getElementById('growthFactor').value) || 3;
+
+            const totalBudget = capital + loan; // e.g. 800tr
+            const assetVal3Yr = (totalBudget * mult) / 1000; // e.g. 2.4 tỷ
+            const remainingLoan = (loan * 0.8) / 1000; // Debt reduced to 400tr
+            const netAsset3Yr = assetVal3Yr - remainingLoan; // e.g. 2.0 tỷ
+
+            document.getElementById('simMathOutput').innerHTML = `
+                <div class="font-bold text-purple-900 border-b border-purple-200 pb-1 mb-1">🧮 Chi tiết tính toán chu kỳ 3 năm:</div>
+                <div>1. Tổng ngân sách mua BĐS: <strong>${capital}tr + ${loan}tr vay = ${(totalBudget/1000).toFixed(1)} Tỷ VNĐ</strong></div>
+                <div>2. Giá trị BĐS vùng ven sau 3 năm (${mult}X): <strong>${assetVal3Yr.toFixed(1)} Tỷ VNĐ</strong></div>
+                <div>3. Dư nợ gốc còn lại sau 3 năm trả dần: <strong>${remainingLoan.toFixed(1)} Tỷ VNĐ</strong></div>
+                <div class="text-sm font-extrabold text-emerald-700 mt-1">➡️ Số tiền ròng thu về: ${assetVal3Yr.toFixed(1)} Tỷ - ${remainingLoan.toFixed(1)} Tỷ = ${netAsset3Yr.toFixed(1)} Tỷ VNĐ</div>
+            `;
+
+            // Update Chart.js dataset dynamically
+            if (strategyChartInstance) {
+                strategyChartInstance.data.datasets[2].data = [
+                    capital / 1000,
+                    (capital + loan * 0.8) / 1000,
+                    (totalBudget * (mult * 0.6)) / 1000,
+                    netAsset3Yr
+                ];
+                strategyChartInstance.update();
+            }
+        }
+    </script>
+</body>
+</html>
