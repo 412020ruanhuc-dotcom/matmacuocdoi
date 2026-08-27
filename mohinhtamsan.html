@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="vi" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mô Hình Tam Sản - Mật Mã Cuộc Đời (Tài Sản - Gia Sản - Di Sản)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        amberbrand: {
+                            bg: '#0F172A',
+                            card: '#1E293B',
+                            accent: '#D97706',
+                            lightBg: '#F8FAFC',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 4px;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #D97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-amber {
+            box-shadow: 0 0 25px -5px rgba(217, 119, 6, 0.3);
+        }
+        .glow-active {
+            box-shadow: 0 0 35px 0px rgba(245, 158, 11, 0.4);
+        }
+        .diagram-svg {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- TOP NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo(0)">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-shapes"></i>
+                </div>
+                <div>
+                    <h1 class="font-serif font-bold text-lg leading-none gradient-text">MÔ HÌNH TAM SẢN</h1>
+                    <p class="text-xs text-amber-400/80 font-medium">Kênh Mật Mã Cuộc Đời • matmacuocdoi.vn</p>
+                </div>
+            </div>
+
+            <!-- Controls & Quick Navigation -->
+            <div class="flex items-center space-x-2 sm:space-x-4">
+                <button onclick="toggleViewMode()" id="viewModeBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-slate-200 border border-slate-700 transition flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open text-amber-400"></i>
+                    <span class="hidden sm:inline" id="viewModeText">Chế độ Xem Toàn Cảnh</span>
+                </button>
+                
+                <button onclick="openSelfAssessment()" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-xs font-semibold text-slate-950 transition flex items-center space-x-1.5 shadow-md shadow-amber-600/30">
+                    <i class="fa-solid fa-clipboard-question"></i>
+                    <span>Tự Đánh Giá 3 Câu Hỏi</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col lg:flex-row gap-6">
+        
+        <!-- SIDEBAR NAVIGATION (23 SECTIONS) -->
+        <aside class="w-full lg:w-80 bg-slate-900/80 rounded-2xl border border-slate-800 p-4 flex flex-col shrink-0 max-h-[calc(100vh-6rem)] sticky top-20">
+            <div class="flex items-center justify-between mb-3 px-2">
+                <span class="text-xs uppercase tracking-wider font-bold text-amber-500">Mục lục 23 Phần Chi Tiết</span>
+                <span id="progressBadge" class="text-xs bg-slate-800 text-amber-400 px-2.5 py-0.5 rounded-full font-bold">1 / 23</span>
+            </div>
+
+            <!-- Search box -->
+            <div class="relative mb-3">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                <input type="text" id="searchInput" onkeyup="filterSections()" placeholder="Tìm nội dung phần..." class="w-full bg-slate-950 text-slate-200 placeholder-slate-500 text-xs rounded-xl pl-8 pr-3 py-2 border border-slate-800 focus:outline-none focus:border-amber-500 transition">
+            </div>
+
+            <!-- List of 23 sections -->
+            <div id="sectionNavList" class="flex-1 overflow-y-auto space-y-1.5 pr-1 text-xs">
+                <!-- Javascript will inject list items here -->
+            </div>
+
+            <!-- Quick Jump Controls -->
+            <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between">
+                <button onclick="prevSection()" id="prevBtn" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed flex items-center space-x-1">
+                    <i class="fa-solid fa-chevron-left"></i>
+                    <span>Trước</span>
+                </button>
+                <button onclick="nextSection()" id="nextBtn" class="px-3 py-1.5 rounded-lg bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold flex items-center space-x-1">
+                    <span>Tiếp</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN VIEW AREA -->
+        <main class="flex-1 min-w-0 flex flex-col">
+            <!-- DISPLAY CONTENT CARD -->
+            <div id="contentDisplayArea" class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 flex-1 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+                <!-- Top badge and section title header -->
+                <div id="sectionHeader" class="border-b border-slate-800 pb-5 mb-6">
+                    <!-- Dynamic header injected here -->
+                </div>
+
+                <!-- Visual Interactive Diagram Slot -->
+                <div id="diagramContainer" class="bg-slate-950/70 border border-slate-800/80 rounded-xl p-4 sm:p-6 mb-6 flex flex-col items-center justify-center min-h-[300px] relative">
+                    <!-- Interactive SVG Diagram rendered here -->
+                </div>
+
+                <!-- Text Detail Section -->
+                <div id="textContentContainer" class="prose prose-invert max-w-none text-slate-300 text-sm leading-relaxed mb-6 space-y-4">
+                    <!-- Content body injected here -->
+                </div>
+
+                <!-- Key takeaway footer banner -->
+                <div id="takeawayBox" class="bg-amber-950/40 border border-amber-800/50 rounded-xl p-4 flex items-start space-x-3">
+                    <i class="fa-solid fa-lightbulb text-amber-400 text-xl mt-0.5 shrink-0"></i>
+                    <div>
+                        <h4 class="text-xs uppercase tracking-wider font-bold text-amber-400 mb-1">Thông Điệp Cốt Lõi Từ Mật Mã Cuộc Đời</h4>
+                        <p id="takeawayText" class="text-xs text-amber-100/90 leading-relaxed font-medium">
+                            <!-- Injected -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALL SECTIONS SCROLLABLE OVERVIEW MODE (Hidden by default) -->
+            <div id="overviewModeArea" class="hidden space-y-8">
+                <!-- Dynamically generated all 23 cards -->
+            </div>
+        </main>
+
+    </div>
+
+    <!-- SELF ASSESSMENT MODAL -->
+    <div id="assessmentModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-amber-500/30 rounded-2xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeSelfAssessment()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <div>
+                    <h3 class="font-serif font-bold text-lg text-amber-400">Công Cụ Tự Nhìn Nhận Tam Sản Cuộc Đời</h3>
+                    <p class="text-xs text-slate-400">Trả lời 3 câu hỏi cốt lõi để nhận phản hồi định hướng Tam Sản cá nhân</p>
+                </div>
+            </div>
+
+            <form id="quizForm" onsubmit="calculateTamSan(event)" class="space-y-6 text-sm">
+                <!-- Q1 -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <label class="block font-bold text-amber-300 mb-2">1. TÀI SẢN – Tôi đang có gì?</label>
+                    <p class="text-xs text-slate-400 mb-3">Đánh giá khả năng tạo thu nhập, sở hữu vật chất, kiến thức & năng lực tạo giá trị tương lai:</p>
+                    <input type="range" id="q1" min="1" max="10" value="5" class="w-full accent-amber-500" oninput="document.getElementById('q1Val').innerText = this.value">
+                    <div class="flex justify-between text-xs text-slate-500 mt-1">
+                        <span>1: Chưa tích lũy được nhiều</span>
+                        <span id="q1Val" class="font-bold text-amber-400 text-sm">5</span>
+                        <span>10: Nguồn lực & dòng tiền dồi dào</span>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <label class="block font-bold text-amber-300 mb-2">2. GIA SẢN – Gia đình tôi đang có gì?</label>
+                    <p class="text-xs text-slate-400 mb-3">Đánh giá gia phong, nền nếp, sự giáo dục, uy tín gia đình & khả năng tiếp nối qua thế hệ:</p>
+                    <input type="range" id="q2" min="1" max="10" value="5" class="w-full accent-amber-500" oninput="document.getElementById('q2Val').innerText = this.value">
+                    <div class="flex justify-between text-xs text-slate-500 mt-1">
+                        <span>1: Thiếu nền nếp / Dễ bất hòa</span>
+                        <span id="q2Val" class="font-bold text-amber-400 text-sm">5</span>
+                        <span>10: Gia phong vững vàng & đồng lòng</span>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                    <label class="block font-bold text-amber-300 mb-2">3. DI SẢN – Tôi sẽ để lại gì?</label>
+                    <p class="text-xs text-slate-400 mb-3">Đánh giá giá trị tinh thần, tư tưởng, uy tín, công trình hay người tiếp nối khi bạn không còn ở đây:</p>
+                    <input type="range" id="q3" min="1" max="10" value="5" class="w-full accent-amber-500" oninput="document.getElementById('q3Val').innerText = this.value">
+                    <div class="flex justify-between text-xs text-slate-500 mt-1">
+                        <span>1: Chưa có giá trị lâu dài</span>
+                        <span id="q3Val" class="font-bold text-amber-400 text-sm">5</span>
+                        <span>10: Giá trị sống tiếp tục lan tỏa</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-amber-600 to-yellow-500 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-600/30 hover:brightness-110 transition">
+                    Phân Tích Cân Bằng Tam Sản Của Tôi
+                </button>
+            </form>
+
+            <div id="resultBox" class="mt-6 hidden bg-amber-950/30 border border-amber-700/50 p-5 rounded-xl">
+                <h4 class="font-bold text-amber-400 text-base mb-2" id="resultTitle"></h4>
+                <p class="text-xs text-slate-200 leading-relaxed mb-3" id="resultDesc"></p>
+                <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs text-amber-200/90 font-mono" id="resultAdvice"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // DATA FOR ALL 23 SECTIONS EXPLICITLY SOURCED FROM DOCUMENT
+        const sectionsData = [
+            {
+                id: 1,
+                title: "1. Tam Sản Là Gì?",
+                subtitle: "Tổng quan mô hình tư duy định giá toàn diện cuộc đời",
+                badge: "Tổng Quan Mô Hình",
+                text: `
+                    <p class="font-semibold text-amber-200">Tam Sản là một mô hình tư duy dùng để nhìn nhận một cách toàn diện những giá trị mà một con người tạo dựng trong suốt cuộc đời.</p>
+                    <p>Nếu chỉ nhìn vào tiền bạc, người ta thường đánh giá một người bằng câu hỏi: <em>“Anh có bao nhiêu tiền? Có bao nhiêu nhà đất? Có bao nhiêu tài sản?"</em></p>
+                    <p>Nhưng nếu nhìn sâu hơn, một đời người không chỉ được đo bằng những gì người đó sở hữu. Có người rất giàu nhưng gia đình tan vỡ. Có người có rất nhiều tiền nhưng con cái không tiếp nối được giá trị của cha mẹ. Có người không sở hữu khối tài sản vật chất quá lớn nhưng lại xây dựng được một gia đình tử tế, một nền nếp tốt đẹp, một uy tín đáng kính và những giá trị mà con cháu nhiều thế hệ vẫn tiếp tục hưởng.</p>
+                    <p>Chính vì vậy, Tam Sản được nhìn như một tam giác giá trị gồm ba đỉnh: <strong>TÀI SẢN – GIA SẢN – DI SẢN</strong>. Ba yếu tố này không tồn tại tách biệt. Chúng liên kết với nhau, tác động qua lại với nhau và cùng quyết định một người thực sự đã xây dựng được gì trong cuộc đời.</p>
+                    <div class="bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                        <ul class="space-y-2">
+                            <li><strong class="text-amber-400">TÀI SẢN:</strong> Là những gì ta có (Trả lời: <em>"Tôi sở hữu gì?"</em>)</li>
+                            <li><strong class="text-amber-400">GIA SẢN:</strong> Là những gì gia đình ta cùng xây dựng và gìn giữ (Trả lời: <em>"Gia đình tôi đã xây dựng được nền tảng gì?"</em>)</li>
+                            <li><strong class="text-amber-400">DI SẢN:</strong> Là những gì ta để lại cho đời và cho thế hệ sau (Trả lời: <em>"Sau khi tôi không còn ở đây, điều gì vẫn còn tiếp tục?"</em>)</li>
+                        </ul>
+                    </div>
+                `,
+                takeaway: "Một đời người không chỉ đo đạc bằng số tiền cá nhân tích lũy. Giá trị thực sự nằm ở sự liên kết bền vững giữa Tài Sản, Gia Sản và Di Sản.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 320" class="w-full h-auto max-h-[280px]">
+                        <defs>
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FBBF24" />
+                                <stop offset="100%" stop-color="#D97706" />
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Triangle lines with arrows -->
+                        <polygon points="300,40 100,250 500,250" fill="none" stroke="url(#goldGrad)" stroke-width="4" stroke-dasharray="6 4" />
+                        
+                        <!-- Top Vertex: TÀI SẢN -->
+                        <g transform="translate(300, 40)" class="cursor-pointer" onclick="navigateTo(1)">
+                            <circle r="36" fill="#1E293B" stroke="#F59E0B" stroke-width="3" filter="url(#glow)"/>
+                            <i class="fa-solid fa-sack-dollar text-2xl text-amber-400" x="-12" y="-12"></i>
+                            <text y="50" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">TÀI SẢN</text>
+                            <text y="66" text-anchor="middle" fill="#94A3B8" font-size="10">Những gì ta có</text>
+                        </g>
+
+                        <!-- Bottom Left Vertex: GIA SẢN -->
+                        <g transform="translate(100, 250)" class="cursor-pointer" onclick="navigateTo(3)">
+                            <circle r="36" fill="#1E293B" stroke="#F59E0B" stroke-width="3" filter="url(#glow)"/>
+                            <text y="50" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">GIA SẢN</text>
+                            <text y="66" text-anchor="middle" fill="#94A3B8" font-size="10">Gia đình cùng giữ</text>
+                        </g>
+
+                        <!-- Bottom Right Vertex: DI SẢN -->
+                        <g transform="translate(500, 250)" class="cursor-pointer" onclick="navigateTo(6)">
+                            <circle r="36" fill="#1E293B" stroke="#F59E0B" stroke-width="3" filter="url(#glow)"/>
+                            <text y="50" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">DI SẢN</text>
+                            <text y="66" text-anchor="middle" fill="#94A3B8" font-size="10">Những gì để lại cho đời</text>
+                        </g>
+
+                        <!-- Central Core Icon -->
+                        <circle cx="300" cy="180" r="28" fill="#0F172A" stroke="#334155" stroke-width="2"/>
+                        <text cx="300" cy="185" x="300" y="184" text-anchor="middle" fill="#F59E0B" font-size="11" font-weight="bold">GIÁ TRỊ SỐNG</text>
+                    </svg>
+                `
+            },
+            {
+                id: 2,
+                title: "2. Đỉnh Thứ Nhất: Tài Sản",
+                subtitle: "Phần dễ nhìn thấy nhất & 4 Tầng Quản Trị Nguồn Lực",
+                badge: "Tài Sản Cá Nhân",
+                text: `
+                    <p>Tài sản là phần dễ nhìn thấy nhất trong Tam Sản. Đó có thể là tiền mặt, tiền gửi, cổ phiếu, doanh nghiệp, nhà cửa, đất đai, phương tiện, quyền sở hữu trí tuệ, các khoản đầu tư hoặc những nguồn lực vật chất có khả năng tạo ra giá trị kinh tế.</p>
+                    <p>Nhưng nếu chỉ hiểu Tài sản là <em>“tiền và nhà đất"</em> thì vẫn chưa đầy đủ. Tài sản về bản chất là <strong>nguồn lực mà con người có thể sở hữu, sử dụng, bảo toàn hoặc phát triển để tạo ra giá trị.</strong></p>
+                    <p>Tài sản không tự nhiên xuất hiện. Đằng sau tài sản thường là thời gian, công sức, năng lực, cơ hội, quyết định và khả năng quản trị rủi ro của một con người. Một người có thể kiếm được 10 tỷ nhưng cũng có thể mất 10 tỷ. Vì vậy, giá trị của Tài sản không chỉ nằm ở con số hiện tại mà nằm ở <strong>khả năng 4 tầng:</strong></p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-slate-950 p-3 rounded-xl border-l-4 border-amber-500">
+                            <h5 class="font-bold text-amber-400 text-xs">1. TẠO RA TÀI SẢN</h5>
+                            <p class="text-xs text-slate-400">Biết kiếm tiền, tạo giá trị kinh tế ban đầu.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border-l-4 border-blue-500">
+                            <h5 class="font-bold text-blue-400 text-xs">2. BẢO VỆ TÀI SẢN</h5>
+                            <p class="text-xs text-slate-400">Không để mất mát do sai lầm, nợ nần, thiếu kiểm soát.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border-l-4 border-emerald-500">
+                            <h5 class="font-bold text-emerald-400 text-xs">3. PHÁT TRIỂN TÀI SẢN</h5>
+                            <p class="text-xs text-slate-400">Biến nguồn lực hiện có thành nguồn lực lớn hơn.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border-l-4 border-purple-500">
+                            <h5 class="font-bold text-purple-400 text-xs">4. CHUYỂN GIAO TÀI SẢN</h5>
+                            <p class="text-xs text-slate-400">Đưa thành quả đúng thế hệ, đúng người, đúng mục đích.</p>
+                        </div>
+                    </div>
+                `,
+                takeaway: "Giỏi kiếm tiền chưa chắc giỏi quản trị tài sản. Tài sản bền vững đòi hỏi đủ 4 năng lực: Tạo ra - Bảo vệ - Phát triển - Chuyển giao.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- 4 Pillars of Assets -->
+                        <g transform="translate(30, 30)">
+                            <!-- Layer 1 -->
+                            <rect x="0" y="0" width="120" height="150" rx="12" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="60" y="40" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="13">1. TẠO RA</text>
+                            <text x="60" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Kiếm tiền</text>
+                            <text x="60" y="90" text-anchor="middle" fill="#94A3B8" font-size="10">Tạo giá trị</text>
+                            
+                            <!-- Layer 2 -->
+                            <rect x="140" y="0" width="120" height="150" rx="12" fill="#1E293B" stroke="#3B82F6" stroke-width="2"/>
+                            <text x="200" y="40" text-anchor="middle" fill="#60A5FA" font-weight="bold" font-size="13">2. BẢO VỆ</text>
+                            <text x="200" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Quản trị rủi ro</text>
+                            <text x="200" y="90" text-anchor="middle" fill="#94A3B8" font-size="10">Giữ thành quả</text>
+
+                            <!-- Layer 3 -->
+                            <rect x="280" y="0" width="120" height="150" rx="12" fill="#1E293B" stroke="#10B981" stroke-width="2"/>
+                            <text x="340" y="40" text-anchor="middle" fill="#34D399" font-weight="bold" font-size="13">3. PHÁT TRIỂN</text>
+                            <text x="340" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Tăng trưởng</text>
+                            <text x="340" y="90" text-anchor="middle" fill="#94A3B8" font-size="10">Tái đầu tư</text>
+
+                            <!-- Layer 4 -->
+                            <rect x="420" y="0" width="120" height="150" rx="12" fill="#1E293B" stroke="#A855F7" stroke-width="2"/>
+                            <text x="480" y="40" text-anchor="middle" fill="#C084FC" font-weight="bold" font-size="13">4. CHUYỂN GIAO</text>
+                            <text x="480" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Đúng đối tượng</text>
+                            <text x="480" y="90" text-anchor="middle" fill="#94A3B8" font-size="10">Đúng thừa kế</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 3,
+                title: "3. Tài Sản Không Chỉ Là Tiền",
+                subtitle: "Tài sản hữu hình vs Năng lực tạo giá trị tương lai (Tài sản vô hình)",
+                badge: "Bản Chất Tài Sản",
+                text: `
+                    <p>Một điểm cần đặc biệt nhấn mạnh khi nói về Tam Sản là <strong>không nên đồng nhất tài sản với tiền</strong>.</p>
+                    <p>Một người có thể có tài sản vật chất rất lớn, nhưng họ cũng có thể có những loại <strong>tài sản vô hình cực kỳ quan trọng:</strong></p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 my-3">
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Kiến thức</span></div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Kinh nghiệm</span></div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Kỹ năng</span></div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Quan hệ xã hội</span></div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Uy tín</span></div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Thương hiệu</span></div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Sở hữu trí tuệ</span></div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg text-center border border-slate-800"><span class="text-amber-400 font-bold text-xs">Dòng tiền tương lai</span></div>
+                    </div>
+                    <p class="text-slate-300"><strong>So sánh ví dụ:</strong> Người A có 5 tỷ đồng nhưng không còn khả năng tạo thu nhập. Người B chỉ có 1 tỷ đồng nhưng sở hữu doanh nghiệp đang tạo ra dòng tiền ổn định. Nếu nhìn số tiền hiện tại, A giàu hơn; nhưng nếu nhìn năng lực tạo giá trị tương lai, B bền vững hơn nhiều.</p>
+                `,
+                takeaway: "Khi phân tích Tài Sản, phải nhìn cả giá trị hiện tại (vật chất) lẫn năng lực tạo giá trị trong tương lai (vô hình).",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- Left Box: Tangible -->
+                        <g transform="translate(50, 40)">
+                            <rect width="220" height="150" rx="14" fill="#1E293B" stroke="#64748B" stroke-width="2"/>
+                            <text x="110" y="35" text-anchor="middle" fill="#E2E8F0" font-weight="bold" font-size="14">TÀI SẢN HỮU HÌNH</text>
+                            <text x="110" y="65" text-anchor="middle" fill="#94A3B8" font-size="11">• Tiền mặt / Tiền gửi</text>
+                            <text x="110" y="90" text-anchor="middle" fill="#94A3B8" font-size="11">• Bất động sản / Xe cộ</text>
+                            <text x="110" y="115" text-anchor="middle" fill="#94A3B8" font-size="11">• Cổ phiếu / Vàng vật chất</text>
+                        </g>
+
+                        <!-- Right Box: Intangible -->
+                        <g transform="translate(330, 40)">
+                            <rect width="220" height="150" rx="14" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="110" y="35" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">TÀI SẢN VÔ HÌNH</text>
+                            <text x="110" y="65" text-anchor="middle" fill="#CBD5E1" font-size="11">• Tri thức / Kinh nghiệm / Uy tín</text>
+                            <text x="110" y="90" text-anchor="middle" fill="#CBD5E1" font-size="11">• Thương hiệu / Quan hệ</text>
+                            <text x="110" y="115" text-anchor="middle" fill="#CBD5E1" font-size="11">• Năng lực tạo dòng tiền tương lai</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 4,
+                title: "4. Đỉnh Thứ Hai: Gia Sản",
+                subtitle: "Giá trị hình thành trong phạm vi gia đình & tích lũy qua thời gian",
+                badge: "Nền Tảng Gia Đình",
+                text: `
+                    <p>Nếu Tài sản nói về những gì một cá nhân hoặc một gia đình sở hữu thì Gia sản đi sâu hơn. <strong>Gia sản là những giá trị được hình thành trong phạm vi gia đình, được tích lũy qua thời gian và có khả năng truyền từ thế hệ này sang thế hệ khác.</strong></p>
+                    <p>Gia sản không chỉ là căn nhà cha mẹ để lại, mảnh đất hay tiền bạc. Gia sản còn bao gồm:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-amber-200/90">
+                        <li>Nền nếp gia đình & Cách giáo dục con cái.</li>
+                        <li>Truyền thống, tinh thần trách nhiệm, cách đối nhân xử thế.</li>
+                        <li>Danh dự gia đình, uy tín dòng họ, các nguyên tắc sống & kinh nghiệm.</li>
+                        <li>Cách làm ăn, giữ chữ tín và những bài học thế hệ trước truyền lại.</li>
+                    </ul>
+                    <p>Tài sản có thể định giá bằng tiền tương đối rõ ràng. Nhưng rất nhiều Gia sản <strong>không thể định giá bằng tiền</strong>, như cách sống tử tế, tinh thần tự lập và danh dự gia phong.</p>
+                `,
+                takeaway: "Gia sản là sự kết hợp giữa tài sản vật chất và giá trị tinh thần, giáo dục, uy tín gia đình truyền qua nhiều thế hệ.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <rect x="150" y="30" width="300" height="180" rx="16" fill="#1E293B" stroke="#F59E0B" stroke-width="3"/>
+                        <text x="300" y="65" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="16">CẤU TRÚC GIA SẢN</text>
+                        <line x1="180" y1="80" x2="420" y2="80" stroke="#334155" stroke-width="2"/>
+                        <text x="300" y="110" text-anchor="middle" fill="#E2E8F0" font-size="12">Vật chất (Cơ nghiệp, đất đai, nhà cửa)</text>
+                        <text x="300" y="135" text-anchor="middle" fill="#F59E0B" font-weight="bold" font-size="14">+</text>
+                        <text x="300" y="160" text-anchor="middle" fill="#E2E8F0" font-size="12">Gia phong (Nền nếp, Giáo dục, Uy tín, Chữ tín)</text>
+                        <text x="300" y="190" text-anchor="middle" fill="#94A3B8" font-size="11 font-italic">Tích lũy qua thời gian • Truyền thế hệ</text>
+                    </svg>
+                `
+            },
+            {
+                id: 5,
+                title: "5. Gia Sản Là 'Nền Móng Của Một Gia Đình'",
+                subtitle: "Sự khác biệt giữa của cải và móng nhà",
+                badge: "Trụ Cột Bền Vững",
+                text: `
+                    <p>Có thể hình dung: <strong>Tài sản giống như những gì gia đình đang sở hữu, còn Gia sản giống như nền móng mà gia đình đã xây dựng.</strong></p>
+                    <p>Một gia đình có nhiều tiền nhưng thiếu nền nếp thì tài sản rất dễ trở thành nguyên nhân của tranh chấp, tan vỡ. Ngược lại, một gia đình có nền tảng tốt thì ngay cả khi tài sản không quá lớn, các thành viên vẫn có khả năng cùng nhau đùm bọc và tạo dựng tương lai.</p>
+                    <p>Gia sản gắn liền với chữ <em>"Gia"</em>. Nó không thuộc về riêng một cá nhân mà gắn liền với câu chuyện của cả gia đình. Một người có thể tạo ra Tài sản bằng năng lực cá nhân, nhưng để hình thành Gia sản bền vững thường cần <strong>nhiều thế hệ cùng xây dựng, giữ gìn và truyền lại.</strong></p>
+                `,
+                takeaway: "Tài sản như ngôi nhà, Gia sản như nền móng. Móng không vững thì nhà càng to càng dễ sụp đổ khi sóng gió.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- House Roof -->
+                        <polygon points="300,30 150,110 450,110" fill="#3B82F6" opacity="0.8"/>
+                        <text x="300" y="85" text-anchor="middle" fill="#FFFFFF" font-weight="bold" font-size="14">TÀI SẢN (Ngôi nhà sở hữu)</text>
+
+                        <!-- House Base / Foundation -->
+                        <rect x="170" y="110" width="260" height="100" fill="#1E293B" stroke="#F59E0B" stroke-width="3" rx="4"/>
+                        <text x="300" y="145" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="15">GIA SẢN (Nền móng gia đình)</text>
+                        <text x="300" y="170" text-anchor="middle" fill="#CBD5E1" font-size="11">Gia phong • Nguyên tắc • Giáo dục • Đoàn kết</text>
+                    </svg>
+                `
+            },
+            {
+                id: 6,
+                title: "6. Gia Sản Không Phải Chỉ Là 'Của Cải Cha MẸ Để Lại'",
+                subtitle: "Truyền của cải vs Truyền năng lực tạo giá trị",
+                badge: "Nhận Thức Đúng Đắn",
+                text: `
+                    <p>Một hiểu lầm phổ biến: <em>"Gia sản là ông bà cha mẹ để lại nhà đất cho con cháu."</em> Đó chỉ là một phần ngọn.</p>
+                    <p>Một gia đình có thể để lại 10 căn nhà nhưng con cháu không biết quản lý, thì vài năm sau tài sản cũng bị bán hết. Ngược lại, một gia đình chỉ để lại một cơ nghiệp nhỏ nhưng truyền được <strong>cách làm ăn, chữ tín, tinh thần tiết kiệm và khả năng quản trị</strong>, thế hệ sau có thể phát triển thành cơ nghiệp lớn hơn.</p>
+                    <p class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-amber-300 font-medium">Trong trường hợp đó, thứ quan trọng nhất được truyền lại không chỉ là Tiền, mà chính là NĂNG LỰC TẠO RA GIÁ TRỊ. Đó mới là chiều sâu thực sự của Gia sản.</p>
+                `,
+                takeaway: "Truyền cho con của cải chỉ giúp con sống chốc lát. Truyền năng lực tạo ra giá trị mới giúp gia tộc trường tồn.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- Bad example -->
+                        <g transform="translate(60, 40)">
+                            <rect width="210" height="150" rx="12" fill="#1E293B" stroke="#EF4444" stroke-width="2"/>
+                            <text x="105" y="35" text-anchor="middle" fill="#F87171" font-weight="bold" font-size="12">CHỈ TRUYỀN CỦA CẢI</text>
+                            <text x="105" y="65" text-anchor="middle" fill="#94A3B8" font-size="11">Cho 10 căn nhà</text>
+                            <text x="105" y="90" text-anchor="middle" fill="#94A3B8" font-size="11">Không truyền năng lực</text>
+                            <text x="105" y="120" text-anchor="middle" fill="#EF4444" font-bold text-xs">➔ Tiêu tán sau 1 thế hệ</text>
+                        </g>
+
+                        <!-- Good example -->
+                        <g transform="translate(330, 40)">
+                            <rect width="210" height="150" rx="12" fill="#1E293B" stroke="#10B981" stroke-width="2"/>
+                            <text x="105" y="35" text-anchor="middle" fill="#34D399" font-weight="bold" font-size="12">TRUYỀN NĂNG LỰC SỐNG</text>
+                            <text x="105" y="65" text-anchor="middle" fill="#CBD5E1" font-size="11">Chữ tín • Tiết kiệm • Quản trị</text>
+                            <text x="105" y="90" text-anchor="middle" fill="#CBD5E1" font-size="11">Độ nhạy kinh doanh</text>
+                            <text x="105" y="120" text-anchor="middle" fill="#10B981" font-bold text-xs">➔ Cơ nghiệp phát triển bền vững</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 7,
+                title: "7. Đỉnh Thứ Ba: Di Sản",
+                subtitle: "Tầng sâu nhất: Điều gì còn lại khi ta không còn nữa?",
+                badge: "Tầm Vóc Di Sản",
+                text: `
+                    <p>Di sản là tầng sâu nhất của mô hình Tam Sản. Nếu Tài sản là thứ ta sở hữu và Gia sản là nền tảng gia đình thì Di sản trả lời câu hỏi lớn nhất: <strong>“Khi một con người không còn nữa, điều gì vẫn còn?"</strong></p>
+                    <p>Di sản bao gồm vô vàn hình thái tinh thần và vật chất vượt thời gian:</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-3">
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs text-amber-300 font-semibold">• Kiến thức & Tư tưởng</div>
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs text-amber-300 font-semibold">• Nghề nghiệp & Công trình</div>
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs text-amber-300 font-semibold">• Thương hiệu & Uy tín</div>
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs text-amber-300 font-semibold">• Những người được đào tạo</div>
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs text-amber-300 font-semibold">• Giá trị đạo đức</div>
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs text-amber-300 font-semibold">• Đóng góp cho cộng đồng</div>
+                    </div>
+                    <p>Ví dụ: Một người cả đời giữ chữ tín, sau khi người đó mất, con cháu đi làm ăn vẫn được xã hội tin tưởng vì câu nói: <em>"Gia đình này từ trước đến nay làm ăn rất có uy tín"</em>. Đó chính là Di sản vô giá không nằm trong tài khoản ngân hàng hay sổ đỏ.</p>
+                `,
+                takeaway: "Di sản không đo bằng của cải cất giữ, mà đo bằng những giá trị tốt đẹp vẫn tiếp tục sống sau khi ta qua đời.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <circle cx="300" cy="120" r="90" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="4 4"/>
+                        <circle cx="300" cy="120" r="60" fill="none" stroke="#F59E0B" stroke-width="2"/>
+                        <circle cx="300" cy="120" r="30" fill="#F59E0B"/>
+                        <text x="300" y="124" text-anchor="middle" fill="#0F172A" font-weight="bold" font-size="10">CUỘC ĐỜI</text>
+                        <text x="300" y="75" text-anchor="middle" fill="#FBBF24" font-size="11" font-weight="bold">GIA ĐÌNH & THẾ HỆ SAU</text>
+                        <text x="300" y="18" text-anchor="middle" fill="#F59E0B" font-size="12" font-weight="bold">CỘNG ĐỒNG & XÃ HỘI (DI SẢN LAN TỎA)</text>
+                    </svg>
+                `
+            },
+            {
+                id: 8,
+                title: "8. Di Sản Khác Gia Sản Ở Đâu?",
+                subtitle: "Phạm vi Gia đình (Gia sản) vs Phạm vi Xã hội & Tương lai (Di sản)",
+                badge: "Phân Biệt Cốt Lõi",
+                text: `
+                    <p>Đây là một trong những điểm quan trọng nhất của mô hình Tam Sản:</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-4">
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <h4 class="font-bold text-amber-400 text-sm mb-2"><i class="fa-solid fa-house-user mr-2"></i>GIA SẢN (Phạm vi Gia đình)</h4>
+                            <p class="text-xs text-slate-300">Thiên về những giá trị được hình thành, duy trì và bảo tồn nội bộ trong phạm vi gia đình, dòng họ.</p>
+                            <p class="text-xs text-amber-400/80 font-semibold mt-2">Core: "Gia đình ta giữ lại được gì?"</p>
+                        </div>
+                        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                            <h4 class="font-bold text-yellow-400 text-sm mb-2"><i class="fa-solid fa-earth-americas mr-2"></i>DI SẢN (Phạm vi Rộng lớn)</h4>
+                            <p class="text-xs text-slate-300">Vượt khỏi gia đình, trở thành giá trị được cộng đồng, xã hội hoặc các thế hệ sau tiếp nhận & ứng dụng.</p>
+                            <p class="text-xs text-yellow-400/80 font-semibold mt-2">Core: "Ta để lại được gì cho tương lai?"</p>
+                        </div>
+                    </div>
+                `,
+                takeaway: "Gia sản là cái khiêm tốn gia đình giữ lại; Di sản là cái mênh mông trao lại cho dòng chảy tương lai của cộng đồng.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- Inner circle Family -->
+                        <rect x="80" y="50" width="200" height="140" rx="16" fill="#1E293B" stroke="#3B82F6" stroke-width="2"/>
+                        <text x="180" y="85" text-anchor="middle" fill="#60A5FA" font-weight="bold" font-size="14">GIA SẢN</text>
+                        <text x="180" y="115" text-anchor="middle" fill="#CBD5E1" font-size="11">Phạm vi: Nội bộ Gia đình</text>
+                        <text x="180" y="140" text-anchor="middle" fill="#94A3B8" font-size="10">Gia đình giữ & bảo tồn</text>
+
+                        <!-- Arrow -->
+                        <path d="M 290,120 L 330,120" stroke="#F59E0B" stroke-width="3" marker-end="url(#arrow)" />
+
+                        <!-- Outer circle Society -->
+                        <rect x="340" y="50" width="200" height="140" rx="16" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                        <text x="440" y="85" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">DI SẢN</text>
+                        <text x="440" y="115" text-anchor="middle" fill="#CBD5E1" font-size="11">Phạm vi: Xã hội & Đời sau</text>
+                        <text x="440" y="140" text-anchor="middle" fill="#94A3B8" font-size="10">Cộng đồng tiếp nhận & sống theo</text>
+                    </svg>
+                `
+            },
+            {
+                id: 9,
+                title: "9. Di Sản Không Nhất Thiết Phải Là Thứ Vĩ Đại",
+                subtitle: "Giải mã lầm tưởng về Di sản",
+                badge: "Tư Tưỡng Bình Dị",
+                text: `
+                    <p>Nhiều người nghe đến chữ <em>Di sản</em> liền nghĩ phải là một công trình vĩ đại, doanh nghiệp hàng nghìn tỷ hay một thành tựu lịch sử. <strong>Điều đó không nhất thiết.</strong></p>
+                    <ul class="space-y-2 text-xs text-slate-300">
+                        <li class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><i class="fa-solid fa-check text-amber-400 mr-2"></i>Một người cha dạy con sống tử tế.</li>
+                        <li class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><i class="fa-solid fa-check text-amber-400 mr-2"></i>Một người mẹ truyền tinh thần vượt khó.</li>
+                        <li class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><i class="fa-solid fa-check text-amber-400 mr-2"></i>Một người thầy tận tâm đào tạo hàng trăm học trò.</li>
+                        <li class="bg-slate-950 p-2.5 rounded-lg border border-slate-800"><i class="fa-solid fa-check text-amber-400 mr-2"></i>Một người làm nghề giữ chữ tín suốt 40 năm.</li>
+                    </ul>
+                    <p class="mt-3">Bản chất của Di sản không nằm ở quy mô lớn đến mức nào. <strong>Nó nằm ở việc giá trị đó có tiếp tục tồn tại sau khi người tạo ra nó không còn nữa hay không.</strong></p>
+                `,
+                takeaway: "Di sản đơn giản là sự tiếp nối của cái đẹp, cái tử tế và tri thức tốt lành mà bạn đã gieo trồng.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <g transform="translate(100, 40)">
+                            <rect width="400" height="150" rx="16" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="200" y="45" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="15">THƯỚC ĐO THỰC SỰ CỦA DI SẢN</text>
+                            <text x="200" y="80" text-anchor="middle" fill="#EF4444" font-size="12">KHÔNG PHẢI: Quy mô tiền bạc hay kỷ lục vĩ đại</text>
+                            <line x1="50" y1="95" x2="350" y2="95" stroke="#334155" stroke-width="1"/>
+                            <text x="200" y="125" text-anchor="middle" fill="#10B981" font-weight="bold" font-size="13">MÀ LÀ: Giá trị đó có SỐNG TIẾP tục sau khi bạn mất hay không?</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 10,
+                title: "10. Mối Quan Hệ Giữa Tài Sản – Gia Sản – Di Sản",
+                subtitle: "Hệ thống liên kết hữu cơ & chuyển hóa lẫn nhau",
+                badge: "Hệ Thống Liên Kết",
+                text: `
+                    <p>Ba đỉnh của Tam Sản tạo thành một hệ thống liên kết tuần hoàn chặt chẽ:</p>
+                    <ul class="space-y-3 my-3">
+                        <li class="bg-slate-950 p-3 rounded-xl border-l-4 border-amber-500 text-xs">
+                            <strong class="text-amber-400">Tài sản ➔ Gia sản:</strong> Tài sản vật chất tạo điều kiện nguồn lực để xây dựng giáo dục, nền nếp gia đình.
+                        </li>
+                        <li class="bg-slate-950 p-3 rounded-xl border-l-4 border-yellow-500 text-xs">
+                            <strong class="text-yellow-400">Gia sản ➔ Di sản:</strong> Nền tảng gia phong vững vàng tạo bệ phóng để hình thành tư tưởng, công trình và giá trị xã hội.
+                        </li>
+                        <li class="bg-slate-950 p-3 rounded-xl border-l-4 border-amber-600 text-xs">
+                            <strong class="text-amber-300">Di sản ➔ Tài sản & Gia sản:</strong> Di sản (uy tín, thương hiệu) lại quay trở lại bảo vệ và gia tăng giá trị cho Tài sản và Gia sản.
+                        </li>
+                    </ul>
+                    <p>Không nên nhìn Tam Sản theo kiểu tuyến tính "làm xong cái này mới tới cái kia", mà chúng <strong>tác động qua lại liên tục.</strong></p>
+                `,
+                takeaway: "Ba đỉnh Tam Sản không đứng độc lập mà là một vòng tuần hoàn tương hỗ bồi đắp lẫn nhau.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <path d="M 180,180 L 300,50 L 420,180 Z" fill="none" stroke="#F59E0B" stroke-width="3"/>
+                        <circle cx="300" cy="50" r="25" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+                        <text x="300" y="54" text-anchor="middle" fill="#FBBF24" font-size="10" font-weight="bold">TÀI SẢN</text>
+                        
+                        <circle cx="180" cy="180" r="25" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+                        <text x="180" y="184" text-anchor="middle" fill="#FBBF24" font-size="10" font-weight="bold">GIA SẢN</text>
+
+                        <circle cx="420" cy="180" r="25" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+                        <text x="420" y="184" text-anchor="middle" fill="#FBBF24" font-size="10" font-weight="bold">DI SẢN</text>
+
+                        <!-- Central text -->
+                        <text x="300" y="140" text-anchor="middle" fill="#94A3B8" font-size="11" font-weight="bold">VÒNG TUẦN HOÀN GIÁ TRỊ</text>
+                    </svg>
+                `
+            },
+            {
+                id: 11,
+                title: "11. Mũi Tên Hai Chiều Trong Mô Hình",
+                subtitle: "Tương tác phản hồi 2 chiều giữa từng cặp đỉnh",
+                badge: "Cơ Chế Phản Hồi",
+                text: `
+                    <p>Trong sơ đồ Tam Sản, các cạnh tam giác được thể hiện bằng <strong>mũi tên hai chiều</strong>. Điều này mang ý nghĩa vận hành cực kỳ quan trọng:</p>
+                    <div class="space-y-3 my-3">
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                            <strong class="text-amber-400 text-xs">TÀI SẢN ⇄ GIA SẢN:</strong>
+                            <p class="text-xs text-slate-400 mt-1">Tài sản nuôi gia đình, nhưng Gia sản tốt (nền nếp, con cái giỏi) giúp tài sản được bảo toàn. Gia đình bất hòa sẽ xâu xé làm mất tài sản.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                            <strong class="text-amber-400 text-xs">TÀI SẢN ⇄ DI SẢN:</strong>
+                            <p class="text-xs text-slate-400 mt-1">Tài sản tạo nguồn lực để lại di sản; ngược lại Di sản (danh tiếng, uy tín) tạo ra nhiều cơ hội kinh doanh gia tăng tài sản.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
+                            <strong class="text-amber-400 text-xs">GIA SẢN ⇄ DI SẢN:</strong>
+                            <p class="text-xs text-slate-400 mt-1">Gia phong học tập củng cố tạo nên di sản xã hội; thành tựu di sản của thế hệ sau quay lại làm rạng danh gia tộc.</p>
+                        </div>
+                    </div>
+                `,
+                takeaway: "Sự tác động 2 chiều đảm bảo bất kỳ sự tiến bộ hay suy thoái ở 1 đỉnh cũng ảnh hưởng trực tiếp đến 2 đỉnh còn lại.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- Double arrow diagram -->
+                        <g transform="translate(150, 40)">
+                            <rect width="300" height="150" rx="16" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="150" y="45" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">MŨI TÊN HAI CHIỀU</text>
+                            <text x="150" y="75" text-anchor="middle" fill="#E2E8F0" font-size="11">Tài Sản ◄ ➔ Gia Sản</text>
+                            <text x="150" y="100" text-anchor="middle" fill="#E2E8F0" font-size="11">Gia Sản ◄ ➔ Di Sản</text>
+                            <text x="150" y="125" text-anchor="middle" fill="#E2E8F0" font-size="11">Di Sản ◄ ➔ Tài Sản</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 12,
+                title: "12. Tại Sao Không Thể Chỉ Chạy Theo Tài Sản?",
+                subtitle: "Hiểm họa của sự lệch chuẩn và mất cân bằng",
+                badge: "Cảnh Báo Đời Sống",
+                text: `
+                    <p>Nếu một người chỉ tập trung vào Tài sản, họ có thể kiếm được rất nhiều tiền. Nhưng nếu trong quá trình đó họ phá hỏng gia đình, mất sức khỏe, mất uy tín, mất niềm tin của con cái và không tạo được giá trị lâu dài thì thành quả ấy khó bền vững.</p>
+                    <div class="bg-amber-950/40 p-4 rounded-xl border border-amber-700/60 my-3">
+                        <ul class="space-y-2 text-xs text-amber-200">
+                            <li>• <strong>Tài sản:</strong> Cho ta khả năng sống tốt hơn.</li>
+                            <li>• <strong>Gia sản:</strong> Giúp gia đình đứng vững hơn trước sóng gió.</li>
+                            <li>• <strong>Di sản:</strong> Giúp giá trị một con người tiếp tục tồn tại lâu hơn chính cuộc đời họ.</li>
+                        </ul>
+                    </div>
+                    <p>Chỉ chạy theo tài sản là góc nhìn phiến diện làm ngưng trệ dòng chảy giá trị lâu dài của một đời người.</p>
+                `,
+                takeaway: "Tiền chỉ giải quyết được nhu cầu vật chất cá nhân. Gia sản và Di sản mới là điểm tựa cho gia tộc và giá trị nhân sinh.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- Imbalanced Scale -->
+                        <line x1="150" y1="180" x2="450" y2="100" stroke="#EF4444" stroke-width="4"/>
+                        <circle cx="150" cy="180" r="30" fill="#EF4444"/>
+                        <text x="150" y="185" text-anchor="middle" fill="#FFFFFF" font-weight="bold" font-size="10">TÀI SẢN (Quá nặng)</text>
+
+                        <circle cx="450" cy="100" r="20" fill="#64748B"/>
+                        <text x="450" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Gia Sản & Di Sản (Rỗng)</text>
+
+                        <text x="300" y="40" text-anchor="middle" fill="#F87171" font-weight="bold" font-size="13">HỆ QUẢ: MẤT CÂN BẰNG & RỦI RO TAN VỠ</text>
+                    </svg>
+                `
+            },
+            {
+                id: 13,
+                title: "13. Sai Lầm Của Người Chỉ Biết Tích Lũy Tài Sản",
+                subtitle: "Kịch bản bi kịch gia đình tranh chấp tài sản",
+                badge: "Bài Học Thực Tế",
+                text: `
+                    <p>Một người có thể dành cả đời để tích lũy bất động sản: Mua 1 mảnh, rồi 3 mảnh, rồi 10 mảnh. Nhưng nếu không chuẩn bị cho thế hệ sau cách quản lý tài sản, thì khi người đó nằm xuống, các con rất dễ nảy sinh tranh chấp.</p>
+                    <p class="text-slate-300"><em>Người này muốn bán, người kia không muốn bán, người khác đòi chia...</em> Tài sản từng là thành quả đổ mồ hôi nước mắt của cha mẹ cuối cùng lại biến thành nguyên nhân gây đứt gãy tình anh em.</p>
+                    <p class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-amber-400 font-bold">"Có tài sản thôi chưa đủ. Phải có năng lực chuyển Tài Sản thành Gia Sản." Và muốn làm điều đó cần đến giáo dục, nguyên tắc, sự minh bạch và sự chuẩn bị cho thế hệ kế tiếp.</p>
+                `,
+                takeaway: "Tích lũy tài sản mà quên giáo dục và chuẩn bị thừa kế chính là gieo mầm mầm mẫm mâu thuẫn cho thế hệ sau.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <rect x="50" y="40" width="220" height="150" rx="12" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                        <text x="160" y="70" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="13">TÍCH LŨY TÀI SẢN</text>
+                        <text x="160" y="100" text-anchor="middle" fill="#CBD5E1" font-size="11">Dành cả đời tích lũy đất đai</text>
+                        <text x="160" y="125" text-anchor="middle" fill="#F87171" font-size="11">Không giáo dục & quản trị</text>
+
+                        <path d="M 280,115 L 320,115" stroke="#EF4444" stroke-width="3" />
+
+                        <rect x="330" y="40" width="220" height="150" rx="12" fill="#1E293B" stroke="#EF4444" stroke-width="2"/>
+                        <text x="440" y="70" text-anchor="middle" fill="#F87171" font-weight="bold" font-size="13">KẾT CỤC TRANH CHẤP</text>
+                        <text x="440" y="100" text-anchor="middle" fill="#94A3B8" font-size="11">Con cái xâu xé bất hòa</text>
+                        <text x="440" y="125" text-anchor="middle" fill="#94A3B8" font-size="11">Gia tộc tan vỡ</text>
+                    </svg>
+                `
+            },
+            {
+                id: 14,
+                title: "14. Từ Tài Sản Đến Gia Sản",
+                subtitle: "Bước chuyển hóa chiến lược từ Cá nhân sang Hệ thống Gia đình",
+                badge: "Chuyển Hóa 1",
+                text: `
+                    <p>Đây là một bước chuyển cực kỳ quan trọng trong cuộc đời. <strong>Tài sản thuộc về cá nhân có thể mất đi khi cá nhân không còn. Nhưng nếu tài sản được đưa vào một hệ thống gia đình có nguyên tắc, có giáo dục và có định hướng thì nó trở thành Gia sản.</strong></p>
+                    <p>Ví dụ: Một người lập doanh nghiệp. Nếu chỉ giữ cho riêng mình thì đó là Tài sản cá nhân. Nhưng nếu người đó xây dựng văn hóa doanh nghiệp, đào tạo con cái, truyền nghề, lập hệ thống quản trị gia đình thì giá trị đó bắt đầu nâng tầm thành <strong>Gia sản</strong>.</p>
+                    <p class="bg-amber-950/30 p-3 rounded-lg border border-amber-800/50 text-amber-300 font-medium text-xs">Công thức: GIA SẢN = TÀI SẢN + NỀN TẢNG GIA ĐÌNH + TRI THỨC + VĂN HÓA + KHẢ NĂNG TIẾP NỐI.</p>
+                `,
+                takeaway: "Muốn tài sản trường tồn, hãy đưa tài sản vào khuôn khổ của tri thức, nguyên tắc và năng lực tiếp nối gia đình.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <!-- Pipeline -->
+                        <g transform="translate(40, 60)">
+                            <rect width="140" height="100" rx="10" fill="#1E293B" stroke="#64748B" stroke-width="2"/>
+                            <text x="70" y="55" text-anchor="middle" fill="#E2E8F0" font-weight="bold" font-size="13">TÀI SẢN</text>
+                            
+                            <text x="200" y="55" text-anchor="middle" fill="#F59E0B" font-bold text-lg">+</text>
+
+                            <rect x="230" y="15" width="160" height="90" rx="10" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="310" y="45" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="11">QUẢN TRỊ & GIÁO DỤC</text>
+                            <text x="310" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Văn hóa • Nguyên tắc</text>
+
+                            <text x="415" y="55" text-anchor="middle" fill="#F59E0B" font-bold text-lg">=</text>
+
+                            <rect x="435" y="15" width="130" height="90" rx="10" fill="#1E293B" stroke="#10B981" stroke-width="2"/>
+                            <text x="500" y="55" text-anchor="middle" fill="#34D399" font-weight="bold" font-size="13">GIA SẢN</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 15,
+                title: "15. Từ Gia Sản Đến Di Sản",
+                subtitle: "Vượt ra ngoài ranh giới gia đình để cống hiến cho xã hội",
+                badge: "Chuyển Hóa 2",
+                text: `
+                    <p>Đây lại là một bước phát triển ở tầng cao hơn nữa. Gia sản có thể chỉ được lưu truyền trong nội bộ gia tộc, nhưng Di sản mang tính mở vượt ra khỏi phạm vi gia đình.</p>
+                    <p>Một người tạo ra một phương pháp làm việc tốt. Con cái tiếp tục phương pháp đó (Gia sản). Nhưng sau đó những người khác trong xã hội học theo, nhiều thế hệ tiếp tục phát triển (Di sản). Lúc đó, giá trị đã vượt khỏi phạm vi <em>“của gia đình tôi"</em> để trở thành giá trị cộng đồng.</p>
+                    <p class="text-amber-300 font-semibold">Tiến trình: TÀI SẢN ➔ GIA SẢN ➔ DI SẢN.</p>
+                    <p class="text-xs text-slate-400">Lưu ý: Không phải mọi Tài sản đều tự động thành Gia sản, và không phải mọi Gia sản đều tự thành Di sản. Cần phải có ý thức, năng lực và sự phụng sự.</p>
+                `,
+                takeaway: "Di sản là khi thành quả và tri thức của gia đình bạn trở thành điểm tựa và cảm hứng nâng đỡ cộng đồng.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <path d="M 100,120 L 250,120 L 450,120" stroke="#F59E0B" stroke-width="3" stroke-dasharray="4 4"/>
+                        <circle cx="100" cy="120" r="35" fill="#1E293B" stroke="#64748B" stroke-width="2"/>
+                        <text x="100" y="124" text-anchor="middle" fill="#E2E8F0" font-weight="bold" font-size="10">TÀI SẢN</text>
+
+                        <circle cx="270" cy="120" r="40" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                        <text x="270" y="124" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="11">GIA SẢN</text>
+
+                        <circle cx="470" cy="120" r="50" fill="#1E293B" stroke="#10B981" stroke-width="3"/>
+                        <text x="470" y="124" text-anchor="middle" fill="#34D399" font-weight="bold" font-size="13">DI SẢN</text>
+                    </svg>
+                `
+            },
+            {
+                id: 16,
+                title: "16. Tam Sản Và Câu Chuyện 'Một Đời Người'",
+                subtitle: "3 Giai đoạn trưởng thành & tiến trình phát triển tâm thức",
+                badge: "Hành Trình Đời Người",
+                text: `
+                    <p>Nếu nhìn một đời người theo mô hình Tam Sản, chúng ta sẽ thấy 3 giai đoạn trưởng thành rất tự nhiên:</p>
+                    <div class="space-y-3 my-3">
+                        <div class="bg-slate-950 p-3.5 rounded-xl border-l-4 border-amber-500">
+                            <h5 class="font-bold text-amber-400 text-xs">GIAI ĐOẠN 1: TẠO TÀI SẢN (Tuổi trẻ)</h5>
+                            <p class="text-xs text-slate-300 mt-1">Học nghề, làm việc, kinh doanh, tích lũy, mua nhà, xây dựng sự nghiệp ban đầu.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3.5 rounded-xl border-l-4 border-yellow-500">
+                            <h5 class="font-bold text-yellow-400 text-xs">GIAI ĐOẠN 2: XÂY GIA SẢN (Trung niên)</h5>
+                            <p class="text-xs text-slate-300 mt-1">Quan tâm gia đình, giáo dục con cái, thiết lập nền nếp, sự ổn định & truyền nghề.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3.5 rounded-xl border-l-4 border-emerald-500">
+                            <h5 class="font-bold text-emerald-400 text-xs">GIAI ĐOẠN 3: TẠO DI SẢN (Xế chiều / Viên mãn)</h5>
+                            <p class="text-xs text-slate-300 mt-1">Trăn trở: <em>"Sau khi mất, ta để lại điều gì?"</em> - Chuyển từ sống cho sở hữu sang sống cho giá trị lâu dài.</p>
+                        </div>
+                    </div>
+                `,
+                takeaway: "Tiến trình từ Sở Hữu ➔ Tiếp Nối ➔ Trở Thành Giá Trị chính là quy luật phát triển tự nhiên của một đời người viên mãn.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <line x1="50" y1="180" x2="550" y2="60" stroke="#F59E0B" stroke-width="3"/>
+                        <circle cx="100" cy="170" r="14" fill="#F59E0B"/>
+                        <text x="100" y="200" text-anchor="middle" fill="#CBD5E1" font-size="11" font-weight="bold">1. Tạo Tài Sản</text>
+
+                        <circle cx="300" cy="115" r="14" fill="#F59E0B"/>
+                        <text x="300" y="145" text-anchor="middle" fill="#CBD5E1" font-size="11" font-weight="bold">2. Xây Gia Sản</text>
+
+                        <circle cx="500" cy="70" r="14" fill="#10B981"/>
+                        <text x="500" y="100" text-anchor="middle" fill="#34D399" font-size="11" font-weight="bold">3. Tạo Di Sản</text>
+                    </svg>
+                `
+            },
+            {
+                id: 17,
+                title: "17. Tam Sản Và Giá Trị Của Một Con Người",
+                subtitle: "Cách đánh giá sự thành công thực sự của một đời người",
+                badge: "Đánh Giá Toàn Diện",
+                text: `
+                    <p>Một người giàu vật chất không nhất thiết là người có Tam Sản cân bằng. Có người sở hữu tài sản rất lớn nhưng gia sản rất yếu và di sản bằng không.</p>
+                    <p>Ngược lại, một người không quá giàu về vật chất nhưng gia đình rất vững, con cái trưởng thành, uy tín tốt, tri thức được truyền lại và cộng đồng ghi nhận — người đó vẫn có một Tam Sản cực kỳ giá trị.</p>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 my-3">
+                        <p class="text-xs text-amber-300 font-bold mb-2">3 CÂU HỎI ĐÁNH GIÁ ĐỜI NGƯỜI:</p>
+                        <ol class="list-decimal pl-5 text-xs space-y-1 text-slate-300">
+                            <li>Người này có bao nhiêu tiền & tài sản?</li>
+                            <li>Người này đã xây dựng gia đình như thế nào?</li>
+                            <li>Sau khi họ không còn, những giá trị nào vẫn tiếp tục sống?</li>
+                        </ol>
+                    </div>
+                `,
+                takeaway: "Đừng chỉ đo giá trị một con người bằng tài khoản ngân hàng. Hãy nhìn vào sự vững chãi của gia đình và di sản họ để lại.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <g transform="translate(100, 30)">
+                            <rect width="400" height="170" rx="14" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="200" y="35" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">3 CHỈ SỐ GIÁ TRỊ CON NGƯỜI</text>
+                            <text x="200" y="70" text-anchor="middle" fill="#E2E8F0" font-size="12">1. Nguồn Lực & Dòng Tiền (Tài Sản)</text>
+                            <text x="200" y="100" text-anchor="middle" fill="#E2E8F0" font-size="12">2. Nền Nếp & Sự Trưởng Thành Con Cái (Gia Sản)</text>
+                            <text x="200" y="130" text-anchor="middle" fill="#E2E8F0" font-size="12">3. Sự Tiếp Nối Đạo Đức & Uy Tín Với Đời (Di Sản)</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 18,
+                title: "18. Tam Sản Và Thế Hệ Kế Tiếp",
+                subtitle: "Tính liên tục đa chiều giữa các thế hệ",
+                badge: "Trao Truyền Đa Chiều",
+                text: `
+                    <p>Một trong những mục tiêu quan trọng nhất của Tam Sản là <strong>tính liên tục giữa các thế hệ</strong>. Một thế hệ tạo dựng, thế hệ tiếp theo tiếp nhận.</p>
+                    <p>Nhưng tiếp nhận không có nghĩa là chỉ nhận tiền. Thế hệ sau cần nhận được trọn vẹn bộ nguồn lực đa chiều:</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 my-3 text-center text-xs">
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Tài sản</div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Kiến thức</div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Kinh nghiệm</div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Nguyên tắc</div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Uy tín</div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Mạng lưới quan hệ</div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Cách làm việc</div>
+                        <div class="bg-slate-950 p-2.5 rounded-lg border border-slate-800 text-amber-300 font-bold">Trách nhiệm</div>
+                    </div>
+                    <p class="text-xs text-slate-400">Nếu chỉ truyền tài sản mà không truyền năng lực ➔ Tài sản tiêu hao. Nếu chỉ truyền kiến thức mà không có nền tảng tài chính ➔ Thế hệ sau làm lại từ đầu. Kết hợp cả hai mới tạo bệ phóng bứt phá.</p>
+                `,
+                takeaway: "Thừa kế trọn vẹn là trao cả Của Cải lẫn Năng Lực & Đạo Đức Quản Trị CỦA CẢI đó.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <g transform="translate(150, 40)">
+                            <rect width="300" height="150" rx="14" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="150" y="40" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="13">BỘ THỪA KẾ TOÀN DIỆN</text>
+                            <text x="150" y="70" text-anchor="middle" fill="#CBD5E1" font-size="11">Tài Chính + Kiến Thức + Kinh Nghiệm</text>
+                            <text x="150" y="95" text-anchor="middle" fill="#CBD5E1" font-size="11">Uy Tín + Mạng Lưới Quan Hệ</text>
+                            <text x="150" y="125" text-anchor="middle" fill="#10B981" font-weight="bold" font-size="12">➔ BỆ PHÓNG TRƯỜNG TỒN PHÁT TRIỂN</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 19,
+                title: "19. Một Tam Sản Tốt Phải Có Sự Cân Bằng",
+                subtitle: "Vòng tuần hoàn khép kín lý tưởng của mô hình",
+                badge: "Cân Bằng Lý Tưởng",
+                text: `
+                    <p>Một mô hình Tam Sản khỏe mạnh không nhất thiết phải có ba phần bằng nhau về giá trị tiền bạc. Điều quan trọng là ba phần phải <strong>hỗ trợ được cho nhau.</strong></p>
+                    <ul class="list-disc pl-5 space-y-1 text-xs text-slate-300">
+                        <li>Tài sản phải đủ để tạo nền tảng vật chất.</li>
+                        <li>Gia sản phải đủ vững để bảo vệ sự tiếp nối nội bộ.</li>
+                        <li>Di sản phải đủ sâu để tạo ý nghĩa lâu dài cho đời.</li>
+                    </ul>
+                    <div class="bg-amber-950/40 p-4 rounded-xl border border-amber-800/60 my-3 text-center text-xs font-bold text-amber-300">
+                        VÒNG TUẦN HOÀN LÝ TƯỞNG:<br>
+                        TẠO TÀI SẢN ➔ XÂY GIA SẢN ➔ HÌNH THÀNH DI SẢN ➔ DI SẢN NUÔI GIA SẢN ➔ GIA SẢN TẠO TÀI SẢN
+                    </div>
+                `,
+                takeaway: "Sự cân bằng động tạo ra vòng quay tăng trưởng liên tục giữa các thế hệ gia tộc.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <circle cx="300" cy="120" r="80" fill="none" stroke="#F59E0B" stroke-width="4" stroke-dasharray="8 4"/>
+                        <text x="300" y="90" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="12">TÀI SẢN</text>
+                        <text x="230" y="150" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="12">GIA SẢN</text>
+                        <text x="370" y="150" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="12">DI SẢN</text>
+                        <text x="300" y="124" text-anchor="middle" fill="#CBD5E1" font-size="10">CÂN BẰNG</text>
+                    </svg>
+                `
+            },
+            {
+                id: 20,
+                title: "20. Câu Hỏi Cốt Lõi Của Tam Sản",
+                subtitle: "Bộ 3 câu hỏi biến lý thuyết thành công cụ tự phản chiếu",
+                badge: "Tự Phản Chiếu",
+                text: `
+                    <p>Để tự nhìn lại cuộc đời mình, hãy tự mình trả lời 3 câu hỏi cốt lõi này:</p>
+                    <div class="space-y-3 my-3">
+                        <div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40">
+                            <h5 class="font-bold text-amber-400 text-xs">CÂU HỎI 1: TÀI SẢN – Tôi đang có gì?</h5>
+                            <p class="text-xs text-slate-300 mt-1">Nguồn lực nào? Khả năng tạo thu nhập ra sao? Đang bảo vệ hay tiêu hao tài sản?</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40">
+                            <h5 class="font-bold text-amber-400 text-xs">CÂU HỎI 2: GIA SẢN – Gia đình tôi đang có gì?</h5>
+                            <p class="text-xs text-slate-300 mt-1">Nền nếp gì? Nguyên tắc gì? Con cái thừa hưởng được giá trị sống nào?</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40">
+                            <h5 class="font-bold text-amber-400 text-xs">CÂU HỎI 3: DI SẢN – Tôi sẽ để lại gì?</h5>
+                            <p class="text-xs text-slate-300 mt-1">Khi tôi mất đi, người khác nhớ tôi vì điều gì? Điều tử tế nào vẫn sống tiếp?</p>
+                        </div>
+                    </div>
+                `,
+                takeaway: "3 câu hỏi này biến Tam Sản thành chiếc kim chỉ nam định hướng mọi hành động hàng ngày của bạn.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <g transform="translate(50, 40)">
+                            <rect width="150" height="150" rx="12" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="75" y="40" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="12">1. TÀI SẢN</text>
+                            <text x="75" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Tôi có gì trong tay?</text>
+                            <text x="75" y="100" text-anchor="middle" fill="#94A3B8" font-size="10">Dòng tiền thế nào?</text>
+
+                            <rect x="175" y="0" width="150" height="150" rx="12" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="250" y="40" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="12">2. GIA SẢN</text>
+                            <text x="250" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Gia đình có gì?</text>
+                            <text x="250" y="100" text-anchor="middle" fill="#94A3B8" font-size="10">Gia phong ra sao?</text>
+
+                            <rect x="350" y="0" width="150" height="150" rx="12" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="425" y="40" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="12">3. DI SẢN</text>
+                            <text x="425" y="70" text-anchor="middle" fill="#94A3B8" font-size="10">Tôi để lại gì?</text>
+                            <text x="425" y="100" text-anchor="middle" fill="#94A3B8" font-size="10">Điều gì tiếp nối?</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 21,
+                title: "21. Tam Sản Không Phải Là Cuộc Đua 'Ai Có Nhiều Hơn'",
+                subtitle: "Tạo dựng giá trị sâu sắc thay vì so sánh giàu nghèo",
+                badge: "Tâm Thế Định Giá",
+                text: `
+                    <p>Một sai lầm phổ biến là biến Tam Sản thành thước đo so sánh hơn thua giàu nghèo. Điều đó làm mất hoàn toàn tinh thần vốn có.</p>
+                    <p>Tam Sản không nhằm trả lời: <em>"Ai giàu hơn ai?"</em> mà trả lời: <strong>“Một con người đã tạo ra giá trị như thế nào và giá trị đó có thể tiếp tục đến đâu?"</strong></p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 my-3">
+                        <div class="bg-slate-950 p-3 rounded-xl border border-red-500/40">
+                            <p class="text-xs text-red-400 font-bold mb-1">NGƯỜI A: 100 TỶ VẬT CHẤT</p>
+                            <p class="text-xs text-slate-400">Không giáo dục con, không có sự tiếp nối ➔ Rủi ro tiêu tán cao.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-xl border border-emerald-500/40">
+                            <p class="text-xs text-emerald-400 font-bold mb-1">NGƯỜI B: 10 TỶ VẬT CHẤT</p>
+                            <p class="text-xs text-slate-400">Gia đình vững vàng, con cái giỏi giang ➔ Tính bền vững cao hơn.</p>
+                        </div>
+                    </div>
+                `,
+                takeaway: "Giá trị không nằm ở số lượng tài sản sở hữu, mà nằm ở khả năng tồn tại và phát triển qua thời gian.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <rect x="100" y="50" width="400" height="140" rx="14" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                        <text x="300" y="85" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">MỤC TIÊU CỦA TAM SẢN</text>
+                        <text x="300" y="115" text-anchor="middle" fill="#EF4444" font-size="11">KHÔNG PHẢI: Cuộc đua tích lũy của cải so với người khác</text>
+                        <text x="300" y="140" text-anchor="middle" fill="#10B981" font-weight="bold" font-size="12">MÀ LÀ: Sự bền vững & Tiếp nối giá trị qua thời gian</text>
+                    </svg>
+                `
+            },
+            {
+                id: 22,
+                title: "22. Tam Sản Và 'Thứ Để Lại'",
+                subtitle: "Những thứ phai mờ vs Những giá trị tồn tại mãi mãi",
+                badge: "Triết Lý Trường Tồn",
+                text: `
+                    <p>Cuối cùng, toàn bộ mô hình Tam Sản có thể quy về một câu hỏi suy ngẫm sâu sắc nhất: <strong>Một đời người rốt cuộc để lại điều gì?</strong></p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-3">
+                        <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+                            <h5 class="text-xs text-slate-400 font-bold mb-2">NHỮNG THỨ SẼ PHAI MỜ / THAY ĐỔI:</h5>
+                            <p class="text-xs text-slate-400 leading-relaxed">• Tiền có thể hết.<br>• Nhà có thể bán.<br>• Đất có thể chia.<br>• Doanh nghiệp có thể thay đổi owner.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3.5 rounded-xl border border-amber-500/40">
+                            <h5 class="text-xs text-amber-400 font-bold mb-2">NHỮNG THỨ SẼ TỒN TẠI MÃI MÃI:</h5>
+                            <p class="text-xs text-amber-200/90 leading-relaxed">• Tri thức & Tư tưởng tốt.<br>• Uy tín & Nghề nghiệp truyền lại.<br>• Cách sống tử tế & Nền nếp gia đình.<br>• Công trình phục vụ cộng đồng.</p>
+                        </div>
+                    </div>
+                `,
+                takeaway: "Di sản chính là đỉnh cao của Tam Sản — nơi giá trị tinh thần chiến thắng sự hữu hạn của thời gian.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <g transform="translate(100, 40)">
+                            <rect width="400" height="150" rx="14" fill="#1E293B" stroke="#F59E0B" stroke-width="2"/>
+                            <text x="200" y="45" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">ĐỈNH CAO DI SẢN</text>
+                            <text x="200" y="80" text-anchor="middle" fill="#E2E8F0" font-size="12">Của cải vật chất ➔ Hữu hạn theo sinh mệnh</text>
+                            <text x="200" y="110" text-anchor="middle" fill="#34D399" font-weight="bold" font-size="13">Giá trị Đạo đức & Tri thức ➔ Vô hạn qua nhiều thế hệ</text>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 23,
+                title: "23. Kết Luận: Từ 'Có' Đến 'Giữ' Và 'Để Lại'",
+                subtitle: "Tóm lược 3 từ khóa định hình toàn bộ Mô Hình Tam Sản",
+                badge: "Kết Luận Viên Mãn",
+                text: `
+                    <p>Nếu cô đọng toàn bộ mô hình Tam Sản thành 3 từ khóa đại diện cho 3 tầng sống:</p>
+                    <div class="space-y-3 my-3">
+                        <div class="bg-slate-950 p-3.5 rounded-xl border-l-4 border-amber-500">
+                            <h5 class="font-bold text-amber-400 text-xs">1. TÀI SẢN – CÓ</h5>
+                            <p class="text-xs text-slate-300 mt-1">Tôi có gì trong tay? Tôi tạo dựng được nguồn lực nào? Tôi bảo vệ & phát triển nó ra sao?</p>
+                        </div>
+                        <div class="bg-slate-950 p-3.5 rounded-xl border-l-4 border-yellow-500">
+                            <h5 class="font-bold text-yellow-400 text-xs">2. GIA SẢN – GIỮ</h5>
+                            <p class="text-xs text-slate-300 mt-1">Gia đình tôi giữ được điều gì? Giữ tài sản, giữ nền nếp, giữ chữ tín, giữ truyền thống & tinh thần thế hệ trước.</p>
+                        </div>
+                        <div class="bg-slate-950 p-3.5 rounded-xl border-l-4 border-emerald-500">
+                            <h5 class="font-bold text-emerald-400 text-xs">3. DI SẢN – ĐỂ LẠI</h5>
+                            <p class="text-xs text-slate-300 mt-1">Tôi để lại điều gì cho con cháu, cho cộng đồng? Giá trị nào của tôi vẫn tiếp tục sống khi tôi mất đi?</p>
+                        </div>
+                    </div>
+                    <p class="bg-amber-950/60 p-4 rounded-xl border border-amber-600/60 text-amber-200 font-serif text-center italic text-sm">
+                        "Tài sản là những gì ta có.<br>
+                        Gia sản là những gì gia đình ta xây dựng và giữ gìn.<br>
+                        Di sản là những gì ta để lại để giá trị của một đời người có thể tiếp tục sống qua những thế hệ sau."
+                    </p>
+                `,
+                takeaway: "Tài sản giúp ta sống, Gia sản giúp gia đình đứng vững, Di sản giúp giá trị sống mãi với thời gian.",
+                renderDiagram: () => `
+                    <svg viewBox="0 0 600 240" class="w-full h-auto max-h-[220px]">
+                        <g transform="translate(60, 50)">
+                            <circle cx="80" cy="70" r="50" fill="#1E293B" stroke="#F59E0B" stroke-width="3"/>
+                            <text x="80" y="65" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">CÓ</text>
+                            <text x="80" y="85" text-anchor="middle" fill="#94A3B8" font-size="10">Tài Sản</text>
+
+                            <path d="M 140,70 L 180,70" stroke="#F59E0B" stroke-width="3"/>
+
+                            <circle cx="240" cy="70" r="50" fill="#1E293B" stroke="#F59E0B" stroke-width="3"/>
+                            <text x="240" y="65" text-anchor="middle" fill="#FBBF24" font-weight="bold" font-size="14">GIỮ</text>
+                            <text x="240" y="85" text-anchor="middle" fill="#94A3B8" font-size="10">Gia Sản</text>
+
+                            <path d="M 300,70 L 340,70" stroke="#F59E0B" stroke-width="3"/>
+
+                            <circle cx="400" cy="70" r="50" fill="#1E293B" stroke="#10B981" stroke-width="3"/>
+                            <text x="400" y="65" text-anchor="middle" fill="#34D399" font-weight="bold" font-size="14">ĐỂ LẠI</text>
+                            <text x="400" y="85" text-anchor="middle" fill="#94A3B8" font-size="10">Di Sản</text>
+                        </g>
+                    </svg>
+                `
+            }
+        ];
+
+        let currentIndex = 0;
+        let isOverviewMode = false;
+
+        // Initialize application
+        window.onload = function() {
+            renderNavList();
+            renderCurrentSection();
+            renderOverviewCards();
+        };
+
+        // Render sidebar list
+        function renderNavList() {
+            const navList = document.getElementById('sectionNavList');
+            navList.innerHTML = '';
+            
+            sectionsData.forEach((sec, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-3 py-2 rounded-xl transition flex items-center justify-between ${idx === currentIndex ? 'bg-amber-600/20 text-amber-300 font-bold border border-amber-500/40' : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-200'}`;
+                btn.onclick = () => navigateTo(idx);
+                btn.innerHTML = `
+                    <span class="truncate pr-2">${sec.title}</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+                `;
+                navList.appendChild(btn);
+            });
+
+            document.getElementById('progressBadge').innerText = `${currentIndex + 1} / ${sectionsData.length}`;
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === sectionsData.length - 1;
+        }
+
+        // Render detailed active section view
+        function renderCurrentSection() {
+            const sec = sectionsData[currentIndex];
+
+            // Header
+            document.getElementById('sectionHeader').innerHTML = `
+                <div class="flex items-center space-x-2 mb-2">
+                    <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-bold text-[10px] uppercase tracking-wider border border-amber-500/30">${sec.badge}</span>
+                    <span class="text-xs text-slate-500 font-mono">Phần ${sec.id} trong 23</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-serif font-bold text-amber-300 leading-tight">${sec.title}</h2>
+                <p class="text-xs text-slate-400 mt-1 font-medium">${sec.subtitle}</p>
+            `;
+
+            // Diagram
+            document.getElementById('diagramContainer').innerHTML = sec.renderDiagram();
+
+            // Text content
+            document.getElementById('textContentContainer').innerHTML = sec.text;
+
+            // Takeaway
+            document.getElementById('takeawayText').innerText = sec.takeaway;
+
+            // Scroll top of content area smoothly
+            document.getElementById('contentDisplayArea').scrollTop = 0;
+        }
+
+        // Navigation helpers
+        function navigateTo(idx) {
+            if (isOverviewMode) {
+                toggleViewMode();
+            }
+            currentIndex = idx;
+            renderNavList();
+            renderCurrentSection();
+        }
+
+        function prevSection() {
+            if (currentIndex > 0) {
+                navigateTo(currentIndex - 1);
+            }
+        }
+
+        function nextSection() {
+            if (currentIndex < sectionsData.length - 1) {
+                navigateTo(currentIndex + 1);
+            }
+        }
+
+        // Filter sections in sidebar
+        function filterSections() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const buttons = document.getElementById('sectionNavList').getElementsByTagName('button');
+            
+            for (let i = 0; i < buttons.length; i++) {
+                const txt = buttons[i].innerText.toLowerCase();
+                buttons[i].style.display = txt.includes(query) ? 'flex' : 'none';
+            }
+        }
+
+        // Toggle full scrollable view vs single slide mode
+        function toggleViewMode() {
+            isOverviewMode = !isOverviewMode;
+            const singleView = document.getElementById('contentDisplayArea');
+            const overviewArea = document.getElementById('overviewModeArea');
+            const btnText = document.getElementById('viewModeText');
+
+            if (isOverviewMode) {
+                singleView.classList.add('hidden');
+                overviewArea.classList.remove('hidden');
+                btnText.innerText = "Chế độ Xem Từng Trang";
+            } else {
+                singleView.classList.remove('hidden');
+                overviewArea.classList.add('hidden');
+                btnText.innerText = "Chế độ Xem Toàn Cảnh";
+            }
+        }
+
+        // Render all 23 cards in Overview mode
+        function renderOverviewCards() {
+            const container = document.getElementById('overviewModeArea');
+            container.innerHTML = '';
+
+            sectionsData.forEach((sec, idx) => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                        <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 font-bold text-[10px] uppercase tracking-wider">${sec.badge}</span>
+                        <span class="text-xs text-slate-500">Phần ${sec.id} / 23</span>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-amber-300">${sec.title}</h3>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 flex justify-center">
+                        ${sec.renderDiagram()}
+                    </div>
+                    <div class="prose prose-invert max-w-none text-xs text-slate-300 space-y-2">
+                        ${sec.text}
+                    </div>
+                    <div class="bg-amber-950/30 border border-amber-800/40 p-3 rounded-xl text-xs text-amber-200">
+                        <strong>Thông điệp:</strong> ${sec.takeaway}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Modal assessment functions
+        function openSelfAssessment() {
+            document.getElementById('assessmentModal').classList.remove('hidden');
+        }
+
+        function closeSelfAssessment() {
+            document.getElementById('assessmentModal').classList.add('hidden');
+        }
+
+        function calculateTamSan(e) {
+            e.preventDefault();
+            const q1 = parseInt(document.getElementById('q1').value);
+            const q2 = parseInt(document.getElementById('q2').value);
+            const q3 = parseInt(document.getElementById('q3').value);
+
+            const resultBox = document.getElementById('resultBox');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDesc = document.getElementById('resultDesc');
+            const resultAdvice = document.getElementById('resultAdvice');
+
+            resultBox.classList.remove('hidden');
+
+            const total = q1 + q2 + q3;
+
+            if (q1 > q2 && q1 > q3) {
+                resultTitle.innerText = "Trạng Thái: Tập Trung Nhiều Về Tài Sản Cá Nhân";
+                resultDesc.innerText = "Bạn có khả năng kiếm tiền và tạo nguồn lực tốt, nhưng cần chú ý nâng cấp nền nếp gia đình (Gia sản) và chuẩn bị các giá trị tinh thần/tri thức dài hạn cho đời sau (Di sản).";
+                resultAdvice.innerText = "Khuyên dùng: Đọc kỹ Phần 13 & Phần 14 trong ứng dụng để tránh bẫy lệch chuẩn.";
+            } else if (q2 >= q1 && q2 >= q3) {
+                resultTitle.innerText = "Trạng Thái: Nền Tảng Gia Phong Vững Vàng";
+                resultDesc.innerText = "Gia đình bạn có sự gắn kết và nền nếp rất tốt. Đây là móng nhà vững chãi để bứt phá quy mô tài sản và phụng sự xã hội.";
+                resultAdvice.innerText = "Khuyên dùng: Tham khảo Phần 15 để đưa Gia sản vươn tầm thành Di sản cộng đồng.";
+            } else if (q3 >= q1 && q3 >= q2) {
+                resultTitle.innerText = "Trạng Thái: Hướng Tới Giá Trị Nhân Sinh Lâu Dài";
+                resultDesc.innerText = "Bạn có tâm thế phụng sự và quan tâm đến những điều còn lại sau sinh mệnh. Hãy đảm bảo nguồn lực tài chính đủ tốt để làm bệ phóng.";
+                resultAdvice.innerText = "Khuyên dùng: Đọc lại Phần 19 & Phần 23 về Vòng Tuần Hoàn Tam Sản Cân Bằng.";
+            } else {
+                resultTitle.innerText = "Trạng Thái: Tam Sản Đang Trong Tiến Trình Tích Lũy";
+                resultDesc.innerText = "Bạn đang ở những bước đầu của hành trình tạo dựng cuộc đời. Hãy kiên trì bồi đắp cả 3 đỉnh.";
+                resultAdvice.innerText = "Khuyên dùng: Thực hành 3 câu hỏi cốt lõi ở Phần 20 hàng tuần.";
+            }
+        }
+    </script>
+</body>
+</html>
