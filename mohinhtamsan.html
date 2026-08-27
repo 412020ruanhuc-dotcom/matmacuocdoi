@@ -1254,3 +1254,42 @@
     </script>
 </body>
 </html>
+
+/* =======================================================
+   MÃ CSS ĐỔI SANG GIAO DIỆN SÁNG (LIGHT MODE) CHO TAM SẢN
+   ======================================================= */
+
+/* 1. Đổi toàn bộ nền trang web sang màu trắng */
+html, body, main, #__next, .bg-slate-900, [class*="bg-"] {
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+/* 2. Đổi màu chữ toàn trang sang màu đen đậm để dễ đọc */
+body, p, span, li, a, div {
+    color: #1a1a1a !important;
+}
+
+/* 3. Chỉnh sửa Thanh Mục Lục bên trái (Sidebar) */
+aside, [class*="sidebar"], .w-64, div[class*="border-r"] {
+    background-color: #f7f9fa !important; /* Đổi sang màu xám trắng nhạt */
+    border-right: 1px solid #e1e8ed !important;
+}
+
+/* 4. Giữ lại màu cam nổi bật cho các nút "Trước", "Tiếp" */
+button, .bg-orange-500, [class*="bg-orange"] {
+    background-color: #f97316 !important; /* Giữ màu cam */
+    color: #ffffff !important; /* Chữ nút màu trắng */
+}
+
+/* 5. Làm nổi bật các tiêu đề đề mục lớn */
+h1, h2, h3, h4, h5, h6, strong, [class*="text-yellow"], [class*="text-amber"] {
+    color: #000000 !important; /* Đổi từ chữ màu vàng/trắng sang chữ đen hẳn */
+    font-weight: bold !important;
+}
+
+/* 6. Làm sáng các ô khối nội dung (Cards) ở giữa trang */
+div[class*="rounded"], div[class*="border-slate"], [class*="bg-opacity"] {
+    background-color: #f8fafc !important; /* Nền ô màu trắng xám nhẹ */
+    border: 1px solid #cbd5e1 !important; /* Viền ô rõ ràng hơn */
+}
