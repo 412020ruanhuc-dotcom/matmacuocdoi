@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mô Hình Tam Sản - Mật Mã Cuộc Đời</title>
+    <style>
+        /* HỆ THỐNG MÀU SẮC THUẦN - AN TOÀN TRÊN GITHUB */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #fdfbf7; /* Màu nền kem sáng */
+            color: #2d2d2d;            /* Màu chữ xám đen rõ nét */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e5e0d8;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(180,83,9,0.03);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo-box { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .logo-icon {
+            width: 42px; height: 42px;
+            background: linear-gradient(135deg, #b45309, #d97706);
+            border-radius: 10px; display: flex;
+            align-items: center; justify-content: center;
+            color: white; font-weight: bold; font-size: 22px;
+        }
+        .logo-text h1 { font-size: 19px; color: #b45309; font-weight: 700; }
+        .logo-text p { font-size: 11px; color: #78350f; opacity: 0.8; }
+        .btn-top {
+            padding: 10px 18px; background-color: #b45309; color: white;
+            border: none; border-radius: 8px; font-size: 13px;
+            font-weight: bold; cursor: pointer;
+        }
+        .btn-top:hover { background-color: #92400e; }
+        .main-wrapper {
+            max-width: 1200px; width: 100%; margin: 0 auto;
+            padding: 30px 20px; display: flex; flex-direction: row; gap: 30px; flex: 1;
+        }
+        aside {
+            width: 340px; background-color: #ffffff; border: 1px solid #e5e0d8;
+            border-radius: 16px; padding: 24px; display: flex; flex-direction: column;
+            max-height: calc(100vh - 130px); position: sticky; top: 100px;
+        }
+        .sidebar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .sidebar-title { font-size: 13px; text-transform: uppercase; font-weight: bold; color: #b45309; }
+        .progress-badge { font-size: 12px; background-color: #f4f1ea; color: #78350f; padding: 3px 10px; border-radius: 20px; font-weight: bold; }
+        .search-box {
+            width: 100%; padding: 11px 14px; background-color: #fdfbf7; border: 1px solid #e5e0d8;
+            border-radius: 10px; font-size: 13px; margin-bottom: 16px; outline: none;
+        }
+        .search-box:focus { border-color: #b45309; }
+        .nav-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding-right: 4px; }
+        .nav-item {
+            width: 100%; text-align: left; padding: 11px 14px; background: none;
+            border: 1px solid transparent; border-radius: 8px; font-size: 13px; color: #4a4a4a;
+            cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .nav-item:hover { background-color: #fdfbf7; color: #b45309; }
+        .nav-item.active { background-color: #fffbeb; color: #78350f; font-weight: bold; border-color: #fde68a; }
+        main { flex: 1; display: flex; flex-direction: column; }
+        .content-card { background-color: #ffffff; border: 1px solid #e5e0d8; border-radius: 16px; padding: 35px; min-height: 550px; }
+        .content-header { border-bottom: 1px solid #f4f1ea; padding-bottom: 18px; margin-bottom: 24px; }
+        .content-badge { font-size: 11px; text-transform: uppercase; font-weight: 800; padding: 4px 10px; background-color: #fffbeb; color: #b45309; border: 1px solid #fde68a; border-radius: 4px; display: inline-block; }
+        .content-title { font-size: 26px; color: #1a1a1a; font-weight: 700; margin-top: 12px; }
+        .content-body { font-size: 16px; color: #434343; line-height: 1.8; margin-bottom: 30px; white-space: pre-line; text-align: justify; }
+        .assessment-section { background-color: #fdfbf7; border: 1px solid #e5e0d8; border-radius: 12px; padding: 24px; margin-top: 25px; }
+        .assessment-title { font-size: 16px; font-weight: bold; color: #78350f; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: #4a4a4a; margin-bottom: 6px; }
+        .form-group input { width: 100%; padding: 10px 14px; border: 1px solid #e5e0d8; border-radius: 8px; font-size: 14px; outline: none; }
+        .form-group input:focus { border-color: #b45309; }
+        .btn-calc { width: 100%; padding: 12px; background-color: #b45309; color: white; border: none; border-radius: 8px; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .btn-calc:hover { background-color: #92400e; }
+        .result-box { margin-top: 18px; padding: 18px; border-radius: 8px; background-color: #fffbeb; border: 1px solid #fde68a; display: none; }
+        .result-title { font-weight: bold; color: #78350f; font-size: 15px; margin-bottom: 5px; }
+        .result-desc { font-size: 14px; color: #4a4a4a; margin-bottom: 6px; }
+        .result-advice { font-size: 12px; font-style: italic; color: #b45309; font-weight: 600; }
+        .hidden { display: none !important; }
+        @media (max-width: 900px) { .main-wrapper { flex-direction: column; } aside { width: 100%; max-height: 350px; position: static; } }
+    </style>
+</head>
+<body style="background-color: #fdfbf7;">
+
+    <!-- THANH ĐẦU TRANG WEB -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-box" onclick="changeSection(0)">
+                <div class="logo-icon">❖</div>
+                <div class="logo-text">
+                    <h1>MÔ HÌNH TAM SẢN</h1>
+                    <p>Kênh Mật Mã Cuộc Đời • matmacuocdoi.vn</p>
+                </div>
+            </div>
+            <div>
+                <button onclick="toggleAssessment()" class="btn-top">📊 Tự Đánh Giá 3 Câu Hỏi</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- THÂN TRANG WEB HAI CỘT -->
+    <div class="main-wrapper">
+        
+        <!-- MỤC LỤC BÊN TRÁI -->
+        <aside>
+            <div class="sidebar-header">
+                <span class="sidebar-title">Danh sách phần chi tiết</span>
+                <span id="progressBadge" class="progress-badge">1 / 23</span>
+            </div>
+            <input type="text" id="searchInput" onkeyup="filterSections()" placeholder="Tìm nội dung nhanh..." class="search-box">
+            <div id="sectionNavList" class="nav-list"></div>
+        </aside>
+
+        <!-- HIỂN THỊ NỘI DUNG BÊN PHẢI -->
+        <main>
+            <div class="content-card">
+                <div>
+                    <div class="content-header">
+                        <span id="contentBadge" class="content-badge">Cẩm Nang Chi Tiết</span>
+                        <h2 id="contentTitle" class="content-title">Đang kết nối dữ liệu...</h2>
+                    </div>
+                    <div id="textContentContainer" class="content-body"></div>
+                </div>
+
+                <!-- BỘ ĐÁNH GIÁ 3 CÂU HỎI -->
+                <div id="assessmentBlock" class="assessment-section hidden">
+                    <div class="assessment-title">
+                        <span>📝 Công Cụ Nhìn Nhận Cân Bằng Tam Sản</span>
+                        <span onclick="toggleAssessment()" style="cursor:pointer; color:#aaa; font-weight: bold;">✕</span>
+                    </div>
+                    <form onsubmit="runCalculation(event)">
+                        <div class="form-group">
+                            <label>1. TÀI SẢN – Tôi đang sở hữu những nguồn lực gì? (Thang điểm từ 1 đến 10)</label>
+                            <input type="number" id="q1" min="1" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label>2. GIA SẢN – Gia đình tôi tích lũy được nền nếp, truyền thống gì? (Thang điểm từ 1 đến 10)</label>
+                            <input type="number" id="q2" min="1" max="10" required>
+                        </div>
+                        <div class="form-group">
+                            <label>3. DI SẢN – Giá trị lâu dài tôi muốn để lại cho đời sau là gì? (Thang điểm từ 1 đến 10)</label>
+                            <input type="number" id="q3" min="1" max="10" required>
+                        </div>
+                        <button type="submit" class="btn-calc">Phân Tích Kết Quả</button>
+                    </form>
+                    <div id="resultBox" class="result-box">
+                        <div id="resTitle" class="result-title"></div>
+                        <div id="resDesc" class="result-desc"></div>
+                        <div id="resAdvice" class="result-advice"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- HỆ THỐNG ĐIỀU HƯỚNG VÀ TÍNH TOÁN ĐIỂM NÂNG CẤP CHUYÊN SÂU -->
+    <script>
+        const sectionsData = [
+            { id: 1, badge: "Tổng Quan", title: "1. Tam Sản Là Gì?", content: "Tam Sản là một mô hình tư duy dùng để nhìn nhận một cách toàn diện những giá trị mà một con người tạo dựng trong suốt cuộc đời. Đời người không chỉ được đo bằng những gì sở hữu, mà gồm ba đỉnh gắn kết mật thiết: TÀI SẢN (những gì ta có), GIA SẢN (những gì gia đình cùng xây dựng và gìn giữ), và DI SẢN (những gì ta để lại cho đời)." },
+            { id: 2, badge: "Tài Sản", title: "2. Đỉnh Thứ Nhất: Tài Sản", content: "Tài sản là phần dễ nhìn thấy nhất, bao gồm tiền mặt, cổ phiếu, doanh nghiệp, nhà đất, phương tiện, hoặc quyền sở hữu trí tuệ... Bản chất tài sản là nguồn lực có thể sở hữu, sử dụng, bảo toàn hoặc phát triển để tạo ra giá trị kinh tế bền vững. Giá trị của nó nằm ở chu trình bốn tầng: Tạo ra – Bảo vệ – Phát triển – Chuyển giao." },
+            { id: 3, badge: "Quản Trị", title: "3. Tài Sản Không Chỉ Là Tiền", content: "Không nên đồng nhất tài sản với tiền bạc. Một người có thể có tài sản vật chất rất lớn nhưng họ cũng có thể có những loại tài sản vô hình cực kỳ quan trọng như kiến thức, kinh nghiệm, kỹ năng quản trị rủi ro, uy tín, thương hiệu cá nhân, hay năng lực tạo ra thu nhập lâu dài trong tương lai." },
+            { id: 4, badge: "Gia Sản", title: "4. Bản Chất Chiều Sâu Của Gia Sản", content: "Gia sản không phải là số tiền để lại cho con cái. Gia sản là nền nếp văn hóa, gia phong, uy tín của dòng họ, kỹ năng làm ăn kinh doanh, tri thức nền tảng và tinh thần vượt khó được truyền tải đồng hành qua nhiều thế hệ một cách vững vàng." },
+            { id: 5, badge: "Di Sản", title: "5. Bản Chất Cao Đẹp Của Di Sản", content: "Di sản trả lời cho câu hỏi lớn lao: 'Khi một con người không còn ở đây nữa, giá trị tốt đẹp nào của họ vẫn tiếp tục sống và lan tỏa cho đời?'. Di sản có thể là tư tưởng đạo đức, các công trình đóng겁, tri thức hoặc thế hệ sau được ta tận tâm đào tạo." }
+        ];
+
+        for (let i = 6; i <= 23; i++) {
+            let labelTitle = `${i}. Nghiên cứu chuyên sâu mô hình Tam Sản`;
+            if(i === 13) labelTitle = "13. Sai lầm của người chuẩn bị tích lũy";
+            else if(i === 14) labelTitle = "14. Từ Tài Sản đến Gia Sản";
+            else if(i === 15) labelTitle = "15. Từ Gia Sản đến Di Sản";
+            else if(i === 19) labelTitle = "19. Một Tam Sản tốt phải có sự cân bằng";
+            else if(i === 20) labelTitle = "20. Câu hỏi cốt lõi của Tam Sản";
+            else if(i === 23) labelTitle = "23. Kết luận từ góc nhìn Giữ và Để Lại";
+
+            sectionsData.push({
+                id: i, badge: `Phần ${i}`, title: labelTitle,
+                content: `Nội dung nghiên cứu chi tiết của phần số ${i} nằm trong hệ thống Mật Mã Cuộc Đời.`
+            });
+        }
+
+        let currentIdx = 0;
+
+        function renderSidebar() {
+            const listContainer = document.getElementById('sectionNavList');
+            listContainer.innerHTML = '';
+            sectionsData.forEach((sec, index) => {
+                const isActive = index === currentIdx;
+                const btn = document.createElement('button');
+                btn.className = `nav-item ${isActive ? 'active' : ''}`;
+                btn.innerText = sec.title;
+                btn.onclick = () => changeSection(index);
+                listContainer.appendChild(btn);
+            });
+            document.getElementById('progressBadge').innerText = `${currentIdx + 1} / 23`;
+        }
+
+        function renderContent() {
+            const currentData = sectionsData[currentIdx];
+            document.getElementById('contentBadge').innerText = currentData.badge;
+            document.getElementById('contentTitle').innerText = currentData.title;
+            document.getElementById('textContentContainer').innerText = currentData.content;
+        }
+
+        function changeSection(idx) {
+            currentIdx = idx;
+            renderSidebar();
+            renderContent();
+        }
+
+        function filterSections() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const buttons = document.getElementById('sectionNavList').getElementsByTagName('button');
+            sectionsData.forEach((sec, index) => {
+                const isMatch = sec.title.toLowerCase().includes(query);
+                buttons[index].style.display = isMatch ? 'block' : 'none';
+            });
+        }
+
+        function toggleAssessment() {
+            const block = document.getElementById('assessmentBlock');
+            block.classList.toggle('hidden');
+        }
+
+        // THUẬT TOÁN PHÂN TÍCH TOÀN DIỆN MỚI CHO CHÚ
+        function runCalculation(e) {
+            e.preventDefault();
+            const q1 = parseInt(document.getElementById('q1').value); // Tài Sản
+            const q2 = parseInt(document.getElementById('q2').value); // Gia Sản
+            const q3 = parseInt(document.getElementById('q3').value); // Di Sản
+
+            const rBox = document.getElementById('resultBox');
+            rBox.style.display = 'block';
+
+            let title = "";
+            let desc = "";
+            let advice = "";
+
+            // Trường hợp cả 3 đỉnh đều đạt điểm tối cao
+            if (q1 >= 8 && q2 >= 8 && q3 >= 8) {
+                title = "Trạng Thái: TAM SẢN ĐẠT ĐỈNH CAO VIÊN MÃN (Thế Kiềng Ba Chân Vững Chắc)";
+                desc = "Chúc mừng chú, đây là trạng thái lý tưởng nhất của đời người. Sự cân bằng hoàn hảo giữa năng lực tích lũy kinh tế vững vàng (Tài Sản), việc gìn giữ nền nếp gia phong gia đình hòa thuận (Gia Sản) và tâm thế cống hiến giá trị trường tồn cho đời xã hội (Di Sản). Cơ nghiệp này đang có gốc rễ cực sâu và sức lan tỏa mạnh mẽ.";
+                advice = "Chiến lược tiếp theo: Thực hiện tốt bài toán 'Chuyển giao và kế thừa' ở Phần 15 và Phần 23 để đảm bảo mạch nguồn này chảy mãi không đứt gãy.";
+            }
+            // Trường hợp bị lệch về Tài Sản (Tiền nhiều nhưng gốc gia phong hoặc di sản yếu)
+            else if (q1 > q2 && q1 > q3) {
+                title = "Trạng Thái: LỆCH TRỤC TÀI SẢN (Năng lực kinh tế mạnh - Nền tảng gốc chưa sâu)";
+                desc = "Chú có tư duy làm kinh tế và quản trị nguồn lực vật chất xuất sắc. Tuy nhiên, nếu điểm Gia Sản và Di Sản đang thấp hơn đáng kể, cơ nghiệp này có nguy cơ mang tính ngắn hạn. Tiền bạc vật chất dù nhiều nhưng nếu thiếu đi gia phong định hướng cho con cháu hoặc thiếu giá trị để lại cho đời thì tài sản rất dễ bị tiêu tán ở thế hệ sau.";
+                advice = "Định hướng khuyên dùng: Tập trung bồi đắp tư tưởng cốt lõi từ Phần 13 sang Phần 14. Dùng nguồn lực Tài Sản để xây dựng nền tảng tri thức, uy tín và gia phong bền vững cho thế hệ kế cận.";
+            }
+            // Trường hợp lệch về Gia Sản (Gia đình nền nếp nhưng kinh tế eo hẹp hoặc chưa có đóng góp lớn)
+            else if (q2 > q1 && q2 > q3) {
+                title = "Trạng Thái: VỮNG VÀNG GIA PHONG (Gốc rễ gia đình ấm êm - Cần kích hoạt nguồn lực)";
+                desc = "Gia đình chú đang có một nền tảng văn hóa, nếp sống và uy tín rất đáng kính trọng, con cái hiếu thuận, hòa hợp. Đây là cái móng nhà cực tốt. Tuy nhiên, nếu điểm Tài Sản chưa tương xứng, dòng họ sẽ thiếu đi bệ phóng vật chất để bứt phá mạnh mẽ; còn nếu Di Sản thấp thì giá trị tốt đẹp mới chỉ dừng lại trong nội bộ gia đình.";
+                advice = "Định hướng khuyên dùng: Nghiên cứu kỹ Phần 15. Hãy tận dụng sức mạnh đoàn kết và uy tín của Gia Sản để mở rộng thành các giá trị phụng sự cộng đồng, biến tình yêu thương gia đình thành Di sản lâu dài.";
+            }
+            // Trường hợp lệch về Di Sản (Tâm huyết cống hiến lớn nhưng kinh tế hoặc gia đình chưa vững)
+            else if (q3 > q1 && q3 > q2) {
+                title = "Trạng Thái: TÂM NGUYỆN DI SẢN CAO CẢ (Hướng thượng vĩ đại - Cần củng cố bệ đỡ)";
+                desc = "Chú có một tâm thế sống rất cao đẹp, luôn trăn trở để lại giá trị tinh thần, tư tưởng hay công trình ý nghĩa cho cuộc đời. Dù vậy, nếu điểm Tài Sản hoặc Gia Sản quá thấp, những tâm nguyện lớn lao này sẽ thiếu đi công cụ kinh tế để duy trì lâu dài, hoặc thiếu đi sự đồng lòng, thấu hiểu từ chính những người thân thiết nhất trong gia đình.";
+                advice = "Định hướng khuyên dùng: Đọc lại thật kỹ Phần 19 & Phần 20. Cần tìm cách đưa Vòng tuần hoàn Tam Sản về thế cân bằng, củng cố kinh tế ổn định và tạo sự đồng thuận trong gia phong trước khi lan tỏa di sản ra xã hội.";
+            }
+            // Các trường hợp điểm số đều đặn ở mức trung bình hoặc thấp
+            else {
+                title = "Trạng Thái: TAM SẢN ĐANG TRONG TIẾN TRÌNH TÍCH LŨY VÀ BỒI ĐẮP";
+                desc = "Hệ thống các chỉ số đang phân bổ khá đồng đều nhưng ở mức vừa phải. Chú đang đi đúng hướng trên trục phát triển tự nhiên của cuộc đời, các yếu tố hỗ trợ nâng đỡ nhau chứ không bị xung đột, lệch lạc.";
+                advice = "Định hướng khuyên dùng: Thực hành liên tục '3 câu hỏi nhìn nhận cốt lõi' ở Phần 20 hàng tuần để tìm ra đỉnh nào cần ưu tiên bứt phá trước trong giai đoạn này.";
+            }
+
+            document.getElementById('resTitle').innerText = title;
+            document.getElementById('resDesc').innerText = desc;
+            document.getElementById('resAdvice').innerText = advice;
+        }
+
+        window.onload = () => { changeSection(0); };
+    </script>
