@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MẬT MÃ CUỘC ĐỜI | Website Tra Cứu Chính Thức - Chuyên Gia Nguyễn Tuấn Anh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sitebg: '#edf2f7',
+                        cardbg: '#ffffff',
+                        ytred: '#dc2626',
+                        zaloblue: '#0068ff',
+                        fbblue: '#1877f2',
+                        navyblue: '#1d3557',
+                        darkred: '#b91c1c'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #edf2f7;
+            color: #0f172a;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Nút bấm viền dày chuẩn theo hình ảnh giao diện matmacuocdoi.vn */
+        .btn-card {
+            background-color: #ffffff;
+            border-width: 2.5px;
+            border-style: solid;
+            border-radius: 1.25rem;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        }
+        .btn-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Màu viền chuẩn từng nền tảng */
+        .border-youtube { border-color: #dc2626; }
+        .border-tiktok { border-color: #000000; }
+        .border-zalo { border-color: #0068ff; }
+        .border-facebook { border-color: #1d4ed8; }
+        .border-tracuu { border-color: #dc2626; }
+        .border-article { border-color: #dc2626; }
+
+        /* Animation xổ nội dung mượt mà */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+        }
+        .accordion-content.open {
+            max-height: 3000px;
+            opacity: 1;
+            transition: max-height 0.6s ease-in, opacity 0.4s ease-in;
+        }
+    </style>
+</head>
+<body class="bg-sitebg text-slate-900 antialiased selection:bg-red-600 selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-3xl mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
+            <a href="https://matmacuocdoi.vn" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-xl shadow-md">
+                    ☯
+                </div>
+                <div>
+                    <span class="block font-black text-lg sm:text-xl tracking-tight text-slate-900 uppercase">MẬT MÃ CUỘC ĐỜI</span>
+                    <span class="block text-[10px] sm:text-xs text-slate-500 font-bold tracking-wider uppercase">Website Tra Cứu Chính Thức</span>
+                </div>
+            </a>
+
+            <a href="https://zalo.me/0789414153" target="_blank" class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-full text-xs sm:text-sm shadow-sm transition-all">
+                <i class="fa-solid fa-phone"></i>
+                <span>Zalo: 0789.414.153</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-xl mx-auto px-4 py-8 space-y-8">
+
+        <div class="text-center bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+            <div class="inline-block px-3 py-1 bg-red-100 text-red-700 font-bold text-xs rounded-full mb-3 uppercase tracking-wider">
+                Website chính thức: matmacuocdoi.vn
+            </div>
+            <h1 class="text-lg sm:text-xl font-black text-slate-900 mb-2 leading-snug">
+                XIN CHÀO ANH CHỊ EM — RẤT VUI ĐƯỢC CÙNG NHAU GIAO LƯU
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-600 font-medium">
+                Mr NGUYỄN TUẤN ANH — Zalo: <strong class="text-blue-600">0789.414.153</strong>
+            </p>
+        </div>
+
+        <section class="space-y-4">
+            <h2 class="text-center font-black text-base sm:text-lg tracking-wider uppercase text-slate-900 mb-4">
+                CỘNG ĐỒNG & GIAO LƯU
+            </h2>
+
+            <!-- 1. YOUTUBE -->
+            <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="btn-card border-youtube p-4 flex items-center gap-4 block group">
+                <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-black text-sm sm:text-base text-red-600 uppercase tracking-wide">
+                        YOUTUBE
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">
+                        VIDEO BÀI GIẢNG & KIẾN THỨC TỬ VI
+                    </div>
+                </div>
+            </a>
+
+            <!-- 2. TIKTOK (KÊNH 1) -->
+            <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="btn-card border-tiktok p-4 flex items-center gap-4 block group">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-black text-sm sm:text-base text-slate-900 uppercase tracking-wide">
+                        TIKTOK (KÊNH 1)
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">
+                        @matmacuocdoivn
+                    </div>
+                </div>
+            </a>
+
+            <!-- 3. TIKTOK (KÊNH 2) -->
+            <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="btn-card border-tiktok p-4 flex items-center gap-4 block group">
+                <div class="w-10 h-10 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fa-brands fa-tiktok"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-black text-sm sm:text-base text-slate-900 uppercase tracking-wide">
+                        TIKTOK (KÊNH 2)
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">
+                        KÊNH CHỦ ĐỀ CHUYÊN SÂU
+                    </div>
+                </div>
+            </a>
+
+            <!-- 4. NHÓM ZALO CỘNG ĐỒNG -->
+            <a href="https://zalo.me/g/iljgbe719" target="_blank" class="btn-card border-zalo p-4 flex items-center gap-4 block group">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-lg font-black flex-shrink-0">
+                    Zalo
+                </div>
+                <div class="flex-1">
+                    <div class="font-black text-sm sm:text-base text-blue-600 uppercase tracking-wide">
+                        NHÓM ZALO CỘNG ĐỒNG
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">
+                        GIAO LƯU & LUẬN GIẢI MIỄN PHÍ
+                    </div>
+                </div>
+            </a>
+
+            <!-- 5. CỘNG ĐỒNG FACEBOOK -->
+            <a href="https://www.facebook.com/thymozin" target="_blank" class="btn-card border-facebook p-4 flex items-center gap-4 block group">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl flex-shrink-0">
+                    <i class="fa-brands fa-facebook"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-black text-sm sm:text-base text-blue-800 uppercase tracking-wide">
+                        CỘNG ĐỒNG FACEBOOK
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">
+                        CẬP NHẬT TIN TỨC & GIẢI ĐÁP
+                    </div>
+                </div>
+            </a>
+
+            <!-- 6. TRA CỨU SAO HẠN MIỄN PHÍ -->
+            <button onclick="toggleSection('tra-cuu-section')" class="w-full btn-card border-tracuu p-4 flex items-center gap-4 text-left group">
+                <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-xl flex-shrink-0">
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-black text-sm sm:text-base text-red-600 uppercase tracking-wide flex items-center justify-between">
+                        <span>TRA CỨU SAO HẠN 2026 - 2027</span>
+                        <i id="icon-tra-cuu" class="fa-solid fa-chevron-down text-xs text-red-600 transition-transform duration-300"></i>
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">
+                        BẤM ĐỂ MỞ CÔNG CỤ TRA CỨU MIỄN PHÍ
+                    </div>
+                </div>
+            </button>
+
+            <!-- KHU VỰC TRA CỨU SAO HẠN (MỞ RA KHI BẤM NÚT) -->
+            <div id="tra-cuu-section" class="accordion-content">
+                <div class="bg-white p-5 sm:p-6 rounded-2xl border-2 border-red-600 shadow-md space-y-4 my-2">
+                    <div class="text-center border-b border-slate-100 pb-3">
+                        <span class="text-[10px] font-black uppercase tracking-widest text-red-600 bg-red-50 px-2.5 py-0.5 rounded-full">
+                            CÔNG CỤ TRA CỨU MIỄN PHÍ
+                        </span>
+                        <h3 class="font-black text-base sm:text-lg text-slate-900 mt-1">
+                            TRA CỨU SAO HẠN VẬN KHÍ
+                        </h3>
+                    </div>
+
+                    <form id="horoscope-form" class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Họ và tên của bạn</label>
+                            <input type="text" id="user-name" placeholder="Ví dụ: Nguyễn Văn A" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-slate-900 text-xs sm:text-sm focus:outline-none focus:border-red-600">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Năm sinh</label>
+                                <input type="number" id="user-year" placeholder="1995" min="1940" max="2020" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-slate-900 text-xs sm:text-sm focus:outline-none focus:border-red-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-600 mb-1">Tuổi Con Giáp</label>
+                                <select id="user-zodiac" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2 text-slate-900 text-xs sm:text-sm focus:outline-none focus:border-red-600">
+                                    <option value="hoi">Tuổi Hợi</option>
+                                    <option value="mao">Tuổi Mão</option>
+                                    <option value="ngo">Tuổi Ngọ</option>
+                                    <option value="khac">Tuổi Khác</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-2.5 bg-red-600 hover:bg-red-700 text-white font-black text-xs sm:text-sm uppercase rounded-xl shadow-sm transition-all">
+                            NHẬN ĐỊNH HƯỚNG TỪ CHUYÊN GIA
+                        </button>
+                    </form>
+
+                    <div id="result-box" class="hidden p-4 rounded-xl bg-red-50 border border-red-200 text-slate-800 space-y-2">
+                        <h4 id="result-title" class="font-black text-xs sm:text-sm text-red-700"></h4>
+                        <p id="result-text" class="text-xs sm:text-sm leading-relaxed font-serif"></p>
+                        <a href="https://zalo.me/0789414153" target="_blank" class="inline-block text-xs font-bold text-blue-600 hover:underline pt-1">
+                            👉 Đặt lịch tư vấn lá số chi tiết 1-1 qua Zalo 0789.414.153
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button onclick="toggleSection('article-3-con-giap')" class="w-full btn-card border-article p-4 flex items-center gap-4 text-left group mt-2">
+                <div class="w-10 h-10 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-xl flex-shrink-0">
+                    <i class="fa-solid fa-scroll"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-black text-sm sm:text-base text-red-600 uppercase tracking-wide flex items-center justify-between">
+                        <span>2027 ĐINH MÙI: 3 CON GIÁP CÓ CỬA MỞ LỚN</span>
+                        <i id="icon-article" class="fa-solid fa-chevron-down text-xs text-red-600 transition-transform duration-300"></i>
+                    </div>
+                    <div class="text-[11px] sm:text-xs text-slate-500 font-bold uppercase tracking-wider">
+                        HỢI - MÃO - NGỌ AI ĐỔI VẬN? (BẤM ĐỂ XEM CHI TIẾT)
+                    </div>
+                </div>
+            </button>
+
+            <!-- KHU VỰC NỘI DUNG CHI TIẾT 3 CON GIÁP (XỔ RA KHI BẤM NÚT) -->
+            <div id="article-3-con-giap" class="accordion-content">
+                <section class="bg-white p-5 sm:p-7 rounded-3xl border border-slate-200 shadow-sm space-y-6 my-2">
+                    <div class="text-center pb-4 border-b border-slate-100">
+                        <span class="text-[11px] font-black uppercase tracking-widest text-red-600 bg-red-50 px-3 py-1 rounded-full">
+                            Kênh YouTube Mật Mã Cuộc Đời
+                        </span>
+                        <h2 class="text-lg sm:text-xl font-black text-slate-900 mt-3 leading-snug">
+                            2027 ĐINH MÙI: 3 CON GIÁP CÓ CỬA MỞ LỚN – HỢI, MÃO, NGỌ AI ĐỔI VẬN?
+                        </h2>
+                        <p class="text-xs text-slate-500 font-semibold mt-1">Chuyên gia: Nguyễn Tuấn Anh</p>
+                    </div>
+
+                    <!-- Trích dẫn trích đoạn -->
+                    <div class="p-4 rounded-2xl bg-slate-50 border-l-4 border-red-600 text-slate-800 font-serif italic text-xs sm:text-sm leading-relaxed">
+                        "Tử vi không phải là lời hứa rằng năm nào đó bạn sẽ giàu, cũng không phải một bản án rằng năm nào đó bạn sẽ gặp hạn. Bởi nếu chỉ cần biết mình hợp hay xung với một năm là biết trước cuộc đời, thì có lẽ con người đã chẳng cần phải trưởng thành."
+                    </div>
+
+                    <div class="space-y-3 text-slate-700 text-xs sm:text-sm leading-relaxed font-sans">
+                        <p>
+                            Năm 2027 là năm <strong class="text-slate-900">Đinh Mùi</strong>. Và khi nhìn vào thế Can Chi của năm này, có một nhóm rất đáng chú ý: <strong class="text-red-600">HỢI - MÃO - NGỌ</strong>.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 py-2">
+                            <div class="p-3.5 rounded-xl bg-red-50 border border-red-100">
+                                <strong class="text-red-700 font-bold block mb-0.5">Hợi – Mão – Mùi:</strong>
+                                <span class="text-xs text-slate-600">Tạo thành thế <strong>TAM HỢP</strong> - dải năng lượng tương hòa, thuận lợi.</span>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-blue-50 border border-blue-100">
+                                <strong class="text-blue-700 font-bold block mb-0.5">Ngọ – Mùi:</strong>
+                                <span class="text-xs text-slate-600">Tạo thành thế <strong>LỤC HỢP</strong> - trợ lực từ quý nhân & quan hệ có sẵn.</span>
+                            </div>
+                        </div>
+
+                        <p>
+                            Vì vậy, đây là ba tuổi có một nền khí thuận hơn khi bước vào năm Đinh Mùi. Nhưng tôi không muốn gọi đơn giản là <i>“ba con giáp may mắn nhất”</i>. Tôi muốn gọi họ là: <strong class="text-slate-900 bg-yellow-100 px-1 rounded">BA CON GIÁP CÓ CỬA MỞ</strong>. Còn bước qua cánh cửa đó hay không lại là chuyện khác.
+                        </p>
+
+                        <ul class="list-disc pl-5 space-y-1 text-slate-600 italic">
+                            <li>Bởi có người gặp cơ hội nhưng không dám làm.</li>
+                            <li>Có người gặp quý nhân nhưng không biết giữ.</li>
+                            <li>Có người tiền đến nhưng lại để tiền đi.</li>
+                            <li>Và cũng có người sau rất nhiều năm tưởng như mình đã hết thời, đến đúng lúc một cánh cửa mở ra thì họ đã đủ kinh nghiệm để bước qua.</li>
+                        </ul>
+
+                        <p class="bg-slate-100 p-3 rounded-xl text-slate-700 font-semibold">
+                            Đó mới là điều tôi muốn nói về năm 2027. Không phải năm nào tốt, không phải tháng nào xấu. Mà là khi thời thế thay đổi, người nào đủ tỉnh táo để nhận ra mình đang đứng trước cơ hội thì người đó mới có khả năng <span class="text-red-600">biến vận thành đời</span>.
+                        </p>
+                    </div>
+
+                    <!-- CHI TIẾT 3 CON GIÁP -->
+                    <div class="space-y-5 pt-2">
+                        <!-- TUỔI HỢI -->
+                        <div class="p-4 rounded-2xl border-2 border-red-200 bg-red-50/30 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🐷</span>
+                                <div>
+                                    <span class="text-[10px] font-black uppercase text-red-600 tracking-wider">PHẦN 1</span>
+                                    <h4 class="font-black text-sm sm:text-base text-slate-900">TUỔI HỢI: CÓ PHÚC NHƯNG ĐỪNG NGỒI CHỜ PHÚC</h4>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-serif">
+                                Với Hợi, tôi muốn lấy đúng cái “Phúc” mà chúng ta đã xây cho tuổi này. Không phải phúc theo nghĩa “ngồi yên cũng có người mang tiền đến”. Mà là phúc đến từ quan hệ, lòng người, sự tích lũy và những gì đã gieo từ trước.
+                            </p>
+                            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-serif">
+                                Năm Đinh Mùi nằm trong Tam Hợp Hợi – Mão – Mùi, nên Hợi có một nền quan hệ thuận lợi đáng chú ý. Nhưng câu quan trọng nhất của phần này phải là: <strong class="text-red-700">Có phúc mà không biết dùng phúc thì phúc cũng chỉ nằm đó.</strong>
+                            </p>
+                            <div class="p-3 rounded-lg bg-white border border-red-200 text-xs text-red-800 font-bold">
+                                💡 Lời dặn: Tuổi Hợi năm 2027 cần mạnh ở quan hệ, hợp tác, mở rộng kết nối và nhận sự hỗ trợ đúng người. Không cần tranh, không cần chứng minh. Biết nhận sự giúp đỡ cũng là một loại trí tuệ.
+                            </div>
+                        </div>
+
+                        <!-- TUỔI MÃO -->
+                        <div class="p-4 rounded-2xl border-2 border-black bg-slate-50 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🐰</span>
+                                <div>
+                                    <span class="text-[10px] font-black uppercase text-slate-600 tracking-wider">PHẦN 2</span>
+                                    <h4 class="font-black text-sm sm:text-base text-slate-900">TUỔI MÃO: CỬA MỞ NHỜ SỰ TINH TẾ</h4>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-serif">
+                                Mão cũng nằm trong Tam Hợp Hợi – Mão – Mùi. Mão không nhất thiết thắng bằng sức. Mão có thể thắng bằng: cách nhìn người, cách ứng xử, khả năng kết nối và sự tinh tế.
+                            </p>
+                            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-serif">
+                                Năm 2027 càng không nên nóng, càng không nên lao vào mọi cuộc chơi chỉ vì người khác đang kiếm được tiền.
+                            </p>
+                            <div class="p-3 rounded-lg bg-white border border-slate-300 text-xs text-slate-900 font-bold">
+                                💡 Lời dặn: Mão phải chọn đúng cuộc chơi, đúng người, đúng thời điểm, đúng việc. Đó mới là cách Mão biến sự mềm mại thành sức mạnh.
+                            </div>
+                        </div>
+
+                        <!-- TUỔI NGỌ -->
+                        <div class="p-4 rounded-2xl border-2 border-blue-200 bg-blue-50/30 space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🐴</span>
+                                <div>
+                                    <span class="text-[10px] font-black uppercase text-blue-600 tracking-wider">PHẦN 3</span>
+                                    <h4 class="font-black text-sm sm:text-base text-slate-900">TUỔI NGỌ: HỢP ĐỂ ĐI, KHÔNG PHẢI HỢP ĐỂ NGỒI</h4>
+                                </div>
+                            </div>
+                            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-serif">
+                                Ngọ – Mùi là Lục Hợp. Khí chất của Ngọ là ĐỘNG - không sinh ra để đứng yên. Nhưng năm 2027, cái hay của Ngọ không nằm ở việc chạy nhanh hơn, mà nằm ở việc <strong class="text-blue-900">chạy đúng hướng</strong>.
+                            </p>
+                            <div class="p-3 rounded-lg bg-white border border-blue-200 text-xs text-blue-800 font-bold">
+                                💡 Lời dặn: Đừng coi thường những người đã từng đồng hành với mình. Có thể chính một người cũ, một khách hàng cũ, một mối quan hệ tưởng đã ngủ quên lại là người mở ra cánh cửa mới trong năm 2027.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THÔNG ĐIỆP CHỐT -->
+                    <div class="p-5 rounded-2xl bg-slate-900 text-white space-y-3 text-center">
+                        <h4 class="font-black text-red-400 text-xs sm:text-sm uppercase">
+                            🔥 CÂU CHỐT TỪ CHUYÊN GIA NGUYỄN TUẤN ANH
+                        </h4>
+                        <div class="text-xs sm:text-sm text-slate-200 space-y-1 font-semibold">
+                            <p>• Hợi: Đừng ngồi chờ phúc.</p>
+                            <p>• Mão: Đừng sợ bước qua cánh cửa mới.</p>
+                            <p>• Ngọ: Đừng chạy quá nhanh mà quên nhìn xem mình đang chạy về đâu.</p>
+                        </div>
+                        <p class="text-xs text-slate-400 italic pt-2 border-t border-slate-800 font-serif">
+                            "Năm 2027 có thể mở cho bạn một cánh cửa. Nhưng cuộc đời thay đổi hay không... vẫn nằm ở cách bạn bước qua cánh cửa ấy."
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="space-y-4 pt-4">
+            <h2 class="text-center font-black text-base sm:text-lg tracking-wider uppercase text-slate-900 mb-4">
+                ĐỘI NGŨ CHUYÊN GIA
+            </h2>
+
+            <!-- Card Nguyễn Tuấn Anh -->
+            <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-md space-y-3 pb-4">
+                <!-- Red Banner Top Header -->
+                <div class="bg-red-600 text-white text-center py-4 px-4">
+                    <h3 class="font-black text-lg sm:text-xl uppercase tracking-wider">
+                        NGUYỄN TUẤN ANH
+                    </h3>
+                    <p class="text-[11px] font-bold uppercase tracking-widest text-red-100 mt-0.5">
+                        TỬ VI - PHONG THỦY
+                    </p>
+                </div>
+
+                <div class="px-4 space-y-3 pt-2">
+                    <!-- Zalo Direct Button -->
+                    <a href="https://zalo.me/0789414153" target="_blank" class="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-black text-xs sm:text-sm uppercase rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all">
+                        <span class="bg-white text-blue-600 text-[10px] font-black px-2 py-0.5 rounded">Zalo</span>
+                        <span>ZALO: 0789.414.153</span>
+                    </a>
+
+                    <!-- Facebook Personal Button -->
+                    <a href="https://www.facebook.com/thymozin" target="_blank" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-900 text-white font-black text-xs sm:text-sm uppercase rounded-xl flex items-center justify-center gap-2 shadow-sm transition-all">
+                        <i class="fa-brands fa-facebook text-base"></i>
+                        <span>FACEBOOK CÁ NHÂN</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card Kim Nguyên Bảo -->
+            <div class="bg-blue-800 text-white rounded-2xl overflow-hidden border border-blue-900 shadow-md py-4 px-4 text-center">
+                <h3 class="font-black text-base sm:text-lg uppercase tracking-wider">
+                    KIM NGUYỄN BẢO
+                </h3>
+                <p class="text-[11px] font-semibold uppercase tracking-widest text-blue-200 mt-0.5">
+                    NĂNG LƯỢNG SỐ
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-8 text-slate-600 text-xs mt-12">
+        <div class="max-w-xl mx-auto px-4 text-center space-y-3">
+            <div class="font-black text-slate-900 text-sm uppercase">
+                MẬT MÃ CUỘC ĐỜI — WEBSITE TRA CỨU CHÍNH THỨC
+            </div>
+            <p class="text-slate-500">
+                Website tra cứu chính thức: <a href="https://matmacuocdoi.vn" class="text-red-600 font-bold hover:underline">https://matmacuocdoi.vn</a>
+            </p>
+            <p class="font-semibold text-slate-700">
+                Mr NGUYỄN TUẤN ANH — Zalo: <a href="https://zalo.me/0789414153" class="text-blue-600 font-bold hover:underline">0789.414.153</a>
+            </p>
+
+            <div class="pt-4 border-t border-slate-100 text-[11px] text-slate-400">
+                © Bản quyền thuộc về <strong class="text-slate-700">MẬT MÃ CUỘC ĐỜI - CHUYÊN GIA NGUYỄN TUẤN ANH</strong>. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hàm đóng / mở (xổ ra) nội dung các section
+        function toggleSection(id) {
+            const content = document.getElementById(id);
+            const isTraCuu = id === 'tra-cuu-section';
+            const icon = document.getElementById(isTraCuu ? 'icon-tra-cuu' : 'icon-article');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                if (icon) icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                if (icon) icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Xử lý form Tra cứu Sao Hạn
+        const form = document.getElementById('horoscope-form');
+        const resultBox = document.getElementById('result-box');
+        const resultTitle = document.getElementById('result-title');
+        const resultText = document.getElementById('result-text');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('user-name').value;
+            const zodiac = document.getElementById('user-zodiac').value;
+
+            let responseTitle = `Thông điệp định hướng vận khí dành cho ${name}`;
+            let responseContent = "";
+
+            if (zodiac === 'hoi') {
+                responseContent = `Chào ${name}, tuổi Hợi năm 2027 bước vào thế Tam Hợp. Lời khuyên cốt lõi từ Chuyên gia Nguyễn Tuấn Anh: "Đừng ngồi chờ phúc". Hãy chủ động mở rộng kết nối và đón nhận sự trợ lực đúng người!`;
+            } else if (zodiac === 'mao') {
+                responseContent = `Chào ${name}, tuổi Mão năm 2027 có cửa mở nhờ sự tinh tế. Bạn không cần thắng bằng sức mà thắng bằng cách chọn đúng người, đúng thời điểm và đúng công việc!`;
+            } else if (zodiac === 'ngo') {
+                responseContent = `Chào ${name}, tuổi Ngọ nằm trong thế Lục Hợp Đinh Mùi. Năm 2027 là năm của sự chuyển động. Hãy chú trọng các mối quan hệ sẵn có và khách hàng cũ!`;
+            } else {
+                responseContent = `Chào ${name}, Tử Vi là công cụ để hiểu rõ mình và hành sự cẩn trọng hơn. Hãy chủ động nắm bắt cơ hội để tự mình làm chủ vận mệnh trong năm 2027.`;
+            }
+
+            resultTitle.innerText = responseTitle;
+            resultText.innerText = responseContent;
+            resultBox.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
