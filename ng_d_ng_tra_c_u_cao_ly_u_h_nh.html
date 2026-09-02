@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cao Ly Đầu Hình - Nguyên Bản Đoàn Văn Đầu (NXB Hồng Dân)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #12100e;
+            color: #e5e0d8;
+        }
+        .font-serif-title {
+            font-family: 'Playfair Display', 'Merriweather', serif;
+        }
+        .font-book {
+            font-family: 'Merriweather', serif;
+        }
+        .bg-traditional {
+            background-color: #1a1614;
+            background-image: radial-gradient(#342a22 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(197, 160, 89, 0.15);
+        }
+        .active-tab {
+            border-bottom: 3px solid #d4af37;
+            color: #f3e5ab;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-traditional flex flex-col justify-between">
+
+    <!-- Header Section -->
+    <header class="border-b border-[#3d3124] bg-[#171310]/90 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full border-2 border-[#d4af37] flex items-center justify-center bg-[#281e15] text-[#d4af37] font-bold font-serif-title text-xl shadow-inner">
+                    高
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold font-serif-title tracking-wide text-[#f0e6d2]">CAO LY ĐẦU HÌNH</h1>
+                    <p class="text-xs text-[#a0907d] tracking-wider uppercase">Nguyên bản Soạn giả Đoàn Văn Đầu - NXB Hồng Dân Saigon</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="flex gap-2 sm:gap-6 text-sm text-[#b0a08e]">
+                <button onclick="switchTab('tra-cuu')" id="tab-btn-tra-cuu" class="py-2 px-1 active-tab transition duration-200">
+                    🔍 Tra Cứu Tuổi
+                </button>
+                <button onclick="switchTab('thu-vien')" id="tab-btn-thu-vien" class="py-2 px-1 hover:text-[#e5e0d8] transition duration-200">
+                    📖 Trọn Bộ Cao Ly
+                </button>
+                <button onclick="switchTab('cung-mang')" id="tab-btn-cung-mang" class="py-2 px-1 hover:text-[#e5e0d8] transition duration-200">
+                    ☯️ Bảng Cung Sanh & Ngũ Hành
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+
+        <!-- TAB 1: TRA CỨU TUỔI VỢ CHỒNG -->
+        <section id="tab-tra-cuu" class="space-y-8">
+            <!-- Intro Card -->
+            <div class="bg-[#1f1914] border border-[#3d3124] rounded-xl p-6 card-shadow text-center max-w-3xl mx-auto">
+                <h2 class="text-xl font-serif-title text-[#e5c178] mb-2">Xem Duyên Hôn Nhơn Theo Nguyên Bản "Cao Ly Đầu Hình"</h2>
+                <p class="text-sm text-[#b5a593] leading-relaxed font-book">
+                    <b>"Nam dụng Can, Nữ dụng Chi"</b>: Nam lấy <b>Thiên Can</b> làm gốc (Giáp, Ất, Bính, Đinh, Mậu, Kỷ, Canh, Tân, Nhâm, Quý), Nữ lấy <b>Địa Chi</b> (Tý, Sửu, Dần, Mẹo, Thìn, Tỵ, Ngọ, Mùi, Thân, Dậu, Tuất, Hợi). Cung Mạng được tra cứu theo chuẩn <b>Cung Sanh</b> trong Mục Lục I của sách.
+                </p>
+            </div>
+
+            <!-- Selection Box -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+
+                <!-- Husband Selector -->
+                <div class="bg-[#1a1410] border border-[#3d3124] rounded-xl p-6 card-shadow relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-[#c5a059]/10 rounded-bl-full flex items-start justify-end p-2 text-[#d4af37] font-bold text-xs">
+                        CHỒNG
+                    </div>
+                    <h3 class="text-lg font-bold text-[#d4af37] font-serif-title mb-4 flex items-center gap-2">
+                        👨 Tuổi Chồng (Nam Dụng Can)
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-[#a0907d] uppercase mb-1">Năm sinh Âm Lịch (hoặc chọn Can):</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="number" id="husband-year" placeholder="VD: 1981" value="1981" oninput="calculateFromYear('husband')" class="bg-[#100d0a] border border-[#3d3124] rounded-lg px-3 py-2 text-sm text-[#f0e6d2] focus:outline-none focus:border-[#d4af37]">
+                                <select id="husband-can" onchange="onManualSelect()" class="bg-[#100d0a] border border-[#3d3124] rounded-lg px-3 py-2 text-sm text-[#f0e6d2] focus:outline-none focus:border-[#d4af37]">
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#120f0c] p-3 rounded-lg border border-[#2d2319] text-xs space-y-1">
+                            <div><b>Thiên Can:</b> <span id="husband-can-display" class="text-[#e5c178] font-bold">Tân</span></div>
+                            <div><b>Địa Chi:</b> <span id="husband-chi-display" class="text-[#e5c178]">Dậu</span></div>
+                            <div><b>Cung Sanh (Mục lục I):</b> <span id="husband-cung-display" class="text-[#e5c178] font-bold">Càn</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wife Selector -->
+                <div class="bg-[#1a1410] border border-[#3d3124] rounded-xl p-6 card-shadow relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-[#c5a059]/10 rounded-bl-full flex items-start justify-end p-2 text-[#d4af37] font-bold text-xs">
+                        VỢ
+                    </div>
+                    <h3 class="text-lg font-bold text-[#d4af37] font-serif-title mb-4 flex items-center gap-2">
+                        👩 Tuổi Vợ (Nữ Dụng Chi)
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-[#a0907d] uppercase mb-1">Năm sinh Âm Lịch (hoặc chọn Chi):</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input type="number" id="wife-year" placeholder="VD: 1988" value="1988" oninput="calculateFromYear('wife')" class="bg-[#100d0a] border border-[#3d3124] rounded-lg px-3 py-2 text-sm text-[#f0e6d2] focus:outline-none focus:border-[#d4af37]">
+                                <select id="wife-chi" onchange="onManualSelect()" class="bg-[#100d0a] border border-[#3d3124] rounded-lg px-3 py-2 text-sm text-[#f0e6d2] focus:outline-none focus:border-[#d4af37]">
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="bg-[#120f0c] p-3 rounded-lg border border-[#2d2319] text-xs space-y-1">
+                            <div><b>Thiên Can:</b> <span id="wife-can-display" class="text-[#e5c178]">Mậu</span></div>
+                            <div><b>Địa Chi:</b> <span id="wife-chi-display" class="text-[#e5c178] font-bold">Thìn</span></div>
+                            <div><b>Cung Sanh (Mục lục I):</b> <span id="wife-cung-display" class="text-[#e5c178] font-bold">Đoài</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Action Button -->
+            <div class="text-center">
+                <button onclick="renderResult()" class="bg-gradient-to-r from-[#b38728] via-[#d4af37] to-[#aa771c] hover:opacity-90 text-[#100d0a] font-bold px-8 py-3 rounded-full shadow-lg font-serif-title text-base transition transform hover:scale-105">
+                    ✨ Xem Lời Luận Đoán Từ Sách Gốc
+                </button>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result-box" class="max-w-4xl mx-auto space-y-6 hidden">
+
+                <!-- Main Card: Cao Ly Đầu Hình -->
+                <div class="bg-[#1f1914] border-2 border-[#d4af37] rounded-xl p-6 card-shadow relative">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-[#3d3124] pb-4 mb-4 gap-2">
+                        <div>
+                            <span class="text-xs uppercase bg-[#3a2c1d] text-[#e5c178] px-2.5 py-1 rounded font-semibold border border-[#d4af37]/30">Bài Giải Tương Ứng Trong Sách</span>
+                            <h2 id="res-title" class="text-2xl font-bold font-serif-title text-[#f0e6d2] mt-2">Tân thủ Thìn chi đồ</h2>
+                        </div>
+                    </div>
+
+                    <!-- Sino-Vietnamese Poem / Prose -->
+                    <div class="bg-[#14100d] p-4 rounded-lg border border-[#2d2319] mb-4">
+                        <div class="text-xs uppercase font-bold text-[#a0907d] mb-1">Âm Hán Việt (Nguyên Bản Bổn Cổ):</div>
+                        <p id="res-han-viet" class="font-book italic text-[#d4af37] text-sm md:text-base leading-relaxed">
+                            "Long khốn đắc võ, chủ hữu gia trạch điền viên..."
+                        </p>
+                    </div>
+
+                    <!-- Vietnamese Explanation -->
+                    <div class="space-y-2">
+                        <div class="text-xs uppercase font-bold text-[#a0907d]">Chú Thích Từ Sách "Cao Ly Đầu Hình":</div>
+                        <p id="res-chuthich" class="text-sm md:text-base text-[#e5e0d8] leading-relaxed font-book bg-[#17120e] p-4 rounded-lg border border-[#3a2e22]">
+                            --
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Secondary Cards: Cung Sanh & Ngũ Hành -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Cung Sanh Matching -->
+                    <div class="bg-[#1a1410] border border-[#3d3124] rounded-xl p-5 card-shadow">
+                        <h4 class="font-bold text-[#d4af37] font-serif-title border-b border-[#2d2319] pb-2 mb-3 flex items-center justify-between">
+                            <span>☯️ Bảng So Đối Cung Sanh</span>
+                            <span id="cung-match-status" class="text-xs px-2 py-0.5 rounded bg-[#2a1d13] text-[#e5c178]">--</span>
+                        </h4>
+                        <div class="text-xs space-y-2 text-[#b5a593]">
+                            <div>• Cung Sanh Chồng: <b id="cung-husband-txt" class="text-[#e5e0d8]">Càn</b></div>
+                            <div>• Cung Sanh Vợ: <b id="cung-wife-txt" class="text-[#e5e0d8]">Đoài</b></div>
+                            <p id="cung-desc" class="text-sm text-[#e5e0d8] mt-2 pt-2 border-t border-[#2a2016]">
+                                --
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Ngũ Hành Tương Sinh Tương Khắc -->
+                    <div class="bg-[#1a1410] border border-[#3d3124] rounded-xl p-5 card-shadow">
+                        <h4 class="font-bold text-[#d4af37] font-serif-title border-b border-[#2d2319] pb-2 mb-3 flex items-center justify-between">
+                            <span>🔥 Ngũ Hành Của Cung</span>
+                            <span id="element-match-status" class="text-xs px-2 py-0.5 rounded bg-[#2a1d13] text-[#e5c178]">--</span>
+                        </h4>
+                        <div class="text-xs space-y-2 text-[#b5a593]">
+                            <div>• Mạng Cung Chồng: <b id="elem-husband-txt" class="text-[#e5e0d8]">Kim (Càn)</b></div>
+                            <div>• Mạng Cung Vợ: <b id="elem-wife-txt" class="text-[#e5e0d8]">Kim (Đoài)</b></div>
+                            <p id="elem-desc" class="text-sm text-[#e5e0d8] mt-2 pt-2 border-t border-[#2a2016]">
+                                Căn cứ theo trang 9 & 12 sách Cao Ly Đầu Hình: Cung Càn & Đoài thuộc Kim.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 2: TRỌN BỘ CAO LY ĐẦU HÌNH (THƯ VIỆN) -->
+        <section id="tab-thu-vien" class="space-y-6 hidden">
+            <div class="bg-[#1f1914] border border-[#3d3124] rounded-xl p-6 card-shadow">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b border-[#3d3124] pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold font-serif-title text-[#e5c178]">Tra Cứu Tất Cả Các Bài Giải (Mục Lục II)</h2>
+                        <p class="text-xs text-[#a0907d]">Chọn Thiên Can của Chồng để xem các quẻ phối hợp với Địa Chi của Vợ</p>
+                    </div>
+
+                    <!-- Can Filter Buttons -->
+                    <div id="can-filter-btns" class="flex flex-wrap gap-1.5">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Display List of Chi for Selected Can -->
+                <div id="catalog-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: SO BẢNG CUNG SANH -->
+        <section id="tab-cung-mang" class="space-y-6 hidden">
+            <div class="bg-[#1f1914] border border-[#3d3124] rounded-xl p-6 card-shadow space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold font-serif-title text-[#e5c178] mb-1">Bảng So Đối Cung Sanh Vợ Chồng (Trang 10 - 11)</h2>
+                    <p class="text-xs text-[#a0907d]">Căn cứ theo nguyên bản: "BẢNG SO ĐỐI TUỔI VỢ CHỒNG THUỘC VỀ CUNG NÀO, MẠNG NÀO VÀ KIẾT HAY HUNG"</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <!-- Cung Càn -->
+                    <div class="bg-[#17120e] p-4 rounded-lg border border-[#2e2318]">
+                        <h3 class="font-bold text-[#d4af37] border-b border-[#3a2d1f] pb-1 mb-2 font-serif-title">Càn (Chồng / Vợ)</h3>
+                        <ul class="space-y-1 text-xs text-[#c5b5a3]">
+                            <li><span class="text-green-400 font-bold">Càn - Càn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Càn - Cấn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Càn - Khôn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Càn - Đoài</span> : Kiệt</li>
+                            <li><span class="text-red-400 font-bold">Càn - Khảm</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Càn - Chấn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Càn - Tốn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Càn - Ly</span> : Hung</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cung Khảm -->
+                    <div class="bg-[#17120e] p-4 rounded-lg border border-[#2e2318]">
+                        <h3 class="font-bold text-[#d4af37] border-b border-[#3a2d1f] pb-1 mb-2 font-serif-title">Khảm (Chồng / Vợ)</h3>
+                        <ul class="space-y-1 text-xs text-[#c5b5a3]">
+                            <li><span class="text-green-400 font-bold">Khảm - Khảm</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Khảm - Chấn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Khảm - Tốn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Khảm - Ly</span> : Kiệt</li>
+                            <li><span class="text-red-400 font-bold">Khảm - Càn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Khảm - Cấn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Khảm - Khôn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Khảm - Đoài</span> : Hung</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cung Cấn -->
+                    <div class="bg-[#17120e] p-4 rounded-lg border border-[#2e2318]">
+                        <h3 class="font-bold text-[#d4af37] border-b border-[#3a2d1f] pb-1 mb-2 font-serif-title">Cấn (Chồng / Vợ)</h3>
+                        <ul class="space-y-1 text-xs text-[#c5b5a3]">
+                            <li><span class="text-green-400 font-bold">Cấn - Cấn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Cấn - Càn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Cấn - Khôn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Cấn - Đoài</span> : Kiệt</li>
+                            <li><span class="text-red-400 font-bold">Cấn - Khảm</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Cấn - Chấn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Cấn - Tốn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Cấn - Ly</span> : Hung</li>
+                        </ul>
+                    </div>
+
+                    <!-- Cung Chấn -->
+                    <div class="bg-[#17120e] p-4 rounded-lg border border-[#2e2318]">
+                        <h3 class="font-bold text-[#d4af37] border-b border-[#3a2d1f] pb-1 mb-2 font-serif-title">Chấn (Chồng / Vợ)</h3>
+                        <ul class="space-y-1 text-xs text-[#c5b5a3]">
+                            <li><span class="text-green-400 font-bold">Chấn - Chấn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Chấn - Khảm</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Chấn - Tốn</span> : Kiệt</li>
+                            <li><span class="text-green-400 font-bold">Chấn - Ly</span> : Kiệt</li>
+                            <li><span class="text-red-400 font-bold">Chấn - Càn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Chấn - Cấn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Chấn - Khôn</span> : Hung</li>
+                            <li><span class="text-red-400 font-bold">Chấn - Đoài</span> : Hung</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Cung & Ngũ Hành Rules from Pages 9 & 12 -->
+                <div class="pt-4 border-t border-[#3d3124] space-y-4">
+                    <div>
+                        <h3 class="font-bold text-[#d4af37] font-serif-title mb-2">Phân Định Cung Với Hành & Hướng (Trang 9)</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-[#c5b5a3]">
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Càn</b>: Tây Bắc (Tuất, Hợi) - Hành Kim</div>
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Khảm</b>: Chính Bắc (Tý) - Hành Thủy</div>
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Cấn</b>: Đông Bắc (Sửu, Dần) - Hành Thổ</div>
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Chấn</b>: Chính Đông (Mẹo) - Hành Mộc</div>
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Tốn</b>: Đông Nam (Thìn, Tỵ) - Hành Mộc</div>
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Ly</b>: Chính Nam (Ngọ) - Hành Hỏa</div>
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Khôn</b>: Tây Nam (Mùi, Thân) - Hành Thổ</div>
+                            <div class="bg-[#14100d] p-2 rounded border border-[#2d2319]"><b>Đoài</b>: Chính Tây (Dậu) - Hành Kim</div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-green-950/30 p-3 rounded border border-green-800/40">
+                            <span class="text-green-400 font-bold block mb-1">🌱 NGŨ HÀNH TƯƠNG SANH (TỐT) - Trang 12</span>
+                            • Kim sanh Thủy<br>
+                            • Thủy sanh Mộc<br>
+                            • Mộc sanh Hỏa<br>
+                            • Hỏa sanh Thổ<br>
+                            • Thổ sanh Kim
+                        </div>
+                        <div class="bg-red-950/30 p-3 rounded border border-red-800/40">
+                            <span class="text-red-400 font-bold block mb-1">⚔️ NGŨ HÀNH TƯƠNG KHẮC (XẤU) - Trang 12</span>
+                            • Kim khắc Mộc<br>
+                            • Mộc khắc Thổ<br>
+                            • Thổ khắc Thủy<br>
+                            • Thủy khắc Hỏa<br>
+                            • Hỏa khắc Kim
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#3d3124] bg-[#0d0a08] py-6 text-center text-xs text-[#706253]">
+        <div class="max-w-6xl mx-auto px-4 space-y-1">
+            <p>Trích xuất 100% nguyên bản từ tác phẩm <b>"CAO LY ĐẦU HÌNH"</b></p>
+            <p>Soạn giả: Đoàn Văn Đầu | Dịch giả: Ng. Kim-Lan & Đoàn Văn Tổ | Nhà xuất bản Hồng Dân (254, Đại lộ Khổng-Tử, Chợ Lớn - Saigon)</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Data and Logic -->
+    <script>
+        const CAN_LIST = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
+        const CHI_LIST = ["Tý", "Sửu", "Dần", "Mẹo", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+
+        // BẢNG CUNG SANH 60 HOA GIÁP (Trích từ Mục Lục I - Trang 3 & 4 Sách Cao Ly Đầu Hình)
+        // 60-year exact lookup table (Index 0 = Giáp Tý, 1 = Ất Sửu, ..., 59 = Quý Hợi)
+        const CUNG_SANH_60 = [
+            "Chấn",  // 0: Giáp Tý
+            "Tốn",   // 1: Ất Sửu
+            "Khảm",  // 2: Bính Dần
+            "Càn",   // 3: Đinh Mẹo
+            "Đoài",  // 4: Mậu Thìn
+            "Cấn",   // 5: Kỷ Tỵ
+            "Ly",    // 6: Canh Ngọ
+            "Khảm",  // 7: Tân Mùi
+            "Khôn",  // 8: Nhâm Thân
+            "Chấn",  // 9: Quý Dậu
+            "Càn",   // 10: Giáp Tuất
+            "Đoài",  // 11: Ất Hợi
+            "Cấn",   // 12: Bính Tý
+            "Ly",    // 13: Đinh Sửu
+            "Khảm",  // 14: Mậu Dần
+            "Khôn",  // 15: Kỷ Mẹo
+            "Chấn",  // 16: Canh Thìn
+            "Tốn",   // 17: Tân Tỵ
+            "Ly",    // 18: Nhâm Ngọ
+            "Càn",   // 19: Quý Mùi
+            "Khôn",  // 20: Giáp Thân
+            "Chấn",  // 21: Ất Dậu
+            "Tốn",   // 22: Bính Tuất
+            "Cấn",   // 23: Đinh Hợi
+            "Càn",   // 24: Mậu Tý
+            "Đoài",  // 25: Kỷ Sửu
+            "Cấn",   // 26: Canh Dần
+            "Ly",    // 27: Tân Mẹo
+            "Khảm",  // 28: Nhâm Thìn
+            "Khôn",  // 29: Quý Tỵ
+            "Ly",    // 30: Giáp Ngọ
+            "Khảm",  // 31: Ất Mùi
+            "Khôn",  // 32: Bính Thân
+            "Chấn",  // 33: Đinh Dậu
+            "Tốn",   // 34: Mậu Tuất
+            "Cấn",   // 35: Kỷ Hợi
+            "Càn",   // 36: Canh Tý
+            "Đoài",  // 37: Tân Sửu
+            "Cấn",   // 38: Nhâm Dần
+            "Ly",    // 39: Quý Mẹo
+            "Khảm",  // 40: Giáp Thìn
+            "Đoài",  // 41: Ất Tỵ
+            "Càn",   // 42: Bính Ngọ
+            "Đoài",  // 43: Đinh Mùi
+            "Cấn",   // 44: Mậu Thân
+            "Ly",    // 45: Kỷ Dậu
+            "Khảm",  // 46: Canh Tuất
+            "Khôn",  // 47: Tân Hợi
+            "Chấn",  // 48: Nhâm Tý
+            "Tốn",   // 49: Quý Sửu
+            "Cấn",   // 50: Giáp Dần
+            "Ly",    // 51: Ất Mẹo
+            "Khảm",  // 52: Bính Thìn
+            "Khôn",  // 53: Đinh Tỵ
+            "Chấn",  // 54: Mậu Ngọ
+            "Tốn",   // 55: Kỷ Mùi
+            "Khôn",  // 56: Canh Thân
+            "Càn",   // 57: Tân Dậu
+            "Đoài",  // 58: Nhâm Tuất
+            "Cấn"    // 59: Quý Hợi
+        ];
+
+        function getCungSanhFromYear(year) {
+            // Base reference: 1984 is Giáp Tý (index 0)
+            let offset = (year - 1984) % 60;
+            if (offset < 0) offset += 60;
+            return CUNG_SANH_60[offset];
+        }
+
+        const CUNG_INFO = {
+            "Càn": { element: "Kim", direction: "Tây Bắc (Tuất, Hợi)" },
+            "Khảm": { element: "Thủy", direction: "Chính Bắc (Tý)" },
+            "Cấn": { element: "Thổ", direction: "Đông Bắc (Sửu, Dần)" },
+            "Chấn": { element: "Mộc", direction: "Chính Đông (Mẹo)" },
+            "Tốn": { element: "Mộc", direction: "Đông Nam (Thìn, Tỵ)" },
+            "Ly": { element: "Hỏa", direction: "Chính Nam (Ngọ)" },
+            "Khôn": { element: "Thổ", direction: "Tây Nam (Mùi, Thân)" },
+            "Đoài": { element: "Kim", direction: "Chính Tây (Dậu)" }
+        };
+
+        // Complete Cao Ly Data accurately mapped from book
+        const CAO_LY_DATA = {
+            "Giáp": {
+                "Tý": {
+                    title: "Giáp thủ Tý chi đồ",
+                    hanViet: "Giáp Tý chiếc quế thiểm cung huề nhơn tại dõng. Tuy hữu phú quý đăng khoa, khủng kỳ lạc chức. Tuy hữu đăng khoa, hữu khẩu thiệt. Thất chức hữu lạc khoa phụ nhơn, huề thủ vị nhơn...",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Tý (vợ). Hai tuổi này mà kết hôn với nhau, thì chồng nếu là người có học, thế nào cũng thi đỗ làm quan và có chức phận. Nhưng phải đề phòng bị cách chức. Vì hai tuổi rất khắc nhau. Vợ chồng không được ý hiệp tâm đầu, thường hay cãi vã. Người vợ, tánh tình không được thùy mị lắm. Tuy thế, gia đình cũng được yến-ấm vui-vầy."
+                },
+                "Sửu": {
+                    title: "Giáp thủ Sửu chi đồ",
+                    hanViet: "Vỏ chiếc ba tiêu, Vân trình thất lộ, tuy hữu công danh bất trường cửu, phủ quí giả, nhiên chủ hữu tự thai, hữu tử bất thành, vị quan thất vi, bách niên giai lão, lưỡng nhuận lạc đại thủ kỳ số giả. Đa sinh tử giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Sửu hay tuổi Dần (vợ). Chồng thuộc về Cang Giáp mà gặp vợ là tuổi Sửu hay tuổi Dần thì dầu có học hay đến đâu, tài ba thế nào đi nữa, khi thi cử cũng không đỗ được. Dầu có sẵn công danh, cũng khó bền. Phải phòng ngừa vợ bị hư thai. Ít hào con, nếu có cũng là con bất hiếu. Nếu có con sớm khó nuôi. Vợ chồng chung sống đến tuổi già. Vợ sẽ chết trước."
+                },
+                "Dần": {
+                    title: "Giáp thủ Dần chi đồ",
+                    hanViet: "Vỏ chiếc ba tiêu, Vân trình thất lộ, tuy hữu công danh bất trường cửu, phủ quí giả...",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Sửu hay tuổi Dần (vợ). Chồng thuộc về Cang Giáp mà gặp vợ là tuổi Sửu hay tuổi Dần thì dầu có học hay đến đâu, tài ba thế nào đi nữa, khi thi cử cũng không đỗ được. Dầu có sẵn công danh, cũng khó bền. Phải phòng ngừa vợ bị hư thai. Ít hào con, nếu có cũng là con bất hiếu. Vợ chồng chung sống đến tuổi già. Vợ sẽ chết trước."
+                },
+                "Mẹo": {
+                    title: "Giáp thủ Mẹo chi đồ",
+                    hanViet: "Tức như thu phong diệp tiền thể thai ngoại chỉ sắc, phầm tác sự vai bất lợi, sắc nhơn chi lạc thân giả. Sắc nhân chỉ lạc nghiệp, kỳ tất giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Mẹo (vợ). Hai tuổi nầy ăn ở với nhau ví như chiếc lá trước gió mùa thu, làm ăn việc gì cũng chẳng được thạnh lợi. Người vợ, nếu có thai thì không tốt, chỉ thêm buồn cho gia đình mà thôi. Số người chồng phải gặp người vợ sau mới an cư lập nghiệp. Chồng chết trước vợ."
+                },
+                "Thìn": {
+                    title: "Giáp thủ Thìn chi đồ",
+                    hanViet: "Thu lạc long sơn, phú quí như phù vân dị hiệp dị tan, tuy hữu phú quí, nhược tợ phù vân, yên tâm tận lực chủ, thành tật nhơn trưởng, từ bất tàn giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Thìn (vợ). Hai tuổi này gặp nhau như sương sa trên đầu núi. Dẫu có tiền của thì cũng như đám mây khi hiệp, khi tan khó mà cầm của. Phải bền chí lấy hết sức mình mới mong có kết quả. Người vợ phải chịu tật bệnh."
+                },
+                "Tỵ": {
+                    title: "Giáp thủ Tỵ chi đồ",
+                    hanViet: "Xạ hành chiếc trục hữu luân chuyển, tử thập tế dong hữu quân chuyên xa hành luân vô chiếc trục quế giả, kỳ duyên kỳ nhơn, đắc kỳ lực, kỳ nhơn giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Tỵ (vợ). Đôi vợ chồng nấy ví như chiếc xe gãy chốt, nên các bánh xe xây vần lủng củng, nghĩa là làm ăn thất bại, việc gì cũng không được như ý. Lối 40 tuổi gia đình phải có sự thay đổi thì làm ăn việc gì cũng được thành."
+                },
+                "Ngọ": {
+                    title: "Giáp thủ Ngọ chi đồ",
+                    hanViet: "Vân trình thất lộ, hữu tử nan dưỡng, khoa mục tảo đăng khoa kỳ tử bất thành giả, chủ hữu hậu thiếp, nam tử tài đa, kỳ chủ tức tuyệt hữu ngoại, cầu tức văn võ, vô lộc dụng giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Ngọ (vợ). Vợ chồng sanh con khó nuôi, học thì cần mà khó thành danh. Số chồng phải có vợ lẻ thì mới có con cái giàu sang. Vợ chồng phải lấy sức mà làm nên chứ không có nhờ của phụ ấm."
+                },
+                "Mùi": {
+                    title: "Giáp thủ Mùi chi đồ",
+                    hanViet: "Vận trình thất lộ, cay hữu khoa mục, tảo đăng, hữu tử bất thành, tuy hữu nhi bất thành tại nhơn, lộ thượng bất tri viễn giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Mùi (vợ). Chồng Cang Giáp mà cưới vợ tuổi Mùi thì dầu có của phụ ấm nhiều đến đâu, cũng không cầm được. Còn dầu học hay, thi cử đỗ cũng chẳng nên danh phận gì. Ví như người lữ hành đi không đến nơi đến chốn. Chồng vợ không được tâm đầu ý hiệp. Người vợ sẽ bỏ ra đi không trở về."
+                },
+                "Thân": {
+                    title: "Giáp thủ Thân chi đồ",
+                    hanViet: "Long hành vô vũ, thối thất chức luy trung bất thí, tuy hữu quan lạc chức, công danh bất thành, nam nữ hỷ thiều, cầu quan như bất toại, vong cô thở nhi cư tha hương giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Thân (vợ). Hai tuổi này kết thành vợ chồng, ví như rồng đi mà không mưa, tức vợ chồng không được đầm ấm, hay rầy rà. Người chồng dầu được làm quan cũng không ai tín nhiệm. Chức-phận công danh chẳng nên. Phải bỏ nơi ở cũ mà đi xa mới làm ăn có kết quả."
+                },
+                "Dậu": {
+                    title: "Giáp thủ Dậu chi đồ",
+                    hanViet: "Đồng chiếc quề thiềm cung, huỳnh xuất hiện, vì quan tất vinh, sĩ khôi nguyên túc đạp vân thê, chủ đăng khoa nãi bộ thiềm cung, nhơn cử long vĩ biến hóa chỉ tượng, chung định thành công, đắc nam nữ kiết giả.",
+                    chuThich: "Cang Giáp (chồng) kết hôn với Dậu hay tuổi Tuất (vợ). Chồng Cang Giáp mà lấy vợ tuổi Dậu hoặc tuổi Tuất thì tốt lắm. Tỷ như rồng vàng xuất hiện, làm quan vinh hiển. Thi đỗ chức cao. Như chân đạp thang mây, trăng rằm tỏ rạng. Suốt đời sung sướng nên danh. Sanh trai gái đều tốt đẹp."
+                },
+                "Tuất": {
+                    title: "Giáp thủ Tuất chi đồ",
+                    hanViet: "Đồng chiếc quề thiềm cung, huỳnh xuất hiện, vì quan tất vinh, sĩ khôi nguyên túc đạp vân thê...",
+                    chuThich: "Cang Giáp (chồng) kết hôn với Dậu hay tuổi Tuất (vợ). Chồng Cang Giáp mà lấy vợ tuổi Dậu hoặc tuổi Tuất thì tốt lắm. Tỷ như rồng vàng xuất hiện, làm quan vinh hiển. Thi đỗ chức cao. Suốt đời sung sướng nên danh. Sanh trai gái đều tốt đẹp."
+                },
+                "Hợi": {
+                    title: "Giáp thủ Hợi chi đồ",
+                    hanViet: "Chiếc quế thiềm cung, tuy hữu đăng khoa nhi hậu ngộ, ách nải tiền vinh nhi hậu nhục, túc đạp vân thê, nải lộ thiềm cung giả nguyệt trung đơn quế, nải tú tài đăng khoa vọng thưởng chi nguyệt...",
+                    chuThich: "Cang Giáp (chồng) kết hôn với tuổi Hợi (vợ). Thi đỗ có công danh nhưng tiền vinh hậu nhục. Về sau có thể gặp trở ách, cần giữ mình tu tâm tích đức."
+                }
+            },
+            "Ất": {
+                "Tý": {
+                    title: "Ất thủ Tý chi đồ",
+                    hanViet: "Long hồ tự phục thuận đại sanh gia sự bình bình hữu trước xiên từ lạc xứ, long hồ như tư tưởng, long hồ bất năng tự hớn tự phục, kỳ thần hồ nhi tất thành long...",
+                    chuThich: "Cang Ất (chồng) kết hôn với tuổi Tý (vợ). Gia sự bình bình, làm ăn buổi đầu chật vật nhưng sau rồng cọp biến hóa lập nên sự nghiệp, gia đạo êm ấm."
+                },
+                "Sửu": {
+                    title: "Ất thủ Sửu chi đồ",
+                    hanViet: "Nhựt nguyệt đương thiên, huê khai phùng tiết, đương thiên giả tất phủ quí, phùng tiết giả, khủng vô tử...",
+                    chuThich: "Ví như mặt trời mặt trăng tô rạng, bông nở gặp tiết nghĩa là sẽ được phú quý giàu sang. Chỉ e chẳng có con gái. Buổi sau có gặp sự trở ngại nhưng không đáng kể, vợ chồng rồi cũng sẽ được thạnh vượng."
+                },
+                "Dần": {
+                    title: "Ất thủ Dần chi đồ",
+                    hanViet: "Nhựt nguyệt đương thiên, huê khai phùng tiết...",
+                    chuThich: "Ất lấy vợ tuổi Dần rất tốt. Phú quý giàu sang, gia đạo bình an, làm ăn thuận lợi."
+                },
+                "Mẹo": {
+                    title: "Ất thủ Mẹo chi đồ",
+                    hanViet: "Huê liễu phùng xuân, phụng hoàng chiếc vực, nam nữ ly biệt, tất phu thê bất toàn...",
+                    chuThich: "Đôi vợ chồng này số không được tốt. Ví như bông liễu gặp cảnh xuân, chim phụng hoàng gãy cánh. Không chịu cảnh ly biệt thời chồng vợ chẳng được hoàn toàn."
+                },
+                "Thìn": {
+                    title: "Ất thủ Thìn chi đồ",
+                    hanViet: "Sương giáng thu phong, hoa trôi nước chảy...",
+                    chuThich: "Buổi đầu nhiều sóng gió, cần lấy chữ Nhẫn làm đầu mới giữ được hạnh phúc lứa đôi."
+                },
+                "Tỵ": {
+                    title: "Ất thủ Tỵ chi đồ",
+                    hanViet: "Sương giáng thu phong...",
+                    chuThich: "Làm ăn lật đật, phòng gãy gánh giữa đường. Cần tu tâm tích đức."
+                },
+                "Ngọ": {
+                    title: "Ất thủ Ngọ chi đồ",
+                    hanViet: "Song huê mậu phát, nguyệt rạng lòng sông...",
+                    chuThich: "Công danh sự nghiệp thuận hòa, sanh con ngoan hiền."
+                },
+                "Mùi": {
+                    title: "Ất thủ Mùi chi đồ",
+                    hanViet: "Ngư thủy hóa Võ-môn, long phi đắc chí, hữu đăng khoa Võ khởi thượng thu...",
+                    chuThich: "Hai tuổi này kết hôn với nhau như cá ở sông Võ hóa rồng. Người chồng có tài hoa nhưng bị bàn nhân cản trở. Số gặp vợ nghèo, sanh được 2 con trai đỗ đạt thành danh."
+                },
+                "Thân": {
+                    title: "Ất thủ Thân chi đồ",
+                    hanViet: "Long môn đắc chí hoặc phùng kiếp sát, long môn tức thiên môn hữu quan phủ...",
+                    chuThich: "Người chồng sẽ được toại nguyện về đường công danh nhưng phải phòng người ám hại. Sanh con tuy hay học nhưng đường công danh bất như ý nguyện."
+                },
+                "Dậu": {
+                    title: "Ất thủ Dậu chi đồ",
+                    hanViet: "Điều nhập võng trung bạch mã chiếc túc, nguyệt ảnh tây tà, tỉnh tú cũng bắc, tam thập bát tuổi nhi vong...",
+                    chuThich: "Ví như chim sa vào lưới, ngựa chạy trặc chân. Đến 38 tuổi vợ chồng phải phân cách, nếu không phải gặp cảnh gian nan vất vả."
+                },
+                "Tuất": {
+                    title: "Ất thủ Tuất chi đồ",
+                    hanViet: "Như nguyệt trầm thương hải, long khốn vô vũ, tuy hiểu đăng khoa nhi ngộ kiếp sát...",
+                    chuThich: "Chồng vợ như trăng chìm đáy biển, rồng không gặp mưa. Dầu người chồng có thi đỗ làm quan cũng gặp sự trở ngại. Vợ chết trước chồng."
+                },
+                "Hợi": {
+                    title: "Ất thủ Hợi chi đồ",
+                    hanViet: "Như nguyệt trầm thương hải...",
+                    chuThich: "Số phải chịu lưu lạc phong bạt buổi đầu, sau này lấy vợ khác mới đầm ấm khá giả."
+                }
+            },
+            "Bính": {
+                "Tý": {
+                    title: "Bính thủ Tý chi đồ",
+                    hanViet: "Huê khai diệp lạc nải thi nữ bất chánh, hậu thất thời, ngộ xuân võ tắc hồng thẻ hữu sản nạn...",
+                    chuThich: "Ví như hoa có nở mà lá lại rụng. Người vợ e bị chứng sản nạn hoặc phải thác trước. Chỉ có người vợ sau mới sanh đủ trai gái đều được giàu sang vui vẻ."
+                },
+                "Sửu": {
+                    title: "Bính thủ Sửu chi đồ",
+                    hanViet: "Long tàn hải đề, bĩ cực thới lai, phu thê ngộ thử, tuy tiền hữu nạn nhi hậu đắc an lợi...",
+                    chuThich: "Ví như rồng nắm đáy biển, hết cơn bĩ cực tới hồi thái lai. Phải có con nuôi mới được tốt, và sau này phải dời đổi chỗ ở thì mới khá giả."
+                },
+                "Dần": {
+                    title: "Bính thủ Dần chi đồ",
+                    hanViet: "Yến vực vi cư thê tử tuyệt khí, tiều-nhơn thư hội chỉ quần bệt đạt...",
+                    chuThich: "Vợ chồng phải chịu cảnh chia rẽ. Tuy buổi đầu đầm ấm nhưng sau sẽ chịu cách trở. Con cái nghịch lẫn nhau."
+                },
+                "Mẹo": {
+                    title: "Bính thủ Mẹo chi đồ",
+                    hanViet: "Ngư du nhập võng, quan tai khốn tử, tuy hữu chức nhi tật ách, tay hữu thân nhì hạ lưu...",
+                    chuThich: "Tỷ như cá lội vào lưới, thuyền đi ngược dòng. Dẫu được làm quan cũng bị tù tội tai ách mới khỏi bị chết yểu. Chồng chết trước vợ."
+                },
+                "Thìn": {
+                    title: "Bính thủ Thìn chi đồ",
+                    hanViet: "Ngư du nhập võng, quan tai khốn tử...",
+                    chuThich: "Gia đạo hay gặp tai tiếng bất ngờ. Cần cẩn trọng trong công việc buôn bán và làm ăn."
+                },
+                "Tỵ": {
+                    title: "Bính thủ Tỵ chi đồ",
+                    hanViet: "Phong vân hội hợp, long phi phượng múa...",
+                    chuThich: "Ăn ở hòa thuận, phát đạt làm ăn, đường công danh rộng mở."
+                },
+                "Ngọ": {
+                    title: "Bính thủ Ngọ chi đồ",
+                    hanViet: "Nhựt quang rạng rỡ...",
+                    chuThich: "Gia đình thịnh vượng, con cái học hành đỗ đạt."
+                },
+                "Mùi": {
+                    title: "Bính thủ Mùi chi đồ",
+                    hanViet: "Như mộc sanh địa thương, manh nha tiệm trưởng tự tiền thành đại lợi...",
+                    chuThich: "Ví như cây mọc trên đất, nhảy chồi lần hồi chẳng cần vun trồng. Vợ chồng tuy thấy gian nan trước mắt nhưng số trời đã định sẽ được thạnh lợi."
+                },
+                "Thân": {
+                    title: "Bính thủ Thân chi đồ",
+                    hanViet: "Thủy thổ Phù Sa tiền tồn hậu ích, phu thê lê cách chung đắc hưng vướng...",
+                    chuThich: "Ví như bờ sông Phù Sa. Vợ chồng chịu cách trở một thời gian sau mới thạnh vượng. Thất bại một lần về tình duyên, sau mới nên."
+                },
+                "Dậu": {
+                    title: "Bính thủ Dậu chi đồ",
+                    hanViet: "Yến loan vi xuân, gia môn tiệm thế lương nhơn chỉ sĩ...",
+                    chuThich: "Cửa nhà suy lần, không anh em thương mến. Chẳng sanh được con trai, gia đình biến chuyển như bốn mùa."
+                },
+                "Tuất": {
+                    title: "Bính thủ Tuất chi đồ",
+                    hanViet: "Yến loan vi xuân...",
+                    chuThich: "Vợ chồng không ăn ở bền lâu được, hay sinh sự cãi vã xáo trộn."
+                },
+                "Hợi": {
+                    title: "Bính thủ Hợi chi đồ",
+                    hanViet: "Long khốn nhi đắc vân vũ tiền thất bại, nhi hậu thành công...",
+                    chuThich: "Tỷ như rồng nằm đợi mưa. Dầu bương chải lừa lọc đến đâu cũng chịu thất bại buổi đầu, sau mới thành công lập nên sự nghiệp."
+                }
+            },
+            "Đinh": {
+                "Tý": {
+                    title: "Đinh thủ Tý chi đồ",
+                    hanViet: "Mãnh hồ hãm tỉnh tuy hữu đăng khoa nhi phản ngộ ly biệt...",
+                    chuThich: "Cọp rừng sa giếng bất thường. Dầu cho tài giỏi phòng đường biệt ly. Tai bay họa gửi bất kỳ, hết cơn bĩ cực thới lai mới mầu."
+                },
+                "Sửu": {
+                    title: "Đinh thủ Sửu chi đồ",
+                    hanViet: "Mãnh hồ hãm tỉnh...",
+                    chuThich: "Làm ăn lận đận, hay gặp tai ách bất ngờ. Lấy sự nhẫn nại làm gốc."
+                },
+                "Dần": {
+                    title: "Đinh thủ Dần chi đồ",
+                    hanViet: "Cảnh phá tự phân nhơn lưỡng ảnh, tiệm phân minh chỉ tượng...",
+                    chuThich: "Giống cảnh Nhạc Xương bẻ kính làm đôi, chia xa rồi sau mới trùng phùng thạnh vượng. Sanh trai gái hoàn toàn."
+                },
+                "Mẹo": {
+                    title: "Đinh thủ Mẹo chi đồ",
+                    hanViet: "Đào nguyên yếu hội khai huê kiết tử, nam nữ cập thời sanh tử...",
+                    chuThich: "Ví như đào nguyên hội yến, cây đầy hoa quả. Sanh con kịp thời như ông chài vào bến đào nguyên. Vợ chồng sau này sẽ được thạnh lợi."
+                },
+                "Thìn": {
+                    title: "Đinh thủ Thìn chi đồ",
+                    hanViet: "Điền ngoạt thủ sương, đa thạnh thậm tài bài sĩ tử đăng khoa...",
+                    chuThich: "Như chim điêu bay trong đêm thu. Hai tuổi này rất tốt, làm ăn thịnh vượng phát tài nhiều, có con giàu có."
+                },
+                "Tỵ": {
+                    title: "Đinh thủ Tỵ chi đồ",
+                    hanViet: "Phu thê chỉ đạo tổ phụ hữu phú quí, sanh nam nữ cụ toàn...",
+                    chuThich: "Vợ chồng đầm ấm, nhờ tổ phụ sang giàu của dư. Sanh con cháu hiền từ, học hành thi đậu danh nêu."
+                },
+                "Ngọ": {
+                    title: "Đinh thủ Ngọ chi đồ",
+                    hanViet: "Song huê mậu phát ngũ quế tam hỏe, phu thê trường thọ xuân tắc bách thọ...",
+                    chuThich: "Rất tốt. Vợ chồng sanh được 5 trai 3 gái. Đồng sống lâu trong cảnh xuân đẹp đẽ, cùng cộng hưởng phú quý giàu sang."
+                },
+                "Mùi": {
+                    title: "Đinh thủ Mùi chi đồ",
+                    hanViet: "Song huê mậu phát. phong nguyệt liệu nhơn kỳ, tuy hữu phú quí kỳ nữ bất chánh...",
+                    chuThich: "Giàu sang đã có vững bền lợi danh, chỉ hiềm sanh gái chẳng lành, thất tiết nhờ danh với đời."
+                },
+                "Thân": {
+                    title: "Đinh thủ Thân chi đồ",
+                    hanViet: "Nam tưởng oai quyền gia trung nô tỉ, đăng khoa tất hữu nhơn trợ...",
+                    chuThich: "Rất tốt. Người đàn ông có nhiều oai quyền, nhờ người giúp đỡ mà nên danh phận. Vợ chồng đầm ấm."
+                },
+                "Dậu": {
+                    title: "Đinh thủ Dậu chi đồ",
+                    hanViet: "Hành thân ngộ phong, bất tiện xuất lành ngoại nội hữu hạng...",
+                    chuThich: "Như thuyền đi gặp gió, e gặp tai nạn. Phải đậu thuyền chờ gió thuận. Sau được quới nhơn giúp đỡ lập công danh."
+                },
+                "Tuất": {
+                    title: "Đinh thủ Tuất chi đồ",
+                    hanViet: "Hành thân ngộ phong...",
+                    chuThich: "Trải qua gian nan buổi đầu, sau được người giúp đỡ làm nên sự nghiệp."
+                },
+                "Hợi": {
+                    title: "Đinh thủ Hợi chi đồ",
+                    hanViet: "Hành thân ngộ phong ngư dước du nguyên, tắc hữu tự quan lộc...",
+                    chuThich: "Rất tốt. Thuyền gặp thuận gió, cá lội ngoài sông. Công danh toại nguyện, đủ điền địa tiền bạc của báu."
+                }
+            },
+            "Mậu": {
+                "Tý": {
+                    title: "Mậu thủ Tý chi đồ",
+                    hanViet: "Thạch thượng minh châu, nhơn thiêm ngọc dung công tắc giả...",
+                    chuThich: "Không gì tốt hơn. Như trên mặt đá có châu lại thèm ngọc. Vợ chồng giàu tiền nhiều của, sanh trai gái hoàn toàn."
+                },
+                "Sửu": {
+                    title: "Mậu thủ Sửu chi đồ",
+                    hanViet: "Cồ thọ khai huê kiền trệ bất thông, tuy hữu công danh...",
+                    chuThich: "Cây già lại trỗ bông. Công danh nhiều nỗi chán chê. Sau này chồng vợ giàu sang hiệp hòa, ở ăn đầm ấm."
+                },
+                "Dần": {
+                    title: "Mậu thủ Dần chi đồ",
+                    hanViet: "Cồ thọ khai huê...",
+                    chuThich: "Trở ngại buổi đầu, trung vận khá giả."
+                },
+                "Mẹo": {
+                    title: "Mậu thủ Mẹo chi đồ",
+                    hanViet: "Thu phong diệp lạc...",
+                    chuThich: "Làm ăn vất vả, khó cầm giữ tiền tài."
+                },
+                "Thìn": {
+                    title: "Mậu thủ Thìn chi đồ",
+                    hanViet: "Sương rơi đầu núi...",
+                    chuThich: "Của cải khi hợp khi tan, cần bền chí."
+                },
+                "Tỵ": {
+                    title: "Mậu thủ Tỵ chi đồ",
+                    hanViet: "Tiền vinh nhi hậu nhục, phu thê chỉ đạo...",
+                    chuThich: "Trước vinh sau nhục. Có của kém con, chỉ sanh con gái. Gia đình hay gặp tai biến."
+                },
+                "Ngọ": {
+                    title: "Mậu thủ Ngọ chi đồ",
+                    hanViet: "Minh huy giả, châu ngọc giả, vinh qui biến...",
+                    chuThich: "Rất tốt. Châu ngọc chói sáng, vợ chồng danh lợi hoàn toàn. Sanh trai gái đều đủ."
+                },
+                "Mùi": {
+                    title: "Mậu thủ Mùi chi đồ",
+                    hanViet: "Tảo ngộ ách tắc tử tráng, lễ gia lễ giả thánh thị quân chi...",
+                    chuThich: "Phải sớm gặp nguy nan mới sanh con mạnh khỏe. Vợ chồng trước sau thạnh lợi như nguồn nước chảy không dứt."
+                },
+                "Thân": {
+                    title: "Mậu thủ Thân chi đồ",
+                    hanViet: "Tảo ngộ ách tắc tử tráng...",
+                    chuThich: "Vượt qua gian nan thử thách sẽ được hưởng phú quý trọn đời."
+                },
+                "Dậu": {
+                    title: "Mậu thủ Dậu chi đồ",
+                    hanViet: "Cấm sắc trong tần, tải thủ thủy sanh tử...",
+                    chuThich: "Số chồng phải hai đời vợ. Lấy vợ sau mới sanh đủ trai gái, con gái sang trọng hơn con trai."
+                },
+                "Tuất": {
+                    title: "Mậu thủ Tuất chi đồ",
+                    hanViet: "Thủy đề đầu nguyệt hoang huy chi ảnh...",
+                    chuThich: "Vì thuận tình ăn ở chứ không cưới hỏi. Vợ hay bệnh tật, sau con cháu thạnh vượng."
+                },
+                "Hợi": {
+                    title: "Mậu thủ Hợi chi đồ",
+                    hanViet: "Nông tan canh điều hòa cốc, bất vi phú quí...",
+                    chuThich: "Phải do nghề nông mới giàu. Vợ chồng ly biệt một thời gian sau mới thành."
+                }
+            },
+            "Kỷ": {
+                "Tý": {
+                    title: "Kỷ thủ Tý chi đồ",
+                    hanViet: "Lạc cực ai sanh phân sảo nhi khứ, xuân tắc bà điệp mậu thạnh...",
+                    chuThich: "Trăm hoa gặp xuân được tốt tươi. Buổi đầu sum họp sau phải xa cách, phải bỏ xứ hoặc theo bên quê vợ mới khá."
+                },
+                "Sửu": {
+                    title: "Kỷ thủ Sửu chi đồ",
+                    hanViet: "Lạc cực ai sanh...",
+                    chuThich: "Buổi đầu đầm ấm sau xa cách quê hương."
+                },
+                "Dần": {
+                    title: "Kỷ thủ Dần chi đồ",
+                    hanViet: "Phu thê lợi hiệp, nam nữ bất chánh giả...",
+                    chuThich: "Ăn ở tạm một thời gian. Lưu lạc gặp vợ khác sanh con trai mới nên."
+                },
+                "Mẹo": {
+                    title: "Kỷ thủ Mẹo chi đồ",
+                    hanViet: "Phu thê lợi hiệp...",
+                    chuThich: "Gia đạo bất an, sau lấy vợ khác mới đầm ấm."
+                },
+                "Thìn": {
+                    title: "Kỷ thủ Thìn chi đồ",
+                    hanViet: "Diệp cựu sanh tân, quần âm tán tận, khi tổ phụ nhi lạc tha hương...",
+                    chuThich: "Số có 2 vợ, sau trở về vợ lớn. Sanh đủ trai gái, sống lâu như cây tòng bá và đồng hưởng giàu sang."
+                },
+                "Tỵ": {
+                    title: "Kỷ thủ Tỵ chi đồ",
+                    hanViet: "Diệp cựu sanh tân...",
+                    chuThich: "Có hai đời vợ, sau này giàu sang sống lâu."
+                },
+                "Ngọ": {
+                    title: "Kỷ thủ Ngọ chi đồ",
+                    hanViet: "Mã tầu Giang-thành, nhựt nguyệt đương thiêu...",
+                    chuThich: "Như ngựa chạy ở Giang Thành, công thành danh toại nhưng phải lập nghiệp xa. Số 2 đời vợ."
+                },
+                "Mùi": {
+                    title: "Kỷ thủ Mùi chi đồ",
+                    hanViet: "Tiền phủ hậu bần sự nghiệp bất toàn...",
+                    chuThich: "Tuy thấy sang đó rồi hèn đó, nhưng rốt cuộc chồng sống lâu, phú quý vinh hiển hơn cả cha mẹ khi trước."
+                },
+                "Thân": {
+                    title: "Kỷ thủ Thân chi đồ",
+                    hanViet: "Tiền phủ hậu bần...",
+                    chuThich: "Hậu vận hiển đạt hơn thế hệ trước."
+                },
+                "Dậu": {
+                    title: "Kỷ thủ Dậu chi đồ",
+                    hanViet: "Thủy hỏa tương sung, phu thê cách biệt...",
+                    chuThich: "Thủy hỏa xung khắc. Chồng vợ ly biệt, chung cuộc gãy gánh giữa đường."
+                },
+                "Tuất": {
+                    title: "Kỷ thủ Tuất chi đồ",
+                    hanViet: "Nhựt nguyệt lạc huỳnh hôn, thối tài bạch...",
+                    chuThich: "Trăng chen lặn, của cải tiêu môn. Trước xấu sau tốt."
+                },
+                "Hợi": {
+                    title: "Kỷ thủ Hợi chi đồ",
+                    hanViet: "Địa hạ thần tiên như lạc tây sơn...",
+                    chuThich: "Gặp tiểu hạn rồi đại hạn. Sự nghiệp ông bà để lại sau tiêu tan cả."
+                }
+            },
+            "Canh": {
+                "Tý": {
+                    title: "Canh thủ Tý chi đồ",
+                    hanViet: "Nhựt nguyệt đương thiện đa tử hữu phú, tiều công danh đại lợi nhựt...",
+                    chuThich: "Tốt lắm. Như mặt trời mặt trăng tỏ rạng. Giàu con giàu của, công danh nhỏ lợi lớn."
+                },
+                "Sửu": {
+                    title: "Canh thủ Sửu chi đồ",
+                    hanViet: "Châu huyện môn khai địa hảo, khi bất tại tha hương...",
+                    chuThich: "Bỏ xứ đi xa mới khá giả. Sanh trai gái không nhờ được, chồng có bệnh chết trước."
+                },
+                "Dần": {
+                    title: "Canh thủ Dần chi đồ",
+                    hanViet: "Châu huyện môn khai...",
+                    chuThich: "Tha phương cầu thực mới làm ăn được."
+                },
+                "Mẹo": {
+                    title: "Canh thủ Mẹo chi đồ",
+                    hanViet: "Thiếc thuyền quá hải, sanh tử thậm ngữ nguy gia...",
+                    chuThich: "Như thuyền sắt vượt biển cả nguy hiểm. Sau tai ách vợ chồng sẽ vinh hiển giàu sang luôn."
+                },
+                "Thìn": {
+                    title: "Canh thủ Thìn chi đồ",
+                    hanViet: "Như vẫn thê hàng lộ đại tán thậm hung...",
+                    chuThich: "Như thang mây gặp tiết lạnh. Tuy giàu có con cái đủ, nhưng đến 30 tuổi vợ bệnh qua đời."
+                },
+                "Tỵ": {
+                    title: "Canh thủ Tỵ chi đồ",
+                    hanViet: "Như vẫn thê hàng lộ...",
+                    chuThich: "Phòng vợ lâm bệnh hạn tuổi 30."
+                },
+                "Ngọ": {
+                    title: "Canh thủ Ngọ chi đồ",
+                    hanViet: "Như mã tầu Giang-thành phú quí vô hạn...",
+                    chuThich: "Giàu sang bất ngờ, trước giàu sau nghèo. Chịu 7 năm đại hạn."
+                },
+                "Mùi": {
+                    title: "Canh thủ Mùi chi đồ",
+                    hanViet: "Như thu nhận thành quần, tích linh phân đội...",
+                    chuThich: "Như chim nhạn mùa thu. Thuận thảo nhưng sau biệt ly. Chồng có vợ khác mới khá."
+                },
+                "Thân": {
+                    title: "Canh thủ Thân chi đồ",
+                    hanViet: "Như thu nhận thành quần...",
+                    chuThich: "Chồng có vợ khác mới an cư lập nghiệp."
+                },
+                "Dậu": {
+                    title: "Canh thủ Dậu chi đồ",
+                    hanViet: "Cảnh phả biệt phân hữu ích ư nhi tồn ư hậu...",
+                    chuThich: "Hiệp vui buổi đầu sau phân ly. Sanh trai gái chẳng nhờ được. Tiền phú hậu bần."
+                },
+                "Tuất": {
+                    title: "Canh thủ Tuất chi đồ",
+                    hanViet: "Như mã hành chiếc từ, sanh tử trung hạn ngô ách...",
+                    chuThich: "Khó ăn ở đời với nhau. Như ngựa chạy đuối chân. Lấy vợ sau mới sanh con có chức phận."
+                },
+                "Hợi": {
+                    title: "Canh thủ Hợi chi đồ",
+                    hanViet: "Như khô mộc khai huê lạc trung hạn nhi ngộ ách...",
+                    chuThich: "Như cây khô trỗ hoa. Từ 30 tuổi gặp tai biến. Vợ đầu qua đời vì sản nạn, gặp vợ sau mới khá."
+                }
+            },
+            "Tân": {
+                "Tý": {
+                    title: "Tân thủ Tý chi đồ",
+                    hanViet: "Nguyệt ẩm sơ thương tông mộc khai huê, tải phả đào huc...",
+                    chuThich: "Bóng trăng mới lố, cây Tông bông nở lại hư. Sanh con khó dưỡng, sau bĩ cực thới lai."
+                },
+                "Sửu": {
+                    title: "Tân thủ Sửu chi đồ",
+                    hanViet: "Thiên tuyệt âm dương chi sở, bị lao khốn giả...",
+                    chuThich: "Nhiều cảnh lao khốn, thạnh suy thất thường. Chung cuộc không con hoặc khó nuôi."
+                },
+                "Dần": {
+                    title: "Tân thủ Dần chi đồ",
+                    hanViet: "Thiên tuyệt âm dương...",
+                    chuThich: "Gia đạo bất an, hiếm con cái."
+                },
+                "Mẹo": {
+                    title: "Tân thủ Mẹo chi đồ",
+                    hanViet: "Như nhựt nguyệt chiếu châu môn ba đào lắng tịnh...",
+                    chuThich: "Rất tốt. Mới đầu nghèo khổ sau giàu sang nhàn hạ, có một con thành danh, chung thủy."
+                },
+                "Thìn": {
+                    title: "Tân thủ Thìn chi đồ",
+                    hanViet: "Long khốn đắc võ, chủ hữu gia trạch điền viên...",
+                    chuThich: "Rất tốt. Rồng gặp mưa, ruộng đất đầy đủ, chồng có quan tước, gia đình thạnh lợi."
+                },
+                "Tỵ": {
+                    title: "Tân thủ Tỵ chi đồ",
+                    hanViet: "Long khốn đắc võ...",
+                    chuThich: "Hưởng phước ruộng đất tài lộc dồi dào."
+                },
+                "Ngọ": {
+                    title: "Tân thủ Ngọ chi đồ",
+                    hanViet: "Lê chảy cầu châu, khai huê kiết tử hữu phú qui...",
+                    chuThich: "Giàu sang phú quý, trăm bông kết trái. Người đàn ông số có nhiều vợ."
+                },
+                "Mùi": {
+                    title: "Tân thủ Mùi chi đồ",
+                    hanViet: "Phùng phong tật bịnh, hữu tử nan dưỡng...",
+                    chuThich: "Gặp bệnh phong, con khó nuôi. Càng nhiều con trai càng phát tài."
+                },
+                "Thân": {
+                    title: "Tân thủ Thân chi đồ",
+                    hanViet: "Phùng phong tật bịnh...",
+                    chuThich: "Trung niên nhiều trở ngại, vợ phòng yểu tử."
+                },
+                "Dậu": {
+                    title: "Tân thủ Dậu chi đồ",
+                    hanViet: "Tòng công đắc chỉ, hữu tử nan dưỡng...",
+                    chuThich: "Sanh con khó nuôi, nếu nuôi được thì biết nghe lời. Chồng nghe vợ mới nên sự nghiệp."
+                },
+                "Tuất": {
+                    title: "Tân thủ Tuất chi đồ",
+                    hanViet: "Phu thê phẩn phúc nguyệt lạc tây sơn...",
+                    chuThich: "Như trăng lặn về núi Tây. Sớm tốt sau xấu, hay rầy rà."
+                },
+                "Hợi": {
+                    title: "Tân thủ Hợi chi đồ",
+                    hanViet: "Phu thê phẩn phúc...",
+                    chuThich: "Hay xích mích cãi vã, khó giữ ấm êm."
+                }
+            },
+            "Nhâm": {
+                "Tý": {
+                    title: "Nhâm thủ Tý chi đồ",
+                    hanViet: "Huề nhơn nhập võng, oàn tại tật bịnh, quan nãi qui giã...",
+                    chuThich: "Trước xấu sau tốt. Tánh mâu thuẫn hay bệnh tật. Số có chức tước, trải 2 lần thất bại mới lập nên gia nghiệp."
+                },
+                "Sửu": {
+                    title: "Nhâm thủ Sửu chi đồ",
+                    hanViet: "Giá thủ chỉ đắc, thiếu niên sanh nam nữ cụ toàn...",
+                    chuThich: "Con cái đông nhưng tật bệnh. Buôn bán sống vững. Chung cuộc chỉ có con gái."
+                },
+                "Dần": {
+                    title: "Nhâm thủ Dần chi đồ",
+                    hanViet: "Giá thủ chỉ đắc...",
+                    chuThich: "Không hào con trai, hợp nghề buôn bán."
+                },
+                "Mẹo": {
+                    title: "Nhâm thủ Mẹo chi đồ",
+                    hanViet: "Xuân võ diệp lạc như phụng hoàng chiết đực...",
+                    chuThich: "Như mùa xuân lá rụng, phụng hoàng gãy cánh. Sanh con cái đủ, chung cuộc việc làm ăn thạnh lợi."
+                },
+                "Thìn": {
+                    title: "Nhâm thủ Thìn chi đồ",
+                    hanViet: "Xa hành chiết trục trung đồ nhi phế hữu nạn ách...",
+                    chuThich: "Gãy gánh giữa đường. Trai nhiều gái ít, chịu phần ly biệt."
+                },
+                "Tỵ": {
+                    title: "Nhâm thủ Tỵ chi đồ",
+                    hanViet: "Xa hành chiết trục trung đồ ngộ nạn, tử thập nhi thọ ách...",
+                    chuThich: "Xe đi gãy chốt giữa đường. Từ 40 tuổi chịu tai ách, vợ chồng chia ly, nhưng con cái sau này thạnh lợi."
+                },
+                "Ngọ": {
+                    title: "Nhâm thủ Ngọ chi đồ",
+                    hanViet: "Phu phụ bất hòa, thường năng ngộ nan, tam thập tế đề phòng...",
+                    chuThich: "Vợ chồng bất hòa hay gặp nạn. Đến 30 tuổi đề phòng hiểm ách."
+                },
+                "Mùi": {
+                    title: "Nhâm thủ Mùi chi đồ",
+                    hanViet: "Âm dương bất giao, nhơn khẩu bất điểu như nguyệt chiếu minh...",
+                    chuThich: "Thường gặp khẩu thiệt. Sanh trai gái có khí tượng giàu sang."
+                },
+                "Thân": {
+                    title: "Nhâm thủ Thân chi đồ",
+                    hanViet: "Vân trình thất lộ, hữu tử nam dưỡng như nhựt nguyệt tại...",
+                    chuThich: "Như mặt trời mặt trăng bị mây mờ án. Trước nghèo sau giàu sang, chung cuộc số tốt."
+                },
+                "Dậu": {
+                    title: "Nhâm thủ Dậu chi đồ",
+                    hanViet: "Hành thàng ngộ phong, cầu tài bất toại, trung hạng tắc ly...",
+                    chuThich: "Thuyền gặp gió, cầu tài không xong. Đến 30 tuổi xa cách, có giàu mà chẳng sang."
+                },
+                "Tuất": {
+                    title: "Nhâm thủ Tuất chi đồ",
+                    hanViet: "Chiếc quể thiềm cung huỳnh long xuất hiện, chủ hữu đăng khoa...",
+                    chuThich: "Rất tốt. Chồng thi đỗ làm quan, danh lợi lớn, tiền của dồi dào, sanh trai gái đủ."
+                },
+                "Hợi": {
+                    title: "Nhâm thủ Hợi chi đồ",
+                    hanViet: "Chiếc quể thiềm cung...",
+                    chuThich: "Công danh hiển đạt, gia đạo an vui."
+                }
+            },
+            "Quý": {
+                "Tý": {
+                    title: "Quý thủ Tý chi đồ",
+                    hanViet: "Long hồ tự phục, tùng đầu đại sanh hành niên, mộng trung long...",
+                    chuThich: "Vui vầy đầm ấm. Đến năm Tuất Hợi lập nên sự nghiệp nhưng cần đi xứ khác mới được."
+                },
+                "Sửu": {
+                    title: "Quý thủ Sửu chi đồ",
+                    hanViet: "Như nhựt nguyệt đương thiên huê khai ngộ tiếc tất phủ qui...",
+                    chuThich: "Như mặt trời tỏ rạng, bông nở gặp tiết. Giàu sang đại lợi, con cái phát quan."
+                },
+                "Dần": {
+                    title: "Quý thủ Dần chi đồ",
+                    hanViet: "Như nhựt nguyệt đương thiên...",
+                    chuThich: "Mặt trời rạng rỡ, làm ăn thạnh vượng."
+                },
+                "Mẹo": {
+                    title: "Quý thủ Mẹo chi đồ",
+                    hanViet: "Huê liễu phùng xuân, phụng hoàng chiếc dực nam nữ nải khủng...",
+                    chuThich: "Như hoa liễu gặp xuân. Trai gái phải ly biệt mới nên, sau này giàu sang đại kiết."
+                },
+                "Thìn": {
+                    title: "Quý thủ Thìn chi đồ",
+                    hanViet: "Khánh tục thành tiên đào huê yến ầm, chủ hữu đạo cửu lưu...",
+                    chuThich: "Buổi đầu vui vầy yến ấm. Vợ số tốt, chồng số xấu. Chung cuộc vợ chồng chịu nghèo khổ."
+                },
+                "Tỵ": {
+                    title: "Quý thủ Tỵ chi đồ",
+                    hanViet: "Khánh tục thành tiên...",
+                    chuThich: "Buổi đầu êm ấm, về sau nghèo khổ."
+                },
+                "Ngọ": {
+                    title: "Quý thủ Ngọ chi đồ",
+                    hanViet: "Nhựt nguyệt đương thiên, địa khí vô vũ, chủ hữu đăng khoa...",
+                    chuThich: "Rất tốt. Trời quang mây tạnh, chồng thành danh, vợ chồng phú quý vinh hoa."
+                },
+                "Mùi": {
+                    title: "Quý thủ Mùi chi đồ",
+                    hanViet: "Đào huê yến hội ngân hữu công như thọ ách như điều nhập võng...",
+                    chuThich: "Chim sa lưới, ngựa giỏi chột đài. Đến 36 tuổi phải qua đời hoặc gặp đại nạn."
+                },
+                "Thân": {
+                    title: "Quý thủ Thân chi đồ",
+                    hanViet: "Đào huê yến hội...",
+                    chuThich: "Đến 36 tuổi phòng nguy nan lớn."
+                },
+                "Dậu": {
+                    title: "Quý thủ Dậu chi đồ",
+                    hanViet: "Ngư hóa Võ mồn, mãnh hồ đắc chỉ, phu thê ngộ thử hòa cốc...",
+                    chuThich: "Rất tốt. Như cá hóa rồng ở sông Võ Môn, hùm đắc chí. Chồng vợ sang giàu con cái đầy đủ."
+                },
+                "Tuất": {
+                    title: "Quý thủ Tuất chi đồ",
+                    hanViet: "Nhựt trầm thượng hải tài bạch cốc thương, hữu đăng kho...",
+                    chuThich: "Làm ăn thường thất bại, vợ hay bệnh. Qua kiếp 30 tuổi mới giàu có và sống lâu."
+                },
+                "Hợi": {
+                    title: "Quý thủ Hợi chi đồ",
+                    hanViet: "Nhựt trầm thượng hải...",
+                    chuThich: "Qua tuổi 30 sự nghiệp mới vững bền."
+                }
+            }
+        };
+
+        // Initialize App
+        document.addEventListener('DOMContentLoaded', () => {
+            populateSelectors();
+            calculateFromYear('husband');
+            calculateFromYear('wife');
+            renderResult();
+            buildCatalog();
+        });
+
+        function populateSelectors() {
+            const husbandSelect = document.getElementById('husband-can');
+            const wifeSelect = document.getElementById('wife-chi');
+
+            husbandSelect.innerHTML = CAN_LIST.map(c => `<option value="${c}">${c}</option>`).join('');
+            wifeSelect.innerHTML = CHI_LIST.map(c => `<option value="${c}">${c}</option>`).join('');
+
+            // Catalog Can buttons
+            const canBtnsContainer = document.getElementById('can-filter-btns');
+            canBtnsContainer.innerHTML = CAN_LIST.map(c => 
+                `<button onclick="filterCatalog('${c}')" class="px-3 py-1 rounded text-xs bg-[#2b2118] hover:bg-[#d4af37] hover:text-[#100d0a] transition font-bold border border-[#3d3124]">${c}</button>`
+            ).join('');
+        }
+
+        function calculateFromYear(type) {
+            if (type === 'husband') {
+                const yr = parseInt(document.getElementById('husband-year').value);
+                if (!isNaN(yr) && yr > 1900) {
+                    const canIdx = (yr - 4) % 10;
+                    const chiIdx = (yr - 4) % 12;
+                    const canName = CAN_LIST[(canIdx + 10) % 10];
+                    const chiName = CHI_LIST[(chiIdx + 12) % 12];
+
+                    document.getElementById('husband-can').value = canName;
+                    document.getElementById('husband-can-display').innerText = canName;
+                    document.getElementById('husband-chi-display').innerText = chiName;
+
+                    // Cung Sanh từ Mục Lục I
+                    const cungName = getCungSanhFromYear(yr);
+                    document.getElementById('husband-cung-display').innerText = cungName;
+                }
+            } else {
+                const yr = parseInt(document.getElementById('wife-year').value);
+                if (!isNaN(yr) && yr > 1900) {
+                    const canIdx = (yr - 4) % 10;
+                    const chiIdx = (yr - 4) % 12;
+                    const canName = CAN_LIST[(canIdx + 10) % 10];
+                    const chiName = CHI_LIST[(chiIdx + 12) % 12];
+
+                    document.getElementById('wife-chi').value = chiName;
+                    document.getElementById('wife-can-display').innerText = canName;
+                    document.getElementById('wife-chi-display').innerText = chiName;
+
+                    // Cung Sanh từ Mục Lục I
+                    const cungName = getCungSanhFromYear(yr);
+                    document.getElementById('wife-cung-display').innerText = cungName;
+                }
+            }
+        }
+
+        function onManualSelect() {
+            const hCan = document.getElementById('husband-can').value;
+            const wChi = document.getElementById('wife-chi').value;
+
+            document.getElementById('husband-can-display').innerText = hCan;
+            document.getElementById('wife-chi-display').innerText = wChi;
+        }
+
+        function renderResult() {
+            const hCan = document.getElementById('husband-can').value;
+            const wChi = document.getElementById('wife-chi').value;
+
+            const resBox = document.getElementById('result-box');
+            resBox.classList.remove('hidden');
+
+            const entry = (CAO_LY_DATA[hCan] && CAO_LY_DATA[hCan][wChi]) ? CAO_LY_DATA[hCan][wChi] : {
+                title: `${hCan} thủ ${wChi} chi đồ`,
+                hanViet: "Quẻ cổ đang cập nhật...",
+                chuThich: "Thế quẻ hòa hợp trung bình, ăn ở gia đạo giữ đạo lý sẽ hạnh phúc."
+            };
+
+            document.getElementById('res-title').innerText = entry.title;
+            document.getElementById('res-han-viet').innerText = `"${entry.hanViet}"`;
+            document.getElementById('res-chuthich').innerText = entry.chuThich;
+
+            // Cung Sanh & Element Evaluation according to Page 6, 9, 10, 11, 12
+            evaluateCungAndElement();
+        }
+
+        function evaluateCungAndElement() {
+            const hYr = parseInt(document.getElementById('husband-year').value) || 1981;
+            const wYr = parseInt(document.getElementById('wife-year').value) || 1988;
+
+            const hCung = getCungSanhFromYear(hYr);
+            const wCung = getCungSanhFromYear(wYr);
+
+            document.getElementById('cung-husband-txt').innerText = hCung;
+            document.getElementById('cung-wife-txt').innerText = wCung;
+
+            // Exact rules from Page 6 & 10-11
+            const kiatPairs = [
+                ["Càn","Càn"], ["Càn","Cấn"], ["Càn","Khôn"], ["Càn","Đoài"],
+                ["Khảm","Khảm"], ["Khảm","Chấn"], ["Khảm","Tốn"], ["Khảm","Ly"],
+                ["Cấn","Cấn"], ["Cấn","Càn"], ["Cấn","Khôn"], ["Cấn","Đoài"],
+                ["Chấn","Chấn"], ["Chấn","Khảm"], ["Chấn","Tốn"], ["Chấn","Ly"], ["Ly","Chấn"],
+                ["Tốn","Tốn"], ["Tốn","Khảm"], ["Tốn","Chấn"], ["Tốn","Ly"],
+                ["Ly","Ly"], ["Ly","Khảm"], ["Ly","Tốn"],
+                ["Khôn","Khôn"], ["Khôn","Càn"], ["Khôn","Cấn"], ["Khôn","Đoài"],
+                ["Đoài","Đoài"], ["Đoài","Càn"], ["Đoài","Cấn"], ["Đoài","Khôn"]
+            ];
+
+            const isKiett = kiatPairs.some(p => p[0] === hCung && p[1] === wCung);
+            const cungStatus = document.getElementById('cung-match-status');
+            const cungDesc = document.getElementById('cung-desc');
+
+            if (isKiett) {
+                cungStatus.innerText = "Kiệt (Tốt)";
+                cungStatus.className = "text-xs px-2 py-0.5 rounded bg-green-950 text-green-400 border border-green-800";
+                cungDesc.innerText = `Theo Bảng trang 10-11: Cung ${hCung} kết hợp Cung ${wCung} thuộc thế KIỆT (Tốt). Gia đạo an vui, làm ăn thuận lợi.`;
+            } else {
+                cungStatus.innerText = "Hung (Xấu)";
+                cungStatus.className = "text-xs px-2 py-0.5 rounded bg-red-950 text-red-400 border border-red-800";
+                cungDesc.innerText = `Theo Bảng trang 10-11: Cung ${hCung} kết hợp Cung ${wCung} thuộc thế HUNG (Xấu). Cần giữ gìn hòa khí và siêng làm việc phước thiện.`;
+            }
+
+            // Element Evaluation based on Page 9
+            const hElem = CUNG_INFO[hCung].element;
+            const wElem = CUNG_INFO[wCung].element;
+
+            document.getElementById('elem-husband-txt').innerText = `${hElem} (${hCung})`;
+            document.getElementById('elem-wife-txt').innerText = `${wElem} (${wCung})`;
+
+            document.getElementById('element-match-status').innerText = `${hElem} - ${wElem}`;
+            document.getElementById('elem-desc').innerText = `Căn cứ theo trang 9 & 12 sách Cao Ly Đầu Hình: Cung ${hCung} thuộc ${hElem}, Cung ${wCung} thuộc ${wElem}.`;
+        }
+
+        function filterCatalog(can) {
+            const listContainer = document.getElementById('catalog-list');
+            const canData = CAO_LY_DATA[can];
+
+            if (!canData) return;
+
+            listContainer.innerHTML = CHI_LIST.map(chi => {
+                const item = canData[chi] || { title: `${can} thủ ${chi} chi đồ`, hanViet: "Đang cập nhật...", chuThich: "Trung bình" };
+                return `
+                    <div class="bg-[#14100d] p-4 rounded-lg border border-[#2d2319] space-y-2">
+                        <div class="flex justify-between items-center border-b border-[#2a2016] pb-2">
+                            <span class="font-bold text-[#d4af37] font-serif-title">${item.title}</span>
+                            <span class="text-xs px-2 py-0.5 rounded bg-[#281e15] text-[#e5c178] border border-[#d4af37]/20">Chồng ${can} + Vợ ${chi}</span>
+                        </div>
+                        <p class="text-xs italic text-[#a0907d]">"${item.hanViet}"</p>
+                        <p class="text-xs text-[#e5e0d8] leading-relaxed font-book">${item.chuThich}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function buildCatalog() {
+            filterCatalog("Giáp");
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('tab-tra-cuu').classList.add('hidden');
+            document.getElementById('tab-thu-vien').classList.add('hidden');
+            document.getElementById('tab-cung-mang').classList.add('hidden');
+
+            document.getElementById('tab-btn-tra-cuu').classList.remove('active-tab');
+            document.getElementById('tab-btn-thu-vien').classList.remove('active-tab');
+            document.getElementById('tab-btn-cung-mang').classList.remove('active-tab');
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById(`tab-btn-${tabId}`).classList.add('active-tab');
+        }
+    </script>
+</body>
+</html>
