@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sổ Tay Bát Trạch Hôn Nhân</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        stone: {
+                            50: '#fafafa',
+                            100: '#f5f5f4',
+                            200: '#e7e5e4',
+                            300: '#d6d3d1',
+                            800: '#292524',
+                            900: '#1c1917',
+                        },
+                        earth: {
+                            light: '#d4c5b9',
+                            DEFAULT: '#8b7355',
+                            dark: '#5c4d3c',
+                        },
+                        auspicious: '#4f6d46',
+                        inauspicious: '#8c3b3b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Merriweather', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f7f6f3;
+            color: #2c2825;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased pb-12">
+
+    <!-- Chosen Palette: Warm Neutrals with Earth tones (Stone, Earth, Auspicious Green, Inauspicious Red) -->
+    <!-- Application Structure Plan: A dashboard-style lookup tool. The report contains 64 combinations which are best consumed via a direct query interface rather than scrolling a massive list. The left column provides context (macro view via chart) and controls (inputs). The right column is the focal point, dynamically displaying the queried combination's details (poem, definition, assessment, AI advice) in a clean, card-based layout to maximize readability and impact. -->
+    <!-- Visualization & Content Choices: Report Info -> 64 Combinations -> Goal -> Inform & Organize -> Viz/Presentation Method -> Interactive Form & Dynamic Text Cards -> Interaction -> Dropdown selection updates content -> Justification -> Users seek their specific husband-wife combination; a lookup tool is the most direct and useful UX. A supplementary doughnut chart (Chart.js) summarizes the 8 possible states, fulfilling visualization requirements without cluttering the UI. -> Library/Method - Chart.js (NO SVG/Mermaid). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="w-full bg-white border-b border-stone-200 shadow-sm py-6 mb-8">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-serif font-bold text-earth-dark tracking-tight">64 Quẻ Mệnh Vợ Chồng</h1>
+                <p class="text-sm sm:text-base text-stone-500 mt-1">Hệ thống tra cứu Bát Trạch Hôn Nhân bản khôi phục</p>
+            </div>
+            <div class="hidden sm:block text-4xl text-earth-light">☯</div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="mb-8 bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+            <h2 class="text-xl font-bold text-earth-dark mb-2">Giới thiệu Hệ Thống</h2>
+            <p class="text-stone-600 leading-relaxed">
+                Ứng dụng này giúp bạn tra cứu nhanh chóng 64 quẻ mệnh vợ chồng dựa trên tài liệu phong thủy Bát Trạch Hôn Nhân cổ truyền. Mỗi sự kết hợp giữa cung mệnh của chồng và vợ sẽ tạo ra một trong 8 trạng thái (4 Cát, 4 Hung). Hệ thống cung cấp bài thơ cổ, diễn giải truyền thống và góc nhìn AI hiện đại giúp hài hòa đời sống. Vui lòng chọn Cung Mệnh của Chồng và Vợ để xem kết quả chi tiết.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <aside class="lg:col-span-4 flex flex-col gap-6">
+                
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-lg font-bold text-earth-dark mb-4 border-b border-stone-100 pb-2">Tra Cứu Quẻ Mệnh</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label for="husbandSelect" class="block text-sm font-semibold text-stone-700 mb-1">Cung Mệnh Chồng</label>
+                            <select id="husbandSelect" class="w-full border border-stone-300 rounded-lg py-2.5 px-3 bg-stone-50 text-stone-800 focus:outline-none focus:ring-2 focus:ring-earth focus:border-transparent transition-colors">
+                                <option value="" disabled selected>-- Chọn cung chồng --</option>
+                                <option value="Càn">Càn (Kim)</option>
+                                <option value="Khảm">Khảm (Thủy)</option>
+                                <option value="Cấn">Cấn (Thổ)</option>
+                                <option value="Chấn">Chấn (Mộc)</option>
+                                <option value="Tốn">Tốn (Mộc)</option>
+                                <option value="Ly">Ly (Hỏa)</option>
+                                <option value="Khôn">Khôn (Thổ)</option>
+                                <option value="Đoài">Đoài (Kim)</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="wifeSelect" class="block text-sm font-semibold text-stone-700 mb-1">Cung Mệnh Vợ</label>
+                            <select id="wifeSelect" class="w-full border border-stone-300 rounded-lg py-2.5 px-3 bg-stone-50 text-stone-800 focus:outline-none focus:ring-2 focus:ring-earth focus:border-transparent transition-colors">
+                                <option value="" disabled selected>-- Chọn cung vợ --</option>
+                                <option value="Càn">Càn (Kim)</option>
+                                <option value="Khảm">Khảm (Thủy)</option>
+                                <option value="Cấn">Cấn (Thổ)</option>
+                                <option value="Chấn">Chấn (Mộc)</option>
+                                <option value="Tốn">Tốn (Mộc)</option>
+                                <option value="Ly">Ly (Hỏa)</option>
+                                <option value="Khôn">Khôn (Thổ)</option>
+                                <option value="Đoài">Đoài (Kim)</option>
+                            </select>
+                        </div>
+
+                        <button id="lookupBtn" class="w-full mt-4 bg-earth hover:bg-earth-dark text-white font-semibold py-3 px-4 rounded-lg transition-colors shadow-md">
+                            Xem Kết Quả
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <h3 class="text-lg font-bold text-earth-dark mb-2 text-center">Tỷ Lệ 8 Trạng Thái Bát Trạch</h3>
+                    <p class="text-xs text-center text-stone-500 mb-4">Phân bổ 64 quẻ (50% Cát - 50% Hung)</p>
+                    <div class="chart-container">
+                        <canvas id="summaryChart"></canvas>
+                    </div>
+                </div>
+
+            </aside>
+
+            <section class="lg:col-span-8">
+                
+                <div id="initialState" class="h-full flex flex-col items-center justify-center bg-white rounded-xl shadow-sm border border-stone-200 p-12 text-center min-h-[500px]">
+                    <div class="text-6xl text-earth-light mb-4">☯</div>
+                    <h2 class="text-2xl font-serif font-bold text-earth-dark mb-2">Chưa chọn quẻ mệnh</h2>
+                    <p class="text-stone-500 max-w-md">Vui lòng chọn Cung Mệnh của Chồng và Vợ ở bảng điều khiển bên trái, sau đó nhấn "Xem Kết Quả" để khám phá luận giải chi tiết.</p>
+                </div>
+
+                <div id="resultState" class="hidden bg-white rounded-xl shadow-sm border border-stone-200 overflow-hidden min-h-[500px]">
+                    
+                    <div id="resultHeader" class="p-6 md:p-8 text-center border-b border-stone-100 transition-colors duration-500">
+                        <p class="text-sm font-semibold tracking-widest uppercase mb-2 opacity-80 text-white" id="combinationTitle">Chồng ... - Vợ ...</p>
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-2" id="stateTitle">Trạng Thái</h2>
+                        <span id="stateBadge" class="inline-block px-4 py-1 rounded-full text-sm font-bold bg-white/20 text-white backdrop-blur-sm">Cát / Hung</span>
+                    </div>
+
+                    <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 fade-in">
+                        
+                        <div class="md:col-span-2 bg-stone-50 rounded-lg p-6 border border-stone-200 relative">
+                            <div class="absolute -top-3 left-6 bg-stone-200 text-stone-600 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Bài Thơ Gốc</div>
+                            <div class="text-center font-serif text-lg leading-loose text-earth-dark italic whitespace-pre-line" id="poemContent">
+                                Thơ cổ truyền...
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xl">📖</span>
+                                <h3 class="text-lg font-bold text-earth-dark">Định Nghĩa Cung</h3>
+                            </div>
+                            <p class="text-stone-600 text-sm leading-relaxed text-justify" id="defContent">
+                                Giải nghĩa cung...
+                            </p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="text-xl">📜</span>
+                                <h3 class="text-lg font-bold text-earth-dark">Nhận Định Gốc</h3>
+                            </div>
+                            <p class="text-stone-600 text-sm leading-relaxed text-justify font-medium" id="evalContent">
+                                Đánh giá cổ nhân...
+                            </p>
+                        </div>
+
+                        <div class="md:col-span-2 bg-blue-50/50 rounded-lg p-6 border border-blue-100 mt-2">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-xl">💡</span>
+                                <h3 class="text-lg font-bold text-blue-900">Góc Nhìn AI & Giải Pháp Hiện Đại</h3>
+                            </div>
+                            <p class="text-blue-800 text-sm leading-relaxed text-justify" id="aiContent">
+                                Lời khuyên...
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script>
+        const stateDefs = {
+            "Phục Vị": "Trong hôn nhân gia đình, cung Phục Vị có ý nghĩa mang đến sự bền vững, tình duyên gắn bó, gia đình hòa thuận, hạnh phúc, con cháu hiếu thảo, khỏe mạnh. Khi thiết kế phòng ngủ theo hướng Phục Vị, gia chủ sẽ cảm thấy thoải mái, an yên, cuộc sống vợ chồng hạnh phúc.",
+            "Lục Sát": "Lục sát là khi gia chủ và quái mệnh kết hợp nhưng không phù hợp. Trong phong thủy, Lục sát mang đến những điều xui rủi, chậm phát triển trong sự nghiệp, cuộc sống và gây ra những mâu thuẫn, không hòa hợp trong các mối quan hệ.",
+            "Thiên Y": "Trong phong thủy, cung Thiên Y (thuộc sao Cự Môn) là cung chủ về sức khỏe, sự trường thọ và có quý nhân phù trợ. Hôn nhân đạt cung Thiên Y sẽ mang lại sự hòa hợp sâu sắc về mặt thể chất lẫn tinh thần, giúp gia đình vượt qua bệnh tật, thu hút tài lộc dồi dào và tạo dựng nền tảng phước đức vững chắc cho thế hệ sau.",
+            "Ngũ Quỷ": "Cung Ngũ Quỷ (gặp sao Liêm Trinh) mang ý nghĩa xấu trong hôn nhân, biểu thị cho sự xáo trộn, tranh chấp, dễ gặp tổn hao về tài sản và tai tiếng thị phi. Cặp vợ chồng phạm cung Ngũ Quỷ thường gặp trắc trở về kinh tế, lòng tin bị rạn nứt, con cái khó dạy bảo hoặc dễ sinh lòng bất hòa.",
+            "Họa Hại": "Cung Họa Hại (gặp sao Lộc Tồn) là cung xấu, chủ về những điều không may mắn, thị phi, thất thoát tiền của và mệt mỏi về tinh thần. Trong hôn nhân, cung Họa Hại khiến duyên nợ vợ chồng gặp nhiều gian truân, dễ nảy sinh bất đồng từ những việc nhỏ nhặt, ảnh hưởng tiêu cực đến con đường sự nghiệp và sức khỏe.",
+            "Sinh Khí": "Cung sinh khí được xem là một quẻ bói thể hiện sự viên mãn cho hạnh phúc gia đình đạt được nhiều thành công, địa vị và thành công. Sinh khí là cung mang ý nghĩa tốt đẹp trong các cung Phúc Đức, Ngũ Quỷ, Lục Sát, Tuyệt Mạng,.... Trong mối quan hệ của hôn nhân, vợ chồng cung sinh khí được đánh giá là hôn nhân cát lợi.",
+            "Tuyệt Mệnh": "Trong hôn nhân, nếu vợ hoặc người chồng cung tuyệt mệnh có nghĩa là người chồng hay người vợ có cung mệnh, cung phi và quái mệnh không hợp nhau, nên nếu khi kết hợp hôn nhân sẽ thành tuyệt mệnh. Theo quan điểm phong thuỷ của phương Đông, thì Cung tuyệt mệnh trong hôn nhân là cung rất xấu, nên có thể gây nhiều sóng gió rất dễ dẫn đến hôn nhân tan vỡ.",
+            "Diên Niên": "Diên niên là một trong các hướng thuộc phong thủy bát trạch, tượng trưng cho sự viên mãn, mọi điều tốt lành, công việc hanh thông. Do đó, người mua đất hoặc xây nhà hướng diên niên thì gia đình sẽ hạnh phúc hòa thuận và sự nghiệp thuận lợi hơn. Bên cạnh đó, Diên niên trong phong thủy ngũ hành thuộc mệnh Kim."
+        };
+
+        const db = {
+            "Càn": {
+                "Càn": { s: "Phục Vị", p: "Lưỡng Càn phục vị tốt vừa thôi\nSợ lúc tuổi già chẳng đủ đôi\nCon cháu trung bình không bao phát\nRuộng vườn nhà cửa lập hai nơi.\nBậc trung được số giàu sang tuổi già\nVợ chồng bạch thủ thanh gia\nTrung niên gầy dựng cửa nhà yên vui.", e: "Giàu sang về tuổi già, trung niên cửa nhà yên vui.", a: "Cặp đôi đồng cung Càn (thuộc hành Kim) dễ gặp sự tương đồng lớn về tính cách: cả hai đều mạnh mẽ, quyết đoán và có lòng tự trọng cao. Do quẻ Phục Vị mang tính chất bình hòa, êm ấm nhưng ít có đột phá mãnh liệt ở tiền vận, hai vợ chồng cần kiên nhẫn tích lũy ở giai đoạn trung niên. Tránh để sự cứng nhắc, khô khan của hành Kim tạo nên khoảng cách tinh thần lúc về già." },
+                "Khảm": { s: "Lục Sát", p: "Luồng thủy triều nguyên phước đức sinh\nChăn nuôi lục sát nghiệp không thành\nDâu hiền rễ thảo nên khoa cử\nThôn ấp ngợi khen lộc sẵn thành\nLục sát phạm ắt phu thê buồn thảm\nKim cải dở dang nửa đời\nDuyên nợ đổi đời tương tư ly tán.", e: "Phu thê buồn thảm, duyên nợ nửa đời ly tán.", a: "Sự kết hợp giữa Càn (Kim) và Khảm (Thủy) tuy có mối quan hệ tương sinh về mặt ngũ hành, nhưng quẻ phối lại phạm phải Lục Sát. Sự bất hòa thường xuất phát từ việc giao tiếp không hiểu ý nhau, dẫn đến tích tụ uất ức. Gia đình cần đặc biệt lưu ý quản lý tài chính chặt chẽ. Để hóa giải, nên đặt phòng ngủ hoặc bếp hướng về các cung cát tinh để trấn áp luồng khí xấu." },
+                "Cấn": { s: "Thiên Y", p: "Cung vị trường sinh được hợp hòa\nGiàu sang nhờ cậy ở tay bà\nChứa nhiều phúc đức cho con cháu\nSung sướng cùng nhau đến tuổi già.\nMay mắn cuộc đời vượng tài phấn chấn\nTình yêu lửa đượm hương nồng\nRể thảo, dâu hiền an nhàn hậu vận.", e: "Cuộc đời vượng tài, tình yêu mặn nồng, rể thảo, dâu hiền.", a: "Đây là một cuộc hôn nhân đại cát. Chồng Càn (Kim) gặp vợ Cấn (Thổ) tạo nên thế tương sinh vững chắc. Bản mệnh của người vợ chính là bệ đỡ giúp sự nghiệp của chồng thăng tiến vượt bậc. Hai bạn nên tích cực làm việc thiện, chia sẻ tài lộc với cộng đồng để giữ gìn phước đức bền lâu cho con cháu." },
+                "Chấn": { s: "Ngũ Quỷ", p: "Khẩu thiệt giao tranh có đấu tranh\nVợ chồng ngũ quỷ họa tương sinh\nCửa nhà ruộng đất rồi tiêu sạch\nTử biệt sinh ly khó tạo thành.\nTrước sau bất tường nợ duyên lận đận\nTâm ý chồng vợ không hòa\nKhiến nên sinh kế quanh năm túng quẫn.", e: "Vợ chồng không hòa hợp, kinh tế túng quẫn.", a: "Càn (Kim) và Chấn (Mộc) có sự xung khắc mạnh mẽ, lại phạm Ngũ Quỷ khiến gia đạo dễ xảy ra tranh cãi, khẩu thiệt triệt tiêu hòa khí. Để hóa giải, hai vợ chồng cần hạ thấp cái tôi, tuyệt đối không quyết định việc lớn khi đang nóng giận. Về mặt phong thủy nhà ở, có thể hóa giải bằng cách quay hướng bếp về hướng Sinh Khí." },
+                "Tốn": { s: "Họa Hại", p: "Càn Tốn hai cung khắc rõ ràng\nCưỡng cầu kết hợp thế sao an\nNếu không họa hại liên miên đến\nCũng sẽ chia ly người một đi.\nTrước hợp sau lìa vô cùng khốn đốn\nCon cái trưởng thành cút côi\nHình ngục oan khiến vợ chồng thương tổn.", e: "Vợ chồng trước hợp sau lìa, con cái trưởng thành cút côi.", a: "Mối quan hệ khắc quái giữa Càn (Kim) và Tốn (Mộc) tạo nên những xung đột ngầm từ bên trong. Ban đầu cả hai có thể rất thu hút nhau nhưng về sau dễ nảy sinh bất đồng sâu sắc. Lời khuyên là cần minh bạch trong tài chính, tôn trọng không gian riêng tư của nhau và tránh can dự sâu vào các mối quan hệ xã hội phức tạp." },
+                "Đoài": { s: "Sinh Khí", p: "Vàng thoi, vàng khối lại sinh vàng\nPhúc lộc diên niên tuổi thọ khang\nCon cháu nên danh hưng tổ nghiệp\nCàn, Đoài phối hợp chắc giàu sang.\nÊm ấm gia đạo trong ngoài yên vui\nNợ duyên gắn bó trọn đời\nThê vinh tứ quí số người giàu sang.", e: "Duyên nợ gắn bó trọn đời, giàu sang.", a: "Đây là cặp đôi \"song kiếm hợp bích\" vô cùng hoàn hảo. Đồng thuộc hành Kim tạo sự đồng điệu sâu sắc trong suy nghĩ và chí hướng. Sự kết hợp này mang lại vận thế cực kỳ hanh thông, tài lộc dồi dào, con cái thông minh hiếu thảo. Chỉ cần lưu ý tránh để đời sống gia đình quá lý trí, đôi khi nên dành cho nhau những cử chỉ lãng mạn." },
+                "Ly": { s: "Tuyệt Mệnh", p: "Càn, Ly tuyệt mạng ở sao yên\nSinh nở nguy nan lắm lụy phiền\nTử biệt sinh ly như đợi sẵn\nKhó nghèo, đắc thọ, phú quy thiên.\nNợ duyên cầm chắc sầu bi khóc thầm\nÁi ân lỡ nhịp sắc cầm\nMới hay căn kiếp số phần hẩm hiu.", e: "Duyên nợ sầu bi, căn kiếp hẩm hiu.", a: "Càn (Kim) bị Ly (Hỏa) khắc mạnh, lại rơi vào Tuyệt Mệnh nên đời sống hôn nhân dễ chịu nhiều áp lực và biến cố sức khỏe. Để hóa giải, cặp đôi cần hết sức chú ý chăm sóc sức khỏe định kỳ, nhường nhịn nhau trong đời sống thường nhật. Trong nhà, nên chọn hướng xây nhà, phòng ngủ hoặc phòng bếp thuộc cung Thiên Y." },
+                "Khôn": { s: "Diên Niên", p: "Thiên địa càn khôn hợp một nhà\nVân hành san khí phát tam đa\nNhiều tài, nhiều lộc, nhiều con cái\nPhát đạt giàu sang thẳng đến già.\nĐược số phước đức trường tồn ấm no\nTài lộc như nước tràn vô\nCửa nhà đồ sộ quy mô ruộng vườn.", e: "Tài lộc như nước tràn, cửa nhà đồ sộ, phước đức trường tồn.", a: "Sự phối hợp tuyệt vời giữa Càn (Trời) và Khôn (Đất) tạo ra trạng thái cân bằng hoàn mỹ của vũ trụ. Cuộc hôn nhân này bền vững theo thời gian, càng về hậu vận càng giàu sang. Hai vợ chồng luôn giữ được ngọn lửa ấm áp trong gia đình nhờ sự nhu thuận của người vợ và sự vững chãi của người chồng." }
+            },
+            "Khảm": {
+                "Khảm": { s: "Phục Vị", p: "Lưỡng Khảm trùng cung cũng tạm nhàn\nCưới nhau sớm phải chịu trùng tang\nNếu bằng biệt lập xa cha mẹ\nCháu con rồi sau cũng có đàn.\nBình thường cuộc sống nợ duyên êm ấm\nGia đạo tiền định an bài\nMột đời keo sơn áo cơm no ấm.", e: "Gia đình êm thấm, áo cơm no ấm.", a: "Hai người cùng cung Khảm (Thủy) ở cạnh nhau tạo dòng chảy êm đềm nhưng đôi lúc phẳng lặng quá mức dễ gây nhàm chán. Để tránh gia đạo có nỗi buồn âm ỉ như thơ cổ đề cập, hai vợ chồng nên chọn lập nghiệp ở xa quê quán của cả hai bên, điều này giúp mở mang tài lộc và tăng cường sự độc lập." },
+                "Ly": { s: "Diên Niên", p: "Khảm, Ly thủy hỏa chớ nên gần\nPhước đức dẫu nhiều cũng cách phân\nNếu số xa quê mà gặp gỡ\nCũng cho là tạm sống thanh bần.\nẤm êm bỗng chốc tai ách buộc ràng\nSố phần chồng vợ đeo mang\nSuốt đời khổ hận sầu than đêm ngày.", e: "Vợ chồng có số giàu sang, trước sau an nhàn.", a: "Khảm (Thủy) và Ly (Hỏa) là cặp đôi đại diện cho sự đối cực trực tiếp. Dù quẻ phối đạt Diên Niên rất cát lành, song sự xung đột bản tính vẫn ngấm ngầm tồn tại. Đúng như lời thơ khuyên, cặp đôi này nếu lập nghiệp ở phương xa thì sẽ phát huy tối đa cát khí, giúp tài lộc hanh thông và giữ cho tình yêu luôn mặn nồng." },
+                "Cấn": { s: "Ngũ Quỷ", p: "Cấn, Khảm hình tương số định rồi\nLấy nhau chỉ để lụy nhau thôi\nCửa nhà xơ xác thân cơ cực\nNgũ quỷ hành hạ khổ trọn đời.\nCon cái lớn lên đàn điếm du đãng.", e: "Phá sản, con cái lớn lên đàn điếm du đãng...", a: "Mối quan hệ khắc quái giữa Cấn (Thổ) khắc Khảm (Thủy) tạo áp lực nặng nề cho người chồng. Gia đình dễ chịu cảnh hao tài tốn của, con cái khó bảo ban. Giải pháp là cha mẹ cần thống nhất phương pháp giáo dục con cái từ nhỏ một cách nghiêm khắc nhưng giàu tình cảm. Hãy hướng ban thờ hoặc cửa bếp về cung Sinh Khí." },
+                "Khôn": { s: "Tuyệt Mệnh", p: "Khảm, Khôn tuyệt mệnh biết làm sao\nDẫu bị oan gia tự thuở nào\nKết hợp cũng thành sinh tử biệt\nCháu con nối bước xuống âm tào.\nLo âu mắc phải dồn dập ốm đau\nTiền bạc hết, biệt ly sầu\nKhông chồng thì vợ cũng vào cõi âm.", e: "Vợ chồng ly tán, không vợ thì chồng cũng vào cõi âm.", a: "Cực kỳ cẩn trọng với các vấn đề sức khỏe của cả hai vợ chồng khi Khảm bị Khôn khắc chế sâu sắc. Để giảm bớt hung khí của Tuyệt Mệnh, hai bạn nên tích cực hành thiện tích đức, phóng sinh. Nên lựa chọn sống trong ngôi nhà có cửa chính hoặc hướng bếp quay về cung Sinh Khí để giải trừ năng lượng tiêu cực." },
+                "Chấn": { s: "Thiên Y", p: "Nước gặp gió to dậy sóng lên\nThiên y Chấn, Khảm số làm nên\nCháu con đông đúc tài miên thạch\nHoè quế y quan rực trước thềm.\nQuan lộc uy quyền đời sống sung mãn\nThế vinh tử quý rõ ràng\nDuyên nợ vợ chồng da mồi tóc bạc.", e: "Đời sống sung mãn, duyên nợ da mồi tóc bạc.", a: "Khảm (Thủy) nuôi dưỡng Chấn (Mộc) mang ý nghĩa tương sinh đắc lực. Cuộc hôn nhân này mang lại nguồn năng lượng dồi dào về thể chất lẫn tinh thần. Vợ chồng đồng hành giúp đỡ nhau vượt qua mọi khó khăn thử thách, con cái thành đạt hiển vinh. Đây là một cặp quẻ vô cùng viên mãn, chỉ cần giữ lối sống lành mạnh." },
+                "Đoài": { s: "Họa Hại", p: "Kim quái sinh Thủy vốn tương đồng\nNhưng quẻ phối ra Họa Hại chung\nTuy đời tương sinh nhiều lộc thọ\nGia đạo trong ngoài thỉnh thoảng giông.\nThủy chung như nhứt ai bì phong lưu\nVợ chồng có số sang giàu\nHưởng của phụ ẩm trước sau an nhàn.", e: "Suốt đời đau khổ, sầu than đêm ngày.", a: "Dù ngũ hành Kim (Đoài) sinh Thủy (Khảm) tốt đẹp, nhưng quẻ bát trạch lại phạm Họa Hại. Gia đạo dễ nảy sinh mâu thuẫn lặt vặt từ việc ứng xử hàng ngày. Để giữ gìn hạnh phúc, hai vợ chồng nên tránh tham gia vào các hoạt động đỏ đen hay đầu tư mạo hiểm. Luôn giữ thái độ ôn hòa và nhường nhịn đối phương." },
+                "Tốn": { s: "Sinh Khí", p: "Khảm, Tốn nên duyên phước lớn thay\nThiên y, quan lộc hưởng lâu dài\nCửa nhà khang lệ, chăn nuôi vượng\nCon cái thông minh đỗ đạt hoài.\nSố không sang nhưng an lành\nVợ chồng thuận và con cái tốt.", e: "Số không sang nhưng an lành, vợ chồng thuận và con cái tốt.", a: "Thủy (Khảm) dưỡng Mộc (Tốn) rất tốt, quẻ phối đạt Sinh Khí cát tường. Đời sống gia đình luôn tràn đầy sinh khí, hòa thuận ấm êm. Dẫu đôi lúc sự nghiệp không quá bùng nổ rực rỡ nhưng cuộc sống luôn bình an, no đủ và con cái ngoan ngoãn. Gia đình nên chú trọng việc gìn giữ nếp sống gia phong đạo đức." },
+                "Càn": { s: "Lục Sát", p: "Càn quái phối cùng Khảm thủy thanh\nLục sát phạm phòng nghiệp khó thành\nDuyên nợ trăm năm sầu trắc trở\nNể mặt nhau cho mọi sự lành.\nTang thương từ thuở hai đàn hiệp hôn\nBuồn cho duyên nợ long đong\nBất hòa tâm lý vợ chồng đảo điên.", e: "Vợ chồng bất hòa, duyên nợ long đong.", a: "Sự kết hợp này dễ rơi vào tình trạng \"đồng sàng dị mộng\" do tâm lý bất hòa phát sinh liên tục. Hai bạn cần học cách lắng nghe và chia sẻ thẳng thắn thay vì im lặng chịu đựng. Nên tăng cường hành Thủy (sử dụng các gam màu xanh biển, bài trí bể cá cảnh hợp mệnh) để trung hòa luồng sát khí." }
+            },
+            "Cấn": {
+                "Cấn": { s: "Phục Vị", p: "Duyên hòa lưỡng Cấn thật gian nan\nMột khúc tương tư mấy nhịp đàn\nNghèo khổ gần nhau, giàu cách trở\nXa quê hòa hiệp số thanh nhàn.\nSố được vui hưởng thê hòa phu thuận\nPhong lưu nhàn hạ bậc trung\nMột đời ái tình nợ duyên an phận.", e: "Vợ chồng hòa thuận, phong lưu nhàn hạ bậc trung.", a: "Hai người cùng mang quẻ Cấn (Thổ) tựa như hai ngọn núi tựa vào nhau, vô cùng vững chãi nhưng cũng rất cứng nhắc. Đúng như thơ cổ chỉ dẫn, cặp đôi này khi lập nghiệp ở nơi xa xứ sẽ dễ gặt hái thành công hơn. Đời sống hôn nhân cần sự linh hoạt, tránh bảo thủ để gia đình luôn ngập tràn tiếng cười." },
+                "Tốn": { s: "Tuyệt Mệnh", p: "Hai cung tuyệt mệnh chớ nên gần\nCưỡng ép rồi sau họa hại thân\nBịnh hoạn liên miên tiền của sạch\nChồng bên núi Sở vợ sông Tần.\nCăn phần khó tránh tang tóc tổn thương\nTrong hai chắc mất một người\nTử biệt đừng mong tìm phương chạy trốn.", e: "Trong 2 chắc mất 1 người.", a: "Cấn (Thổ) và Tốn (Mộc) xung khắc dữ dội, kết hợp lại phạm Tuyệt Mệnh rất xấu cho sức khỏe và thọ nguyên. Để hóa giải triệt để, hai vợ chồng phải đặc biệt chú trọng phòng bệnh hơn chữa bệnh. Nhà ở nên mở cửa chính hoặc xoay hướng bếp về hướng Sinh Khí để kích hoạt sinh khí dồi dào che chở." },
+                "Chấn": { s: "Lục Sát", p: "Lục sát tương hình kết lứa đôi\nCông danh sự nghiệp nước mây trời\nMẹ cha, con cháu đều suy bại\nKhốn khổ bi ai suốt cuộc đời.\nSản nghiệp sẵn sàng lần hồi tẩu tán\nPhu phụ tâm lý nghịch thường\nTrước sau hạnh phúc gia đình hư nát.", e: "Sản nghiệp sớm tẩu tán, gia đình hạnh phúc hư nát.", a: "Sự phối hợp quẻ Cấn (Thổ) và Chấn (Mộc) mang tính hình khắc dữ dội, dẫn đến việc sản nghiệp dễ bị hao tán nhanh chóng. Hai vợ chồng nên thiết lập một kế hoạch tài chính cực kỳ rõ ràng, không chung vốn làm ăn mạo hiểm. Hãy nhẫn nhịn và thấu hiểu lẫn nhau để giữ vững hạnh phúc gia đình." },
+                "Ly": { s: "Họa Hại", p: "Cấn quái cùng Ly hỏa khắc hành\nHọa hại đeo đai nghiệp khó thành\nPhu thê sầu thảm nhiều tai ách\nCháu con hiền hiếu lập nên danh.\nBất tường tai ách sầu bi gia đình\nYêu đương một tấm chân tình\nCũng chưa được đôi mình sánh đôi.", e: "Gia đình gặp nhiều tai ách.", a: "Cặp đôi Cấn (Thổ) và Ly (Hỏa) tuy tương sinh về ngũ hành nhưng phạm phải quẻ Họa Hại nên gia đạo thỉnh thoảng gặp tai ách vô cớ. Lời khuyên cho hai bạn là giữ lối sống kín kẽ, không khoe khoang của cải và luôn vun đắp tấm lòng chân thành đối đãi với nhau để tình cảm vượt lên trên nghịch cảnh." },
+                "Khôn": { s: "Sinh Khí", p: "Cây khô gặp lửa gọi tương sinh\nSớm gặp bại suy, muộn mới thành\nSinh khí tuy nhiều nhưng phải chậm\nCháu con rồi cũng có uy danh.\nSống đời loan phụng phước tồn hậu lai\nQuan lộc có hưởng hoạch tài\nNhà cao cửa rộng quyền uy vô cùng.", e: "Nhà cao cửa rộng, quyền oai vô cùng.", a: "Sự phối hợp song Thổ (Cấn - Khôn) tạo nên thế đất dày dặn, vững chãi vô cùng. Quẻ Sinh Khí mang lại hậu vận cực kỳ hưng vượng. Ở tiền vận, vợ chồng có thể gặp một chút khó khăn ban đầu nhưng chỉ cần kiên trì bền bỉ, trung vận và hậu vận chắc chắn sẽ sở hữu cơ đồ đồ sộ, con cháu vinh hiển." },
+                "Đoài": { s: "Diên Niên", p: "Cấn, Đoài số thấy được diên niên\nChồng mộc vợ kim khắc ưu phiền\nGiàu có ắt là cam hiếm muộn\nGặp nhau xa xứ mới là yên.\nĐẹp duyên cá nước tiền tài hưng vượng\nSố này thời vận đáng mừng\nNhiều con, nhiều của bậc trung thanh nhàn.", e: "Đẹp duyên, tiền tài hưng vượng, nhàn nhã.", a: "Cấn (Thổ) và Đoài (Kim) tạo thế tương sinh hoàn mỹ. Cung Diên Niên mang đến mối lương duyên đầm ấm, bền vững cả đời. Đôi bên luôn có sự thấu hiểu, sẻ chia sâu sắc. Hậu vận của cặp đôi này vô cùng an nhàn, sung túc. Hãy chú trọng nuôi dạy con cái và tích lũy phước đức bằng các hoạt động thiện nguyện." },
+                "Càn": { s: "Thiên Y", p: "Thủy năng dưỡng mộc vợ nuôi chồng\nBởi mệnh cùng cao bà hiếp ông\nCon cháu đầy nhà nhờ phước đức\nRể hiền, dâu thảo rạng gia phong.\nPhu thê dẫu có nghèo nàn không lo\nTrung niên được của trời cho\nHậu vận sung mãn quy mô ruộng vườn.", e: "Hậu vận sẽ được sung sướng, trung niên hưởng phúc.", a: "Cấn (Thổ) gặp Càn (Kim) tương sinh hài hòa. Quẻ Thiên Y mang lại phúc lộc to lớn, đặc biệt là nguồn hoạnh tài bất ngờ ở tuổi trung niên. Sức khỏe của cả hai vợ chồng đều rất tốt, gia đạo ấm êm bền vững. Người vợ có vai trò rất lớn trong việc tề gia nội trợ, là hậu phương vững chắc cho chồng." },
+                "Khảm": { s: "Ngũ Quỷ", p: "Cấn, Khảm ngũ quỷ lâm vào vòng hoạn nạn.\nSố phận sầu lo kiếp bần hàn\nSự nghiệp lập thân trầy trật lắm\nDuyên nợ nửa đời nhiều ảm đạm.", e: "Duyên nợ nửa đời nhiều ảm đạm, lâm vào vòng hoạn nạn.", a: "Thổ khắc Thủy khiến quẻ phối rơi vào Ngũ Quỷ đầy sóng gió. Đời sống gia đạo dễ lâm vào cảnh túng quẫn tiền bạc hoặc gặp tai tiếng không mong muốn. Để hóa giải, hai bạn nên thiết lập cuộc sống giản dị, chân thành, tránh xa mọi cám dỗ vật chất. Thiết kế phòng ngủ/bếp nhìn về hướng tốt để trấn áp bớt hung khí." }
+            },
+            "Chấn": {
+                "Chấn": { s: "Phục Vị", p: "Rừng cao gió mạnh vụt ào ào\nHoa trái tơi bời cành lá hao\nLập nghiệp gian nan mới đạt chí\nPhước lành cũng được hưởng về sau.\nTrong tình duyên nợ, tiền hậu như nhứt\nCó số no ấm cả đời\nGia đạo yên vui trên hòa dưới thuận.", e: "Số no ấm cả đời, gia đạo yên vui trên dưới hòa thuận.", a: "Lưỡng Chấn (Mộc) kết hợp tựa như cánh rừng đón bão, tiền vận vô cùng vất vả và nhiều biến động. Tuy nhiên, nhờ quẻ Phục Vị che chở, lòng chung thủy trước sau như một sẽ giúp cặp đôi vượt qua giông bão cuộc đời để hưởng quả ngọt về sau. Hãy giữ vững sự kiên định và tin tưởng lẫn nhau tuyệt đối." },
+                "Khảm": { s: "Thiên Y", p: "Chấn, Khảm thiên y ấy lộc trời\nCậy nhờ nước tưới lá hoa tươi\nCháu con thông tuệ đề khoa bảng\nLộc hưởng vinh sang phúc để đời.\nTrăm tuổi phu thê tình nghĩa nồng thấm\nVinh hiển thụ hưởng vững bền\nRể thảo dâu hiền cả nhà êm ấm.", e: "Vợ chồng nghĩa tình nồng thắm, vinh hiển thụ hưởng vững bền.", a: "Sự kết hợp giữa Khảm (Thủy) và Chấn (Mộc) mang ý nghĩa nước tưới cho cây xanh tốt, vô cùng cát lợi. Quẻ Thiên Y mang lại sức khỏe dồi dào và con cái đỗ đạt cao khoa bảng. Cuộc sống phu thê thắm thiết bền lâu, tài lộc dồi dào gõ cửa suốt cuộc đời. Hai bạn nên tiếp tục phát huy tinh thần hiếu thảo." },
+                "Tốn": { s: "Diên Niên", p: "Mộc, hỏa tương sinh nhưng nghịch thường\nCung chồng kém vợ phải chịu nhường\nDầu cho cách trở rồi sau hợp\nCon cháu diên niên phước thọ trường.\nTrung niên hậu vận sang giàu hưởng trọn\nCuộc tình bền vững mặn nồng\nSanh trai đầu lòng trưởng thành quan lớn.", e: "Cuộc tình bền vững trọn đời, hậu vận giàu sang. Con trai đầu lòng trưởng thành quan lớn.", a: "Lưỡng Mộc (Chấn - Tốn) tương hòa, quẻ phối đạt Diên Niên rất vượng về đường con cái và thọ nguyên. Người chồng nên nhường nhịn sự quán xuyến của người vợ một chút để gia đình luôn êm ấm, thuận hòa. Hậu vận cực kỳ viên mãn, phú quý ngập tràn." },
+                "Khôn": { s: "Họa Hại", p: "Chấn, Khôn họa hại khó hòa duyên\nMộc, thổ tương hiềm lắm lụy phiền\nNhà cửa, ruộng vườn có cũng hết\nCháu con đau ốm triền miên.", e: "Duyên nợ khốn đốn, tai ương tật bệnh.", a: "Mộc khắc Thổ tạo ra thế xung đột trực diện trong gia đạo, lại vướng vào Họa Hại nên kinh tế dễ gặp cảnh thâm hụt, con cái hay đau yếu. Để hóa giải, hai vợ chồng nên chọn hướng nhà quay về hướng Sinh Khí của người chồng để kéo lại sinh khí, đồng thời tăng cường sự thấu hiểu, quan tâm chăm sóc lẫn nhau." },
+                "Ly": { s: "Sinh Khí", p: "Chấn, Ly sinh khí được giao hòa\nPhát đạt giàu sang rạng thất gia\nCon cháu lâu bền danh vọng lớn\nTương lai thơm nức tiếng tăm nhà.\nHiệp hôn quan hệ trọn đời thủy chung\nMạng phú quý, cháu con hùng\nLớn lên số ắt phước hồng quyền uy.", e: "Mạng phú quý, vợ chồng chung thủy.", a: "Chấn (Mộc) sinh Ly (Hỏa) tạo ra ngọn lửa bùng cháy rực rỡ, mang ý nghĩa phát đạt mạnh mẽ. Quẻ Sinh Khí mang lại cuộc sống cực kỳ giàu sang phú quý, gia đạo hiển hách danh vọng lớn lao. Đôi bên có sự đồng điệu tâm hồn sâu sắc. Hãy duy trì lòng bao dung và tích cực làm việc thiện để phúc đức luôn tỏa sáng." },
+                "Càn": { s: "Lục Sát", p: "Chấn, Càn lục sát họa đeo dày\nChồng vợ bất hòa lắm đắng cay\nNếu được giàu sang thì cách trở\nGần nhau lệ đổ suốt canh dài.\nCó số phu thê âm thầm tủi hận\nGia đạo lục đục bất hòa\nĐời sống cơ hàn, con cái lận đận.", e: "Vợ chồng đứt gánh giữa đường.", a: "Sự kết hợp giữa Kim khắc Mộc sinh ra Lục Sát đầy cay đắng phu thê lục đục. Để tránh cảnh \"lệ đổ suốt canh dài\", hai bạn cần tuyệt đối tôn trọng sự tự do của đối phương, tránh kiểm soát và nghi ngờ vô cớ. Nên bài trí các vật phẩm phong thủy mang hành Thủy trong nhà để làm cầu nối trung hòa." },
+                "Đoài": { s: "Tuyệt Mệnh", p: "Chấn, Đoài tuyệt mạng khó gần nhau\nMộc khắc kim thường biết nói sao\nNếu đã lỡ mà đeo khổ lụy\nCháu con hoạn nạn lại xa nhau.\nDuyên nợ trước sau thiệt thòi lứa đôi\nVợ chồng không ở trọn đời\nCháu con bất lợi, cút côi lụy phiền.", e: "Vợ chồng không ở trọn đời, cháu con bất lợi côi cút.", a: "Sự tương khắc dữ dội giữa Đoài (Kim) khắc Chấn (Mộc) phạm Tuyệt Mệnh cực kỳ xấu cho thọ nguyên và sự bền vững của hôn nhân. Hai vợ chồng cần đặc biệt tu dưỡng tâm tính, nhường nhịn nhau tột độ để hóa giải nghiệp lực. Nên xây dựng phòng ngủ hoặc bếp quay về hướng Thiên Y của chồng để mượn cát khí che chở." },
+                "Cấn": { s: "Lục Sát", p: "Chấn, Cấn kết duyên ngũ quỷ sinh\nCửa nhà sự nghiệp lập sao thành\nCháu con bịnh tật, tài hao tán\nChồng vợ khổ sầu lệ trắng canh.\nGia đình xáo trộn điêu tàn lửa hương\nNửa chừng xuân mộng thê lương Uyên ương rã cánh đoạn trường sầu u.", e: "Gia đình lục đục bất hòa, con cái lận đận, đời sống bất hòa...", a: "Sự kết hợp này đem lại năng lượng bất hòa liên miên cho tổ ấm. Đôi bên cần học cách lắng nghe tích cực, không giữ lòng thù hằn từ những chuyện cũ. Để cải thiện kinh tế và hóa giải xung khắc, nên chú trọng đặt hướng bếp nhìn về hướng tốt của người chồng để tăng cường vượng khí bảo vệ sức khỏe và tài sản." }
+            },
+            "Tốn": {
+                "Tốn": { s: "Phục Vị", p: "Lưỡng Tốn trùng phùng gió cuốn mau\nTiền vận bôn ba lắm dãi dầu\nGần nhau thì chịu số thương đau\nCửa nhà thiếu hụt con đau bịnh\nGần khó xa ra mới được giàu.\nBình thường đời sống, thân danh tốt\nBa sinh duyên đẹp tình nồng\nSự nghiệp tử tôn tấn tài vượng lộc.", e: "Sự nghiệp tấn tài tấn lộc, đời sống thân danh tốt.", a: "Đồng thuộc quẻ Tốn (Mộc), cuộc sống hôn nhân đôi khi có sóng gió ngầm ở buổi đầu do tính khí dễ thay đổi như gió của cả hai. Nhưng nhờ quẻ Phục Vị che chở, về sau sự nghiệp và gia đạo sẽ ngày một thăng tiến, vững vàng. Khuyên hai vợ chồng nên đồng lòng nhất quán trong các quyết định kinh doanh lớn." },
+                "Chấn": { s: "Diên Niên", p: "Phước đức cũng nhờ ở tổ tông\nTốn, Chấn phối hợp đẹp mây rồng\nCửa nhà thịnh vượng con cháu quý\nĐại phú do thiên tiểu phú cần.\nĐược số phú quí trọn đời an phận\nTiền bạc điền sản thặng dư\nDuyên nợ vợ chồng trăm năm viên mãn.", e: "Giàu có, phú quý trọn đời, vợ chồng hạnh phúc.", a: "Tốn phối Chấn đạt thế \"đẹp mây rồng\", đại cát đại lợi. Cung Diên Niên mang đến hôn nhân viên mãn trăm năm, gia sản thặng dư dồi dào, con cháu thông minh hiếu kính. Hai bạn chỉ cần chú ý duy trì sự hòa thuận trong gia đình và tiếp tục làm việc thiện để tích lũy phước đức trường tồn cho thế hệ mai sau." },
+                "Khôn": { s: "Ngũ Quỷ", p: "Ngũ quỷ hình tượng ám ảnh hoài\nRốt rồi nam bắc cũng chia tay\nNếu còn vương vấn dây con cái\nCũng phải bôn ba đến xứ ngoài.\nSanh cơ khốn đốn bôn chôn cũng hoài\nNợ duyên vốn đã an bài\nTrung niên ắt phải đổi thay cuộc tình.", e: "Trung niên sẽ phải đổi thay cuộc tình.", a: "Sự xung khắc sâu sắc giữa Mộc khắc Thổ sinh ra Ngũ Quỷ dễ làm rạn nứt tình cảm ở tuổi trung niên. Để vượt qua vận hạn này, cả hai cần giữ lòng thủy chung son sắt, thẳng thắn chia sẻ mọi ưu phiền. Về mặt phong thủy nhà ở, nên quay hướng bếp về hướng Sinh Khí của chồng Tốn để chế ngự luồng ám khí Ngũ Quỷ." },
+                "Khảm": { s: "Sinh Khí", p: "Sinh khí xa xa thấy rạng rồi\nVợ chồng duyên số tự nơi trời\nCửa nhà rạng rỡ công danh đẹp\nCon cháu vinh sang nối nghiệp đời.\nTiền định phu thê hiệp vầy duyên thắm\nTài lộc phát vượng huy hoàng\nCon cái lớn lên sống đời nhung gấm.", e: "Tài lộc, con cái sung sướng.", a: "Khảm (Thủy) dưỡng Tốn (Mộc) mang ý nghĩa dòng nước mát lành nuôi lớn mầm xanh. Quẻ Sinh Khí mang lại tài lộc cực kỳ dồi dào vượng phát, công danh rực rỡ và con cái sung sướng sống trong nhung gấm. Đây là lương duyên tiền định hạnh phúc bậc nhất, hãy giữ thái độ khiêm nhường và bao dung." },
+                "Càn": { s: "Họa Hại", p: "Tốn, Càn tương khắc vốn không an\nHọa hại điên đảo nợ gian nan\nKhởi đầu khốn đốn nhiều giông bão\nNợ duyên sầu muộn đắng cay cuộc đời.", e: "Duyên nợ sầu muộn đắng cay cuộc đời.", a: "Mộc gặp Kim tương khắc, lại lâm vào Họa Hại khiến gia đạo dễ gặp chuyện buồn lo không mong muốn. Để hóa giải, hai bạn cần rèn luyện tính kiên nhẫn, tránh để những giận dỗi thường nhật tích tụ thành khoảng cách tinh thần. Nên trang trí nhà cửa bằng tông màu xanh lam, xanh nước biển để hóa giải thế xung khắc." },
+                "Ly": { s: "Thiên Y", p: "Tốn, Ly phối ngẫu vốn tương hòa\nCưới hỏi ba năm rạng cửa nhà\nCon cháu học hành đều đỗ đạt\nRạng danh nhờ lập nghiệp phương xa.\nMạng trường, thân thế ai bì được đâu\nUy quyền tiền bạc bền lâu\nNợ duyên hạnh hưởng sang giàu trăm năm.", e: "Uy quyền tiền bạc bền lâu, giàu sang trăm năm.", a: "Tốn (Mộc) sinh Ly (Hỏa) tạo mối liên kết bền chặt vững vàng. Quẻ Thiên Y mang lại thọ nguyên dài lâu và tiền tài hưng vượng bền vững trăm năm. Vợ chồng luôn có sự tin cậy nâng đỡ lẫn nhau. Hãy tích cực tạo điều kiện cho con cái học tập tự lập xa nhà để phát triển hết tiềm năng sẵn có." },
+                "Cấn": { s: "Tuyệt Mệnh", p: "Số ghi tuyệt mệnh khó nên duyên\nĐeo đẳng càng sinh nỗi lụy phiền\nBuồn khổ lại thêm nhiều hoạn nạn\nCon cháu vất vả có đâu yên.\nChưa chung gối chăn ái tình thỏa mãn\nSố góa lẻ mạng khó toàn\nDuyên nợ đôi đàng rã rời ân hận.", e: "Vợ chồng đứt gánh giữa đường, duyên nợ đôi đàng rời rã ân hận.", a: "Tuyệt Mệnh của cặp Tốn khắc Cấn mang lại nhiều nỗi buồn phiền và nguy cơ bệnh tật tổn hao thọ nguyên. Cách hóa giải tốt nhất là cả hai phải giữ lối sống cực kỳ lành mạnh, nhường nhịn và đồng cảm sâu sắc với đối phương. Hãy đặt bếp nhìn về hướng Sinh Khí của người chồng để mượn sinh khí tốt trấn áp vận hạn." },
+                "Đoài": { s: "Lục Sát", p: "Số sao cay đắng cực thân mình\nLục sát tương xung phạm khắc hình\nNhà cửa, ruộng vườn, tiền của sạch\nCháu con cơ cực, lắm lênh đênh.\nHiệp hôn đã thấy đeo đai khổ phiền\nCửa nhà sa sút ngửa nghiêng\nGây điều đổi nợ thay duyên phũ phàng.", e: "Tiền bạc sa sút, duyên nợ đổi thay phũ phàng.", a: "Mộc bị Kim khắc chế dữ dội, rơi vào Lục Sát khiến gia đạo dễ xáo trộn, kinh tế sa sút tiền của hao tổn. Đôi bên cần tuyệt đối chân thành, trung thực, tránh để những rạn nứt nhỏ tích tụ thành mâu thuẫn lớn. Hãy hóa giải bớt hung khí bằng cách bài trí các vật phẩm thuộc hành Thủy trong phòng khách." }
+            },
+            "Ly": {
+                "Ly": { s: "Phục Vị", p: "Lưỡng Ly chưa hợp thấy mòi suy\nHai hỏa gặp nhau tắt có khi\nNghèo khó bên nhau, giàu tử biệt\nVợ chồng gánh gồng buổi hàn vi.", e: "Tiền bạc giàu có ở bậc trung, hậu vận sung sướng.", a: "Đồng thuộc quẻ Ly (Hỏa), hai ngọn lửa ở gần nhau tạo nhiệt lượng lớn nhưng cũng rất dễ bùng phát giận dữ gây tổn thương lẫn nhau. Để hóa giải lời cảnh báo của cổ nhân, vợ chồng nên học cách kiểm soát cảm xúc, hạ nhiệt kịp thời khi nảy sinh tranh cãi. Giữ cuộc sống bình hòa, hậu vận chắc chắn sẽ ấm êm." },
+                "Càn": { s: "Tuyệt Mệnh", p: "Ly, Càn thủy hỏa chớ nên gần\nPhận mỏng thà cam chịu rẽ phân\nNếu được cùng nhau đầu tóc bạc\nCháu con nghèo khó mạng cơ hàn.\nNợ duyên gãy gánh giữa đàng thảm thương\nCho hay cái số đoạn trường\nLụy phiền ly tán bất tường phu thê.", e: "Nợ duyên gãy cánh, ly tán bất tường.", a: "Mối quan hệ khắc nghịch dữ dội giữa Ly khắc Càn lâm Tuyệt Mệnh mang lại nguy cơ rạn nứt phu thê sâu sắc. Giải pháp cốt lõi là hai bạn phải nuôi dưỡng lòng kiên nhẫn cực lớn, biết nhường nhịn và thấu hiểu đối phương. Để bảo vệ thọ nguyên, hãy thiết kế phòng ngủ hoặc bếp quay về hướng Sinh Khí của người chồng Ly." },
+                "Khảm": { s: "Diên Niên", p: "Chung thủy triều nguyên phước đức sanh\nĐường hoàng hoa lệ đẹp gia đình\nCháu con hiển đạt nên danh phận\nĐại phú do thiên, tiểu phú cần.\nĐược số hiển đạt phu vinh thê ấm\nTình yêu hương lửa mặn nồng\nTương lai con cái trưởng thành khoa bảng.", e: "Tình yêu luôn mặn nồng, tương lai con cái thành đạt.", a: "Dù Ly (Hỏa) và Khảm (Thủy) là thế đối lập, nhưng quẻ phối lại đạt Diên Niên rất cát tường. Cuộc sống gia đình luôn thắm đượm tình yêu thương chân thành. Con cái được thừa hưởng nền giáo dục tốt, đỗ đạt bảng vàng vinh hiển. Chỉ cần lưu ý cân bằng cảm xúc của hai bên để giữ gìn dòng chảy hạnh phúc vững bền." },
+                "Cấn": { s: "Họa Hại", p: "Two ngôi khắc phá khó nên duyên\nHọa hại buồn thương lắm lụy phiền\nBịnh hoạn triền miên tiền của sạch\nCháu con nghèo khó lại không hiền.\nTiền hậu phu thê thủy chung bất nhứt\nSống đời tật ách đeo mang\nVợ chồng đa đoan thiệt thòi thân phận.", e: "Vợ chồng về sau không chung thủy, đời sống vợ chồng đa đoan thiệt thòi thân phận.", a: "Mối quan hệ khắc quái giữa Ly và Cấn phạm Họa Hại khiến đời sống vợ chồng dễ gặp tai ách bủa vây, tiền của khó giữ. Hai bạn cần rèn luyện tấm lòng chung thủy sắt son, tránh mọi cám dỗ bên ngoài xã hội. Nên thường xuyên kiểm tra sức khỏe định kỳ và thực hành lối sống lành mạnh, lương thiện để hóa giải." },
+                "Chấn": { s: "Sinh Khí", p: "Sanh khí một vầng ánh sáng tươi\nĐẹp duyên cầm sắt số do trời\nCửa nhà cao rộng con hiền hiếu\nLộc thọ vinh sang phước hưởng...", e: "Hai vợ chồng lấy nhau sẽ ý hợp tâm đầu, trọn đời nhàn hạ.", a: "Chấn (Mộc) sinh Ly (Hỏa) mang ý nghĩa gỗ nuôi lửa cháy đượm, vô cùng hanh thông. Quẻ Sinh Khí đem đến mối nhân duyên tươi sáng trời ban, vợ chồng ý hợp tâm đầu trọn đời nhàn hạ sung túc. Chỉ cần giữ thái độ tôn trọng lẫn nhau và biết cách sẻ chia công việc gia đình là hạnh phúc luôn tròn đầy viên mĩ." },
+                "Khôn": { s: "Lục Sát", p: "Một giải ngân hà đã trải ra\nVì phương lục sát khó giao hòa\nChăn nuôi, vườn ruộng không nên nghiệp\nGặp gỡ xa quê tạm gọi là.\nKiết hung luân chuyển dập dồn âu lo\nTrai sa đọa, gái lẳng lơ\nTrước sau rồi cũng hững hờ nợ duyên.", e: "Trai sa đọa gái lẳng lơ, trước sau rồi cũng hững hờ nợ duyên...", a: "Phối quẻ phạm Lục Sát khiến gia đạo dễ nảy sinh nghi ngờ, lạnh nhạt từ hai phía. Để tránh cảnh \"hững hờ nợ duyên\", cả hai cần giữ lòng trung thực tuyệt đối trong tình cảm lẫn tiền bạc. Nên hướng ban thờ hoặc cửa bếp về cung Sinh Khí để lấy năng lượng tốt lành xua tan ám khí Lục Sát, bảo vệ hạnh phúc." },
+                "Đoài": { s: "Ngũ Quỷ", p: "Hai ngôi ngũ quỷ khắc xung hình\nGặp gỡ sau, sao cũng phát sinh\nTang tóc mẹ cha sầu tử tức\nMỗi người một ngả hận ly tình.\nTiền bạc bạo phát nhưng hoài công lao\nNửa đời căn kiếp ba đào\nCửa nhà điền sản tiêu hao không còn.", e: "Tiền của hao tốn, cửa nhà tiêu hao không còn.", a: "Ly khắc Đoài dữ dội, rơi vào cung Ngũ Quỷ đầy sóng gió biến động. Tiền tài tuy có lúc bùng phát nhanh nhưng cũng dễ tiêu tán sạch nếu không biết giữ gìn tích lũy. Vợ chồng cần kiềm chế tính nóng giận, đồng tâm hiệp lực trong quản lý kinh tế và đặt hướng bếp nhìn về cung tốt của chồng để hóa giải ách tắc." },
+                "Tốn": { s: "Thiên Y", p: "Tốn, Ly phối quẻ vốn sinh lành\nThiên Y chiếu mệnh vững gia danh\nCả đời ấm cúng giàu sang\nCon cái gái trai vẹn toàn căn bổn.", e: "Cả đời giàu có, con cái gái trai vẹn toàn.", a: "Tốn (Mộc) dưỡng Ly (Hỏa) tương sinh đắc lực, quẻ phối đạt Thiên Y cát khánh. Vợ chồng có đời sống sung túc, ấm cúng trọn đời, con cái ngoan ngoãn đầy đủ nếp tẻ vẹn toàn. Hai bạn hãy luôn giữ vững sự khiêm nhường và bao dung để ngọn lửa ấm áp của Thiên Y mãi rực cháy che chở cho gia đạo bền lâu." }
+            },
+            "Khôn": {
+                "Khôn": { s: "Phục Vị", p: "Tai nạn liên miên, khổ dập dồn\nNếu tình duyên kết Khôn với Khôn\nCông danh sự nghiệp mòn con mắt\nKẻ ở, người đi cách nước non.\nKeo sơn gắn bó cháu con vẹn toàn\nTrung niên mấy lượt thăng trầm\nHậu vận phú quý trăm phần phong lưu.", e: "Trung niên có thăng trầm, cuối đời phú quý phong lưu.", a: "Đồng quẻ Khôn (Thổ) tựa như đất bằng mênh mông, tiền vận và trung vận dễ gặp thăng trầm dập dồn, công danh chậm muộn như lời thơ cổ mô tả. Tuy nhiên, nhờ bản chất Phục Vị kiên định, sự keo sơn gắn bó đồng lòng chịu đựng gian khó sẽ giúp cặp đôi gặt hái quả ngọt cực kỳ viên mãn phú quý ở hậu vận." },
+                "Càn": { s: "Diên Niên", p: "Diên niên ấy phước lộc miên trường\nCon cháu lâu dài hướng thọ xương\nDựng nghiệp chuyên cần phước đức hưởng\nCửa nhà đồ sộ rạng tông đường.", e: "Phú quý an nhàn, có quý nhân phù trợ.", a: "Sự kết hợp giữa Khôn (Thổ) và Càn (Kim) mang lại thế tương sinh vô cùng vững bền, quẻ phối đạt Diên Niên đại cát. Hôn nhân này mang sắc thái thong thả, phú quý an nhàn và luôn gặp may mắn nhờ quý nhân nâng đỡ suốt cuộc đời. Đôi bên có sự bổ trợ hoàn hảo cho nhau, vợ nhu thuận, chồng vững vàng." },
+                "Khảm": { s: "Tuyệt Mệnh", p: "Khảm, Khôn số khắc khó nên duyên\nNếu giàu thì yểu, khó nghèo yên\nCháu con vất vả thân đa bịnh\nGia đạo suy vì lắm lụy phiền.\nCăn phần duyên nợ chuốc lấy sầu thảm\nSố phải dở dang nửa đời\nChồng vợ hai người đổi dời ly tán.", e: "Chồng vợ dở dang nửa đời, duyên nợ sầu thảm.", a: "Thổ khắc mạnh Thủy lại phạm Tuyệt Mệnh cực kỳ bất lợi cho sức khỏe và thọ nguyên phu thê. Để hóa giải tốt, hai bạn nên duy trì cuộc sống thanh bạch, tích cực làm việc thiện giúp đỡ người khó khăn để tích tụ âm đức. Trong nhà, nên quay hướng bếp về hướng Sinh Khí của người chồng Khôn để lấy sinh khí tốt chế quái." },
+                "Cấn": { s: "Sinh Khí", p: "Phải chịu gian nan, cực buổi đầu\nBa năm nghĩ cũng chẳng bao lâu\nSau này phước lộc trời cho đó\nNhà cửa vinh quang lọ phải cầu.\nSinh cơ mọi bề thời hưng phấn chấn\nGia đạo trước sau hòa thuận\nThừa thãi trong ngoài ruộng vườn điền sản.", e: "Giàu có, gia đình thuận hòa mọi bề.", a: "Lưỡng Thổ tương hòa tạo thế đất đai trù phú vững chãi, quẻ Sinh Khí mang lại phúc lộc cực kỳ hưng vượng. Giai đoạn đầu (khoảng 3 năm đầu) hai vợ chồng có thể gặp một chút gian nan chật vật, nhưng về sau tài lộc điền sản thặng dư dồi dào, gia đạo ấm êm vô cùng rực rỡ. Hãy kiên trì vượt qua khó khăn ban đầu." },
+                "Chấn": { s: "Họa Hại", p: "Họa hại trùng trùng kéo tới đây\nChấn, Khôn khó hợp nợ duyên này\nSống lâu thêm khổ, sầu ly biệt\nCon cháu vô can bị vạ lây.\nKhông hình ngục thì cũng bị bịnh tật\nDuyên nợ lắm vấp buồn khổ\nĐời sống lầm thang, sinh cơ chật vật.", e: "Đời sống lầm than, duyên nợ khổ buồn.", a: "Mộc khắc Thổ lại vướng Họa Hại khiến đời sống kinh tế và tinh thần phu thê dễ gặp cảnh chật vật, mệt mỏi. Cách hóa giải hiệu quả là cả hai hãy hạ thấp cái tôi cá nhân, giải quyết mọi bất đồng bằng sự dịu dàng, ôn hòa. Nên chọn hướng phòng ngủ hoặc bếp nhìn về các hướng Tây, Tây Bắc để mượn cát khí bảo vệ bình an." },
+                "Ly": { s: "Lục Sát", p: "Lục sát hình xung khó kết thành\nNgân hà trắng xóa nước mênh mông\nTha phương gặp gỡ còn nhàn hạ\nMột xứ giao hòa, họa hại sinh.\nDuyên nợ sầu bi sầu oán lụy phu thê.", e: "Duyên nợ sầu bi tháng ngày.", a: "Sự phối hợp quẻ phối phạm Lục Sát dễ đem lại nỗi sầu bi triền miên cho gia đạo. Theo lời khuyên hữu ích từ cổ nhân, hai vợ chồng nếu lập nghiệp phương xa thì sẽ giảm bớt được hung hiểm, đời sống nhàn hạ hơn. Hãy tránh đầu tư tài chính chung bừa bãi và luôn giữ sự tin tưởng tuyệt đối dành cho đối phương." },
+                "Đoài": { s: "Thiên Y", p: "Khôn, Đoài tương phối đắc sinh lành\nThiên Y phước lộc chiếu gia danh\nRuộng vườn, nhà cửa đầy mỹ lệ\nTrăm năm vui hưởng chữ bình an.\nMạng cường hưởng thọ, tài lộc bền lâu.", e: "Hưởng thọ lộc tài dài lâu, con trai công danh tốt, gái hiền rể thảo.", a: "Thổ sinh Kim mang ý nghĩa bồi đắp vượng phát cát tường, quẻ đạt Thiên Y vô cùng mãn nguyện. Vợ chồng được hưởng cuộc sống bình an, thọ mệnh dài lâu, điền sản dồi dào quy mô rộng lớn. Con cháu hiển đạt tài giỏi hiếu thảo vô cùng đẹp lòng cha mẹ. Đây là cặp quẻ đại cát, hãy trân trọng gìn giữ ngọn lửa ấm áp của gia đình." },
+                "Tốn": { s: "Ngũ Quỷ", p: "Hồi ở xa nhau, thương nhớ nhau\nGần nhau không cãi cũng sinh đau\nTrong nhà ngũ quỷ năm phương dậy\nKết cuộc nhà xiêu, gió thổi nhào.\nCuộc đời vật chất số cực thiếu thốn\nDuyên nợ lận đận nghịch thường\nCon cái bất hòa lớn lên cùng khốn.", e: "Cuộc đời chật vật, con cái bất hòa cùng khốn.", a: "Mộc khắc Thổ dữ dội lại phạm Ngũ Quỷ khiến gia đình dễ lâm vào cảnh chật vật tài chính hoặc bất hòa nội bộ. Để hóa giải, hai vợ chồng phải học cách nhường nhịn đối phương, không chấp nhặt những chuyện vụn vặt. Nên xoay hướng bếp về hướng Thiên Y của chồng Khôn để hóa giải hung khí và thu hút may mắn." }
+            },
+            "Đoài": {
+                "Đoài": { s: "Phục Vị", p: "Nhật lạc non Đoài sương sắp rơi\nGặp nhau rồi cũng cách đôi nơi\nNếu không khăn trắng trùm lên tóc\nThì khổ triền miên cả cuộc đời.\nBình thường thì cũng tiền tài bậc trung\nGia đình thân mạng thung dung\nTrưởng thành con cháu đẹp lòng mẹ cha.", e: "Tiền bạc ở bậc trung, con cháu trưởng thành đẹp lòng cha mẹ.", a: "Đồng thuộc quẻ Đoài (Kim), hai người giống như hai thanh kiếm báu rèn cùng một lò, dễ va chạm mẻ góc nếu tính khí quá sắc sảo, cứng nhắc. Nhờ bản chất Phục Vị che chở, nếu hai bạn biết hạ bớt cái tôi, nói năng ôn hòa và cùng nhau vun đắp tình cảm thì cuộc sống sẽ thung dung, tiền bạc bậc trung lưu ấm cúng." },
+                "Càn": { s: "Sinh Khí", p: "Đoài, Càn phước đức lớn vô cùng\nKim thủy tương sinh được ở chung\nCon cháu sau này thành đại nghiệp\nTrai hiền, gái hiếu vẹn can tùng.\nHôn nhân bền vững lộc quan vượng tài\nSanh cơ vốn một lời hai\nLầu cao cửa rộng gái trai ngoan hiền.", e: "Hôn nhân bền vững, nhà cao cửa rộng, con cái ngoan hiền.", a: "Sự phối hợp hoàn hảo đồng hành Kim tương hòa sinh vương cát tường dạt dào. Quẻ Sinh Khí mang đến hôn nhân cực kỳ vững bền, tài lộc hanh thông hưng thịnh vang dội. Hãy luôn duy trì sự thấu hiểu chân thành để hào quang cát tường luôn soi sáng bao bọc lấy gia đình nhỏ của bạn." },
+                "Khảm": { s: "Họa Hại", p: "Đoài, Khảm tương khắc bởi hai cung\nHọa hại đeo đai nợ lẫy lừng\nGia đạo thăng trầm sầu vạn lối\nNửa đời thân phận sanh ly\nPhu thê lâm vòng trái ngang lãnh đạm.", e: "Tai ương tật ách thêm thảm, nửa đời sanh ly.", a: "Quẻ Đoài sinh Khảm tốt đẹp, nhưng rơi vào Họa Hại khiến gia đạo đôi lúc gặp chuyện sầu muộn trái ngang không mong muốn. Để hóa giải, hai bạn cần minh bạch trong giao tiếp, tránh im lặng chịu đựng dễ tạo khoảng cách lớn. Nên tăng cường năng lượng mộc (bài trí thêm cây xanh phong thủy phù hợp) để dung hòa." },
+                "Cấn": { s: "Diên Niên", p: "Cháu quí, con vinh, phước đức nhân\nDiên niên ấy phước tự trời ban\nĐầu xanh yêu kính như đầu bạc\nKhông được giàu to cũng được sang.\nPhụ ấm sẵn dành bề tài lợi tấn\nGia đạo thê tử êm ấm\nDuyên nợ trọn đời lửa hương nồng thắm.", e: "Thê tử êm ấm, duyên nợ trọn đời nồng thắm.", a: "Cấn gặp Đoài tương sinh hài hòa đắc lực. Cung Diên Niên mang đến mối tình cảm phu thê son sắt mặn nồng từ lúc đầu xanh đến đầu bạc. Tài lộc hưng vượng ấm cúng, cuộc sống nhàn nhã hanh thông suốt cả cuộc đời. Hãy cùng nhau gìn giữ sự chung thủy và lòng hiếu thảo làm gốc gia phong." },
+                "Chấn": { s: "Tuyệt Mệnh", p: "Mộc khắc kim thường quá rõ ràng\nChấn, Đoài tương hợp khó bình an\nNếu không nghèo khổ, nhiều đau bịnh\nẮt cũng chia ly người một đàng.\nChăn gối ái tình khó yên thân phận\nBỗn lụy phiền, duyên nợ lìa tan\nCầm bằng căn kiếp đa truân lận đận.", e: "Căn kiếp đa trân lận đận, duyên nợ lìa tan.", a: "Sự xung khắc sâu sắc giữa Kim khắc Mộc kết hợp Tuyệt Mệnh cực kỳ bất lợi cho thọ nguyên và gia đạo phu thê. Để hóa giải tốt nhất, hai bạn cần đặc biệt lưu tâm chăm sóc sức khỏe định kỳ cho nhau, học cách kiểm soát nóng giận tối đa. Nên xoay hướng bếp nhìn về hướng Sinh Khí của chồng Đoài để thu hút sinh khí tốt." },
+                "Tốn": { s: "Lục Sát", p: "Trái số nên không trọn nợ duyên\nHình xung lục sát ở sao yên\nCông danh, tài lộc cầu không được\nTử biệt sinh ly con cháu phiền.\nXáo trộn gia đình sanh cơ khốn đốn\nCon cái lớn nhỏ bất tường\nTình nghĩa lạt phai lăng loàn hỗn độn.", e: "Gia đình khốn đốn, tình nghĩa lăng loàn hỗn độn.", a: "Mộc gặp Kim xung khắc, lại lâm Lục Sát dễ khiến tình nghĩa phai nhạt, kinh tế gia đình chịu nhiều biến động xáo trộn. Cần chú trọng sự giao tiếp cởi mở, chân thành để giải quyết triệt để mọi khúc mắc. Bài trí các vật phẩm thuộc hành Thủy (màu đen, xanh biển) trong phòng khách để làm yếu tố kết nối trung hòa." },
+                "Ly": { s: "Ngũ Quỷ", p: "Đoài, Ly ngũ quỷ khắc hình tranh\nSự nghiệp tiền tài bất đắc thành\nGia đạo lo âu nhiều tai ách\nMẹ cha tang tóc cháu con buồn\nNgũ quỷ phạm thì giọt lệ tuôn\nĐa sinh bịnh tật công danh bại.", e: "Công danh sự nghiệp bất thành, duyên nợ như sợi chỉ mành.", a: "Hỏa khắc Kim phạm Ngũ Quỷ mang đến nhiều thử thách lớn về mặt tài chính và sức khỏe. Sự nghiệp của hai vợ chồng dễ gặp cản trở khó thành đạt vững vàng. Để chế khắc, hai bạn cần tuyệt đối kiên nhẫn, tránh tham gia mọi hình thức đầu tư may rủi. Nên đặt bếp hướng về hướng Sinh Khí của chồng Đoài để điều hòa vượng khí." },
+                "Khôn": { s: "Thiên Y", p: "Hợp mặt đủ đầy có thiếu chi\nNhà cửa đường hoàng, vườn ruộng tốt\nCháu con vinh hiển mấy ai bì.\nMột đàn thê tử vuông tròn giàu sang\nGia đình sau trước huy hoàng\nTrung niên hậu vận rõ ràng nghiệp danh.", e: "Gia đình giàu sang, con cái làm nên sự nghiệp.", a: "Thổ dưỡng Kim vô cùng cát lành, quẻ đạt Thiên Y viên mãn. Gia đình ấm êm no đủ, tiền tài thặng dư phong phú. Con cháu được học hành tốt đẹp hiển đạt vang dội sự nghiệp. Hai bạn chỉ cần tiếp tục gìn giữ lối sống thiện lương để phúc phần được lưu giữ bền lâu cho các thế hệ sau." }
+            }
+        };
+
+        const goodStates = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
+
+        const husbandSelect = document.getElementById('husbandSelect');
+        const wifeSelect = document.getElementById('wifeSelect');
+        const lookupBtn = document.getElementById('lookupBtn');
+        const initialState = document.getElementById('initialState');
+        const resultState = document.getElementById('resultState');
+        
+        const combinationTitle = document.getElementById('combinationTitle');
+        const stateTitle = document.getElementById('stateTitle');
+        const stateBadge = document.getElementById('stateBadge');
+        const resultHeader = document.getElementById('resultHeader');
+        
+        const poemContent = document.getElementById('poemContent');
+        const defContent = document.getElementById('defContent');
+        const evalContent = document.getElementById('evalContent');
+        const aiContent = document.getElementById('aiContent');
+
+        function updateUI() {
+            const husband = husbandSelect.value;
+            const wife = wifeSelect.value;
+
+            if (!husband || !wife) {
+                alert("Vui lòng chọn đầy đủ Cung Mệnh của Chồng và Vợ.");
+                return;
+            }
+
+            const result = db[husband]?.[wife];
+            if (!result) return;
+
+            initialState.classList.add('hidden');
+            resultState.classList.remove('hidden');
+
+            resultState.classList.remove('fade-in');
+            void resultState.offsetWidth;
+            resultState.classList.add('fade-in');
+
+            combinationTitle.textContent = `Chồng ${husband} - Vợ ${wife}`;
+            stateTitle.textContent = result.s;
+            poemContent.textContent = result.p;
+            defContent.textContent = stateDefs[result.s];
+            evalContent.textContent = result.e;
+            aiContent.textContent = result.a;
+
+            if (goodStates.includes(result.s)) {
+                resultHeader.className = 'p-6 md:p-8 text-center border-b transition-colors duration-500 bg-auspicious';
+                stateBadge.textContent = 'Trạng Thái: CÁT (Tốt)';
+                stateBadge.className = 'inline-block px-4 py-1 rounded-full text-sm font-bold bg-white/20 text-white backdrop-blur-sm shadow-sm';
+            } else {
+                resultHeader.className = 'p-6 md:p-8 text-center border-b transition-colors duration-500 bg-inauspicious';
+                stateBadge.textContent = 'Trạng Thái: HUNG (Xấu)';
+                stateBadge.className = 'inline-block px-4 py-1 rounded-full text-sm font-bold bg-white/20 text-white backdrop-blur-sm shadow-sm';
+            }
+        }
+
+        lookupBtn.addEventListener('click', updateUI);
+
+        const ctx = document.getElementById('summaryChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Sinh Khí (Đại Cát)', 'Thiên Y (Đại Cát)', 'Diên Niên (Thứ Cát)', 'Phục Vị (Tiểu Cát)', 'Tuyệt Mệnh (Đại Hung)', 'Ngũ Quỷ (Đại Hung)', 'Lục Sát (Thứ Hung)', 'Họa Hại (Tiểu Hung)'],
+                datasets: [{
+                    data: [8, 8, 8, 8, 8, 8, 8, 8],
+                    backgroundColor: [
+                        '#4f6d46', '#6b8e23', '#8b9d77', '#a3b18a', 
+                        '#6b2c2c', '#8c3b3b', '#a55c5c', '#bc7a7a'  
+                    ],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 10, family: 'Inter' },
+                            padding: 10,
+                            boxWidth: 12
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return ` ${context.label}: ${context.raw} trường hợp (12.5%)`;
+                            }
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+    </script>
+</body>
+</html>
