@@ -143,101 +143,93 @@
             "Khôn": `Trời dành cung số được thiên y\nHợp mặt đủ đầy có thiếu chi\nNhà cửa đường hoàng, vườn ruộng tốt\nCháu con vinh hiển mấy ai bì.\nMột đàn thê tử vuông tròn giàu sang\nGia đình sau trước huy hoàng\nTrung niên hậu vận rõ ràng nghiệp danh.`
         }
     };
-        const saoTot = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
+            const saoTot = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
 
-    // KHO DỮ LIỆU CHUẨN XÁC NẠP TRỰC TIẾP TỪ BẢNG THƯ TỊCH CỔ CỦA CHÚ
+    // KHO DỮ LIỆU GỐC TRÍCH XUẤT TỪ 2 BỨC ẢNH SÁCH CỔ CỦA CHÚ
     const thongTinPhongThuyCung = {
         // --- NHÓM TÝ ---
-        1984: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" }, // Giáp Tý
-        1996: { sanh: "Cấn", nam: "Tốn", vo: "Khôn" },   // Bính Tý
-        2008: { sanh: "Càn", nam: "Đoài", vo: "Cấn" },  // Mậu Tý
-        1950: { sanh: "Càn", nam: "Tốn", vo: "Khôn" },  // Canh Tý (Dữ liệu dòng 4 nhóm Tý)
-        1972: { sanh: "Chấn", nam: "Khảm", vo: "Cấn" }, // Nhâm Tý
+        1984: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" },  // Giáp Tý
+        1996: { sanh: "Cấn", nam: "Tốn", vo: "Khôn" },    // Bính Tý
+        2008: { sanh: "Càn", nam: "Đoài", vo: "Cấn" },   // Mậu Tý
+        1960: { sanh: "Ly", nam: "Tốn", vo: "Khôn" },    // Canh Tý
+        1972: { sanh: "Chấn", nam: "Khảm", vo: "Cấn" },  // Nhâm Tý
 
         // --- NHÓM SỬU ---
-        1985: { sanh: "Tốn", nam: "Càn", vo: "Ly" },    // Ất Sửu
-        1997: { sanh: "Ly", nam: "Ly", vo: "Càn" },     // Đinh Sửu
-        2009: { sanh: "Đoài", nam: "Càn", vo: "Ly" },   // Kỷ Sửu
-        1961: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" }, // Tân Sửu
-        1973: { sanh: "Tốn", nam: "Ly", vo: "Càn" },    // Quý Sửu
+        1985: { sanh: "Tốn", nam: "Càn", vo: "Ly" },     // Ất Sửu
+        1997: { sanh: "Ly", nam: "Ly", vo: "Càn" },      // Đinh Sửu
+        2009: { sanh: "Đoài", nam: "Càn", vo: "Ly" },    // Kỷ Sửu
+        1961: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" },  // Tân Sửu
+        1973: { sanh: "Tốn", nam: "Ly", vo: "Càn" },     // Quý Sửu
 
         // --- NHÓM DẦN ---
-        1974: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" },  // Giáp Dần
-        1986: { sanh: "Khảm", nam: "Khôn", vo: "Khảm" }, // Bính Dần
-        1998: { sanh: "Khảm", nam: "Khôn", vo: "Tốn" },  // Mậu Dần
-        1950: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" }, // Canh Dần (1950)
-        2010: { sanh: "Cấn", nam: "Đoài", vo: "Cấn" },  // Canh Dần (2010)
-        1962: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },  // Nhâm Dần
+        1974: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" },   // Giáp Dần
+        1986: { sanh: "Khảm", nam: "Khôn", vo: "Khảm" },  // Bính Dần
+        1998: { sanh: "Khảm", nam: "Khôn", vo: "Tốn" },   // Mậu Dần
+        1950: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },  // Canh Dần
+        1962: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },   // Nhâm Dần
 
         // --- NHÓM MÃO ---
-        1975: { sanh: "Ly", nam: "Đoài", vo: "Cấn" },   // Ất Mão
-        1987: { sanh: "Càn", nam: "Tốn", vo: "Khôn" },  // Đinh Mão
-        1999: { sanh: "Khôn", nam: "Khảm", vo: "Cấn" },  // Kỷ Mão
-        1951: { sanh: "Ly", nam: "Tốn", vo: "Khảm" },   // Tân Mão
-        1963: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Quý Mão
+        1975: { sanh: "Ly", nam: "Đoài", vo: "Cấn" },    // Ất Mão
+        1987: { sanh: "Càn", nam: "Tốn", vo: "Khôn" },   // Đinh Mão
+        1999: { sanh: "Khôn", nam: "Khảm", vo: "Cấn" },   // Kỷ Mão
+        1951: { sanh: "Ly", nam: "Tốn", vo: "Khảm" },    // Tân Mão
+        1963: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },    // Quý Mão
 
         // --- NHÓM THÌN ---
-        1964: { sanh: "Tốn", nam: "Ly", vo: "Cấn" },    // Giáp Thìn
-        1976: { sanh: "Khảm", nam: "Càn", vo: "Ly" },   // Bính Thìn
-        1988: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" }, // Mậu Thìn
-        2000: { sanh: "Càn", nam: "Ly", vo: "Ly" },     // Canh Thìn
-        1952: { sanh: "Khảm", nam: "Chấn", vo: "Chấn" }, // Nhâm Thìn
+        1964: { sanh: "Tốn", nam: "Ly", vo: "Cấn" },     // Giáp Thìn
+        1976: { sanh: "Khảm", nam: "Càn", vo: "Ly" },    // Bính Thìn
+        1988: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" },  // Mậu Thìn
+        2000: { sanh: "Càn", nam: "Ly", vo: "Ly" },      // Canh Thìn
+        1952: { sanh: "Khảm", nam: "Chấn", vo: "Chấn" },  // Nhâm Thìn
 
         // --- NHÓM TỴ ---
-        1965: { sanh: "Đoài", nam: "Cấn", vo: "Đoài" },  // Ất Tỵ
-        1977: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Đinh Tỵ
-        1989: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },   // Kỷ Tỵ
-        2001: { sanh: "Tốn", nam: "Cấn", vo: "Đoài" },  // Tân Tỵ
-        1953: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Quý Tỵ (1953)
-        2013: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Quý Tỵ (2013)
+        1965: { sanh: "Đoài", nam: "Cấn", vo: "Đoài" },   // Ất Tỵ
+        1977: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" },  // Đinh Tỵ
+        1989: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },    // Kỷ Tỵ
+        2001: { sanh: "Tốn", nam: "Cấn", vo: "Đoài" },   // Tân Tỵ
+        1953: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },   // Quý Tỵ
 
         // --- NHÓM NGỌ ---
-        1954: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Giáp Ngọ
-        1966: { sanh: "Càn", nam: "Đoài", vo: "Đoài" },  // Bính Ngọ
-        1978: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Mậu Ngọ
-        1990: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Canh Ngọ
-        1942: { sanh: "Ly", nam: "Đoài", vo: "Tốn" },   // Nhâm Ngọ (1942)
-        2002: { sanh: "Ly", nam: "Đoài", vo: "Tốn" },   // Nhâm Ngọ (2002)
+        1954: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },    // Giáp Ngọ
+        1966: { sanh: "Càn", nam: "Đoài", vo: "Đoài" },   // Bính Ngọ
+        1978: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },   // Mậu Ngọ
+        1990: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },    // Canh Ngọ
+        1942: { sanh: "Ly", nam: "Đoài", vo: "Tốn" },    // Nhâm Ngọ
 
         // --- NHÓM MÙI ---
-        1955: { sanh: "Khảm", nam: "Ly", vo: "Càn" },   // Ất Mùi
-        1967: { sanh: "Đoài", nam: "Càn", vo: "Ly" },   // Đinh Mùi
-        1979: { sanh: "Tốn", nam: "Chấn", vo: "Chấn" },  // Mậu Mùi
-        1991: { sanh: "Khảm", nam: "Ly", vo: "Cấn" },   // Tân Mùi
-        1943: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Quý Mùi (1943)
-        2003: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Quý Mùi (2003)
+        1955: { sanh: "Khảm", nam: "Ly", vo: "Càn" },    // Ất Mùi
+        1967: { sanh: "Đoài", nam: "Càn", vo: "Ly" },    // Đinh Mùi
+        1979: { sanh: "Tốn", nam: "Chấn", vo: "Chấn" },   // Mậu Mùi
+        1991: { sanh: "Khảm", nam: "Ly", vo: "Cấn" },    // Tân Mùi
+        1943: { sanh: "Càn", nam: "Càn", vo: "Ly" },     // Quý Mùi
 
         // --- NHÓM THÂN ---
-        1944: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Giáp Thân (1944)
-        2004: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Giáp Thân (2004)
-        1956: { sanh: "Đoài", nam: "Cấn", vo: "Cấn" },  // Bính Thân
-        1968: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },  // Mậu Thân
-        1980: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Canh Thân
-        1992: { sanh: "Khôn", nam: "Cấn", vo: "Đoài" },  // Nhâm Thân
+        1944: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },   // Giáp Thân
+        1956: { sanh: "Đoài", nam: "Cấn", vo: "Cấn" },   // Bính Thân
+        1968: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },   // Mậu Thân
+        1980: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },   // Canh Thân
+        1992: { sanh: "Khôn", nam: "Cấn", vo: "Đoài" },   // Nhâm Thân
 
         // --- NHÓM DẬU ---
-        1945: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Ất Dậu (1945)
-        2005: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Ất Dậu (2005)
-        1957: { sanh: "Chấn", nam: "Đoài", vo: "Đoài" }, // Đinh Dậu
-        1969: { sanh: "Ly", nam: "Tốn", vo: "Khôn" },   // Kỷ Dậu
-        1981: { sanh: "Càn", nam: "Khảm", vo: "Cấn" },  // Tân Dậu
-        1993: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" },  // Quý Dậu
+        1945: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },   // Ất Dậu
+        1957: { sanh: "Chấn", nam: "Đoài", vo: "Đoài" },  // Đinh Dậu
+        1969: { sanh: "Ly", nam: "Tốn", vo: "Khôn" },    // Kỷ Dậu
+        1981: { sanh: "Càn", nam: "Khảm", vo: "Cấn" },   // Tân Dậu
+        1993: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" },   // Quý Dậu
 
         // --- NHÓM TUẤT ---
-        1994: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Giáp Tuất
-        1946: { sanh: "Tốn", nam: "Ly", vo: "Càn" },    // Bính Tuất (1946)
-        2006: { sanh: "Tốn", nam: "Chấn", vo: "Chấn" },  // Bính Tuất (2006)
-        1958: { sanh: "Tốn", nam: "Càn", vo: "Ly" },    // Mậu Tuất
-        1970: { sanh: "Càn", nam: "Chấn", vo: "Chấn" },  // Canh Tuất
-        1982: { sanh: "Đoài", nam: "Ly", vo: "Càn" },   // Nhâm Tuất
+        1994: { sanh: "Càn", nam: "Càn", vo: "Ly" },     // Giáp Tuất
+        1946: { sanh: "Tốn", nam: "Ly", vo: "Càn" },     // Bính Tuất
+        1958: { sanh: "Tốn", nam: "Càn", vo: "Ly" },     // Mậu Tuất
+        1970: { sanh: "Càn", nam: "Chấn", vo: "Chấn" },   // Canh Tuất
+        1982: { sanh: "Đoài", nam: "Ly", vo: "Càn" },    // Nhâm Tuất
 
         // --- NHÓM HỢI ---
-        1995: { sanh: "Đoài", nam: "Khôn", vo: "Khảm" }, // Ất Hợi
-        1947: { sanh: "Khôn", nam: "Cấn", vo: "Chấn" },  // Đinh Hợi (1947)
-        2007: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Đinh Hợi (2007)
-        1959: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },  // Kỷ Hợi
-        1971: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Tân Hợi
-        1983: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" }    // Quý Hợi
+        1995: { sanh: "Đoài", nam: "Khôn", vo: "Khảm" },  // Ất Hợi
+        1947: { sanh: "Khôn", nam: "Cấn", vo: "Chấn" },   // Đinh Hợi
+        1959: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },   // Kỷ Hợi
+        1971: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },   // Tân Hợi
+        1983: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" }     // Quý Hợi
     };
 
     function layBaiTho(cungChong, cungVo) {
@@ -247,13 +239,35 @@
         return "*(Thư tịch cổ chưa cập nhật bài thơ luận giải cho cặp cung này)*";
     }
 
-    function traCuuBatTrach() {
-        const namChong = parseInt(document.getElementById("namSinhChong").value);
-        const namVo = parseInt(document.getElementById("namSinhVo").value);
+    // THUẬT TOÁN CHUYỂN ĐỔI CHU KỲ HOA GIÁP ĐỂ TRA CỨU MỌI NĂM TƯƠNG LAI
+    function chuanHoaNamVeGoc(namSinh) {
+        let namGoc = namSinh;
+        // Nếu năm lớn hơn 2009, dịch ngược từng chu kỳ 60 năm về thế kỷ 20 để tra cứu
+        while (namGoc > 2009) {
+            namGoc -= 60;
+        }
+        // Nếu năm nhỏ hơn 1942, dịch tiến từng chu kỳ 60 năm lên
+        while (namGoc < 1942) {
+            namGoc += 60;
+        }
+        return namGoc;
+    }
 
-        // Kiểm tra tính hợp lệ của năm sinh trong kho sách cổ
+    function traCuuBatTrach() {
+        const namChongIn = parseInt(document.getElementById("namSinhChong").value);
+        const namVoIn = parseInt(document.getElementById("namSinhVo").value);
+
+        if (isNaN(namChongIn) || isNaN(namVoIn)) {
+            alert("Vui lòng nhập đúng năm sinh âm lịch!");
+            return;
+        }
+
+        // Tự động quy đổi năm tương lai (ví dụ 2026, 2043...) về năm gốc trong chu kỳ Lục Thập Hoa Giáp
+        const namChong = chuanHoaNamVeGoc(namChongIn);
+        const namVo = chuanHoaNamVeGoc(namVoIn);
+
         if (!thongTinPhongThuyCung[namChong] || !thongTinPhongThuyCung[namVo]) {
-            alert("Năm sinh bạn nhập chưa nằm trong hệ thống bảng tra cứu số hóa của Sách Cổ. Vui lòng thử các năm từ 1942 đến 2013!");
+            alert("Hệ thống gặp lỗi quy đổi Hoa Giáp. Vui lòng kiểm tra lại năm sinh!");
             return;
         }
 
@@ -276,7 +290,7 @@
         box.style.display = "block";
         box.innerHTML = `
             <p style="font-size:18px; text-align:center; color:#8b0000; margin-top:0;"><b>KẾT QUẢ PHÂN TÍCH ĐỒNG NIÊN PHỐI HỢP</b></p>
-            <p style="text-align:center; font-size:15px;">Chồng sinh năm: <b>${namChong}</b> &nbsp;|&nbsp; Vợ sinh năm: <b>${namVo}</b></p>
+            <p style="text-align:center; font-size:15px;">Chồng sinh năm: <b>${namChongIn}</b> &nbsp;|&nbsp; Vợ sinh năm: <b>${namVoIn}</b></p>
             <hr>
             
             <p style="font-size:16px; margin-bottom:5px;"><b>I. XÉT THEO CUNG PHI (Mệnh Cung Phi):</b></p>
