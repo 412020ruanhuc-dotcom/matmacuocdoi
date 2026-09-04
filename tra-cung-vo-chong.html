@@ -143,28 +143,102 @@
             "Khôn": `Trời dành cung số được thiên y\nHợp mặt đủ đầy có thiếu chi\nNhà cửa đường hoàng, vườn ruộng tốt\nCháu con vinh hiển mấy ai bì.\nMột đàn thê tử vuông tròn giàu sang\nGia đình sau trước huy hoàng\nTrung niên hậu vận rõ ràng nghiệp danh.`
         }
     };
-    const saoTot = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
+        const saoTot = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
 
-    // THUẬT TOÁN TÍNH CUNG PHI (NĂM SINH + GIỚI TÍNH)
-    function tinhCungPhi(namSinh, gioiTinh) {
-        let tong = 0, n = namSinh;
-        while (n > 0) { tong += n % 10; n = Math.floor(n / 10); }
-        let soDu = tong % 9; if (soDu === 0) soDu = 9;
-        let idx = (gioiTinh === "nam") ? (11 - soDu) % 9 : (4 + soDu) % 9;
-        if (idx === 0) idx = 9;
-        if (idx === 5) return gioiTinh === "nam" ? "Khôn" : "Cấn";
-        return mangCung[idx];
-    }
+    // KHO DỮ LIỆU CHUẨN XÁC NẠP TRỰC TIẾP TỪ BẢNG THƯ TỊCH CỔ CỦA CHÚ
+    const thongTinPhongThuyCung = {
+        // --- NHÓM TÝ ---
+        1984: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" }, // Giáp Tý
+        1996: { sanh: "Cấn", nam: "Tốn", vo: "Khôn" },   // Bính Tý
+        2008: { sanh: "Càn", nam: "Đoài", vo: "Cấn" },  // Mậu Tý
+        1950: { sanh: "Càn", nam: "Tốn", vo: "Khôn" },  // Canh Tý (Dữ liệu dòng 4 nhóm Tý)
+        1972: { sanh: "Chấn", nam: "Khảm", vo: "Cấn" }, // Nhâm Tý
 
-    // THUẬT TOÁN TÍNH CUNG SANH ĐỒNG NIÊN THEO CHU KỲ LỤC THẬP HOA GIÁP
-    function tinhCungSanh(namSinh) {
-        if (namSinh === 1964) return "Tốn";
-        if (namSinh === 1968) return "Cấn";
-        let can = (namSinh - 4) % 10; if (can < 0) can += 10;
-        let chi = (namSinh - 4) % 12; if (chi < 0) chi += 12;
-        const cungSanhTheoCanChi = ["Tốn", "Cấn", "Càn", "Khôn", "Ly", "Khảm", "Đoài", "Chấn", "Khôn", "Tốn"];
-        return cungSanhTheoCanChi[(can + chi) % 10]; 
-    }
+        // --- NHÓM SỬU ---
+        1985: { sanh: "Tốn", nam: "Càn", vo: "Ly" },    // Ất Sửu
+        1997: { sanh: "Ly", nam: "Ly", vo: "Càn" },     // Đinh Sửu
+        2009: { sanh: "Đoài", nam: "Càn", vo: "Ly" },   // Kỷ Sửu
+        1961: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" }, // Tân Sửu
+        1973: { sanh: "Tốn", nam: "Ly", vo: "Càn" },    // Quý Sửu
+
+        // --- NHÓM DẦN ---
+        1974: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" },  // Giáp Dần
+        1986: { sanh: "Khảm", nam: "Khôn", vo: "Khảm" }, // Bính Dần
+        1998: { sanh: "Khảm", nam: "Khôn", vo: "Tốn" },  // Mậu Dần
+        1950: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" }, // Canh Dần (1950)
+        2010: { sanh: "Cấn", nam: "Đoài", vo: "Cấn" },  // Canh Dần (2010)
+        1962: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },  // Nhâm Dần
+
+        // --- NHÓM MÃO ---
+        1975: { sanh: "Ly", nam: "Đoài", vo: "Cấn" },   // Ất Mão
+        1987: { sanh: "Càn", nam: "Tốn", vo: "Khôn" },  // Đinh Mão
+        1999: { sanh: "Khôn", nam: "Khảm", vo: "Cấn" },  // Kỷ Mão
+        1951: { sanh: "Ly", nam: "Tốn", vo: "Khảm" },   // Tân Mão
+        1963: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Quý Mão
+
+        // --- NHÓM THÌN ---
+        1964: { sanh: "Tốn", nam: "Ly", vo: "Cấn" },    // Giáp Thìn
+        1976: { sanh: "Khảm", nam: "Càn", vo: "Ly" },   // Bính Thìn
+        1988: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" }, // Mậu Thìn
+        2000: { sanh: "Càn", nam: "Ly", vo: "Ly" },     // Canh Thìn
+        1952: { sanh: "Khảm", nam: "Chấn", vo: "Chấn" }, // Nhâm Thìn
+
+        // --- NHÓM TỴ ---
+        1965: { sanh: "Đoài", nam: "Cấn", vo: "Đoài" },  // Ất Tỵ
+        1977: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Đinh Tỵ
+        1989: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },   // Kỷ Tỵ
+        2001: { sanh: "Tốn", nam: "Cấn", vo: "Đoài" },  // Tân Tỵ
+        1953: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Quý Tỵ (1953)
+        2013: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Quý Tỵ (2013)
+
+        // --- NHÓM NGỌ ---
+        1954: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Giáp Ngọ
+        1966: { sanh: "Càn", nam: "Đoài", vo: "Đoài" },  // Bính Ngọ
+        1978: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Mậu Ngọ
+        1990: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Canh Ngọ
+        1942: { sanh: "Ly", nam: "Đoài", vo: "Tốn" },   // Nhâm Ngọ (1942)
+        2002: { sanh: "Ly", nam: "Đoài", vo: "Tốn" },   // Nhâm Ngọ (2002)
+
+        // --- NHÓM MÙI ---
+        1955: { sanh: "Khảm", nam: "Ly", vo: "Càn" },   // Ất Mùi
+        1967: { sanh: "Đoài", nam: "Càn", vo: "Ly" },   // Đinh Mùi
+        1979: { sanh: "Tốn", nam: "Chấn", vo: "Chấn" },  // Mậu Mùi
+        1991: { sanh: "Khảm", nam: "Ly", vo: "Cấn" },   // Tân Mùi
+        1943: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Quý Mùi (1943)
+        2003: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Quý Mùi (2003)
+
+        // --- NHÓM THÂN ---
+        1944: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Giáp Thân (1944)
+        2004: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Giáp Thân (2004)
+        1956: { sanh: "Đoài", nam: "Cấn", vo: "Cấn" },  // Bính Thân
+        1968: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },  // Mậu Thân
+        1980: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Canh Thân
+        1992: { sanh: "Khôn", nam: "Cấn", vo: "Đoài" },  // Nhâm Thân
+
+        // --- NHÓM DẬU ---
+        1945: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Ất Dậu (1945)
+        2005: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Ất Dậu (2005)
+        1957: { sanh: "Chấn", nam: "Đoài", vo: "Đoài" }, // Đinh Dậu
+        1969: { sanh: "Ly", nam: "Tốn", vo: "Khôn" },   // Kỷ Dậu
+        1981: { sanh: "Càn", nam: "Khảm", vo: "Cấn" },  // Tân Dậu
+        1993: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" },  // Quý Dậu
+
+        // --- NHÓM TUẤT ---
+        1994: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Giáp Tuất
+        1946: { sanh: "Tốn", nam: "Ly", vo: "Càn" },    // Bính Tuất (1946)
+        2006: { sanh: "Tốn", nam: "Chấn", vo: "Chấn" },  // Bính Tuất (2006)
+        1958: { sanh: "Tốn", nam: "Càn", vo: "Ly" },    // Mậu Tuất
+        1970: { sanh: "Càn", nam: "Chấn", vo: "Chấn" },  // Canh Tuất
+        1982: { sanh: "Đoài", nam: "Ly", vo: "Càn" },   // Nhâm Tuất
+
+        // --- NHÓM HỢI ---
+        1995: { sanh: "Đoài", nam: "Khôn", vo: "Khảm" }, // Ất Hợi
+        1947: { sanh: "Khôn", nam: "Cấn", vo: "Chấn" },  // Đinh Hợi (1947)
+        2007: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Đinh Hợi (2007)
+        1959: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },  // Kỷ Hợi
+        1971: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Tân Hợi
+        1983: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" }    // Quý Hợi
+    };
 
     function layBaiTho(cungChong, cungVo) {
         if (khoThoBatTrach[cungChong] && khoThoBatTrach[cungChong][cungVo]) {
@@ -177,21 +251,22 @@
         const namChong = parseInt(document.getElementById("namSinhChong").value);
         const namVo = parseInt(document.getElementById("namSinhVo").value);
 
-        if (isNaN(namChong) || isNaN(namVo) || namChong < 1900 || namVo < 1900) {
-            alert("Vui lòng nhập đúng năm sinh âm lịch hợp lệ!");
+        // Kiểm tra tính hợp lệ của năm sinh trong kho sách cổ
+        if (!thongTinPhongThuyCung[namChong] || !thongTinPhongThuyCung[namVo]) {
+            alert("Năm sinh bạn nhập chưa nằm trong hệ thống bảng tra cứu số hóa của Sách Cổ. Vui lòng thử các năm từ 1942 đến 2013!");
             return;
         }
 
-        // 1. LUẬN CUNG PHI
-        const cpChong = tinhCungPhi(namChong, "nam");
-        const cpVo = tinhCungPhi(namVo, "vo");
+        // 1. ĐỐI CHIẾU CHUẨN XÁC THEO CUNG PHI (MỆNH TRẠCH CUNG)
+        const cpChong = thongTinPhongThuyCung[namChong].nam;
+        const cpVo = thongTinPhongThuyCung[namVo].vo;
         const duTinhPhi = maTranBatTrach[cpChong][cpVo];
         const mauPhi = saoTot.includes(duTinhPhi) ? "good" : "bad";
         const thoPhi = layBaiTho(cpChong, cpVo);
 
-        // 2. LUẬN CUNG SANH
-        const csChong = tinhCungSanh(namChong);
-        const csVo = tinhCungSanh(namVo);
+        // 2. ĐỐI CHIẾU CHUẨN XÁC THEO CUNG SANH
+        const csChong = thongTinPhongThuyCung[namChong].sanh;
+        const csVo = thongTinPhongThuyCung[namVo].sanh;
         const duTinhSanh = maTranBatTrach[csChong][csVo];
         const mauSanh = saoTot.includes(duTinhSanh) ? "good" : "bad";
         const thoSanh = layBaiTho(csChong, csVo);
@@ -206,16 +281,16 @@
             
             <p style="font-size:16px; margin-bottom:5px;"><b>I. XÉT THEO CUNG PHI (Mệnh Cung Phi):</b></p>
             <ul>
-                <li>Chồng thuộc cung: <b>${cpChong}</b> (${hanhCung[cpChong]})</li>
-                <li>Vợ thuộc cung: <b>${cpVo}</b> (${hanhCung[cpVo]})</li>
+                <li>Chồng thuộc quẻ Trạch: <b>${cpChong}</b> (${hanhCung[cpChong] || ''})</li>
+                <li>Vợ thuộc quẻ Trạch: <b>${cpVo}</b> (${hanhCung[cpVo] || ''})</li>
                 <li>Kết quẻ phối ngẫu: Chồng cung ${cpChong} lấy Vợ cung ${cpVo} &rArr; <span class="${mauPhi}">${duTinhPhi}</span></li>
             </ul>
             <div class="tho-box"><b>Cổ tịch diễn âm quẻ Phi:</b>\n${thoPhi}</div>
             
             <p style="font-size:16px; margin-bottom:5px;"><b>II. XÉT THEO CUNG SANH (Mệnh Cung Sanh):</b></p>
             <ul>
-                <li>Chồng thuộc cung: <b>${csChong}</b> (${hanhCung[csChong]})</li>
-                <li>Vợ thuộc cung: <b>${csVo}</b> (${hanhCung[csVo]})</li>
+                <li>Chồng thuộc cung Sanh: <b>${csChong}</b> (${hanhCung[csChong] || ''})</li>
+                <li>Vợ thuộc cung Sanh: <b>${csVo}</b> (${hanhCung[csVo] || ''})</li>
                 <li>Kết quẻ phối ngẫu: Chồng cung ${csChong} lấy Vợ cung ${csVo} &rArr; <span class="${mauSanh}">${duTinhSanh}</span></li>
             </ul>
             <div class="tho-box"><b>Cổ tịch diễn âm quẻ Sanh:</b>\n${thoSanh}</div>
