@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Cung Phi và Cung Sanh Bát Trạch - Mật Mã Cuộc Đời</title>
+    <style>
+        body { font-family: 'Times New Roman', Times, serif, Arial; max-width: 680px; margin: 30px auto; padding: 20px; line-height: 1.6; background-color: #fdfbf7; color: #222; }
+        .container { background-color: #fff; border: 1px solid #d4af37; padding: 30px; border-radius: 4px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h2 { color: #8b0000; text-align: center; border-bottom: 2px double #8b0000; padding-bottom: 12px; font-family: serif; letter-spacing: 1px; margin-top: 0; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-weight: bold; margin-bottom: 6px; color: #5a0000; font-size: 16px; }
+        input { width: 100%; padding: 10px; border: 1px solid #cdaa7d; border-radius: 4px; box-sizing: border-box; font-size: 16px; background-color: #fffdf9; }
+        input:focus { border-color: #8b0000; outline: none; background-color: #fff; }
+        button { width: 100%; padding: 14px; background-color: #8b0000; color: white; border: 1px solid #5a0000; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; letter-spacing: 1.5px; transition: 0.2s; }
+        button:hover { background-color: #a00000; box-shadow: 0 2px 8px rgba(139,0,0,0.3); }
+        .result-box { margin-top: 30px; padding: 25px; border: 2px double #8b0000; background-color: #fffefb; display: none; border-radius: 4px; }
+        .tho-box { background-color: #fbf6ec; border-left: 4px solid #b8860b; padding: 15px 20px; margin-top: 12px; font-style: italic; white-space: pre-line; color: #333; font-size: 16px; line-height: 1.8; border-radius: 0 4px 4px 0; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.02); }
+        .good { color: #006400; font-weight: bold; }
+        .bad { color: #d10000; font-weight: bold; }
+        hr { border: 0; border-top: 1px dashed #cdaa7d; margin: 20px 0; }
+        ul { padding-left: 20px; margin: 8px 0; }
+        li { margin-bottom: 4px; }
+        .footer-credit { text-align: center; margin-top: 25px; font-size: 13px; color: #777; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>TRA CỨU CUNG PHI & CUNG SANH BÁT TRẠCH</h2>
+    
+    <div class="form-group">
+        <label>Năm sinh Chồng (Âm lịch):</label>
+        <input type="number" id="namSinhChong" placeholder="Ví dụ: 1964" value="1964" min="1900" max="2100">
+    </div>
+
+    <div class="form-group">
+        <label>Năm sinh Vợ (Âm lịch):</label>
+        <input type="number" id="namSinhVo" placeholder="Ví dụ: 1968" value="1968" min="1900" max="2100">
+    </div>
+
+    <button onclick="traCuuBatTrach()">KHAI PHÁP TRA CỨU</button>
+
+    <div id="ketQua" class="result-box"></div>
+    
+    <div class="footer-credit">© 2026 MATMACUOCDOI.VN - Thư tịch cổ phong thủy học</div>
+</div>
+
+<script>
+    const mangCung = ["", "Khảm", "Khôn", "Chấn", "Tốn", "Khôn_Cấn", "Càn", "Đoài", "Cấn", "Ly"];
+    const hanhCung = { "Khảm": "Thủy", "Khôn": "Thổ", "Chấn": "Mộc", "Tốn": "Mộc", "Càn": "Kim", "Đoài": "Kim", "Cấn": "Thổ", "Ly": "Hỏa" };
+
+    const maTranBatTrach = {
+        "Càn":  {"Càn": "Phục Vị", "Khảm": "Lục Sát", "Khôn": "Diên Niên", "Chấn": "Ngũ Quỷ", "Tốn": "Họa Hại", "Đoài": "Sinh Khí", "Cấn": "Thiên Y", "Ly": "Tuyệt Mệnh"},
+        "Khảm": {"Càn": "Lục Sát", "Khảm": "Phục Vị", "Khôn": "Tuyệt Mệnh", "Chấn": "Thiên Y", "Tốn": "Sinh Khí", "Đoài": "Họa Hại", "Cấn": "Ngũ Quỷ", "Ly": "Diên Niên"},
+        "Khôn": {"Càn": "Diên Niên", "Khảm": "Tuyệt Mệnh", "Khôn": "Phục Vị", "Chấn": "Họa Hại", "Tốn": "Ngũ Quỷ", "Đoài": "Thiên Y", "Cấn": "Sinh Khí", "Ly": "Lục Sát"},
+        "Chấn": {"Càn": "Ngũ Quỷ", "Khảm": "Thiên Y", "Khôn": "Họa Hại", "Chấn": "Phục Vị", "Tốn": "Diên Niên", "Đoài": "Tuyệt Mệnh", "Cấn": "Lục Sát", "Ly": "Sinh Khí"},
+        "Tốn":  {"Càn": "Họa Hại", "Khảm": "Sinh Khí", "Khôn": "Ngũ Quỷ", "Chấn": "Diên Niên", "Tốn": "Phục Vị", "Đoài": "Lục Sát", "Cấn": "Tuyệt Mệnh", "Ly": "Thiên Y"},
+        "Đoài": {"Càn": "Sinh Khí", "Khảm": "Họa Hại", "Khôn": "Thiên Y", "Chấn": "Tuyệt Mệnh", "Tốn": "Lục Sát", "Đoài": "Phục Vị", "Cấn": "Diên Niên", "Ly": "Ngũ Quỷ"},
+        "Cấn":  {"Càn": "Thiên Y", "Khảm": "Ngũ Quỷ", "Khôn": "Sinh Khí", "Chấn": "Lục Sát", "Tốn": "Tuyệt Mệnh", "Đoài": "Diên Niên", "Cấn": "Phục Vị", "Ly": "Họa Hại"},
+        "Ly":   {"Càn": "Tuyệt Mệnh", "Khảm": "Diên Niên", "Khôn": "Lục Sát", "Chấn": "Sinh Khí", "Tốn": "Thiên Y", "Đoài": "Ngũ Quỷ", "Cấn": "Họa Hại", "Ly": "Phục Vị"}
+    };
+
+    const khoThoBatTrach = {
+        "Càn": {
+            "Càn": `Lưỡng Càn phục vị tốt vừa thôi\nSợ lúc tuổi già chẳng đủ đôi\nCon cháu trung bình không bao phát\nRuộng vườn nhà cửa lập hai nơi.\nBậc trung được số giàu sang tuổi già\nVợ chồng bạch thủ thanh gia\nTrung niên gầy dựng cửa nhà yên vui.`,
+            "Khảm": `Luồng thủy triều nguyên phước đức sinh\nChăn nuôi “LutSat” nghiệp không thành\nDâu hiền rể thảo nên khoa cử\nThôn ấp ngợi khen lộc sẵn thành\n“LutSat” phạm ắt phu thê buồn thảm\nKim cải dở dang nửa đởi\nDuyên nợ đổi đời tương tư ly tán.`,
+            "Cấn": `Cung vị trường sinh được hợp hòa\nGiàu sang nhờ cậy ở tay bà\nChứa nhiều phúc đức cho con cháu\nSung sướng cùng nhau đến tuổi già.\nMay mắn cuộc đời vượng tài phấn chấn\nTình yêu lửa đượm hương nồng\nRể thảo, dâu hiền an nhàn hậu vận.`,
+            "Chấn": `Khẩu thiệt giao tranh có đấu tranh\nVợ chồng “NguQuy” họa tương sinh\nCửa nhà ruộng đất rồi tiêu sạch\nTử biệt sinh ly khó tạo thành.\nTrước sau bất tường nợ duyên lận đận\nTâm ý chồng vợ không hòa\nKhiến nên sinh kế quanh năm túng quẩn.`,
+            "Tốn": `Càn Tốn hai cung khắc rõ ràng\nCưỡng cầu kết hợp thế sao an\nNếu không họa hại liên miên đến\nCũng sẽ chia ly người một đi.\nTrước hợp sau lìa vô cùng khốn đốn\nCon cái trưởng thành cút côi\nHình ngục oan khiến vợ chồng thương tổn.`,
+            "Đoài": `Vàng thoi, vàng khối lại sinh vàng\nPhúc lộc diên niên tuổi thọ khang\nCon cháu nên danh hưng tổ nghiệp\nCàn, Đoài phối hợp chắc giàu sang.\nÊm ấm gia đạo trong ngoài yên vui\nNợ duyên gắn bó trọn đời\nThê vinh tứ quí số người giàu sang.`,
+            "Ly": `Càn, Ly tuyệt mạng ở sao yên\nSinh nở nguy nan lắm lụy phiền\nTử biệt sinh ly như đợi sẵn\nKhó nghèo, đắc thọ, phú quy thiên.\nNợ duyên cầm chắc sầu bi khóc thầm\nÁi ân lỡ nhịp sắc cầm\nMới hay căn kiếp số phần hẩm hiu.`,
+            "Khôn": `Thiên địa càn khôn hợp một nhà\nVân hành san khí phát tam đa\nNhiều tài, nhiều lộc, nhiều con cái\nPhát đạt giàu sang thẳng đến già.\nĐược số phước đức trường tồn ấm no\nTài lộc như nước tràn vô\nCửa nhà đồ sộ quy mô ruộng vườn.`
+        },
+        "Khảm": {
+            "Khảm": `Lưỡng Khảm trùng cung cũng tạm nhàn\nCưới nhau sớm phải chịu trùng tang\nNếu bằng biệt lập xa cha mẹ\nCháu con rồi sau cũng có đàn.\nBình thường cuộc sống nợ duyên êm ấm\nGia đạo tiền định an bài\nMột đời keo sơn áo cơm no ấm.`,
+            "Ly": `Khảm, Ly thủy hỏa chớ nên gần\nPhước đức dẫu nhiều cũng cách phân\nNếu số xa quê mà gặp gỡ\nCũng cho là tạm sống thanh bần.\nẤm êm bỗng chốc tai ách buộc ràng\nSố phần chồng vợ đeo mang\nSuốt đời khổ hận sầu than đêm ngày.`,
+            "Cấn": `Cấn, Khảm hình tương số định rồi\nLấy nhau chỉ để lụy nhau thôi\nCửa nhà xơ xác thân cơ cực\n“NguQuy” đeo theo cứ báo đời.\nGiàu có mấy lần rồi cũng phá sản\nDuyên nợ ắt phải lỡ làng\nCon cái lớn lên đàn điếm du đãng.`,
+            "Khôn": `Khảm, Khôn “TuyetMenh” biết làm sao\nDẫu bị oan gia tự thuở nào\nKết hợp cũng thành sinh tử biệt\nCháu con nối bước xuống âm tào.\nLo âu mắc phải dồn dập ốm đau\nTiền bạc hết, biệt ly sầu\nKhông chồng thì vợ cũng vào cõi âm.`,
+            "Chấn": `Nước gặp gió to dậy sóng lên\nThiên y Chấn, Khảm số làm nên\nCháu con đông đúc tài miên thạch\nHoè quế y quan rực trước thềm.\nQuan lộc uy quyền đời sống sung mãn\nThế vinh tử quý rõ ràng\nDuyên nợ vợ chồng da mồi tóc bạc.`,
+            "Đoài": `Thủy, Kim phối ngẫu hợp tương sinh\nTrường thọ diên niên số đã dành\nCháu con hiền hiếu nên danh phận\nVườn, ruộng, chăn nuôi bại hóa thành.\nThủy chung như nhứt ai bì phong lưu\nVợ chồng có số sang giàu\nHưởng của phụ ẩm trước sau an nhàn.`,
+            "Tốn": `Khảm, Tốn nên duyên phước lớn thay\nThiên y, quan lộc hưởng lâu dài\nCửa nhà khang lệ, chăn nuôi vượng\nCon cái thông minh đủ trí tài.\nMạng thọ duyên bền sống vui yên ổn\nSố không sang nhưng no lành\nGia đạo hòa thuận con cái giỏi.`,
+            "Càn": `Đăng hỏa Khảm, Càn số nghịch sinh\nLương duyên phú quý sớm nên danh\nCó điều trai phải nhường cung vợ\nNể mặt nhau cho mọi sự lành.\nTang thương từ thuở hai đàn hiệp hôn\nBuồn cho duyên nợ long đong\nBất hòa tâm lý vợ chồng đảo điên.`
+        },
+        "Cấn": {
+            "Cấn": `Duyên hòa lưỡng Cấn thật gian nan\nMột khúc tương tư mấy nhịp đàn\nNghèo khổ gần nhau, giàu cách trở\nXa quê hòa hiệp số thanh nhàn.\nSố được vui hưởng thê hòa phu thuận\nPhong lưu nhàn hạ bậc trung\nMột đời ái tình nợ duyên an phận.`,
+            "Tốn": `Hai cung “TuyetMenh” chớ nên gần\nCưỡng ép rồi sau họa hại thân\nBịnh hoạn liên miên tiền của sạch\nChồng bên núi Sở vợ sông Tần.\nCăn phần khó tránh tang tóc tổn thương\nTrong hai chắc mất một người\nTử biệt đừng mong tìm phương chạy trốn.`,
+            "Chấn": `“LutSat” tương hình kết lứa đôi\nCông danh sự nghiệp nước mây trời\nMẹ cha, con cháu đều suy bại\nKhốn khổ bi ai suốt cuộc đời.\nSản nghiệp sẵn sàng lần hồi tẩu tán\nPhu phụ tâm lý nghịch thường\nTrước sau hạnh phúc gia đình hư nát.`,
+            "Ly": `Cấn, Ly phước đức vốn tương sinh\nPhối hợp hòa vui sự nghiệp thành\nNhà cửa khang trang, vườn đất rộng\nCháu con hiền hiếu lập nên danh.\nBất tường tai ách sầu bi gia đình\nYêu đương một tấm chân tình\nCũng chưa được đôi mình sánh đôi.`,
+            "Khôn": `Cây khô gặp lửa gọi tương sinh\nSớm gặp bại suy, muộn mới thành\nSinh khí tuy nhiều nhưng phải chậm\nCháu con rồi cũng có uy danh.\nSống đời loan phụng phước tồn hậu lai\nQuan lộc có hươởg hoạch tài\nNhà cao cửa rộng quyền uy vô cùng.`,
+            "Đoài": `Cấn, Đoài số thấy được diên niên\nChồng mộc vợ kim khắc ưu phiền\nGiàu có ắt là cam hiếm muộn\nGặp nhau xa xứ mới là yên.\nĐẹp duyên cá nước tiền tài hưng vượng\nSố này thời vận đáng mừng\nNhiều con, nhiều của bậc trung thanh nhàn.`,
+            "Càn": `Thủy năng dưỡng mộc vợ nuôi chồng\nBởi mệnh cùng cao bà hiếp ông\nCon cháu đầy nhà nhờ phước đức\nRể hiền, dâu thảo rạng gia phong.\nPhu thê dẫu có nghèo nàn không lo\nTrung niên được của trời cho\nHậu vận sung mãn quy mô ruộng vườn.`,
+            "Khảm": `Cấn, Khảm giao hòa sự khó hòa\nBiến hình “NguQuy” họa không xa\nTuy sinh mà khắc vì phương vị\nCháu con suy vì hại thất gia.\nDuyên nợ nữa đời chuốc nhiều ảm đạm\nSố ắt dời đổi hai lần\nNếu không thì phải lâm vòng hoạn nạn.`
+        },
+        "Chấn": {
+            "Chấn": `Rừng cao gió mạnh vụt ào ào\nHoa trái tơi bời cành lá hao\nLập nghiệp gian nan mới đạt chí\nPhước lành cũng được hưởng về sau.\nTrong tình duyên nợ, tiền hậu như nhứt\nCó số no ấm cả đời\nGia đạo yên vui trên hòa dưới thuận.`,
+            "Khảm": `Chấn, Khảm thiên y ấy lộc trời\nCậy nhờ nước tưới lá hoa tươi\nCháu con thông tuệ đề khoa bảng\nLộc hưởng vinh sang phúc để đời.\nTrăm tuổi phu thê tình nghĩa nồng thấm\nVinh hiển thụ hưởng vững bền\nRể thảo dâu hiền cả nhà êm ấm.`,
+            "Tốn": `Mộc, hỏa tương sinh nhưng nghịch thường\nCung chồng kém vợ phải chịu nhường\nDầu cho cách trở rồi sau hợp\nCon cháu diên niên phước thọ trường.\nTrung niên hậu vận sang giàu hưởng trọn\nCuộc tình bền vững mặn nồng\nSanh trai đầu lòng trưởng thành quan lớn.`,
+            "Khôn": `Chấn, Khôn họa hại khó hòa duyên\nMộc, thổ tương hiềm lắm lụy phiền\nNhà cửa, ruộng vườn có cũng hết\nCháu con đau ốm khổ liên miên.\nNợ duyên khốn đốn dập dồn oan thiên\nTrong ngoài thất thế đảo điên\nTai ương bịnh tật dính liền bên lưng.`,
+            "Ly": `Chấn, Ly sinh khí được giao hòa\nPhát đạt giàu sang rạng thất gia\nCon cháu lâu bền danh vọng lớn\nTương lai thơm nức tiếng tăm nhà.\nHiệp hôn quan hệ trọn đời thủy chung\nMạng phú quý, cháu con hùng\nLớn lên số ắt phước hồng quyền uy.`,
+            "Càn": `Chấn, Càn “LutSat” họa đeo dày\nChồng vợ bất hòa lắm đắng cay\nNếu được giàu sang thì cách trở\nGần nhau lệ đổ suốt canh dài.\nCó số phu thê âm thầm tủi hận\nGia đạo lục đục bất hòa\nĐời sống cơ hàn, con cái lận đận.`,
+            "Đoài": `Chấn, Đoài tuyệt mạng khó gần nhau\nMộc khắc kim thường biết nói sao\nNếu đã lỡ mà đeo khổ lụy\nCháu con hoạn nạn lại xa nhau.\nDuyên nợ trước sau thiệt thòi lứa đôi\nVợ chồng không ở trọn đời\nCháu con bất lợi, cút côi lụy phiền.`,
+            "Cấn": `Chấn, Cấn kết duyên “NguQuy” sinh\nCửa nhà sự nghiệp lập sao thành\nCháu con bịnh tật, tài hao tán\nChồng vợ khổ sầu lệ trắng canh.\nGia đình xáo trộn điêu tàn lửa hương\nNửa chừng xuân mộng thê lương\nUyên ương bỏ gánh cang thường từ đây.`
+        },
+        "Tốn": {
+            "Tốn": `Hai Tốn yêu nhau hóa hại nhau\nGần nhau thì chịu số thương đau\nCửa nhà thiếu hụt con đau bịnh\nGần khó xa ra mới được giàu.\nBình thường đời sống, thân danh tốt\nBa sinh duyên đẹp tình nồng\nSự nghiệp tử tôn tấn tài vượng lộc.`,
+            "Chấn": `Phước đức cũng nhờ ở tổ tông\nTốn, Chấn phối hợp đẹp mây rồng\nCửa nhà thịnh vượng con cháu quý\nĐại phú do thiên tiểu phú cần.\nĐược số phú quí trọn đời an phận\nTiền bạc điền sản thặng dư\nDuyên nợ vợ chồng trăm năm viên mãn`,
+            "Khôn": `“NguQuy” hình tượng ám ảnh hoài\nRốt rồi nam bắc cũng chia tay\nNếu còn vương vấn dây con cái\nCũng phải bôn ba đến xứ ngoài.\nSanh cơ khốn đốn bôn chôn cũng hoài\nNợ duyên vốn đã an bài\nTrung niên ắt phải đổi thay cuộc tình.`,
+            "Khảm": `Sinh khí xa xa thấy rạng rồi\nVợ chồng duyên số tự nơi trời\nCửa nhà rạng rỡ công danh đẹp\nCon cháu vinh sang nối nghiệp đời.\nTiền định phu thê hiệp vầy duyên thắm\nTài lộc phát vượng huy hoàng\nCon cái lớn lên sống đời nhung gấm.`,
+            "Càn": `Tốn, Càn thủy hỏa khó yên thân\nHọa hại thường sinh biết mấy lần\nNhà cửa lạnh lùng tiền của hết\nCháu con thôi cũng chịu cơ bần.\nYêu đương tác hợp buồn than đêm ngày\nTriền miên tai ách không hay\nNợ duyên sầu muộn đắng cay cuộc đời.`,
+            "Ly": `Tốn, Ly phối ngẫu vốn tương hòa\nCưới hỏi ba năm rạng cửa nhà\nCon cháu học hành đều đỗ đạt\nRạng danh nhờ lập nghiệp phương xa.\nMạng trường, thân thế ai bì được đâu\nUy quyền tiền bạc bền lâu\nNợ duyên hạnh hưởng sang giàu trăm năm.`,
+            "Cấn": `Số ghi “TuyetMenh” khó nên duyên\nĐeo đẳng càng sinh nỗi lụy phiền\nBuồn khổ lại thêm nhiều hoạn nạn\nCon cháu vất vả có đâu yên.\nChưa chung gối chăn ái tình thỏa mãn\nSố góa lẻ mạng khó toàn\nDuyên nợ đôi đàng rã rời ân hận.`,
+            "Đoài": `Số sao cay đắng cực thân mình\n“LutSat” tương xung phạm khắc hình\nNhà cửa, ruộng vườn, tiền của sạch\nCháu con cơ cực, lắm lênh đênh.\nHiệp hôn đã thấy đeo đai khổ phiền\nCửa nhà sa sút ngửa nghiêng\nGây điều đổi nợ thay duyên phũ phàng.`
+        },
+        "Ly": {
+            "Ly": `Lưỡng Ly chưa hợp thấy mòi suy\nHai hỏa gặp nhau tắt có khi\nNghèo khó bên nhau, giàu tử biệt\nVợ chồng đôi ngả, con phân ly.\nÁi tình, hương lửa trọn đời thủy chung\nTiền bạc giàu có bậc trung\nThân, danh hậu vận lẫy lừng tiếng thơm.`,
+            "Càn": `Ly, Càn thủy hỏa chớ nên gần\nPhận mỏng thà cam chịu rẽ phân\nNếu được cùng nhau đầu tóc bạc\nCháu con nghèo khó mạng cơ hàn.\nNợ duyên gãy gánh giữa đàng thảm thương\nCho hay cái số đoạn trường\nLụy phiền ly tán bất tường phu thê.`,
+            "Khảm": `Chung thủy triều nguyên phước đức sanh\nĐường hoàng hoa lệ đẹp gia đình\nCháu con hiển đạt nên danh phận\nĐại phú do thiên, tiểu phú cần.\nĐược số hiển đạt phu vinh thê ấm\nTình yêu hương lửa mặn nồng\nTương lai con cái trưởng thành khoa bảng.`,
+            "Cấn": `Hai người khắc phá khó nên duyên\nHọa hại buồn thương lắm lụy phiền\nBịnh hoạn triền miên tiền của sạch\nCháu con nghèo khó lại không hiền.\nTiền hậu phu thê thủy chung bất nhứt\nSống đời tật ách đeo mang\nVợ chồng đa đoan thiệt thòi thân phận.`,
+            "Chấn": `Sanh khí một vầng ánh sáng tươi\nĐẹp duyên cầm sắt số do trời\nCửa nhà cao rộng con hiền hiếu\nLộc thọ vinh sang phước hưởng đời.\nÝ hợp tâm đầu làm nên gia thất\nTrọn đời nhàn hạ phong lưu\nTrung niên, hậu vận thành công mọi bề.`,
+            "Tốn": `Trai Ly gái Tốn số trời dành\nSớm muộn rồi đây cũng rạng danh\nCon cháu nhờ ơn cha mẹ để\nVinh sang phước lộc thuở ngày xanh.\nCăn mạng nợ duyên trời cho yên ổn\nCả đời ấm cúng giàu sang\nCon cái gái trai vẹn toàn căn bổn.`,
+            "Khôn": `Một giải ngân hà đã trải ra\nVì phương “LutSat” khó giao hòa\nChăn nuôi, vườn ruộng không nên nghiệp\nGặp gỡ xa quê tạm gọi là.\nKiết hung luân chuyển dập dồn âu lo\nTrai sa đọa, gái lẳng lơ\nTrước sau rồi cũng hững hờ nợ duyên.`,
+            "Đoài": `Hai ngôi “NguQuy” khắc xung hình\nGặp gỡ sau, sao cũng phát sinh\nTang tóc mẹ cha sầu tử tức\nMỗi người một ngả hận ly tình.\nTiền bạc bạo phát nhưng hoài công lao\nNửa đời căn kiếp ba đào\nCửa nhà điền sản tiêu hao không còn.`
+        },
+        "Khôn": {
+            "Khôn": `Tai nạn liên miên, khổ dập dồn\nNếu tình duyên kết Khôn với Khôn\nCông danh sự nghiệp mòn con mắt\nKẻ ở, người đi cách nước non.\nKeo sơn gắn bó cháu con vẹn toàn\nTrung niên mấy lượt thăng trầm\nHậu vận phú quý trăm phần phong lưu.`,
+            "Càn": `Diên niên ấy phước lộc miên trường\nCon cháu lâu dài hướng thọ xương\nDựng nghiệp chuyên cần lại tính thiện\nTrai hiền, rể hiếu rạng gia tiên.\nHay duyên phải nợ tiền căn định phần\nBổn mạng lại có quý nhân\nĐược số phú quý vinh thân an nhàn.`,
+            "Khảm": `Khảm, Khôn số khắc khó nên duyên\nNếu giàu thì yểu, khó nghèo yên\nCháu con vất vả thân đa bịnh\nGia đạo suy vì lắm lụy phiền.\nCăn phần duyên nợ chuốc lấy sầu thảm\nSố phải dở dang nửa đời\nChồng vợ hai người đổi dời ly tán.`,
+            "Cấn": `Phải chịu gian nan, cực buổi đầu\nBa năm nghĩ cũng chẳng bao lâu\nSau này phước lộc trời cho đó\nNhà cửa vinh quang lọ phải cầu.\nSinh cơ mọi bề thời hưng phấn chấn\nGia đạo trước sau hòa thuận\nThừa thãi trong ngoài ruộng vườn điền sản.`,
+            "Chấn": `Họa hại trùng trùng kéo tới đây\nChấn, Khôn khó hợp nợ duyên này\nSống lâu thêm khổ, sầu ly biệt\nCon cháu vô can bị vạ lây.\nKhông hình ngục thì cũng bị bịnh tật\nDuyên nợ lắm vấp buồn khổ\nĐời sống lầm thang, sinh cơ chật vật.`,
+            "Ly": `“LutSat” hình xung khó kết thành\nNgân hà trắng xóa nước mênh mông\nTha phương gặp gỡ còn nhàn hạ\nMột xứ giao hòa, họa hại sinh.\nDuyên nợ ắt chịu sầu bi tháng ngày\nĐa truân hộ hụy nạn tai\nCăn định lục hại tương lai mơ hồ.`,
+            "Đoài": `Thiên y kim, thổ lộc trời ban\nPhước thọ miên trường con cháu sang\nRuộng vườn, nhà cửa đầy mỹ lệ\nTrăm năm vui hưởng chữ bình an.\nMạng cường hưởng thọ, tài lộc bền lâu`,
+            "Tốn": `Hồi ở xa nhau, thương nhớ nhau\nGần nhau không cãi cũng sinh đau\nTrong nhà “NguQuy” năm phương dậy\nKết cuộc nhà xiêu, gió thổi nhào.\nCuộc đời vật chất số cực thiếu thốn\nDuyên nợ lận đận nghịch thường\nCon cái bất hòa lớn lên cùng khốn.`
+        },
+        "Đoài": {
+            "Đoài": `Nhật lạc non Đoài sương sắp rơi\nGặp nhau rồi cũng cách đôi nơi\nNếu không khăn trắng trùm lên tóc\nThì khổ triền miên cả cuộc đời.\nBình thường thì cũng tiền tài bậc trung\nGia đình thân mạng thung dung\nTrưởng thành con cháu đẹp lòng mẹ cha.`,
+            "Càn": `Đoài, Càn phước đức lớn vô cùng\nKim thủy tương sinh được ở chung\nCon cháu sau này thành đại nghiệp\nTrai hiền, gái hiếu vẹn can tùng.\nHôn nhân bền vững lộc quan vượng tài\nSanh cơ vốn một lời hai\nLầu cao cửa rộng gái trai ngoan hiền.`,
+            "Khảm": `Đoài, Khảm họa hại mà tương sinh\nGặp nhau xa xứ chắc nên danh\nDẫu không phú quý, vinh hoa lớn\nCũng hưởng an khang, con cháu vinh.\nTai ương tật ách dồn dập thê thảm\nNửa đời thân phận sanh ly\nPhu thê lâm vòng trái ngang lãnh đạm.`,
+            "Cấn": `Cháu quí, con vinh, phước đức nhân\nDiên niên ấy phước tự trời ban\nĐầu xanh yêu kính như đầu bạc\nKhông được giàu to cũng được sang.\nPhụ ấm sẵn dành bề tài lợi tấn\nGia đạo thê tử êm ấm\nDuyên nợ trọn đời lửa hương nồng thắm.`,
+            "Chấn": `Mộc khắc kim thường quá rõ ràng\nChấn, Đoài tương hợp khó bình an\nNếu không nghèo khổ, nhiều đau bịnh\nẮt cũng chia ly người một đàng.\nChăn gối ái tình khó yên thân phận\nBỗn lụy phiền, duyên nợ lìa tan\nCầm bằng căn kiếp đa truân lận đận.`,
+            "Tốn": `Trái số nên không trọn nợ duyên\nHinh xung “LutSat” ở sao yên\nCông danh, tài lộc cầu không được\nTử biệt sinh ly con cháu phiền.\nXáo trộn gia đình sanh cơ khốn đốn\nCon cái lớn nhỏ bất tường\nTình nghĩa lạt phai lăng loàn hỗn độn.`,
+            "Ly": `Mẹ cha tang tóc cháu con buồn\n“NguQuy” phạm thì giọt lệ tuôn\nĐa sinh bịnh tật, đa tai nạn\nVui ở, buồn bay, mỏng cánh chuồn.\nCố công cho mấy ra gì kiếp sanh\nNợ duyên như sợi chỉ mành\nThân danh sự nghiệp bất thành không sai.`,
+            "Khôn": `Trời dành cung số được thiên y\nHợp mặt đủ đầy có thiếu chi\nNhà cửa đường hoàng, vườn ruộng tốt\nCháu con vinh hiển mấy ai bì.\nMột đàn thê tử vuông tròn giàu sang\nGia đình sau trước huy hoàng\nTrung niên hậu vận rõ ràng nghiệp danh.`
+        }
+    };
+        const saoTot = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
+
+    // KHO DỮ LIỆU CHUẨN XÁC NẠP TRỰC TIẾP TỪ BẢNG THƯ TỊCH CỔ CỦA CHÚ
+    const thongTinPhongThuyCung = {
+        // --- NHÓM TÝ ---
+        1984: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" }, // Giáp Tý
+        1996: { sanh: "Cấn", nam: "Tốn", vo: "Khôn" },   // Bính Tý
+        2008: { sanh: "Càn", nam: "Đoài", vo: "Cấn" },  // Mậu Tý
+        1950: { sanh: "Càn", nam: "Tốn", vo: "Khôn" },  // Canh Tý (Dữ liệu dòng 4 nhóm Tý)
+        1972: { sanh: "Chấn", nam: "Khảm", vo: "Cấn" }, // Nhâm Tý
+
+        // --- NHÓM SỬU ---
+        1985: { sanh: "Tốn", nam: "Càn", vo: "Ly" },    // Ất Sửu
+        1997: { sanh: "Ly", nam: "Ly", vo: "Càn" },     // Đinh Sửu
+        2009: { sanh: "Đoài", nam: "Càn", vo: "Ly" },   // Kỷ Sửu
+        1961: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" }, // Tân Sửu
+        1973: { sanh: "Tốn", nam: "Ly", vo: "Càn" },    // Quý Sửu
+
+        // --- NHÓM DẦN ---
+        1974: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" },  // Giáp Dần
+        1986: { sanh: "Khảm", nam: "Khôn", vo: "Khảm" }, // Bính Dần
+        1998: { sanh: "Khảm", nam: "Khôn", vo: "Tốn" },  // Mậu Dần
+        1950: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" }, // Canh Dần (1950)
+        2010: { sanh: "Cấn", nam: "Đoài", vo: "Cấn" },  // Canh Dần (2010)
+        1962: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },  // Nhâm Dần
+
+        // --- NHÓM MÃO ---
+        1975: { sanh: "Ly", nam: "Đoài", vo: "Cấn" },   // Ất Mão
+        1987: { sanh: "Càn", nam: "Tốn", vo: "Khôn" },  // Đinh Mão
+        1999: { sanh: "Khôn", nam: "Khảm", vo: "Cấn" },  // Kỷ Mão
+        1951: { sanh: "Ly", nam: "Tốn", vo: "Khảm" },   // Tân Mão
+        1963: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Quý Mão
+
+        // --- NHÓM THÌN ---
+        1964: { sanh: "Tốn", nam: "Ly", vo: "Cấn" },    // Giáp Thìn
+        1976: { sanh: "Khảm", nam: "Càn", vo: "Ly" },   // Bính Thìn
+        1988: { sanh: "Đoài", nam: "Chấn", vo: "Chấn" }, // Mậu Thìn
+        2000: { sanh: "Càn", nam: "Ly", vo: "Ly" },     // Canh Thìn
+        1952: { sanh: "Khảm", nam: "Chấn", vo: "Chấn" }, // Nhâm Thìn
+
+        // --- NHÓM TỴ ---
+        1965: { sanh: "Đoài", nam: "Cấn", vo: "Đoài" },  // Ất Tỵ
+        1977: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Đinh Tỵ
+        1989: { sanh: "Cấn", nam: "Khôn", vo: "Tốn" },   // Kỷ Tỵ
+        2001: { sanh: "Tốn", nam: "Cấn", vo: "Đoài" },  // Tân Tỵ
+        1953: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Quý Tỵ (1953)
+        2013: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Quý Tỵ (2013)
+
+        // --- NHÓM NGỌ ---
+        1954: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Giáp Ngọ
+        1966: { sanh: "Càn", nam: "Đoài", vo: "Đoài" },  // Bính Ngọ
+        1978: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Mậu Ngọ
+        1990: { sanh: "Ly", nam: "Khảm", vo: "Cấn" },   // Canh Ngọ
+        1942: { sanh: "Ly", nam: "Đoài", vo: "Tốn" },   // Nhâm Ngọ (1942)
+        2002: { sanh: "Ly", nam: "Đoài", vo: "Tốn" },   // Nhâm Ngọ (2002)
+
+        // --- NHÓM MÙI ---
+        1955: { sanh: "Khảm", nam: "Ly", vo: "Càn" },   // Ất Mùi
+        1967: { sanh: "Đoài", nam: "Càn", vo: "Ly" },   // Đinh Mùi
+        1979: { sanh: "Tốn", nam: "Chấn", vo: "Chấn" },  // Mậu Mùi
+        1991: { sanh: "Khảm", nam: "Ly", vo: "Cấn" },   // Tân Mùi
+        1943: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Quý Mùi (1943)
+        2003: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Quý Mùi (2003)
+
+        // --- NHÓM THÂN ---
+        1944: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Giáp Thân (1944)
+        2004: { sanh: "Khôn", nam: "Khôn", vo: "Khảm" }, // Giáp Thân (2004)
+        1956: { sanh: "Đoài", nam: "Cấn", vo: "Cấn" },  // Bính Thân
+        1968: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },  // Mậu Thân
+        1980: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Canh Thân
+        1992: { sanh: "Khôn", nam: "Cấn", vo: "Đoài" },  // Nhâm Thân
+
+        // --- NHÓM DẬU ---
+        1945: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Ất Dậu (1945)
+        2005: { sanh: "Chấn", nam: "Tốn", vo: "Khôn" },  // Ất Dậu (2005)
+        1957: { sanh: "Chấn", nam: "Đoài", vo: "Đoài" }, // Đinh Dậu
+        1969: { sanh: "Ly", nam: "Tốn", vo: "Khôn" },   // Kỷ Dậu
+        1981: { sanh: "Càn", nam: "Khảm", vo: "Cấn" },  // Tân Dậu
+        1993: { sanh: "Chấn", nam: "Đoài", vo: "Cấn" },  // Quý Dậu
+
+        // --- NHÓM TUẤT ---
+        1994: { sanh: "Càn", nam: "Càn", vo: "Ly" },    // Giáp Tuất
+        1946: { sanh: "Tốn", nam: "Ly", vo: "Càn" },    // Bính Tuất (1946)
+        2006: { sanh: "Tốn", nam: "Chấn", vo: "Chấn" },  // Bính Tuất (2006)
+        1958: { sanh: "Tốn", nam: "Càn", vo: "Ly" },    // Mậu Tuất
+        1970: { sanh: "Càn", nam: "Chấn", vo: "Chấn" },  // Canh Tuất
+        1982: { sanh: "Đoài", nam: "Ly", vo: "Càn" },   // Nhâm Tuất
+
+        // --- NHÓM HỢI ---
+        1995: { sanh: "Đoài", nam: "Khôn", vo: "Khảm" }, // Ất Hợi
+        1947: { sanh: "Khôn", nam: "Cấn", vo: "Chấn" },  // Đinh Hợi (1947)
+        2007: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Đinh Hợi (2007)
+        1959: { sanh: "Cấn", nam: "Khôn", vo: "Khảm" },  // Kỷ Hợi
+        1971: { sanh: "Khôn", nam: "Khôn", vo: "Tốn" },  // Tân Hợi
+        1983: { sanh: "Cấn", nam: "Cấn", vo: "Đoài" }    // Quý Hợi
+    };
+
+    function layBaiTho(cungChong, cungVo) {
+        if (khoThoBatTrach[cungChong] && khoThoBatTrach[cungChong][cungVo]) {
+            return khoThoBatTrach[cungChong][cungVo];
+        }
+        return "*(Thư tịch cổ chưa cập nhật bài thơ luận giải cho cặp cung này)*";
+    }
+
+    function traCuuBatTrach() {
+        const namChong = parseInt(document.getElementById("namSinhChong").value);
+        const namVo = parseInt(document.getElementById("namSinhVo").value);
+
+        // Kiểm tra tính hợp lệ của năm sinh trong kho sách cổ
+        if (!thongTinPhongThuyCung[namChong] || !thongTinPhongThuyCung[namVo]) {
+            alert("Năm sinh bạn nhập chưa nằm trong hệ thống bảng tra cứu số hóa của Sách Cổ. Vui lòng thử các năm từ 1942 đến 2013!");
+            return;
+        }
+
+        // 1. ĐỐI CHIẾU CHUẨN XÁC THEO CUNG PHI (MỆNH TRẠCH CUNG)
+        const cpChong = thongTinPhongThuyCung[namChong].nam;
+        const cpVo = thongTinPhongThuyCung[namVo].vo;
+        const duTinhPhi = maTranBatTrach[cpChong][cpVo];
+        const mauPhi = saoTot.includes(duTinhPhi) ? "good" : "bad";
+        const thoPhi = layBaiTho(cpChong, cpVo);
+
+        // 2. ĐỐI CHIẾU CHUẨN XÁC THEO CUNG SANH
+        const csChong = thongTinPhongThuyCung[namChong].sanh;
+        const csVo = thongTinPhongThuyCung[namVo].sanh;
+        const duTinhSanh = maTranBatTrach[csChong][csVo];
+        const mauSanh = saoTot.includes(duTinhSanh) ? "good" : "bad";
+        const thoSanh = layBaiTho(csChong, csVo);
+
+        // XUẤT KẾT QUẢ GIAO DIỆN
+        const box = document.getElementById("ketQua");
+        box.style.display = "block";
+        box.innerHTML = `
+            <p style="font-size:18px; text-align:center; color:#8b0000; margin-top:0;"><b>KẾT QUẢ PHÂN TÍCH ĐỒNG NIÊN PHỐI HỢP</b></p>
+            <p style="text-align:center; font-size:15px;">Chồng sinh năm: <b>${namChong}</b> &nbsp;|&nbsp; Vợ sinh năm: <b>${namVo}</b></p>
+            <hr>
+            
+            <p style="font-size:16px; margin-bottom:5px;"><b>I. XÉT THEO CUNG PHI (Mệnh Cung Phi):</b></p>
+            <ul>
+                <li>Chồng thuộc quẻ Trạch: <b>${cpChong}</b> (${hanhCung[cpChong] || ''})</li>
+                <li>Vợ thuộc quẻ Trạch: <b>${cpVo}</b> (${hanhCung[cpVo] || ''})</li>
+                <li>Kết quẻ phối ngẫu: Chồng cung ${cpChong} lấy Vợ cung ${cpVo} &rArr; <span class="${mauPhi}">${duTinhPhi}</span></li>
+            </ul>
+            <div class="tho-box"><b>Cổ tịch diễn âm quẻ Phi:</b>\n${thoPhi}</div>
+            
+            <p style="font-size:16px; margin-bottom:5px;"><b>II. XÉT THEO CUNG SANH (Mệnh Cung Sanh):</b></p>
+            <ul>
+                <li>Chồng thuộc cung Sanh: <b>${csChong}</b> (${hanhCung[csChong] || ''})</li>
+                <li>Vợ thuộc cung Sanh: <b>${csVo}</b> (${hanhCung[csVo] || ''})</li>
+                <li>Kết quẻ phối ngẫu: Chồng cung ${csChong} lấy Vợ cung ${csVo} &rArr; <span class="${mauSanh}">${duTinhSanh}</span></li>
+            </ul>
+            <div class="tho-box"><b>Cổ tịch diễn âm quẻ Sanh:</b>\n${thoSanh}</div>
+        `;
+        
+        box.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
