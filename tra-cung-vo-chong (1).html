@@ -143,7 +143,7 @@
             "Khôn": `Trời dành cung số được thiên y\nHợp mặt đủ đầy có thiếu chi\nNhà cửa đường hoàng, vườn ruộng tốt\nCháu con vinh hiển mấy ai bì.\nMột đàn thê tử vuông tròn giàu sang\nGia đình sau trước huy hoàng\nTrung niên hậu vận rõ ràng nghiệp danh.`
         }
     };
-            const saoTot = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
+                const saoTot = ["Sinh Khí", "Thiên Y", "Diên Niên", "Phục Vị"];
 
     // KHO DỮ LIỆU GỐC TRÍCH XUẤT TỪ 2 BỨC ẢNH SÁCH CỔ CỦA CHÚ
     const thongTinPhongThuyCung = {
@@ -239,14 +239,12 @@
         return "*(Thư tịch cổ chưa cập nhật bài thơ luận giải cho cặp cung này)*";
     }
 
-    // THUẬT TOÁN CHUYỂN ĐỔI CHU KỲ HOA GIÁP ĐỂ TRA CỨU MỌI NĂM TƯƠNG LAI
+    // THUẬT TOÁN TỰ ĐỘNG DỊCH CHU KỲ HOA GIÁP 60 NĂM
     function chuanHoaNamVeGoc(namSinh) {
         let namGoc = namSinh;
-        // Nếu năm lớn hơn 2009, dịch ngược từng chu kỳ 60 năm về thế kỷ 20 để tra cứu
         while (namGoc > 2009) {
             namGoc -= 60;
         }
-        // Nếu năm nhỏ hơn 1942, dịch tiến từng chu kỳ 60 năm lên
         while (namGoc < 1942) {
             namGoc += 60;
         }
@@ -262,14 +260,9 @@
             return;
         }
 
-        // Tự động quy đổi năm tương lai (ví dụ 2026, 2043...) về năm gốc trong chu kỳ Lục Thập Hoa Giáp
+        // Tự động quy đổi năm tương lai hoặc quá khứ về năm gốc trong chu kỳ Lục Thập Hoa Giáp
         const namChong = chuanHoaNamVeGoc(namChongIn);
         const namVo = chuanHoaNamVeGoc(namVoIn);
-
-        if (!thongTinPhongThuyCung[namChong] || !thongTinPhongThuyCung[namVo]) {
-            alert("Hệ thống gặp lỗi quy đổi Hoa Giáp. Vui lòng kiểm tra lại năm sinh!");
-            return;
-        }
 
         // 1. ĐỐI CHIẾU CHUẨN XÁC THEO CUNG PHI (MỆNH TRẠCH CUNG)
         const cpChong = thongTinPhongThuyCung[namChong].nam;
