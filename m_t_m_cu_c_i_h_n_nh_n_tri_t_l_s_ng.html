@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mật Mã Cuộc Đời - Vợ Chồng Còn Cãi Nhau Là Còn Cứu Được</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1e40af', // Blue 800
+                            lightBlue: '#3b82f6', // Blue 500
+                            sky: '#f0f9ff', // Blue 50
+                            red: '#dc2626', // Red 600
+                            lightRed: '#fef2f2', // Red 50
+                            dark: '#0f172a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .page-shadow {
+            box-shadow: 0 10px 25px -5px rgba(30, 64, 175, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- HEADER / ECOSYSTEM TOP BAR -->
+    <header class="bg-white border-b-2 border-brand-blue sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand Info -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-brand-blue to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-md border-2 border-brand-red">
+                        MM
+                    </div>
+                    <div>
+                        <a href="https://matmacuocdoi.vn" target="_blank" class="text-xl sm:text-2xl font-bold text-brand-blue hover:text-brand-red transition-colors flex items-center gap-2">
+                            MATMACUOCDOI.VN
+                            <span class="text-xs bg-brand-red text-white font-medium px-2 py-0.5 rounded-full">Official</span>
+                        </a>
+                        <p class="text-xs text-slate-500 hidden sm:block">Đồng hành cùng Chuyên gia Nguyễn Tuấn Anh & Kim Nguyên Bảo</p>
+                    </div>
+                </div>
+
+                <!-- Contact & Hotline Header -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="https://zalo.me/0789414153" target="_blank" class="flex items-center space-x-2 bg-blue-50 border border-brand-lightBlue/30 text-brand-blue px-3 py-1.5 rounded-lg hover:bg-brand-blue hover:text-white transition">
+                        <i class="fa-solid fa-phone text-brand-red"></i>
+                        <span class="text-sm font-semibold">Tuấn Anh: 0789 414 153</span>
+                    </a>
+                    <a href="https://zalo.me/0849328628" target="_blank" class="flex items-center space-x-2 bg-blue-50 border border-brand-lightBlue/30 text-brand-blue px-3 py-1.5 rounded-lg hover:bg-brand-blue hover:text-white transition">
+                        <i class="fa-solid fa-phone text-brand-red"></i>
+                        <span class="text-sm font-semibold">Kim Nguyên Bảo: 0849 328 628</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-brand-blue hover:text-brand-red p-2 text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ecosystem Social Quick Bar -->
+        <div class="bg-brand-blue text-white py-2 px-4 text-xs sm:text-sm">
+            <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+                <span class="font-semibold text-amber-300 flex items-center gap-1">
+                    <i class="fa-solid fa-heart text-brand-red animate-pulse"></i> RẤT VUI ĐƯỢC CÙNG NHAU GIAO LƯU!
+                </span>
+                <div class="flex items-center space-x-3 overflow-x-auto py-1">
+                    <a href="https://matmacuocdoi.vn" target="_blank" class="hover:underline flex items-center gap-1"><i class="fa-solid fa-globe text-sky-300"></i> Tra Cứu Sao Hạn</a>
+                    <span>|</span>
+                    <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="hover:underline flex items-center gap-1"><i class="fa-brands fa-youtube text-red-400"></i> Youtube</a>
+                    <span>|</span>
+                    <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="hover:underline flex items-center gap-1"><i class="fa-brands fa-tiktok text-slate-200"></i> TikTok</a>
+                    <span>|</span>
+                    <a href="https://www.facebook.com/thymozin" target="_blank" class="hover:underline flex items-center gap-1"><i class="fa-brands fa-facebook text-blue-300"></i> Facebook</a>
+                    <span>|</span>
+                    <a href="https://zalo.me/g/iljgbe719" target="_blank" class="bg-brand-red px-2 py-0.5 rounded text-white font-medium hover:bg-red-700 transition"><i class="fa-solid fa-users"></i> Nhóm Zalo</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow flex flex-col md:flex-row gap-6">
+
+        <!-- SIDEBAR NAVIGATION -->
+        <aside class="w-full md:w-80 flex-shrink-0">
+            <div class="bg-white rounded-xl border border-slate-200 p-4 sticky top-28 shadow-sm">
+                <!-- Ecosystem Card -->
+                <div class="bg-gradient-to-br from-brand-sky to-white p-4 rounded-lg border border-blue-100 mb-6">
+                    <h3 class="text-brand-blue font-bold text-base flex items-center gap-2 mb-2">
+                        <i class="fa-solid fa-network-wired text-brand-red"></i> HỆ SINH THÁI WEBSITE
+                    </h3>
+                    <p class="text-xs text-slate-600 mb-3">Tra cứu vận hạn, phong thủy số ĐT, CCCD, xung khắc vợ chồng & Tử vi 12 con giáp.</p>
+                    <a href="https://matmacuocdoi.vn" target="_blank" class="block text-center bg-brand-blue hover:bg-blue-900 text-white font-semibold text-xs py-2 px-3 rounded-md transition shadow">
+                        <i class="fa-solid fa-magnifying-glass"></i> Tra Cứu Miễn Phí Tại Matmacuocdoi.vn
+                    </a>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Mục lục cuốn sách (19 Trang)</h4>
+                <div class="space-y-1 max-h-[50vh] overflow-y-auto custom-scrollbar pr-1" id="page-menu">
+                    <!-- Javascript will render page buttons here -->
+                </div>
+
+                <!-- Playlist Links Section -->
+                <div class="mt-6 pt-4 border-t border-slate-200">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-brand-red mb-2"><i class="fa-brands fa-youtube"></i> Playlist Video Thắt Lại</h4>
+                    <div class="space-y-2 text-xs">
+                        <a href="https://www.youtube.com/playlist?list=PLGILo4RyLrGE" target="_blank" class="block p-2 rounded bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-brand-blue border border-slate-200 transition">
+                            <i class="fa-solid fa-tower-broadcast text-brand-red mr-1"></i> Livestream Trực Tiếp Mật Mã Cuộc Đời
+                        </a>
+                        <a href="https://www.youtube.com/playlist?list=PLKq7x60u_IAPKmgAtAPyJ1tJV7EVETk2U" target="_blank" class="block p-2 rounded bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-brand-blue border border-slate-200 transition">
+                            <i class="fa-solid fa-list-check text-brand-blue mr-1"></i> Luận Giải Số ĐT-CCCD-Xung Khắc Vợ Chồng
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="flex-1">
+            <!-- Top Controls -->
+            <div class="bg-white rounded-xl border border-slate-200 p-4 mb-6 shadow-sm flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center space-x-2">
+                    <button id="prev-btn" onclick="changePage(-1)" class="px-4 py-2 bg-slate-100 hover:bg-brand-blue hover:text-white rounded-lg text-sm font-medium transition flex items-center gap-2">
+                        <i class="fa-solid fa-chevron-left"></i> Trang trước
+                    </button>
+                    <span id="page-indicator" class="text-sm font-semibold text-brand-blue px-3 py-1 bg-blue-50 rounded-lg border border-blue-200">
+                        Trang 1 / 19
+                    </span>
+                    <button id="next-btn" onclick="changePage(1)" class="px-4 py-2 bg-slate-100 hover:bg-brand-blue hover:text-white rounded-lg text-sm font-medium transition flex items-center gap-2">
+                        Trang sau <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="flex items-center space-x-2">
+                    <button onclick="toggleViewMode()" id="view-mode-btn" class="px-3 py-2 bg-blue-50 text-brand-blue hover:bg-brand-blue hover:text-white rounded-lg text-xs font-semibold transition border border-blue-200 flex items-center gap-1.5">
+                        <i class="fa-solid fa-book-open"></i> <span id="view-mode-text">Chế độ Xem Tất Cả Trang</span>
+                    </button>
+                    <a href="https://zalo.me/0789414153" target="_blank" class="px-3 py-2 bg-brand-red text-white hover:bg-red-700 rounded-lg text-xs font-semibold transition shadow flex items-center gap-1.5">
+                        <i class="fa-solid fa-headset"></i> Tư Vấn Trực Tiếp Zalo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Page Viewer Container -->
+            <div id="pages-container" class="space-y-6">
+                <!-- Dynamic Content Rendered Here via JavaScript -->
+            </div>
+
+            <!-- Bottom Navigation -->
+            <div class="mt-8 bg-white rounded-xl border border-slate-200 p-4 shadow-sm flex items-center justify-between">
+                <button onclick="changePage(-1)" class="px-4 py-2 bg-slate-100 hover:bg-brand-blue hover:text-white rounded-lg text-sm font-medium transition">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Trang Trước
+                </button>
+                <div class="text-center text-xs text-slate-500">
+                    <p class="font-semibold text-brand-blue">Tác Phẩm Triết Lý Hôn Nhân & Cuộc Sống</p>
+                    <p>Hệ Sinh Thái Matmacuocdoi.vn</p>
+                </div>
+                <button onclick="changePage(1)" class="px-4 py-2 bg-slate-100 hover:bg-brand-blue hover:text-white rounded-lg text-sm font-medium transition">
+                    Trang Sau <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- ECOSYSTEM FOOTER SECTION -->
+    <footer class="bg-slate-900 text-white mt-12 border-t-4 border-brand-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Column 1: Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-3">
+                        <div class="w-8 h-8 bg-brand-red rounded-lg flex items-center justify-center font-bold text-white">MM</div>
+                        <span class="font-bold text-xl text-white">MATMACUOCDOI.VN</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Kênh tư vấn phong thủy, tử vi, luận giải số điện thoại, căn cước công dân và xung khắc vợ chồng. Đồng hành giúp bạn thấu hiểu bản thân, giữ gìn hạnh phúc gia đình và định hướng cuộc sống.
+                    </p>
+                    <p class="text-xs text-brand-red font-semibold">
+                        <i class="fa-solid fa-user-check mr-1"></i> Quản lý & Đại diện: Mr. NGUYỄN TUẤN ANH
+                    </p>
+                </div>
+
+                <!-- Column 2: Contacts & Experts -->
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-sky-400 mb-4 border-b border-slate-700 pb-2">Liên Hệ Luận Giải Trực Tiếp</h3>
+                    <ul class="space-y-3 text-xs">
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-phone text-brand-red mt-0.5"></i>
+                            <div>
+                                <span class="font-semibold text-slate-200">Mr. Tuấn Anh (Chuyên gia):</span>
+                                <a href="https://zalo.me/0789414153" target="_blank" class="block text-sky-400 hover:underline">Zalo / Hotline: 0789 414 153</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-2">
+                            <i class="fa-solid fa-phone text-brand-red mt-0.5"></i>
+                            <div>
+                                <span class="font-semibold text-slate-200">Mr. Kim Nguyên Bảo (Chuyên gia):</span>
+                                <a href="https://zalo.me/0849328628" target="_blank" class="block text-sky-400 hover:underline">Zalo / Hotline: 0849 328 628</a>
+                            </div>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i class="fa-solid fa-users text-blue-400"></i>
+                            <a href="https://zalo.me/g/iljgbe719" target="_blank" class="text-amber-300 hover:underline font-medium">Tham Gia Nhóm Zalo Cộng Đồng (Nhận Tin Tức Mới)</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Channels -->
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-sky-400 mb-4 border-b border-slate-700 pb-2">Kênh Truyền Thông Official</h3>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <a href="https://matmacuocdoi.vn" target="_blank" class="p-2 bg-slate-800 hover:bg-brand-blue rounded flex items-center gap-2 transition">
+                            <i class="fa-solid fa-globe text-sky-400"></i> Website
+                        </a>
+                        <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="p-2 bg-slate-800 hover:bg-brand-red rounded flex items-center gap-2 transition">
+                            <i class="fa-brands fa-youtube text-red-500"></i> Youtube
+                        </a>
+                        <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="p-2 bg-slate-800 hover:bg-slate-700 rounded flex items-center gap-2 transition">
+                            <i class="fa-brands fa-tiktok text-slate-300"></i> TikTok
+                        </a>
+                        <a href="https://www.facebook.com/thymozin" target="_blank" class="p-2 bg-slate-800 hover:bg-blue-600 rounded flex items-center gap-2 transition">
+                            <i class="fa-brands fa-facebook text-blue-400"></i> Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+                <p>© 2026 MATMACUOCDOI.VN - Tất cả quyền được bảo lưu. Nội dung chia sẻ triết lý sống & hôn nhân gia đình.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT DATA AND LOGIC -->
+    <script>
+        // Data for 19 pages from PDF
+        const pdfPages = [
+            {
+                page: 1,
+                title: "Vợ Chồng Còn Cãi Nhau Là Còn Cứu Được",
+                category: "Hôn Nhân",
+                content: `
+                    <p class="mb-3">Vợ chồng mà đã im lặng với nhau, có khi đã muộn rồi đấy.</p>
+                    <p class="mb-3">Cãi tức là còn có chuyện muốn nói, còn có kỳ vọng, còn có sự bận tâm. Cãi xong vẫn ngồi ăn cơm chung, vẫn ngủ chung giường - đó là dấu hiệu của hôn nhân vẫn còn sống.</p>
+                    <div class="my-4 p-4 bg-red-50 border-l-4 border-brand-red rounded-r-lg italic text-slate-700 font-serif">
+                        "Đáng sợ là khi một người không còn cãi nữa, hỏi gì cũng ừ, đề nghị gì cũng gật, bàn gì cũng tùy em. Ngoài thì có vẻ hòa thuận, nhưng trái tim bên trong đã đóng cửa từ lâu."
+                    </div>
+                    <p class="mb-3">Người đã thôi cãi là người đã thôi tin rằng nói thêm sẽ thay đổi được điều gì. Đã thôi tin thì không còn động lực để xây lại. Đến một lúc họ ra đi êm đềm, không ồn ào, không lý do, chỉ một sáng thức dậy thấy bên cạnh mình trống rỗng.</p>
+                    <p class="font-semibold text-brand-blue">Khi vợ chồng còn cãi, còn có chỗ để nói chuyện. Khi vợ chồng đã im, có khi chẳng còn gì để nói.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 2,
+                title: "Người Phụ Nữ Bên Cạnh Khi Khó Khăn",
+                category: "Đàn Ông & Gia Đình",
+                content: `
+                    <p class="mb-3">Đàn ông dù có giàu thế nào đi chăng nữa, dù có giỏi giang thế nào đi chăng nữa hay đào hoa đến cỡ nào đi chăng nữa thì cũng nên giữ cho mình một người phụ nữ vì yêu mà ở lại trong những lúc khó khăn hoạn nạn.</p>
+                    <p class="mb-3">Bởi vì nay được mai mất, nay thắng mai bại là lẽ thường tình của cuộc đời. Mà khi có tiền ý, bạn có thể mua được rất nhiều thứ: mua được bạn bè, mua được mối quan hệ, thậm chí có thể mua được rất nhiều người đàn bà đẹp ở bên cạnh mình...</p>
+                    <div class="my-4 p-4 bg-blue-50 border-l-4 border-brand-blue rounded-r-lg italic text-slate-700 font-serif">
+                        "Nhưng bạn rất khó có thể mua được một người phụ nữ vì mình mà yêu thương, vì mình mà hy sinh."
+                    </div>
+                    <p class="mb-3 font-semibold text-brand-red">Bản lĩnh của một người đàn ông là có thể cầm tay một người phụ nữ đi đến cuối con đường, chứ không phải giữa đường nắm tay 2, 3 cô.</p>
+                    <p>Chỉ có những cậu trai muốn thể hiện mình thì mới làm như thế thôi, còn đàn ông họ khác lắm.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 3,
+                title: "Đừng Lãng Phí Thời Gian Vào Tình Yêu Độc Hại",
+                category: "Bản Thân",
+                content: `
+                    <p class="mb-3">Nếu cảm thấy mối quan hệ này mệt mỏi quá thì dừng lại đi bạn! Tại sao phải lãng phí thời gian và trải nghiệm cho một người, trong khi đó bạn chỉ có một cuộc đời để hạnh phúc?</p>
+                    <p class="mb-3">Tại sao phải giày vò bản thân trong một mối tình hàng ngày đang bào mòn bạn? Tình yêu đáng lẽ phải làm bạn nhẹ lòng, đáng lẽ phải làm bạn vui hơn lúc một mình.</p>
+                    <div class="my-4 p-4 bg-red-50 border-l-4 border-brand-red rounded-r-lg text-slate-700">
+                        <strong class="text-brand-red block mb-1">Dấu hiệu tình yêu ăn mòn bạn:</strong>
+                        Nếu yêu một người mà bạn thấy mình càng ngày càng tệ đi, ít cười hơn, gầy đi và hay khóc đêm, ngại gặp bạn bè - đó không phải là tình yêu nữa bạn, là một thứ đang ăn mòn bạn.
+                    </div>
+                    <p class="mb-3">Thay vì cố cứu một mối tình không cứu được thì hãy đầu tư vào bạn: đi học một kỹ năng, đọc một cuốn sách, đi một chuyến xa nhà, gặp lại bạn cũ, nói chuyện với người thân.</p>
+                    <p class="font-bold text-brand-blue">Tình yêu không biến bạn thành một lựa chọn duy nhất, mà tình yêu phải khiến bạn trở thành phiên bản tốt hơn của chính mình. Đơn giản có vậy thôi!</p>
+                `,
+                tea: true
+            },
+            {
+                page: 4,
+                title: "Kỳ Vọng Đúng Người & Trân Trọng Cảm Xúc",
+                category: "Sự Thấu Hiểu",
+                content: `
+                    <p class="mb-3">Đừng bao giờ kỳ vọng tình yêu ở một người còn chẳng thèm mang đến cảm xúc của bạn. Một người mà ngay cả cảm xúc của bạn họ cũng không quan tâm, mà bạn vẫn còn kỳ vọng họ tình sâu nghĩa nặng với bạn nữa hay sao?</p>
+                    <div class="my-4 p-4 bg-sky-50 border-l-4 border-brand-blue rounded-r-lg italic font-serif">
+                        "Khi hy vọng chạm đáy thì nỗi thất vọng cũng trở nên xa xỉ."
+                    </div>
+                    <p class="mb-3">Khi đầu óc và tâm trí đã mệt mỏi đến cực hạn, bạn thậm chí chẳng buồn tức giận và tính toán nữa, thì bạn còn thiết tha gì với sự đồng hành giả tạo đấy? Và càng không được nghe, không được tin vào những lời xót thương giả dối đó.</p>
+                    <p class="font-semibold text-brand-red">Cứ bước tiếp đi, vì họ cũng chẳng hiểu lý do vì sao bạn rời đi đâu.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 5,
+                title: "Bữa Cơm - Thước Đo Trung Thực Của Hạnh Phúc",
+                category: "Gia Đình",
+                content: `
+                    <p class="mb-3">Muốn biết một gia đình có hạnh phúc không, đừng nhìn căn nhà của họ, đừng nhìn họ đi du lịch ở đâu, mà nhìn vào bữa cơm của họ.</p>
+                    <p class="font-bold text-brand-blue mb-2">Bữa cơm là chỉ số trung thực nhất của gia đình:</p>
+                    <ul class="space-y-2 mb-4">
+                        <li class="p-2 bg-green-50 border border-green-200 rounded text-slate-700">
+                            <span class="font-bold text-green-700">1. Gia đình hạnh phúc:</span> Bữa cơm có tiếng nói chuyện, có tiếng cười, có tiếng hỏi han.
+                        </li>
+                        <li class="p-2 bg-amber-50 border border-amber-200 rounded text-slate-700">
+                            <span class="font-bold text-amber-700">2. Gia đình bị rạn nứt:</span> Bữa cơm có tiếng tivi và tiếng điện thoại. Có người ăn nhanh để rời đi sớm. Có 2 vợ chồng ngồi cạnh nhau mà như cách nhau 2 châu lục.
+                        </li>
+                        <li class="p-2 bg-red-50 border border-red-200 rounded text-slate-700">
+                            <span class="font-bold text-red-700">3. Gia đình đã chết:</span> Không còn bữa cơm chung nữa. Mỗi người ăn 1 giờ, mỗi người ngồi một góc, mỗi người ở trong một thế giới riêng dù ở chung một nhà.
+                        </li>
+                    </ul>
+                    <p class="italic text-slate-600 mb-2">Bạn thử nhìn bữa cơm của gia đình bạn xem, nó đang ở trong giai đoạn nào trong 3 giai đoạn trên?</p>
+                    <p class="font-bold text-brand-red text-base">Muốn cứu một gia đình thì hãy cứu lấy bữa cơm. Bữa cơm còn thì gia đình còn!</p>
+                `,
+                tea: true
+            },
+            {
+                page: 6,
+                title: "Tài Sản Của Người Bước Qua Tuổi 40",
+                category: "Triết Lý Tuổi Trung Niên",
+                content: `
+                    <p class="mb-3">Bước qua tuổi 40 bạn sẽ hiểu ra một điều: Tài sản lớn nhất của đời mình không phải là nhà, không phải là xe, không phải là tiền tiết kiệm...</p>
+                    <div class="my-3 p-3 bg-blue-50 border border-blue-200 rounded-lg text-brand-blue font-bold text-center text-base">
+                        MÀ LÀ MỘT MÁI NHÀ BÌNH YÊN ĐỂ TRỞ VỀ
+                    </div>
+                    <p class="mb-3">Tiền có thể kiếm lại, nhà có thể mua mới, xe có thể đổi. Nhưng một gia đình rạn nứt thì không có cách nào hàn lại như cũ. Một đứa con đã xa cha mẹ thì trong lòng không còn có gì để kéo lại được. Một người bạn đời đã thôi tin tưởng thì không có lời xin lỗi nào đủ để xóa.</p>
+                    <p class="mb-3">Người đến tuổi trung niên mới hiểu: Thành công lớn nhất không phải là chức vụ trên danh thiếp, mà là buổi tối ngồi xuống bàn vẫn còn đầy đủ những người mình yêu thương - là cha vẫn còn, là mẹ vẫn còn, là vợ chồng vẫn còn nhìn nhau, là con cái vẫn trở về nhà.</p>
+                    <p class="text-slate-700 italic">Những người chạy theo bên ngoài cả đời đến lúc dừng lại mới biết cái mà mình thực sự cần ở ngay trong nhà của mình, chỉ có điều mình quên không nhìn thôi. Đời người ngắn lắm các bạn ạ, đừng để đến lúc trở về nhà không có ai đợi cửa.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 7,
+                title: "Lấy Chồng Chọn Tính Cách - Lấy Vợ Chọn Phúc Khí",
+                category: "Hôn Nhân & Nhân Phẩm",
+                content: `
+                    <p class="mb-3">Người xưa nói: Lấy chồng là lấy tính cách của người đó, lấy vợ là lấy phúc khí của cả nhà.</p>
+                    <p class="mb-3">Đàn ông tuy thích người đẹp nhưng cuối cùng người mà đàn ông muốn lấy là người phụ nữ phù hợp để làm vợ. Phụ nữ tuy thích tiền nhưng người họ thực sự lấy sẽ là người đối xử tốt nhất với họ.</p>
+                    <div class="my-4 p-4 bg-slate-100 border-l-4 border-slate-600 rounded-r-lg space-y-1 text-sm">
+                        <p>✨ <strong>Đẹp</strong> là con mắt nhìn vài năm.</p>
+                        <p>💰 <strong>Tiền</strong> là cái túi giữ vài chục năm.</p>
+                        <p>❤️ <strong>Cả đời sống chung</strong> lại là tính cách và trách nhiệm.</p>
+                    </div>
+                    <p class="mb-3">Cái đích của hôn nhân không phải là giàu và đẹp, mà là <strong>trách nhiệm và nhân phẩm</strong>. Khả năng kiểm soát cảm xúc và giải quyết vấn đề mới là thứ quyết định mức độ hạnh phúc khi sống chung.</p>
+                    <p class="font-bold text-brand-blue">Cả đời dài lắm chứ bạn! Cho nên nhớ này: Người phụ nữ có tấm lòng lương thiện là đẹp nhất, người đàn ông có tính trách nhiệm là người giàu có nhất.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 8,
+                title: "Ý Nghĩa Thực Sự Của Hôn Nhân",
+                category: "Hôn Nhân",
+                content: `
+                    <p class="mb-3">Chúng ta kết hôn là vì hy vọng trên đời này có thêm một người ở bên và yêu thương chúng ta: Khi đau ốm có người chăm sóc, khi đêm khuya tĩnh lặng có người ở bên cạnh, khi khó khăn thì có người đồng hành, khi tủi thân thì có người an ủi.</p>
+                    <div class="my-4 p-4 bg-red-50 border-l-4 border-brand-red rounded-r-lg font-semibold text-slate-800">
+                        Ý nghĩa thực sự của hôn nhân:Không phải là dập tắt những lời soi mói của hàng xóm, không phải để cha mẹ hài lòng, càng không phải đến tuổi rồi cưới đi cho khỏi ế - Mà là để bản thân mình hạnh phúc, có một cuộc sống ý nghĩa hơn lúc độc thân.
+                    </div>
+                    <p class="mb-3">Thế nên không việc gì phải vội! Hạnh phúc không phụ thuộc vào việc bạn cưới sớm hay muộn, mà là ở chỗ bạn đã chọn đúng người hay chưa.</p>
+                    <p class="font-bold text-brand-blue">Bạn có thể kết hôn muộn, cũng có thể không kết hôn, nhưng tuyệt đối không được kết hôn nhầm! Chờ đợi để gặp đúng người không bao giờ là uổng phí, có phải không mọi người?</p>
+                `,
+                tea: true
+            },
+            {
+                page: 9,
+                title: "Khổ Mới Là Nhân Sinh - Thích Nghi & Cân Bằng",
+                category: "Sống Đẹp",
+                content: `
+                    <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg mb-3 italic font-serif">
+                        "Cuộc sống có phải thực sự là mệt mỏi? Mệt mỏi là đúng rồi, thoải mái chỉ dành cho những người đã khuất thôi!"
+                    </div>
+                    <p class="mb-3">Nếu mà thấy đường đi đang dễ dàng ấy, thì là đang xuống dốc đấy. Còn đường đi mà thấy khó khăn là bởi vì bạn đang lên dốc! <strong>Khổ mới là nhân sinh, mệt mỏi mới là công việc chứ.</strong></p>
+                    <p class="mb-3">Vậy nên trong bất kỳ hoàn cảnh nào, chúng ta cũng phải thích nghi, chúng ta phải biết cân bằng với cái nhịp sống này. Có rất nhiều cách để cân bằng lắm...</p>
+                    <div class="my-4 p-4 bg-blue-50 text-center rounded-xl border border-blue-200">
+                        <span class="text-2xl mb-2 block">🍵</span>
+                        <p class="text-brand-blue font-bold text-lg">Ví dụ như uống trà chẳng hạn. Uống trà đi!</p>
+                    </div>
+                `,
+                tea: true
+            },
+            {
+                page: 10,
+                title: "Tổ Ấm An Toàn & Lời Nói Tích Cực",
+                category: "Ứng Xử Gia Đình",
+                content: `
+                    <p class="mb-3">Cái người chồng mà người ta chán vợ ấy, là chẳng qua khi người ta về đến nhà, cái bộ mặt của người vợ suốt ngày quát mắng và chỉ chiết mệt mỏi lắm. Và người chồng cảm thấy cái tổ ấm của mình nó không còn an toàn nữa.</p>
+                    <p class="mb-3">Vì thế là người ta phải đi ra ngoài và tìm đến những chỗ nó vui hơn và nó an toàn hơn. Thì vô hình chung nó trở thành một thứ tiêu cực, đó chính là ngoại tình.</p>
+                    <div class="my-4 p-4 bg-green-50 border-l-4 border-green-600 rounded-r-lg font-medium text-slate-800">
+                        Lời khuyên cho gia đình:Trong gia đình, chúng ta không nên đưa những câu chuyện tiêu cực ngoài xã hội vào để làm ảnh hưởng đến không khí tổ ấm. Tốt nhất là hãy nói lên những điều tích cực, những điều có văn hóa. Nhớ đấy nhé!
+                    </div>
+                `,
+                tea: true
+            },
+            {
+                page: 11,
+                title: "Hôn Nhân Không Thể Cứu Vãn - Đừng Sống Vì Sĩ Diện",
+                category: "Hôn Nhân",
+                content: `
+                    <p class="mb-3">Một cuộc hôn nhân không còn cứu vãn được nữa, có đáng giữ không?</p>
+                    <p class="mb-3">Người đời hay nhìn vào và nói: <i>"Cố vì con đi", "Tuổi này còn ly hôn làm gì", "Đàn bà đã ly hôn rồi thì còn lấy được ai"</i>... Nhưng người trong cuộc hiểu rõ:</p>
+                    <ul class="space-y-2 mb-4 text-sm">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-brand-red mt-1"></i> Không một đứa trẻ nào hạnh phúc khi lớn lên trong một ngôi nhà mà cha mẹ không nhìn nhau.</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-brand-red mt-1"></i> Không có gia đình nào tốt khi cả hai ngồi cùng bàn mà không nói được một câu tử tế.</li>
+                    </ul>
+                    <p class="mb-3">Một cuộc hôn nhân không còn cứu vãn được nữa là khi cả hai đều đã thôi cố gắng. Ở lại trong đó nhiều năm không phải là tử tế với gia đình, đó là tự kết án mình một bản án không có ngày ra tù.</p>
+                    <p class="font-bold text-brand-red">Cố giữ vì sợ điều ngoài đời nói, đó không phải là tình yêu - đó là sĩ diện. Đời người chỉ vài chục năm thôi bạn, sống cho người khác xem mệt lắm!</p>
+                `,
+                tea: true
+            },
+            {
+                page: 12,
+                title: "Bị Phản Bội - Tự Trân Trọng Chính Mình",
+                category: "Vượt Qua Tổn Thương",
+                content: `
+                    <p class="mb-3 text-lg font-bold text-brand-blue">Bị phản bội thì có gì đâu mà buồn, mưa nào mà không tạnh hả bạn?</p>
+                    <p class="mb-3">Người ta không trân trọng mình thì mình tự trân trọng mình. Đừng dùng nước mắt để níu kéo, cũng đừng đánh ghen, cũng đừng trả thù. Để ruồi nhặng về đúng nơi của nó - đó là món quà cho bạn và là nghiệp quả của họ.</p>
+                    <div class="my-4 p-4 bg-sky-50 border-l-4 border-brand-lightBlue rounded-r-lg font-serif italic text-slate-700">
+                        "Rồi một ngày bạn sẽ tìm được người dùng sự bao dung để xoa dịu vết thương. Người bạn vui thì họ cũng vui, bạn đau lòng thì họ xót xa gấp bội - người nói ít nhưng làm thì nhiều."
+                    </div>
+                    <p class="font-semibold text-slate-800">Đừng nhìn vào những thứ đã bỏ lại phía sau, biết đâu phía trước còn có người đang đợi. Nhân duyên mới rồi sẽ lại đến thôi!</p>
+                `,
+                tea: true
+            },
+            {
+                page: 13,
+                title: "Tử Tế Nhưng Đừng Ngây Thơ Với Xã Hội",
+                category: "Thế Thái Nhân Tình",
+                content: `
+                    <p class="mb-3">Bước chân ra ngoài xã hội ấy thì các bạn phải nhớ này: <strong>Miệng lưỡi mà không dẻo thì lòng phải tàn.</strong></p>
+                    <p class="mb-3">Người nên ở lại thì hãy giữ ở lại, người nên buông ra thì hãy buông ra. Từ nay trở đi hoặc là nhẫn nhục hoặc là tránh xa.</p>
+                    <div class="my-4 p-4 bg-red-50 border border-red-200 rounded-lg text-brand-red font-bold">
+                        ⚠️ Hãy nhớ: Ngựa tốt thì bị người khác cưỡi. Thế nên sống tử tế nhưng đừng ngây thơ quá!
+                    </div>
+                    <p class="mb-3">Hiền lành là một đức hạnh nhưng không có nghĩa là người khác muốn làm gì mình thì làm. Nhịn được thì nhịn, tránh được thì tránh, nhưng đừng để bản thân trở thành người lúc nào cũng chịu thiệt rồi tự nuốt nước mắt vào trong.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 14,
+                title: "Báo Hiếu Cha Mẹ - Việc Không Thể Chờ Đợi",
+                category: "Hiếu Đạo",
+                content: `
+                    <p class="mb-3 font-bold text-brand-red text-base">Đời người có 2 việc không thể đợi, việc thứ nhất là BÁO HIẾU CHA MẸ.</p>
+                    <p class="mb-3">Bạn 30 cha mẹ 60, bạn 40 cha mẹ 70, bạn 50 có khi cha mẹ không còn nữa. Mỗi cái Tết về quê là một cái Tết ít đi, mỗi bữa cơm cùng cha mẹ là một bữa ít hơn lần trước, mỗi cuộc gọi không nghe có khi là cuộc gọi cuối cùng mà bạn không biết.</p>
+                    <div class="my-4 p-4 bg-blue-50 border-l-4 border-brand-blue rounded-r-lg text-slate-800">
+                        Báo hiếu chỉ đơn giản là những việc nhỏ thường ngày: như là xa nhà thì gọi điện, về quê thì ngồi xuống ăn một bữa cơm cho nó đông đủ. Đơn giản như vậy thôi nhưng mà vẫn phải nhanh, vì cha mẹ đâu còn trẻ nữa.
+                    </div>
+                    <p class="mb-3">Người ta vẫn thường nói: <i>"Đợi tôi ổn định công việc đã", "Đợi tôi mua xong căn nhà", "Đợi con cái lớn", "Đợi 50 tuổi thảnh thơi"</i>...</p>
+                    <p class="font-bold text-brand-red">Nhưng cái "đợi" đấy có một sự thật rất phũ phàng: LÀ CHA MẸ THÌ KHÔNG ĐỜI NÀO ĐỢI ĐƯỢC!</p>
+                `,
+                tea: true
+            },
+            {
+                page: 15,
+                title: "Hạnh Phúc Đích Thực Tuổi Trung Niên (Phần 1)",
+                category: "Gia Đình & Tuổi Trung Niên",
+                content: `
+                    <p class="mb-3">Hạnh phúc không phải là nhà lầu xe hơi, không phải là quyền cao chức trọng. <strong>Còn cha còn mẹ mới thực sự là hạnh phúc.</strong></p>
+                    <p class="mb-3 text-brand-blue font-semibold">"Còn cha mẹ là còn tất cả, mất cha mẹ chỉ còn lối bước về."</p>
+                    <p class="mb-3">Bạn để ý xem, những người thành đạt nhất quanh bạn: tiền họ có, nhà họ có, xe họ có... nhưng đến tuổi 50, nhiều người trong số đó không còn cha mẹ nữa.</p>
+                    <ul class="space-y-2 mb-4 text-slate-700 italic border-l-2 border-slate-300 pl-4">
+                        <li>Họ tổ chức sinh nhật ở khách sạn 5 sao nhưng không có cha ngồi đầu bàn để rót rượu.</li>
+                        <li>Họ mua cái nhà to nhưng không có mẹ ở chung.</li>
+                        <li>Họ thành công nhưng không có ai ở quê đợi họ về.</li>
+                    </ul>
+                    <p class="font-bold text-brand-red">Đến lúc đó, tiền không còn ý nghĩa gì các bạn ạ!</p>
+                `,
+                tea: true
+            },
+            {
+                page: 16,
+                title: "Hạnh Phúc Đích Thực Tuổi Trung Niên (Phần 2)",
+                category: "Gia Đình & Tuổi Trung Niên",
+                content: `
+                    <p class="mb-3 font-bold text-brand-blue text-lg">Vậy hạnh phúc thật của người trung niên là gì?</p>
+                    <div class="my-4 p-4 bg-green-50 border-l-4 border-green-600 rounded-r-lg space-y-2 text-slate-800 font-medium">
+                        <p>👉 Là buổi tối khi ngồi xuống bàn ăn vẫn còn đầy đủ những người mình yêu.</p>
+                        <p>👉 Là vợ chồng vẫn nhìn nhau, con cái vẫn về nhà.</p>
+                    </div>
+                    <p class="mb-3">Cứ chạy theo bên ngoài cả đời, đến lúc dừng lại thì mới thấy cái thực sự mình cần ở ngay trong nhà mình, chỉ là mình quên không nhìn thôi.</p>
+                    <p class="text-slate-600 italic">Dành thời gian cho gia đình khi còn có thể, bởi vì thời gian trôi đi sẽ không bao giờ trở lại.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 17,
+                title: "Thứ Độc Hại Nhất - Sự Mập Mờ Không Rõ Ràng",
+                category: "Tình Yêu & Quan Hệ",
+                content: `
+                    <p class="mb-3 font-semibold text-slate-800">Chia tay không đáng sợ, đáng sợ nhất là sự mập mờ, không rõ ràng.</p>
+                    <p class="mb-3">Có một kiểu lạnh nhạt không kết thúc bằng lời chia tay, nhưng ngày càng khiến người ta nghẹt thở. Nó giống như việc bạn bị treo lơ lửng trong một khoảng không, cứ phải đoán, cứ phải đợi, cứ phải tự thuyết phục mình rằng có lẽ người ta đang bận.</p>
+                    <div class="my-4 p-4 bg-red-50 border-l-4 border-brand-red rounded-r-lg font-bold text-slate-800">
+                        Nhớ nhé: Người sợ mất bạn thực sự thì không bao giờ để bạn phải đoán. Khi một người để cho bạn phải mơ hồ vị trí của bạn trong lòng họ, thì câu trả lời đã có ở đó rồi: BẠN KHÔNG CÓ VỊ TRÍ NÀO CẢ.
+                    </div>
+                    <p class="mb-3">Thà người ta nói thẳng, bạn còn có cơ hội để bước đi. Còn cứ để bạn phải đoán mãi, đó là thứ độc nhất vì bạn cũng không chia tay được và cũng không sống được.</p>
+                    <p class="font-bold text-brand-blue">Buông cái không rõ ràng với bạn! Khi một người không cho bạn sự chắc chắn, thì im lặng là cách họ chia tay rồi đấy.</p>
+                `,
+                tea: true
+            },
+            {
+                page: 18,
+                title: "Tổng Kết Suy Ngẫm Về Hôn Nhân & Cuộc Sống (Tóm Lược 1)",
+                category: "Tổng Kết Triết Lý",
+                content: `
+                    <h4 class="font-bold text-brand-blue mb-2">1. Hôn Nhân Là Một Hành Trình Nỗ Lực</h4>
+                    <p class="mb-3 text-sm">Hôn nhân đầy thử thách và niềm vui. Khi vợ chồng còn cãi nhau là dấu hiệu của mối quan hệ còn sống động, cãi tức là còn kỳ vọng. Im lặng mới là dấu hiệu nguy hiểm nhất của sự buông xuôi.</p>
+                    
+                    <h4 class="font-bold text-brand-blue mb-2">2. Hạnh Phúc Thực Sự Đến Từ Bình Yên</h4>
+                    <p class="mb-3 text-sm">Hạnh phúc không nằm ở của cải hào nhoáng mà là có một mái nhà bình yên để trở về. Đừng tiêu tốn thời gian bào mòn bản thân trong các quan hệ độc hại, hãy đầu tư tri thức và kỹ năng cho chính mình.</p>
+
+                    <h4 class="font-bold text-brand-blue mb-2">3. Ý Nghĩa Của Hôn Nhân</h4>
+                    <p class="text-sm">Kết hôn là để bản thân mình hạnh phúc hơn lúc độc thân. Đừng vội vàng cưới vì áp lực xã hội hay cha mẹ. Gặp đúng người không bao giờ là uổng phí.</p>
+                `,
+                tea: false
+            },
+            {
+                page: 19,
+                title: "Tổng Kết Suy Ngẫm Về Hôn Nhân & Cuộc Sống (Tóm Lược 2)",
+                category: "Tổng Kết Triết Lý",
+                content: `
+                    <h4 class="font-bold text-brand-blue mb-2">4. Cân Bằng Cuộc Sống & Hiếu Đạo</h4>
+                    <p class="mb-3 text-sm">Cuộc sống luôn có thử thách, mệt mỏi là công việc, khổ mới là nhân sinh. Hãy học cách cân bằng tâm trí qua từng tách trà. Đặc biệt, hãy nhớ hiếu kính cha mẹ - việc không bao giờ có thể trì hoãn.</p>
+
+                    <h4 class="font-bold text-brand-blue mb-2">5. Cách Giải Quyết Vấn Đề Dứt Khoát</h4>
+                    <p class="mb-4 text-sm">Cuộc đời này chỉ có hai cách giải quyết vấn đề: Một là đối mặt và xử lý, hai là dứt khoát bước ra khỏi nó. Đừng nhầm lẫn giữa kiên nhẫn và chịu đựng vô ích.</p>
+
+                    <div class="p-4 bg-gradient-to-r from-brand-blue to-blue-800 text-white rounded-xl text-center shadow-md">
+                        <p class="text-sm italic mb-1">"Mỗi người chỉ có một cuộc đời để hạnh phúc. Hãy chọn sống trọn vẹn và chân thành."</p>
+                        <p class="font-bold text-amber-300 text-base">Uống trà đi, và suy ngẫm về những điều quan trọng nhất trong cuộc sống!</p>
+                    </div>
+                `,
+                tea: true
+            }
+        ];
+
+        let currentPage = 1;
+        let isAllView = false;
+
+        // Render Sidebar Menu
+        function renderSidebar() {
+            const menuContainer = document.getElementById('page-menu');
+            menuContainer.innerHTML = '';
+
+            pdfPages.forEach(p => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition flex items-center justify-between ${
+                    p.page === currentPage && !isAllView
+                        ? 'bg-brand-blue text-white shadow'
+                        : 'text-slate-700 hover:bg-slate-100'
+                }`;
+                btn.onclick = () => {
+                    isAllView = false;
+                    updateViewModeUI();
+                    goToPage(p.page);
+                };
+
+                btn.innerHTML = `
+                    <span class="truncate pr-2">Trang ${p.page}: ${p.title}</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+                `;
+                menuContainer.appendChild(btn);
+            });
+        }
+
+        // Render Page Content
+        function renderContent() {
+            const container = document.getElementById('pages-container');
+            container.innerHTML = '';
+
+            const pagesToRender = isAllView ? pdfPages : [pdfPages[currentPage - 1]];
+
+            pagesToRender.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 page-shadow relative overflow-hidden transition-all';
+                
+                card.innerHTML = `
+                    <!-- Header of Page -->
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+                        <div class="flex items-center space-x-2">
+                            <span class="bg-brand-blue text-white text-xs font-bold px-2.5 py-1 rounded-md">TRANG ${p.page}</span>
+                            <span class="bg-blue-50 text-brand-blue border border-blue-200 text-xs font-semibold px-2.5 py-1 rounded-md">${p.category}</span>
+                        </div>
+                        <a href="https://matmacuocdoi.vn" target="_blank" class="text-xs text-slate-400 hover:text-brand-blue transition">matmacuocdoi.vn</a>
+                    </div>
+
+                    <!-- Title -->
+                    <h2 class="text-xl sm:text-2xl font-bold text-brand-blue mb-4 font-sans leading-snug">
+                        ${p.title}
+                    </h2>
+
+                    <!-- Body Content -->
+                    <div class="text-slate-700 leading-relaxed text-base sm:text-lg mb-6 font-sans">
+                        ${p.content}
+                    </div>
+
+                    <!-- Footer Tea Callout -->
+                    ${p.tea ? `
+                    <div class="pt-4 border-t border-dashed border-slate-200 flex flex-wrap items-center justify-between gap-2">
+                        <div class="flex items-center space-x-2 text-brand-red font-bold text-sm">
+                            <i class="fa-solid fa-mug-hot text-lg"></i>
+                            <span>Uống trà đi... suy ngẫm ngẫm nghĩ!</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-xs text-slate-500">
+                            <span>Chuyên gia Tuấn Anh Zalo: <strong>0789 414 153</strong></span>
+                        </div>
+                    </div>
+                    ` : ''}
+                `;
+                container.appendChild(card);
+            });
+
+            document.getElementById('page-indicator').innerText = isAllView ? `Tất cả 19 Trang` : `Trang ${currentPage} / 19`;
+            renderSidebar();
+        }
+
+        function changePage(delta) {
+            if (isAllView) {
+                isAllView = false;
+                updateViewModeUI();
+            }
+            let newPage = currentPage + delta;
+            if (newPage >= 1 && newPage <= pdfPages.length) {
+                currentPage = newPage;
+                renderContent();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function goToPage(pageNum) {
+            currentPage = pageNum;
+            renderContent();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleViewMode() {
+            isAllView = !isAllView;
+            updateViewModeUI();
+            renderContent();
+        }
+
+        function updateViewModeUI() {
+            const btnText = document.getElementById('view-mode-text');
+            if (isAllView) {
+                btnText.innerText = "Chuyển Sang Xem Từng Trang";
+            } else {
+                btnText.innerText = "Chế độ Xem Tất Cả Trang";
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderContent();
+        });
+    </script>
+</body>
+</html>
