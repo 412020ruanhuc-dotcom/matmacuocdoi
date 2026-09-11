@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mật Mã Cuộc Đời - Chuyên Gia Tử Vi & Thiết Kế Năng Lượng Số</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter & Playfair -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                        },
+                        brandBlue: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                            950: '#082f49',
+                        },
+                        navyDark: '#080e1e',
+                        navyCard: '#101c38',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Philosopher', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-red-blue {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 50%, #881337 100%);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px rgba(220, 38, 38, 0.35);
+        }
+        .glow-blue {
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.35);
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fef08a 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(16, 28, 56, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-navyDark text-slate-100 font-sans antialiased selection:bg-brandRed-600 selection:text-white min-h-screen flex flex-col justify-between">
+
+    <!-- Top Bar Notice -->
+    <div class="bg-brandRed-700 text-white text-xs md:text-sm py-2 px-4 text-center font-medium shadow-md">
+        <div class="max-w-7xl mx-auto flex justify-between items-center px-2">
+            <span class="hidden sm:inline"><i class="fa-solid fa-sparkles text-yellow-300 mr-2"></i>Hệ Sinh Thái Luận Giải Tử Vi & Năng Lượng Số Chính Thống</span>
+            <span class="mx-auto sm:mx-0"><i class="fa-solid fa-phone mr-1"></i> Zalo Hotline: <a href="tel:0789414153" class="underline font-bold">0789.414.153</a> - <a href="tel:0849328628" class="underline font-bold">0849.328.628</a></span>
+            <a href="https://zalo.me/g/iljgbe719" target="_blank" class="hidden md:inline-block bg-white text-brandRed-700 text-xs px-2.5 py-0.5 rounded-full font-bold hover:bg-slate-100 transition">Vào Nhóm Zalo</a>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-blue-900/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-brandRed-600 to-blue-600 p-0.5 flex items-center justify-center shadow-lg group-hover:scale-105 transition">
+                        <div class="w-full h-full bg-navyDark rounded-full flex items-center justify-center">
+                            <i class="fa-solid fa-yin-yang text-2xl text-brandRed-500 group-hover:rotate-180 transition duration-700"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="font-serif text-xl sm:text-2xl font-bold tracking-wider text-white block uppercase leading-tight">Mật Mã Cuộc Đời</span>
+                        <span class="text-[10px] text-blue-300 tracking-widest uppercase block font-semibold">Tử Vi & Năng Lượng Số</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Navigation -->
+                <nav class="hidden lg:flex items-center gap-6 text-sm font-medium">
+                    <a href="#about" class="text-slate-200 hover:text-blue-400 transition">Giới Thiệu</a>
+                    <a href="#lookup" class="text-slate-200 hover:text-blue-400 transition flex items-center gap-1">
+                        <i class="fa-solid fa-magnifying-glass text-brandRed-500 text-xs"></i> Tra Cứu Số
+                    </a>
+                    <a href="#ecosystem" class="text-slate-200 hover:text-blue-400 transition">Hệ Sinh Thái</a>
+                    <a href="#services" class="text-slate-200 hover:text-blue-400 transition">Dịch Vụ Luận Giải</a>
+                    <a href="#videos" class="text-slate-200 hover:text-blue-400 transition">Youtube & Livestream</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="https://matmacuocdoi.vn" target="_blank" class="px-4 py-2 text-xs font-bold rounded-lg border border-blue-500/50 text-blue-300 hover:bg-blue-600/20 transition flex items-center gap-2">
+                        <i class="fa-solid fa-globe"></i> Website Chính Thức
+                    </a>
+                    <a href="https://zalo.me/g/iljgbe719" target="_blank" class="px-4 py-2 text-xs font-bold rounded-lg bg-brandRed-600 hover:bg-brandRed-700 text-white shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-users"></i> Nhóm Zalo
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="lg:hidden text-slate-300 hover:text-white text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-800 bg-navyCard px-4 pt-3 pb-6 space-y-3">
+            <a href="#about" class="block py-2 text-slate-200 border-b border-slate-800/50">Giới Thiệu Chuyên Gia</a>
+            <a href="#lookup" class="block py-2 text-slate-200 border-b border-slate-800/50">Tra Cứu Năng Lượng Số</a>
+            <a href="#ecosystem" class="block py-2 text-slate-200 border-b border-slate-800/50">Hệ Sinh Thái Kênh</a>
+            <a href="#services" class="block py-2 text-slate-200 border-b border-slate-800/50">Dịch Vụ Tư Vấn</a>
+            <a href="#videos" class="block py-2 text-slate-200 border-b border-slate-800/50">Livestream & Video</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <a href="https://matmacuocdoi.vn" target="_blank" class="text-center py-2 text-xs font-bold rounded-lg bg-blue-900/60 text-blue-300 border border-blue-600/40">Website MatMaCuocDoi.vn</a>
+                <a href="https://zalo.me/g/iljgbe719" target="_blank" class="text-center py-2 text-xs font-bold rounded-lg bg-brandRed-600 text-white">Tham Gia Nhóm Zalo</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative py-16 lg:py-24 overflow-hidden gradient-red-blue border-b border-blue-900/50">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(220,38,38,0.15),transparent_50%),radial-gradient(circle_at_70%_70%,rgba(37,99,235,0.2),transparent_50%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Text Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-900/80 border border-blue-400/30 text-blue-200 text-xs uppercase tracking-widest font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-brandRed-500 animate-ping"></span>
+                        Khám Phá Bí Mật Vận Mệnh Qua Con Số
+                    </div>
+
+                    <h1 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+                        HỆ SINH THÁI <br class="hidden sm:inline"/>
+                        <span class="text-gradient-gold">MẬT MÃ CUỘC ĐỜI</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        Thấu hiểu bản ngã, định hướng tương lai, cải biến vận mệnh thông qua <strong class="text-white font-semibold">Tử Vi Nam Phái & Thiết Kế Năng Lượng Số</strong> (Số Điện Thoại - CCCD - Phong Thủy).
+                    </p>
+
+                    <!-- Expert Badge -->
+                    <div class="p-4 rounded-xl bg-slate-900/80 border border-blue-500/30 backdrop-blur-md max-w-xl mx-auto lg:mx-0 flex items-center gap-4 text-left shadow-lg">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-brandRed-600 to-blue-600 flex-shrink-0 p-0.5 shadow-md">
+                            <div class="w-full h-full rounded-full bg-slate-900 flex items-center justify-center text-white font-bold text-xl">
+                                TA
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-xs text-blue-400 uppercase font-semibold">Chuyên Gia Dẫn Dắt</div>
+                            <div class="text-lg font-bold text-white">Nguyễn Tuấn Anh</div>
+                            <div class="text-xs text-slate-300">Chuyên gia Tử vi & Thiết kế năng lượng số cải biến vận mệnh</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                        <a href="#lookup" class="px-8 py-4 rounded-xl bg-gradient-to-r from-brandRed-600 to-brandRed-700 hover:from-brandRed-500 hover:to-brandRed-600 text-white font-bold text-center shadow-lg glow-red transition duration-300 flex items-center justify-center gap-3 text-base">
+                            <i class="fa-solid fa-compass text-lg"></i> Tra Cứu Sao Hạn & Số
+                        </a>
+                        <a href="https://zalo.me/g/iljgbe719" target="_blank" class="px-8 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-center shadow-lg glow-blue transition duration-300 flex items-center justify-center gap-3 text-base">
+                            <i class="fa-solid fa-comment-dots text-lg"></i> Nhóm Zalo Cộng Đồng
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-800/80 max-w-lg mx-auto lg:mx-0 text-center">
+                        <div>
+                            <div class="text-2xl font-bold text-brandRed-400">100,000+</div>
+                            <div class="text-xs text-slate-400">Lượt Tra Cứu</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-blue-400">10,000+</div>
+                            <div class="text-xs text-slate-400">Thành Viên Zalo</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-bold text-yellow-400">100%</div>
+                            <div class="text-xs text-slate-400">Tận Tâm Luận Giải</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Card Box -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-brandRed-600 to-blue-600 rounded-2xl filter blur-lg opacity-40"></div>
+                        
+                        <div class="relative glass-panel p-6 sm:p-8 rounded-2xl border border-blue-400/30 text-center space-y-6">
+                            <div class="w-20 h-20 mx-auto rounded-full bg-brandRed-600/20 border-2 border-brandRed-500 flex items-center justify-center text-brandRed-500 text-3xl">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+
+                            <h3 class="font-serif text-2xl font-bold text-white">Mật Mã Cải Biến Vận Mệnh</h3>
+                            <p class="text-sm text-slate-300 leading-relaxed">
+                                "Mỗi con số bạn sở hữu (SĐT, CCCD, Ngày Sinh) đều mang tần số năng lượng trực tiếp tác động đến Tài Lộc, Sức Khỏe & Gia Đạo."
+                            </p>
+
+                            <div class="space-y-3 pt-2">
+                                <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-900/70 border border-slate-800 text-left text-xs sm:text-sm">
+                                    <i class="fa-solid fa-circle-check text-brandRed-500 text-base"></i>
+                                    <span>Luận Giải Xung Khắc Vợ Chồng & Gia Đạo</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-900/70 border border-slate-800 text-left text-xs sm:text-sm">
+                                    <i class="fa-solid fa-circle-check text-blue-400 text-base"></i>
+                                    <span>Cải Biến Năng Lượng Số Điện Thoại & CCCD</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-lg bg-slate-900/70 border border-slate-800 text-left text-xs sm:text-sm">
+                                    <i class="fa-solid fa-circle-check text-yellow-400 text-base"></i>
+                                    <span>Định Hướng Kinh Doanh & Tên Thương Hiệu</span>
+                                </div>
+                            </div>
+
+                            <a href="https://matmacuocdoi.vn" target="_blank" class="block w-full py-3 rounded-xl bg-white text-navyDark font-extrabold hover:bg-slate-100 transition shadow-md">
+                                <i class="fa-solid fa-arrow-up-right-from-square mr-2 text-brandRed-600"></i> Truy Cập MatMaCuocDoi.vn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE LOOKUP TOOL SECTION -->
+    <section id="lookup" class="py-16 bg-navyCard border-b border-slate-800 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brandRed-500 font-semibold uppercase tracking-wider text-xs">Công Cụ Trực Tuyến Nhanh</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">TRA CỨU NĂNG LƯỢNG SỐ & SAO HẠN</h2>
+                <p class="text-slate-400 text-sm mt-2">Nhập thông tin con số cá nhân để kiểm tra chỉ số năng lượng tổng quan ban đầu</p>
+            </div>
+
+            <!-- Form Container -->
+            <div class="bg-slate-900/90 rounded-2xl border border-blue-500/30 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brandRed-600 via-white to-blue-600"></div>
+
+                <form id="lookupForm" onsubmit="handleLookup(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <!-- Full Name -->
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Họ và Tên <span class="text-brandRed-500">*</span></label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-user"></i></span>
+                                <input type="text" id="fullName" required placeholder="Ví dụ: Nguyễn Văn An" class="w-full pl-10 pr-4 py-3 bg-navyDark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Ngày Tháng Năm Sinh <span class="text-brandRed-500">*</span></label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-calendar-days"></i></span>
+                                <input type="date" id="dob" required class="w-full pl-10 pr-4 py-3 bg-navyDark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Số Điện Thoại Cần Kiểm Tra <span class="text-brandRed-500">*</span></label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-mobile-screen-button"></i></span>
+                                <input type="tel" id="phone" required placeholder="Ví dụ: 0912345678" class="w-full pl-10 pr-4 py-3 bg-navyDark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                            </div>
+                        </div>
+
+                        <!-- CCCD Number -->
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-300 mb-2">Số CCCD / Định Danh (Tùy chọn)</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500"><i class="fa-solid fa-id-card"></i></span>
+                                <input type="text" id="cccd" placeholder="Ví dụ: 00109200xxxx" class="w-full pl-10 pr-4 py-3 bg-navyDark border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-sm">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center pt-2">
+                        <button type="submit" class="w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-brandRed-600 to-blue-600 hover:from-brandRed-500 hover:to-blue-500 text-white font-bold rounded-xl shadow-lg transition duration-300 text-base flex items-center justify-center gap-3 mx-auto">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Phân Tích Mật Mã Ngay
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Result Box (Hidden by default) -->
+                <div id="resultBox" class="hidden mt-8 pt-8 border-t border-slate-800 space-y-6">
+                    <div class="bg-navyDark p-6 rounded-xl border border-blue-500/40">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-4">
+                            <div>
+                                <span class="text-xs text-blue-400 font-semibold uppercase">Kết Quả Phân Tích Sơ Bộ</span>
+                                <h3 id="resName" class="text-xl font-bold text-white">Chủ nhân: -</h3>
+                                <p id="resMeta" class="text-xs text-slate-400">SĐT: - | CCCD: -</p>
+                            </div>
+                            <div class="bg-brandRed-600/20 border border-brandRed-500/50 px-4 py-2 rounded-lg text-right">
+                                <div class="text-xs text-slate-300">Điểm Năng Lượng Con Số</div>
+                                <div id="resScore" class="text-2xl font-black text-brandRed-500">85/100</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-6">
+                            <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
+                                <div class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-coins text-yellow-500 mr-1"></i> Tần Số Tài Lộc</div>
+                                <div id="resMoney" class="font-bold text-slate-200">Đang phân tích...</div>
+                            </div>
+                            <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
+                                <div class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-heart text-brandRed-500 mr-1"></i> Gia Đạo & Tình Uyên</div>
+                                <div id="resLove" class="font-bold text-slate-200">Đang phân tích...</div>
+                            </div>
+                            <div class="bg-slate-900 p-4 rounded-lg border border-slate-800">
+                                <div class="text-xs text-slate-400 mb-1"><i class="fa-solid fa-shield-halved text-blue-400 mr-1"></i> Hạn Sao Trong Năm</div>
+                                <div id="resStar" class="font-bold text-slate-200">Đang phân tích...</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-950/50 border border-blue-800/60 p-4 rounded-lg text-xs sm:text-sm text-slate-300 space-y-2">
+                            <p class="font-semibold text-blue-200"><i class="fa-solid fa-lightbulb text-yellow-400 mr-1"></i> Lời Khuyên Cải Biến Từ Chuyên Gia:</p>
+                            <p id="resAdvice">Con số bạn đang dùng mang năng lượng tích cực nhưng cần bổ sung bộ số bổ trợ cho bản mệnh để kích hoạt trọn vẹn Quý Nhân & Tài Vận.</p>
+                        </div>
+
+                        <!-- Direct Consultation CTA -->
+                        <div class="mt-6 p-4 rounded-xl bg-gradient-to-r from-brandRed-900/60 to-blue-950/80 border border-brandRed-500/40 text-center space-y-3">
+                            <p class="text-sm font-semibold text-white">Bạn muốn luận giải chi tiết sâu 1:1 với Chuyên gia Nguyễn Tuấn Anh?</p>
+                            <div class="flex flex-wrap justify-center gap-3">
+                                <a href="https://zalo.me/0789414153" target="_blank" class="px-5 py-2.5 rounded-lg bg-brandRed-600 hover:bg-brandRed-500 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2">
+                                    <i class="fa-solid fa-comment"></i> Nhắn Zalo Chuyên Gia Tuấn Anh (0789.414.153)
+                                </a>
+                                <a href="https://matmacuocdoi.vn" target="_blank" class="px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm transition flex items-center gap-2">
+                                    <i class="fa-solid fa-globe"></i> Xem Chi Tiết Tại Website MatMaCuocDoi.vn
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ECOSYSTEM HUB SECTION -->
+    <section id="ecosystem" class="py-16 lg:py-24 bg-navyDark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-blue-400 font-semibold uppercase tracking-wider text-xs">Kết Nối Chính Thức</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">HỆ SINH THÁI MẬT MÃ CUỘC ĐỜI</h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-brandRed-600 to-blue-600 mx-auto mt-4 rounded-full"></div>
+                <p class="text-slate-400 text-sm mt-4">Truy cập các kênh truyền thông chính thức để nhận thông tin chuẩn xác và không sợ bị lạc tin nhắn</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Website Official Card -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-blue-500/50 transition duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-xl bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-blue-400 transition">Website Tra Cứu Official</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Cổng tra cứu Tử Vi, Sao Hạn, Năng Lượng Số tự động 24/7 hoàn toàn miễn phí. Đã phục vụ hàng trăm nghìn lượt tra cứu toàn quốc.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800 mt-6">
+                        <a href="https://matmacuocdoi.vn" target="_blank" class="w-full py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs text-center block transition shadow">
+                            Truy Cập MatMaCuocDoi.vn <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- YouTube Main Channel -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-brandRed-500/50 transition duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-xl bg-brandRed-600/20 border border-brandRed-500/40 flex items-center justify-center text-brandRed-500 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-brandRed-400 transition">Kênh YouTube Đăng Ký</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Theo dõi video luận giải tử vi, thiết kế năng lượng số mới nhất từ Chuyên gia Nguyễn Tuấn Anh. Đăng ký để không bỏ lỡ thông tin.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800 mt-6">
+                        <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="w-full py-2.5 rounded-lg bg-brandRed-600 hover:bg-brandRed-500 text-white font-bold text-xs text-center block transition shadow">
+                            <i class="fa-brands fa-youtube mr-1"></i> Đăng Ký Kênh YouTube
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Zalo Community Group -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-blue-400/50 transition duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-xl bg-sky-600/20 border border-sky-500/40 flex items-center justify-center text-sky-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition">Nhóm Zalo Cộng Đồng</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Tham gia cộng đồng để nhận thông báo video mới, lịch livestream giải đáp trực tiếp và trao đổi kiến thức phong thủy năng lượng số.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800 mt-6">
+                        <a href="https://zalo.me/g/iljgbe719" target="_blank" class="w-full py-2.5 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs text-center block transition shadow">
+                            <i class="fa-solid fa-comments mr-1"></i> Tham Gia Nhóm Zalo
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Playlist Livestream Direct -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-red-500/50 transition duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-xl bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-tower-broadcast"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-red-400 transition">Livestream Trực Tiếp</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Xem lại các buổi Livestream trực tiếp giải đáp câu hỏi của khán giả về Tử Vi, Vận Hạn & Thiết Kế Năng Lượng Số.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800 mt-6">
+                        <a href="https://www.youtube.com/playlist?list=PLGILo4RyLrGE" target="_blank" class="w-full py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs text-center block transition border border-slate-700">
+                            Xem Danh Sách Phát <i class="fa-solid fa-play ml-1 text-red-500"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Playlist Phonenumber / CCCD / Married -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-yellow-500/50 transition duration-300 flex flex-col justify-between group">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-xl bg-yellow-600/20 border border-yellow-500/40 flex items-center justify-center text-yellow-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-yellow-400 transition">Luận Giải SĐT - CCCD - Gia Đạo</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Bộ video chuyên sâu luận giải xung khắc vợ chồng, chọn SĐT kinh doanh, ý nghĩa dãy số định danh CCCD.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800 mt-6">
+                        <a href="https://www.youtube.com/playlist?list=PLKq7x60u_IAPKmgAtAPyJ1tJV7EVETk2U" target="_blank" class="w-full py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs text-center block transition border border-slate-700">
+                            Xem Bộ Video Chi Tiết <i class="fa-solid fa-play ml-1 text-yellow-500"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Expert Tuấn Anh Contact -->
+                <div class="glass-panel rounded-2xl p-6 border border-slate-800 hover:border-brandRed-500/50 transition duration-300 flex flex-col justify-between group bg-gradient-to-b from-brandRed-950/30 to-navyCard">
+                    <div class="space-y-4">
+                        <div class="w-14 h-14 rounded-xl bg-brandRed-600/30 border border-brandRed-500/50 flex items-center justify-center text-white text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white">Chuyên Gia Nguyễn Tuấn Anh</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Chuyên gia Tử Vi & Thiết Kế Năng Lượng Số. Liên hệ trực tiếp Zalo để được tư vấn và luận giải riêng tư 1:1.
+                        </p>
+                    </div>
+                    <div class="pt-6 border-t border-slate-800 mt-6 space-y-2">
+                        <a href="https://zalo.me/0789414153" target="_blank" class="w-full py-2.5 rounded-lg bg-brandRed-600 hover:bg-brandRed-500 text-white font-bold text-xs text-center block transition shadow">
+                            <i class="fa-solid fa-phone mr-1"></i> Zalo: 0789.414.153
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-16 lg:py-24 bg-navyCard border-t border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brandRed-500 font-semibold uppercase tracking-wider text-xs">Dịch Vụ Tư Vấn Chuyên Sâu</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">CẢI BIẾN VẬN MỆNH & NĂNG LƯỢNG SỐ</h2>
+                <p class="text-slate-400 text-sm mt-3">Các gói luận giải trực tiếp bởi Nguyễn Tuấn Anh & Kim Nguyên Bảo</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Service 1 -->
+                <div class="bg-slate-900/80 rounded-xl p-6 border border-slate-800 hover:border-brandRed-500/50 transition">
+                    <div class="w-12 h-12 rounded-lg bg-brandRed-600/20 text-brandRed-500 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-phone-volume"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Luận Giải Số Điện Thoại</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Phân tích năng lượng dãy số điện thoại đang dùng có xung hợp với bản mệnh, kích hoạt đường tài lộc hay hao tài tốn sức.
+                    </p>
+                    <a href="https://zalo.me/0789414153" target="_blank" class="text-xs text-brandRed-400 font-bold hover:underline inline-flex items-center gap-1">
+                        Tư vấn ngay <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-900/80 rounded-xl p-6 border border-slate-800 hover:border-blue-500/50 transition">
+                    <div class="w-12 h-12 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Luận Giải Dãy Số CCCD</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Giải mã các con số định danh gắn liền cả đời, tìm ra điểm tựa năng lượng tốt để ứng biến với vận hạn trong năm.
+                    </p>
+                    <a href="https://zalo.me/0789414153" target="_blank" class="text-xs text-blue-400 font-bold hover:underline inline-flex items-center gap-1">
+                        Tư vấn ngay <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-900/80 rounded-xl p-6 border border-slate-800 hover:border-yellow-500/50 transition">
+                    <div class="w-12 h-12 rounded-lg bg-yellow-600/20 text-yellow-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-heart-circle-bolt"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Xung Khắc Vợ Chồng</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Xem xung hợp tuổi tác, gia đạo, hướng giải quyết mâu thuẫn bằng việc điều chỉnh năng lượng số trong gia đình.
+                    </p>
+                    <a href="https://zalo.me/0789414153" target="_blank" class="text-xs text-yellow-400 font-bold hover:underline inline-flex items-center gap-1">
+                        Tư vấn ngay <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-slate-900/80 rounded-xl p-6 border border-slate-800 hover:border-emerald-500/50 transition">
+                    <div class="w-12 h-12 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-white mb-2">Định Hướng Kinh Doanh</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-4">
+                        Thiết kế số Hotline doanh nghiệp, chọn ngày lành tháng tốt, định hướng thương hiệu đạt vượng khí tài chính.
+                    </p>
+                    <a href="https://zalo.me/0789414153" target="_blank" class="text-xs text-emerald-400 font-bold hover:underline inline-flex items-center gap-1">
+                        Tư vấn ngay <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Support Hotline Experts Box -->
+            <div class="mt-12 bg-gradient-to-r from-blue-950 via-slate-900 to-brandRed-950 rounded-2xl p-6 sm:p-8 border border-blue-500/30 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h3 class="text-xl font-bold text-white">Bạn Cần Hỗ Trợ Luận Giải Trực Tiếp Private?</h3>
+                    <p class="text-xs text-slate-300 mt-1">Kết bạn Zalo ngay với đội ngũ chuyên gia hàng đầu của Mật Mã Cuộc Đời:</p>
+                </div>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="https://zalo.me/0789414153" target="_blank" class="px-5 py-3 rounded-xl bg-brandRed-600 hover:bg-brandRed-500 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-user-check"></i> Tuấn Anh: 0789 414 153
+                    </a>
+                    <a href="https://zalo.me/0849328628" target="_blank" class="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+                        <i class="fa-solid fa-user-check"></i> Kim Nguyên Bảo: 0849 328 628
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS & LIVESTREAM SECTION -->
+    <section id="videos" class="py-16 lg:py-24 bg-navyDark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+                <div>
+                    <span class="text-brandRed-500 font-semibold uppercase tracking-wider text-xs">Video & Trực Tiếp</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">NỘI DUNG TỬ VI NỔI BẬT</h2>
+                    <p class="text-slate-400 text-sm mt-1">Cập nhật liên tục trên kênh YouTube Mật Mã Cuộc Đời</p>
+                </div>
+                <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="px-5 py-2.5 rounded-lg border border-brandRed-500 text-brandRed-400 hover:bg-brandRed-600 hover:text-white transition font-bold text-xs flex items-center gap-2">
+                    <i class="fa-brands fa-youtube"></i> Xem Tất Cả Kênh
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Video Card 1 -->
+                <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-blue-500/40 transition group">
+                    <div class="relative aspect-video bg-slate-950 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <i class="fa-solid fa-circle-play text-5xl text-brandRed-500 group-hover:scale-110 transition duration-300 z-10"></i>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] px-2 py-0.5 rounded">LIVESTREAM</span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <span class="text-[10px] bg-brandRed-600/20 text-brandRed-400 px-2 py-0.5 rounded uppercase font-semibold">Danh Sách Phát Livestream</span>
+                        <h4 class="text-base font-bold text-white group-hover:text-blue-300 transition line-clamp-2">Chuỗi Livestream Luận Giải Trực Tiếp Số Điện Thoại & Tử Vi</h4>
+                        <p class="text-xs text-slate-400 line-clamp-2">Theo dõi giải đáp trực tiếp vận hạn, năng lượng số cho khán giả xem livestream.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLGILo4RyLrGE" target="_blank" class="block text-xs text-blue-400 font-bold pt-2 border-t border-slate-800">
+                            Mở Playlist Livestream <i class="fa-solid fa-external-link text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-yellow-500/40 transition group">
+                    <div class="relative aspect-video bg-slate-950 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <i class="fa-solid fa-circle-play text-5xl text-yellow-500 group-hover:scale-110 transition duration-300 z-10"></i>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] px-2 py-0.5 rounded">CHUYÊN ĐỀ</span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <span class="text-[10px] bg-yellow-600/20 text-yellow-400 px-2 py-0.5 rounded uppercase font-semibold">SĐT - CCCD - Vợ Chồng</span>
+                        <h4 class="text-base font-bold text-white group-hover:text-yellow-300 transition line-clamp-2">Bí Mật Luận Giải Số Điện Thoại & CCCD Cải Biến Vận Mệnh</h4>
+                        <p class="text-xs text-slate-400 line-clamp-2">Hướng dẫn nhận biết các bộ số cát tường và xử lý xung khắc vợ chồng trong gia đình.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLKq7x60u_IAPKmgAtAPyJ1tJV7EVETk2U" target="_blank" class="block text-xs text-yellow-400 font-bold pt-2 border-t border-slate-800">
+                            Mở Playlist Chuyên Đề <i class="fa-solid fa-external-link text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 hover:border-brandRed-500/40 transition group">
+                    <div class="relative aspect-video bg-slate-950 flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <i class="fa-solid fa-bell text-5xl text-brandRed-500 group-hover:scale-110 transition duration-300 z-10"></i>
+                        <span class="absolute bottom-2 right-2 bg-black/80 text-white text-[10px] px-2 py-0.5 rounded">ĐĂNG KÝ</span>
+                    </div>
+                    <div class="p-5 space-y-3">
+                        <span class="text-[10px] bg-blue-600/20 text-blue-400 px-2 py-0.5 rounded uppercase font-semibold">Theo Dõi Kênh Official</span>
+                        <h4 class="text-base font-bold text-white group-hover:text-brandRed-300 transition line-clamp-2">Đăng Ký Kênh Để Nhận Thông Báo Video Tử Vi Mới Nhất</h4>
+                        <p class="text-xs text-slate-400 line-clamp-2">Nhấn chuông theo dõi để không bỏ lỡ kiến thức phong thủy năng lượng số chuẩn xác.</p>
+                        <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="block text-xs text-brandRed-400 font-bold pt-2 border-t border-slate-800">
+                            Đăng Ký Kênh Ngay <i class="fa-solid fa-external-link text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navyCard border-t border-slate-800 text-slate-400 text-xs py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <div class="md:col-span-2 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-brandRed-600 flex items-center justify-center text-white font-bold text-sm">
+                            <i class="fa-solid fa-yin-yang"></i>
+                        </div>
+                        <span class="font-serif text-lg font-bold text-white uppercase">Mật Mã Cuộc Đời</span>
+                    </div>
+                    <p class="text-slate-300 text-xs leading-relaxed max-w-md">
+                        Hệ sinh thái chính thức tư vấn Tử Vi, Luận Giải Năng Lượng Số Điện Thoại, CCCD & Cải Biến Vận Mệnh do Chuyên Gia Nguyễn Tuấn Anh sáng lập.
+                    </p>
+                    <div class="pt-2 text-slate-400 space-y-1">
+                        <p><i class="fa-solid fa-globe mr-2 text-blue-400"></i> Website: <a href="https://matmacuocdoi.vn" target="_blank" class="hover:underline text-slate-200">https://matmacuocdoi.vn</a></p>
+                        <p><i class="fa-brands fa-youtube mr-2 text-brandRed-500"></i> YouTube: <a href="https://www.youtube.com/@matmacuocdoi" target="_blank" class="hover:underline text-slate-200">@matmacuocdoi</a></p>
+                        <p><i class="fa-solid fa-phone mr-2 text-green-400"></i> Zalo Tuấn Anh: <a href="https://zalo.me/0789414153" class="hover:underline text-slate-200">0789.414.153</a></p>
+                        <p><i class="fa-solid fa-phone mr-2 text-green-400"></i> Zalo Kim Nguyên Bảo: <a href="https://zalo.me/0849328628" class="hover:underline text-slate-200">0849.328.628</a></p>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-white mb-3 text-sm">Liên Kết Nhanh</h5>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-white transition">Giới Thiệu Chuyên Gia</a></li>
+                        <li><a href="#lookup" class="hover:text-white transition">Tra Cứu Sao Hạn & Số</a></li>
+                        <li><a href="#ecosystem" class="hover:text-white transition">Hệ Sinh Thái Kênh</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Dịch Vụ Tư Vấn</a></li>
+                        <li><a href="https://zalo.me/g/iljgbe719" target="_blank" class="hover:text-white transition">Nhóm Zalo Cộng Đồng</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="font-bold text-white mb-3 text-sm">Kênh Truyền Thông</h5>
+                    <div class="flex flex-col gap-2">
+                        <a href="https://matmacuocdoi.vn" target="_blank" class="px-3 py-2 rounded bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-blue-500 transition text-center text-xs font-semibold">
+                            Website MatMaCuocDoi.vn
+                        </a>
+                        <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="px-3 py-2 rounded bg-brandRed-950/60 border border-brandRed-800/60 text-brandRed-200 hover:text-white transition text-center text-xs font-semibold">
+                            YouTube @matmacuocdoi
+                        </a>
+                        <a href="https://zalo.me/g/iljgbe719" target="_blank" class="px-3 py-2 rounded bg-blue-950/60 border border-blue-800/60 text-blue-200 hover:text-white transition text-center text-xs font-semibold">
+                            Tham Gia Nhóm Zalo
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-center text-slate-400 text-[11px] gap-2">
+                <div>© 2026 Mật Mã Cuộc Đời - Nguyễn Tuấn Anh. Bản quyền thuộc về Mật Mã Cuộc Đời.</div>
+                <div>Tone màu: Đỏ - Trắng - Xanh Dương Chính Thức</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- STICKY FLOATING CONTACT BAR FOR MOBILE/DESKTOP -->
+    <div class="fixed bottom-0 inset-x-0 z-40 bg-navyDark/95 backdrop-blur-md border-t border-slate-800 py-2.5 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto flex items-center justify-between gap-2">
+            <a href="https://matmacuocdoi.vn" target="_blank" class="flex-1 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs text-center shadow transition flex items-center justify-center gap-1">
+                <i class="fa-solid fa-globe"></i> Tra Cứu Web
+            </a>
+            <a href="https://zalo.me/g/iljgbe719" target="_blank" class="flex-1 py-2 rounded-lg bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs text-center shadow transition flex items-center justify-center gap-1">
+                <i class="fa-solid fa-users"></i> Nhóm Zalo
+            </a>
+            <a href="https://zalo.me/0789414153" target="_blank" class="flex-1 py-2 rounded-lg bg-brandRed-600 hover:bg-brandRed-500 text-white font-bold text-xs text-center shadow transition flex items-center justify-center gap-1">
+                <i class="fa-solid fa-comment-dots"></i> Zalo 0789.414.153
+            </a>
+        </div>
+    </div>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Form Lookup Calculation Simulation
+        function handleLookup(event) {
+            event.preventDefault();
+            const name = document.getElementById('fullName').value;
+            const dob = document.getElementById('dob').value;
+            const phone = document.getElementById('phone').value;
+            const cccd = document.getElementById('cccd').value || 'Chưa nhập';
+
+            if (!name || !phone) return;
+
+            // Simple hash algorithm for demo score generation based on input
+            let sum = 0;
+            for (let i = 0; i < phone.length; i++) {
+                if (!isNaN(phone[i])) sum += parseInt(phone[i]);
+            }
+            const score = 70 + (sum % 28); // Score between 70 and 98
+
+            document.getElementById('resName').innerText = 'Chủ nhân: ' + name;
+            document.getElementById('resMeta').innerText = `SĐT: ${phone} | CCCD: ${cccd} | Ngày sinh: ${dob || 'Chưa chọn'}`;
+            document.getElementById('resScore').innerText = `${score}/100`;
+
+            // Dynamic mock evaluations
+            if (score >= 88) {
+                document.getElementById('resMoney').innerText = 'Cát Tường - Vượng Tài';
+                document.getElementById('resLove').innerText = 'Hòa Thuận - Thuận Hòa';
+                document.getElementById('resStar').innerText = 'Thái Dương - Trợ Mệnh';
+                document.getElementById('resAdvice').innerText = 'Dãy số chứa nguồn năng lượng vượng phát, hỗ trợ tài lộc và gia đạo vững vàng. Nên kết hợp giữ tâm bình an để gia tăng may mắn.';
+            } else if (score >= 80) {
+                document.getElementById('resMoney').innerText = 'Khá - Bình Hòa';
+                document.getElementById('resLove').innerText = 'Có Điểm Tốt';
+                document.getElementById('resStar').innerText = 'Thái Âm - Cát Khí';
+                document.getElementById('resAdvice').innerText = 'Dãy số mang năng lượng trung bình khá. Cần lưu ý bổ trợ thêm số đuôi hợp mệnh để hạn chế chi tiêu vô lý và tăng vận quý nhân.';
+            } else {
+                document.getElementById('resMoney').innerText = 'Cần Cân Nhắc';
+                document.getElementById('resLove').innerText = 'Dễ Căng Thẳng';
+                document.getElementById('resStar').innerText = 'Kế Đô / Lục Sát Trùng';
+                document.getElementById('resAdvice').innerText = 'Dãy số xuất hiện tần số năng lượng dao động, dễ gây cảm giác mệt mỏi hoặc hao tổn năng lượng. Nên liên hệ Zalo Chuyên gia Tuấn Anh để kiểm tra sâu.';
+            }
+
+            const resBox = document.getElementById('resultBox');
+            resBox.classList.remove('hidden');
+            resBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    </script>
+</body>
+</html>
