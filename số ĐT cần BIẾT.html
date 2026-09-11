@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mật Mã Cuộc Đời - Quy Luật Bát Cực Linh Số & Vận Mệnh</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            600: '#2563eb',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#172554'
+                        },
+                        brandRed: {
+                            50: '#fef2f2',
+                            100: '#ffe1e1',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(220, 38, 38, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.8); }
+        }
+        .pulse-red {
+            animation: pulseGlow 2.5s infinite;
+        }
+        .gradient-blue-red {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #dc2626 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .step-line::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: #cbd5e1;
+            z-index: 0;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-brandRed-600 selection:text-white">
+
+    <!-- Announcement Bar -->
+    <div class="bg-brandRed-700 text-white text-sm font-semibold py-2.5 px-4 text-center shadow-md flex items-center justify-center gap-2 flex-wrap">
+        <span class="inline-block animate-bounce"><i class="fa-solid fa-bullhorn"></i></span>
+        <span>👉 Đăng ký kênh <strong>Mật Mã Cuộc Đời</strong> để không bỏ lỡ những góc nhìn sâu sắc về nhân sinh và vận mệnh.</span>
+        <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="ml-2 bg-white text-brandRed-700 text-xs px-3 py-1 rounded-full font-bold hover:bg-slate-100 transition shadow">Đăng Ký Ngay</a>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-brandBlue-900 text-white shadow-xl border-b-4 border-brandRed-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-full bg-brandRed-600 text-white flex items-center justify-center text-2xl font-black shadow-lg border-2 border-white">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-wide uppercase text-white">MẬT MÃ CUỘC ĐỜI</h1>
+                    <p class="text-xs text-blue-200 font-medium">Chuyên gia Bát Cực Linh Số & Phong Thủy Số</p>
+                </div>
+            </div>
+
+            <!-- Quick Action Links -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://matmacuocdoi.vn" target="_blank" class="bg-white/10 hover:bg-white/20 text-white text-sm font-semibold px-4 py-2 rounded-lg transition flex items-center gap-2 border border-white/20">
+                    <i class="fa-solid fa-globe text-blue-300"></i> Tra Cứu Sao Hạn
+                </a>
+                <a href="https://zalo.me/0789414153" target="_blank" class="bg-brandRed-600 hover:bg-brandRed-700 text-white text-sm font-bold px-4 py-2 rounded-lg transition flex items-center gap-2 shadow-md">
+                    <i class="fa-solid fa-phone"></i> Zalo: 0789 414 153
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="gradient-blue-red text-white py-16 px-4 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 bg-brandRed-600/90 text-white text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-6 border border-white/30 shadow-lg">
+                <i class="fa-solid fa-star"></i> Luận Giải Khoa Học Bát Cực Linh Số
+            </div>
+            
+            <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight mb-6 uppercase tracking-tight drop-shadow-md">
+                BẠN CẦN PHẢI BIẾT ĐIỀU NÀY!
+            </h2>
+            
+            <p class="text-lg sm:text-2xl text-blue-100 max-w-4xl mx-auto font-medium mb-8 leading-relaxed">
+                Khám phá bí ẩn quy luật <span class="text-yellow-300 font-bold underline decoration-brandRed-600 decoration-4">8 Nấc Thang Chuyển Hóa Năng Lượng</span> từ Sim Điện Thoại tác động trực tiếp đến Nội Tâm, Thói Quen và Số Phận Vận Mệnh con người.
+            </p>
+
+            <!-- Expert Contact Card in Hero -->
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 max-w-3xl mx-auto border border-white/20 shadow-2xl text-left sm:text-center">
+                <p class="text-xl font-bold text-yellow-300 mb-2 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-handshake"></i> Mr NGUYỄN TUẤN ANH & KIM NGUYÊN BẢO
+                </p>
+                <p class="text-slate-100 text-base mb-4 font-semibold">
+                    XIN CHÀO ANH CHỊ EM - RẤT VUI ĐƯỢC CÙNG NHAU GIAO LƯU CHIA SẺ KIẾN THỨC BÁT CỰC LINH SỐ
+                </p>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <a href="https://zalo.me/0789414153" target="_blank" class="bg-white text-brandBlue-900 hover:bg-slate-100 font-extrabold px-5 py-2.5 rounded-xl text-sm transition shadow flex items-center gap-2">
+                        <i class="fa-solid fa-comment-dots text-brandRed-600 text-base"></i> Zalo Mr. Tuấn Anh: 0789 414 153
+                    </a>
+                    <a href="https://zalo.me/0849328628" target="_blank" class="bg-white text-brandBlue-900 hover:bg-slate-100 font-extrabold px-5 py-2.5 rounded-xl text-sm transition shadow flex items-center gap-2">
+                        <i class="fa-solid fa-user-shield text-brandBlue-800 text-base"></i> Zalo Kim Nguyên Bảo: 0849 328 628
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <!-- Visual Flow Diagram Section -->
+        <section class="mb-16">
+            <div class="text-center mb-10">
+                <h3 class="text-2xl sm:text-4xl font-extrabold text-brandBlue-900 uppercase tracking-tight">
+                    SƠ ĐỒ CHUỖI TÁC ĐỘNG NĂNG LƯỢNG SỐ
+                </h3>
+                <p class="text-slate-600 mt-2 font-medium">Click vào từng nấc thang để xem giải thích chuyên sâu theo Bát Cực Linh Số</p>
+                <div class="w-24 h-1.5 bg-brandRed-600 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Interactive Stepper Track -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                
+                <!-- Step 1 -->
+                <div onclick="showStepDetail(1)" id="step-btn-1" class="step-card cursor-pointer bg-white border-2 border-brandBlue-600 rounded-2xl p-5 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandBlue-900 text-white font-black flex items-center justify-center text-lg shadow">01</span>
+                        <i class="fa-solid fa-sim-card text-2xl text-brandRed-600 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">SỐ ĐIỆN THOẠI</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ SÓNG ĐIỆN THOẠI</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Khởi nguồn từ mã số định danh mạng viễn thông gắn liền cá nhân.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div onclick="showStepDetail(2)" id="step-btn-2" class="step-card cursor-pointer bg-white border-2 border-slate-200 rounded-2xl p-5 shadow hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandBlue-800 text-white font-black flex items-center justify-center text-lg shadow">02</span>
+                        <i class="fa-solid fa-tower-cell text-2xl text-brandBlue-600 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">SÓNG ĐIỆN THOẠI</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ SÓNG ĐIỆN TỪ</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Tần số truyền tải viễn thông liên tục phát tán năng lượng số.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div onclick="showStepDetail(3)" id="step-btn-3" class="step-card cursor-pointer bg-white border-2 border-slate-200 rounded-2xl p-5 shadow hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandBlue-800 text-white font-black flex items-center justify-center text-lg shadow">03</span>
+                        <i class="fa-solid fa-wave-square text-2xl text-brandRed-600 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">SÓNG ĐIỆN TỪ</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ RUNG ĐỘNG ĐIỆN TỪ</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Trường từ tính bao quanh và thẩm thấu vào sinh học con người.</p>
+                </div>
+
+                <!-- Step 4 -->
+                <div onclick="showStepDetail(4)" id="step-btn-4" class="step-card cursor-pointer bg-white border-2 border-slate-200 rounded-2xl p-5 shadow hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandBlue-800 text-white font-black flex items-center justify-center text-lg shadow">04</span>
+                        <i class="fa-solid fa-brain text-2xl text-brandBlue-600 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">RUNG ĐỘNG ĐIỆN TỪ</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ RUNG ĐỘNG NỘI TÂM</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Cộng hưởng với sóng não và từ trường tâm trí cá nhân.</p>
+                </div>
+
+                <!-- Step 5 -->
+                <div onclick="showStepDetail(5)" id="step-btn-5" class="step-card cursor-pointer bg-white border-2 border-slate-200 rounded-2xl p-5 shadow hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandBlue-800 text-white font-black flex items-center justify-center text-lg shadow">05</span>
+                        <i class="fa-solid fa-heart-pulse text-2xl text-brandRed-600 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">RUNG ĐỘNG NỘI TÂM</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ TÁC ĐỘNG CẢM XÚC</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Sự định hình tâm trạng: vui, bực, lo âu, an lạc hay kích động.</p>
+                </div>
+
+                <!-- Step 6 -->
+                <div onclick="showStepDetail(6)" id="step-btn-6" class="step-card cursor-pointer bg-white border-2 border-slate-200 rounded-2xl p-5 shadow hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandBlue-800 text-white font-black flex items-center justify-center text-lg shadow">06</span>
+                        <i class="fa-solid fa-person-running text-2xl text-brandBlue-600 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">CẢM XÚC</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ HÀNH ĐỘNG & THÓI QUEN</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Bộc phát thành quyết định hàng ngày và lặp lại thành thói quen.</p>
+                </div>
+
+                <!-- Step 7 -->
+                <div onclick="showStepDetail(7)" id="step-btn-7" class="step-card cursor-pointer bg-white border-2 border-slate-200 rounded-2xl p-5 shadow hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandBlue-800 text-white font-black flex items-center justify-center text-lg shadow">07</span>
+                        <i class="fa-solid fa-user-gear text-2xl text-brandRed-600 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">THÓI QUEN</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ TÍNH CÁCH TOÀN DIỆN</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Chi phối Sức Khỏe, Gia Đình, Công Việc, Tiền Bạc & Mối Quan Hệ.</p>
+                </div>
+
+                <!-- Step 8 -->
+                <div onclick="showStepDetail(8)" id="step-btn-8" class="step-card cursor-pointer bg-white border-2 border-slate-200 rounded-2xl p-5 shadow hover:shadow-2xl transition-all transform hover:-translate-y-1 relative group overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="w-10 h-10 rounded-full bg-brandRed-600 text-white font-black flex items-center justify-center text-lg shadow">08</span>
+                        <i class="fa-solid fa-crown text-2xl text-yellow-500 group-hover:scale-110 transition"></i>
+                    </div>
+                    <h4 class="font-black text-brandBlue-900 text-base uppercase">TÍNH CÁCH</h4>
+                    <p class="text-xs font-bold text-brandRed-600 mt-1">➔ SỐ PHẬN (VẬN MỆNH)</p>
+                    <p class="text-xs text-slate-500 mt-2 line-clamp-2">Kết quả cuối cùng định hình toàn bộ cuộc đời viên mãn hay trắc trở.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Detailed Dynamic Step Display Panel -->
+        <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl border-2 border-brandBlue-100 mb-16">
+            <div id="step-detail-container">
+                <!-- Content will be rendered dynamically by JS -->
+            </div>
+        </section>
+
+        <!-- Bát Cực Linh Số 8 Stars Reference Section -->
+        <section class="mb-16">
+            <div class="text-center mb-10">
+                <span class="bg-brandRed-100 text-brandRed-700 font-bold text-xs uppercase px-3 py-1 rounded-full">Nền Tảng Lý Thuyết</span>
+                <h3 class="text-2xl sm:text-4xl font-extrabold text-brandBlue-900 uppercase tracking-tight mt-2">
+                    BÁT TINH TRONG BÁT CỰC LINH SỐ
+                </h3>
+                <p class="text-slate-600 mt-2">Sự phân chia 8 trường năng lượng từ tính của các cặp số trong SIM điện thoại</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Tứ Cát Tinh (4 Good Stars) -->
+                <div class="bg-emerald-50/70 border-2 border-emerald-300 rounded-2xl p-6 shadow-md">
+                    <div class="flex items-center gap-3 mb-4 pb-3 border-b border-emerald-200">
+                        <i class="fa-solid fa-shield-halved text-emerald-600 text-2xl"></i>
+                        <h4 class="text-xl font-extrabold text-emerald-900 uppercase">TỨ CÁT TINH (NĂNG LƯỢNG TÍCH CỰC)</h4>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-700">
+                        <li class="bg-white p-3 rounded-xl border border-emerald-200 shadow-sm">
+                            <strong class="text-emerald-700 text-base">1. THIÊN Y (Chủ về Tài Lộc, Hôn Nhân, Sức Khỏe):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 13-31, 68-86, 49-94, 27-72. Tần số từ trường ôn hòa, thu hút may mắn, tiền bạc minh bạch, nội tâm bình an.</p>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-emerald-200 shadow-sm">
+                            <strong class="text-emerald-700 text-base">2. SINH KHÍ (Chủ về Quý Nhân, Danh Tiếng, Tư Duy):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 14-41, 67-76, 39-93, 28-82. Tần số tích cực, nâng cao tinh thần, rộng mở mối quan hệ, luôn có người giúp đỡ.</p>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-emerald-200 shadow-sm">
+                            <strong class="text-emerald-700 text-base">3. DIÊN NIÊN (Chủ về Lãnh Đạo, Sự Nghiệp, Trách Nhiệm):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 19-91, 78-87, 34-43, 26-62. Từ trường vững chắc, giúp năng lực quản lý tốt, ý chí kiên định, công việc ổn định.</p>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-emerald-200 shadow-sm">
+                            <strong class="text-emerald-700 text-base">4. PHỤC VỊ (Chủ về Kiên Nhẫn, Tích Lũy, Bình Hòa):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 11-22, 88-99, 33-44, 66-77. Từ trường duy trì, giúp suy nghĩ thấu đáo, cẩn trọng, chuẩn bị nền tảng lâu dài.</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Tứ Hung Tinh (4 Bad Stars) -->
+                <div class="bg-rose-50/70 border-2 border-rose-300 rounded-2xl p-6 shadow-md">
+                    <div class="flex items-center gap-3 mb-4 pb-3 border-b border-rose-200">
+                        <i class="fa-solid fa-triangle-exclamation text-rose-600 text-2xl"></i>
+                        <h4 class="text-xl font-extrabold text-rose-900 uppercase">TỨ HUNG TINH (NĂNG LƯỢNG XUNG ĐỘT)</h4>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-700">
+                        <li class="bg-white p-3 rounded-xl border border-rose-200 shadow-sm">
+                            <strong class="text-rose-700 text-base">1. TUYỆT MỆNH (Chủ về Liều Lĩnh, Biến Động, Hao Tài):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 12-21, 69-96, 48-84, 37-73. Tần số dao động mạnh, dễ đưa ra quyết định nông nổi, tiêu tiền ngẫu hứng, tai tiếng.</p>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-rose-200 shadow-sm">
+                            <strong class="text-rose-700 text-base">2. NGŨ QUỶ (Chủ về Thay Đổi, Nghi Ngờ, Mất Nhẫn Nại):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 18-81, 79-97, 36-63, 24-42. Tần số sóng bất ổn, nội tâm dễ dao động, nhiều suy nghĩ tiêu cực, thị phi bất ngờ.</p>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-rose-200 shadow-sm">
+                            <strong class="text-rose-700 text-base">3. LỤC SÁT (Chủ về Cảm Xúc Bi Lụy, Mối Quan Hệ Tạp Nham):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 16-61, 47-74, 38-83, 29-92. Từ trường nhạy cảm, dễ mâu thuẫn gia đình, tình cảm trắc trở, tâm trạng thất thường.</p>
+                        </li>
+                        <li class="bg-white p-3 rounded-xl border border-rose-200 shadow-sm">
+                            <strong class="text-rose-700 text-base">4. HỌA HẠI (Chủ về Khẩu Tẩy, Tranh Cãi, Sức Khỏe Yếu):</strong>
+                            <p class="text-xs text-slate-600 mt-1">Cặp số: 17-71, 89-98, 46-64, 23-32. Tần số dễ gây xung đột lời nói, nóng tính, rủi ro về đường hô hấp và thị phi.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Tool: Test Your Phone Number Energies -->
+        <section class="bg-gradient-to-br from-brandBlue-900 to-brandBlue-950 rounded-3xl p-6 sm:p-10 text-white shadow-2xl mb-16 relative overflow-hidden">
+            <div class="relative z-10 max-w-3xl mx-auto text-center">
+                <span class="bg-brandRed-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow">Công Cụ Trải Nghiệm Nhanh</span>
+                <h3 class="text-2xl sm:text-4xl font-extrabold text-white mt-3 uppercase tracking-wide">
+                    MÔ PHỎNG NĂNG LƯỢNG SIM ĐIỆN THOẠI
+                </h3>
+                <p class="text-blue-200 text-sm sm:text-base mt-2">
+                    Nhập số điện thoại của bạn để phân tích nhanh các cặp sao Bát Cực Linh Số và chuỗi rung động ảnh hưởng.
+                </p>
+
+                <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+                    <input type="text" id="phoneInput" placeholder="Nhập số điện thoại (ví dụ: 0789414153)" class="px-5 py-4 rounded-2xl bg-white text-slate-900 text-lg font-bold outline-none focus:ring-4 focus:ring-brandRed-600 shadow-inner w-full sm:w-96 text-center sm:text-left">
+                    <button onclick="analyzePhoneNumber()" class="bg-brandRed-600 hover:bg-brandRed-700 text-white font-black px-8 py-4 rounded-2xl text-lg transition shadow-xl flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-bolt"></i> PHÂN TÍCH NĂNG LƯỢNG
+                    </button>
+                </div>
+
+                <div id="simResult" class="hidden mt-8 bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 text-left">
+                    <!-- Results populated by JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Complete Ecosystem Section (HỆ SINH THÁI MẬT MÃ CUỘC ĐỜI) -->
+        <section id="ecosystem-section" class="bg-white rounded-3xl p-6 sm:p-10 border-2 border-brandRed-600 shadow-2xl relative">
+            <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-brandRed-600 text-white text-sm sm:text-base font-black px-6 py-2 rounded-full uppercase tracking-wider shadow-lg">
+                HỆ SINH THÁI TRUYỀN THÔNG CHÍNH THỨC
+            </div>
+
+            <div class="text-center mt-4 mb-8">
+                <h3 class="text-2xl sm:text-4xl font-black text-brandBlue-900 uppercase">
+                    MẬT MÃ CUỘC ĐỜI
+                </h3>
+                <p class="text-slate-600 text-sm font-semibold mt-1">
+                    Kết nối trực tiếp với Chuyên gia Nguyễn Tuấn Anh & Kim Nguyên Bảo
+                </p>
+            </div>
+
+            <!-- Ecosystem Items 1 to 7 -->
+            <div class="space-y-4 max-w-4xl mx-auto">
+
+                <!-- Item 1 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-slate-50 hover:bg-blue-50/60 rounded-2xl border border-slate-200 transition gap-3">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brandBlue-900 text-white font-bold flex items-center justify-center shrink-0">1️⃣</div>
+                        <div>
+                            <h5 class="font-black text-brandBlue-900 text-base">Tra cứu Sao Hạn miễn phí tại Website</h5>
+                            <a href="https://matmacuocdoi.vn" target="_blank" class="text-brandRed-600 font-bold hover:underline text-sm break-all">https://matmacuocdoi.vn</a>
+                        </div>
+                    </div>
+                    <a href="https://matmacuocdoi.vn" target="_blank" class="self-end sm:self-center bg-brandBlue-900 hover:bg-brandBlue-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition shrink-0">
+                        Truy Cập Web <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-slate-50 hover:bg-red-50/60 rounded-2xl border border-slate-200 transition gap-3">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed-600 text-white font-bold flex items-center justify-center shrink-0">2️⃣</div>
+                        <div>
+                            <h5 class="font-black text-brandBlue-900 text-base">Bấm đăng ký theo dõi video mới nhất trên YouTube</h5>
+                            <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="text-brandRed-600 font-bold hover:underline text-sm break-all">https://www.youtube.com/@matmacuocdoi?sub_confirmation=1</a>
+                        </div>
+                    </div>
+                    <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="self-end sm:self-center bg-brandRed-600 hover:bg-brandRed-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shrink-0">
+                        Đăng Ký YouTube <i class="fa-brands fa-youtube ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-slate-50 hover:bg-slate-100 rounded-2xl border border-slate-200 transition gap-3">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-800 text-white font-bold flex items-center justify-center shrink-0">3️⃣</div>
+                        <div>
+                            <h5 class="font-black text-brandBlue-900 text-base">Kênh TikTok Mật Mã Cuộc Đời</h5>
+                            <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="text-brandRed-600 font-bold hover:underline text-sm break-all">https://tiktok.com/@matmacuocdoivn</a>
+                        </div>
+                    </div>
+                    <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="self-end sm:self-center bg-slate-900 hover:bg-black text-white text-xs font-bold px-4 py-2 rounded-xl transition shrink-0">
+                        Follow TikTok <i class="fa-brands fa-tiktok ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-slate-50 hover:bg-blue-50/60 rounded-2xl border border-slate-200 transition gap-3">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center shrink-0">4️⃣</div>
+                        <div>
+                            <h5 class="font-black text-brandBlue-900 text-base">Trang Facebook Cá Nhân</h5>
+                            <a href="https://www.facebook.com/thymozin" target="_blank" class="text-brandRed-600 font-bold hover:underline text-sm break-all">https://www.facebook.com/thymozin</a>
+                        </div>
+                    </div>
+                    <a href="https://www.facebook.com/thymozin" target="_blank" class="self-end sm:self-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition shrink-0">
+                        Kết Nối Facebook <i class="fa-brands fa-facebook ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 bg-blue-50/80 rounded-2xl border-2 border-brandBlue-600 transition gap-3">
+                    <div class="flex items-start gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-brandBlue-800 text-white font-bold flex items-center justify-center shrink-0">5️⃣</div>
+                        <div>
+                            <h5 class="font-black text-brandBlue-900 text-base">Tham gia Nhóm Zalo Cộng Đồng (nhận thông tin không sợ lạc tin nhắn)</h5>
+                            <a href="https://zalo.me/g/iljgbe719" target="_blank" class="text-brandRed-600 font-bold hover:underline text-sm break-all">https://zalo.me/g/iljgbe719</a>
+                        </div>
+                    </div>
+                    <a href="https://zalo.me/g/iljgbe719" target="_blank" class="self-end sm:self-center bg-brandBlue-800 hover:bg-brandBlue-900 text-white text-xs font-bold px-4 py-2 rounded-xl transition shrink-0">
+                        Vào Nhóm Zalo <i class="fa-solid fa-users ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="p-6 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border-2 border-brandRed-600 shadow-md">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-brandRed-600 text-white font-bold flex items-center justify-center shrink-0">6️⃣</div>
+                        <h5 class="font-black text-brandRed-700 text-lg uppercase">Cần hỗ trợ luận giải riêng, kết bạn Zalo Chuyên gia:</h5>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-white p-4 rounded-xl border border-red-200 shadow-sm flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-bold text-slate-500 uppercase">Mr. NGUYỄN TUẤN ANH</p>
+                                <p class="text-lg font-black text-brandBlue-900">0789 414 153</p>
+                            </div>
+                            <a href="https://zalo.me/0789414153" target="_blank" class="bg-brandRed-600 hover:bg-brandRed-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition">
+                                Chat Zalo
+                            </a>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm flex items-center justify-between">
+                            <div>
+                                <p class="text-xs font-bold text-slate-500 uppercase">KIM NGUYÊN BẢO</p>
+                                <p class="text-lg font-black text-brandBlue-900">0849 328 628</p>
+                            </div>
+                            <a href="https://zalo.me/0849328628" target="_blank" class="bg-brandBlue-800 hover:bg-brandBlue-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition">
+                                Chat Zalo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200">
+                    <div class="flex items-start gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-brandBlue-900 text-white font-bold flex items-center justify-center shrink-0">7️⃣</div>
+                        <div>
+                            <h5 class="font-black text-brandBlue-900 text-base">Danh Sách Video Cho 12 Con Giáp (Anh Chị Thuộc tuổi nào vào xem đúng tuổi nhé):</h5>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                        <a href="https://www.youtube.com/playlist?list=PLGILo4RyLrGE" target="_blank" class="group bg-white p-4 rounded-xl border border-slate-300 hover:border-brandRed-600 transition shadow-sm block">
+                            <div class="flex items-center gap-2 text-brandRed-600 font-extrabold text-sm mb-1">
+                                <i class="fa-brands fa-youtube text-lg"></i>
+                                <span>👉 MẬT MÃ CUỘC ĐỜI – LIVESTREAM TRỰC TIẾP</span>
+                            </div>
+                            <p class="text-xs text-slate-500 underline break-all group-hover:text-brandBlue-900">https://www.youtube.com/playlist?list=PLGILo4RyLrGE</p>
+                        </a>
+
+                        <a href="https://www.youtube.com/playlist?list=PLKq7x60u_IAPKmgAtAPyJ1tJV7EVETk2U" target="_blank" class="group bg-white p-4 rounded-xl border border-slate-300 hover:border-brandBlue-800 transition shadow-sm block">
+                            <div class="flex items-center gap-2 text-brandBlue-800 font-extrabold text-sm mb-1">
+                                <i class="fa-brands fa-youtube text-lg"></i>
+                                <span>👉 LUẬN GIẢI SỐ ĐT-CCCD-XUNG KHẮC VỢ CHỒNG-KINH DOANH</span>
+                            </div>
+                            <p class="text-xs text-slate-500 underline break-all group-hover:text-brandBlue-900">https://www.youtube.com/playlist?list=PLKq7x60u_IAPKmgAtAPyJ1tJV7EVETk2U</p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brandBlue-950 text-white py-10 border-t-4 border-brandRed-600 mt-16">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h4 class="text-xl font-black uppercase tracking-wider mb-2">MẬT MÃ CUỘC ĐỜI - BÁT CỰC LINH SỐ</h4>
+            <p class="text-slate-400 text-sm max-w-2xl mx-auto mb-6">
+                Chuyên sâu nghiên cứu trường năng lượng con số, SIM điện thoại phong thủy và giải mã vận mệnh nhân sinh.
+            </p>
+            <div class="flex justify-center gap-6 text-xl mb-6">
+                <a href="https://matmacuocdoi.vn" target="_blank" class="hover:text-brandRed-600 transition"><i class="fa-solid fa-globe"></i></a>
+                <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="hover:text-brandRed-600 transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="hover:text-brandRed-600 transition"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/thymozin" target="_blank" class="hover:text-brandRed-600 transition"><i class="fa-brands fa-facebook"></i></a>
+            </div>
+            <p class="text-xs text-slate-500">© 2026 Mật Mã Cuộc Đời - Mr. Nguyễn Tuấn Anh (0789 414 153). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Data for 8 steps in Bát Cực Linh Số chain
+        const stepData = {
+            1: {
+                title: "01. SỐ ĐIỆN THOẠI (SỐ THUÊ BAO) ➔ SÓNG ĐIỆN THOẠI",
+                icon: "fa-sim-card",
+                summary: "Bản chất năng lượng khởi nguồn từ dãy số định danh cá nhân.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Trong môn <strong>Bát Cực Linh Số</strong>, mỗi chiếc SIM điện thoại không đơn thuần là một công cụ liên lạc vô hồn. Mỗi dãy số điện thoại gồm 10 chữ số được ghép lại bởi các cặp số (ví dụ: 07-78-89-94-14-15-53). Các cặp số này chính là mã định danh từ tính mang năng lượng của 8 ngôi sao: <em>Thiên Y, Sinh Khí, Diên Niên, Phục Vị (Tứ Cát)</em> hoặc <em>Tuyệt Mệnh, Ngũ Quỷ, Lục Sát, Họa Hại (Tứ Hung)</em>.
+                    </p>
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Khi SIM được kích hoạt và hoạt động trong điện thoại, các tín hiệu mạng viễn thông liên tục truyền nhận thông điệp qua hạ tầng trạm phát sóng. Dãy số duy nhất này biến chiếc điện thoại thành một <strong>vật thể phát ra tần số sóng đặc trưng</strong> gắn liền với tên tuổi và thân phận của chủ sở hữu.
+                    </p>
+                    <div class="bg-blue-50 border-l-4 border-brandBlue-800 p-4 rounded-r-xl">
+                        <strong class="text-brandBlue-900 block text-sm mb-1">💡 Điểm Mấu Chốt Bát Cực Linh Số:</strong>
+                        <span class="text-xs text-slate-700">Mỗi cá nhân chọn và sử dụng một số điện thoại không phải ngẫu nhiên. Số điện thoại đó tương thích và đại diện cho năng lượng từ trường hiện tại của người đó.</span>
+                    </div>
+                `
+            },
+            2: {
+                title: "02. SÓNG ĐIỆN THOẠI ➔ SÓNG ĐIỆN TỪ",
+                icon: "fa-tower-cell",
+                summary: "Sự chuyển hóa tín hiệu không dây thành các bước sóng điện từ tần số cao.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Sóng điện thoại hoạt động dựa trên nguyên lý phát xạ vô tuyến. Tín hiệu âm thanh, dữ liệu cuộc gọi và tin nhắn được mã hóa thành các chuỗi sóng điện từ truyền đi trong không gian với vận tốc ánh sáng.
+                    </p>
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Theo vật lý hiện đại và lý thuyết từ trường Bát Cực Linh Số, <strong>sóng điện từ mang theo các xung nhịp tần số riêng biệt</strong> của từng cặp số Bát Tinh. Khi chiếc điện thoại nằm trong túi quần, trên bàn làm việc hay kề sát bên tai, từ trường sóng điện từ này bao phủ toàn bộ không gian sinh hoạt xung quanh người sử dụng 24/7.
+                    </p>
+                    <div class="bg-red-50 border-l-4 border-brandRed-600 p-4 rounded-r-xl">
+                        <strong class="text-brandRed-700 block text-sm mb-1">⚠️ Tác Động Liên Tục:</strong>
+                        <span class="text-xs text-slate-700">Dù bạn có đang nghe điện thoại hay để chế độ chờ, sóng điện từ mang mã số Bát Cực của bạn vẫn liên tục phát xạ năng lượng.</span>
+                    </div>
+                `
+            },
+            3: {
+                title: "03. SÓNG ĐIỆN TỪ ➔ RUNG ĐỘNG ĐIỆN TỪ",
+                icon: "fa-wave-square",
+                summary: "Sự tương tác tần số sóng điện từ với sinh học và cơ thể con người.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Cơ thể con người là một cỗ máy sinh học phức tạp vận hành bằng hệ thống điện thế cực nhỏ (điện não, điện tâm đồ, xung thần kinh). Khi trường sóng điện từ của điện thoại tiếp xúc liên tục với cơ thể, nó tạo ra phản ứng <strong>Rung Động Điện Từ (Electromagnetic Resonance)</strong>.
+                    </p>
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Nếu dãy số điện thoại chứa các cặp số thuộc <strong>Tứ Cát Tinh</strong> (Thiên Y, Sinh Khí, Diên Niên), nhịp rung động sẽ mang trạng thái hài hòa, ổn định. Ngược lại, nếu dãy số chứa quá nhiều cặp <strong>Tứ Hung Tinh</strong> (Tuyệt Mệnh, Ngũ Quỷ, Lục Sát, Họa Hại), tần số rung động điện từ sẽ bị gãy đoạn, xung đột, gây nhiễu loạn trường sinh học của cơ thể.
+                    </p>
+                `
+            },
+            4: {
+                title: "04. RUNG ĐỘNG ĐIỆN TỪ ➔ RUNG ĐỘNG NỘI TÂM",
+                icon: "fa-brain",
+                summary: "Sự thâm nhập từ năng lượng vật lý bên ngoài vào trường tâm trí não bộ.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Từ trường xung loạn hoặc ôn hòa của rung động điện từ sẽ thẩm thấu qua hệ thống thần kinh trung ương, tác động thẳng vào não bộ và trung khu cảm giác. Đây chính là bước chuyển quan trọng từ <em>thế giới vật lý</em> sang <em>thế giới tâm thức</em>: <strong>Rung Động Nội Tâm</strong>.
+                    </p>
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        - <strong>Năng lượng Tuyệt Mệnh (12/21, 69/96):</strong> Tạo rung động nội tâm bồn chồn, thích mạo hiểm, thiếu kiên nhẫn.<br>
+                        - <strong>Năng lượng Ngũ Quỷ (18/81, 79/97):</strong> Tạo rung động nội tâm hoài nghi, bất an, suy nghĩ chập chờn, hay lo hão.<br>
+                        - <strong>Năng lượng Thiên Y (13/31, 68/86):</strong> Tạo rung động nội tâm rộng mở, từ bi, dễ bao dung và an tịnh.
+                    </p>
+                `
+            },
+            5: {
+                title: "05. RUNG ĐỘNG NỘI TÂM ➔ TÁC ĐỘNG CẢM XÚC",
+                icon: "fa-heart-pulse",
+                summary: "Hình thành nên trạng thái cảm xúc hàng ngày: vui, bực, lo âu, an hòa.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Sự rung động nội tâm kéo dài liên tục nhiều tháng, nhiều năm sẽ định hình nên <strong>Trạng Thái Cảm Xúc Thường Trực</strong> của người dùng SIM:
+                    </p>
+                    <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 mb-4">
+                        <li><strong>Dùng sim Họa Hại (17/71, 89/98):</strong> Cảm xúc dễ nổi giận, cáu gắt, thích tranh cãi hơn thua bằng lời nói.</li>
+                        <li><strong>Dùng sim Lục Sát (16/61, 47/74):</strong> Cảm xúc dễ bi lụy, nhạy cảm quá đà, hay u buồn, hay nghĩ về những điều tiêu cực trong mối quan hệ.</li>
+                        <li><strong>Dùng sim Sinh Khí (14/41, 67/76):</strong> Cảm xúc vui vẻ, lạc quan, bao dung, luôn thấy cơ hội trong khó khăn.</li>
+                    </ul>
+                `
+            },
+            6: {
+                title: "06. CẢM XÚC ➔ HÀNH ĐỘNG (HÀNH VI) - THÓI QUEN",
+                icon: "fa-person-running",
+                summary: "Cảm xúc chi phối trực tiếp mọi lời nói, quyết định và thói quen lặp lại.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        <strong>"Cảm xúc dẫn dắt hành động"</strong>. Khi cảm xúc nóng nảy hay bất an chiếm ưu thế, con người sẽ đưa ra các hành vi bốc đồng: đưa ra quyết định đầu tư liều lĩnh (Tuyệt Mệnh), nói lời làm tổn thương người khác (Họa Hại), hoặc nghi ngờ đối tác (Ngũ Quỷ).
+                    </p>
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Khi những hành vi này diễn ra hàng ngày dưới tác động trường năng lượng SIM không đổi, chúng ngấm sâu và trở thành <strong>Thói Quen Cố Định</strong>. Thói quen tiêu xài ngẫu hứng, thói quen thức khuya lo âu, hay thói quen điềm tĩnh lắng nghe đều bắt nguồn từ đây.
+                    </p>
+                `
+            },
+            7: {
+                title: "07. THÓI QUEN ➔ TÍNH CÁCH (NỘI TÂM - SỨC KHỎE - GIA ĐÌNH - CÔNG VIỆC - MỐI QUAN HỆ - TIỀN BẠC)",
+                icon: "fa-user-gear",
+                summary: "Thói quen đúc kết nên Tính Cách chi phối toàn bộ 6 trụ cột cuộc sống.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Tổng hòa các thói quen lặp lại qua thời gian dài sẽ định hình nên <strong>TÍNH CÁCH TOÀN DIỆN</strong> của một con người. Trong Bát Cực Linh Số, tính cách này can thiệp và quyết định trực tiếp đến 6 lĩnh vực cốt lõi:
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs mb-4">
+                        <div class="p-3 bg-slate-100 rounded-xl"><strong>1. Nội Tâm:</strong> An lạc hay giằng xé, cô độc.</div>
+                        <div class="p-3 bg-slate-100 rounded-xl"><strong>2. Sức Khỏe:</strong> Dẻo dai hay thường xuyên ốm đau, mệt mỏi.</div>
+                        <div class="p-3 bg-slate-100 rounded-xl"><strong>3. Gia Đình:</strong> Hòa thuận êm ấm hay mâu thuẫn, ly tán.</div>
+                        <div class="p-3 bg-slate-100 rounded-xl"><strong>4. Công Việc:</strong> Thăng tiến vững chắc hay hay thay đổi bấp bốm.</div>
+                        <div class="p-3 bg-slate-100 rounded-xl"><strong>5. Mối Quan Hệ:</strong> Được quý nhân giúp đỡ hay gặp tiểu nhân gièm pha.</div>
+                        <div class="p-3 bg-slate-100 rounded-xl"><strong>6. Tiền Bạc:</strong> Tích lũy dồi dào hay nợ nần, hao tài vô lý.</div>
+                    </div>
+                `
+            },
+            8: {
+                title: "08. TÍNH CÁCH ➔ SỐ PHẬN (VẬN MỆNH)",
+                icon: "fa-crown",
+                summary: "Thành quả cuối cùng: Gieo tính cách, gặt Số Phận viên mãn hay thăng trầm.",
+                content: `
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Cổ nhân có câu: <em>"Gieo hành vi gặt thói quen, gieo thói quen gặt tính cách, gieo tính cách gặt số phận"</em>.
+                    </p>
+                    <p class="text-base text-slate-700 leading-relaxed mb-4">
+                        Nấc thang cuối cùng của quy luật Bát Cực Linh Số chính là <strong>SỐ PHẬN (VẬN MỆNH)</strong>. Một dãy số điện thoại chuẩn phong thủy mang năng lượng Cát Tinh sẽ âm thầm điều hướng nội tâm bạn về sự điềm tĩnh, sáng suốt, nuôi dưỡng tính cách tốt để gặt hái một vận mệnh hanh thông, tài lộc đầy đủ, gia đình hạnh phúc.
+                    </p>
+                    <div class="bg-emerald-50 border-l-4 border-emerald-600 p-4 rounded-r-xl">
+                        <strong class="text-emerald-800 block text-sm mb-1">✨ Kết Luận Từ Chuyên Gia Mật Mã Cuộc Đời:</strong>
+                        <span class="text-xs text-slate-700">Đổi một dãy số SIM điện thoại phù hợp chính là chủ động thay đổi Tần Số Rung Động Điện Từ ➔ Thay đổi Nội Tâm ➔ Thay đổi Tính Cách ➔ Chuyển Hóa Vận Mệnh!</span>
+                    </div>
+                `
+            }
+        };
+
+        // Function to render active step detail
+        function showStepDetail(stepNum) {
+            // Highlight step buttons
+            for (let i = 1; i <= 8; i++) {
+                const btn = document.getElementById(`step-btn-${i}`);
+                if (btn) {
+                    if (i === stepNum) {
+                        btn.classList.add('border-brandBlue-600', 'bg-blue-50/50', 'ring-2', 'ring-brandBlue-600');
+                        btn.classList.remove('border-slate-200');
+                    } else {
+                        btn.classList.remove('border-brandBlue-600', 'bg-blue-50/50', 'ring-2', 'ring-brandBlue-600');
+                        btn.classList.add('border-slate-200');
+                    }
+                }
+            }
+
+            const detail = stepData[stepNum];
+            const container = document.getElementById('step-detail-container');
+            
+            container.innerHTML = `
+                <div class="flex items-center gap-4 mb-6 pb-4 border-b border-slate-200">
+                    <div class="w-14 h-14 rounded-2xl bg-brandRed-600 text-white font-black flex items-center justify-center text-2xl shadow-lg shrink-0">
+                        <i class="fa-solid ${detail.icon}"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-brandRed-600 uppercase tracking-widest">Nấc Thang Quy Luật #${stepNum}</span>
+                        <h4 class="text-xl sm:text-2xl font-black text-brandBlue-900 uppercase leading-tight">${detail.title}</h4>
+                        <p class="text-xs sm:text-sm text-slate-500 font-semibold mt-1">${detail.summary}</p>
+                    </div>
+                </div>
+                <div>
+                    ${detail.content}
+                </div>
+                <div class="mt-8 pt-4 border-t border-slate-100 flex justify-between items-center flex-wrap gap-3">
+                    <span class="text-xs text-slate-400 font-semibold"><i class="fa-solid fa-circle-info"></i> Bát Cực Linh Số - Mr Nguyễn Tuấn Anh</span>
+                    <a href="#ecosystem-section" class="text-xs bg-brandBlue-900 hover:bg-brandBlue-800 text-white font-bold px-4 py-2 rounded-xl transition">
+                        Đăng Ký Tư Vấn Chi Tiết <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            `;
+        }
+
+        // Bát Cực Linh Số Phone Pairs Mapping for Quick Analyzer
+        const starPairsMap = {
+            // Thiên Y
+            '13': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc, Hôn Nhân, Sức Khỏe Tốt' },
+            '31': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc, Hôn Nhân, Sức Khỏe Tốt' },
+            '68': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc Lớn, Quý Nhân, Hạnh Phúc' },
+            '86': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc Lớn, Quý Nhân, Hạnh Phúc' },
+            '49': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc Vừa, Nội Tâm Nhẹ Nhàng' },
+            '94': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc Vừa, Nội Tâm Nhẹ Nhàng' },
+            '27': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc Nhỏ, May Mắn Nhẹ' },
+            '72': { name: 'Thiên Y', type: 'cat', desc: 'Tài Lộc Nhỏ, May Mắn Nhẹ' },
+
+            // Sinh Khí
+            '14': { name: 'Sinh Khí', type: 'cat', desc: 'Quý Nhân Rất Mạnh, Danh Tiếng' },
+            '41': { name: 'Sinh Khí', type: 'cat', desc: 'Quý Nhân Rất Mạnh, Danh Tiếng' },
+            '67': { name: 'Sinh Khí', type: 'cat', desc: 'Nhiều Cơ Hội, Mối Quan Hệ Tốt' },
+            '76': { name: 'Sinh Khí', type: 'cat', desc: 'Nhiều Cơ Hội, Mối Quan Hệ Tốt' },
+            '39': { name: 'Sinh Khí', type: 'cat', desc: 'Vui Vẻ, Lạc Quan, Vận Mạng Mở' },
+            '93': { name: 'Sinh Khí', type: 'cat', desc: 'Vui Vẻ, Lạc Quan, Vận Mạng Mở' },
+            '28': { name: 'Sinh Khí', type: 'cat', desc: 'Trợ Lực Nhẹ, Thêm Bạn Bè' },
+            '82': { name: 'Sinh Khí', type: 'cat', desc: 'Trợ Lực Nhẹ, Thêm Bạn Bè' },
+
+            // Diên Niên
+            '19': { name: 'Diên Niên', type: 'cat', desc: 'Năng Lực Lãnh Đạo Cao, Trách Nhiệm' },
+            '91': { name: 'Diên Niên', type: 'cat', desc: 'Năng Lực Lãnh Đạo Cao, Trách Nhiệm' },
+            '78': { name: 'Diên Niên', type: 'cat', desc: 'Sự Nghiệp Vững Vàng, Uy Tín' },
+            '87': { name: 'Diên Niên', type: 'cat', desc: 'Sự Nghiệp Vững Vàng, Uy Tín' },
+            '34': { name: 'Diên Niên', type: 'cat', desc: 'Công Việc Ổn Định, Bền Bỉ' },
+            '43': { name: 'Diên Niên', type: 'cat', desc: 'Công Việc Ổn Định, Bền Bỉ' },
+            '26': { name: 'Diên Niên', type: 'cat', desc: 'Trách Nhiệm Vừa Phải, Chu Đáo' },
+            '62': { name: 'Diên Niên', type: 'cat', desc: 'Trách Nhiệm Vừa Phải, Chu Đáo' },
+
+            // Tuyệt Mệnh
+            '12': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Bốc Đồng, Hao Tài, Liều Lĩnh' },
+            '21': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Bốc Đồng, Hao Tài, Liều Lĩnh' },
+            '69': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Tranh Chấp, Biến Động Lớn' },
+            '96': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Tranh Chấp, Biến Động Lớn' },
+            '48': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Đầu Tư Rủi Ro, Tâm Trạng Gắt' },
+            '84': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Đầu Tư Rủi Ro, Tâm Trạng Gắt' },
+            '37': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Vất Vả, Cực Đoan Nhẹ' },
+            '73': { name: 'Tuyệt Mệnh', type: 'hung', desc: 'Vất Vả, Cực Đoan Nhẹ' },
+
+            // Ngũ Quỷ
+            '18': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Nghi Ngờ, Đổi Thay, Thị Phi' },
+            '81': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Nghi Ngờ, Đổi Thay, Thị Phi' },
+            '79': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Tâm Trạng Bất An, Mất Nhẫn Nại' },
+            '97': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Tâm Trạng Bất An, Mất Nhẫn Nại' },
+            '36': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Tư Duy Biến Động, Thức Khuya' },
+            '63': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Tư Duy Biến Động, Thức Khuya' },
+            '24': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Suy Nghĩ Nhiều, Thiếu Tập Trung' },
+            '42': { name: 'Ngũ Quỷ', type: 'hung', desc: 'Suy Nghĩ Nhiều, Thiếu Tập Trung' },
+
+            // Họa Hại
+            '17': { name: 'Họa Hại', type: 'hung', desc: 'Khẩu Tẩy, Nóng Tính, Thị Phi' },
+            '71': { name: 'Họa Hại', type: 'hung', desc: 'Khẩu Tẩy, Nóng Tính, Thị Phi' },
+            '89': { name: 'Họa Hại', type: 'hung', desc: 'Tranh Cãi Lời Nói, Sức Khỏe Hô Hấp' },
+            '98': { name: 'Họa Hại', type: 'hung', desc: 'Tranh Cãi Lời Nói, Sức Khỏe Hô Hấp' },
+            '46': { name: 'Họa Hại', type: 'hung', desc: 'Nói Nhiều Dễ Mất Lòng' },
+            '64': { name: 'Họa Hại', type: 'hung', desc: 'Nói Nhiều Dễ Mất Lòng' },
+            '23': { name: 'Họa Hại', type: 'hung', desc: 'Cương Quyết Quá Hóa Xung Đột' },
+            '32': { name: 'Họa Hại', type: 'hung', desc: 'Cương Quyết Quá Hóa Xung Đột' },
+
+            // Lục Sát
+            '16': { name: 'Lục Sát', type: 'hung', desc: 'Bi Lụy Tình Cảm, Mâu Thuẫn' },
+            '61': { name: 'Lục Sát', type: 'hung', desc: 'Bi Lụy Tình Cảm, Mâu Thuẫn' },
+            '47': { name: 'Lục Sát', type: 'hung', desc: 'Nhạy Cảm Quá Đà, Phiền Muộn' },
+            '74': { name: 'Lục Sát', type: 'hung', desc: 'Nhạy Cảm Quá Đà, Phiền Muộn' },
+            '38': { name: 'Lục Sát', type: 'hung', desc: 'Mối Quan Hệ Tạp Nham, Gia Đạo Bất Hòa' },
+            '83': { name: 'Lục Sát', type: 'hung', desc: 'Mối Quan Hệ Tạp Nham, Gia Đạo Bất Hòa' },
+            '29': { name: 'Lục Sát', type: 'hung', desc: 'Do Dự, Thiếu Quyết Đoán' },
+            '92': { name: 'Lục Sát', type: 'hung', desc: 'Do Dự, Thiếu Quyết Đoán' }
+        };
+
+        // Interactive phone analysis function
+        function analyzePhoneNumber() {
+            const rawVal = document.getElementById('phoneInput').value.trim();
+            const cleanVal = rawVal.replace(/\D/g, '');
+            const resultBox = document.getElementById('simResult');
+
+            if (cleanVal.length < 8) {
+                alert('Vui lòng nhập số điện thoại hợp lệ (ít nhất 8 đến 10 chữ số)!');
+                return;
+            }
+
+            let pairs = [];
+            for (let i = 0; i < cleanVal.length - 1; i++) {
+                const pair = cleanVal.substring(i, i + 2);
+                if (pair.includes('0') || pair.includes('5')) continue; // Skip 0 and 5 for simple pair preview
+                if (starPairsMap[pair]) {
+                    pairs.push({ pair: pair, info: starPairsMap[pair] });
+                }
+            }
+
+            let html = `<h4 class="text-xl font-black text-yellow-300 mb-3 border-b border-white/20 pb-2">KẾT QUẢ PHÂN TÍCH TẦN SỐ SIM: ${cleanVal}</h4>`;
+            
+            if (pairs.length === 0) {
+                html += `<p class="text-sm text-slate-200">Dãy số chứa nhiều số 0, 5 hoặc các cặp Phục Vị trung tính. Cần chuyên gia xem xét chuyên sâu theo lá số Bát Cực Linh Số.</p>`;
+            } else {
+                html += `<p class="text-xs text-blue-200 mb-4">Các cặp sao Bát Cực Linh Số phát hiện trong SIM tạo ra chuỗi rung động nội tâm:</p>`;
+                html += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">`;
+                pairs.forEach(item => {
+                    const isCat = item.info.type === 'cat';
+                    const bgClass = isCat ? 'bg-emerald-900/60 border-emerald-400 text-emerald-200' : 'bg-rose-900/60 border-rose-400 text-rose-200';
+                    const icon = isCat ? 'fa-shield-heart' : 'fa-triangle-exclamation';
+                    html += `
+                        <div class="p-3 rounded-xl border ${bgClass} text-xs">
+                            <strong class="text-sm font-black flex items-center justify-between">
+                                <span><i class="fa-solid ${icon}"></i> Cặp ${item.pair}: ${item.info.name}</span>
+                                <span class="uppercase font-bold text-[10px] px-2 py-0.5 rounded ${isCat ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white'}">${isCat ? 'Tứ Cát' : 'Tứ Hung'}</span>
+                            </strong>
+                            <p class="mt-1 opacity-90">${item.info.desc}</p>
+                        </div>
+                    `;
+                });
+                html += `</div>`;
+            }
+
+            html += `
+                <div class="mt-4 pt-3 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <p class="text-xs text-yellow-200 font-semibold">👉 Cần luận giải chi tiết sự tương hợp SIM với ngày tháng năm sinh?</p>
+                    <a href="https://zalo.me/0789414153" target="_blank" class="bg-brandRed-600 hover:bg-brandRed-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition shadow">
+                        Kết Bạn Zalo Mr. Tuấn Anh (0789 414 153)
+                    </a>
+                </div>
+            `;
+
+            resultBox.innerHTML = html;
+            resultBox.classList.remove('hidden');
+        }
+
+        // Initialize default view on load
+        window.onload = function() {
+            showStepDetail(1);
+        };
+    </script>
+</body>
+</html>
