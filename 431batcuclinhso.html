@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phần Mềm Bát Cực Linh Số</title>
+    <title>Phần Mềm Bát Cực Linh Số Nâng Cấp</title>
     <style>
         body {
             background-color: #20373b;
@@ -14,7 +14,7 @@
             margin: 0;
         }
         .container {
-            max-width: 500px;
+            max-width: 550px;
             margin: 30px auto;
             background: rgba(255, 255, 255, 0.05);
             padding: 30px;
@@ -25,8 +25,13 @@
         h1 {
             color: #d4af37;
             font-size: 26px;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             text-shadow: 1px 1px 2px #000;
+        }
+        .subtitle {
+            color: #bbb;
+            font-size: 14px;
+            margin-bottom: 25px;
         }
         input[type="text"] {
             width: 80%;
@@ -36,6 +41,8 @@
             border: 1px solid #d4af37;
             margin-bottom: 15px;
             text-align: center;
+            background-color: #1a2c30;
+            color: #fff;
         }
         button {
             background-color: #d4af37;
@@ -51,50 +58,78 @@
         button:hover {
             background-color: #fff;
         }
+        .process-box {
+            margin-top: 20px;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #d4af37;
+            text-align: left;
+            font-size: 14px;
+            display: none;
+        }
         .result {
             margin-top: 25px;
             text-align: left;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.3);
             padding: 15px;
             border-radius: 8px;
             display: none;
         }
         .pair-item {
-            margin-bottom: 10px;
-            padding: 8px;
+            margin-bottom: 12px;
+            padding: 10px;
             border-bottom: 1px dashed rgba(255,255,255,0.1);
             font-size: 16px;
         }
         .cat { color: #4caf50; font-weight: bold; }
         .hung { color: #f44336; font-weight: bold; }
+        .kick-phat {
+            background: #ff9800;
+            color: #000;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 12px;
+            display: inline-block;
+            margin-left: 5px;
+            animation: blinker 1.5s linear infinite;
+        }
+        @keyframes blinker {
+            50% { opacity: 0.5; }
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h1>BÁT CỰC LINH SỐ</h1>
-        <p>Tự học hỏi - Tự nghiệm lý số điện thoại</p>
+        <div class="subtitle">Hệ thống tự động lọc số 0 và xử lý kích phát số 5</div>
         
-        <input type="text" id="phoneInput" placeholder="Nhập số điện thoại cần tra..." maxlength="11">
+        <input type="text" id="phoneInput" placeholder="Nhập số điện thoại cần tra..." maxlength="15">
         <br>
-        <button onclick="tinhBatCuc()">Tra Cứu Khử Hung</button>
+        <button onclick="tinhBatCucNangCao()">Tra Cứu Khử Hung</button>
 
+        <!-- Hộp hiển thị chuỗi tinh lọc -->
+        <div class="process-box" id="processBox"></div>
+
+        <!-- Hộp hiển thị kết quả -->
         <div class="result" id="resultBox">
-            <h3 style="color: #d4af37; text-align: center; margin-top: 0;">Kết Quả Phân Tích Bát Tinh:</h3>
+            <h3 style="color: #d4af37; text-align: center; margin-top: 0; border-bottom: 1px solid #d4af37; padding-bottom: 10px;">
+                KẾT QUẢ PHÂN TÍCH BÁT TINH
+            </h3>
             <div id="resultContent"></div>
         </div>
     </div>
 
     <script>
-        // Định nghĩa 64 cặp số tương ứng với Bát Tinh theo trường phái Bát Cực Linh Số
+        // Bảng dữ liệu Bát Tinh chuẩn
         const batTinhData = {
-            // 4 Sao Cát (Tốt)
             "Sinh Khí": { pairs: ["14", "41", "67", "76", "39", "93", "28", "82"], type: "cat", desc: "Tốt cho tài lộc, danh tiếng, quý nhân phù trợ." },
             "Thiên Y": { pairs: ["13", "31", "68", "86", "49", "94", "27", "72"], type: "cat", desc: "Tốt cho sức khỏe, tiền tài, tích lũy tài sản." },
             "Diên Niên": { pairs: ["19", "91", "78", "87", "34", "43", "26", "62"], type: "cat", desc: "Tốt cho sự nghiệp vững vàng, gia đạo êm ấm, thọ mệnh." },
-            "Phục Vị": { pairs: ["11", "22", "33", "44", "66", "77", "88", "99", "00", "55"], type: "cat", desc: "Bình hòa, mang tính chất kế thừa, ổn định, kiên trì." },
+            "Phục Vị": { pairs: ["11", "22", "33", "44", "66", "77", "88", "99"], type: "cat", desc: "Bình hòa, mang tính chất kế thừa, ổn định, kiên trì." },
             
-            // 4 Sao Hung (Xấu)
             "Tuyệt Mệnh": { pairs: ["12", "21", "69", "96", "48", "84", "37", "73"], type: "hung", desc: "Xấu. Dễ hao tài, tranh chấp, ảnh hưởng tinh thần." },
             "Ngũ Quỷ": { pairs: ["18", "81", "79", "97", "36", "63", "24", "42"], type: "hung", desc: "Xấu. Tai bay vạ gió, trắc trở, tâm tư bất an." },
             "Lục Sát": { pairs: ["16", "61", "47", "74", "38", "83", "29", "92"], type: "hung", desc: "Xấu. Thị phi tai tiếng, tình duyên trắc trở." },
@@ -107,29 +142,99 @@
                     return { tenSao: sao, loai: batTinhData[sao].type, yNghia: batTinhData[sao].desc };
                 }
             }
-            return { tenSao: "Chưa định nghĩa", loai: "binh", yNghia: "Cặp số phụ hoặc chứa số đặc biệt." };
+            return { tenSao: "Chưa định nghĩa", loai: "binh", yNghia: "Cặp số phụ hoặc từ trường phụ." };
         }
 
-        function tinhBatCuc() {
-            let phone = document.getElementById("phoneInput").value.trim();
-            // Lọc chỉ lấy các chữ số
-            phone = phone.replace(/[^0-9]/g, '');
-            
-            if (phone.length < 4) {
-                alert("Chú vui lòng nhập số điện thoại đầy đủ hơn để phân tích nhé!");
+        function tinhBatCucNangCao() {
+            let rawPhone = document.getElementById("phoneInput").value.trim();
+            // Chỉ giữ lại số
+            rawPhone = rawPhone.replace(/[^0-9]/g, '');
+
+            if (rawPhone.length < 5) {
+                alert("Chú vui lòng nhập đầy đủ số điện thoại nhé!");
                 return;
             }
 
+            // BƯỚC 1: Bỏ số 0 đầu tiên của nhà mạng
+            let xửLýSố = rawPhone;
+            if (xửLýSố.startsWith('0')) {
+                xửLýSố = xửLýSố.substring(1);
+            }
+
+            // BƯỚC 2: Bỏ tất cả các số 0 còn lại trong chuỗi số
+            let chuỗiKhôngCóKhông = "";
+            for (let ch of xửLýSố) {
+                if (ch !== '0') {
+                    chuỗiKhôngCóKhông += ch;
+                }
+            }
+
+            // Hiển thị quy trình xử lý số cho chú dễ nhìn
+            let dòngQuyTrình = `<strong>Quy trình lọc số:</strong><br>➔ Số gốc: ${rawPhone}<br>➔ Sau khi loại bỏ toàn bộ số 0: <strong>${chuỗiKhôngCóKhông}</strong>`;
+            document.getElementById("processBox").innerHTML = dòngQuyTrình;
+            document.getElementById("processBox").style.display = "block";
+
+            // BƯỚC 3 & 4: Tiến hành quét các cặp số và kiểm tra sự tác động của số 5
             let htmlContent = "";
-            
-            // Duyệt từng cặp số liên tiếp từ trái qua phải
-            for (let i = 0; i < phone.length - 1; i++) {
-                let capSo = phone.substr(i, 2);
+            let i = 0;
+
+            while (i < chuỗiKhôngCóKhông.length - 1) {
+                // Nếu ký tự hiện tại là số 5, bỏ qua để tìm cặp số thực tế
+                if (chuỗiKhôngCóKhông[i] === '5') {
+                    i++;
+                    continue;
+                }
+
+                // Tìm chữ số tiếp theo không phải là số 5 để tạo thành cặp
+                let vịTríKế = i + 1;
+                let cóSốNămGiữa = false;
+                let cóSốNămSau = false;
+
+                // Kiểm tra xem có số 5 nào xen ở giữa hay không
+                while (vịTríKế < chuỗiKhôngCóKhông.length && chuỗiKhôngCóKhông[vịTríKế] === '5') {
+                    cóSốNămGiữa = true;
+                    vịTríKế++;
+                }
+
+                // Nếu vượt quá chiều dài chuỗi thì dừng
+                if (vịTríKế >= chuỗiKhôngCóKhông.length) {
+                    break;
+                }
+
+                // Ghép thành cặp số thực tế (không chứa số 5 và số 0)
+                let capSo = chuỗiKhôngCóKhông[i] + chuỗiKhôngCóKhông[vịTríKế];
+
+                // Kiểm tra xem ngay sau cặp số này có bị số 5 kích phát hay không
+                if (vịTríKế + 1 < chuỗiKhôngCóKhông.length && chuỗiKhôngCóKhông[vịTríKế + 1] === '5') {
+                    cóSốNămSau = true;
+                }
+
+                // Tra cứu ý nghĩa của cặp số vừa tìm được
                 let ketQuaSao = timSao(capSo);
                 let mauSacClass = ketQuaSao.loai === "cat" ? "cat" : (ketQuaSao.loai === "hung" ? "hung" : "");
                 let nhãnLoai = ketQuaSao.loai === "cat" ? "[CÁT]" : (ketQuaSao.loai === "hung" ? "[HUNG]" : "[BÌNH]");
+                
+                // Quy tắc kích phát của số 5
+                let textKíchPhat = "";
+                let lờiGiảiThíchKíchPhat = "";
+                if (cóSốNămGiữa || cóSốNămSau || chuỗiKhôngCóKhông[i-1] === '5') {
+                    textKíchPhat = `<span class="kick-phat">KÍCH PHÁT MẠNH X2</span>`;
+                    if (ketQuaSao.loai === "cat") {
+                        lờiGiảiThíchKíchPhat = `<br><small style="color: #4caf50;">➔ Nhờ tác động của số 5, từ trường TỐT được nhân lên gấp đôi, trợ lực cực mạnh cho chủ nhân.</small>`;
+                    } else if (ketQuaSao.loai === "hung") {
+                        lờiGiảiThíchKíchPhat = `<br><small style="color: #f44336;">➔ Cảnh báo: Số 5 kích hoạt làm hung tinh mạnh lên gấp đôi, cần đặc biệt lưu ý hung hiểm!</small>`;
+                    }
+                }
 
-                htmlContent += `<div class="pair-item"> Cặp số <strong>${capSo}</strong>: Thuộc sao <span class="${mauSacClass}">${ketQuaSao.tenSao} ${nhãnLoai}</span> <br> <small style="color: #bbb;">➔ ${ketQuaSao.yNghia}</small></div>`;
+                htmlContent += `
+                    <div class="pair-item">
+                        Cặp số thực tế: <strong>${capSo}</strong> ➔ Thuộc sao: <span class="${mauSacClass}">${ketQuaSao.tenSao} ${nhãnLoai}</span> ${textKíchPhat}
+                        <br><small style="color: #bbb;">➔ Gốc: ${ketQuaSao.desc}</small>
+                        ${lờiGiảiThíchKíchPhat}
+                    </div>`;
+
+                // Chuyển sang chữ số tiếp theo để quét cặp kế tiếp
+                i = vịTríKế;
             }
 
             document.getElementById("resultContent").innerHTML = htmlContent;
