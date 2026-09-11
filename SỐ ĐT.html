@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bát Cực Linh Số - Quy Luật Tác Động Của Số Điện Thoại Đến Số Phận</title>
+    <style>
+        :root {
+            --primary-blue: #0A369D;
+            --secondary-blue: #4472CA;
+            --accent-red: #D90429;
+            --dark-red: #9B001C;
+            --bg-light: #F8F9FA;
+            --text-dark: #212529;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-red);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #E0E6ED;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .intro-banner {
+            background: var(--white);
+            border-left: 6px solid var(--accent-red);
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-radius: 4px;
+        }
+
+        .intro-banner h2 {
+            color: var(--accent-red);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .flow-container {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #E2E8F0;
+        }
+
+        .flow-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            min-width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            color: var(--primary-blue);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .step-content h3 span.highlight-red {
+            color: var(--accent-red);
+        }
+
+        .step-content p {
+            color: #4A5568;
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        /* Ecosystem Section */
+        .ecosystem {
+            background: var(--white);
+            border: 2px solid var(--secondary-blue);
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .ecosystem h2 {
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 10px;
+        }
+
+        .welcome-msg {
+            background-color: #EBF8FF;
+            border-left: 4px solid var(--secondary-blue);
+            padding: 15px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+
+        .eco-list {
+            list-style: none;
+        }
+
+        .eco-list li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: var(--bg-light);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .eco-list li strong {
+            color: var(--primary-blue);
+            margin-right: 8px;
+        }
+
+        .eco-list a {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .eco-list a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-box {
+            background-color: #FFF5F5;
+            border: 1px solid #FEB2B2;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            color: var(--dark-red);
+        }
+
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .flow-step {
+                flex-direction: column;
+            }
+            .step-number {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MẬT MÃ CUỘC ĐỜI</h1>
+        <p>Giải Mã Bát Cực Linh Số & Quy Luật Tác Động Của Số Điện Thoại Đến Vận Mệnh</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Banner tiêu đề -->
+        <div class="intro-banner">
+            <h2>BẠN CẦN PHẢI BIẾT ĐIỀU NÀY</h2>
+            <p>Trong bộ môn <strong>Bát Cực Linh Số</strong>, dãy số điện thoại bạn sử dụng hằng ngày không chỉ là những con số vô hại. Nó mang năng lượng sóng từ trường tác động liên tục và trực tiếp đến nội tâm, thói quen và cuối cùng là vận mệnh của chính bạn.</p>
+        </div>
+
+        <!-- Nội dung giải thích quy luật -->
+        <div class="flow-container">
+            
+            <div class="flow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>SỐ ĐIỆN THOẠI (SỐ THUÊ BAO) <span class="highlight-red">➔ SÓNG ĐIỆN THOẠI</span></h3>
+                    <p>Mỗi số điện thoại được cấu tạo từ các cặp số ứng với 8 sao trong Bát Cực Linh Số (Sinh Khí, Diên Niên, Thiên Y, Phục Vị, Họa Hại, Lục Sát, Ngũ Quỷ, Tuyệt Mệnh). Khi số thuê bao này hoạt động trên mạng viễn thông, nó liên tục phát và nhận tín hiệu thông qua các tần số sóng điện thoại.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>SÓNG ĐIỆN THOẠI <span class="highlight-red">➔ SÓNG ĐIỆN TỪ</span></h3>
+                    <p>Sóng điện thoại bản chất chính là sóng điện từ. Tín hiệu này truyền tải tần số năng lượng âm dương, ngũ hành của các cặp số trong không gian. Bất kể bạn có nghe máy hay không, sóng điện từ mang mã số của bạn luôn hiện hữu và bao quanh bạn.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>SÓNG ĐIỆN TỪ <span class="highlight-red">➔ RUNG ĐỘNG ĐIỆN TỪ</span></h3>
+                    <p>Khi sóng điện từ tiếp xúc với cơ thể người (vốn cũng có trường điện từ sinh học riêng), nó tạo ra các nhịp rung động điện từ tương ứng. Các cặp sao cát (tốt) tạo ra tần số rung động tích cực, trong khi các sao hung (xấu) tạo ra rung động xung đột, tiêu cực.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>RUNG ĐỘNG ĐIỆN TỪ <span class="highlight-red">➔ RUNG ĐỘNG NỘI TÂM</span></h3>
+                    <p>Sự rung động điện từ bên ngoài thẩm thấu vào trường năng lượng cá nhân, gây ra sự cộng hưởng hoặc xung khắc với tần số não bộ và tâm trí, hình thành nên rung động nội tâm (trạng thái an tĩnh hay bồn chồn, tích cực hay tiêu cực).</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3>RUNG ĐỘNG NỘI TÂM <span class="highlight-red">➔ẢNH HƯỞNG ĐẾN CẢM XÚC</span></h3>
+                    <p>Rung động nội tâm trực tiếp quyết định trạng thái cảm xúc mỗi ngày. Ví dụ: Năng lượng Họa Hại làm con người dễ bực bội, khẩu xà; năng lượng Tuyệt Mệnh gây âu lo, cực đoan; trong khi Thiên Y mang lại cảm giác bình an, rộng mở.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h3>CẢM XÚC <span class="highlight-red">➔ HÀNH ĐỘNG (HÀNH VI) - THÓI QUEN</span></h3>
+                    <p>Cảm xúc bộc phát sẽ dẫn đến hành động tương ứng. Nếu cảm xúc thường xuyên nóng giận hay bất an, hành vi sẽ thiếu sáng suốt, đưa ra quyết định sai lầm. Khi các hành vi này lặp đi lặp lại nhiều lần dưới sự tác động của dãy số, chúng trở thành thói quen cố định.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <h3>THÓI QUEN <span class="highlight-red">➔ TÍNH CÁCH (NỘI TÂM - SỨC KHỎE - GIA ĐÌNH - CÔNG VIỆC - MỐI QUAN HỆ - TIỀN BẠC)</span></h3>
+                    <p>Thói quen lâu ngày đúc kết thành tính cách toàn diện của một con người. Tính cách này chi phối toàn bộ các khía cạnh sống: sự bình an nội tâm, tình trạng sức khỏe thể chất, sự hòa thuận trong gia đình, hiệu quả công việc, chất lượng các mối quan hệ xã hội và khả năng giữ tiền bạc.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <h3>TÍNH CÁCH <span class="highlight-red">➔ SỐ PHẬN (VẬN MỆNH)</span></h3>
+                    <p>Cuối cùng, tính cách quyết định số phận. Một dãy số điện thoại mang năng lượng cát lành giúp nuôi dưỡng tính cách tích cực, sáng suốt, từ đó tạo nên một vận mệnh hanh thông, tài lộc và hạnh phúc. Ngược lại, dãy số mang năng lượng hung hiểm sẽ vô tình kéo vận mệnh đi xuống.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Hệ sinh thái Mật Mã Cuộc Đời -->
+        <div class="ecosystem">
+            <h2>HỆ SINH THÁI MẬT MÃ CUỘC ĐỜI</h2>
+            
+            <p style="text-align: center; margin-bottom: 15px; font-weight: bold; color: var(--accent-red);">
+                👉 Đăng ký kênh Mật Mã Cuộc Đời để không bỏ lỡ những góc nhìn sâu sắc về nhân sinh và vận mệnh.
+            </p>
+
+            <div class="welcome-msg">
+                Mr NGUYỄN TUẤN ANH : Zalo: 0789 414 153<br>
+                XIN CHÀO ANH CHỊ EM - RẤT VUI ĐƯỢC CÙNG NHAU GIAO LƯU
+            </div>
+
+            <ul class="eco-list">
+                <li>
+                    <strong>1️⃣ Tra cứu Sao Hạn miễn phí tại Website:</strong>
+                    <a href="https://matmacuocdoi.vn" target="_blank">https://matmacuocdoi.vn</a>
+                </li>
+                <li>
+                    <strong>2️⃣ Bấm đăng ký để theo dõi video mới nhất trên YouTube:</strong>
+                    <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank">https://www.youtube.com/@matmacuocdoi?sub_confirmation=1</a>
+                </li>
+                <li>
+                    <strong>3️⃣ TikTok:</strong>
+                    <a href="https://tiktok.com/@matmacuocdoivn" target="_blank">https://tiktok.com/@matmacuocdoivn</a>
+                </li>
+                <li>
+                    <strong>4️⃣ Facebook:</strong>
+                    <a href="https://www.facebook.com/thymozin" target="_blank">https://www.facebook.com/thymozin</a>
+                </li>
+                <li>
+                    <strong>5️⃣ Tham gia Nhóm Zalo Cộng Đồng (nhận thông tin không sợ lạc tin nhắn):</strong>
+                    <a href="https://zalo.me/g/iljgbe719" target="_blank">https://zalo.me/g/iljgbe719</a>
+                </li>
+            </ul>
+
+            <div class="contact-box">
+                <strong>6️⃣ Cần hỗ trợ luận giải riêng, kết bạn Zalo Chuyên gia:</strong><br>
+                • 0789 414 153 (Tuấn Anh)<br>
+                • 0849 328 628 (Kim Nguyên Bảo)
+            </div>
+
+            <div style="margin-top: 20px;">
+                <strong style="color: var(--primary-blue);">7️⃣ Danh Sách Video Cho 12 Con Giáp. Anh Chị Thuộc tuổi nào vào xem đúng tuổi nhé:</strong>
+                <ul class="eco-list" style="margin-top: 10px;">
+                    <li>
+                        <strong>👉 MẬT MÃ CUỘC ĐỜI – LIVESTREAM TRỰC TIẾP:</strong>
+                        <a href="https://www.youtube.com/playlist?list=PLGILo4RyLrGE" target="_blank">Xem Playlist Livestream</a>
+                    </li>
+                    <li>
+                        <strong>👉 LUẬN GIẢI SỐ ĐT-CCCD-XUNG KHẮC VỢ CHỒNG-KINH DOANH:</strong>
+                        <a href="https://www.youtube.com/playlist?list=PLKq7x60u_IAPKmgAtAPyJ1tJV7EVETk2U" target="_blank">Xem Playlist Luận Giải</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© Mật Mã Cuộc Đời - Mr. Nguyễn Tuấn Anh. Tất cả các quyền được bảo lưu.</p>
+    </footer>
+
+</body>
+</html>
