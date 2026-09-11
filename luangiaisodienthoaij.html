@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần Mềm Bát Cực Linh Số Nâng Cấp</title>
+    <style>
+        body { background-color: #20373b; color: #fff; font-family: Arial, sans-serif; text-align: center; padding: 20px; margin: 0; }
+        .container { max-width: 550px; margin: 30px auto; background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 1px solid #d4af37; }
+        h1 { color: #d4af37; font-size: 26px; margin-bottom: 5px; text-shadow: 1px 1px 2px #000; }
+        .subtitle { color: #bbb; font-size: 14px; margin-bottom: 25px; }
+        input[type="text"] { width: 80%; padding: 12px; font-size: 18px; border-radius: 5px; border: 1px solid #d4af37; margin-bottom: 15px; text-align: center; background-color: #1a2c30; color: #fff; }
+        button { background-color: #d4af37; color: #20373b; padding: 12px 25px; font-size: 18px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        button:hover { background-color: #fff; }
+        .process-box { margin-top: 20px; background: rgba(212, 175, 55, 0.1); padding: 10px; border-radius: 5px; border-left: 4px solid #d4af37; text-align: left; font-size: 14px; display: none; }
+        .result { margin-top: 25px; text-align: left; background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 8px; display: none; }
+        .pair-item { margin-bottom: 12px; padding: 10px; border-bottom: 1px dashed rgba(255,255,255,0.1); font-size: 16px; }
+        .cat { color: #4caf50; font-weight: bold; }
+        .hung { color: #f44336; font-weight: bold; }
+        .kick-phat { background: #ff9800; color: #000; padding: 2px 6px; border-radius: 3px; font-weight: bold; font-size: 12px; display: inline-block; margin-left: 5px; animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BÁT CỰC LINH SỐ</h1>
+        <div class="subtitle">Hệ thống tự động lọc số 0 và xử lý kích phát số 5</div>
+        <input type="text" id="phoneInput" placeholder="Nhập số điện thoại cần tra..." maxlength="15">
+        <br>
+        <button onclick="tinhBatCucNangCao()">Tra Cứu Khử Hung</button>
+        <div class="process-box" id="processBox"></div>
+        <div class="result" id="resultBox">
+            <h3 style="color: #d4af37; text-align: center; margin-top: 0; border-bottom: 1px solid #d4af37; padding-bottom: 10px;">KẾT QUẢ PHÂN TÍCH BÁT TINH</h3>
+            <div id="resultContent"></div>
+        </div>
+    </div>
+    <script>
+        const batTinhData = {
+            "Sinh Khí": { pairs: ["14", "41", "67", "76", "39", "93", "28", "82"], type: "cat", yNghia Gốc: "Tốt cho tài lộc, danh tiếng, quý nhân phù trợ." },
+            "Thiên Y": { pairs: ["13", "31", "68", "86", "49", "94", "27", "72"], type: "cat", yNghia Gốc: "Tốt cho sức khỏe, tiền tài, tích lũy tài sản." },
+            "Diên Niên": { pairs: ["19", "91", "78", "87", "34", "43", "26", "62"], type: "cat", yNghia Gốc: "Tốt cho sự nghiệp vững vàng, gia đạo êm ấm, thọ mệnh." },
+            "Phục Vị": { pairs: ["11", "22", "33", "44", "66", "77", "88", "99"], type: "cat", yNghia Gốc: "Bình hòa, mang tính chất kế thừa, ổn định, kiên trì." },
+            "Tuyệt Mệnh": { pairs: ["12", "21", "69", "96", "48", "84", "37", "73"], type: "hung", yNghia Gốc: "Xấu. Dễ hao tài, tranh chấp, ảnh hưởng tinh thần." },
+            "Ngũ Quỷ": { pairs: ["18", "81", "79", "97", "36", "63", "24", "42"], type: "hung", yNghia Gốc: "Xấu. Tai bay vạ gió, trắc trước, tâm tư bất an." },
+            "Lục Sát": { pairs: ["16", "61", "47", "74", "38", "83", "29", "92"], type: "hung", yNghia Gốc: "Xấu. Thị phi tai tiếng, tình duyên trắc trở." },
+            "Họa Hại": { pairs: ["17", "71", "89", "98", "46", "64", "23", "32"], type: "hung", yNghia Gốc: "Xấu. Bị gièm pha, khó thành việc lớn, dễ mất mát nhỏ." }
+        };
+        function timSao(caiCap) {
+            for (let sao in batTinhData) {
+                if (batTinhData[sao].pairs.includes(caiCap)) {
+                    return { tenSao: sao, loai: batTinhData[sao].type, yNghia: batTinhData[sao].yNghiaGốc };
+                }
+            }
+            return { tenSao: "Chưa định nghĩa", loai: "binh", yNghia: "Cặp số phụ hoặc từ trường phụ." };
+        }
+
+        function tinhBatCucNangCao() {
+            let rawPhone = document.getElementById("phoneInput").value.trim();
+            rawPhone = rawPhone.replace(/[^0-9]/g, '');
+
+            if (rawPhone.length < 5) {
+                alert("Chú vui lòng nhập đầy đủ số điện thoại nhé!");
+                return;
+            }
+
+            let xửLýSố = rawPhone;
+            if (xửLýSố.startsWith('0')) {
+                xửLýSố = xửLýSố.substring(1);
+            }
+
+            let chuỗiKhôngCóKhông = "";
+            for (let ch of xửLýSố) {
+                if (ch !== '0') {
+                    chuỗiKhôngCóKhông += ch;
+                }
+            }
+
+            let dòngQuyTrình = `<strong>Quy trình lọc số:</strong><br>➔ Số gốc: ${rawPhone}<br>➔ Sau khi loại bỏ toàn bộ số 0: <strong>${chuỗiKhôngCóKhông}</strong>`;
+            document.getElementById("processBox").innerHTML = dòngQuyTrình;
+            document.getElementById("processBox").style.display = "block";
+
+            let htmlContent = "";
+            let i = 0;
+
+            while (i < chuỗiKhôngCóKhông.length - 1) {
+                if (chuỗiKhôngCóKhông[i] === '5') {
+                    i++;
+                    continue;
+                }
+
+                let vịTríKế = i + 1;
+                let cóSốNămGiữa = false;
+                let cóSốNămSau = false;
+
+                while (vịTríKế < chuỗiKhôngCóKhông.length && chuỗiKhôngCóKhông[vịTríKế] === '5') {
+                    cóSốNămGiữa = true;
+                    vịTríKế++;
+                }
+
+                if (vịTríKế >= chuỗiKhôngCóKhông.length) {
+                    break;
+                }
+
+                let capSo = chuỗiKhôngCóKhông[i] + chuỗiKhôngCóKhông[vịTríKế];
+
+                if (vịTríKế + 1 < chuỗiKhôngCóKhông.length && chuỗiKhôngCóKhông[vịTríKế + 1] === '5') {
+                    cóSốNămSau = true;
+                }
+
+                let ketQuaSao = timSao(capSo);
+                let mauSacClass = ketQuaSao.loai === "cat" ? "cat" : (ketQuaSao.loai === "hung" ? "hung" : "");
+                let nhãnLoai = ketQuaSao.loai === "cat" ? "[CÁT]" : (ketQuaSao.loai === "hung" ? "[HUNG]" : "[BÌNH]");
+                
+                let textKíchPhat = "";
+                let lờiGiảiThíchKíchPhat = "";
+                if (cóSốNămGiữa || cóSốNămSau || chuỗiKhôngCóKhông[i-1] === '5') {
+                    textKíchPhat = `<span class="kick-phat">KÍCH PHÁT MẠNH X2</span>`;
+                    if (ketQuaSao.loai === "cat") {
+                        lờiGiảiThíchKíchPhat = `<br><small style="color: #4caf50;">➔ Nhờ tác động của số 5, từ trường TỐT được nhân lên gấp đôi, trợ lực cực mạnh cho chủ nhân.</small>`;
+                    } else if (ketQuaSao.loai === "hung") {
+                        lờiGiảiThíchKíchPhat = `<br><small style="color: #f44336;">➔ Cảnh báo: Số 5 kích hoạt làm hung tinh mạnh lên gấp đôi, cần đặc biệt lưu ý hung hiểm!</small>`;
+                    }
+                }
+
+                htmlContent += `
+                    <div class="pair-item">
+                        Cặp số thực tế: <strong>${capSo}</strong> ➔ Thuộc sao: <span class="${mauSacClass}">${ketQuaSao.tenSao} ${nhãnLoai}</span> ${textKíchPhat}
+                        <br><small style="color: #bbb;">➔ Gốc: ${ketQuaSao.yNghia}</small>
+                        ${lờiGiảiThíchKíchPhat}
+                    </div>`;
+
+                i = vịTríKế;
+            }
+
+            document.getElementById("resultContent").innerHTML = htmlContent;
+            document.getElementById("resultBox").style.display = "block";
+        }
+    </script>
+</body>
+</html>
