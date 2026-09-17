@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Cung Sanh Vợ Chồng - Phong Thủy Chính Tông</title>
+    <style>
+        :root {
+            --primary-color: #8b0000;
+            --secondary-color: #b8860b;
+            --bg-color: #fcf8f2;
+            --text-color: #333;
+            --good-color: #2e7d32;
+            --bad-color: #c62828;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            font-style: italic;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #444;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #a00000;
+        }
+
+        .result-box {
+            margin-top: 25px;
+            padding: 15px;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #ccc;
+            display: none;
+        }
+
+        .cung-hien-thi {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .cung-hien-thi span {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .ket-luan {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .tot {
+            background-color: #e8f5e9;
+            color: var(--good-color);
+        }
+
+        .xau {
+            background-color: #ffebee;
+            color: var(--bad-color);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tra Cứu Cung Sanh Vợ Chồng</h1>
+    <div class="subtitle">Hệ thống tính toán chuẩn Lục Thập Hoa Giáp & Bát Trạch cổ</div>
+
+    <div class="input-group">
+        <label for="namChong">Năm sinh Âm Lịch của Chồng:</label>
+        <input type="number" id="namChong" placeholder="Ví dụ: 1984" min="1924" max="2043">
+    </div>
+
+    <div class="input-group">
+        <label for="namVo">Năm sinh Âm Lịch của Vợ:</label>
+        <input type="number" id="namVo" placeholder="Ví dụ: 1987" min="1924" max="2043">
+    </div>
+
+    <button onclick="tinhToanPhongThuy()">Xem Kết Quả</button>
+
+    <div id="resultBox" class="result-box">
+        <div class="cung-hien-thi">Cung Sanh của Chồng: <span id="resChong">...</span></div>
+        <div class="cung-hien-thi">Cung Sanh của Vợ: <span id="resVo">...</span></div>
+        <div id="resKetLuan" class="ket-luan">...</div>
+    </div>
+</div>
+<script>
+    // Dữ liệu Cung Sanh tra cứu chính xác tuyệt đối từ năm 1924 đến 2043 theo ảnh đối chiếu
+    const banDoCungSanh = {
+        // Nhóm TÝ
+        "1924": "Chấn", "1984": "Chấn", "1936": "Cấn", "1996": "Cấn", "1948": "Càn", "2008": "Càn", "1960": "Càn", "2020": "Càn", "1972": "Chấn", "2032": "Chấn",
+        // Nhóm SỬU
+        "1925": "Tốn", "1985": "Tốn", "1937": "Ly", "1997": "Ly", "1949": "Đoài", "2009": "Đoài", "1961": "Đoài", "2021": "Đoài", "1973": "Tốn", "2033": "Tốn",
+        // Nhóm DẦN
+        "1926": "Cấn", "1986": "Cấn", "1938": "Khảm", "1998": "Khảm", "1950": "Cấn", "2010": "Cấn", "1962": "Cấn", "2022": "Cấn", "1974": "Cấn", "2034": "Cấn",
+        // Nhóm MÃO
+        "1927": "Ly", "1987": "Ly", "1939": "Càn", "1999": "Càn", "1951": "Khôn", "2011": "Khôn", "1963": "Ly", "2023": "Ly", "1975": "Ly", "2035": "Ly",
+        // Nhóm THÌN
+        "1928": "Tốn", "1988": "Tốn", "1940": "Khảm", "2000": "Khảm", "1952": "Khảm", "2012": "Khảm", "1964": "Tốn", "2024": "Tốn", "1976": "Khảm", "2036": "Khảm",
+        // Nhóm TỴ
+        "1929": "Đoài", "1989": "Đoài", "1941": "Khôn", "2001": "Khôn", "1953": "Khôn", "2013": "Khôn", "1965": "Đoài", "2025": "Đoài", "1977": "Khôn", "2037": "Khôn",
+        // Nhóm NGỌ
+        "1930": "Ly", "1990": "Ly", "1942": "Ly", "2002": "Ly", "1954": "Ly", "2014": "Ly", "1966": "Càn", "2026": "Càn", "1978": "Chấn", "2038": "Chấn",
+        // Nhóm MÙI
+        "1931": "Khảm", "1991": "Khảm", "1943": "Càn", "2003": "Càn", "1955": "Khảm", "2015": "Khảm", "1967": "Đoài", "2027": "Đoài", "1979": "Tốn", "2039": "Tốn",
+        // Nhóm THÂN
+        "1932": "Khôn", "1992": "Khôn", "1944": "Khôn", "2004": "Khôn", "1956": "Khôn", "2016": "Khôn", "1968": "Cấn", "2028": "Cấn", "1980": "Khôn", "2040": "Khôn",
+        // Nhóm DẬU
+        "1933": "Chấn", "1993": "Chấn", "1945": "Chấn", "2005": "Chấn", "1957": "Chấn", "2017": "Chấn", "1969": "Ly", "2029": "Ly", "1981": "Càn", "2041": "Càn",
+        // Nhóm TUẤT
+        "1934": "Càn", "1994": "Càn", "1946": "Tốn", "2006": "Tốn", "1958": "Tốn", "2018": "Tốn", "1970": "Khảm", "2030": "Khảm", "1982": "Đoài", "2042": "Đoài",
+        // Nhóm HỢI
+        "1935": "Đoài", "1995": "Đoài", "1947": "Cấn", "2007": "Cấn", "1959": "Cấn", "2019": "Cấn", "1971": "Khôn", "2031": "Khôn", "1983": "Cấn", "2043": "Cấn"
+    };
+    // Ma trận tính duyên phận chuẩn xác theo Bát Trạch cổ học của chú
+    const maTranBatTrach = {
+        "Càn": {
+            "Càn": "Phục Vị (Tốt)", "Khảm": "Lục Sát (Xấu)", "Cấn": "Thiên Y (Tốt)", "Chấn": "Ngũ Quỷ (Xấu)", 
+            "Tốn": "Họa Hại (Xấu)", "Ly": "Tuyệt Mệnh (Xấu)", "Khôn": "Diên Niên (Tốt)", "Đoài": "Sinh Khí (Tốt)"
+        },
+        "Khảm": {
+            "Càn": "Lục Sát (Xấu)", "Khảm": "Phục Vị (Tốt)", "Cấn": "Ngũ Quỷ (Xấu)", "Chấn": "Thiên Y (Tốt)", 
+            "Tốn": "Sinh Khí (Tốt)", "Ly": "Diên Niên (Tốt)", "Khôn": "Tuyệt Mệnh (Xấu)", "Đoài": "Họa Hại (Xấu)"
+        },
+        "Cấn": {
+            "Càn": "Thiên Y (Tốt)", "Khảm": "Ngũ Quỷ (Xấu)", "Cấn": "Phục Vị (Tốt)", "Chấn": "Lục Sát (Xấu)", 
+            "Tốn": "Tuyệt Mệnh (Xấu)", "Ly": "Họa Hại (Xấu)", "Khôn": "Sinh Khí (Tốt)", "Đoài": "Diên Niên (Tốt)"
+        },
+        "Chấn": {
+            "Càn": "Ngũ Quỷ (Xấu)", "Khảm": "Thiên Y (Tốt)", "Cấn": "Lục Sát (Xấu)", "Chấn": "Phục Vị (Tốt)", 
+            "Tốn": "Diên Niên (Tốt)", "Ly": "Sinh Khí (Tốt)", "Khôn": "Họa Hại (Xấu)", "Đoài": "Tuyệt Mệnh (Xấu)"
+        },
+        "Tốn": {
+            "Càn": "Họa Hại (Xấu)", "Khảm": "Sinh Khí (Tốt)", "Cấn": "Tuyệt Mệnh (Xấu)", "Chấn": "Diên Niên (Tốt)", 
+            "Tốn": "Phục Vị (Tốt)", "Ly": "Thiên Y (Tốt)", "Khôn": "Ngũ Quỷ (Xấu)", "Đoài": "Lục Sát (Xấu)"
+        },
+        "Ly": {
+            "Càn": "Tuyệt Mệnh (Xấu)", "Khảm": "Diên Niên (Tốt)", "Cấn": "Họa Hại (Xấu)", "Chấn": "Sinh Khí (Tốt)", 
+            "Tốn": "Thiên Y (Tốt)", "Ly": "Phục Vị (Tốt)", "Khôn": "Lục Sát (Xấu)", "Đoài": "Ngũ Quỷ (Xấu)"
+        },
+        "Khôn": {
+            "Càn": "Diên Niên (Tốt)", "Khảm": "Tuyệt Mệnh (Xấu)", "Cấn": "Sinh Khí (Tốt)", "Chấn": "Họa Hại (Xấu)", 
+            "Tốn": "Ngũ Quỷ (Xấu)", "Ly": "Lục Sát (Xấu)", "Khôn": "Phục Vị (Tốt)", "Đoài": "Thiên Y (Tốt)"
+        },
+        "Đoài": {
+            "Càn": "Sinh Khí (Tốt)", "Khảm": "Họa Hại (Xấu)", "Cấn": "Diên Niên (Tốt)", "Chấn": "Tuyệt Mệnh (Xấu)", 
+            "Tốn": "Lục Sát (Xấu)", "Ly": "Ngũ Quỷ (Xấu)", "Khôn": "Thiên Y (Tốt)", "Đoài": "Phục Vị (Tốt)"
+        }
+    };
+
+    function tinhToanPhongThuy() {
+        const namChong = parseInt(document.getElementById('namChong').value);
+        const namVo = parseInt(document.getElementById('namVo').value);
+
+        // Kiểm tra xem đã nhập đủ năm chưa
+        if (isNaN(namChong) || isNaN(namVo)) {
+            alert("Vui lòng nhập đầy đủ năm sinh của cả vợ và chồng!");
+            return;
+        }
+
+        // Lấy cung sanh trực tiếp từ bản đồ dữ liệu năm sinh đã chuẩn hóa
+        const cungChong = banDoCungSanh[namChong];
+        const cungVo = banDoCungSanh[namVo];
+
+        // Kiểm tra xem năm nhập vào có nằm trong phạm vi từ 1924 đến 2043 không
+        if (!cungChong || !cungVo) {
+            alert("Hệ thống hiện tại hỗ trợ tra cứu các năm sinh từ 1924 đến 2043!");
+            return;
+        }
+
+        const ketQua = maTranBatTrach[cungChong][cungVo];
+
+        // Hiển thị dữ liệu lên giao diện
+        document.getElementById('resChong').innerText = cungChong;
+        document.getElementById('resVo').innerText = cungVo;
+        
+        const elementKetLuan = document.getElementById('resKetLuan');
+        elementKetLuan.innerText = "Kết quả phối hợp: " + ketQua;
+
+        // Đổi màu sắc dựa trên kết quả Tốt hay Xấu
+        if (ketQua.includes("Tốt")) {
+            elementKetLuan.className = "ket-luan tot";
+            document.getElementById('resultBox').style.borderLeft = "4px solid var(--good-color)";
+        } else {
+            elementKetLuan.className = "ket-luan xau";
+            document.getElementById('resultBox').style.borderLeft = "4px solid var(--bad-color)";
+        }
+
+        // Hiện hộp kết quả
+        document.getElementById('resultBox').style.display = "block";
+    }
+</script>
+
+</body>
+</html>
