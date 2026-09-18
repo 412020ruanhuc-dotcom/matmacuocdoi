@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sách Điện Tử: Căn Duyên Tiền Định</title>
+    <!-- Hệ thống lật trang AlpineJS -->
+    <script src="https://jsdelivr.net" defer></script>
+    <!-- Thư viện giao diện TailwindCSS -->
+    <script src="https://tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <style>
+        body { background-color: #1a202c; font-family: 'Times New Roman', Times, serif; }
+        .book-container { perspective: 1500px; }
+        .page { background-color: #f4edd8; box-shadow: inset 3px 0 10px rgba(0,0,0,0.15); transition: transform 0.6s ease-in-out; transform-style: preserve-3d; }
+        .cover { background: radial-gradient(circle, #8b0000 0%, #4a0000 100%); border: 8px double #d4af37; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body class="text-gray-900 flex flex-col min-h-screen justify-between" x-data="{ currentPage: 1, totalPages: 204 }">
+
+    <!-- Thanh Tiêu Đề Trên Cùng -->
+    <header class="text-center py-4 bg-black/40 border-b border-amber-600/30">
+        <h1 class="text-2xl font-bold text-amber-400 tracking-wider">Căn Duyên Tiền Định</h1>
+        <p class="text-xs text-gray-400 mt-1">Chú dùng nút bấm hoặc nhập số trang bên dưới để lật nhanh</p>
+    </header>
+
+    <!-- Khung Sách Lật 3D -->
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="book-container w-full max-w-5xl aspect-[4/3] flex relative overflow-hidden rounded-lg">
+            
+            <!-- TRANG BÊN TRÁI -->
+            <div class="w-1/2 page p-6 md:p-10 flex flex-col justify-between border-r border-gray-400/30">
+                <!-- Hiển thị Bìa Sách ở Trang 1 -->
+                <template x-if="currentPage === 1">
+                    <div class="w-full h-full flex flex-col items-center justify-center text-center cover text-amber-100 rounded p-6">
+                        <p class="text-sm tracking-widest uppercase text-amber-400">Sách Xem Tuổi Vợ Chồng</p>
+                        <h2 class="text-3xl md:text-5xl font-bold my-6 border-b-2 border-amber-500 pb-4 w-full">CĂN-DUYÊN<br>TIỀN ĐỊNH</h2>
+                        <p class="text-lg md:text-xl tracking-wider text-amber-300">定前緣根</p>
+                        <div class="mt-12 text-xs md:text-sm space-y-2 text-gray-300">
+                            <p>Nhà Xuất Bản HỒNG-DÂN</p>
+                            <p>Soạn-giả: DƯƠNG - CÔNG - HẦU</p>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Nội dung các trang chữ bên TRÁI (Trang chẵn: 2, 4, 6, ...) -->
+                <template x-if="currentPage > 1">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="prose max-w-none text-sm md:text-base leading-relaxed text-justify">
+                            <h3 class="font-bold text-red-900 border-b border-red-800/20 pb-1 mb-3" x-text="'Trang ' + (currentPage)"></h3>
+                            
+                            <!-- NỘI DUNG CHỮ TRANG 2 -->
+                            <div x-show="currentPage === 2">
+                                <h4 class="font-bold text-center text-lg mb-2">Ý nghĩa những bài ĐOÁN PHỤ THÊM trong mỗi cặp vợ chồng.</h4>
+                                <p class="mb-2">Căn có giới hạn, cặp mắt của người đời không cho phép chồng lớn tuổi hơn vợ quá nhiều...</p>
+                                <p>Thưa quý vị, quyển CĂN DUYÊN TIỀN ĐỊNH này soạn giả căn cứ vào loại sách như: Lữ Tài Hiệp Hôn, Cao Ly Toán Số, Cao Ly Đầu Hình...</p>
+                            </div>
+
+                            <!-- Thêm trang chẵn 4, 6, 8 ở đây -->
+                            <div x-show="currentPage === 4">
+                                <h4 class="font-bold text-center text-lg mb-2">BÀI DẪN - GIẢI (Tiếp theo)</h4>
+                                <p>Nội dung trang số 4 gõ ở đây...</p>
+                            </div>
+
+                            <div x-show="currentPage > 4">
+                                <p class="text-gray-500 italic text-center pt-12">Nội dung chữ của Trang <span x-text="currentPage"></span> đang cập nhật...</p>
+                            </div>
+                        </div>
+                        <div class="text-xs text-gray-500 text-left" x-text="'Trang ' + currentPage"></div>
+                    </div>
+                </template>
+            </div>
+            <!-- TRANG BÊN PHẢI -->
+            <div class="w-1/2 page p-6 md:p-10 flex flex-col justify-between border-l border-gray-100/30">
+                <!-- Nội dung Trang 3 (Nằm cạnh bìa khi mới mở sách) -->
+                <template x-if="currentPage === 1">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="prose max-w-none text-sm md:text-base leading-relaxed text-justify">
+                            <h3 class="font-bold text-red-900 border-b border-red-800/20 pb-1 mb-3">BÀI DẪN - GIẢI</h3>
+                            <p class="font-bold text-amber-800">CÓ 3 ĐIỂM CẦN BIẾT:</p>
+                            <ol class="list-decimal pl-4 mb-4 space-y-1">
+                                <li>Phải biết đúng tuổi của người chồng và người vợ.</li>
+                                <li>Phải nhớ đúng tháng sanh âm-lịch.</li>
+                                <li>Phải biết hướng Trời, để định hướng lương duyên.</li>
+                            </ol>
+                            <p class="font-bold text-amber-800">GIẢI VỀ CAO-LY TOÁN-SỐ:</p>
+                            <p class="mb-1">Có 5 cảnh như sau:</p>
+                            <ul class="list-disc pl-4 space-y-1 text-xs md:text-sm">
+                                <li><strong>NHỨT PHÚ QUÝ:</strong> Là giàu có hay dư giả.</li>
+                                <li><strong>NHÌ BẦN TIỆN:</strong> Là nghèo hèn hay thiếu thốn.</li>
+                                <li><strong>TAM VINH HIỂN:</strong> Là quyền tước hay chức phận.</li>
+                                <li><strong>TỨ ĐẠT ĐẠO:</strong> Là thông đạt hay dễ làm ăn.</li>
+                                <li><strong>NGŨ BIỆT LY:</strong> Là lìa sống hay lìa thác.</li>
+                            </ul>
+                        </div>
+                        <div class="text-xs text-gray-500 text-right">Trang 3</div>
+                    </div>
+                </template>
+
+                <!-- Nội dung các trang chữ bên PHẢI (Trang lẻ: 5, 7, 9, ...) -->
+                <template x-if="currentPage > 1">
+                    <div class="flex flex-col h-full justify-between">
+                        <div class="prose max-w-none text-sm md:text-base leading-relaxed text-justify">
+                            <h3 class="font-bold text-red-900 border-b border-red-800/20 pb-1 mb-3" x-text="'Trang ' + (currentPage + 1)"></h3>
+                            
+                            <!-- NỘI DUNG CHỮ TRANG 3 KÉO DÀI (KHI LẬT QUA BÌA) -->
+                            <div x-show="currentPage === 2">
+                                <p class="italic text-center my-4">"Cô này chồng chết có hướng,<br>Ai mà lấy cố, thua buồn chết theo.<br>Anh này bỏ vợ có hướng,<br>Ai mà lấy ảnh, thua buồn ảnh thôi."</p>
+                                <div class="text-right text-xs text-gray-500 mt-6">Soạn giả: Dương Công Hầu</div>
+                            </div>
+
+                            <!-- Thêm trang lẻ 5, 7, 9 ở đây -->
+                            <div x-show="currentPage === 4">
+                                <p>Nội dung trang số 5 gõ ở đây...</p>
+                            </div>
+
+                            <div x-show="currentPage > 4">
+                                <p class="text-gray-500 italic text-center pt-12">Nội dung chữ của Trang <span x-text="currentPage + 1"></span> đang cập nhật...</p>
+                            </div>
+                        </div>
+                        <div class="text-xs text-gray-500 text-right" x-text="'Trang ' + (currentPage + 1)"></div>
+                    </div>
+                </template>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Thanh Điều Khiển và Nút Bấm Lật Trang Dưới Chân -->
+    <footer class="bg-slate-900 text-white p-4 flex flex-col items-center gap-3 border-t border-amber-600/30">
+        <div class="flex items-center gap-4">
+            <button 
+                class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg disabled:opacity-50 transition"
+                :disabled="currentPage === 1"
+                @click="currentPage = Math.max(1, currentPage - 2)">
+                <i class="fa-solid fa-arrow-left mr-1"></i> Trang Trước
+            </button>
+
+            <div class="text-sm font-semibold">
+                Chỉ mục trang: <span class="text-amber-400 font-bold" x-text="currentPage"></span> / <span class="text-amber-400 font-bold" x-text="currentPage + 1"></span> (Tổng: 204)
+            </div>
+
+            <button 
+                class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold rounded-lg disabled:opacity-50 transition"
+                :disabled="currentPage >= totalPages - 1"
+                @click="currentPage = Math.min(totalPages - 1, currentPage + 2)">
+                Trang Sau <i class="fa-solid fa-arrow-right mr-1"></i>
+            </button>
+        </div>
+
+        <!-- Ô Nhập Số Để Nhảy Trang Nhanh -->
+        <div class="flex items-center gap-2 text-xs">
+            <span>Chú muốn đi nhanh đến trang số lẻ nào (Từ 1 đến 203):</span>
+            <input 
+                type="number" 
+                min="1" 
+                max="203" 
+                step="2"
+                class="w-16 bg-slate-800 border border-amber-500/50 rounded px-2 py-1 text-center text-amber-400 focus:outline-none focus:border-amber-400"
+                :value="currentPage"
+                @change="let v = parseInt($event.target.value); if(v >= 1 && v <= 203) { currentPage = v % 2 === 0 ? v - 1 : v; }">
+        </div>
+    </footer>
+
+</body>
+</html>
