@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần Mềm Tra Cứu Cung Sanh Hôn Nhân - Mật Mã Cuộc Đời</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter & Merriweather -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fengshui: {
+                            red: '#8B0000',
+                            darkred: '#5B0000',
+                            gold: '#D4AF37',
+                            lightgold: '#FDF6E3',
+                            accent: '#C5A059',
+                            bg: '#FAF8F5',
+                            card: '#FFFFFF',
+                            text: '#2C221E'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Merriweather', 'serif'],
+                        title: ['Playfair Display', 'serif'],
+                        sans: ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #2C221E;
+            font-family: 'Roboto', sans-serif;
+        }
+        .fengshui-border {
+            border: 2px solid #D4AF37;
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #8B0000 0%, #5B0000 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 25px -5px rgba(139, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; font-size: 14pt; }
+            .print-container { width: 100% !important; margin: 0 !important; padding: 0 !important; box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased">
+
+    <!-- HEADER BRANDING -->
+    <header class="gold-gradient text-white shadow-xl border-b-4 border-fengshui-gold no-print">
+        <div class="max-w-6xl mx-auto px-4 py-6 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <div class="flex items-center justify-center md:justify-start gap-3">
+                    <i class="fa-solid fa-[#8B0000] fa-yin-yang text-3xl text-fengshui-gold animate-spin-slow"></i>
+                    <h1 class="text-2xl md:text-3xl font-bold font-title tracking-wide text-fengshui-gold">MẬT MÃ CUỘC ĐỜI</h1>
+                </div>
+                <p class="text-sm md:text-base text-amber-200 mt-1 font-serif italic">Phần Mềm Tra Cứu Cung Sanh Trong Hôn Nhân Chuẩn </p>
+            </div>
+           <!-- Contact Info Box -->
+<div class="bg-black/30 border border-fengshui-gold/40 rounded-xl p-3 text-xs md:text-sm text-center md:text-right">
+    <p class="font-semibold text-fengshui-gold uppercase tracking-wider mb-1"><i class="fa-solid fa-globe mr-1"></i> matmacuocdoi.vn</p>
+    <p class="text-white"><i class="fa-solid fa-phone text-green-400 mr-1"></i> Zalo Tuấn Anh: 
+        <a href="https://zalo.me/0789414153" target="_blank" class="font-bold text-amber-300 hover:underline">0789.414.153</a>
+    </p>
+    <p class="text-white"><i class="fa-solid fa-phone text-green-400 mr-1"></i> Zalo Kim Nguyên Bảo: 
+        <a href="https://zalo.me/0849328628" target="_blank" class="font-bold text-amber-300 hover:underline">0849.328.628</a>
+    </p>
+</div>
+</div>
+</header>
+
+
+    <main class="max-w-6xl mx-auto w-full px-4 py-8 flex-grow print-container">
+
+        <!-- INTRO & RULES BANNER -->
+        <div class="bg-white rounded-2xl p-6 mb-8 card-shadow border-l-8 border-fengshui-red no-print">
+            <h2 class="text-xl md:text-2xl font-bold text-fengshui-red font-serif mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-scroll text-fengshui-gold"></i>
+                Quy Luật Tra Cứu Cung Sanh Hôn Nhân
+            </h2>
+            <div class="space-y-2 text-gray-700 text-base md:text-lg leading-relaxed">
+                <p>📌 <strong>Cung Sanh (Cung Sinh / Cung Ký):</strong> Được tính dựa theo <strong>Lục Thập Hoa Giáp</strong> (từ Giáp Tý đến Quý Hợi). Cứ tuần tự lặp lại, <strong>KHÔNG</strong> phân biệt Thượng - Trung - Hạ Nguyên và <strong>KHÔNG</strong> phân biệt Nam hay Nữ.</p>
+                <p>📌 <strong>Trạch Cung (Phi Cung):</strong> Nam và Nữ khác nhau, dùng để xem Phong thủy Nhà ở & Bát trạch địa lý.</p>
+                <p class="text-sm md:text-base text-amber-800 bg-amber-50 p-3 rounded-lg border border-amber-200 font-medium">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i>
+                    <em>Ghi chú:</em> Để luận giải chính xác hôn nhân gia đạo, ta đối chiếu <strong>Cung Sanh Chồng</strong> hợp với <strong>Cung Sanh Vợ</strong> ra 8 Cung Cát Hung Bát Trạch (Sinh Khí, Thiên Y, Diên Niên, Phục Vị, Họa Hại, Lục Sát, Ngũ Quỷ, Tuyệt Mệnh).
+                </p>
+            </div>
+        </div>
+
+        <!-- FORM INPUT SECTION -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow border border-amber-200 mb-8 no-print">
+            <h3 class="text-2xl font-bold text-center text-fengshui-darkred font-serif mb-6 uppercase tracking-wide border-b pb-3 border-amber-200">
+                <i class="fa-solid fa-calculator text-fengshui-gold mr-2"></i> Nhập Thông Tin Vợ Chồng
+            </h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- HUSBAND INPUT -->
+                <div class="bg-red-50/60 rounded-xl p-5 border-2 border-red-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-full bg-fengshui-red text-white flex items-center justify-center font-bold text-xl"><i class="fa-solid fa-mars"></i></span>
+                        <h4 class="text-xl font-bold text-fengshui-darkred font-serif">THÔNG TIN CHỒNG</h4>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-gray-800 font-semibold mb-2 text-base">Nhập Năm Sinh Âm Lịch (Dương Lịch):</label>
+                            <input type="number" id="husband_year" placeholder="Ví dụ: 1984" value="1984" min="1900" max="2100"
+                                class="w-full text-lg p-3 border-2 border-amber-300 rounded-lg focus:outline-none focus:border-fengshui-red font-bold text-gray-800">
+                        </div>
+                        <div class="text-center font-bold text-gray-500 text-sm">- HOẶC CHỌN TRỰC TIẾP CAN CHI -</div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Thiên Can</label>
+                                <select id="husband_can" class="w-full p-2.5 border border-gray-300 rounded-lg font-medium text-base text-gray-800 bg-white">
+                                    <option value="Giáp">Giáp</option><option value="Ất">Ất</option><option value="Bính">Bính</option><option value="Đinh">Đinh</option><option value="Mậu">Mậu</option><option value="Kỷ">Kỷ</option><option value="Canh">Canh</option><option value="Tân">Tân</option><option value="Nhâm">Nhâm</option><option value="Quý">Quý</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Địa Chi</label>
+                                <select id="husband_chi" class="w-full p-2.5 border border-gray-300 rounded-lg font-medium text-base text-gray-800 bg-white">
+                                    <option value="Tý">Tý</option><option value="Sửu">Sửu</option><option value="Dần">Dần</option><option value="Mão">Mão</option><option value="Thìn">Thìn</option><option value="Tỵ">Tỵ</option><option value="Ngọ">Ngọ</option><option value="Mùi">Mùi</option><option value="Thân">Thân</option><option value="Dậu">Dậu</option><option value="Tuất">Tuất</option><option value="Hợi">Hợi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WIFE INPUT -->
+                <div class="bg-pink-50/60 rounded-xl p-5 border-2 border-pink-200">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center font-bold text-xl"><i class="fa-solid fa-venus"></i></span>
+                        <h4 class="text-xl font-bold text-pink-900 font-serif">THÔNG TIN VỢ</h4>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-gray-800 font-semibold mb-2 text-base">Nhập Năm Sinh Âm Lịch (Dương Lịch):</label>
+                            <input type="number" id="wife_year" placeholder="Ví dụ: 1988" value="1988" min="1900" max="2100"
+                                class="w-full text-lg p-3 border-2 border-amber-300 rounded-lg focus:outline-none focus:border-pink-600 font-bold text-gray-800">
+                        </div>
+                        <div class="text-center font-bold text-gray-500 text-sm">- HOẶC CHỌN TRỰC TIẾP CAN CHI -</div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Thiên Can</label>
+                                <select id="wife_can" class="w-full p-2.5 border border-gray-300 rounded-lg font-medium text-base text-gray-800 bg-white">
+                                    <option value="Giáp">Giáp</option><option value="Ất">Ất</option><option value="Bính">Bính</option><option value="Đinh">Đinh</option><option value="Mậu">Mậu</option><option value="Kỷ">Kỷ</option><option value="Canh">Canh</option><option value="Tân">Tân</option><option value="Nhâm">Nhâm</option><option value="Quý">Quý</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-1">Địa Chi</label>
+                                <select id="wife_chi" class="w-full p-2.5 border border-gray-300 rounded-lg font-medium text-base text-gray-800 bg-white">
+                                    <option value="Tý">Tý</option><option value="Sửu">Sửu</option><option value="Dần">Dần</option><option value="Mão">Mão</option><option value="Thìn">Thìn</option><option value="Tỵ">Tỵ</option><option value="Ngọ">Ngọ</option><option value="Mùi">Mùi</option><option value="Thân">Thân</option><option value="Dậu">Dậu</option><option value="Tuất">Tuất</option><option value="Hợi">Hợi</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTON -->
+            <div class="mt-8 text-center">
+                <button onclick="calculateMarriage()" class="gold-gradient hover:opacity-95 text-white font-serif font-bold text-xl px-10 py-4 rounded-full shadow-xl transition-transform active:scale-95 border-2 border-fengshui-gold cursor-pointer inline-flex items-center gap-3">
+                    <i class="fa-solid fa-compass text-fengshui-gold text-2xl"></i>
+                    XEM KẾT QUẢ TRA CỨU HÔN NHÂN
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULTS DISPLAY SECTION -->
+        <div id="result_section" class="space-y-8">
+            <!-- Dynamic Content Will Be Rendered Here -->
+        </div>
+
+    </main>
+
+    <footer class="bg-stone-900 text-stone-300 border-t-4 border-fengshui-gold mt-12 py-8 no-print">
+        <div class="max-w-6xl mx-auto px-4 text-center space-y-4">
+            <h3 class="text-xl font-bold font-title text-fengshui-gold">MẬT MÃ CUỘC ĐỜI - NĂNG LƯỢNG SỐ</h3>
+            <p class="text-sm max-w-2xl mx-auto text-stone-400">CHUYÊN GIA NGUYỄN TUẤN ANH - CHUYÊN GIA KIM NGUYÊN BẢO</p>
+            <div class="flex flex-wrap justify-center items-center gap-6 pt-2 text-sm font-semibold">
+                <a href="https://matmacuocdoi.vn" target="_blank" class="hover:text-fengshui-gold transition"><i class="fa-solid fa-globe text-fengshui-gold"></i> Website: matmacuocdoi.vn</a>
+                <span><i class="fa-brands fa-whatsapp text-green-500"></i> Zalo Tuấn Anh: https://zalo.me/0789414153</span>
+                <span><i class="fa-brands fa-whatsapp text-green-500"></i> Zalo Kim Nguyên Bảo: https://zalo.me/0849328628</span>
+            </div>
+            <p class="text-xs text-stone-500 pt-4">© 2026 MatMaCuocDoi.vn - Bản quyền phần mềm tra cứu Cung Sanh Hôn Nhân thuộc về Mật Mã Cuộc Đời.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Comprehensive Database for 60 Jiazi (Lục Thập Hoa Giáp) mapped accurately from user's chart
+        const CAN_LIST = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
+        const CHI_LIST = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+
+        // Exact 60 Can Chi mapping table from the provided chart
+        // Index 0: Giáp Tý (1984), Index 1: Ất Sửu (1985), ..., Index 59: Quý Hợi (1983/2043)
+        const JIAZI_DB = {
+            "Giáp Tý": { sanh: "Chấn", hanhSanh: "Mộc", mang: "Kim", namTrach: "Đoài", nuTrach: "Cấn" },
+            "Ất Sửu": { sanh: "Tốn", hanhSanh: "Mộc", mang: "Kim", namTrach: "Càn", nuTrach: "Ly" },
+            "Bính Dần": { sanh: "Khảm", hanhSanh: "Thủy", mang: "Hỏa", namTrach: "Khôn", nuTrach: "Khảm" },
+            "Đinh Mão": { sanh: "Càn", hanhSanh: "Kim", mang: "Hỏa", namTrach: "Tốn", nuTrach: "Khôn" },
+            "Mậu Thìn": { sanh: "Đoài", hanhSanh: "Kim", mang: "Mộc", namTrach: "Chấn", nuTrach: "Chấn" },
+            "Kỷ Tỵ": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Mộc", namTrach: "Khôn", nuTrach: "Tốn" },
+            "Canh Ngọ": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Thổ", namTrach: "Khảm", nuTrach: "Cấn" },
+            "Tân Mùi": { sanh: "Khảm", hanhSanh: "Thủy", mang: "Thổ", namTrach: "Ly", nuTrach: "Càn" },
+            "Nhâm Thân": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Kim", namTrach: "Cấn", nuTrach: "Đoài" },
+            "Quý Dậu": { sanh: "Chấn", hanhSanh: "Mộc", mang: "Kim", namTrach: "Đoài", nuTrach: "Cấn" },
+
+            "Giáp Tuất": { sanh: "Càn", hanhSanh: "Kim", mang: "Hỏa", namTrach: "Ly", nuTrach: "Càn" },
+            "Ất Hợi": { sanh: "Đoài", hanhSanh: "Kim", mang: "Hỏa", namTrach: "Cấn", nuTrach: "Đoài" },
+            "Bính Tý": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Thủy", namTrach: "Tốn", nuTrach: "Khôn" },
+            "Đinh Sửu": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Thủy", namTrach: "Ly", nuTrach: "Càn" },
+            "Mậu Dần": { sanh: "Khảm", hanhSanh: "Thủy", mang: "Thổ", namTrach: "Cấn", nuTrach: "Tốn" },
+            "Kỷ Mão": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Thổ", namTrach: "Khảm", nuTrach: "Cấn" },
+            "Canh Thìn": { sanh: "Chấn", hanhSanh: "Mộc", mang: "Kim", namTrach: "Càn", nuTrach: "Ly" },
+            "Tân Tỵ": { sanh: "Tốn", hanhSanh: "Mộc", mang: "Kim", namTrach: "Cấn", nuTrach: "Đoài" },
+            "Nhâm Ngọ": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Mộc", namTrach: "Tốn", nuTrach: "Khôn" },
+            "Quý Mùi": { sanh: "Càn", hanhSanh: "Kim", mang: "Mộc", namTrach: "Chấn", nuTrach: "Chấn" },
+
+            "Giáp Thân": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Thủy", namTrach: "Khôn", nuTrach: "Tốn" },
+            "Ất Dậu": { sanh: "Chấn", hanhSanh: "Mộc", mang: "Thủy", namTrach: "Tốn", nuTrach: "Khôn" },
+            "Bính Tuất": { sanh: "Tốn", hanhSanh: "Mộc", mang: "Thổ", namTrach: "Ly", nuTrach: "Càn" },
+            "Đinh Hợi": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Thổ", namTrach: "Cấn", nuTrach: "Đoài" },
+            "Mậu Tý": { sanh: "Càn", hanhSanh: "Kim", mang: "Hỏa", namTrach: "Đoài", nuTrach: "Cấn" },
+            "Kỷ Sửu": { sanh: "Đoài", hanhSanh: "Kim", mang: "Hỏa", namTrach: "Càn", nuTrach: "Ly" },
+            "Canh Dần": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Mộc", namTrach: "Khôn", nuTrach: "Khảm" },
+            "Tân Mão": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Mộc", namTrach: "Tốn", nuTrach: "Khảm" },
+            "Nhâm Thìn": { sanh: "Khảm", hanhSanh: "Thủy", mang: "Thủy", namTrach: "Chấn", nuTrach: "Chấn" },
+            "Quý Tỵ": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Thủy", namTrach: "Khôn", nuTrach: "Tốn" },
+
+            "Giáp Ngọ": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Kim", namTrach: "Khảm", nuTrach: "Cấn" },
+            "Ất Mùi": { sanh: "Khảm", hanhSanh: "Thủy", mang: "Kim", namTrach: "Ly", nuTrach: "Càn" },
+            "Bính Thân": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Hỏa", namTrach: "Cấn", nuTrach: "Đoài" },
+            "Đinh Dậu": { sanh: "Chấn", hanhSanh: "Mộc", mang: "Hỏa", namTrach: "Đoài", nuTrach: "Cấn" },
+            "Mậu Tuất": { sanh: "Tốn", hanhSanh: "Mộc", mang: "Mộc", namTrach: "Càn", nuTrach: "Ly" },
+            "Kỷ Hợi": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Mộc", namTrach: "Khôn", nuTrach: "Khảm" },
+            "Canh Tý": { sanh: "Càn", hanhSanh: "Kim", mang: "Thổ", namTrach: "Tốn", nuTrach: "Khôn" },
+            "Tân Sửu": { sanh: "Đoài", hanhSanh: "Kim", mang: "Thổ", namTrach: "Chấn", nuTrach: "Chấn" },
+            "Nhâm Dần": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Kim", namTrach: "Khôn", nuTrach: "Tốn" },
+            "Quý Mão": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Kim", namTrach: "Khảm", nuTrach: "Cấn" },
+
+            "Giáp Thìn": { sanh: "Tốn", hanhSanh: "Mộc", mang: "Hỏa", namTrach: "Ly", nuTrach: "Càn" },
+            "Ất Tỵ": { sanh: "Đoài", hanhSanh: "Kim", mang: "Hỏa", namTrach: "Cấn", nuTrach: "Đoài" },
+            "Bính Ngọ": { sanh: "Càn", hanhSanh: "Kim", mang: "Thủy", namTrach: "Khảm", nuTrach: "Cấn" },
+            "Đinh Mùi": { sanh: "Đoài", hanhSanh: "Kim", mang: "Thủy", namTrach: "Càn", nuTrach: "Ly" },
+            "Mậu Thân": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Thổ", namTrach: "Khôn", nuTrach: "Khảm" },
+            "Kỷ Dậu": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Thổ", namTrach: "Tốn", nuTrach: "Khôn" },
+            "Canh Tuất": { sanh: "Khảm", hanhSanh: "Thủy", mang: "Kim", namTrach: "Chấn", nuTrach: "Chấn" },
+            "Tân Hợi": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Kim", namTrach: "Khôn", nuTrach: "Tốn" },
+            "Nhâm Tý": { sanh: "Chấn", hanhSanh: "Mộc", mang: "Mộc", namTrach: "Khảm", nuTrach: "Cấn" },
+            "Quý Sửu": { sanh: "Tốn", hanhSanh: "Mộc", mang: "Mộc", namTrach: "Ly", nuTrach: "Càn" },
+
+            "Giáp Dần": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Thủy", namTrach: "Cấn", nuTrach: "Đoài" },
+            "Ất Mão": { sanh: "Ly", hanhSanh: "Hỏa", mang: "Thủy", namTrach: "Khảm", nuTrach: "Cấn" },
+            "Bính Thìn": { sanh: "Khảm", hanhSanh: "Thủy", mang: "Thổ", namTrach: "Càn", nuTrach: "Ly" },
+            "Đinh Tỵ": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Thổ", namTrach: "Khôn", nuTrach: "Khảm" },
+            "Mậu Ngọ": { sanh: "Chấn", hanhSanh: "Mộc", mang: "Hỏa", namTrach: "Tốn", nuTrach: "Khôn" },
+            "Kỷ Mùi": { sanh: "Tốn", hanhSanh: "Mộc", mang: "Hỏa", namTrach: "Chấn", nuTrach: "Chấn" },
+            "Canh Thân": { sanh: "Khôn", hanhSanh: "Thổ", mang: "Mộc", namTrach: "Khôn", nuTrach: "Tốn" },
+            "Tân Dậu": { sanh: "Càn", hanhSanh: "Kim", mang: "Mộc", namTrach: "Khảm", nuTrach: "Cấn" },
+            "Nhâm Tuất": { sanh: "Đoài", hanhSanh: "Kim", mang: "Thủy", namTrach: "Ly", nuTrach: "Càn" },
+            "Quý Hợi": { sanh: "Cấn", hanhSanh: "Thổ", mang: "Thủy", namTrach: "Cấn", nuTrach: "Đoài" }
+        };
+
+        // BAT TRACH PAIR COMBINATIONS MATRIX (Row: Husband, Col: Wife)
+        const BAT_TRACH_MATRIX = {
+            "Càn": { "Càn": "Phục Vị", "Khảm": "Lục Sát", "Cấn": "Thiên Y", "Chấn": "Ngũ Quỷ", "Tốn": "Họa Hại", "Ly": "Tuyệt Mệnh", "Khôn": "Diên Niên", "Đoài": "Sinh Khí" },
+            "Khảm": { "Càn": "Lục Sát", "Khảm": "Phục Vị", "Cấn": "Ngũ Quỷ", "Chấn": "Thiên Y", "Tốn": "Sinh Khí", "Ly": "Diên Niên", "Khôn": "Tuyệt Mệnh", "Đoài": "Họa Hại" },
+            "Cấn": { "Càn": "Thiên Y", "Khảm": "Ngũ Quỷ", "Cấn": "Phục Vị", "Chấn": "Lục Sát", "Tốn": "Tuyệt Mệnh", "Ly": "Họa Hại", "Khôn": "Sinh Khí", "Đoài": "Diên Niên" },
+            "Chấn": { "Càn": "Ngũ Quỷ", "Khảm": "Thiên Y", "Cấn": "Lục Sát", "Chấn": "Phục Vị", "Tốn": "Diên Niên", "Ly": "Sinh Khí", "Khôn": "Họa Hại", "Đoài": "Tuyệt Mệnh" },
+            "Tốn": { "Càn": "Họa Hại", "Khảm": "Sinh Khí", "Cấn": "Tuyệt Mệnh", "Chấn": "Diên Niên", "Tốn": "Phục Vị", "Ly": "Thiên Y", "Khôn": "Ngũ Quỷ", "Đoài": "Lục Sát" },
+            "Ly": { "Càn": "Tuyệt Mệnh", "Khảm": "Diên Niên", "Cấn": "Họa Hại", "Chấn": "Sinh Khí", "Tốn": "Thiên Y", "Ly": "Phục Vị", "Khôn": "Lục Sát", "Đoài": "Ngũ Quỷ" },
+            "Khôn": { "Càn": "Diên Niên", "Khảm": "Tuyệt Mệnh", "Cấn": "Sinh Khí", "Chấn": "Họa Hại", "Tốn": "Ngũ Quỷ", "Ly": "Lục Sát", "Khôn": "Phục Vị", "Đoài": "Thiên Y" },
+            "Đoài": { "Càn": "Sinh Khí", "Khảm": "Họa Hại", "Cấn": "Diên Niên", "Chấn": "Tuyệt Mệnh", "Tốn": "Lục Sát", "Ly": "Ngũ Quỷ", "Khôn": "Thiên Y", "Đoài": "Phục Vị" }
+        };
+
+        // EXPLANATION AND EVALUATION DICTIONARY
+        const EVALUATION_INFO = {
+            "Sinh Khí": {
+                type: "GOOD",
+                stars: "⭐⭐⭐⭐⭐ (Thượng Cát)",
+                badgeBg: "bg-emerald-600",
+                textColor: "text-emerald-700",
+                borderColor: "border-emerald-500",
+                summary: "Cát khí dồi dào, sinh sôi nảy nở, tài lộc hanh thông.",
+                description: "Sinh Khí là cung tốt nhất trong Bát Trạch. Vợ chồng kết hợp được Sinh Khí sẽ gia tăng vượng khí, đường công danh sự nghiệp phát triển thuận lợi, con cái ngoan hiền, sức khỏe dồi dào, vạn sự bình an và phú quý lâu dài."
+            },
+            "Thiên Y": {
+                type: "GOOD",
+                stars: "⭐⭐⭐⭐⭐ (Thượng Cát)",
+                badgeBg: "bg-teal-600",
+                textColor: "text-teal-700",
+                borderColor: "border-teal-500",
+                summary: "Quý nhân phù trợ, sức khỏe trường thọ, gia đạo êm ấm.",
+                description: "Thiên Y mang lại sự che chở của trời đất và quý nhân giúp đỡ. Vợ chồng hợp Cung Thiên Y sẽ luôn gặp may mắn, bệnh tật tiêu trừ, tinh thần vui vẻ, tài lộc ổn định, cuộc sống hôn nhân đầm ấm, yên vui."
+            },
+            "Diên Niên": {
+                type: "GOOD",
+                stars: "⭐⭐⭐⭐ (Trung Cát)",
+                badgeBg: "bg-blue-600",
+                textColor: "text-blue-700",
+                borderColor: "border-blue-500",
+                summary: "Tình cảm gắn kết bền chặt, tuổi thọ gia tăng, gia đạo an yên.",
+                description: "Diên Niên (hay Phước Đức) chủ về sự vững bền trong mối quan hệ. Vợ chồng có cung này sẽ giữ được ngọn lửa tình cảm lâu dài, gia đình hòa thuận, con cái thành đạt, ngoại giao tốt và đời sống vật chất an ổn."
+            },
+            "Phục Vị": {
+                type: "GOOD",
+                stars: "⭐⭐⭐⭐ (Tiểu Cát)",
+                badgeBg: "bg-indigo-600",
+                textColor: "text-indigo-700",
+                borderColor: "border-indigo-500",
+                summary: "Bình yên, ổn định, thi cử đỗ đạt, công danh tiến tới.",
+                description: "Phục Vị mang lại tinh thần vững vàng, sự bình yên trong tâm hồn. Vợ chồng cùng Cung Phục Vị gia đạo an lành, ít sóng gió lớn, cuộc sống ổn định, dễ tạo dựng nền tảng vững chắc cho con cháu."
+            },
+            "Họa Hại": {
+                type: "BAD",
+                stars: "⚠️ (Thứ Hung)",
+                badgeBg: "bg-amber-600",
+                textColor: "text-amber-800",
+                borderColor: "border-amber-500",
+                summary: "Dễ phát sinh mâu thuẫn nhỏ, thị phi, công việc hay gặp trở ngại.",
+                description: "Họa Hại thuộc hành Thổ, chủ về những điều xui xẻo nhỏ hoặc lặt vặt. Vợ chồng dễ bất đồng ý kiến nhỏ, khẩu xà tâm phật. Tuy không nguy hại quá lớn nhưng cần giữ hòa khí, nhường nhịn lẫn nhau."
+            },
+            "Lục Sát": {
+                type: "BAD",
+                stars: "⚠️⚠️ (Trung Hung)",
+                badgeBg: "bg-orange-600",
+                textColor: "text-orange-800",
+                borderColor: "border-orange-500",
+                summary: "Gia đạo xáo trộn, tình cảm bất an, mâu thuẫn phát sinh.",
+                description: "Lục Sát thuộc hành Thủy, chủ về sự xáo trộn tình cảm, vướng mắc thị phi bên ngoài. Vợ chồng cần nâng cao sự tin tưởng, minh bạch trong kinh tế và chia sẻ để tránh bất hòa."
+            },
+            "Ngũ Quỷ": {
+                type: "BAD",
+                stars: "🚨 (Đại Hung)",
+                badgeBg: "bg-red-600",
+                textColor: "text-red-800",
+                borderColor: "border-red-500",
+                summary: "Tài lộc hao tổn, dễ gặp bất hòa, công việc trắc trở.",
+                description: "Ngũ Quỷ thuộc hành Hỏa, chủ về sự tai tiếng, hao tài tốn của. Vợ chồng gặp Cung Ngũ Quỷ cần cẩn trọng trong đầu tư làm ăn, lắng nghe đối phương và chú ý giữ gìn sức khỏe."
+            },
+            "Tuyệt Mệnh": {
+                type: "BAD",
+                stars: "🚨🚨 (Đại Hung - Cần Lưu Ý)",
+                badgeBg: "bg-red-800",
+                textColor: "text-red-900",
+                borderColor: "border-red-700",
+                summary: "Cung xung khắc mạnh, cần chú ý sức khỏe và bình an gia đạo.",
+                description: "Tuyệt Mệnh thuộc hành Kim, tượng trưng cho sự xung khắc lớn nhất về năng lượng Bát Trạch. Tuy nhiên, trong lý luận Phong Thủy luôn có pháp 'Nhất Mệnh, Nhị Vận, Tam Phong Thủy'. Bất kỳ cung hung nào cũng đều có cách hóa giải thỏa đáng."
+            }
+        };
+
+        // Synchronize input fields (Year <-> Can Chi)
+        document.getElementById('husband_year').addEventListener('input', function() {
+            updateCanChiFromYear(this.value, 'husband_can', 'husband_chi');
+        });
+        document.getElementById('wife_year').addEventListener('input', function() {
+            updateCanChiFromYear(this.value, 'wife_can', 'wife_chi');
+        });
+
+        document.getElementById('husband_can').addEventListener('change', function() {
+            updateYearFromCanChi('husband_year', 'husband_can', 'husband_chi');
+        });
+        document.getElementById('husband_chi').addEventListener('change', function() {
+            updateYearFromCanChi('husband_year', 'husband_can', 'husband_chi');
+        });
+        document.getElementById('wife_can').addEventListener('change', function() {
+            updateYearFromCanChi('wife_year', 'wife_can', 'wife_chi');
+        });
+        document.getElementById('wife_chi').addEventListener('change', function() {
+            updateYearFromCanChi('wife_year', 'wife_can', 'wife_chi');
+        });
+
+        function getCanChiFromYear(year) {
+            let y = parseInt(year);
+            if (isNaN(y) || y < 1900) return { can: "Giáp", chi: "Tý", name: "Giáp Tý" };
+            let canIdx = (y - 4) % 10;
+            if (canIdx < 0) canIdx += 10;
+            let chiIdx = (y - 4) % 12;
+            if (chiIdx < 0) chiIdx += 12;
+
+            let can = CAN_LIST[canIdx];
+            let chi = CHI_LIST[chiIdx];
+            return { can: can, chi: chi, name: `${can} ${chi}` };
+        }
+
+        function updateCanChiFromYear(yearVal, canElemId, chiElemId) {
+            let res = getCanChiFromYear(yearVal);
+            document.getElementById(canElemId).value = res.can;
+            document.getElementById(chiElemId).value = res.chi;
+        }
+
+        function updateYearFromCanChi(yearElemId, canElemId, chiElemId) {
+            let can = document.getElementById(canElemId).value;
+            let chi = document.getElementById(chiElemId).value;
+            let currentYear = parseInt(document.getElementById(yearElemId).value) || 1984;
+
+            // Find closest year matching Can and Chi
+            for (let offset = 0; offset < 60; offset++) {
+                let testYear = currentYear - 30 + offset;
+                let cc = getCanChiFromYear(testYear);
+                if (cc.can === can && cc.chi === chi) {
+                    document.getElementById(yearElemId).value = testYear;
+                    break;
+                }
+            }
+        }
+
+        // Calculate Marriage Cung Sanh & Cung Phi
+        function calculateMarriage() {
+            let hCan = document.getElementById('husband_can').value;
+            let hChi = document.getElementById('husband_chi').value;
+            let hYear = document.getElementById('husband_year').value;
+            let hCanChi = `${hCan} ${hChi}`;
+
+            let wCan = document.getElementById('wife_can').value;
+            let wChi = document.getElementById('wife_chi').value;
+            let wYear = document.getElementById('wife_year').value;
+            let wCanChi = `${wCan} ${wChi}`;
+
+            let hData = JIAZI_DB[hCanChi] || JIAZI_DB["Giáp Tý"];
+            let wData = JIAZI_DB[wCanChi] || JIAZI_DB["Mậu Thìn"];
+
+            // 1. Calculate Cung Sanh Marriage Combination
+            let husbandCungSanh = hData.sanh;
+            let wifeCungSanh = wData.sanh;
+            let sanhResultKey = BAT_TRACH_MATRIX[husbandCungSanh][wifeCungSanh];
+            let sanhEval = EVALUATION_INFO[sanhResultKey];
+
+            // 2. Calculate Trạch Cung (Phi Cung) Combination (Husband Nam + Wife Nữ)
+            let husbandTrachCung = hData.namTrach;
+            let wifeTrachCung = wData.nuTrach;
+            let trachResultKey = BAT_TRACH_MATRIX[husbandTrachCung][wifeTrachCung];
+            let trachEval = EVALUATION_INFO[trachResultKey];
+
+            // Render Output
+            renderResults(hYear, hCanChi, hData, wYear, wCanChi, wData, sanhResultKey, sanhEval, trachResultKey, trachEval);
+        }
+
+        function renderResults(hYear, hCanChi, hData, wYear, wCanChi, wData, sanhKey, sanhEval, trachKey, trachEval) {
+            let resultContainer = document.getElementById('result_section');
+
+            let isSanhGood = sanhEval.type === "GOOD";
+
+            let html = `
+            <!-- PRINTABLE REPORT HEADER -->
+            <div class="hidden print:block text-center mb-6 border-b-2 border-black pb-4">
+                <h1 class="text-2xl font-bold uppercase">BÁO CÁO TRA CỨU CUNG SANH HÔN NHÂN</h1>
+                <p class="text-sm italic">Trung Tâm Phong Thủy Mật Mã Cuộc Đời (matmacuocdoi.vn)</p>
+                <p class="text-xs">Zalo Tuấn Anh: 0789 414 153 | Zalo Kim Nguyên Bảo: 0849 328 628</p>
+            </div>
+
+            <!-- SECTION 1: SUMMARY STATS TABLE -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow border border-amber-200">
+                <h3 class="text-2xl font-bold text-fengshui-red font-serif mb-6 flex items-center gap-2 border-b pb-3 border-amber-200">
+                    <i class="fa-solid fa-address-card text-fengshui-gold"></i>
+                    1. Bảng Tổng hợp Cung Mạng Vợ Chồng
+                </h3>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="gold-gradient text-white font-serif text-lg">
+                                <th class="p-4 border border-amber-300 rounded-tl-lg">Đối Tượng</th>
+                                <th class="p-4 border border-amber-300">Năm Sinh / Can Chi</th>
+                                <th class="p-4 border border-amber-300 bg-amber-600 text-yellow-100 font-bold">CUNG SANH (Hôn Nhân)</th>
+                                <th class="p-4 border border-amber-300">Mạng (Nạp Âm)</th>
+                                <th class="p-4 border border-amber-300 rounded-tr-lg">Trạch Cung (Phi Cung)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-base font-medium text-gray-800">
+                            <tr class="bg-red-50/50 hover:bg-red-100/50 transition">
+                                <td class="p-4 border border-amber-200 font-bold text-fengshui-red"><i class="fa-solid fa-mars mr-2"></i>CHỒNG</td>
+                                <td class="p-4 border border-amber-200"><span class="font-bold text-lg">${hYear}</span> (${hCanChi})</td>
+                                <td class="p-4 border border-amber-200 font-bold text-xl text-fengshui-red bg-amber-50">${hData.sanh} (${hData.hanhSanh})</td>
+                                <td class="p-4 border border-amber-200">${hData.mang}</td>
+                                <td class="p-4 border border-amber-200 font-bold">${hData.namTrach} (Nam)</td>
+                            </tr>
+                            <tr class="bg-pink-50/50 hover:bg-pink-100/50 transition">
+                                <td class="p-4 border border-amber-200 font-bold text-pink-700"><i class="fa-solid fa-venus mr-2"></i>VỢ</td>
+                                <td class="p-4 border border-amber-200"><span class="font-bold text-lg">${wYear}</span> (${wCanChi})</td>
+                                <td class="p-4 border border-amber-200 font-bold text-xl text-pink-700 bg-amber-50">${wData.sanh} (${wData.hanhSanh})</td>
+                                <td class="p-4 border border-amber-200">${wData.mang}</td>
+                                <td class="p-4 border border-amber-200 font-bold">${wData.nuTrach} (Nữ)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SECTION 2: CUNG SANH MARRIAGE RESULT (PRIMARY) -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow border-2 ${sanhEval.borderColor}">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b pb-4 border-gray-200">
+                    <div>
+                        <span class="inline-block px-3 py-1 bg-amber-100 text-amber-900 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Chỉ Ứng Dụng Xem Hôn Nhân</span>
+                        <h3 class="text-2xl md:text-3xl font-bold font-serif text-gray-900">
+                            2. Kết Quả Đối Chiếu CUNG SANH Hôn Nhân
+                        </h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="inline-flex items-center px-5 py-2.5 rounded-full text-white font-bold text-xl shadow-lg ${sanhEval.badgeBg}">
+                            ${sanhKey.toUpperCase()} - ${sanhEval.stars}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Main Analysis Box -->
+                <div class="bg-stone-50 rounded-xl p-6 border border-stone-200 space-y-4">
+                    <div class="text-lg md:text-xl font-bold ${sanhEval.textColor} flex items-center gap-2">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Cung Sanh Chồng [${hData.sanh}] kết hợp Cung Sanh Vợ [${wData.sanh}] ➔ Thuộc Cung ${sanhKey}
+                    </div>
+                    <p class="text-lg font-semibold text-gray-800">${sanhEval.summary}</p>
+                    <p class="text-base text-gray-700 leading-relaxed font-normal">${sanhEval.description}</p>
+                </div>
+
+                <!-- Feng Shui Advice Box -->
+                <div class="mt-6 bg-amber-50 rounded-xl p-5 border border-amber-200">
+                    <h4 class="font-serif font-bold text-amber-900 text-lg mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-amber-600"></i> Lời Khuyên Phong Thủy Hôn Nhân & Gia Đạo:
+                    </h4>
+                    <p class="text-gray-800 text-base leading-relaxed">
+                        ${isSanhGood ? 
+                            `Gia đình hai vợ chồng có nền tảng Cung Sanh vô cùng tốt đẹp (${sanhKey}). Hãy luôn giữ gìn sự tôn trọng, thấu hiểu lẫn nhau, tích cực làm việc thiện nguyện tích đức để duy trì vượng khí lâu dài cho con cháu.` : 
+                            `Mặc dù Cung Sanh thuộc nhóm cần lưu ý (${sanhKey}), người xưa có câu: <em>'Đức năng thắng số'</em>. Hôn nhân hòa thuận cốt ở sự nhường nhịn, chia sẻ và bao dung. Về mặt phong thủy, vợ chồng có thể áp dụng các phương pháp hóa giải như chọn hướng bếp, hướng giường ngủ theo Bát Trạch tốt hoặc sinh con hợp tuổi để gia tăng sinh khí gia đạo.`
+                        }
+                    </p>
+                </div>
+            </div>
+
+            <!-- SECTION 3: TRACH CUNG (PHI CUNG) COMPARISON (SECONDARY) -->
+            <div class="bg-white rounded-2xl p-6 md:p-8 card-shadow border border-gray-200">
+                <h3 class="text-xl font-bold font-serif text-gray-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-house-chimney text-fengshui-red"></i>
+                    3. Bảng Tham Chiếu TRẠCH CUNG (Phi Cung Xem Nhà Ở)
+                </h3>
+                <p class="text-sm text-gray-600 mb-4">Trạch Cung (Phi Cung) thường dùng để xem hướng nhà, hướng bếp, vị trí bàn thờ phù hợp theo Bát Trạch Địa Lý:</p>
+
+                <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div class="text-base text-gray-800">
+                        Phi Cung Chồng [<strong>${hData.namTrach}</strong>] + Phi Cung Vợ [<strong>${wData.nuTrach}</strong>] ➔ 
+                        Thành Cung <strong class="text-lg text-fengshui-red">${trachKey}</strong> (${trachEval.summary})
+                    </div>
+                    <div>
+                        <span class="inline-block px-4 py-1.5 rounded-lg text-white font-bold text-sm ${trachEval.badgeBg}">
+                            ${trachKey}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: ACTION BUTTONS (PRINT & COPY) -->
+            <div class="flex flex-wrap justify-center items-center gap-4 pt-4 no-print">
+                <button onclick="window.print()" class="bg-stone-800 hover:bg-black text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-base cursor-pointer">
+                    <i class="fa-solid fa-print text-amber-400"></i> In Báo Cáo / Xuất PDF
+                </button>
+                <button onclick="copyResultsToClipboard('${hYear}', '${hCanChi}', '${hData.sanh}', '${wYear}', '${wCanChi}', '${wData.sanh}', '${sanhKey}')" class="bg-green-700 hover:bg-green-800 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-base cursor-pointer">
+                    <i class="fa-solid fa-copy text-yellow-300"></i> Sao Chép Kết Quả Gửi Zalo
+                </button>
+            </div>
+            `;
+
+            resultContainer.innerHTML = html;
+            resultContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyResultsToClipboard(hYear, hCanChi, hSanh, wYear, wCanChi, wSanh, resultKey) {
+            let evalObj = EVALUATION_INFO[resultKey];
+            let text = `=== TRA CỨU CUNG SANH HÔN NHÂN ===\n` +
+                       `Website: matmacuocdoi.vn\n` +
+                       `-----------------------------------\n` +
+                       `• Chồng: ${hYear} (${hCanChi}) - Cung Sanh: ${hSanh}\n` +
+                       `• Vợ: ${wYear} (${wCanChi}) - Cung Sanh: ${wSanh}\n` +
+                       `➔ KẾT QUẢ: Cung ${resultKey.toUpperCase()} (${evalObj.stars})\n` +
+                       `• Đánh giá: ${evalObj.summary}\n` +
+                       `-----------------------------------\n` +
+                       `Zalo Tư Vấn Chuyên Gia:\n` +
+                       `- Tuấn Anh: 0789 414 153\n` +
+                       `- Kim Nguyên Bảo: 0849 328 628`;
+
+            // Standard fallback using execCommand for web iframe safety
+            let textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand("copy");
+                alert("Đã sao chép kết quả thành công! Chú có thể dán (Paste) vào Zalo để gửi cho khách.");
+            } catch (err) {
+                alert("Không thể tự động chép, xin mời chụp màn hình.");
+            }
+            document.body.removeChild(textarea);
+        }
+
+        window.onload = function() {
+            // Automatically run initial calculation on page load
+            calculateMarriage();
+        };
+    </script>
+</body>
+</html>
