@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiến Lược Đầu Tư Bất Động Sản & Lợi Thế Vàng Thanh Hóa - MatMaCuocDoi.vn</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0284c7',       /* Ocean Blue primary */
+                            bluedark: '#0369a1',   /* Deep Ocean Blue */
+                            bluelight: '#e0f2fe',  /* Soft sky blue highlight */
+                            red: '#dc2626',        /* Crimson Red primary */
+                            reddark: '#b91c1c',    /* Deep Red Accent */
+                            redlight: '#fef2f2',   /* Light Tint Red */
+                            navy: '#0f172a',       /* Dark contrast text */
+                            gold: '#d97706',       /* Warm Gold Accent */
+                            zalo: '#0068ff'        /* Zalo Blue */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome & Chart.js CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0f172a 100%);
+        }
+        .gold-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+        .card-shadow {
+            box-shadow: 0 10px 30px -5px rgba(2, 132, 199, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-red selection:text-white pb-20 sm:pb-0">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-slate-900 text-white text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="bg-brand-red text-white text-[10px] font-black uppercase px-2 py-0.5 rounded animate-pulse">Hệ Sinh Thái</span>
+                <span class="font-medium text-slate-300">Tư Vấn Tích Sản & Đầu Tư BĐS Thanh Hóa – Bản Quy Hoạch Chuẩn 2030</span>
+            </div>
+            <div class="flex items-center gap-4 text-slate-300">
+                <a href="https://matmacuocdoi.vn" target="_blank" class="hover:text-amber-400 transition flex items-center gap-1 font-semibold">
+                    <i class="fa-solid fa-globe text-brand-blue"></i> MatMaCuocDoi.vn
+                </a>
+                <span class="text-slate-600">|</span>
+                <a href="https://zalo.me/g/iljgbe719" target="_blank" class="hover:text-sky-400 transition flex items-center gap-1 text-emerald-400 font-bold">
+                    <i class="fa-solid fa-users text-emerald-400"></i> Tham Gia Group Zalo
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAVIGATION BAR -->
+    <header class="sticky top-0 z-50 glass-header border-b border-slate-200 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-blue via-brand-bluedark to-brand-navy flex items-center justify-center text-white font-black text-xl shadow-md border border-white/20">
+                    TH
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold tracking-tight text-brand-navy block leading-none">
+                        THANH HÓA <span class="text-brand-red">2030</span>
+                    </span>
+                    <span class="text-[11px] font-bold text-slate-500 tracking-wider uppercase block mt-1">
+                        Hệ Sinh Thái <a href="https://matmacuocdoi.vn" target="_blank" class="text-brand-blue underline">MatMaCuocDoi.vn</a>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Items -->
+            <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-xs font-bold text-slate-700 uppercase tracking-wider">
+                <a href="#tu-giac" class="px-2.5 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-100 transition">Tứ Giác Kinh Tế</a>
+                <a href="#lich-su" class="px-2.5 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-100 transition">Bài Học Lịch Sử</a>
+                <a href="#ha-tang" class="px-2.5 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-100 transition">Lợi Thế Hạ Tầng</a>
+                <a href="#quy-hoach" class="px-2.5 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-100 transition">Đầu Tư Công & Xu Hướng</a>
+                <a href="#ngoc-lac" class="px-2.5 py-2 rounded-lg hover:text-brand-blue hover:bg-slate-100 transition">Tọa Độ Ngọc Lặc</a>
+                <a href="#chuyen-gia" class="px-2.5 py-2 rounded-lg text-brand-red bg-red-50 hover:bg-red-100 transition">Đội Ngũ Chuyên Gia</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center gap-2">
+                <a href="https://zalo.me/g/iljgbe719" target="_blank" class="px-4 py-2.5 rounded-xl bg-brand-zalo text-white font-bold text-xs shadow-md hover:bg-blue-700 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-comments"></i> Group Zalo Đầu Tư
+                </a>
+                <a href="#gemini-ai" class="px-4 py-2.5 rounded-xl bg-brand-red text-white font-bold text-xs shadow-md hover:bg-brand-reddark transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-robot"></i> AI Consultant
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden flex items-center">
+                <button id="mobile-menu-btn" class="text-slate-700 hover:text-brand-blue p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-6 space-y-2 text-sm font-semibold">
+            <a href="#tu-giac" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">1. Tứ Giác Kinh Tế Miền Bắc</a>
+            <a href="#lich-su" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">2. Bài Học Lịch Sử Tăng Giá</a>
+            <a href="#ha-tang" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">3. Lợi Thế Hạ Tầng & Cảng Biển</a>
+            <a href="#quy-hoach" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">4. Vốn Đầu Tư Công 8.25 Triệu Tỷ</a>
+            <a href="#ngoc-lac" class="block py-2 px-3 rounded-lg text-slate-700 hover:bg-slate-100">5. Tọa Độ Sơ Khai Ngọc Lặc</a>
+            <a href="#chuyen-gia" class="block py-2 px-3 rounded-lg text-brand-red bg-red-50 font-bold">6. Liên Hệ Chuyên Gia Zalo</a>
+            <div class="pt-2 grid grid-cols-2 gap-2">
+                <a href="https://zalo.me/g/iljgbe719" target="_blank" class="py-2.5 text-center rounded-xl bg-brand-zalo text-white font-bold text-xs">Group Zalo</a>
+                <a href="#gemini-ai" class="py-2.5 text-center rounded-xl bg-brand-red text-white font-bold text-xs">Trợ Lý AI</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative hero-gradient text-white overflow-hidden py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-bold uppercase text-amber-300">
+                        <i class="fa-solid fa-shield-halved text-brand-red"></i> Nghị Quyết Bộ Chính Trị 2020 (NQL 58-NQ/TW)
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                        Chiến Lược Đầu Tư BĐS <br/>
+                        & Lợi Thế Vàng <span class="text-amber-300 underline decoration-brand-red underline-offset-8">Thanh Hóa 2030</span>
+                    </h1>
+
+                    <p class="text-slate-200 text-base sm:text-lg font-normal leading-relaxed">
+                        Phân tích chuyên sâu từ góc nhìn chu kỳ đầu tư công Nhà nước. Mua đúng vùng giá sơ khai <strong>3 - 5 - 10 triệu/m²</strong> trước cột mốc trở thành <strong>Thành phố trực thuộc Trung ương năm 2030</strong>.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="https://zalo.me/g/iljgbe719" target="_blank" class="px-6 py-3.5 rounded-xl bg-brand-zalo hover:bg-blue-600 text-white font-bold text-sm shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                            <i class="fa-solid fa-users text-lg"></i> Tham Gia Group Zalo Đầu Tư
+                        </a>
+                        <a href="#chuyen-gia" class="px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-extrabold text-sm shadow-lg transition flex items-center gap-2">
+                            <i class="fa-solid fa-headset"></i> Trực Tiếp Kết Nối Chuyên Gia
+                        </a>
+                    </div>
+
+                    <!-- Key stats cards -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/15">
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10">
+                            <div class="text-2xl sm:text-3xl font-black text-amber-300">8.25 Triệu Tỷ</div>
+                            <div class="text-[11px] text-slate-300 font-medium">Vốn Đầu Tư Công (Gấp 6 lần)</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10">
+                            <div class="text-2xl sm:text-3xl font-black text-amber-300">2 / 23 Ga</div>
+                            <div class="text-[11px] text-slate-300 font-medium">Ga Đường Sắt Tốc Độ Cao</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10">
+                            <div class="text-2xl sm:text-3xl font-black text-amber-300">95 km</div>
+                            <div class="text-[11px] text-slate-300 font-medium">Cao Tốc & 7 Nút Giao</div>
+                        </div>
+                        <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-xl border border-white/10">
+                            <div class="text-2xl sm:text-3xl font-black text-amber-300">3-5 Tr/m²</div>
+                            <div class="text-[11px] text-slate-300 font-medium">Vùng Giá Ngọc Lặc Sơ Khai</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Comparison Matrix Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white text-slate-800 rounded-2xl p-6 card-shadow border border-slate-100">
+                        <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+                            <div>
+                                <span class="text-xs uppercase tracking-wider font-extrabold text-brand-blue">Tứ Giác Kinh Tế Miền Bắc</span>
+                                <h3 class="text-lg font-black text-slate-900">Mặt Bằng Giá & Chu Kỳ Đô Thị</h3>
+                            </div>
+                            <span class="px-2.5 py-1 bg-red-100 text-brand-red font-bold text-xs rounded-full">Phân Tích So Sánh</span>
+                        </div>
+
+                        <!-- 4 Poles Table -->
+                        <div class="space-y-3">
+                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-slate-500 uppercase">1. Hà Nội (Sau 1986)</span>
+                                    <div class="text-sm font-black text-slate-800">Cực Kinh Tế Trung Tâm</div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-bold text-red-600 block">50 - 200tr+/m²</span>
+                                    <span class="text-[10px] text-slate-500">Đã bão hòa</span>
+                                </div>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-slate-500 uppercase">2. Hải Phòng (Từ 2007)</span>
+                                    <span class="text-[10px] bg-blue-100 text-blue-800 font-semibold px-1.5 py-0.5 rounded ml-1">Kinh tế thứ 3</span>
+                                    <div class="text-sm font-black text-slate-800">Cảng Biển & Cao Tốc 1h15p</div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-bold text-red-600 block">> 30 - 80tr/m²</span>
+                                    <span class="text-[10px] text-slate-500">Diện tích nhỏ 50m²</span>
+                                </div>
+                            </div>
+
+                            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-slate-500 uppercase">3. Quảng Ninh (7 năm qua)</span>
+                                    <div class="text-sm font-black text-slate-800">Cao Tốc & Vân Đồn</div>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs font-bold text-red-600 block">30 - 50tr/m²</span>
+                                    <span class="text-[10px] text-slate-500">Hết cửa vốn mỏng</span>
+                                </div>
+                            </div>
+
+                            <!-- THANH HÓA HIGHLIGHT -->
+                            <div class="p-4 rounded-xl bg-brand-bluelight border-2 border-brand-blue relative shadow-sm">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="text-xs font-extrabold text-brand-red uppercase">4. Thọ Xuân - Thanh Hóa</span>
+                                        <div class="text-base font-black text-brand-navy">Thành phố Trực Thuộc TW 2030</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xs font-black text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded block">3 - 5 - 10tr/m²</span>
+                                        <span class="text-[10px] text-brand-bluedark font-bold">VÙNG GIÁ SƠ KHAI</span>
+                                    </div>
+                                </div>
+                                <p class="text-[11px] text-slate-700 mt-2 leading-relaxed">
+                                    <strong>Nhận xét:</strong> Cực duy nhất còn quỹ đất rộng lớn, chi phí đầu tư thấp, khả năng nhân số lần tài sản cao nhất trước năm 2030.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1 & 2: TỨ GIÁC KINH TẾ & BÀI HỌC LỊCH SỬ -->
+    <section id="tu-giac" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                    Phần 1 & 2: Tứ Giác Tăng Trưởng & Lịch Sử Investment
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-3 mb-4">
+                    Lý Do Nhà Nước Chọn Thanh Hóa Làm Cực Tăng Trưởng Thứ 4
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Đầu tư bất động sản an toàn và thắng lớn bắt đầu từ việc đọc chuẩn văn bản quy hoạch Nhà nước, không nghe lời đồn đoán cảm tính.
+                </p>
+            </div>
+
+            <!-- Detailed Grid for Phase History -->
+            <div id="lich-su" class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <!-- Hanoi Lesson -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-slate-500 uppercase">Giai đoạn 1 (Sau 1986)</span>
+                            <span class="px-2 py-0.5 bg-slate-200 text-slate-700 text-[10px] font-bold rounded">Thủ Đô Hà Nội</span>
+                        </div>
+                        <h3 class="text-lg font-black text-slate-900 mb-2">Đô Thị Hóa Khủng Khiếp Tại Hà Nội & Hà Tây</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed space-y-2 mb-4">
+                            Nhà nước tập trung nguồn vốn lớn nâng cấp sân bay, mở rộng về phía Hà Tây. Những ai mua đất Hà Tây thời điểm sơ khai giá <strong>5 - 7 triệu/m²</strong> đến nay tài sản đã tăng vọt lên <strong>50 - 70 triệu</strong>, thậm chí hàng trăm triệu/m².
+                        </p>
+                    </div>
+                    <div class="p-3 bg-red-50 border border-red-100 rounded-xl text-xs text-brand-red font-semibold">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Bài học: Hầu hết chúng ta bỏ lỡ vì không có người hướng dẫn tại thời điểm đó.
+                    </div>
+                </div>
+
+                <!-- Hai Phong Lesson -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-blue-600 uppercase">Giai đoạn 2 (Tốt từ 2007)</span>
+                            <span class="px-2 py-0.5 bg-blue-100 text-blue-800 text-[10px] font-bold rounded">Hải Phòng</span>
+                        </div>
+                        <h3 class="text-lg font-black text-slate-900 mb-2">Cao Tốc 1h15p & Dòng Vốn FDI Vượt Trội</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed space-y-2 mb-4">
+                            Trước 2007 đi Hải Phòng mất 5 tiếng vô cùng rủi ro. Khi hoàn thành Cao Tốc & nâng cấp Sân bay Cát Bi, Hải Phòng vươn lên thành nền kinh tế giàu thứ 3 cả nước. Hiện tại đất đẹp dưới <strong>30 triệu/m²</strong> là bất khả thi, diện tích bị bóp nhỏ chỉ còn khoảng <strong>50m²</strong>.
+                        </p>
+                    </div>
+                    <div class="p-3 bg-blue-50 border border-blue-100 rounded-xl text-xs text-blue-800 font-semibold">
+                        <i class="fa-solid fa-clock mr-1"></i> Trạng thái: Đã lỡ thời cho dòng vốn mỏng.
+                    </div>
+                </div>
+
+                <!-- Quang Ninh Lesson -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold text-indigo-600 uppercase">Giai đoạn 3 (7 Năm Qua)</span>
+                            <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 text-[10px] font-bold rounded">Quảng Ninh</span>
+                        </div>
+                        <h3 class="text-lg font-black text-slate-900 mb-2">Sân Bay Vân Đồn & Cao Tốc Hoành Bồ</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed space-y-2 mb-4">
+                            Thời điểm mua tốt nhất là khi cao tốc chưa xong, di chuyển say xe nghiêm trọng, đất Hoành Bồ giá chỉ <strong>5 - 7 triệu/m²</strong>. Khi hạ tầng hoàn thiện, giá nhảy vọt lên <strong>30 - 50 triệu/m²</strong>.
+                        </p>
+                    </div>
+                    <div class="p-3 bg-indigo-50 border border-indigo-100 rounded-xl text-xs text-indigo-800 font-semibold">
+                        <i class="fa-solid fa-chart-line mr-1"></i> Trạng thái: Mặt bằng giá đã neo quá cao.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Legal Basis Box -->
+            <div class="bg-slate-900 text-white rounded-3xl p-6 sm:p-10 border border-slate-800 shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-8 space-y-4">
+                        <span class="px-3 py-1 bg-amber-400 text-slate-900 font-black text-xs uppercase rounded">Căn Cứ Pháp Lý Bất Biến</span>
+                        <h3 class="text-2xl sm:text-3xl font-black text-amber-300">
+                            Nghị Quyết Bộ Chính Trị 2020: Định Hướng Thành Phố Trực Thuộc Trung Ương Năm 2030
+                        </h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Thanh Hóa không phải tự nhiên được chọn. Địa phương phải hội tụ trọn vẹn 5 yếu tố chiến lược: <strong>Cảng biển nước sâu Nghi Sơn, Sân bay Thọ Xuân, 95km Cao tốc Bắc-Nam, 2 Ga đường sắt tốc độ cao và Dân số 4.5 triệu người</strong>. Nguồn vốn đầu tư công miền Bắc tập trung cao nhất vào Tứ giác kinh tế này.
+                        </p>
+                    </div>
+                    <div class="lg:col-span-4 bg-white/10 p-6 rounded-2xl border border-white/10 text-center">
+                        <span class="text-xs text-slate-400 block mb-1">Thời Điểm Vàng Để Tích Sản</span>
+                        <div class="text-3xl font-black text-amber-300">2024 - 2030</div>
+                        <p class="text-[11px] text-slate-300 mt-2">Bỏ lỡ Thanh Hóa giai đoạn này sẽ rất khó còn thị trường thứ 2 có dư địa nhân x3 - x5 tài sản.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3 & 4: CƠ HỘI ĐỔI ĐỜI & LỢI THẾ CẠNH TRANH HẠ TẦNG -->
+    <section id="ha-tang" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-blue bg-blue-100 px-3 py-1 rounded-full border border-blue-200">
+                    Phần 3 & 4: So Sánh Hạ Tầng Trực Quan
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-3 mb-2">
+                    Lợi Thế Cạnh Tranh Tuyệt Đối So Với Các Tỉnh Miền Bắc
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    So sánh thực tế hạ tầng giao thông giữa Thanh Hóa và các tỉnh công nghiệp trọng điểm lân cận.
+                </p>
+            </div>
+
+            <!-- Detailed Infrastructure Comparison Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Airport -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow hover:border-brand-blue transition">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-brand-blue flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-plane-departure"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Sân Bay Thọ Xuân</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Đang vận hành ổn định, sẵn sàng mở rộng các đường bay quốc tế trực tiếp (Băng Cốc,...).
+                    </p>
+                    <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                        <strong>So sánh:</strong> Bắc Ninh mới đang GPMB đền bù (mất nhiều năm như Long Thành); Bắc Giang, Thái Nguyên, Hưng Yên hoàn toàn không có quy hoạch sân bay.
+                    </div>
+                </div>
+
+                <!-- Deep Seaport -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow hover:border-brand-blue transition">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-brand-blue flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-ship"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Cảng Nước Sâu Nghi Sơn</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Tiếp nhận siêu tàu trọng tải trên <strong>100.000 tấn</strong> neo đậu trực tiếp.
+                    </p>
+                    <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                        <strong>So sánh:</strong> Cảng Hải Phòng bị giới hạn 75.000 tấn do hạn chế luồng lạch. Thái Bình, Nam Định mới đang lấp biển nghiên cứu.
+                    </div>
+                </div>
+
+                <!-- High Speed Rail -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow hover:border-brand-blue transition">
+                    <div class="w-12 h-12 rounded-xl bg-red-100 text-brand-red flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-train"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 mb-2">2 Ga Đường Sắt Tốc Độ Cao</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Được quy hoạch tới <strong>2 ga dừng</strong> (TP. Thanh Hóa & KKT Nghi Sơn) trên tổng 23 ga toàn Bắc - Nam.
+                    </p>
+                    <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                        <strong>So sánh:</strong> Hà Nội chỉ có 1 ga (Ngọc Hồi). Chứng minh Nhà nước dự báo lưu lượng hàng hóa & hành khách vô cùng lớn tại Thanh Hóa.
+                    </div>
+                </div>
+
+                <!-- Expressway & Logistics -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow hover:border-brand-blue transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-route"></i>
+                    </div>
+                    <h3 class="text-lg font-black text-slate-900 mb-2">95km Cao Tốc & 7 Nút Giao</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-3">
+                        Kết nối liên vùng tối ưu từ Nghệ An, Hà Tĩnh, Tây Nguyên (Pleiku) ra cảng biển.
+                    </p>
+                    <div class="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500 border border-slate-100">
+                        <strong>Tiết kiệm:</strong> Giúp doanh nghiệp tiết kiệm hàng chục tỷ chi phí nhiên liệu so với việc phải ra tận cảng Hải Phòng.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: ĐẦU TƯ CÔNG 8.25 TRIỆU TỶ & XU HƯỚNG GIÃN DÂN SAU 2030 -->
+    <section id="quy-hoach" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                        Phần 5: Động Lực Đầu Tư Công & Xu Hướng Vệ Tinh
+                    </span>
+                    <h2 class="text-2xl sm:text-4xl font-black text-slate-900">
+                        Sức Mạnh Từ Gói Vốn Đầu Tư Công 8.25 Triệu Tỷ (Gấp 6 Lần)
+                    </h2>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Giai đoạn Quảng Ninh bứt phá, tổng vốn đầu tư công toàn quốc chỉ <strong>1.25 triệu tỷ đồng</strong>. Hiện nay, Thủ tướng phê duyệt gói đầu tư công lên tới <strong>8.25 triệu tỷ đồng</strong> (tăng gấp 6 lần). Nguồn lực tài chính quốc gia mạnh mẽ đảm bảo hạ tầng Thanh Hóa hoàn thiện thần tốc.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border-l-4 border-brand-blue">
+                            <h4 class="font-bold text-slate-900 text-sm">Xu Hướng Đô Thị Vệ Tinh Giãn Dân Hà Nội (Sau 2030)</h4>
+                            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                                Không phải ai cũng có 10 tỷ đồng mua 100m² tại Hà Nội. Với dòng vốn <strong>2 - 3 tỷ đồng</strong>, người dân sẽ chuyển dịch sang các tỉnh vệ tinh như Thanh Hóa, nơi sở hữu <strong>1.000m² quỹ đất rộng</strong>, vừa sống thoải mái vừa có việc làm thu nhập 20-30 triệu/tháng tại các KCN.
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-amber-50 rounded-xl border-l-4 border-amber-500">
+                            <h4 class="font-bold text-slate-900 text-sm">Chiến Lược Chốt Lời Sau Năm 2032</h4>
+                            <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+                                Sau năm 2032, khi Thanh Hóa đã thiết lập mặt bằng giá mới (20 - 30 triệu/m²), việc giải ngân mới sẽ không còn mang lại lợi nhuận đột phá. Nhà đầu tư thông minh sẽ <strong>chốt lời tại Thanh Hóa để chuyển dịch sang các thị trường sơ khai tiếp theo</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Capital Growth Comparison Visual -->
+                <div class="lg:col-span-6">
+                    <div class="bg-gradient-to-br from-slate-900 to-brand-navy p-6 sm:p-8 rounded-3xl text-white shadow-xl border border-slate-800">
+                        <h3 class="text-lg font-black text-amber-300 mb-6 flex items-center justify-between border-b border-white/10 pb-3">
+                            <span>Nguyên Lý: "Đầu Tư Công Đi Trước, BĐS Tăng Theo Sau"</span>
+                            <i class="fa-solid fa-chart-line-up text-brand-red"></i>
+                        </h3>
+
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1">
+                                    <span>Giai đoạn Quảng Ninh (Cũ)</span>
+                                    <span class="text-slate-400">1.25 Triệu Tỷ VNĐ</span>
+                                </div>
+                                <div class="w-full bg-slate-700 h-4 rounded-full overflow-hidden">
+                                    <div class="bg-slate-400 h-full" style="width: 20%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-xs font-bold mb-1">
+                                    <span class="text-amber-300 font-extrabold">Giai đoạn Thanh Hóa Hiện Tại (Gấp 6 lần)</span>
+                                    <span class="text-amber-300 font-black">8.25 Triệu Tỷ VNĐ</span>
+                                </div>
+                                <div class="w-full bg-slate-700 h-4 rounded-full overflow-hidden">
+                                    <div class="bg-gradient-to-r from-brand-red to-amber-400 h-full animate-pulse" style="width: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-4 bg-white/10 rounded-xl text-xs text-slate-200 leading-relaxed border border-white/10">
+                            <i class="fa-solid fa-circle-info text-amber-400 mr-1"></i>
+                            <strong>Kết luận:</strong> Khi điện, đường, trường, trạm được Nhà nước đầu tư hoàn chỉnh, giá trị đất đai tăng theo cấp số nhân là điều tất yếu.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: 3 YẾU TỐ CỐT LÕI BẢO CHỨNG TĂNG GIÁ -->
+    <section class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                    Phần 6: Bảo Chứng Thực Tế
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-3 mb-2">
+                    3 Yếu Tố Cốt Lõi Đảm Bảo Giá Đất Chắc Chắn Tăng
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Những động lực nội tại vững chắc bảo vệ dòng vốn cho nhà đầu tư tích sản.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Reason 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow relative overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center font-black text-lg mb-4">1</div>
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Áp Lực Cầu Nhà Ở Thực Sự</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Dân số <strong>4.5 triệu dân</strong> (đông thứ 3 cả nước), nhưng quỹ đất ở chỉ chiếm vỏn vẹn <strong>5%</strong>. Tỷ lệ dân số trẻ cao dẫn đến nhu cầu tách hộ, lập gia đình cực lớn, tự động đẩy giá trị bất động sản tăng trưởng tự nhiên.
+                    </p>
+                </div>
+
+                <!-- Reason 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow relative overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-brand-blue text-white flex items-center justify-center font-black text-lg mb-4">2</div>
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Lộ Trình Tăng Thuế Đất Nhà Nước</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Bảng giá đất và chi phí thuế chuyển đổi mục đích sử dụng (từ đất trồng cây sang đất ở) tăng theo từng năm (ví dụ từ 2tr/m² lên 3tr/m²). Chi phí cấu thành sản phẩm tăng khiến giá đất không thể rẻ hơn.
+                    </p>
+                </div>
+
+                <!-- Reason 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 card-shadow relative overflow-hidden">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center font-black text-lg mb-4">3</div>
+                    <h3 class="text-lg font-black text-slate-900 mb-2">Hệ Sinh Thái Du Lịch Đa Dạng</h3>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Sở hữu trọn vẹn: Tắm biển Sầm Sơn, Du lịch tâm linh quần thể tượng Phật Triệu Sơn (Sun Group), Khoáng nóng Ngọc Lặc, Du lịch sinh thái Pù Luông + Trung tâm thương mại <strong>Aeon Mall</strong> & Cửa khẩu quốc tế Na Mèo sang Lào sau 2030.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: CHIẾN LƯỢC ĐẦU TƯ TẠI NGỌC LẶC -->
+    <section id="ngoc-lac" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-br from-brand-navy via-slate-900 to-blue-950 rounded-3xl p-6 sm:p-10 text-white shadow-2xl">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8 border-b border-white/10 pb-6">
+                    <div>
+                        <span class="px-3 py-1 bg-amber-400 text-slate-900 font-black text-xs uppercase rounded">
+                            Phần 7: Tọa Độ Sơ Khai Cho Vốn Mỏng
+                        </span>
+                        <h2 class="text-2xl sm:text-4xl font-black text-white mt-2">
+                            Chiến Lược Đầu Tư Tại Ngọc Lặc – Thanh Hóa
+                        </h2>
+                    </div>
+                    <div class="bg-white/10 px-4 py-2.5 rounded-2xl border border-white/20">
+                        <span class="text-xs text-slate-300 block">Vùng Giá Trung Tâm Hành Chính (Quang Hưng):</span>
+                        <span class="text-xl font-black text-amber-300">3 - 5 Triệu Đồng/m²</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                        <div class="text-amber-300 font-bold text-base mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-compass"></i> Cửa Ngõ "Thành Phố Cộng Một"
+                        </div>
+                        <p class="text-xs text-slate-200 leading-relaxed">
+                            Nằm ở ngã ba giao thông vành đai phía Tây. Là cửa ngõ bắt buộc để mở rộng kinh tế từ TP. Thanh Hóa sang phụ cận và đi cửa khẩu Lào. Tuyến đường di chuyển từ Hà Nội qua Hòa Bình xuống Ngọc Lặc cực kỳ thông suốt.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                        <div class="text-amber-300 font-bold text-base mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-industry"></i> Đô Thị Loại III & KCN 643ha
+                        </div>
+                        <p class="text-xs text-slate-200 leading-relaxed">
+                            Quy hoạch đồng bộ tiến lên Đô thị loại III với 2 mũi nhọn kinh tế: Tổ hợp Khu công nghiệp quy mô lớn lên tới <strong>643 héc-ta</strong> và khai thác nguồn suối khoáng nóng tự nhiên du lịch nghỉ dưỡng.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
+                        <div class="text-amber-300 font-bold text-base mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-seedling"></i> Triết Lý Đầu Tư Vùng Giá Mềm
+                        </div>
+                        <p class="text-xs text-slate-200 leading-relaxed">
+                            Bản chất đầu tư BĐS là mua giá trị tương lai ở mức giá thấp để nhận tỷ suất sinh lời cao nhất. Nếu đợi hạ tầng hoàn thiện, dân cư đông đúc mới vào thì bạn chỉ đóng vai trò người tiêu dùng, không còn là nhà đầu tư.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: CHUYÊN GIA & HỆ SINH THÁI CÁ NHÂN -->
+    <section id="chuyen-gia" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                    Phần 8: Đồng Hành Cùng Chuyên Gia
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-3 mb-2">
+                    Đội Ngũ Tư Vấn & Hệ Sinh Thái MatMaCuocDoi.vn
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Đặc biệt hỗ trợ nhóm nhà đầu tư từ <strong>40 tuổi trở lên</strong> tích sản an toàn, an nhàn hưu trí và bảo vệ tài sản khỏi lạm phát.
+                </p>
+            </div>
+
+            <!-- Experts Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Expert 1: Nguyễn Tuấn Anh -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-blue to-brand-navy text-white flex items-center justify-center font-black text-2xl shadow">
+                                TA
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-black text-slate-900">Nguyễn Tuấn Anh</h3>
+                                <span class="text-xs font-bold text-brand-blue block">Chuyên Gia Tư Vấn Chiến Lược BĐS</span>
+                                <span class="text-[11px] text-slate-400">Hệ Sinh Thái MatMaCuocDoi.vn</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Chuyên sâu phân tích chu kỳ đầu tư công, định giá vùng giá sơ khai và hỗ trợ lập kế hoạch tích sản an toàn cho khách hàng cá nhân.
+                        </p>
+                    </div>
+                    <a href="https://zalo.me/0789414153" target="_blank" class="w-full py-3 bg-brand-zalo hover:bg-blue-600 text-white font-bold rounded-xl text-xs text-center transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-comment-dots text-base"></i> Connect Zalo: 0789.414.153
+                    </a>
+                </div>
+
+                <!-- Expert 2: Kim Nguyên Bảo -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 card-shadow flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-red to-amber-600 text-white flex items-center justify-center font-black text-2xl shadow">
+                                NB
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-black text-slate-900">Kim Nguyên Bảo</h3>
+                                <span class="text-xs font-bold text-brand-red block">Chuyên Gia Hoạch Định Tài Chính</span>
+                                <span class="text-[11px] text-slate-400">Hệ Sinh Thái MatMaCuocDoi.vn</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-6">
+                            Tư vấn tái cơ cấu dòng vốn, phân bổ danh mục đầu tư tích sản lâu dài và bảo vệ nguồn vốn cho độ tuổi 40+.
+                        </p>
+                    </div>
+                    <a href="https://zalo.me/0849328628" target="_blank" class="w-full py-3 bg-brand-zalo hover:bg-blue-600 text-white font-bold rounded-xl text-xs text-center transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-comment-dots text-base"></i> Connect Zalo: 0849.328.628
+                    </a>
+                </div>
+
+                <!-- Zalo Community Group -->
+                <div class="bg-gradient-to-br from-emerald-900 to-teal-950 text-white rounded-3xl p-6 border border-emerald-800 shadow-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500 text-white flex items-center justify-center text-2xl font-black shadow">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-black text-white">Cộng Đồng Zalo Đầu Tư</h3>
+                                <span class="text-xs font-bold text-emerald-300 block">Thanh Hóa 2030 VIP Group</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-200 leading-relaxed mb-6">
+                            Cập nhật liên tục các văn bản quy hoạch mới nhất, bản đồ quy hoạch Ngọc Lặc, tiến độ Cảng Nghi Sơn & cơ hội đầu tư vùng giá sơ khai.
+                        </p>
+                    </div>
+                    <a href="https://zalo.me/g/iljgbe719" target="_blank" class="w-full py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl text-xs text-center transition flex items-center justify-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-user-plus text-base"></i> Tham Gia Group Zalo Ngay
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE TOOL: TÍNH ROI VÀ LỢI NHUẬN DỰ KIẾN -->
+    <section id="cong-cu" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                    Công Cụ Mô Phỏng Lợi Nhuận
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-3 mb-2">
+                    Tính Toán Tỷ Suất Sinh Lời Tích Sản Đến 2030
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Nhập dòng vốn đầu tư ban đầu để tính diện tích quỹ đất sở hữu và kịch bản tăng trưởng tài sản khi Thanh Hóa trở thành Thành phố trực thuộc Trung ương.
+                </p>
+            </div>
+
+            <div class="bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-xl max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <!-- Controls -->
+                    <div class="space-y-6">
+                        <div>
+                            <label for="capital-input" class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">
+                                Dòng Vốn Đầu Tư Của Bạn (Triệu VNĐ):
+                            </label>
+                            <div class="relative">
+                                <input type="number" id="capital-input" value="2000" min="500" max="20000" step="100" class="w-full px-4 py-3 rounded-xl border border-slate-300 font-bold text-slate-900 focus:ring-2 focus:ring-brand-blue outline-none text-lg">
+                                <span class="absolute right-4 top-3 text-sm font-semibold text-slate-400">Triệu VNĐ</span>
+                            </div>
+                            <span class="text-[11px] text-slate-500 mt-1 block">Ví dụ: 2000 = 2 Tỷ VNĐ</span>
+                        </div>
+
+                        <div>
+                            <label for="price-select" class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">
+                                Mức Giá Mua Vào Hiện Tại:
+                            </label>
+                            <select id="price-select" class="w-full px-4 py-3 rounded-xl border border-slate-300 font-bold text-slate-900 focus:ring-2 focus:ring-brand-blue outline-none bg-white">
+                                <option value="3.5">3.5 Triệu/m² (Khu vực Quang Hưng / Ngọc Lặc Sơ Khai)</option>
+                                <option value="5">5.0 Triệu/m² (Trung tâm huyện Ngọc Lặc / Vệ tinh)</option>
+                                <option value="8">8.0 Triệu/m² (Trục đường chính / Nút giao cao tốc)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="target-select" class="block text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2">
+                                Dự Báo Giá BĐS Năm 2030:
+                            </label>
+                            <select id="target-select" class="w-full px-4 py-3 rounded-xl border border-slate-300 font-bold text-slate-900 focus:ring-2 focus:ring-brand-blue outline-none bg-white">
+                                <option value="15">15 Triệu/m² (Kịch bản An Toàn - x3 đến x4 lần)</option>
+                                <option value="20" selected>20 Triệu/m² (Kịch bản Cơ Bản - Thành phố trực thuộc TW)</option>
+                                <option value="30">30 Triệu/m² (Kịch bản Bứt phá - Bằng Hải Phòng / Quảng Ninh)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Output Card -->
+                    <div class="bg-gradient-to-br from-brand-navy to-slate-900 text-white p-6 sm:p-8 rounded-2xl border border-slate-700 space-y-6">
+                        <h3 class="text-base font-bold text-amber-300 border-b border-white/10 pb-3 flex items-center justify-between">
+                            <span>Kết Quả Mô Phỏng Tích Sản</span>
+                            <i class="fa-solid fa-coins"></i>
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <span class="text-xs text-slate-400 block">Quỹ Đất Bạn Nắm Giữ:</span>
+                                <span id="res-land-area" class="text-2xl font-black text-white">571 m²</span>
+                            </div>
+
+                            <div>
+                                <span class="text-xs text-slate-400 block">Tổng Giá Trị Dự Kiến Năm 2030:</span>
+                                <span id="res-future-value" class="text-3xl font-black text-amber-300">11.42 Tỷ VNĐ</span>
+                            </div>
+
+                            <div class="pt-3 border-t border-white/10 flex justify-between items-center">
+                                <div>
+                                    <span class="text-xs text-slate-400 block">Lợi Nhuận Ròng Dự Kiến:</span>
+                                    <span id="res-profit" class="text-lg font-bold text-emerald-400">+9.42 Tỷ</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-xs text-slate-400 block">Tỷ Suất ROI:</span>
+                                    <span id="res-roi" class="text-xl font-black text-brand-red bg-white/10 px-2 py-0.5 rounded">+471%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-[11px] text-slate-400 italic">
+                            *Dựa trên lịch sử bứt phá hạ tầng tại Hà Nội, Hải Phòng và Quảng Ninh.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GEMINI AI CONSULTANT SECTION -->
+    <section id="gemini-ai" class="py-16 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-brand-red bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                    Trợ Lý Trí Tuệ Nhân Tạo
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-black text-slate-900 mt-3 mb-2">
+                    Hỏi Trợ Lý AI Chiến Lược Đầu Tư Thanh Hóa
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Hỏi đáp mọi thắc mắc về quy hoạch, Ngọc Lặc, Cảng Nghi Sơn, Sân bay Thọ Xuân hoặc liên hệ đội ngũ chuyên gia MatMaCuocDoi.vn.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
+                <!-- Chat Window Header -->
+                <div class="bg-gradient-to-r from-brand-blue to-brand-navy p-4 sm:p-6 text-white flex items-center justify-between">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-full bg-white text-brand-blue flex items-center justify-center font-bold text-lg shadow">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base">Gemini AI Strategist (MatMaCuocDoi.vn)</h3>
+                            <span class="text-xs text-blue-100 flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400"></span> Trực tuyến & Sẵn sàng tư vấn
+                            </span>
+                        </div>
+                    </div>
+                    <span class="text-xs bg-white/20 px-3 py-1 rounded-full text-white font-medium">Model: gemini-3-flash-preview</span>
+                </div>
+
+                <!-- Chat Messages Scroll Area -->
+                <div id="chat-box" class="h-80 sm:h-96 p-4 sm:p-6 overflow-y-auto space-y-4 custom-scrollbar bg-slate-50">
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+                            AI
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200 text-xs sm:text-sm text-slate-800 shadow-sm leading-relaxed max-w-[85%]">
+                            Xin chào quý nhà đầu tư! Tôi là Trợ lý AI thuộc hệ sinh thái <strong>MatMaCuocDoi.vn</strong>. 
+                            <br/><br/>
+                            Tôi nắm rõ toàn bộ dữ liệu quy hoạch Bộ Chính Trị 2020, hạ tầng Cảng Nghi Sơn, Sân bay Thọ Xuân, 2 Ga đường sắt tốc độ cao và tọa độ Ngọc Lặc. Quý khách muốn phân tích mức vốn bao nhiêu (ví dụ: 1 tỷ, 2 tỷ, 5 tỷ)?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Question Prompts -->
+                <div class="p-3 bg-slate-100 border-t border-slate-200 flex flex-wrap gap-2 text-xs">
+                    <span class="text-slate-500 font-semibold self-center mr-1">Gợi ý hỏi:</span>
+                    <button class="quick-question-btn px-3 py-1 bg-white hover:bg-brand-bluelight text-slate-700 hover:text-brand-blue rounded-full border border-slate-300 font-medium transition">
+                        Tại sao Ngọc Lặc được gọi là cửa ngõ "Thành phố cộng một"?
+                    </button>
+                    <button class="quick-question-btn px-3 py-1 bg-white hover:bg-brand-bluelight text-slate-700 hover:text-brand-blue rounded-full border border-slate-300 font-medium transition">
+                        Với vốn 2 tỷ tôi tích sản được bao nhiêu m2 ở Quang Hưng?
+                    </button>
+                    <button class="quick-question-btn px-3 py-1 bg-white hover:bg-brand-bluelight text-slate-700 hover:text-brand-blue rounded-full border border-slate-300 font-medium transition">
+                        Tôi muốn liên hệ Chuyên gia Nguyễn Tuấn Anh và Kim Nguyên Bảo?
+                    </button>
+                </div>
+
+                <!-- Input Form -->
+                <form id="chat-form" class="p-4 bg-white border-t border-slate-200 flex gap-2 items-center">
+                    <input type="text" id="chat-input" placeholder="Nhập câu hỏi hoặc bài toán vốn đầu tư của bạn..." class="flex-1 px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue outline-none text-xs sm:text-sm">
+                    <button type="submit" class="px-6 py-3 bg-brand-red hover:bg-brand-reddark text-white font-bold rounded-xl shadow-md transition flex items-center gap-2 text-xs sm:text-sm shrink-0">
+                        <span>Gửi</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING CONTACT BAR FOR MOBILE -->
+    <div class="fixed bottom-0 left-0 right-0 z-40 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-2.5 sm:hidden flex items-center justify-around gap-2 text-xs">
+        <a href="https://zalo.me/0789414153" target="_blank" class="flex-1 py-2 bg-brand-blue text-white font-bold rounded-lg text-center flex items-center justify-center gap-1">
+            <i class="fa-solid fa-phone"></i> Tuấn Anh
+        </a>
+        <a href="https://zalo.me/0849328628" target="_blank" class="flex-1 py-2 bg-brand-red text-white font-bold rounded-lg text-center flex items-center justify-center gap-1">
+            <i class="fa-solid fa-user-shield"></i> Nguyên Bảo
+        </a>
+        <a href="https://zalo.me/g/iljgbe719" target="_blank" class="flex-1 py-2 bg-emerald-600 text-white font-bold rounded-lg text-center flex items-center justify-center gap-1">
+            <i class="fa-solid fa-users"></i> Group Zalo
+        </a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-navy text-white py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-8 pb-8 border-b border-slate-800">
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-blue to-brand-red flex items-center justify-center text-white font-black text-base">
+                            TH
+                        </div>
+                        <div>
+                            <span class="text-base font-black tracking-tight text-white block">THANH HÓA BĐS 2030</span>
+                            <a href="https://matmacuocdoi.vn" target="_blank" class="text-xs text-brand-blue hover:underline">Hệ sinh thái MatMaCuocDoi.vn</a>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-md">
+                        Cẩm nang chiến lược phân tích chuyên sâu dựa trên Nghị quyết Bộ Chính trị 2020 và chu kỳ đầu tư công Nhà nước. Hướng tới đồng hành cùng nhà đầu tư tích sản an toàn.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-2 text-xs">
+                    <h4 class="font-bold text-amber-300 uppercase tracking-wider mb-3">Chuyên Gia Đội Ngũ</h4>
+                    <p class="text-slate-300"><strong>Nguyễn Tuấn Anh:</strong> <a href="https://zalo.me/0789414153" target="_blank" class="text-sky-400 hover:underline">Zalo 0789.414.153</a></p>
+                    <p class="text-slate-300"><strong>Kim Nguyên Bảo:</strong> <a href="https://zalo.me/0849328628" target="_blank" class="text-sky-400 hover:underline">Zalo 0849.328.628</a></p>
+                    <p class="text-slate-300"><strong>Group Zalo VIP:</strong> <a href="https://zalo.me/g/iljgbe719" target="_blank" class="text-emerald-400 hover:underline">Tham gia ngay</a></p>
+                </div>
+
+                <div class="md:col-span-4 space-y-2 text-xs">
+                    <h4 class="font-bold text-amber-300 uppercase tracking-wider mb-3">Thông Số Quy Hoạch Thanh Hóa</h4>
+                    <span class="block text-slate-400">• Vốn đầu tư công: 8.25 triệu tỷ đồng (Gấp 6 lần)</span>
+                    <span class="block text-slate-400">• Cao tốc Bắc - Nam: 95km (7 nút giao)</span>
+                    <span class="block text-slate-400">• Đường sắt tốc độ cao: 2 Ga dừng đỗ</span>
+                    <span class="block text-slate-400">• Cực tăng trưởng thứ 4 Miền Bắc (Trực thuộc TW 2030)</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+                <p>© 2026 MatMaCuocDoi.vn - Chiến Lược Đầu Tư Bất Động Sản Thanh Hóa.</p>
+                <div class="flex gap-4">
+                    <a href="https://matmacuocdoi.vn" target="_blank" class="hover:text-white">Website Official</a>
+                    <a href="https://zalo.me/g/iljgbe719" target="_blank" class="hover:text-white">Group Zalo</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Full Document Context for Gemini AI Agent
+        const DOCUMENT_CONTEXT = `
+        TÀI LIỆU CHIẾN LƯỢC ĐẦU TƯ BẤT ĐỘNG SẢN & LỢI THẾ VÀNG THANH HÓA:
+        Website Chính Thức: matmacuocdoi.vn
+        Chuyên Gia Tư Vấn:
+        - Nguyễn Tuấn Anh: Zalo https://zalo.me/0789414153 (SĐT: 0789.414.153)
+        - Kim Nguyên Bảo: Zalo https://zalo.me/0849328628 (SĐT: 0849.328.628)
+        Group Zalo Cộng Đồng: https://zalo.me/g/iljgbe719
+
+        NỘI DUNG TÀI LIỆU BÁM SÁT:
+        Phần 1: Tứ giác kinh tế Miền Bắc (Hà Nội, Hải Phòng, Quảng Ninh, Thọ Xuân - Thanh Hóa). Nghị quyết Bộ Chính trị 2020 định vị Thanh Hóa là cực tăng trưởng thứ 4, trở thành thành phố trực thuộc Trung ương năm 2030. Nguồn vốn đầu tư công đổ vào 4 tỉnh này lớn nhất.
+        Phần 2: Bài học lịch sử:
+        - Hà Nội (sau 1986): Đô thị hóa sáp nhập Hà Tây, mua 5-7tr/m2 lên 50-70tr đến hàng trăm triệu.
+        - Hải Phòng (từ 2007): Trước đi 5 tiếng, khi xong Cao Tốc 1h15p & nâng Cát Bi -> FDI bùng nổ, thành kinh tế thứ 3. Đất dưới 30tr không còn, căn nhà chỉ 50m2. Lỡ thời.
+        - Quảng Ninh (7 năm qua): Đất Hoành Bồ lúc say xe 5-7tr/m2 lên 30-50tr/m2.
+        Phần 3: Thanh Hóa trước 2030: Thành phố trực thuộc Trung ương năm 2030. Vùng giá sơ khai 1-3tr, 3-5tr, 5-10tr/m2. Với 5 tỷ mua Quảng Ninh được vài chục m2, mua Thanh Hóa được quỹ đất rộng lớn (làm nhà hàng, xưởng cho thuê, nhà nghỉ).
+        Phần 4: Lợi thế hạ tầng vượt trội:
+        - Sân bay Thọ Xuân: Sẵn sàng bay quốc tế (Băng Cốc). Bắc Ninh mới GPMB (lâu như Long Thành). Bắc Giang, Thái Nguyên, Hưng Yên không có quy hoạch sân bay.
+        - Cảng nước sâu Nghi Sơn: Đón siêu tàu >100.000 tấn. Cảng Hải Phòng giới hạn 75.000 tấn do luồng lạch. Thái Bình, Nam Định mới lấp biển nghiên cứu.
+        - Địa lý: Vận chuyển từ Nghệ An, Hà Tĩnh, Tây Nguyên (Pleiku) ra Thanh Hóa ngắn hơn rất nhiều so với Hải Phòng, tiết kiệm chi phí nhiên liệu.
+        - Đường sắt tốc độ cao: 23 ga toàn quốc, Hà Nội có 1 ga (Ngọc Hồi), Thanh Hóa được 2 ga (TP Thanh Hóa & KKT Nghi Sơn).
+        - Cao tốc: 95km chạy qua với 7 nút giao đỗ.
+        Phần 5: Đầu tư công & Xu hướng:
+        - Vốn đầu tư công: Tăng từ 1.25 triệu tỷ (thời Quảng Ninh) lên 8.25 triệu tỷ (gấp 6 lần).
+        - Xu hướng giãn dân sau 2030: Vốn 2-3 tỷ về vệ tinh mua 1.000m2 đất + thu nhập 20-30tr/tháng ở KCN, thay vì 10 tỷ mua 100m2 Hà Nội.
+        - Sau 2032: Mặt bằng giá mới 20-30tr/m2, chốt lời để chuyển sang thị trường sơ khai tiếp theo.
+        Phần 6: 3 yếu tố cốt lõi bảo chứng tăng giá:
+        1. Áp lực cầu ở thực: Dân số 4.5 triệu (thứ 3 cả nước), đất ở chỉ 5%. Tỷ lệ dân trẻ cao.
+        2. Lộ trình tăng thuế đất đai Nhà nước (từ 2tr lên 3tr/m2 chuyển đổi).
+        3. Du lịch đa dạng: Biển Sầm Sơn, Tâm linh Sun Group Triệu Sơn, Khoáng nóng & Hang động Ngọc Lặc, Sinh thái Pù Luông + Aeon Mall + Cửa khẩu Na Mèo sang Lào.
+        Phần 7: Tọa độ Ngọc Lặc:
+        - Ngã ba vành đai phía Tây, cửa ngõ "Thành phố cộng một". Kết nối Hà Nội qua Hòa Bình cực thuận tiện.
+        - Đô thị loại III, KCN 643 ha + Khoáng nóng.
+        - Vùng giá Quang Hưng sơ khai 3 - 5 triệu/m2.
+        Phần 8: Đối tượng khách hàng:
+        - Độ tuổi 40+: Suy giảm sức khỏe, lo an nhàn hưu trí, muốn tích sản an toàn chống lạm phát.
+        `;
+
+        // Interactive ROI Calculator Logic
+        function calculateROI() {
+            const capitalMillions = parseFloat(document.getElementById('capital-input').value) || 0;
+            const currentPricePerM2 = parseFloat(document.getElementById('price-select').value) || 3.5;
+            const targetPricePerM2 = parseFloat(document.getElementById('target-select').value) || 20;
+
+            if (capitalMillions <= 0) return;
+
+            const landAreaM2 = Math.round((capitalMillions * 1000000) / (currentPricePerM2 * 1000000));
+            const futureValueMillions = (landAreaM2 * targetPricePerM2);
+            const profitMillions = futureValueMillions - capitalMillions;
+            const roiPercent = Math.round((profitMillions / capitalMillions) * 100);
+
+            document.getElementById('res-land-area').innerText = landAreaM2.toLocaleString('vi-VN') + ' m²';
+            
+            if (futureValueMillions >= 1000) {
+                document.getElementById('res-future-value').innerText = (futureValueMillions / 1000).toFixed(2) + ' Tỷ VNĐ';
+            } else {
+                document.getElementById('res-future-value').innerText = futureValueMillions.toFixed(0) + ' Triệu VNĐ';
+            }
+
+            if (profitMillions >= 1000) {
+                document.getElementById('res-profit').innerText = '+' + (profitMillions / 1000).toFixed(2) + ' Tỷ VNĐ';
+            } else {
+                document.getElementById('res-profit').innerText = '+' + profitMillions.toFixed(0) + ' Triệu VNĐ';
+            }
+
+            document.getElementById('res-roi').innerText = '+' + roiPercent + '%';
+        }
+
+        document.getElementById('capital-input').addEventListener('input', calculateROI);
+        document.getElementById('price-select').addEventListener('change', calculateROI);
+        document.getElementById('target-select').addEventListener('change', calculateROI);
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Gemini AI Integration
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatBox = document.getElementById('chat-box');
+
+        document.querySelectorAll('.quick-question-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                chatInput.value = btn.innerText.trim();
+                chatForm.dispatchEvent(new Event('submit'));
+            });
+        });
+
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const userPrompt = chatInput.value.trim();
+            if (!userPrompt) return;
+
+            appendMessage('user', userPrompt);
+            chatInput.value = '';
+
+            const loadingId = appendLoadingMessage();
+
+            try {
+                const apiKey = ""; // Canvas handles API key insertion at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                const systemInstruction = `Bạn là Trợ lý AI chuyên nghiệp thuộc Hệ Sinh Thái MatMaCuocDoi.vn, am hiểu sâu sắc về Chiến Lược Đầu Tư BĐS Thanh Hóa 2030.
+                Trả lời khách hàng chi tiết, logic, số liệu chính xác từ tài liệu, kết hợp giới thiệu các chuyên gia Nguyễn Tuấn Anh (Zalo 0789.414.153) và Kim Nguyên Bảo (Zalo 0849.328.628) cùng Group Zalo (https://zalo.me/g/iljgbe719) khi thích hợp.
+                
+                TÀI LIỆU DỮ LIỆU CHUẨN:
+                ${DOCUMENT_CONTEXT}`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userPrompt }] }],
+                    systemInstruction: { parts: [{ text: systemInstruction }] }
+                };
+
+                const response = await fetchWithBackoff(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                removeMessage(loadingId);
+
+                const aiText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (aiText) {
+                    appendMessage('ai', aiText);
+                } else {
+                    appendMessage('ai', 'Xin lỗi quý khách, tôi chưa thể xử lý yêu cầu lúc này. Vui lòng liên hệ trực tiếp Chuyên gia qua Zalo Nguyễn Tuấn Anh (0789.414.153) hoặc Kim Nguyên Bảo (0849.328.628).');
+                }
+
+            } catch (err) {
+                removeMessage(loadingId);
+                appendMessage('ai', 'Đã xảy ra lỗi đường truyền. Quý khách vui lòng truy cập Group Zalo https://zalo.me/g/iljgbe719 để được hỗ trợ tức thì!');
+            }
+        }
+
+        chatForm.addEventListener('submit', handleChatSubmit);
+
+        async function fetchWithBackoff(url, options, maxRetries = 3) {
+            let delay = 1000;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const res = await fetch(url, options);
+                    if (res.ok) return res;
+                } catch (e) {
+                    if (i === maxRetries - 1) throw e;
+                }
+                await new Promise(r => setTimeout(r, delay));
+                delay *= 2;
+            }
+            return fetch(url, options);
+        }
+
+        function appendMessage(sender, text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'flex items-start space-x-3';
+
+            if (sender === 'user') {
+                msgDiv.innerHTML = `
+                    <div class="flex items-start space-x-3 justify-end w-full">
+                        <div class="bg-brand-blue text-white p-4 rounded-2xl rounded-tr-none text-xs sm:text-sm font-medium shadow-sm max-w-[85%] leading-relaxed">
+                            ${escapeHtml(text)}
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-slate-800 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+                            Tôi
+                        </div>
+                    </div>
+                `;
+            } else {
+                const formattedText = text.replace(/\n/g, '<br/>');
+                msgDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+                        AI
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200 text-xs sm:text-sm text-slate-800 shadow-sm leading-relaxed max-w-[85%]">
+                        ${formattedText}
+                    </div>
+                `;
+            }
+
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function appendLoadingMessage() {
+            const id = 'loading-' + Date.now();
+            const msgDiv = document.createElement('div');
+            msgDiv.id = id;
+            msgDiv.className = 'flex items-start space-x-3';
+            msgDiv.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">
+                    AI
+                </div>
+                <div class="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-200 text-xs sm:text-sm text-slate-500 italic shadow-sm flex items-center gap-2">
+                    <i class="fa-solid fa-spinner animate-spin text-brand-blue"></i>
+                    Đang tra cứu dữ liệu quy hoạch & tư vấn...
+                </div>
+            `;
+            chatBox.appendChild(msgDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return id;
+        }
+
+        function removeMessage(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+
+        window.onload = function() {
+            calculateROI();
+        }
+    </script>
+</body>
+</html>
