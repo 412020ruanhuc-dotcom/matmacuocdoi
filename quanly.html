@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Quản Lý Hệ Sinh Thái - Mật Mã Cuộc Đời</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #121212; color: #e0e0e0; margin: 0; padding: 20px; }
+        .wrapper { max-width: 800px; margin: auto; background: #1e1e1e; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+        h1 { color: #ffdd57; text-align: center; font-size: 22px; margin-bottom: 20px; }
+        .search-bar { width: 100%; padding: 12px; font-size: 16px; border: 2px solid #ffdd57; border-radius: 6px; background: #2a2a2a; color: #fff; box-sizing: border-box; margin-bottom: 15px; outline: none; }
+        .stats { color: #888; font-size: 14px; margin-bottom: 15px; text-align: right; }
+        .file-container { max-height: 500px; overflow-y: auto; border: 1px solid #333; border-radius: 6px; background: #151515; }
+        .file-link { display: block; padding: 12px 15px; color: #ffdd57; text-decoration: none; border-bottom: 1px solid #2a2a2a; font-size: 15px; transition: 0.2s; }
+        .file-link:hover { background: #2a2a2a; padding-left: 20px; color: #fff; }
+        .file-link span { color: #888; font-size: 12px; float: right; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1>KHO QUẢN LÝ TẬP TRUNG TÀI LIỆU & WEB CON</h1>
+    
+    <!-- Ô tìm kiếm gõ đến đâu lọc đến đấy -->
+    <input type="text" id="filterInput" class="search-bar" placeholder="Gõ tên file hoặc từ khóa cần tìm kiếm (Ví dụ: cungphi, batcuc, hoanganh...)" onkeyup="searchFiles()">
+    
+    <div class="stats" id="totalFiles">Đang tải danh sách file...</div>
+    
+    <!-- Nơi tự động hiện ra toàn bộ 330 file mà chú không cần gõ tay -->
+    <div class="file-container" id="fileList"></div>
+</div>
+
+<script>
+// Điền chính xác thông tin tài khoản và kho chứa của chú để hệ thống tự động đọc file
+const githubUser = "412020ruanhuc-dotcom";
+const repoName = "matmacuocdoi";
+
+// Hàm tự động quét toàn bộ file từ GitHub đưa vào trang quản lý
+async function loadAllFiles() {
+    const url = `https://github.com{githubUser}/${repoName}/contents`;
+    try {
+        const response = await fetch(url);
+        const files = await response.json();
+        
+        let fileListHtml = "";
+        let count = 0;
+        
+        // Lọc lấy các file .html và file .pdf (nếu sau này chú có tải pdf lên)
+        files.forEach(file => {
+            if (file.type === "file" && (file.name.endsWith(".html") || file.name.endsWith(".pdf"))) {
+                // Bỏ qua trang chủ gốc không hiện ở đây để tránh nhầm lẫn
+                if (file.name !== "index.html") {
+                    count++;
+                    fileListHtml += `<a class="file-link" href="${file.name}" target="_blank">${file.name} <span>Mở trang ↗</span></a>`;
+                }
+            }
+        });
+        
+        document.getElementById("fileList").innerHTML = fileListHtml;
+        document.getElementById("totalFiles").innerText = `Tổng số: ${count} tài liệu / trang con`;
+    } catch (error) {
+        document.getElementById("totalFiles").innerText = "Không thể tải danh sách. Lỗi kết nối!";
+    }
+}
+
+// Hàm tìm kiếm và lọc file nhanh bằng thuật toán không dấu
+function searchFiles() {
+    let input = document.getElementById('filterInput').value.toLowerCase();
+    let links = document.getElementsByClassName('file-link');
+    
+    let removeSigns = (str) => {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "d");
+    };
+
+    for (let i = 0; i < links.length; i++) {
+        let fileName = links[i].textContent.toLowerCase();
+        if (fileName.includes(input) || removeSigns(fileName).includes(removeSigns(input))) {
+            links[i].style.display = "";
+        } else {
+            links[i].style.display = "none";
+        }
+    }
+}
+
+// Chạy hàm tải file ngay khi mở trang
+loadAllFiles();
+</script>
+
+</body>
+</html>
