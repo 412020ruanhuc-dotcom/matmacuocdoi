@@ -3,65 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Danh Mục Hệ Sinh Thái - Mật Mã Cuộc Đời</title>
+    <title>Bảng Tra Cứu Hệ Sinh Thái - Mật Mã Cuộc Đời</title>
     <style>
         body { font-family: Arial, sans-serif; background: #1e1e2e; color: #ffffff; margin: 0; padding: 20px; }
         .container { max-width: 700px; margin: auto; background: #252538; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         h1 { text-align: center; color: #ffdd57; font-size: 22px; margin-bottom: 20px; }
         .search-box { width: 100%; padding: 12px; font-size: 16px; border-radius: 6px; border: 2px solid #ffdd57; background: #1e1e2e; color: white; box-sizing: border-box; margin-bottom: 20px; outline: none; }
+        .stats { color: #888; font-size: 14px; margin-bottom: 15px; text-align: right; }
         .page-list { display: flex; flex-direction: column; gap: 10px; max-height: 500px; overflow-y: auto; }
         .page-item { display: block; background: #3b3b4f; color: #ffffff; text-decoration: none; padding: 12px 15px; border-radius: 6px; font-weight: bold; border-left: 5px solid #ffdd57; }
         .page-item:hover { background: #4d4d6e; }
+        .loading { text-align: center; padding: 20px; color: #ffdd57; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>BẢNG TRA CỨU HỆ SINH THÁI</h1>
-
-    <!-- Ô tìm kiếm gõ đến đâu lọc đến đấy -->
     <input type="text" id="searchInput" class="search-box" placeholder="Gõ từ khóa cần tìm (Ví dụ: cungphi, batcuc, hoanganh...)" onkeyup="filterPages()">
-
-    <!-- DANH SÁCH CÁC TRANG CỦA CHÚ (Gõ thẳng link trực tiếp) -->
+    <div class="stats" id="totalFiles">Đang kết nối tải danh sách...</div>
     <div class="page-list" id="pageList">
-        <a class="page-item" href="12.9nangluongso.html">12.9 Năng Lượng Số</a>
-        <a class="page-item" href="1924-2043-CungMtg.html">1924 - 2043 Cung Mệnh</a>
-        <a class="page-item" href="2022hoanganh.html">2022 Hoàng Anh</a>
-        <a class="page-item" href="3congiap2027.html">3 Con Giáp 2027</a>
-        <a class="page-item" href="431.MATMACUOCDOI.html">431 Mật Mã Cuộc Đời</a>
-        <a class="page-item" href="431batcuclinhso.html">431 Bát Cục Linh Số</a>
-        <a class="page-item" href="431cung sinh sanh.html">431 Cung Sinh Sanh</a>
-        <a class="page-item" href="431cungphi-sanh.html">431 Cung Phi Sanh</a>
-        <a class="page-item" href="64que-honnhan.html">64 Quẻ Hôn Nhân</a>
-        <a class="page-item" href="6ngaytotthang6.html">6 Ngày Tốt Tháng 6</a>
-        <a class="page-item" href="chayduockhong.html">Chạy Được Không</a>
-        <a class="page-item" href="chietly-honnhan431.html">Triết Lý Hôn Nhân 431</a>
-        <a class="page-item" href="codexungkhac.html">Code Xung Khắc</a>
-        <a class="page-item" href="lich-Ngay.html">Lịch Ngày</a>
-        <a class="page-item" href="lichchinh.html">Lịch Chính</a>
-        <a class="page-item" href="luangaisodienthoai.html">Luận Giải Số Điện Thoại</a>
-        <a class="page-item" href="matmacaivan.html">Mật Mã Cải Vận</a>
+        <div class="loading" id="loadingText">Vui lòng đợi vài giây để quét danh sách file...</div>
     </div>
 </div>
 
 <script>
+const githubUser = "412020ruanhuc-dotcom";
+const repoName = "matmacuocdoi";
+
+async function loadAllFiles() {
+    const apiUrl = `https://github.com{githubUser}/${repoName}/contents`;
+    try {
+        const response = await fetch(apiUrl);
+        const files = await response.json();
+        let fileListHtml = "";
+        let count = 0;
+        
+        files.sort((a, b) => a.name.localeCompare(b.name));
+        files.forEach(file => {
+            if (file.type === "file" && (file.name.endsWith(".html") || file.name.endsWith(".pdf"))) {
+                if (file.name !== "index.html" && file.name !== "trangtonghop.html") {
+                    count++;
+                    let displayName = file.name.replace(".html", "").replace(".pdf", "");
+                    fileListHtml += `<a class="page-item" href="${file.name}">${displayName}</a>`;
+                }
+            }
+        });
+        
+        document.getElementById("pageList").innerHTML = fileListHtml;
+        document.getElementById("totalFiles").innerText = `Tổng số: Đã tải đủ ${count} trang con`;
+    } catch (error) {
+        document.getElementById("loadingText").innerText = "Không thể kết nối danh sách. Chú hãy thử tải lại trang!";
+    }
+}
+
 function filterPages() {
     let input = document.getElementById('searchInput').value.toLowerCase();
     let items = document.getElementById('pageList').getElementsByClassName('page-item');
-    
-    // Hàm bỏ dấu tiếng Việt để gõ không dấu vẫn tìm được
     let removeSign = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "d");
 
+    let visibleCount = 0;
     for (let i = 0; i < items.length; i++) {
         let text = items[i].textContent.toLowerCase();
         if (text.includes(input) || removeSign(text).includes(removeSign(input))) {
             items[i].style.display = "";
+            visibleCount++;
         } else {
             items[i].style.display = "none";
         }
     }
+    document.getElementById("totalFiles").innerText = `Tìm thấy: ${visibleCount} kết quả`;
 }
+loadAllFiles();
 </script>
-
 </body>
 </html>
