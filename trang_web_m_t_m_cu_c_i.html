@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mật Mã Cuộc Đời - Hệ Sinh Thái & Chia Sẻ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0F4C81',        // Blue cổ điển / Navy
+                            darkblue: '#0A2540',    // Blue đậm sang trọng
+                            lightblue: '#2563EB',   // Blue sáng nổi bật
+                            red: '#DC2626',         // Đỏ tươi accent
+                            darkred: '#991B1B',     // Đỏ sẫm
+                            softred: '#FEF2F2',     // Đỏ nhạt cho highlight
+                            graybg: '#F8FAFC'       // Nền trắng xám sạch
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Custom Scrollbar & Smooth Animations */
+        html {
+            scroll-behavior: smooth;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0F4C81;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #DC2626;
+        }
+        .gradient-brand {
+            background: linear-gradient(135deg, #0A2540 0%, #0F4C81 50%, #DC2626 100%);
+        }
+        .gradient-card {
+            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+        }
+        .badge-pulse {
+            animation: pulse-ring 2s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+        }
+    </style>
+</head>
+<body class="bg-brand-graybg text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b-2 border-brand-blue">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-12 h-12 rounded-xl gradient-brand flex items-center justify-center text-white text-2xl font-black shadow-lg group-hover:scale-105 transition-transform duration-300">
+                        M
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-brand-darkblue block leading-none">MẬT MÃ CUỘC ĐỜI</span>
+                        <span class="text-xs font-semibold tracking-widest text-brand-red uppercase">matmacuocdoi.vn</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-8 text-sm font-semibold text-slate-700">
+                    <a href="#ecosystem" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-network-wired text-brand-blue"></i> Hệ Sinh Thái</a>
+                    <a href="#experts" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-user-tie text-brand-blue"></i> Chuyên Gia</a>
+                    <a href="#posts" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-newspaper text-brand-blue"></i> Bài Viết Mới</a>
+                    <a href="#videos" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-play text-brand-red"></i> Kênh Video</a>
+                    <a href="#placeholders" class="hover:text-brand-red transition-colors flex items-center gap-1.5"><i class="fa-solid fa-plus-circle text-brand-blue"></i> Ô Trống Bổ Sung</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden lg:flex items-center space-x-3">
+                    <button onclick="copyToClipboard('https://matmacuocdoi.vn', 'Link Website')" class="px-4 py-2.5 rounded-lg border-2 border-brand-blue text-brand-blue hover:bg-brand-blue hover:text-white font-semibold text-sm transition-all duration-200 shadow-sm flex items-center gap-2">
+                        <i class="fa-regular fa-copy"></i> Copy Link Web
+                    </button>
+                    <a href="https://zalo.me/g/iljgbe719" target="_blank" class="px-5 py-2.5 rounded-lg bg-brand-red hover:bg-brand-darkred text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 badge-pulse flex items-center gap-2">
+                        <i class="fa-solid fa-users"></i> Tham Gia Group
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-700 text-2xl focus:outline-none p-2" aria-label="Toggle menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
+            <a href="#ecosystem" class="block py-2 text-slate-800 font-semibold hover:text-brand-red"><i class="fa-solid fa-network-wired text-brand-blue mr-2"></i> Hệ Sinh Thái</a>
+            <a href="#experts" class="block py-2 text-slate-800 font-semibold hover:text-brand-red"><i class="fa-solid fa-user-tie text-brand-blue mr-2"></i> Chuyên Gia</a>
+            <a href="#posts" class="block py-2 text-slate-800 font-semibold hover:text-brand-red"><i class="fa-solid fa-newspaper text-brand-blue mr-2"></i> Bài Viết Mới</a>
+            <a href="#videos" class="block py-2 text-slate-800 font-semibold hover:text-brand-red"><i class="fa-solid fa-play text-brand-red mr-2"></i> Kênh Video</a>
+            <a href="#placeholders" class="block py-2 text-slate-800 font-semibold hover:text-brand-red"><i class="fa-solid fa-plus-circle text-brand-blue mr-2"></i> Ô Trống Bổ Sung</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="copyToClipboard('https://matmacuocdoi.vn', 'Link Website')" class="w-full py-2.5 rounded-lg border border-brand-blue text-brand-blue font-semibold text-center">
+                    <i class="fa-regular fa-copy mr-1"></i> Sao chép Link Website
+                </button>
+                <a href="https://zalo.me/g/iljgbe719" target="_blank" class="w-full py-2.5 rounded-lg bg-brand-red text-white font-semibold text-center block">
+                    <i class="fa-solid fa-users mr-1"></i> Tham Gia Group Zalo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero / Banner Section -->
+        <section class="relative gradient-brand text-white py-16 lg:py-24 overflow-hidden">
+            <!-- Decorative Elements -->
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-white/5 blur-3xl pointer-events-none"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-brand-red/20 blur-2xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-3xl mx-auto">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 text-xs sm:text-sm font-medium mb-6">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-red animate-ping"></span>
+                        Hệ Sinh Thái Thông Tin & Kết Nối Trực Tuyến
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight mb-6">
+                        Khám Phá Bản Bản Bản Đồ & <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-400 to-amber-300">Mật Mã Cuộc Đời</span>
+                    </h1>
+                    <p class="text-lg sm:text-xl text-slate-200 mb-8 font-light leading-relaxed">
+                        Nơi tổng hợp tất cả kênh thông tin chính thức, cố vấn chuyên gia, video chia sẻ giá trị và cập nhật bài viết mới nhất dành cho bạn.
+                    </p>
+                    
+                    <!-- Quick Share Web Bar -->
+                    <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl border border-white/20 flex flex-col sm:flex-row gap-3 items-center justify-between max-w-2xl mx-auto shadow-2xl">
+                        <div class="flex items-center gap-3 px-3 w-full sm:w-auto text-left">
+                            <i class="fa-solid fa-globe text-2xl text-red-400"></i>
+                            <div>
+                                <p class="text-xs text-slate-300 uppercase font-bold">Website Chính Thức</p>
+                                <p class="text-base font-bold text-white tracking-wide">matmacuocdoi.vn</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                            <button onclick="copyToClipboard('https://matmacuocdoi.vn', 'Link Website matmacuocdoi.vn')" class="flex-1 sm:flex-none px-5 py-2.5 bg-white text-brand-darkblue font-bold rounded-xl hover:bg-slate-100 transition shadow-md flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-share-nodes"></i> Chia Sẻ Link
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experts Section -->
+        <section id="experts" class="py-16 bg-white border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-brand-red font-bold text-sm tracking-wider uppercase">Đội Ngũ Cố Vấn</span>
+                    <h2 class="text-3xl font-extrabold text-brand-darkblue mt-1">Chuyên Gia Đồng Hành</h2>
+                    <p class="text-slate-600 mt-2">Kết nối trực tiếp qua Zalo cá nhân để nhận tư vấn & giải đáp</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Expert 1 -->
+                    <div class="gradient-card rounded-2xl p-6 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center gap-6 group">
+                        <div class="relative">
+                            <div class="w-24 h-24 rounded-full bg-brand-blue flex items-center justify-center text-white text-3xl font-bold border-4 border-white shadow-md group-hover:scale-105 transition-transform">
+                                NTA
+                            </div>
+                            <span class="absolute bottom-0 right-0 w-6 h-6 bg-emerald-500 border-2 border-white rounded-full" title="Sẵn sàng kết nối"></span>
+                        </div>
+                        <div class="flex-1 text-center sm:text-left">
+                            <span class="text-xs font-bold text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full uppercase">Chuyên Gia Cố Vấn</span>
+                            <h3 class="text-xl font-bold text-slate-900 mt-1">Nguyễn Tuấn Anh</h3>
+                            <p class="text-slate-500 text-sm mt-0.5 mb-4"><i class="fa-solid fa-phone text-xs text-brand-red"></i> Hotline/Zalo: <span class="font-semibold text-slate-700">0789 414 153</span></p>
+                            
+                            <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                                <a href="https://zalo.me/0789414153" target="_blank" class="px-4 py-2 bg-brand-blue hover:bg-brand-darkblue text-white rounded-lg font-medium text-sm transition flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-comments"></i> Nhắn Zalo
+                                </a>
+                                <button onclick="copyToClipboard('https://zalo.me/0789414153', 'Zalo Chuyên Gia Nguyễn Tuấn Anh')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> Coppy Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Expert 2 -->
+                    <div class="gradient-card rounded-2xl p-6 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col sm:flex-row items-center gap-6 group">
+                        <div class="relative">
+                            <div class="w-24 h-24 rounded-full bg-brand-red flex items-center justify-center text-white text-3xl font-bold border-4 border-white shadow-md group-hover:scale-105 transition-transform">
+                                NKB
+                            </div>
+                            <span class="absolute bottom-0 right-0 w-6 h-6 bg-emerald-500 border-2 border-white rounded-full" title="Sẵn sàng kết nối"></span>
+                        </div>
+                        <div class="flex-1 text-center sm:text-left">
+                            <span class="text-xs font-bold text-brand-red bg-red-50 px-2.5 py-1 rounded-full uppercase">Chuyên Gia Cố Vấn</span>
+                            <h3 class="text-xl font-bold text-slate-900 mt-1">Kim Nguyên Bảo</h3>
+                            <p class="text-slate-500 text-sm mt-0.5 mb-4"><i class="fa-solid fa-phone text-xs text-brand-red"></i> Hotline/Zalo: <span class="font-semibold text-slate-700">0849 328 628</span></p>
+                            
+                            <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                                <a href="https://zalo.me/0849328628" target="_blank" class="px-4 py-2 bg-brand-blue hover:bg-brand-darkblue text-white rounded-lg font-medium text-sm transition flex items-center gap-1.5 shadow-sm">
+                                    <i class="fa-solid fa-comments"></i> Nhắn Zalo
+                                </a>
+                                <button onclick="copyToClipboard('https://zalo.me/0849328628', 'Zalo Chuyên Gia Kim Nguyên Bảo')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-medium text-sm transition flex items-center gap-1">
+                                    <i class="fa-regular fa-copy"></i> Coppy Link
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ecosystem Section -->
+        <section id="ecosystem" class="py-16 bg-brand-graybg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-brand-blue font-bold text-sm tracking-wider uppercase">Truyền Thông & Cộng Đồng</span>
+                    <h2 class="text-3xl font-extrabold text-brand-darkblue mt-1">Hệ Sinh Thái Đa Nền Tảng</h2>
+                    <p class="text-slate-600 mt-2">Truy cập ngay các kênh truyền thông chính thức của Mật Mã Cuộc Đời</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Zalo Group -->
+                    <div class="bg-white rounded-2xl p-6 border-t-4 border-blue-500 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl font-bold">
+                                    <i class="fa-solid fa-users"></i>
+                                </div>
+                                <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full">Cộng Đồng Zalo</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Group Zalo Giao Lưu</h3>
+                            <p class="text-slate-500 text-sm mt-1 mb-4">Cộng đồng thảo luận, chia sẻ kiến thức, sự kiện và nhận thông báo mới nhất.</p>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <a href="https://zalo.me/g/iljgbe719" target="_blank" class="flex-1 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium text-sm text-center transition">
+                                <i class="fa-solid fa-arrow-right-to-bracket mr-1"></i> Tham Gia
+                            </a>
+                            <button onclick="copyToClipboard('https://zalo.me/g/iljgbe719', 'Link Group Zalo')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Facebook -->
+                    <div class="bg-white rounded-2xl p-6 border-t-4 border-blue-700 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-800 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </div>
+                                <span class="bg-blue-50 text-blue-800 text-xs font-bold px-2.5 py-1 rounded-full">Facebook</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Facebook Trang Cá Nhân/Fanpage</h3>
+                            <p class="text-slate-500 text-sm mt-1 mb-4">Cập nhật hình ảnh, bài viết chia sẻ và tương tác trực tiếp qua Facebook.</p>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <a href="https://www.facebook.com/thymozin" target="_blank" class="flex-1 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg font-medium text-sm text-center transition">
+                                <i class="fa-brands fa-facebook mr-1"></i> Truy Cập
+                            </a>
+                            <button onclick="copyToClipboard('https://www.facebook.com/thymozin', 'Link Facebook')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- YouTube -->
+                    <div class="bg-white rounded-2xl p-6 border-t-4 border-brand-red shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-red-100 text-brand-red flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </div>
+                                <span class="bg-red-50 text-brand-red text-xs font-bold px-2.5 py-1 rounded-full">YouTube</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Kênh YouTube Chính Thức</h3>
+                            <p class="text-slate-500 text-sm mt-1 mb-4">Video bài giảng, chia sẻ chuyên sâu, livestreams phân tích chi tiết.</p>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="flex-1 py-2 bg-brand-red hover:bg-brand-darkred text-white rounded-lg font-medium text-sm text-center transition">
+                                <i class="fa-solid fa-bell mr-1"></i> Đăng Ký Kênh
+                            </a>
+                            <button onclick="copyToClipboard('https://www.youtube.com/@matmacuocdoi?sub_confirmation=1', 'Link Kênh YouTube')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TikTok 1 -->
+                    <div class="bg-white rounded-2xl p-6 border-t-4 border-slate-900 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-tiktok"></i>
+                                </div>
+                                <span class="bg-slate-100 text-slate-800 text-xs font-bold px-2.5 py-1 rounded-full">TikTok Kênh 1</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">TikTok @matmacuocdoivn</h3>
+                            <p class="text-slate-500 text-sm mt-1 mb-4">Video ngắn hay, nội dung đúc kết kiến thức tổng quan và mẹo ứng dụng.</p>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="flex-1 py-2 bg-slate-900 hover:bg-black text-white rounded-lg font-medium text-sm text-center transition">
+                                <i class="fa-brands fa-tiktok mr-1"></i> Xem TikTok 1
+                            </a>
+                            <button onclick="copyToClipboard('https://tiktok.com/@matmacuocdoivn', 'Link TikTok 1')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- TikTok 2 -->
+                    <div class="bg-white rounded-2xl p-6 border-t-4 border-slate-800 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-900 flex items-center justify-center text-2xl">
+                                    <i class="fa-brands fa-tiktok"></i>
+                                </div>
+                                <span class="bg-slate-100 text-slate-800 text-xs font-bold px-2.5 py-1 rounded-full">TikTok Kênh 2</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">TikTok @matmacuocdoituvi</h3>
+                            <p class="text-slate-500 text-sm mt-1 mb-4">Nội dung chuyên sâu về Tử Vi, Luận Giải Chi Tiết và Phong Thủy.</p>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <a href="https://tiktok.com/@matmacuocdoituvi" target="_blank" class="flex-1 py-2 bg-slate-900 hover:bg-black text-white rounded-lg font-medium text-sm text-center transition">
+                                <i class="fa-brands fa-tiktok mr-1"></i> Xem TikTok 2
+                            </a>
+                            <button onclick="copyToClipboard('https://tiktok.com/@matmacuocdoituvi', 'Link TikTok 2')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Website Main -->
+                    <div class="bg-white rounded-2xl p-6 border-t-4 border-brand-blue shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-12 h-12 rounded-xl bg-blue-100 text-brand-blue flex items-center justify-center text-2xl">
+                                    <i class="fa-solid fa-globe"></i>
+                                </div>
+                                <span class="bg-blue-50 text-brand-blue text-xs font-bold px-2.5 py-1 rounded-full">Trang Web</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-900">Website Trang Chủ</h3>
+                            <p class="text-slate-500 text-sm mt-1 mb-4">Địa chỉ trang chủ chính thức: <span class="font-semibold text-brand-blue">matmacuocdoi.vn</span></p>
+                        </div>
+                        <div class="flex gap-2 pt-2">
+                            <a href="https://matmacuocdoi.vn" target="_blank" class="flex-1 py-2 bg-brand-blue hover:bg-brand-darkblue text-white rounded-lg font-medium text-sm text-center transition">
+                                <i class="fa-solid fa-house mr-1"></i> Ghé Thăm Web
+                            </a>
+                            <button onclick="copyToClipboard('https://matmacuocdoi.vn', 'Link Website')" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post Sharing & Article Section -->
+        <section id="posts" class="py-16 bg-white border-t border-b border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left Column: Post Creation Form -->
+                    <div class="lg:col-span-5 bg-gradient-to-b from-slate-50 to-white p-6 sm:p-8 rounded-2xl border-2 border-brand-blue/20 shadow-lg h-fit">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-10 h-10 rounded-xl bg-brand-red text-white flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-extrabold text-brand-darkblue">Đăng Bài Viết Mới</h3>
+                                <p class="text-xs text-slate-500">Thêm nhanh thông tin để chia sẻ ngay lập tức</p>
+                            </div>
+                        </div>
+
+                        <form id="quick-post-form" onsubmit="handlePostSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tiêu Đề Bài Viết <span class="text-red-500">*</span></label>
+                                <input type="text" id="post-title" required placeholder="Nhập tiêu đề bài viết..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm outline-none transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tác Giả / Nguồn</label>
+                                <input type="text" id="post-author" placeholder="Ví dụ: Nguyễn Tuấn Anh / Mật Mã Cuộc Đời" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm outline-none transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Ảnh Minh Họa (URL)</label>
+                                <input type="url" id="post-image" placeholder="https://danh-sach-anh.com/image.jpg" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm outline-none transition">
+                                <p class="text-[11px] text-slate-400 mt-1">Để trống nếu muốn dùng ảnh mặc định</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nội Dung Bài Viết <span class="text-red-500">*</span></label>
+                                <textarea id="post-content" rows="4" required placeholder="Nhập tóm tắt hoặc nội dung ngắn bài viết tại đây..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm outline-none transition"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Link Chi Tiết (Nếu có)</label>
+                                <input type="url" id="post-link" placeholder="https://matmacuocdoi.vn/bai-viet-chi-tiet" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue text-sm outline-none transition">
+                            </div>
+
+                            <button type="submit" class="w-full py-3 bg-brand-red hover:bg-brand-darkred text-white font-bold rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Đăng & Chia Sẻ Ngay
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Right Column: Posts List -->
+                    <div class="lg:col-span-7">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="text-brand-red font-bold text-xs uppercase tracking-wider">Tin Tức & Cập Nhật</span>
+                                <h3 class="text-2xl font-extrabold text-brand-darkblue">Danh Sách Bài Viết</h3>
+                            </div>
+                            <span id="post-count-badge" class="bg-blue-100 text-brand-blue text-xs font-bold px-3 py-1 rounded-full">2 Bài viết</span>
+                        </div>
+
+                        <!-- Dynamic Post Container -->
+                        <div id="posts-container" class="space-y-6">
+                            <!-- Sample Article 1 -->
+                            <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col sm:flex-row">
+                                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Mật Mã Cuộc Đời" class="w-full sm:w-48 h-48 object-cover">
+                                <div class="p-5 flex flex-col justify-between flex-1">
+                                    <div>
+                                        <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                                            <span class="font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded">Nổi bật</span>
+                                            <span>• 18/09/2026</span>
+                                            <span>• Bởi Chuyên gia Nguyễn Tuấn Anh</span>
+                                        </div>
+                                        <h4 class="text-lg font-bold text-slate-900 hover:text-brand-blue transition line-clamp-2">
+                                            Khám Phá Mật Mã Bản Thân Và Định Hướng Sự Nghiệp
+                                        </h4>
+                                        <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                                            Thấu hiểu các chỉ số quan trọng để tìm ra con đường phát triển sự nghiệp thuận lợi và tối ưu hóa năng lực tiềm ẩn.
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between pt-4 mt-2 border-t border-slate-100">
+                                        <a href="https://matmacuocdoi.vn" target="_blank" class="text-sm font-bold text-brand-blue hover:text-brand-red transition flex items-center gap-1">
+                                            Đọc tiếp <i class="fa-solid fa-arrow-right text-xs"></i>
+                                        </a>
+                                        <button onclick="copyToClipboard('https://matmacuocdoi.vn', 'Bài viết: Khám Phá Mật Mã Bản Thân')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition flex items-center gap-1">
+                                            <i class="fa-solid fa-share"></i> Chia sẻ
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Sample Article 2 -->
+                            <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col sm:flex-row">
+                                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=600&q=80" alt="Ứng dụng kiến thức" class="w-full sm:w-48 h-48 object-cover">
+                                <div class="p-5 flex flex-col justify-between flex-1">
+                                    <div>
+                                        <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                                            <span class="font-semibold text-brand-blue bg-blue-50 px-2 py-0.5 rounded">Kiến thức</span>
+                                            <span>• 15/09/2026</span>
+                                            <span>• Bởi Kim Nguyên Bảo</span>
+                                        </div>
+                                        <h4 class="text-lg font-bold text-slate-900 hover:text-brand-blue transition line-clamp-2">
+                                            Ứng Dụng Tử Vi & Phong Thủy Trong Cuộc Sống Hiện Đại
+                                        </h4>
+                                        <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                                            Giải mã các yếu tố năng lượng giúp cân bằng công việc, tình cảm và các mối quan hệ xã hội một cách khoa học.
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between pt-4 mt-2 border-t border-slate-100">
+                                        <a href="https://matmacuocdoi.vn" target="_blank" class="text-sm font-bold text-brand-blue hover:text-brand-red transition flex items-center gap-1">
+                                            Đọc tiếp <i class="fa-solid fa-arrow-right text-xs"></i>
+                                        </a>
+                                        <button onclick="copyToClipboard('https://matmacuocdoi.vn', 'Bài viết: Ứng Dụng Tử Vi & Phong Thủy')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition flex items-center gap-1">
+                                            <i class="fa-solid fa-share"></i> Chia sẻ
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Video Embed Section -->
+        <section id="videos" class="py-16 bg-brand-graybg">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-brand-red font-bold text-xs uppercase tracking-wider">Video & Media</span>
+                    <h2 class="text-3xl font-extrabold text-brand-darkblue mt-1">Khung Nhúng Video Trực Tuyến</h2>
+                    <p class="text-slate-600 mt-2">Dán URL YouTube / TikTok / Video để xem trực tiếp và chia sẻ dễ dàng</p>
+                </div>
+
+                <!-- Video Input Form -->
+                <div class="max-w-3xl mx-auto bg-white p-6 rounded-2xl shadow-md border border-slate-200 mb-10">
+                    <form onsubmit="handleVideoEmbed(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">URL Video (YouTube / TikTok)</label>
+                                <input type="url" id="video-url-input" required placeholder="https://www.youtube.com/watch?v=..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-red text-sm outline-none">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Tiêu Đề Video</label>
+                                <input type="text" id="video-title-input" placeholder="Tiêu đề clip..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-red text-sm outline-none">
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-brand-blue hover:bg-brand-darkblue text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-file-video"></i> Nhúng & Phát Video Ngay
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Featured Videos Gallery Grid -->
+                <div id="video-gallery" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Default Youtube Embed -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200">
+                        <div class="relative aspect-video bg-black">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/videoseries?list=UU@matmacuocdoi" title="Kênh YouTube Mật Mã Cuộc Đời" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 flex justify-between items-center">
+                            <div>
+                                <span class="bg-red-100 text-brand-red text-xs font-bold px-2 py-0.5 rounded">YouTube Official</span>
+                                <h4 class="font-bold text-slate-900 mt-1">Kênh Video Mật Mã Cuộc Đời</h4>
+                            </div>
+                            <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="px-4 py-2 bg-brand-red text-white text-xs font-bold rounded-lg hover:bg-brand-darkred transition flex items-center gap-1">
+                                <i class="fa-brands fa-youtube"></i> Đăng ký
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder / Sample Video Embed Card -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200">
+                        <div class="relative aspect-video bg-slate-900 flex flex-col items-center justify-center text-white p-6 text-center">
+                            <div class="w-16 h-16 rounded-full bg-brand-red/80 flex items-center justify-center text-2xl mb-3 cursor-pointer hover:scale-110 transition">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </div>
+                            <p class="font-bold text-base">Khung Nhúng Video Mới</p>
+                            <p class="text-xs text-slate-400 mt-1">Dán link YouTube hoặc TikTok ở ô bên trên để xem trực tiếp tại đây</p>
+                        </div>
+                        <div class="p-5 flex justify-between items-center">
+                            <div>
+                                <span class="bg-slate-100 text-slate-700 text-xs font-bold px-2 py-0.5 rounded">Sẵn Sàng</span>
+                                <h4 class="font-bold text-slate-900 mt-1">Video Xem Nhanh</h4>
+                            </div>
+                            <button onclick="copyToClipboard('https://tiktok.com/@matmacuocdoivn', 'Link TikTok 1')" class="px-3 py-2 bg-slate-100 text-slate-700 text-xs font-bold rounded-lg hover:bg-slate-200 transition">
+                                <i class="fa-regular fa-copy"></i> Link TikTok
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Custom Placeholders Section for User Customization -->
+        <section id="placeholders" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-brand-blue font-bold text-xs uppercase tracking-wider">Ô Trống Dự Phòng</span>
+                    <h2 class="text-3xl font-extrabold text-brand-darkblue mt-1">Khu Vực Dành Cho Bạn Thêm Nội Dung</h2>
+                    <p class="text-slate-600 mt-2">Các vị trí đã được đẻ sẵn khung, dễ dàng thêm banner, quảng cáo hoặc sản phẩm</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Placeholder Slot 1 -->
+                    <div class="border-2 border-dashed border-brand-blue/30 bg-blue-50/30 rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[220px] hover:border-brand-blue transition group">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800">Ô Trống 1: Banner / Khuyến Mãi</h4>
+                        <p class="text-xs text-slate-500 mt-1 mb-4">Vị trí thích hợp để gắn banner chương trình, ưu đãi khóa học hoặc sự kiện mới.</p>
+                        <button onclick="copyToClipboard('matmacuocdoi.vn - Ô Quảng Cáo 1', 'Mẫu ô trống 1')" class="text-xs font-bold text-brand-blue border border-brand-blue/40 px-3 py-1.5 rounded-lg hover:bg-brand-blue hover:text-white transition">
+                            <i class="fa-regular fa-copy"></i> Copy mẫu này
+                        </button>
+                    </div>
+
+                    <!-- Placeholder Slot 2 -->
+                    <div class="border-2 border-dashed border-brand-red/30 bg-red-50/30 rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[220px] hover:border-brand-red transition group">
+                        <div class="w-12 h-12 rounded-full bg-red-100 text-brand-red flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-link"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800">Ô Trống 2: Liên Kết Bổ Sung</h4>
+                        <p class="text-xs text-slate-500 mt-1 mb-4">Gắn thêm link Affiliate, ebook, tài liệu tải về hoặc nhóm làm việc riêng.</p>
+                        <button onclick="copyToClipboard('matmacuocdoi.vn - Link Bổ Sung', 'Mẫu ô trống 2')" class="text-xs font-bold text-brand-red border border-brand-red/40 px-3 py-1.5 rounded-lg hover:bg-brand-red hover:text-white transition">
+                            <i class="fa-regular fa-copy"></i> Copy mẫu này
+                        </button>
+                    </div>
+
+                    <!-- Placeholder Slot 3 -->
+                    <div class="border-2 border-dashed border-slate-300 bg-slate-50 rounded-2xl p-8 text-center flex flex-col items-center justify-center min-h-[220px] hover:border-slate-400 transition group">
+                        <div class="w-12 h-12 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-xl mb-3 group-hover:scale-110 transition">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-800">Ô Trống 3: Sản Phẩm / Dịch Vụ</h4>
+                        <p class="text-xs text-slate-500 mt-1 mb-4">Khung để giới thiệu gói dịch vụ luận giải, lịch hẹn tư vấn cá nhân.</p>
+                        <button onclick="copyToClipboard('matmacuocdoi.vn - Dịch Vụ', 'Mẫu ô trống 3')" class="text-xs font-bold text-slate-700 border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-white transition">
+                            <i class="fa-regular fa-copy"></i> Copy mẫu này
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-darkblue text-white border-t-4 border-brand-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-red flex items-center justify-center font-black text-xl">M</div>
+                        <span class="text-xl font-bold tracking-tight">MẬT MÃ CUỘC ĐỜI</span>
+                    </div>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Thương hiệu tư vấn & định hướng giải mã tiềm năng cuộc đời, giúp bạn thấu hiểu bản thân và bứt phá sự nghiệp.
+                    </p>
+                    <p class="text-xs text-brand-red font-bold">Website: matmacuocdoi.vn</p>
+                </div>
+
+                <!-- Col 2: Expert Contacts -->
+                <div>
+                    <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4 border-b border-slate-700 pb-2">Chuyên Gia Cố Vấn</h4>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li>
+                            <p class="font-semibold text-white">Nguyễn Tuấn Anh</p>
+                            <a href="https://zalo.me/0789414153" target="_blank" class="text-xs text-blue-300 hover:text-white flex items-center gap-1 mt-0.5">
+                                <i class="fa-solid fa-phone text-[10px]"></i> Zalo: 0789 414 153
+                            </a>
+                        </li>
+                        <li>
+                            <p class="font-semibold text-white">Kim Nguyên Bảo</p>
+                            <a href="https://zalo.me/0849328628" target="_blank" class="text-xs text-blue-300 hover:text-white flex items-center gap-1 mt-0.5">
+                                <i class="fa-solid fa-phone text-[10px]"></i> Zalo: 0849 328 628
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Quick Links Ecosystem -->
+                <div>
+                    <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4 border-b border-slate-700 pb-2">Hệ Sinh Thái Truyền Thông</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><a href="https://zalo.me/g/iljgbe719" target="_blank" class="hover:text-brand-red transition"><i class="fa-solid fa-chevron-right text-[10px] text-brand-red mr-1"></i> Group Zalo Cộng Đồng</a></li>
+                        <li><a href="https://www.facebook.com/thymozin" target="_blank" class="hover:text-brand-red transition"><i class="fa-solid fa-chevron-right text-[10px] text-brand-red mr-1"></i> Facebook Cá Nhân</a></li>
+                        <li><a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="hover:text-brand-red transition"><i class="fa-solid fa-chevron-right text-[10px] text-brand-red mr-1"></i> Kênh YouTube Offical</a></li>
+                        <li><a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="hover:text-brand-red transition"><i class="fa-solid fa-chevron-right text-[10px] text-brand-red mr-1"></i> TikTok @matmacuocdoivn</a></li>
+                        <li><a href="https://tiktok.com/@matmacuocdoituvi" target="_blank" class="hover:text-brand-red transition"><i class="fa-solid fa-chevron-right text-[10px] text-brand-red mr-1"></i> TikTok @matmacuocdoituvi</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Quick Action -->
+                <div>
+                    <h4 class="text-sm font-bold text-slate-200 uppercase tracking-wider mb-4 border-b border-slate-700 pb-2">Sao Chép Nhanh</h4>
+                    <p class="text-xs text-slate-300 mb-3">Bấm nút bên dưới để sao chép toàn bộ thông tin hệ sinh thái Mật Mã Cuộc Đời:</p>
+                    <button onclick="copyAllEcosystemLinks()" class="w-full py-2.5 bg-brand-red hover:bg-brand-darkred text-white text-xs font-bold rounded-xl transition shadow flex items-center justify-center gap-1.5">
+                        <i class="fa-solid fa-copy"></i> Coppy Tất Cả Links
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-400">
+                <p>© 2026 Mật Mã Cuộc Đời (matmacuocdoi.vn). Bản quyền thuộc về thương hiệu Mật Mã Cuộc Đời.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Toggle Mobile Navigation Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Function to copy text to clipboard with feedback toast
+        function copyToClipboard(text, name = "Liên kết") {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                showToast(`Đã sao chép thành công: ${name}`);
+            } catch (err) {
+                showToast(`Chưa thể sao chép tự động. Link: ${text}`, 'error');
+            }
+            
+            document.body.removeChild(textarea);
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgColor = type === 'success' ? 'bg-brand-darkblue' : 'bg-brand-red';
+            const icon = type === 'success' ? 'fa-circle-check text-green-400' : 'fa-circle-exclamation text-yellow-300';
+            
+            toast.className = `${bgColor} text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 text-sm font-medium border border-white/20 transform transition-all duration-300 translate-y-5 opacity-0 pointer-events-auto`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-lg"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-5', 'opacity-0');
+            }, 10);
+
+            // Animate out & remove
+            setTimeout(() => {
+                toast.classList.add('translate-y-5', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Handle Quick Post Submission
+        let postCount = 2;
+        function handlePostSubmit(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('post-title').value;
+            const author = document.getElementById('post-author').value || 'Mật Mã Cuộc Đời';
+            const image = document.getElementById('post-image').value || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80';
+            const content = document.getElementById('post-content').value;
+            const link = document.getElementById('post-link').value || 'https://matmacuocdoi.vn';
+
+            const container = document.getElementById('posts-container');
+            
+            const article = document.createElement('article');
+            article.className = "bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition flex flex-col sm:flex-row animate-fade-in";
+            
+            const currentDate = new Date().toLocaleDateString('vi-VN');
+
+            article.innerHTML = `
+                <img src="${image}" alt="${title}" class="w-full sm:w-48 h-48 object-cover" onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80'">
+                <div class="p-5 flex flex-col justify-between flex-1">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                            <span class="font-semibold text-brand-red bg-red-50 px-2 py-0.5 rounded">Mới đăng</span>
+                            <span>• ${currentDate}</span>
+                            <span>• Bởi ${author}</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 hover:text-brand-blue transition line-clamp-2">
+                            ${title}
+                        </h4>
+                        <p class="text-slate-600 text-sm mt-2 line-clamp-2">
+                            ${content}
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 mt-2 border-t border-slate-100">
+                        <a href="${link}" target="_blank" class="text-sm font-bold text-brand-blue hover:text-brand-red transition flex items-center gap-1">
+                            Đọc tiếp <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </a>
+                        <button onclick="copyToClipboard('${link}', 'Bài viết: ${title}')" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition flex items-center gap-1">
+                            <i class="fa-solid fa-share"></i> Chia sẻ
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            container.prepend(article);
+            postCount++;
+            document.getElementById('post-count-badge').innerText = `${postCount} Bài viết`;
+
+            // Reset Form
+            document.getElementById('quick-post-form').reset();
+            showToast("Đã đăng bài viết mới thành công!");
+        }
+
+        // Handle Video Embedding
+        function handleVideoEmbed(e) {
+            e.preventDefault();
+            const url = document.getElementById('video-url-input').value;
+            const title = document.getElementById('video-title-input').value || 'Video Mật Mã Cuộc Đời';
+            const gallery = document.getElementById('video-gallery');
+
+            let embedHtml = '';
+
+            // Extract YouTube Video ID
+            if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                let videoId = '';
+                if (url.includes('youtu.be')) {
+                    videoId = url.split('/').pop().split('?')[0];
+                } else {
+                    const urlParams = new URLSearchParams(new URL(url).search);
+                    videoId = urlParams.get('v');
+                }
+
+                if (videoId) {
+                    embedHtml = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}?autoplay=1" title="${title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+                }
+            }
+
+            if (!embedHtml) {
+                // Fallback for general video link
+                embedHtml = `
+                    <div class="w-full h-full bg-slate-900 flex flex-col items-center justify-center p-6 text-center text-white">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-3xl text-brand-red mb-2"></i>
+                        <p class="font-bold text-sm mb-2">${title}</p>
+                        <a href="${url}" target="_blank" class="px-4 py-2 bg-brand-red text-white text-xs font-bold rounded-lg hover:bg-brand-darkred">
+                            Mở Video Trực Tiếp
+                        </a>
+                    </div>
+                `;
+            }
+
+            const videoCard = document.createElement('div');
+            videoCard.className = "bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200 animate-fade-in";
+            videoCard.innerHTML = `
+                <div class="relative aspect-video bg-black">
+                    ${embedHtml}
+                </div>
+                <div class="p-5 flex justify-between items-center">
+                    <div>
+                        <span class="bg-blue-100 text-brand-blue text-xs font-bold px-2 py-0.5 rounded">Video Mới Nhúng</span>
+                        <h4 class="font-bold text-slate-900 mt-1">${title}</h4>
+                    </div>
+                    <button onclick="copyToClipboard('${url}', '${title}')" class="px-3 py-2 bg-slate-100 text-slate-700 text-xs font-bold rounded-lg hover:bg-slate-200 transition">
+                        <i class="fa-regular fa-copy"></i> Link
+                    </button>
+                </div>
+            `;
+
+            gallery.prepend(videoCard);
+            document.getElementById('video-url-input').value = '';
+            document.getElementById('video-title-input').value = '';
+            showToast("Đã nhúng video mới vào danh sách!");
+        }
+
+        // Copy All Ecosystem Links at once
+        function copyAllEcosystemLinks() {
+            const allLinksText = `
+MẬT MÃ CUỘC ĐỜI - HỆ SINH THÁI THÔNG TIN:
+------------------------------------------
+Website chính thức: https://matmacuocdoi.vn
+
+Cố Vấn Chuyên Gia:
+- Nguyễn Tuấn Anh (Zalo): https://zalo.me/0789414153
+- Kim Nguyên Bảo (Zalo): https://zalo.me/0849328628
+
+Kênh Truyền Thông:
+- Group Zalo: https://zalo.me/g/iljgbe719
+- Facebook: https://www.facebook.com/thymozin
+- YouTube: https://www.youtube.com/@matmacuocdoi?sub_confirmation=1
+- TikTok 1: https://tiktok.com/@matmacuocdoivn
+- TikTok 2: https://tiktok.com/@matmacuocdoituvi
+            `.trim();
+
+            copyToClipboard(allLinksText, "Toàn bộ Hệ Sinh Thái Mật Mã Cuộc Đời");
+        }
+    </script>
+</body>
+</html>
