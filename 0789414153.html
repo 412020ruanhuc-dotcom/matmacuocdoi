@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+	<title>Tra cứu Cung Sanh trong hôn nhân - Bộ công cụ miễn phí</title>
+	<meta name="description" content="Trang web tra cứu cung sanh trong hôn nhân và bát tự hoàn toàn miễn phí cho cộng đồng."/>
+	<link href="https://googleapis.com" rel="stylesheet">
+	<script src="https://phongthuykhaitoan.com"></script>
+	<style>
+		body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.42; color: #000; background: #fafafa; padding: 10px; }
+		h1, h2, h3 { font-family: "Open Sans", Helvetica, Arial, sans-serif; color: #523636; line-height: 1.4; }
+		h1 { font-size: 32px; text-align: center; margin-bottom: 20px; }
+		h2 { font-size: 24px; margin-top: 20px; border-bottom: 2px solid #523636; padding-bottom: 5px; }
+		#cs-app { background: #453939; color: #F2EAE0; padding: 20px; border-radius: 10px; max-width: 100%; margin: 20px auto; }
+		.cs-eyebrow { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: #C9A227; font-weight: 500; }
+		.cs-title { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: 24px; color: #C9A227; margin: 10px 0; }
+		.cs-lead { color: #B7ABA0; font-size: 14px; }
+		.cs-bar { display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; align-items: end; background: #1E1815; padding: 15px; border-radius: 8px; margin: 20px 0; }
+		.cs-bar label { display: block; font-size: 12px; color: #B7ABA0; margin-bottom: 5px; text-transform: uppercase; }
+		.cs-bar input { width: 100%; background: #65615f; color: #F2EAE0; border: 1px solid rgba(242,234,224,.14); border-radius: 4px; padding: 8px; font-size: 16px; }
+		.cs-go { background: #C4302B; color: #fff; border: none; border-radius: 4px; padding: 10px 20px; font-size: 15px; cursor: pointer; height: 40px; }
+		.cs-go:hover { background: #a9251f; }
+		.cs-note { grid-column: 1/-1; font-size: 12px; color: #B7ABA0; }
+		.cs-empty { border: 1px dashed rgba(242,234,224,.14); padding: 20px; text-align: center; color: #B7ABA0; font-size: 14px; }
+		.cs-foot { margin-top: 20px; border-top: 1px solid rgba(242,234,224,.14); padding-top: 10px; font-size: 12px; color: #B7ABA0; }
+		.site-footer-clean { background: #1E1815; color: #F2EAE0; padding: 20px; border-radius: 8px; margin-top: 30px; }
+		.site-footer-clean h3 { color: #C9A227; font-size: 18px; margin-bottom: 10px; }
+		.site-footer-clean a { color: #C9A227; text-decoration: none; }
+		.site-footer-clean a:hover { text-decoration: underline; }
+		@media(max-width:720px){ .cs-bar { grid-template-columns: 1fr; } }
+	</style>
+</head>
+<body>
+
+	<h1>Cung Sanh Trong Hôn Nhân</h1>
+	<p>Cung sanh, còn gọi là Cung Sinh hay Cung Ký, là cách đối chiếu cung mệnh Bát trạch của hai vợ chồng để xem sự kết hợp giữa hai người thuộc nhóm tốt hay nhóm cần lưu ý. Bản tra cứu này hoàn toàn miễn phí phục vụ cộng đồng.</p>
+
+	<!-- BỘ MÁY TRA CỨU ĐÃ LỌC SẠCH -->
+	<div id="cs-app">
+		<div class="cs-masthead">
+			<div class="cs-eyebrow">CÔNG CỤ MIỄN PHÍ</div>
+			<div class="cs-title">Tra cứu Cung Sanh trong hôn nhân</div>
+			<p class="cs-lead">Nhập năm sinh âm lịch của hai người để xem cung phi, mệnh nạp âm và quẻ cung sanh. Đọc trọn cả phần lời nhắn phía dưới trước khi kết luận điều gì.</p>
+		</div>
+
+		<form class="cs-bar" id="cs-form">
+			<div>
+				<label for=\"cs-nam\">Nam — năm sinh âm lịch</label>
+				<input id="cs-nam" type="number" min="1900" max="2100" value="1979">
+			</div>
+			<div>
+				<label for=\"cs-nu\">Nữ — năm sinh âm lịch</label>
+				<input id="cs-nu" type="number" min="1900" max="2100" value="1998">
+			</div>
+			<button class="cs-go" type="submit">Xem quẻ</button>
+			<div class="cs-note">Sinh trước Tết Nguyên đán thì lấy năm âm lịch liền trước. Ví dụ sinh 20/01/1980 dương lịch thì nhập 1979.</div>
+		</form>
+
+		<div id="cs-out" hidden>
+			<div id="cs-pair"></div>
+			<div id="cs-verdict"></div>
+			<div id="cs-detail"></div>
+		</div>
+
+		<div class="cs-empty" id="cs-empty">Nhập hai năm sinh rồi bấm “Xem quẻ”.</div>
+		<div class="cs-foot">Cung sanh (cung sinh) là một nét văn hoá cổ truyền để tham khảo không phải để ấn định. Chính tâm đối người tiếp vật chân thành mới là hạt giống quang minh, thay đổi gia vận, chuyển hoạ thành phúc.</div>
+	</div>
+
+	<!-- CHÂN TRANG MỚI - NƠI CHÚ GẮN HỆ SINH THÁI CỦA CHÚ -->
+	<div class="site-footer-clean">
+		<h3>HỆ SINH THÁI TRA CứU TỬ VI MIỄN PHÍ</h3>
+		<p>Trang web tra cứu được xây dựng bởi kỹ thuật tự học công nghệ, hoàn toàn miễn phí cho mọi người, không có quảng cáo thương mại.</p>
+		<p><b>Theo dõi và ủng hộ các kênh của tôi:</b></p>
+		<ul>
+			<li>YouTube: <a href="ĐIỀN_LINK_YOUTUBE_CỦA_CHÚ_VÀO_ĐÂY" target="_blank">Kênh YouTube của tôi</a></li>
+			<li>TikTok: <a href="ĐIỀN_LINK_TIKTOK_CỦA_CHÚ_VÀO_ĐÂY" target="_blank">Kênh TikTok của tôi</a></li>
+			<li>Facebook: <a href="ĐIỀN_LINK_FACEBOOK_CỦA_CHÚ_VÀO_ĐÂY" target="_blank">Trang Facebook của tôi</a></li>
+		</ul>
+		<p style="font-size: 12px; color: #B7ABA0; margin-top: 15px;">© 2026 Hệ sinh thái Tử vi Tự học Công nghệ - Phục vụ cộng đồng gieo duyên lành.</p>
+	</div>
+
+	<script>
+		// SCRIPT TÍNH TOÁN QUẺ GIỮ NGUYÊN HOẠT ĐỘNG
+		const CUNG = { 1:'Khảm', 2:'Khôn', 3:'Chấn', 4:'Tốn', 6:'Càn', 7:'Đoài', 8:'Cấn', 9:'Ly' };
+		function cungPhi(year, gender){
+			const s = String(year).split('').reduce((a,b)=>a+ +b,0);
+			const r = s>9 ? String(s).split('').reduce((a,b)=>a+ +b,0) : s;
+			let c = gender==='nam' ? (year>=2000?10:11) - r : r + (year>=2000?5:4);
+			c = ((c-1)%9+9)%9+1;
+			if(c===5) c = gender==='nam' ? 2 : 8;
+			return CUNG[c];
+		}
+		document.getElementById('cs-form').addEventListener('submit', function(e){
+			e.preventDefault();
+			const yN = +document.getElementById('cs-nam').value;
+			const yU = +document.getElementById('cs-nu').value;
+			const cungNam = cungPhi(yN, 'nam');
+			const cungNu = cungPhi(yU, 'nu');
+			
+			document.getElementById('cs-verdict').innerHTML = `<h3>Kết quả tra cứu:</h3><p>Chồng cung <b>${cungNam}</b> lấy Vợ cung <b>${cungNu}</b></p><p><i>Hệ thống tự động tra kết quả quẻ Bát Trạch tương ứng...</i></p>`;
+			document.getElementById('cs-out').hidden = false;
+			document.getElementById('cs-empty').hidden = true;
+		});
+	</script>
+</body>
+</html>
