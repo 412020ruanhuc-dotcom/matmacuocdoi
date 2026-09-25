@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover">
+	<title>Tra cứu Cung Sanh trong hôn nhân - Bộ công cụ miễn phí</title>
+	<meta name="description" content="Trang web tra cứu cung sanh trong hôn nhân và bát tự hoàn toàn miễn phí cho cộng đồng."/>
+	<link href="https://googleapis.com" rel="stylesheet">
+	<style>
+		body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 18px; line-height: 1.42; color: #000; background: #fafafa; padding: 10px; }
+		h1, h2, h3 { font-family: "Open Sans", Helvetica, Arial, sans-serif; color: #523636; line-height: 1.4; }
+		h1 { font-size: 32px; text-align: center; margin-bottom: 20px; }
+		h2 { font-size: 24px; margin-top: 20px; border-bottom: 2px solid #523636; padding-bottom: 5px; }
+		#cs-app { background: #453939; color: #F2EAE0; padding: 20px; border-radius: 10px; max-width: 100%; margin: 20px auto; box-sizing: border-box; }
+		.cs-eyebrow { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: #C9A227; font-weight: 500; }
+		.cs-title { font-family: "Playfair Display", Georgia, serif; font-weight: 700; font-size: 24px; color: #C9A227; margin: 10px 0; }
+		.cs-lead { color: #B7ABA0; font-size: 14px; }
+		.cs-bar { display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; align-items: end; background: #1E1815; padding: 15px; border-radius: 8px; margin: 20px 0; }
+		.cs-bar label { display: block; font-size: 12px; color: #B7ABA0; margin-bottom: 5px; text-transform: uppercase; }
+		.cs-bar input { width: 100%; background: #65615f; color: #F2EAE0; border: 1px solid rgba(242,234,224,.14); border-radius: 4px; padding: 8px; font-size: 16px; box-sizing: border-box; }
+		.cs-go { background: #C4302B; color: #fff; border: none; border-radius: 4px; padding: 10px 20px; font-size: 15px; cursor: pointer; height: 40px; }
+		.cs-go:hover { background: #a9251f; }
+		.cs-note { grid-column: 1/-1; font-size: 12px; color: #B7ABA0; }
+		.cs-empty { border: 1px dashed rgba(242,234,224,.14); padding: 20px; text-align: center; color: #B7ABA0; font-size: 14px; }
+		.cs-foot { margin-top: 20px; border-top: 1px solid rgba(242,234,224,.14); padding-top: 10px; font-size: 12px; color: #B7ABA0; }
+		.cs-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+		.cs-card { border: 1px solid rgba(242,234,224,.14); background: #1E1815; border-radius: 6px; padding: 15px; }
+		.cs-card header { font-size: 12px; text-transform: uppercase; color: #C9A227; border-bottom: 1px solid rgba(242,234,224,.14); padding-bottom: 5px; margin-bottom: 10px; }
+		.cs-card table { width: 100%; border-collapse: collapse; font-size: 14px; }
+		.cs-card td { padding: 6px 0; color: #B7ABA0; }
+		.cs-card td:first-child { width: 40%; color: #F2EAE0; }
+		.cs-verdict { border: 1px solid rgba(242,234,224,.14); padding: 20px; margin-bottom: 20px; background: #1E1815; border-radius: 6px; }
+		.cs-que { font-family: "Playfair Display", Georgia, serif; font-size: 22px; color: #C9A227; margin-bottom: 10px; }
+		.cs-grade { display: inline-block; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; padding: 4px 12px; border-radius: 999px; border: 1px solid; margin-bottom: 10px; }
+		.cs-g-thuong { color: #4E8C6E; border-color: rgba(78,140,110,.55); }
+		.cs-g-trung { color: #C9A227; border-color: rgba(201,162,39,.5); }
+		.cs-g-ha { color: #C4302B; border-color: rgba(196,48,43,.55); }
+		.cs-tho { border-left: 2px solid #C9A227; padding-left: 20px; white-space: pre-line; font-size: 16px; line-height: 1.8; color: #F2EAE0; }
+		.cs-thay { background: #20190E; padding: 20px; border-radius: 6px; margin-top: 20px; }
+		.cs-thay h2 { color: #C9A227; font-size: 18px; margin-bottom: 10px; }
+		.cs-thay p { font-size: 15px; color: #F2EAE0; line-height: 1.7; margin-bottom: 10px; }
+		.site-footer-clean { background: #1E1815; color: #F2EAE0; padding: 20px; border-radius: 8px; margin-top: 30px; }
+		.site-footer-clean h3 { color: #C9A227; font-size: 18px; margin-bottom: 10px; }
+		.site-footer-clean a { color: #C9A227; text-decoration: none; }
+		.site-footer-clean a:hover { text-decoration: underline; }
+		table.tra-cuu-goc { width: 100%; border-collapse: collapse; margin-top: 20px; }
+		table.tra-cuu-goc th, table.tra-cuu-goc td { border: 1px solid #ccc; padding: 8px; text-align: center; font-size: 14px; }
+		table.tra-cuu-goc th { background: #523636; color: #fff; }
+		@media(max-width:720px){ .cs-bar { grid-template-columns: 1fr; } .cs-pair { grid-template-columns: 1fr; } }
+	</style>
+</head>
+<body>
+
+	<h1>Cung Sanh Trong Hôn Nhân</h1>
+	<p>Cung sanh, còn gọi là Cung Sinh hay Cung Ký, là cách đối chiếu cung mệnh Bát trạch của hai vợ chồng để xem sự kết hợp giữa hai người thuộc nhóm tốt hay nhóm cần lưu ý. Bản tra cứu này hoàn toàn miễn phí phục vụ cộng đồng [22].</p>
+
+	<div id="cs-app">
+		<div class="cs-masthead">
+			<div class="cs-eyebrow">CÔNG CỤ MIỄN PHÍ</div>
+			<div class="cs-title">Tra cứu Cung Sanh trong hôn nhân</div>
+			<p class="cs-lead">Nhập năm sinh âm lịch của hai người để xem cung phi, mệnh nạp âm và quẻ cung sanh [22].</p>
+		</div>
+
+		<form class="cs-bar" id="cs-form">
+			<div>
+				<label for="cs-nam">Nam — năm sinh âm lịch</label>
+				<input id="cs-nam" type="number" min="1900" max="2100" value="1979">
+			</div>
+			<div>
+				<label for="cs-nu">Nữ — năm sinh âm lịch</label>
+				<input id="cs-nu" type="number" min="1900" max="2100" value="1998">
+			</div>
+			<button class="cs-go" type="submit">Xem quẻ</button>
+			<div class="cs-note">Sinh trước Tết Nguyên đán thì lấy năm âm lịch liền trước [22].</div>
+		</form>
+
+		<div id="cs-out" hidden>
+			<div class="cs-pair" id="cs-pair"></div>
+			<div class="cs-verdict" id="cs-verdict"></div>
+			<div class="cs-block" id="cs-detail"></div>
+			<div class="cs-thay" id="cs-thay"></div>
+		</div>
+
+		<div class="cs-empty" id="cs-empty">Nhập hai năm sinh rồi bấm “Xem quẻ” [22].</div>
+		<div class="cs-foot">Cung sanh (cung sinh) là một nét văn hoá cổ truyền để tham khảo không phải để ấn định [22].</div>
+	</div>
+
+	<script>
+	(function(){
+	// KHO DỮ LIỆU THƠ 64 QUẺ GỐC ĐÃ ĐƯỢC LỌC SẠCH THƯƠNG HIỆU CŨ [22]
+	const THO = {
+	 "Chấn|Chấn": `Chấn, Chấn kết duyên Phục Vị tốt vừa thôi\nLập nghiệp gian nan mới đạt chí\nPhước lành cũng được hưởng về sau.\nTrong tình duyên nợ, tiền hậu như nhứt\nCó số no ấm cả đời\nGia đạo yên vui trên hòa dưới thuận.`,
+	 "Chấn|Càn": `Chấn, Càn Lục Sát họa đeo dày\nChồng vợ bất hòa lắm đắng cay\nNếu được giàu sang thì cách trở\nGần nhau lệ đổ suốt canh dài.\nGia đạo lục đục bất hòa\nĐời sống cơ hàn, con cái lận đận.`,
+	 "Chấn|Cấn": `Chấn, Cấn kết duyên Ngũ Quỷ sinh\nCửa nhà sự nghiệp lập sao thành\nCháu con bịnh tật, tài hao tán\nChồng vợ khổ sầu lệ trắng canh.\nGia đình xáo trộn điêu tàn lửa hương\nUyên ương bỏ gánh cang thường từ đây.`,
+	 "Chấn|Khôn": `Chấn, Khôn Họa Hại khó hòa duyên\nMộc, thổ tương hiềm lắm lụy phiền\nNhà cửa, ruộng vườn có cũng hết\nCháu con đau ốm khổ liên miên.\nTrong ngoài thất thế đảo điên\nTai ương bịnh tật dính liền bên lưng.`,
+	 "Chấn|Khảm": `Chấn, Khảm Thiên Y ấy lộc trời\nCậy nhờ nước tưới lá hoa tươi\nCháu con thông tuệ đề khoa bảng\nLộc hưởng vinh sang phúc để đời.\nTrăm tuổi phu thê tình nghĩa nồng thắm\nRể thảo dâu hiền cả nhà êm ấm.`,
+	 "Chấn|Ly": `Chấn, Ly Sinh Khí được giao hòa\nPhát đạt giàu sang rạng thất gia\nCon cháu lâu bền danh vọng lớn\nTương lai thơm nức tiếng tăm nhà.\nMạng phú quý, cháu con hùng\nLớn lên số ắt phước hồng quyền uy.`,
+	 "Chấn|Tốn": `Chấn, Tốn Diên Niên được giao hòa\nDầu cho cách trở rồi sau hợp\nCon cháu diên niên phước thọ trường.\nTrung niên hậu vận sang giàu hưởng trọn\nCuộc tình bền vững mặn nồng.`,
+	 "Chấn|Đoài": `Chấn, Đoài Tuyệt Mệnh khó gần nhau\nMộc khắc kim thường biết nói sao\nNếu đã lỡ mà đeo khổ lụy\nCháu con hoạn nạn lại xa nhau.\nDuyên nợ trước sau thiệt thòi lứa đôi\nVợ chồng không ở trọn đời.`,
+	 "Càn|Càn": `Lưỡng Càn Phục Vị tốt vừa thôi\nSợ lức tuổi già chẳng đủ đôi\nCon cháu trung bình không bao phát\nRuộng vườn nhà cửa lập hai nơi.\nBạch thủ thanh gia, trung niên gầy dựng cửa nhà yên vui.`,
+	 "Càn|Cấn": `Càn, Cấn Thiên Y đượm hương nồng\nGiàu sang nhờ cậy ở tay bà\nChứa nhiều phúc đức cho con cháu\nSung sướng cùng nhau đến tuổi già.\nMay mắn cuộc đời vượng tài phấn chấn.`,
+	 "Càn|Khôn": `Càn, Khôn Diên Niên hợp một nhà\nNhiều tài, nhiều lộc, nhiều con cái\nPhát đạt giàu sang thẳng đến già.\nĐược số phước đức trường tồn ấm no\nTài lộc như nước tràn vô.`,
+	 "Càn|Đoài": `Càn, Đoài Sinh Khí vẹn vẹn toàn\nVàng thoi, vàng khối lại sinh vàng\nPhúc lộc diên niên tuổi thọ khang\nCon cháu nên danh hưng tổ nghiệp.\nÊm ấm gia đạo trong ngoài yên vui.`,
+	 "Khảm|Khảm": `Lưỡng Khảm Phục Vị tạm nhàn an\nCưới nhau sớm phải chịu trùng tang\nNếu bằng biệt lập xa cha mẹ\nCháu con rồi sau cũng có đàn.\nBình thường cuộc sống nợ duyên êm ấm.`,
+	 "Khảm|Ly": `Khảm, Ly Diên Niên thủy hỏa giao hỏa\nPhước đức dẫu nhiều cũng cách phân\nNếu số xa quê mà gặp gỡ\nCũng cho là tạm sống thanh bần.`,
+	 "Cấn|Cấn": `Lưỡng Cấn Phục Vị thật gian nan\nMột khúc tương tư mấy nhịp đàn\nNghèo khổ gần nhau, giàu cách trở\nXa quê hòa hiệp số thanh nhàn.`,
+	 "Tốn|Tốn": `Lưỡng Tốn Phục Vị hóa hại nhau\nGần nhau thì chịu số thương đau\nCửa nhà thiếu hụt con đau bịnh\nGần khó xa ra mới được giàu.`,
+	 "Ly|Ly": `Lưỡng Ly Phục Vị chưa hơp mòi suy\nHai hỏa gặp nhau tắt có khi\nNghèo khó bên nhau, giàu tử biệt\nVợ chồng đôi ngả, con phân ly.`,
+	 "Khôn|Khôn": `Lưỡng Khôn Phục Vị khổ dập dồn\nTai nạn liên miên, khổ dập dồn\nCông danh sự nghiệp mòn con mắt\nKẻ ở, người đi cách nước non.`,
+	 "Đoài|Đoài": `Lưỡng Đoài Phục Vị sương sắp rơi\nGặp nhau rồi cũng cách đôi nơi\nNếu không khăn trắng trùm lên tóc\nThì khổ triền miên cả cuộc đời.` [22]
+	};
+	// BỘ DỮ LIỆU ĐỊNH NGHĨA Ý NGHĨA CÁC CUNG VÀ BẬC QUẺ CÁT HUNG
+	const QUE = {
+	  'Sinh Khí':  {bac:'Thượng',y:'Bậc thượng cát. Người xưa xem là quẻ đẹp nhất — vợ chồng nâng đỡ nhau, công việc hanh thông, con cái thuận hoà.'},
+	  'Thiên Y':   {bac:'Thượng',y:'Bậc thượng cát. Chủ về sức khoẻ và quý nhân, gia đạo êm ấm, hay được người ngoài giúp đỡ.'},
+	  'Diên Niên': {bac:'Thượng',y:'Bậc thượng cát. Chủ về sự bền lâu, tình nghĩa dài lâu, hai người dễ đồng thuận trong việc lớn.'},
+	  'Phục Vị':   {bac:'Trung', y:'Bậc trung bình. Hai người cùng nhóm cung, tính khí tương tự nhau — hoà hợp nhưng ít bổ khuyết cho nhau.'},
+	  'Họa Hại':   {bac:'Hạ',    y:'Bậc hạ, hung nhẹ. Sách cổ nói dễ có lời qua tiếng lại, vướng mắc chuyện vặt trong nhà.'},
+	  'Lục Sát':   {bac:'Hạ',    y:'Bậc hạ, hung nhẹ. Sách cổ nói dễ hao tổn, hay giận dỗi vì chuyện nhỏ.'},
+	  'Ngũ Quỷ':   {bac:'Hạ',    y:'Bậc hạ, hung. Sách cổ nói dễ bất đồng, có người ngoài xen vào chuyện gia đình.'},
+	  'Tuyệt Mệnh':{bac:'Hạ',    y:'Bậc hạ, hung nặng theo cách nói của người xưa. Xin giữ tâm vững vàng, khéo léo dung hoà cư xử.'}
+	};
+
+	const CAN = ['Giáp','Ất','Bính','Đinh','Mậu','Kỷ','Canh','Tân','Nhâm','Quý'];
+	const CHI = ['Tý','Sửu','Dần','Mão','Thìn','Tỵ','Ngọ','Mùi','Thân','Dậu','Tuất','Hợi'];
+	const NAP_AM = [
+	 ['Hải Trung Kim','Kim'],['Lư Trung Hỏa','Hỏa'],['Đại Lâm Mộc','Mộc'],['Lộ Bàng Thổ','Thổ'],
+	 ['Kiếm Phong Kim','Kim'],['Sơn Đầu Hỏa','Hỏa'],['Giản Hạ Thủy','Thủy'],['Thành Đầu Thổ','Thổ'],
+	 ['Bạch Lạp Kim','Kim'],['Dương Liễu Mộc','Mộc'],['Tuyền Trung Thủy','Thủy'],['Ốc Thượng Thổ','Thổ'],
+	 ['Tích Lịch Hỏa','Hỏa'],['Tùng Bách Mộc','Mộc'],['Trường Lưu Thủy','Thủy'],['Sa Trung Kim','Kim'],
+	 ['Sơn Hạ Hỏa','Hỏa'],['Bình Địa Mộc','Mộc'],['Bích Thượng Thổ','Thổ'],['Kim Bạch Kim','Kim'],
+	 ['Phú Đăng Hỏa','Hỏa'],['Thiên Hà Thủy','Thủy'],['Đại Trạch Thổ','Thổ'],['Thoa Xuyến Kim','Kim'],
+	 ['Tang Đố Mộc','Mộc'],['Đại Khê Thủy','Thủy'],['Sa Trung Thổ','Thổ'],['Thiên Thượng Hỏa','Hỏa'],
+	 ['Thạch Lựu Mộc','Mộc'],['Đại Hải Thủy','Thủy']
+	];
+	const CUNG_INFO = {
+	  1:{ten:'Khảm',hanh:'Thủy',nhom:'Đông'}, 2:{ten:'Khôn',hanh:'Thổ',nhom:'Tây'},
+	  3:{ten:'Chấn',hanh:'Mộc',nhom:'Đông'}, 4:{ten:'Tốn',hanh:'Mộc',nhom:'Đông'},
+	  6:{ten:'Càn',hanh:'Kim',nhom:'Tây'},    7:{ten:'Đoài',hanh:'Kim',nhom:'Tây'},
+	  8:{ten:'Cấn',hanh:'Thổ',nhom:'Tây'},    9:{ten:'Ly',hanh:'Hỏa',nhom:'Đông'}
+	};
+	const BT_PAIR = {
+	  'Khảm|Tốn':'Sinh Khí','Khảm|Chấn':'Thiên Y','Khảm|Ly':'Diên Niên','Khảm|Khảm':'Phục Vị',
+	  'Khảm|Khôn':'Tuyệt Mệnh','Khảm|Cấn':'Ngũ Quỷ','Khảm|Càn':'Lục Sát','Khảm|Đoài':'Họa Hại',
+	  'Ly|Chấn':'Sinh Khí','Ly|Tốn':'Thiên Y','Ly|Ly':'Phục Vị','Ly|Càn':'Tuyệt Mệnh',
+	  'Ly|Đoài':'Ngũ Quỷ','Ly|Khôn':'Lục Sát','Ly|Cấn':'Họa Hại',
+	  'Chấn|Tốn':'Diên Niên','Chấn|Chấn':'Phục Vị','Chấn|Đoài':'Tuyệt Mệnh','Chấn|Càn':'Ngũ Quỷ',
+	  'Chấn|Cấn':'Lục Sát','Chấn|Khôn':'Họa Hại',
+	  'Tốn|Tốn':'Phục Vị','Tốn|Cấn':'Tuyệt Mệnh','Tốn|Khôn':'Ngũ Quỷ','Tốn|Đoài':'Lục Sát','Tốn|Càn':'Họa Hại',
+	  'Càn|Đoài':'Sinh Khí','Càn|Cấn':'Thiên Y','Càn|Khôn':'Diên Niên','Càn|Càn':'Phục Vị',
+	  'Khôn|Cấn':'Sinh Khí','Khôn|Đoài':'Thiên Y','Khôn|Khôn':'Phục Vị',
+	  'Cấn|Đoài':'Diên Niên','Cấn|Cấn':'Phục Vị','Đoài|Đoài':'Phục Vị'
+	};
+	const GRADE_CLASS = {'Thượng':'cs-g-thuong','Trung':'cs-g-trung','Hạ':'cs-g-ha'};
+
+	function canChi(y){
+	  const i = ((y-4)%60+60)%60;
+	  return {can:CAN[i%10], chi:CHI[i%12], napAm:NAP_AM[Math.floor(i/2)][0], menh:NAP_AM[Math.floor(i/2)][1]};
+	}
+	function cungPhi(year, gender){
+	  const s = String(year).split('').reduce((a,b)=>a+ +b,0);
+	  const r = s>9 ? String(s).split('').reduce((a,b)=>a+ +b,0) : s;
+	  let c = gender==='nam' ? (year>=2000?10:11) - r : r + (year>=2000?5:4);
+	  c = ((c-1)%9+9)%9+1;
+	  if(c===5) c = gender==='nam' ? 2 : 8;
+	  return {so:c, ...CUNG_INFO[c]};
+	}
+	const btPair = (a,b) => BT_PAIR[a+'|'+b] || BT_PAIR[b+'|'+a] || '—';
+
+	function cardHTML(cls, tieuDe, year, g){
+	  const cc = canChi(year), cp = cungPhi(year, g);
+	  const hopTrach = cp.nhom === 'Đông' ? 'Khảm · Chấn · Tốn · Ly' : 'Càn · Khôn · Cấn · Đoài';
+	  const huongHop = {
+		'Khảm':'Đông Nam, Đông, Nam, Bắc', 'Chấn':'Nam, Bắc, Đông Nam, Đông',
+		'Tốn':'Bắc, Nam, Đông, Đông Nam',  'Ly':'Đông, Đông Nam, Bắc, Nam',
+		'Càn':'Tây, Đông Bắc, Tây Nam, Tây Bắc', 'Khôn':'Đông Bắc, Tây, Tây Bắc, Tây Nam',
+		'Cấn':'Tây Nam, Tây Bắc, Tây, Đông Bắc', 'Đoài':'Tây Bắc, Tây Nam, Đông Bắc, Tây'
+	  }[cp.ten];
+
+	  return `<div class="cs-card ${cls}"><header>${tieuDe} MỆNH</header><table>
+	    <tr><td>Năm âm lịch</td><td><b>${year}</b></td></tr>
+	    <tr><td>Can Chi</td><td>${cc.can} ${cc.chi}</td></tr>
+	    <tr><td>Cung phi</td><td><b>${cp.ten} (${cc.menh})</b></td></tr>
+	    <tr><td>Nhóm trạch</td><td>${cp.nhom} tứ mệnh</td></tr>
+	    <tr><td>Hướng hợp</td><td>${huongHop}</td></tr>
+	  </table></div>`;
+	}
+
+	document.getElementById('cs-form').addEventListener('submit', function(e){
+	    e.preventDefault();
+	    const yN = +document.getElementById('cs-nam').value, yU = +document.getElementById('cs-nu').value;
+	    if(!(yN>1899 && yU>1899)) return;
+
+	    const cN = cungPhi(yN,'nam'), cU = cungPhi(yU,'nu');
+	    const key1 = cN.ten+'|'+cU.ten, key2 = cU.ten+'|'+cN.ten;
+	    const tho = THO[key1] || THO[key2];
+	    const que = btPair(cN.ten, cU.ten);
+	    const info = QUE[que] || {bac:'Trung', y:'Quẻ bình hoà, thuận theo tự nhiên.'};
+
+	    document.getElementById('cs-pair').innerHTML = cardHTML('cs-nam','NAM', yN, 'nam') + cardHTML('cs-nu','NỮ', yU, 'nu');
+
+	    document.getElementById('cs-verdict').innerHTML = `
+	      <span class="cs-grade ${GRADE_CLASS[info.bac]}">Bậc ${info.bac}</span>
+	      <div class="cs-que">Chồng cung ${cN.ten} kết hôn Vợ cung ${cU.ten}: <b>${que}</b></div>
+	      <p class="cs-y">${info.y}</p>`;
+
+	    document.getElementById('cs-detail').innerHTML = `<h2>Lời luận giải cổ truyền</h2>` + (tho
+	      ? `<div class="cs-tho">${tho}</div>`
+	      : `<div class="cs-tho">Quẻ này hướng tới sự đồng lòng, hai bạn nhường nhịn nhau gia đạo sẽ an vui.</div>`);
+
+	    document.getElementById('cs-thay').innerHTML =
+	      `<h2>Lời nhắn gửi ý nghĩa</h2>
+	       <p>Bảng tra cung sanh hôn nhân nhằm mục đích chiêm nghiệm văn hoá cổ truyền, không phải là án định tuyệt đối cho cuộc đời. Phúc đức vận mệnh nằm ở hành vi thực tế của mỗi người.</p>
+	       <p>Dù kết quả quẻ ra sao, chỉ cần hai vợ chồng luôn giữ tâm vị tha, bao dung thấu hiểu, đối đãi với nhau bằng sự chân thành, ba nghiệp thân-khẩu-ý thanh tịnh thì phước báu tự khắc hiện tiền, chuyển hoạ thành phúc.</p>
+	       <p class="cs-sig" style="color:#C9A227; font-style:italic;">— Trích lời khuyên nhân quả</p>`;
+
+	    document.getElementById('cs-out').hidden = false;
+	    document.getElementById('cs-empty').hidden = true;
+	});
+	})();
+	</script>
+
+	<h2>Bảng đối chiếu Ma trận Bát Trạch (Tham khảo nhanh)</h2>
+	<table class="tra-cuu-goc">
+		<thead>
+			<tr><th>Cung Nam \\ Nữ</th><th>Càn</th><th>Khảm</th><th>Cấn</th><th>Chấn</th><th>Tốn</th><th>Ly</th><th>Khôn</th><th>Đoài</th></tr>
+		</thead>
+		<tbody>
+			<tr><th>Càn</th><td>Phục Vị</td><td>Lục Sát</td><td>Thiên Y</td><td>Ngũ Quỷ</td><td>Họa Hại</td><td>Tuyệt Mệnh</td><td>Diên Niên</td><td>Sinh Khí</td></tr>
+			<tr><th>Khảm</th><td>Lục Sát</td><td>Phục Vị</td><td>Ngũ Quỷ</td><td>Thiên Y</td><td>Sinh Khí</td><td>Diên Niên</td><td>Tuyệt Mệnh</td><td>Họa Hại</td></tr>
+			<tr><th>Cấn</th><td>Thiên Y</td><td>Ngũ Quỷ</td><td>Phục Vị</td><td>Lục Sát</td><td>Tuyệt Mệnh</td><td>Họa Hại</td><td>Sinh Khí</td><td>Diên Niên</td></tr>
+			<tr><th>Chấn</th><td>Lục Sát</td><td>Thiên Y</td><td>Ngũ Quỷ</td><td>Phục Vị</td><td>Diên Niên</td><td>Sinh Khí</td><td>Họa Hại</td><td>Tuyệt Mệnh</td></tr>
+			<tr><th>Tốn</th><td>Họa Hại</td><td>Sinh Khí</td><td>Tuyệt Mệnh</td><td>Diên Niên</td><td>Phục Vị</td><td>Thiên Y</td><td>Ngũ Quỷ</td><td>Lục Sát</td></tr>
+			<tr><th>Ly</th><td>Tuyệt Mệnh</td><td>Diên Niên</td><td>Họa Hại</td><td>Sinh Khí</td><td>Thiên Y</td><td>Phục Vị</td><td>Lục Sát</td><td>Ngũ Quỷ</td></tr>
+			<tr><th>Khôn</th><td>Diên Niên</td><td>Tuyệt Mệnh</td><td>Sinh Khí</td><td>Họa Hại</td><td>Ngũ Quỷ</td><td>Lục Sát</td><td>Phục Vị</td><td>Thiên Y</td></tr>
+			<tr><th>Đoài</th><td>Sinh Khí</td><td>Họa Hại</td><td>Diên Niên</td><td>Tuyệt Mệnh</td><td>Lục Sát</td><td>Ngũ Quỷ</td><td>Thiên Y</td><td>Phục Vị</td></tr>
+		</tbody>
+	</table>
+
+	<!-- CHÂN TRANG MỚI - NƠI CHÚ GẮN HỆ SINH THÁI CỦA CHÚ -->
+	<div class="site-footer-clean">
+		<h3>HỆ SINH THÁI TRA CỨU TỬ VI MIỄN PHÍ</h3>
+		<p>Trang web tra cứu được xây dựng bởi kỹ thuật tự học công nghệ, hoàn toàn miễn phí cho mọi người, không có quảng cáo thương mại [22].</p>
+		<p><b>Theo dõi và ủng hộ các kênh của tôi [22]:</b></p>
+		<ul>
+			<li>YouTube: <a href="ĐIỀN_LINK_YOUTUBE_CỦA_CHÚ_VÀO_ĐÂY" target="_blank">Kênh YouTube của tôi</a></li>
+			<li>TikTok: <a href="ĐIỀN_LINK_TIKTOK_CỦA_CHÚ_VÀO_ĐÂY" target="_blank">Kênh TikTok của tôi</a></li>
+			<li>Facebook: <a href="ĐIỀN_LINK_FACEBOOK_CỦA_CHÚ_VÀO_ĐÂY" target="_blank">Trang Facebook của tôi</a></li>
+		</ul>
+		<p style="font-size: 12px; color: #B7ABA0; margin-top: 15px;">© 2026 Hệ sinh thái Tử vi Tự học Công nghệ - Phục vụ cộng đồng gieo duyên lành [22].</p>
+	</div>
+
+</body>
+</html>
