@@ -2,1748 +2,1895 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Căn Duyên Tiền Định</title>
-<meta name="description" content="Bản điện tử của tài liệu Căn Duyên Tiền Định">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Căn Duyên Tiền Định — Sách điện tử</title>
+<meta name="theme-color" content="#15110d">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
 :root {
-  --bg:#111318; --panel:#191c23; --text:#f4f4f5; --muted:#a5a8b1;
-  --accent:#d7b36a; --line:#2b303a;
+  --ink:#2c2118; --paper:#f5efe3; --paper2:#ebe1cf; --gold:#b68b3d;
+  --dark:#15110d; --dark2:#211a13; --muted:#9e907e; --line:rgba(255,255,255,.11);
+  --shadow:0 24px 70px rgba(0,0,0,.42);
 }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
-body { margin:0; background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; }
-header {
-  position:sticky; top:0; z-index:20; background:rgba(17,19,24,.94);
-  backdrop-filter:blur(12px); border-bottom:1px solid var(--line);
+body {
+  margin:0; color:#f7f1e8; background:
+  radial-gradient(circle at 50% -20%, #4b3925 0, #211910 32%, #110e0b 70%);
+  font-family:'Be Vietnam Pro',system-ui,sans-serif;
 }
-.bar { max-width:1200px; margin:auto; min-height:64px; display:flex; align-items:center; gap:12px; padding:10px 16px; }
-.title { font-weight:700; letter-spacing:.2px; flex:1; }
-.controls { display:flex; gap:8px; align-items:center; }
-button, input { font:inherit; }
-button {
-  border:1px solid var(--line); background:var(--panel); color:var(--text);
-  border-radius:10px; padding:9px 12px; cursor:pointer;
+button,input { font:inherit; }
+button { cursor:pointer; }
+.topbar {
+  position:fixed; inset:0 0 auto 0; height:72px; z-index:100;
+  background:rgba(16,12,9,.86); backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--line);
 }
-button:hover { border-color:#4b5260; }
-input {
-  width:85px; background:var(--panel); color:var(--text); border:1px solid var(--line);
-  border-radius:10px; padding:9px 10px; text-align:center;
+.topbar-inner { height:100%; max-width:1500px; margin:auto; display:flex; align-items:center; gap:16px; padding:0 20px; }
+.brand { display:flex; align-items:center; gap:12px; min-width:0; }
+.seal {
+  width:38px;height:38px;border:1px solid rgba(214,177,100,.7);border-radius:50%;
+  display:grid;place-items:center;color:#d6b164;font-family:serif;font-size:18px;
 }
-.layout { max-width:1400px; margin:auto; display:grid; grid-template-columns:220px 1fr; gap:18px; padding:18px; }
-aside {
-  position:sticky; top:82px; height:calc(100vh - 100px); overflow:auto;
-  background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:10px;
+.brand-text { min-width:0; }
+.brand-title { font-family:'Playfair Display',serif; font-size:17px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.brand-sub { font-size:10px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
+.spacer { flex:1; }
+.icon-btn {
+  width:42px;height:42px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.045);color:#f7f1e8;
 }
-.thumb { width:100%; padding:5px; margin-bottom:8px; position:relative; }
-.thumb img { width:100%; display:block; border-radius:6px; }
-.thumb span {
-  position:absolute; right:8px; bottom:8px; background:rgba(0,0,0,.7);
-  border-radius:6px; padding:2px 6px; font-size:11px;
+.icon-btn:hover { background:rgba(255,255,255,.09); border-color:rgba(214,177,100,.45); }
+.page-jump { display:flex; align-items:center; gap:7px; }
+.page-jump input {
+  width:58px;height:40px;border:1px solid var(--line);border-radius:10px;
+  background:rgba(255,255,255,.045);color:#fff;text-align:center;outline:none;
 }
-main { min-width:0; }
+.page-count { color:var(--muted);font-size:13px; }
+
+.shell { padding-top:92px; min-height:100vh; }
+.hero {
+  max-width:900px; margin:0 auto 35px; padding:26px 24px 18px; text-align:center;
+}
+.ornament { color:#d6b164; font-size:18px; letter-spacing:8px; margin-bottom:8px; }
+.hero h1 {
+  margin:0; font-family:'Playfair Display',serif; font-weight:600;
+  font-size:clamp(32px,5vw,58px); line-height:1.08;
+}
+.hero p { margin:12px auto 0; color:#b9ac9c; max-width:650px; font-size:13px; line-height:1.7; }
+.progress-wrap { max-width:760px; margin:25px auto 0; }
+.progress-track { height:3px;background:rgba(255,255,255,.12);border-radius:10px;overflow:hidden; }
+.progress { height:100%;width:0;background:linear-gradient(90deg,#8c6a2f,#e0c27e); }
+.progress-meta { display:flex;justify-content:space-between;color:#8f8375;font-size:10px;margin-top:8px;letter-spacing:.7px; }
+
+.reader {
+  max-width:1080px; margin:0 auto; padding:0 20px 90px;
+}
 .page {
-  max-width:1000px; margin:0 auto 28px; position:relative;
-  scroll-margin-top:82px;
+  position:relative; margin:0 auto 44px; max-width:980px;
+  scroll-margin-top:90px;
+}
+.page::before {
+  content:""; position:absolute; inset:16px -2px -16px 2px; background:#2b2117;
+  border-radius:2px; z-index:-1; box-shadow:var(--shadow);
 }
 .page img {
   width:100%; height:auto; display:block; background:#fff;
-  box-shadow:0 8px 30px rgba(0,0,0,.35);
+  border-radius:2px; box-shadow:0 12px 35px rgba(0,0,0,.34);
 }
-.page-label {
-  display:inline-block; margin:0 0 8px; color:var(--muted); font-size:13px;
+.page-no {
+  position:absolute; top:-28px; right:0; font-size:10px; letter-spacing:2px;
+  color:#8e806e;
 }
-.top {
-  position:fixed; right:20px; bottom:20px; z-index:30; border-radius:50%;
-  width:46px; height:46px; padding:0; font-size:20px;
+
+.drawer {
+  position:fixed; inset:0 auto 0 0; width:min(330px,88vw); z-index:200;
+  background:rgba(22,17,12,.98); border-right:1px solid var(--line);
+  transform:translateX(-105%); transition:transform .28s ease;
+  box-shadow:30px 0 80px rgba(0,0,0,.5); padding-top:72px;
 }
-@media (max-width:800px) {
-  .layout { grid-template-columns:1fr; padding:10px; }
-  aside { display:none; }
-  .title { font-size:14px; }
-  .controls button { padding:8px 9px; }
-  input { width:65px; }
+.drawer.open { transform:translateX(0); }
+.drawer-head { padding:16px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center; }
+.drawer-head strong { font-family:'Playfair Display',serif; }
+.thumbs { height:calc(100vh - 130px);overflow:auto;padding:12px; }
+.thumb {
+  width:100%; border:1px solid transparent; background:transparent; padding:5px;
+  margin-bottom:10px; border-radius:10px; position:relative;
+}
+.thumb:hover,.thumb.active { border-color:rgba(214,177,100,.7);background:rgba(214,177,100,.07); }
+.thumb img { width:100%;display:block;border-radius:5px; }
+.thumb span { position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.72);padding:3px 7px;border-radius:6px;font-size:10px; }
+
+.scrim {
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:150;
+}
+.scrim.show { display:block; }
+
+.settings {
+  position:fixed; right:20px; top:82px; width:260px; z-index:120;
+  padding:16px; background:rgba(31,24,17,.98); border:1px solid var(--line);
+  border-radius:14px; box-shadow:0 20px 60px rgba(0,0,0,.5); display:none;
+}
+.settings.open { display:block; }
+.setting-row { display:flex;justify-content:space-between;align-items:center;gap:15px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px;color:#cfc4b5; }
+.range { width:115px; }
+select { background:#211a13;color:#fff;border:1px solid var(--line);border-radius:7px;padding:5px; }
+
+.bottom {
+  position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:110;
+  display:flex;align-items:center;gap:5px;padding:6px;border:1px solid var(--line);
+  border-radius:16px;background:rgba(20,15,11,.88);backdrop-filter:blur(16px);
+  box-shadow:0 12px 40px rgba(0,0,0,.38);
+}
+.bottom button { width:40px;height:38px;border:0;background:transparent;color:#eee;border-radius:10px; }
+.bottom button:hover { background:rgba(255,255,255,.08); }
+.bottom .center { color:#a99d8d;font-size:11px;min-width:75px;text-align:center; }
+
+@media (max-width:700px) {
+  .topbar { height:62px; }
+  .topbar-inner { padding:0 10px; gap:8px; }
+  .brand-title { font-size:14px; }
+  .brand-sub { display:none; }
+  .seal { width:34px;height:34px; }
+  .page-jump { display:none; }
+  .shell { padding-top:74px; }
+  .hero { padding:18px 18px 8px; }
+  .reader { padding:0 8px 75px; }
+  .page { margin-bottom:28px; }
+  .page::before { inset:8px -1px -8px 1px; }
+  .settings { right:10px;top:70px;width:250px; }
 }
 </style>
 </head>
 <body>
-<header>
-  <div class="bar">
-    <div class="title">Căn Duyên Tiền Định · 204 trang</div>
-    <div class="controls">
-      <button id="prev">←</button>
-      <input id="pageInput" type="number" min="1" max="204" value="1" aria-label="Số trang">
-      <button id="go">Đi</button>
-      <button id="next">→</button>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <button class="icon-btn" id="menu" aria-label="Mở mục lục">☰</button>
+    <div class="brand">
+      <div class="seal">✦</div>
+      <div class="brand-text">
+        <div class="brand-title">Căn Duyên Tiền Định</div>
+        <div class="brand-sub">Ấn bản điện tử</div>
+      </div>
     </div>
+    <div class="spacer"></div>
+    <div class="page-jump">
+      <input id="jump" type="number" min="1" max="204" value="1" aria-label="Số trang">
+      <span class="page-count">/ 204</span>
+    </div>
+    <button class="icon-btn" id="settingsBtn" aria-label="Cài đặt">⚙</button>
   </div>
 </header>
 
-<div class="layout">
-  <aside aria-label="Danh sách trang">
-    <button class="thumb" data-page="1" aria-label="Đi tới trang 1">
-      <img loading="lazy" src="pages/page-001.jpg" alt="">
+<div class="drawer" id="drawer">
+  <div class="drawer-head"><strong>Mục lục trang</strong><span class="spacer"></span><button class="icon-btn" id="closeMenu">×</button></div>
+  <div class="thumbs"><button class="thumb" data-page="1" title="Trang 1">
+      <img loading="lazy" src="pages/page-001.jpg" alt="Trang 1">
       <span>1</span>
     </button>
-<button class="thumb" data-page="2" aria-label="Đi tới trang 2">
-      <img loading="lazy" src="pages/page-002.jpg" alt="">
+<button class="thumb" data-page="2" title="Trang 2">
+      <img loading="lazy" src="pages/page-002.jpg" alt="Trang 2">
       <span>2</span>
     </button>
-<button class="thumb" data-page="3" aria-label="Đi tới trang 3">
-      <img loading="lazy" src="pages/page-003.jpg" alt="">
+<button class="thumb" data-page="3" title="Trang 3">
+      <img loading="lazy" src="pages/page-003.jpg" alt="Trang 3">
       <span>3</span>
     </button>
-<button class="thumb" data-page="4" aria-label="Đi tới trang 4">
-      <img loading="lazy" src="pages/page-004.jpg" alt="">
+<button class="thumb" data-page="4" title="Trang 4">
+      <img loading="lazy" src="pages/page-004.jpg" alt="Trang 4">
       <span>4</span>
     </button>
-<button class="thumb" data-page="5" aria-label="Đi tới trang 5">
-      <img loading="lazy" src="pages/page-005.jpg" alt="">
+<button class="thumb" data-page="5" title="Trang 5">
+      <img loading="lazy" src="pages/page-005.jpg" alt="Trang 5">
       <span>5</span>
     </button>
-<button class="thumb" data-page="6" aria-label="Đi tới trang 6">
-      <img loading="lazy" src="pages/page-006.jpg" alt="">
+<button class="thumb" data-page="6" title="Trang 6">
+      <img loading="lazy" src="pages/page-006.jpg" alt="Trang 6">
       <span>6</span>
     </button>
-<button class="thumb" data-page="7" aria-label="Đi tới trang 7">
-      <img loading="lazy" src="pages/page-007.jpg" alt="">
+<button class="thumb" data-page="7" title="Trang 7">
+      <img loading="lazy" src="pages/page-007.jpg" alt="Trang 7">
       <span>7</span>
     </button>
-<button class="thumb" data-page="8" aria-label="Đi tới trang 8">
-      <img loading="lazy" src="pages/page-008.jpg" alt="">
+<button class="thumb" data-page="8" title="Trang 8">
+      <img loading="lazy" src="pages/page-008.jpg" alt="Trang 8">
       <span>8</span>
     </button>
-<button class="thumb" data-page="9" aria-label="Đi tới trang 9">
-      <img loading="lazy" src="pages/page-009.jpg" alt="">
+<button class="thumb" data-page="9" title="Trang 9">
+      <img loading="lazy" src="pages/page-009.jpg" alt="Trang 9">
       <span>9</span>
     </button>
-<button class="thumb" data-page="10" aria-label="Đi tới trang 10">
-      <img loading="lazy" src="pages/page-010.jpg" alt="">
+<button class="thumb" data-page="10" title="Trang 10">
+      <img loading="lazy" src="pages/page-010.jpg" alt="Trang 10">
       <span>10</span>
     </button>
-<button class="thumb" data-page="11" aria-label="Đi tới trang 11">
-      <img loading="lazy" src="pages/page-011.jpg" alt="">
+<button class="thumb" data-page="11" title="Trang 11">
+      <img loading="lazy" src="pages/page-011.jpg" alt="Trang 11">
       <span>11</span>
     </button>
-<button class="thumb" data-page="12" aria-label="Đi tới trang 12">
-      <img loading="lazy" src="pages/page-012.jpg" alt="">
+<button class="thumb" data-page="12" title="Trang 12">
+      <img loading="lazy" src="pages/page-012.jpg" alt="Trang 12">
       <span>12</span>
     </button>
-<button class="thumb" data-page="13" aria-label="Đi tới trang 13">
-      <img loading="lazy" src="pages/page-013.jpg" alt="">
+<button class="thumb" data-page="13" title="Trang 13">
+      <img loading="lazy" src="pages/page-013.jpg" alt="Trang 13">
       <span>13</span>
     </button>
-<button class="thumb" data-page="14" aria-label="Đi tới trang 14">
-      <img loading="lazy" src="pages/page-014.jpg" alt="">
+<button class="thumb" data-page="14" title="Trang 14">
+      <img loading="lazy" src="pages/page-014.jpg" alt="Trang 14">
       <span>14</span>
     </button>
-<button class="thumb" data-page="15" aria-label="Đi tới trang 15">
-      <img loading="lazy" src="pages/page-015.jpg" alt="">
+<button class="thumb" data-page="15" title="Trang 15">
+      <img loading="lazy" src="pages/page-015.jpg" alt="Trang 15">
       <span>15</span>
     </button>
-<button class="thumb" data-page="16" aria-label="Đi tới trang 16">
-      <img loading="lazy" src="pages/page-016.jpg" alt="">
+<button class="thumb" data-page="16" title="Trang 16">
+      <img loading="lazy" src="pages/page-016.jpg" alt="Trang 16">
       <span>16</span>
     </button>
-<button class="thumb" data-page="17" aria-label="Đi tới trang 17">
-      <img loading="lazy" src="pages/page-017.jpg" alt="">
+<button class="thumb" data-page="17" title="Trang 17">
+      <img loading="lazy" src="pages/page-017.jpg" alt="Trang 17">
       <span>17</span>
     </button>
-<button class="thumb" data-page="18" aria-label="Đi tới trang 18">
-      <img loading="lazy" src="pages/page-018.jpg" alt="">
+<button class="thumb" data-page="18" title="Trang 18">
+      <img loading="lazy" src="pages/page-018.jpg" alt="Trang 18">
       <span>18</span>
     </button>
-<button class="thumb" data-page="19" aria-label="Đi tới trang 19">
-      <img loading="lazy" src="pages/page-019.jpg" alt="">
+<button class="thumb" data-page="19" title="Trang 19">
+      <img loading="lazy" src="pages/page-019.jpg" alt="Trang 19">
       <span>19</span>
     </button>
-<button class="thumb" data-page="20" aria-label="Đi tới trang 20">
-      <img loading="lazy" src="pages/page-020.jpg" alt="">
+<button class="thumb" data-page="20" title="Trang 20">
+      <img loading="lazy" src="pages/page-020.jpg" alt="Trang 20">
       <span>20</span>
     </button>
-<button class="thumb" data-page="21" aria-label="Đi tới trang 21">
-      <img loading="lazy" src="pages/page-021.jpg" alt="">
+<button class="thumb" data-page="21" title="Trang 21">
+      <img loading="lazy" src="pages/page-021.jpg" alt="Trang 21">
       <span>21</span>
     </button>
-<button class="thumb" data-page="22" aria-label="Đi tới trang 22">
-      <img loading="lazy" src="pages/page-022.jpg" alt="">
+<button class="thumb" data-page="22" title="Trang 22">
+      <img loading="lazy" src="pages/page-022.jpg" alt="Trang 22">
       <span>22</span>
     </button>
-<button class="thumb" data-page="23" aria-label="Đi tới trang 23">
-      <img loading="lazy" src="pages/page-023.jpg" alt="">
+<button class="thumb" data-page="23" title="Trang 23">
+      <img loading="lazy" src="pages/page-023.jpg" alt="Trang 23">
       <span>23</span>
     </button>
-<button class="thumb" data-page="24" aria-label="Đi tới trang 24">
-      <img loading="lazy" src="pages/page-024.jpg" alt="">
+<button class="thumb" data-page="24" title="Trang 24">
+      <img loading="lazy" src="pages/page-024.jpg" alt="Trang 24">
       <span>24</span>
     </button>
-<button class="thumb" data-page="25" aria-label="Đi tới trang 25">
-      <img loading="lazy" src="pages/page-025.jpg" alt="">
+<button class="thumb" data-page="25" title="Trang 25">
+      <img loading="lazy" src="pages/page-025.jpg" alt="Trang 25">
       <span>25</span>
     </button>
-<button class="thumb" data-page="26" aria-label="Đi tới trang 26">
-      <img loading="lazy" src="pages/page-026.jpg" alt="">
+<button class="thumb" data-page="26" title="Trang 26">
+      <img loading="lazy" src="pages/page-026.jpg" alt="Trang 26">
       <span>26</span>
     </button>
-<button class="thumb" data-page="27" aria-label="Đi tới trang 27">
-      <img loading="lazy" src="pages/page-027.jpg" alt="">
+<button class="thumb" data-page="27" title="Trang 27">
+      <img loading="lazy" src="pages/page-027.jpg" alt="Trang 27">
       <span>27</span>
     </button>
-<button class="thumb" data-page="28" aria-label="Đi tới trang 28">
-      <img loading="lazy" src="pages/page-028.jpg" alt="">
+<button class="thumb" data-page="28" title="Trang 28">
+      <img loading="lazy" src="pages/page-028.jpg" alt="Trang 28">
       <span>28</span>
     </button>
-<button class="thumb" data-page="29" aria-label="Đi tới trang 29">
-      <img loading="lazy" src="pages/page-029.jpg" alt="">
+<button class="thumb" data-page="29" title="Trang 29">
+      <img loading="lazy" src="pages/page-029.jpg" alt="Trang 29">
       <span>29</span>
     </button>
-<button class="thumb" data-page="30" aria-label="Đi tới trang 30">
-      <img loading="lazy" src="pages/page-030.jpg" alt="">
+<button class="thumb" data-page="30" title="Trang 30">
+      <img loading="lazy" src="pages/page-030.jpg" alt="Trang 30">
       <span>30</span>
     </button>
-<button class="thumb" data-page="31" aria-label="Đi tới trang 31">
-      <img loading="lazy" src="pages/page-031.jpg" alt="">
+<button class="thumb" data-page="31" title="Trang 31">
+      <img loading="lazy" src="pages/page-031.jpg" alt="Trang 31">
       <span>31</span>
     </button>
-<button class="thumb" data-page="32" aria-label="Đi tới trang 32">
-      <img loading="lazy" src="pages/page-032.jpg" alt="">
+<button class="thumb" data-page="32" title="Trang 32">
+      <img loading="lazy" src="pages/page-032.jpg" alt="Trang 32">
       <span>32</span>
     </button>
-<button class="thumb" data-page="33" aria-label="Đi tới trang 33">
-      <img loading="lazy" src="pages/page-033.jpg" alt="">
+<button class="thumb" data-page="33" title="Trang 33">
+      <img loading="lazy" src="pages/page-033.jpg" alt="Trang 33">
       <span>33</span>
     </button>
-<button class="thumb" data-page="34" aria-label="Đi tới trang 34">
-      <img loading="lazy" src="pages/page-034.jpg" alt="">
+<button class="thumb" data-page="34" title="Trang 34">
+      <img loading="lazy" src="pages/page-034.jpg" alt="Trang 34">
       <span>34</span>
     </button>
-<button class="thumb" data-page="35" aria-label="Đi tới trang 35">
-      <img loading="lazy" src="pages/page-035.jpg" alt="">
+<button class="thumb" data-page="35" title="Trang 35">
+      <img loading="lazy" src="pages/page-035.jpg" alt="Trang 35">
       <span>35</span>
     </button>
-<button class="thumb" data-page="36" aria-label="Đi tới trang 36">
-      <img loading="lazy" src="pages/page-036.jpg" alt="">
+<button class="thumb" data-page="36" title="Trang 36">
+      <img loading="lazy" src="pages/page-036.jpg" alt="Trang 36">
       <span>36</span>
     </button>
-<button class="thumb" data-page="37" aria-label="Đi tới trang 37">
-      <img loading="lazy" src="pages/page-037.jpg" alt="">
+<button class="thumb" data-page="37" title="Trang 37">
+      <img loading="lazy" src="pages/page-037.jpg" alt="Trang 37">
       <span>37</span>
     </button>
-<button class="thumb" data-page="38" aria-label="Đi tới trang 38">
-      <img loading="lazy" src="pages/page-038.jpg" alt="">
+<button class="thumb" data-page="38" title="Trang 38">
+      <img loading="lazy" src="pages/page-038.jpg" alt="Trang 38">
       <span>38</span>
     </button>
-<button class="thumb" data-page="39" aria-label="Đi tới trang 39">
-      <img loading="lazy" src="pages/page-039.jpg" alt="">
+<button class="thumb" data-page="39" title="Trang 39">
+      <img loading="lazy" src="pages/page-039.jpg" alt="Trang 39">
       <span>39</span>
     </button>
-<button class="thumb" data-page="40" aria-label="Đi tới trang 40">
-      <img loading="lazy" src="pages/page-040.jpg" alt="">
+<button class="thumb" data-page="40" title="Trang 40">
+      <img loading="lazy" src="pages/page-040.jpg" alt="Trang 40">
       <span>40</span>
     </button>
-<button class="thumb" data-page="41" aria-label="Đi tới trang 41">
-      <img loading="lazy" src="pages/page-041.jpg" alt="">
+<button class="thumb" data-page="41" title="Trang 41">
+      <img loading="lazy" src="pages/page-041.jpg" alt="Trang 41">
       <span>41</span>
     </button>
-<button class="thumb" data-page="42" aria-label="Đi tới trang 42">
-      <img loading="lazy" src="pages/page-042.jpg" alt="">
+<button class="thumb" data-page="42" title="Trang 42">
+      <img loading="lazy" src="pages/page-042.jpg" alt="Trang 42">
       <span>42</span>
     </button>
-<button class="thumb" data-page="43" aria-label="Đi tới trang 43">
-      <img loading="lazy" src="pages/page-043.jpg" alt="">
+<button class="thumb" data-page="43" title="Trang 43">
+      <img loading="lazy" src="pages/page-043.jpg" alt="Trang 43">
       <span>43</span>
     </button>
-<button class="thumb" data-page="44" aria-label="Đi tới trang 44">
-      <img loading="lazy" src="pages/page-044.jpg" alt="">
+<button class="thumb" data-page="44" title="Trang 44">
+      <img loading="lazy" src="pages/page-044.jpg" alt="Trang 44">
       <span>44</span>
     </button>
-<button class="thumb" data-page="45" aria-label="Đi tới trang 45">
-      <img loading="lazy" src="pages/page-045.jpg" alt="">
+<button class="thumb" data-page="45" title="Trang 45">
+      <img loading="lazy" src="pages/page-045.jpg" alt="Trang 45">
       <span>45</span>
     </button>
-<button class="thumb" data-page="46" aria-label="Đi tới trang 46">
-      <img loading="lazy" src="pages/page-046.jpg" alt="">
+<button class="thumb" data-page="46" title="Trang 46">
+      <img loading="lazy" src="pages/page-046.jpg" alt="Trang 46">
       <span>46</span>
     </button>
-<button class="thumb" data-page="47" aria-label="Đi tới trang 47">
-      <img loading="lazy" src="pages/page-047.jpg" alt="">
+<button class="thumb" data-page="47" title="Trang 47">
+      <img loading="lazy" src="pages/page-047.jpg" alt="Trang 47">
       <span>47</span>
     </button>
-<button class="thumb" data-page="48" aria-label="Đi tới trang 48">
-      <img loading="lazy" src="pages/page-048.jpg" alt="">
+<button class="thumb" data-page="48" title="Trang 48">
+      <img loading="lazy" src="pages/page-048.jpg" alt="Trang 48">
       <span>48</span>
     </button>
-<button class="thumb" data-page="49" aria-label="Đi tới trang 49">
-      <img loading="lazy" src="pages/page-049.jpg" alt="">
+<button class="thumb" data-page="49" title="Trang 49">
+      <img loading="lazy" src="pages/page-049.jpg" alt="Trang 49">
       <span>49</span>
     </button>
-<button class="thumb" data-page="50" aria-label="Đi tới trang 50">
-      <img loading="lazy" src="pages/page-050.jpg" alt="">
+<button class="thumb" data-page="50" title="Trang 50">
+      <img loading="lazy" src="pages/page-050.jpg" alt="Trang 50">
       <span>50</span>
     </button>
-<button class="thumb" data-page="51" aria-label="Đi tới trang 51">
-      <img loading="lazy" src="pages/page-051.jpg" alt="">
+<button class="thumb" data-page="51" title="Trang 51">
+      <img loading="lazy" src="pages/page-051.jpg" alt="Trang 51">
       <span>51</span>
     </button>
-<button class="thumb" data-page="52" aria-label="Đi tới trang 52">
-      <img loading="lazy" src="pages/page-052.jpg" alt="">
+<button class="thumb" data-page="52" title="Trang 52">
+      <img loading="lazy" src="pages/page-052.jpg" alt="Trang 52">
       <span>52</span>
     </button>
-<button class="thumb" data-page="53" aria-label="Đi tới trang 53">
-      <img loading="lazy" src="pages/page-053.jpg" alt="">
+<button class="thumb" data-page="53" title="Trang 53">
+      <img loading="lazy" src="pages/page-053.jpg" alt="Trang 53">
       <span>53</span>
     </button>
-<button class="thumb" data-page="54" aria-label="Đi tới trang 54">
-      <img loading="lazy" src="pages/page-054.jpg" alt="">
+<button class="thumb" data-page="54" title="Trang 54">
+      <img loading="lazy" src="pages/page-054.jpg" alt="Trang 54">
       <span>54</span>
     </button>
-<button class="thumb" data-page="55" aria-label="Đi tới trang 55">
-      <img loading="lazy" src="pages/page-055.jpg" alt="">
+<button class="thumb" data-page="55" title="Trang 55">
+      <img loading="lazy" src="pages/page-055.jpg" alt="Trang 55">
       <span>55</span>
     </button>
-<button class="thumb" data-page="56" aria-label="Đi tới trang 56">
-      <img loading="lazy" src="pages/page-056.jpg" alt="">
+<button class="thumb" data-page="56" title="Trang 56">
+      <img loading="lazy" src="pages/page-056.jpg" alt="Trang 56">
       <span>56</span>
     </button>
-<button class="thumb" data-page="57" aria-label="Đi tới trang 57">
-      <img loading="lazy" src="pages/page-057.jpg" alt="">
+<button class="thumb" data-page="57" title="Trang 57">
+      <img loading="lazy" src="pages/page-057.jpg" alt="Trang 57">
       <span>57</span>
     </button>
-<button class="thumb" data-page="58" aria-label="Đi tới trang 58">
-      <img loading="lazy" src="pages/page-058.jpg" alt="">
+<button class="thumb" data-page="58" title="Trang 58">
+      <img loading="lazy" src="pages/page-058.jpg" alt="Trang 58">
       <span>58</span>
     </button>
-<button class="thumb" data-page="59" aria-label="Đi tới trang 59">
-      <img loading="lazy" src="pages/page-059.jpg" alt="">
+<button class="thumb" data-page="59" title="Trang 59">
+      <img loading="lazy" src="pages/page-059.jpg" alt="Trang 59">
       <span>59</span>
     </button>
-<button class="thumb" data-page="60" aria-label="Đi tới trang 60">
-      <img loading="lazy" src="pages/page-060.jpg" alt="">
+<button class="thumb" data-page="60" title="Trang 60">
+      <img loading="lazy" src="pages/page-060.jpg" alt="Trang 60">
       <span>60</span>
     </button>
-<button class="thumb" data-page="61" aria-label="Đi tới trang 61">
-      <img loading="lazy" src="pages/page-061.jpg" alt="">
+<button class="thumb" data-page="61" title="Trang 61">
+      <img loading="lazy" src="pages/page-061.jpg" alt="Trang 61">
       <span>61</span>
     </button>
-<button class="thumb" data-page="62" aria-label="Đi tới trang 62">
-      <img loading="lazy" src="pages/page-062.jpg" alt="">
+<button class="thumb" data-page="62" title="Trang 62">
+      <img loading="lazy" src="pages/page-062.jpg" alt="Trang 62">
       <span>62</span>
     </button>
-<button class="thumb" data-page="63" aria-label="Đi tới trang 63">
-      <img loading="lazy" src="pages/page-063.jpg" alt="">
+<button class="thumb" data-page="63" title="Trang 63">
+      <img loading="lazy" src="pages/page-063.jpg" alt="Trang 63">
       <span>63</span>
     </button>
-<button class="thumb" data-page="64" aria-label="Đi tới trang 64">
-      <img loading="lazy" src="pages/page-064.jpg" alt="">
+<button class="thumb" data-page="64" title="Trang 64">
+      <img loading="lazy" src="pages/page-064.jpg" alt="Trang 64">
       <span>64</span>
     </button>
-<button class="thumb" data-page="65" aria-label="Đi tới trang 65">
-      <img loading="lazy" src="pages/page-065.jpg" alt="">
+<button class="thumb" data-page="65" title="Trang 65">
+      <img loading="lazy" src="pages/page-065.jpg" alt="Trang 65">
       <span>65</span>
     </button>
-<button class="thumb" data-page="66" aria-label="Đi tới trang 66">
-      <img loading="lazy" src="pages/page-066.jpg" alt="">
+<button class="thumb" data-page="66" title="Trang 66">
+      <img loading="lazy" src="pages/page-066.jpg" alt="Trang 66">
       <span>66</span>
     </button>
-<button class="thumb" data-page="67" aria-label="Đi tới trang 67">
-      <img loading="lazy" src="pages/page-067.jpg" alt="">
+<button class="thumb" data-page="67" title="Trang 67">
+      <img loading="lazy" src="pages/page-067.jpg" alt="Trang 67">
       <span>67</span>
     </button>
-<button class="thumb" data-page="68" aria-label="Đi tới trang 68">
-      <img loading="lazy" src="pages/page-068.jpg" alt="">
+<button class="thumb" data-page="68" title="Trang 68">
+      <img loading="lazy" src="pages/page-068.jpg" alt="Trang 68">
       <span>68</span>
     </button>
-<button class="thumb" data-page="69" aria-label="Đi tới trang 69">
-      <img loading="lazy" src="pages/page-069.jpg" alt="">
+<button class="thumb" data-page="69" title="Trang 69">
+      <img loading="lazy" src="pages/page-069.jpg" alt="Trang 69">
       <span>69</span>
     </button>
-<button class="thumb" data-page="70" aria-label="Đi tới trang 70">
-      <img loading="lazy" src="pages/page-070.jpg" alt="">
+<button class="thumb" data-page="70" title="Trang 70">
+      <img loading="lazy" src="pages/page-070.jpg" alt="Trang 70">
       <span>70</span>
     </button>
-<button class="thumb" data-page="71" aria-label="Đi tới trang 71">
-      <img loading="lazy" src="pages/page-071.jpg" alt="">
+<button class="thumb" data-page="71" title="Trang 71">
+      <img loading="lazy" src="pages/page-071.jpg" alt="Trang 71">
       <span>71</span>
     </button>
-<button class="thumb" data-page="72" aria-label="Đi tới trang 72">
-      <img loading="lazy" src="pages/page-072.jpg" alt="">
+<button class="thumb" data-page="72" title="Trang 72">
+      <img loading="lazy" src="pages/page-072.jpg" alt="Trang 72">
       <span>72</span>
     </button>
-<button class="thumb" data-page="73" aria-label="Đi tới trang 73">
-      <img loading="lazy" src="pages/page-073.jpg" alt="">
+<button class="thumb" data-page="73" title="Trang 73">
+      <img loading="lazy" src="pages/page-073.jpg" alt="Trang 73">
       <span>73</span>
     </button>
-<button class="thumb" data-page="74" aria-label="Đi tới trang 74">
-      <img loading="lazy" src="pages/page-074.jpg" alt="">
+<button class="thumb" data-page="74" title="Trang 74">
+      <img loading="lazy" src="pages/page-074.jpg" alt="Trang 74">
       <span>74</span>
     </button>
-<button class="thumb" data-page="75" aria-label="Đi tới trang 75">
-      <img loading="lazy" src="pages/page-075.jpg" alt="">
+<button class="thumb" data-page="75" title="Trang 75">
+      <img loading="lazy" src="pages/page-075.jpg" alt="Trang 75">
       <span>75</span>
     </button>
-<button class="thumb" data-page="76" aria-label="Đi tới trang 76">
-      <img loading="lazy" src="pages/page-076.jpg" alt="">
+<button class="thumb" data-page="76" title="Trang 76">
+      <img loading="lazy" src="pages/page-076.jpg" alt="Trang 76">
       <span>76</span>
     </button>
-<button class="thumb" data-page="77" aria-label="Đi tới trang 77">
-      <img loading="lazy" src="pages/page-077.jpg" alt="">
+<button class="thumb" data-page="77" title="Trang 77">
+      <img loading="lazy" src="pages/page-077.jpg" alt="Trang 77">
       <span>77</span>
     </button>
-<button class="thumb" data-page="78" aria-label="Đi tới trang 78">
-      <img loading="lazy" src="pages/page-078.jpg" alt="">
+<button class="thumb" data-page="78" title="Trang 78">
+      <img loading="lazy" src="pages/page-078.jpg" alt="Trang 78">
       <span>78</span>
     </button>
-<button class="thumb" data-page="79" aria-label="Đi tới trang 79">
-      <img loading="lazy" src="pages/page-079.jpg" alt="">
+<button class="thumb" data-page="79" title="Trang 79">
+      <img loading="lazy" src="pages/page-079.jpg" alt="Trang 79">
       <span>79</span>
     </button>
-<button class="thumb" data-page="80" aria-label="Đi tới trang 80">
-      <img loading="lazy" src="pages/page-080.jpg" alt="">
+<button class="thumb" data-page="80" title="Trang 80">
+      <img loading="lazy" src="pages/page-080.jpg" alt="Trang 80">
       <span>80</span>
     </button>
-<button class="thumb" data-page="81" aria-label="Đi tới trang 81">
-      <img loading="lazy" src="pages/page-081.jpg" alt="">
+<button class="thumb" data-page="81" title="Trang 81">
+      <img loading="lazy" src="pages/page-081.jpg" alt="Trang 81">
       <span>81</span>
     </button>
-<button class="thumb" data-page="82" aria-label="Đi tới trang 82">
-      <img loading="lazy" src="pages/page-082.jpg" alt="">
+<button class="thumb" data-page="82" title="Trang 82">
+      <img loading="lazy" src="pages/page-082.jpg" alt="Trang 82">
       <span>82</span>
     </button>
-<button class="thumb" data-page="83" aria-label="Đi tới trang 83">
-      <img loading="lazy" src="pages/page-083.jpg" alt="">
+<button class="thumb" data-page="83" title="Trang 83">
+      <img loading="lazy" src="pages/page-083.jpg" alt="Trang 83">
       <span>83</span>
     </button>
-<button class="thumb" data-page="84" aria-label="Đi tới trang 84">
-      <img loading="lazy" src="pages/page-084.jpg" alt="">
+<button class="thumb" data-page="84" title="Trang 84">
+      <img loading="lazy" src="pages/page-084.jpg" alt="Trang 84">
       <span>84</span>
     </button>
-<button class="thumb" data-page="85" aria-label="Đi tới trang 85">
-      <img loading="lazy" src="pages/page-085.jpg" alt="">
+<button class="thumb" data-page="85" title="Trang 85">
+      <img loading="lazy" src="pages/page-085.jpg" alt="Trang 85">
       <span>85</span>
     </button>
-<button class="thumb" data-page="86" aria-label="Đi tới trang 86">
-      <img loading="lazy" src="pages/page-086.jpg" alt="">
+<button class="thumb" data-page="86" title="Trang 86">
+      <img loading="lazy" src="pages/page-086.jpg" alt="Trang 86">
       <span>86</span>
     </button>
-<button class="thumb" data-page="87" aria-label="Đi tới trang 87">
-      <img loading="lazy" src="pages/page-087.jpg" alt="">
+<button class="thumb" data-page="87" title="Trang 87">
+      <img loading="lazy" src="pages/page-087.jpg" alt="Trang 87">
       <span>87</span>
     </button>
-<button class="thumb" data-page="88" aria-label="Đi tới trang 88">
-      <img loading="lazy" src="pages/page-088.jpg" alt="">
+<button class="thumb" data-page="88" title="Trang 88">
+      <img loading="lazy" src="pages/page-088.jpg" alt="Trang 88">
       <span>88</span>
     </button>
-<button class="thumb" data-page="89" aria-label="Đi tới trang 89">
-      <img loading="lazy" src="pages/page-089.jpg" alt="">
+<button class="thumb" data-page="89" title="Trang 89">
+      <img loading="lazy" src="pages/page-089.jpg" alt="Trang 89">
       <span>89</span>
     </button>
-<button class="thumb" data-page="90" aria-label="Đi tới trang 90">
-      <img loading="lazy" src="pages/page-090.jpg" alt="">
+<button class="thumb" data-page="90" title="Trang 90">
+      <img loading="lazy" src="pages/page-090.jpg" alt="Trang 90">
       <span>90</span>
     </button>
-<button class="thumb" data-page="91" aria-label="Đi tới trang 91">
-      <img loading="lazy" src="pages/page-091.jpg" alt="">
+<button class="thumb" data-page="91" title="Trang 91">
+      <img loading="lazy" src="pages/page-091.jpg" alt="Trang 91">
       <span>91</span>
     </button>
-<button class="thumb" data-page="92" aria-label="Đi tới trang 92">
-      <img loading="lazy" src="pages/page-092.jpg" alt="">
+<button class="thumb" data-page="92" title="Trang 92">
+      <img loading="lazy" src="pages/page-092.jpg" alt="Trang 92">
       <span>92</span>
     </button>
-<button class="thumb" data-page="93" aria-label="Đi tới trang 93">
-      <img loading="lazy" src="pages/page-093.jpg" alt="">
+<button class="thumb" data-page="93" title="Trang 93">
+      <img loading="lazy" src="pages/page-093.jpg" alt="Trang 93">
       <span>93</span>
     </button>
-<button class="thumb" data-page="94" aria-label="Đi tới trang 94">
-      <img loading="lazy" src="pages/page-094.jpg" alt="">
+<button class="thumb" data-page="94" title="Trang 94">
+      <img loading="lazy" src="pages/page-094.jpg" alt="Trang 94">
       <span>94</span>
     </button>
-<button class="thumb" data-page="95" aria-label="Đi tới trang 95">
-      <img loading="lazy" src="pages/page-095.jpg" alt="">
+<button class="thumb" data-page="95" title="Trang 95">
+      <img loading="lazy" src="pages/page-095.jpg" alt="Trang 95">
       <span>95</span>
     </button>
-<button class="thumb" data-page="96" aria-label="Đi tới trang 96">
-      <img loading="lazy" src="pages/page-096.jpg" alt="">
+<button class="thumb" data-page="96" title="Trang 96">
+      <img loading="lazy" src="pages/page-096.jpg" alt="Trang 96">
       <span>96</span>
     </button>
-<button class="thumb" data-page="97" aria-label="Đi tới trang 97">
-      <img loading="lazy" src="pages/page-097.jpg" alt="">
+<button class="thumb" data-page="97" title="Trang 97">
+      <img loading="lazy" src="pages/page-097.jpg" alt="Trang 97">
       <span>97</span>
     </button>
-<button class="thumb" data-page="98" aria-label="Đi tới trang 98">
-      <img loading="lazy" src="pages/page-098.jpg" alt="">
+<button class="thumb" data-page="98" title="Trang 98">
+      <img loading="lazy" src="pages/page-098.jpg" alt="Trang 98">
       <span>98</span>
     </button>
-<button class="thumb" data-page="99" aria-label="Đi tới trang 99">
-      <img loading="lazy" src="pages/page-099.jpg" alt="">
+<button class="thumb" data-page="99" title="Trang 99">
+      <img loading="lazy" src="pages/page-099.jpg" alt="Trang 99">
       <span>99</span>
     </button>
-<button class="thumb" data-page="100" aria-label="Đi tới trang 100">
-      <img loading="lazy" src="pages/page-100.jpg" alt="">
+<button class="thumb" data-page="100" title="Trang 100">
+      <img loading="lazy" src="pages/page-100.jpg" alt="Trang 100">
       <span>100</span>
     </button>
-<button class="thumb" data-page="101" aria-label="Đi tới trang 101">
-      <img loading="lazy" src="pages/page-101.jpg" alt="">
+<button class="thumb" data-page="101" title="Trang 101">
+      <img loading="lazy" src="pages/page-101.jpg" alt="Trang 101">
       <span>101</span>
     </button>
-<button class="thumb" data-page="102" aria-label="Đi tới trang 102">
-      <img loading="lazy" src="pages/page-102.jpg" alt="">
+<button class="thumb" data-page="102" title="Trang 102">
+      <img loading="lazy" src="pages/page-102.jpg" alt="Trang 102">
       <span>102</span>
     </button>
-<button class="thumb" data-page="103" aria-label="Đi tới trang 103">
-      <img loading="lazy" src="pages/page-103.jpg" alt="">
+<button class="thumb" data-page="103" title="Trang 103">
+      <img loading="lazy" src="pages/page-103.jpg" alt="Trang 103">
       <span>103</span>
     </button>
-<button class="thumb" data-page="104" aria-label="Đi tới trang 104">
-      <img loading="lazy" src="pages/page-104.jpg" alt="">
+<button class="thumb" data-page="104" title="Trang 104">
+      <img loading="lazy" src="pages/page-104.jpg" alt="Trang 104">
       <span>104</span>
     </button>
-<button class="thumb" data-page="105" aria-label="Đi tới trang 105">
-      <img loading="lazy" src="pages/page-105.jpg" alt="">
+<button class="thumb" data-page="105" title="Trang 105">
+      <img loading="lazy" src="pages/page-105.jpg" alt="Trang 105">
       <span>105</span>
     </button>
-<button class="thumb" data-page="106" aria-label="Đi tới trang 106">
-      <img loading="lazy" src="pages/page-106.jpg" alt="">
+<button class="thumb" data-page="106" title="Trang 106">
+      <img loading="lazy" src="pages/page-106.jpg" alt="Trang 106">
       <span>106</span>
     </button>
-<button class="thumb" data-page="107" aria-label="Đi tới trang 107">
-      <img loading="lazy" src="pages/page-107.jpg" alt="">
+<button class="thumb" data-page="107" title="Trang 107">
+      <img loading="lazy" src="pages/page-107.jpg" alt="Trang 107">
       <span>107</span>
     </button>
-<button class="thumb" data-page="108" aria-label="Đi tới trang 108">
-      <img loading="lazy" src="pages/page-108.jpg" alt="">
+<button class="thumb" data-page="108" title="Trang 108">
+      <img loading="lazy" src="pages/page-108.jpg" alt="Trang 108">
       <span>108</span>
     </button>
-<button class="thumb" data-page="109" aria-label="Đi tới trang 109">
-      <img loading="lazy" src="pages/page-109.jpg" alt="">
+<button class="thumb" data-page="109" title="Trang 109">
+      <img loading="lazy" src="pages/page-109.jpg" alt="Trang 109">
       <span>109</span>
     </button>
-<button class="thumb" data-page="110" aria-label="Đi tới trang 110">
-      <img loading="lazy" src="pages/page-110.jpg" alt="">
+<button class="thumb" data-page="110" title="Trang 110">
+      <img loading="lazy" src="pages/page-110.jpg" alt="Trang 110">
       <span>110</span>
     </button>
-<button class="thumb" data-page="111" aria-label="Đi tới trang 111">
-      <img loading="lazy" src="pages/page-111.jpg" alt="">
+<button class="thumb" data-page="111" title="Trang 111">
+      <img loading="lazy" src="pages/page-111.jpg" alt="Trang 111">
       <span>111</span>
     </button>
-<button class="thumb" data-page="112" aria-label="Đi tới trang 112">
-      <img loading="lazy" src="pages/page-112.jpg" alt="">
+<button class="thumb" data-page="112" title="Trang 112">
+      <img loading="lazy" src="pages/page-112.jpg" alt="Trang 112">
       <span>112</span>
     </button>
-<button class="thumb" data-page="113" aria-label="Đi tới trang 113">
-      <img loading="lazy" src="pages/page-113.jpg" alt="">
+<button class="thumb" data-page="113" title="Trang 113">
+      <img loading="lazy" src="pages/page-113.jpg" alt="Trang 113">
       <span>113</span>
     </button>
-<button class="thumb" data-page="114" aria-label="Đi tới trang 114">
-      <img loading="lazy" src="pages/page-114.jpg" alt="">
+<button class="thumb" data-page="114" title="Trang 114">
+      <img loading="lazy" src="pages/page-114.jpg" alt="Trang 114">
       <span>114</span>
     </button>
-<button class="thumb" data-page="115" aria-label="Đi tới trang 115">
-      <img loading="lazy" src="pages/page-115.jpg" alt="">
+<button class="thumb" data-page="115" title="Trang 115">
+      <img loading="lazy" src="pages/page-115.jpg" alt="Trang 115">
       <span>115</span>
     </button>
-<button class="thumb" data-page="116" aria-label="Đi tới trang 116">
-      <img loading="lazy" src="pages/page-116.jpg" alt="">
+<button class="thumb" data-page="116" title="Trang 116">
+      <img loading="lazy" src="pages/page-116.jpg" alt="Trang 116">
       <span>116</span>
     </button>
-<button class="thumb" data-page="117" aria-label="Đi tới trang 117">
-      <img loading="lazy" src="pages/page-117.jpg" alt="">
+<button class="thumb" data-page="117" title="Trang 117">
+      <img loading="lazy" src="pages/page-117.jpg" alt="Trang 117">
       <span>117</span>
     </button>
-<button class="thumb" data-page="118" aria-label="Đi tới trang 118">
-      <img loading="lazy" src="pages/page-118.jpg" alt="">
+<button class="thumb" data-page="118" title="Trang 118">
+      <img loading="lazy" src="pages/page-118.jpg" alt="Trang 118">
       <span>118</span>
     </button>
-<button class="thumb" data-page="119" aria-label="Đi tới trang 119">
-      <img loading="lazy" src="pages/page-119.jpg" alt="">
+<button class="thumb" data-page="119" title="Trang 119">
+      <img loading="lazy" src="pages/page-119.jpg" alt="Trang 119">
       <span>119</span>
     </button>
-<button class="thumb" data-page="120" aria-label="Đi tới trang 120">
-      <img loading="lazy" src="pages/page-120.jpg" alt="">
+<button class="thumb" data-page="120" title="Trang 120">
+      <img loading="lazy" src="pages/page-120.jpg" alt="Trang 120">
       <span>120</span>
     </button>
-<button class="thumb" data-page="121" aria-label="Đi tới trang 121">
-      <img loading="lazy" src="pages/page-121.jpg" alt="">
+<button class="thumb" data-page="121" title="Trang 121">
+      <img loading="lazy" src="pages/page-121.jpg" alt="Trang 121">
       <span>121</span>
     </button>
-<button class="thumb" data-page="122" aria-label="Đi tới trang 122">
-      <img loading="lazy" src="pages/page-122.jpg" alt="">
+<button class="thumb" data-page="122" title="Trang 122">
+      <img loading="lazy" src="pages/page-122.jpg" alt="Trang 122">
       <span>122</span>
     </button>
-<button class="thumb" data-page="123" aria-label="Đi tới trang 123">
-      <img loading="lazy" src="pages/page-123.jpg" alt="">
+<button class="thumb" data-page="123" title="Trang 123">
+      <img loading="lazy" src="pages/page-123.jpg" alt="Trang 123">
       <span>123</span>
     </button>
-<button class="thumb" data-page="124" aria-label="Đi tới trang 124">
-      <img loading="lazy" src="pages/page-124.jpg" alt="">
+<button class="thumb" data-page="124" title="Trang 124">
+      <img loading="lazy" src="pages/page-124.jpg" alt="Trang 124">
       <span>124</span>
     </button>
-<button class="thumb" data-page="125" aria-label="Đi tới trang 125">
-      <img loading="lazy" src="pages/page-125.jpg" alt="">
+<button class="thumb" data-page="125" title="Trang 125">
+      <img loading="lazy" src="pages/page-125.jpg" alt="Trang 125">
       <span>125</span>
     </button>
-<button class="thumb" data-page="126" aria-label="Đi tới trang 126">
-      <img loading="lazy" src="pages/page-126.jpg" alt="">
+<button class="thumb" data-page="126" title="Trang 126">
+      <img loading="lazy" src="pages/page-126.jpg" alt="Trang 126">
       <span>126</span>
     </button>
-<button class="thumb" data-page="127" aria-label="Đi tới trang 127">
-      <img loading="lazy" src="pages/page-127.jpg" alt="">
+<button class="thumb" data-page="127" title="Trang 127">
+      <img loading="lazy" src="pages/page-127.jpg" alt="Trang 127">
       <span>127</span>
     </button>
-<button class="thumb" data-page="128" aria-label="Đi tới trang 128">
-      <img loading="lazy" src="pages/page-128.jpg" alt="">
+<button class="thumb" data-page="128" title="Trang 128">
+      <img loading="lazy" src="pages/page-128.jpg" alt="Trang 128">
       <span>128</span>
     </button>
-<button class="thumb" data-page="129" aria-label="Đi tới trang 129">
-      <img loading="lazy" src="pages/page-129.jpg" alt="">
+<button class="thumb" data-page="129" title="Trang 129">
+      <img loading="lazy" src="pages/page-129.jpg" alt="Trang 129">
       <span>129</span>
     </button>
-<button class="thumb" data-page="130" aria-label="Đi tới trang 130">
-      <img loading="lazy" src="pages/page-130.jpg" alt="">
+<button class="thumb" data-page="130" title="Trang 130">
+      <img loading="lazy" src="pages/page-130.jpg" alt="Trang 130">
       <span>130</span>
     </button>
-<button class="thumb" data-page="131" aria-label="Đi tới trang 131">
-      <img loading="lazy" src="pages/page-131.jpg" alt="">
+<button class="thumb" data-page="131" title="Trang 131">
+      <img loading="lazy" src="pages/page-131.jpg" alt="Trang 131">
       <span>131</span>
     </button>
-<button class="thumb" data-page="132" aria-label="Đi tới trang 132">
-      <img loading="lazy" src="pages/page-132.jpg" alt="">
+<button class="thumb" data-page="132" title="Trang 132">
+      <img loading="lazy" src="pages/page-132.jpg" alt="Trang 132">
       <span>132</span>
     </button>
-<button class="thumb" data-page="133" aria-label="Đi tới trang 133">
-      <img loading="lazy" src="pages/page-133.jpg" alt="">
+<button class="thumb" data-page="133" title="Trang 133">
+      <img loading="lazy" src="pages/page-133.jpg" alt="Trang 133">
       <span>133</span>
     </button>
-<button class="thumb" data-page="134" aria-label="Đi tới trang 134">
-      <img loading="lazy" src="pages/page-134.jpg" alt="">
+<button class="thumb" data-page="134" title="Trang 134">
+      <img loading="lazy" src="pages/page-134.jpg" alt="Trang 134">
       <span>134</span>
     </button>
-<button class="thumb" data-page="135" aria-label="Đi tới trang 135">
-      <img loading="lazy" src="pages/page-135.jpg" alt="">
+<button class="thumb" data-page="135" title="Trang 135">
+      <img loading="lazy" src="pages/page-135.jpg" alt="Trang 135">
       <span>135</span>
     </button>
-<button class="thumb" data-page="136" aria-label="Đi tới trang 136">
-      <img loading="lazy" src="pages/page-136.jpg" alt="">
+<button class="thumb" data-page="136" title="Trang 136">
+      <img loading="lazy" src="pages/page-136.jpg" alt="Trang 136">
       <span>136</span>
     </button>
-<button class="thumb" data-page="137" aria-label="Đi tới trang 137">
-      <img loading="lazy" src="pages/page-137.jpg" alt="">
+<button class="thumb" data-page="137" title="Trang 137">
+      <img loading="lazy" src="pages/page-137.jpg" alt="Trang 137">
       <span>137</span>
     </button>
-<button class="thumb" data-page="138" aria-label="Đi tới trang 138">
-      <img loading="lazy" src="pages/page-138.jpg" alt="">
+<button class="thumb" data-page="138" title="Trang 138">
+      <img loading="lazy" src="pages/page-138.jpg" alt="Trang 138">
       <span>138</span>
     </button>
-<button class="thumb" data-page="139" aria-label="Đi tới trang 139">
-      <img loading="lazy" src="pages/page-139.jpg" alt="">
+<button class="thumb" data-page="139" title="Trang 139">
+      <img loading="lazy" src="pages/page-139.jpg" alt="Trang 139">
       <span>139</span>
     </button>
-<button class="thumb" data-page="140" aria-label="Đi tới trang 140">
-      <img loading="lazy" src="pages/page-140.jpg" alt="">
+<button class="thumb" data-page="140" title="Trang 140">
+      <img loading="lazy" src="pages/page-140.jpg" alt="Trang 140">
       <span>140</span>
     </button>
-<button class="thumb" data-page="141" aria-label="Đi tới trang 141">
-      <img loading="lazy" src="pages/page-141.jpg" alt="">
+<button class="thumb" data-page="141" title="Trang 141">
+      <img loading="lazy" src="pages/page-141.jpg" alt="Trang 141">
       <span>141</span>
     </button>
-<button class="thumb" data-page="142" aria-label="Đi tới trang 142">
-      <img loading="lazy" src="pages/page-142.jpg" alt="">
+<button class="thumb" data-page="142" title="Trang 142">
+      <img loading="lazy" src="pages/page-142.jpg" alt="Trang 142">
       <span>142</span>
     </button>
-<button class="thumb" data-page="143" aria-label="Đi tới trang 143">
-      <img loading="lazy" src="pages/page-143.jpg" alt="">
+<button class="thumb" data-page="143" title="Trang 143">
+      <img loading="lazy" src="pages/page-143.jpg" alt="Trang 143">
       <span>143</span>
     </button>
-<button class="thumb" data-page="144" aria-label="Đi tới trang 144">
-      <img loading="lazy" src="pages/page-144.jpg" alt="">
+<button class="thumb" data-page="144" title="Trang 144">
+      <img loading="lazy" src="pages/page-144.jpg" alt="Trang 144">
       <span>144</span>
     </button>
-<button class="thumb" data-page="145" aria-label="Đi tới trang 145">
-      <img loading="lazy" src="pages/page-145.jpg" alt="">
+<button class="thumb" data-page="145" title="Trang 145">
+      <img loading="lazy" src="pages/page-145.jpg" alt="Trang 145">
       <span>145</span>
     </button>
-<button class="thumb" data-page="146" aria-label="Đi tới trang 146">
-      <img loading="lazy" src="pages/page-146.jpg" alt="">
+<button class="thumb" data-page="146" title="Trang 146">
+      <img loading="lazy" src="pages/page-146.jpg" alt="Trang 146">
       <span>146</span>
     </button>
-<button class="thumb" data-page="147" aria-label="Đi tới trang 147">
-      <img loading="lazy" src="pages/page-147.jpg" alt="">
+<button class="thumb" data-page="147" title="Trang 147">
+      <img loading="lazy" src="pages/page-147.jpg" alt="Trang 147">
       <span>147</span>
     </button>
-<button class="thumb" data-page="148" aria-label="Đi tới trang 148">
-      <img loading="lazy" src="pages/page-148.jpg" alt="">
+<button class="thumb" data-page="148" title="Trang 148">
+      <img loading="lazy" src="pages/page-148.jpg" alt="Trang 148">
       <span>148</span>
     </button>
-<button class="thumb" data-page="149" aria-label="Đi tới trang 149">
-      <img loading="lazy" src="pages/page-149.jpg" alt="">
+<button class="thumb" data-page="149" title="Trang 149">
+      <img loading="lazy" src="pages/page-149.jpg" alt="Trang 149">
       <span>149</span>
     </button>
-<button class="thumb" data-page="150" aria-label="Đi tới trang 150">
-      <img loading="lazy" src="pages/page-150.jpg" alt="">
+<button class="thumb" data-page="150" title="Trang 150">
+      <img loading="lazy" src="pages/page-150.jpg" alt="Trang 150">
       <span>150</span>
     </button>
-<button class="thumb" data-page="151" aria-label="Đi tới trang 151">
-      <img loading="lazy" src="pages/page-151.jpg" alt="">
+<button class="thumb" data-page="151" title="Trang 151">
+      <img loading="lazy" src="pages/page-151.jpg" alt="Trang 151">
       <span>151</span>
     </button>
-<button class="thumb" data-page="152" aria-label="Đi tới trang 152">
-      <img loading="lazy" src="pages/page-152.jpg" alt="">
+<button class="thumb" data-page="152" title="Trang 152">
+      <img loading="lazy" src="pages/page-152.jpg" alt="Trang 152">
       <span>152</span>
     </button>
-<button class="thumb" data-page="153" aria-label="Đi tới trang 153">
-      <img loading="lazy" src="pages/page-153.jpg" alt="">
+<button class="thumb" data-page="153" title="Trang 153">
+      <img loading="lazy" src="pages/page-153.jpg" alt="Trang 153">
       <span>153</span>
     </button>
-<button class="thumb" data-page="154" aria-label="Đi tới trang 154">
-      <img loading="lazy" src="pages/page-154.jpg" alt="">
+<button class="thumb" data-page="154" title="Trang 154">
+      <img loading="lazy" src="pages/page-154.jpg" alt="Trang 154">
       <span>154</span>
     </button>
-<button class="thumb" data-page="155" aria-label="Đi tới trang 155">
-      <img loading="lazy" src="pages/page-155.jpg" alt="">
+<button class="thumb" data-page="155" title="Trang 155">
+      <img loading="lazy" src="pages/page-155.jpg" alt="Trang 155">
       <span>155</span>
     </button>
-<button class="thumb" data-page="156" aria-label="Đi tới trang 156">
-      <img loading="lazy" src="pages/page-156.jpg" alt="">
+<button class="thumb" data-page="156" title="Trang 156">
+      <img loading="lazy" src="pages/page-156.jpg" alt="Trang 156">
       <span>156</span>
     </button>
-<button class="thumb" data-page="157" aria-label="Đi tới trang 157">
-      <img loading="lazy" src="pages/page-157.jpg" alt="">
+<button class="thumb" data-page="157" title="Trang 157">
+      <img loading="lazy" src="pages/page-157.jpg" alt="Trang 157">
       <span>157</span>
     </button>
-<button class="thumb" data-page="158" aria-label="Đi tới trang 158">
-      <img loading="lazy" src="pages/page-158.jpg" alt="">
+<button class="thumb" data-page="158" title="Trang 158">
+      <img loading="lazy" src="pages/page-158.jpg" alt="Trang 158">
       <span>158</span>
     </button>
-<button class="thumb" data-page="159" aria-label="Đi tới trang 159">
-      <img loading="lazy" src="pages/page-159.jpg" alt="">
+<button class="thumb" data-page="159" title="Trang 159">
+      <img loading="lazy" src="pages/page-159.jpg" alt="Trang 159">
       <span>159</span>
     </button>
-<button class="thumb" data-page="160" aria-label="Đi tới trang 160">
-      <img loading="lazy" src="pages/page-160.jpg" alt="">
+<button class="thumb" data-page="160" title="Trang 160">
+      <img loading="lazy" src="pages/page-160.jpg" alt="Trang 160">
       <span>160</span>
     </button>
-<button class="thumb" data-page="161" aria-label="Đi tới trang 161">
-      <img loading="lazy" src="pages/page-161.jpg" alt="">
+<button class="thumb" data-page="161" title="Trang 161">
+      <img loading="lazy" src="pages/page-161.jpg" alt="Trang 161">
       <span>161</span>
     </button>
-<button class="thumb" data-page="162" aria-label="Đi tới trang 162">
-      <img loading="lazy" src="pages/page-162.jpg" alt="">
+<button class="thumb" data-page="162" title="Trang 162">
+      <img loading="lazy" src="pages/page-162.jpg" alt="Trang 162">
       <span>162</span>
     </button>
-<button class="thumb" data-page="163" aria-label="Đi tới trang 163">
-      <img loading="lazy" src="pages/page-163.jpg" alt="">
+<button class="thumb" data-page="163" title="Trang 163">
+      <img loading="lazy" src="pages/page-163.jpg" alt="Trang 163">
       <span>163</span>
     </button>
-<button class="thumb" data-page="164" aria-label="Đi tới trang 164">
-      <img loading="lazy" src="pages/page-164.jpg" alt="">
+<button class="thumb" data-page="164" title="Trang 164">
+      <img loading="lazy" src="pages/page-164.jpg" alt="Trang 164">
       <span>164</span>
     </button>
-<button class="thumb" data-page="165" aria-label="Đi tới trang 165">
-      <img loading="lazy" src="pages/page-165.jpg" alt="">
+<button class="thumb" data-page="165" title="Trang 165">
+      <img loading="lazy" src="pages/page-165.jpg" alt="Trang 165">
       <span>165</span>
     </button>
-<button class="thumb" data-page="166" aria-label="Đi tới trang 166">
-      <img loading="lazy" src="pages/page-166.jpg" alt="">
+<button class="thumb" data-page="166" title="Trang 166">
+      <img loading="lazy" src="pages/page-166.jpg" alt="Trang 166">
       <span>166</span>
     </button>
-<button class="thumb" data-page="167" aria-label="Đi tới trang 167">
-      <img loading="lazy" src="pages/page-167.jpg" alt="">
+<button class="thumb" data-page="167" title="Trang 167">
+      <img loading="lazy" src="pages/page-167.jpg" alt="Trang 167">
       <span>167</span>
     </button>
-<button class="thumb" data-page="168" aria-label="Đi tới trang 168">
-      <img loading="lazy" src="pages/page-168.jpg" alt="">
+<button class="thumb" data-page="168" title="Trang 168">
+      <img loading="lazy" src="pages/page-168.jpg" alt="Trang 168">
       <span>168</span>
     </button>
-<button class="thumb" data-page="169" aria-label="Đi tới trang 169">
-      <img loading="lazy" src="pages/page-169.jpg" alt="">
+<button class="thumb" data-page="169" title="Trang 169">
+      <img loading="lazy" src="pages/page-169.jpg" alt="Trang 169">
       <span>169</span>
     </button>
-<button class="thumb" data-page="170" aria-label="Đi tới trang 170">
-      <img loading="lazy" src="pages/page-170.jpg" alt="">
+<button class="thumb" data-page="170" title="Trang 170">
+      <img loading="lazy" src="pages/page-170.jpg" alt="Trang 170">
       <span>170</span>
     </button>
-<button class="thumb" data-page="171" aria-label="Đi tới trang 171">
-      <img loading="lazy" src="pages/page-171.jpg" alt="">
+<button class="thumb" data-page="171" title="Trang 171">
+      <img loading="lazy" src="pages/page-171.jpg" alt="Trang 171">
       <span>171</span>
     </button>
-<button class="thumb" data-page="172" aria-label="Đi tới trang 172">
-      <img loading="lazy" src="pages/page-172.jpg" alt="">
+<button class="thumb" data-page="172" title="Trang 172">
+      <img loading="lazy" src="pages/page-172.jpg" alt="Trang 172">
       <span>172</span>
     </button>
-<button class="thumb" data-page="173" aria-label="Đi tới trang 173">
-      <img loading="lazy" src="pages/page-173.jpg" alt="">
+<button class="thumb" data-page="173" title="Trang 173">
+      <img loading="lazy" src="pages/page-173.jpg" alt="Trang 173">
       <span>173</span>
     </button>
-<button class="thumb" data-page="174" aria-label="Đi tới trang 174">
-      <img loading="lazy" src="pages/page-174.jpg" alt="">
+<button class="thumb" data-page="174" title="Trang 174">
+      <img loading="lazy" src="pages/page-174.jpg" alt="Trang 174">
       <span>174</span>
     </button>
-<button class="thumb" data-page="175" aria-label="Đi tới trang 175">
-      <img loading="lazy" src="pages/page-175.jpg" alt="">
+<button class="thumb" data-page="175" title="Trang 175">
+      <img loading="lazy" src="pages/page-175.jpg" alt="Trang 175">
       <span>175</span>
     </button>
-<button class="thumb" data-page="176" aria-label="Đi tới trang 176">
-      <img loading="lazy" src="pages/page-176.jpg" alt="">
+<button class="thumb" data-page="176" title="Trang 176">
+      <img loading="lazy" src="pages/page-176.jpg" alt="Trang 176">
       <span>176</span>
     </button>
-<button class="thumb" data-page="177" aria-label="Đi tới trang 177">
-      <img loading="lazy" src="pages/page-177.jpg" alt="">
+<button class="thumb" data-page="177" title="Trang 177">
+      <img loading="lazy" src="pages/page-177.jpg" alt="Trang 177">
       <span>177</span>
     </button>
-<button class="thumb" data-page="178" aria-label="Đi tới trang 178">
-      <img loading="lazy" src="pages/page-178.jpg" alt="">
+<button class="thumb" data-page="178" title="Trang 178">
+      <img loading="lazy" src="pages/page-178.jpg" alt="Trang 178">
       <span>178</span>
     </button>
-<button class="thumb" data-page="179" aria-label="Đi tới trang 179">
-      <img loading="lazy" src="pages/page-179.jpg" alt="">
+<button class="thumb" data-page="179" title="Trang 179">
+      <img loading="lazy" src="pages/page-179.jpg" alt="Trang 179">
       <span>179</span>
     </button>
-<button class="thumb" data-page="180" aria-label="Đi tới trang 180">
-      <img loading="lazy" src="pages/page-180.jpg" alt="">
+<button class="thumb" data-page="180" title="Trang 180">
+      <img loading="lazy" src="pages/page-180.jpg" alt="Trang 180">
       <span>180</span>
     </button>
-<button class="thumb" data-page="181" aria-label="Đi tới trang 181">
-      <img loading="lazy" src="pages/page-181.jpg" alt="">
+<button class="thumb" data-page="181" title="Trang 181">
+      <img loading="lazy" src="pages/page-181.jpg" alt="Trang 181">
       <span>181</span>
     </button>
-<button class="thumb" data-page="182" aria-label="Đi tới trang 182">
-      <img loading="lazy" src="pages/page-182.jpg" alt="">
+<button class="thumb" data-page="182" title="Trang 182">
+      <img loading="lazy" src="pages/page-182.jpg" alt="Trang 182">
       <span>182</span>
     </button>
-<button class="thumb" data-page="183" aria-label="Đi tới trang 183">
-      <img loading="lazy" src="pages/page-183.jpg" alt="">
+<button class="thumb" data-page="183" title="Trang 183">
+      <img loading="lazy" src="pages/page-183.jpg" alt="Trang 183">
       <span>183</span>
     </button>
-<button class="thumb" data-page="184" aria-label="Đi tới trang 184">
-      <img loading="lazy" src="pages/page-184.jpg" alt="">
+<button class="thumb" data-page="184" title="Trang 184">
+      <img loading="lazy" src="pages/page-184.jpg" alt="Trang 184">
       <span>184</span>
     </button>
-<button class="thumb" data-page="185" aria-label="Đi tới trang 185">
-      <img loading="lazy" src="pages/page-185.jpg" alt="">
+<button class="thumb" data-page="185" title="Trang 185">
+      <img loading="lazy" src="pages/page-185.jpg" alt="Trang 185">
       <span>185</span>
     </button>
-<button class="thumb" data-page="186" aria-label="Đi tới trang 186">
-      <img loading="lazy" src="pages/page-186.jpg" alt="">
+<button class="thumb" data-page="186" title="Trang 186">
+      <img loading="lazy" src="pages/page-186.jpg" alt="Trang 186">
       <span>186</span>
     </button>
-<button class="thumb" data-page="187" aria-label="Đi tới trang 187">
-      <img loading="lazy" src="pages/page-187.jpg" alt="">
+<button class="thumb" data-page="187" title="Trang 187">
+      <img loading="lazy" src="pages/page-187.jpg" alt="Trang 187">
       <span>187</span>
     </button>
-<button class="thumb" data-page="188" aria-label="Đi tới trang 188">
-      <img loading="lazy" src="pages/page-188.jpg" alt="">
+<button class="thumb" data-page="188" title="Trang 188">
+      <img loading="lazy" src="pages/page-188.jpg" alt="Trang 188">
       <span>188</span>
     </button>
-<button class="thumb" data-page="189" aria-label="Đi tới trang 189">
-      <img loading="lazy" src="pages/page-189.jpg" alt="">
+<button class="thumb" data-page="189" title="Trang 189">
+      <img loading="lazy" src="pages/page-189.jpg" alt="Trang 189">
       <span>189</span>
     </button>
-<button class="thumb" data-page="190" aria-label="Đi tới trang 190">
-      <img loading="lazy" src="pages/page-190.jpg" alt="">
+<button class="thumb" data-page="190" title="Trang 190">
+      <img loading="lazy" src="pages/page-190.jpg" alt="Trang 190">
       <span>190</span>
     </button>
-<button class="thumb" data-page="191" aria-label="Đi tới trang 191">
-      <img loading="lazy" src="pages/page-191.jpg" alt="">
+<button class="thumb" data-page="191" title="Trang 191">
+      <img loading="lazy" src="pages/page-191.jpg" alt="Trang 191">
       <span>191</span>
     </button>
-<button class="thumb" data-page="192" aria-label="Đi tới trang 192">
-      <img loading="lazy" src="pages/page-192.jpg" alt="">
+<button class="thumb" data-page="192" title="Trang 192">
+      <img loading="lazy" src="pages/page-192.jpg" alt="Trang 192">
       <span>192</span>
     </button>
-<button class="thumb" data-page="193" aria-label="Đi tới trang 193">
-      <img loading="lazy" src="pages/page-193.jpg" alt="">
+<button class="thumb" data-page="193" title="Trang 193">
+      <img loading="lazy" src="pages/page-193.jpg" alt="Trang 193">
       <span>193</span>
     </button>
-<button class="thumb" data-page="194" aria-label="Đi tới trang 194">
-      <img loading="lazy" src="pages/page-194.jpg" alt="">
+<button class="thumb" data-page="194" title="Trang 194">
+      <img loading="lazy" src="pages/page-194.jpg" alt="Trang 194">
       <span>194</span>
     </button>
-<button class="thumb" data-page="195" aria-label="Đi tới trang 195">
-      <img loading="lazy" src="pages/page-195.jpg" alt="">
+<button class="thumb" data-page="195" title="Trang 195">
+      <img loading="lazy" src="pages/page-195.jpg" alt="Trang 195">
       <span>195</span>
     </button>
-<button class="thumb" data-page="196" aria-label="Đi tới trang 196">
-      <img loading="lazy" src="pages/page-196.jpg" alt="">
+<button class="thumb" data-page="196" title="Trang 196">
+      <img loading="lazy" src="pages/page-196.jpg" alt="Trang 196">
       <span>196</span>
     </button>
-<button class="thumb" data-page="197" aria-label="Đi tới trang 197">
-      <img loading="lazy" src="pages/page-197.jpg" alt="">
+<button class="thumb" data-page="197" title="Trang 197">
+      <img loading="lazy" src="pages/page-197.jpg" alt="Trang 197">
       <span>197</span>
     </button>
-<button class="thumb" data-page="198" aria-label="Đi tới trang 198">
-      <img loading="lazy" src="pages/page-198.jpg" alt="">
+<button class="thumb" data-page="198" title="Trang 198">
+      <img loading="lazy" src="pages/page-198.jpg" alt="Trang 198">
       <span>198</span>
     </button>
-<button class="thumb" data-page="199" aria-label="Đi tới trang 199">
-      <img loading="lazy" src="pages/page-199.jpg" alt="">
+<button class="thumb" data-page="199" title="Trang 199">
+      <img loading="lazy" src="pages/page-199.jpg" alt="Trang 199">
       <span>199</span>
     </button>
-<button class="thumb" data-page="200" aria-label="Đi tới trang 200">
-      <img loading="lazy" src="pages/page-200.jpg" alt="">
+<button class="thumb" data-page="200" title="Trang 200">
+      <img loading="lazy" src="pages/page-200.jpg" alt="Trang 200">
       <span>200</span>
     </button>
-<button class="thumb" data-page="201" aria-label="Đi tới trang 201">
-      <img loading="lazy" src="pages/page-201.jpg" alt="">
+<button class="thumb" data-page="201" title="Trang 201">
+      <img loading="lazy" src="pages/page-201.jpg" alt="Trang 201">
       <span>201</span>
     </button>
-<button class="thumb" data-page="202" aria-label="Đi tới trang 202">
-      <img loading="lazy" src="pages/page-202.jpg" alt="">
+<button class="thumb" data-page="202" title="Trang 202">
+      <img loading="lazy" src="pages/page-202.jpg" alt="Trang 202">
       <span>202</span>
     </button>
-<button class="thumb" data-page="203" aria-label="Đi tới trang 203">
-      <img loading="lazy" src="pages/page-203.jpg" alt="">
+<button class="thumb" data-page="203" title="Trang 203">
+      <img loading="lazy" src="pages/page-203.jpg" alt="Trang 203">
       <span>203</span>
     </button>
-<button class="thumb" data-page="204" aria-label="Đi tới trang 204">
-      <img loading="lazy" src="pages/page-204.jpg" alt="">
-      <span>204</span>
-    </button>
-  </aside>
-  <main>
-    <article class="page" id="page-1">
-      <div class="page-label">Trang 1 / 204</div>
-      <img loading="lazy" src="pages/page-001.jpg" alt="Trang 1">
-    </article>
-<article class="page" id="page-2">
-      <div class="page-label">Trang 2 / 204</div>
-      <img loading="lazy" src="pages/page-002.jpg" alt="Trang 2">
-    </article>
-<article class="page" id="page-3">
-      <div class="page-label">Trang 3 / 204</div>
-      <img loading="lazy" src="pages/page-003.jpg" alt="Trang 3">
-    </article>
-<article class="page" id="page-4">
-      <div class="page-label">Trang 4 / 204</div>
-      <img loading="lazy" src="pages/page-004.jpg" alt="Trang 4">
-    </article>
-<article class="page" id="page-5">
-      <div class="page-label">Trang 5 / 204</div>
-      <img loading="lazy" src="pages/page-005.jpg" alt="Trang 5">
-    </article>
-<article class="page" id="page-6">
-      <div class="page-label">Trang 6 / 204</div>
-      <img loading="lazy" src="pages/page-006.jpg" alt="Trang 6">
-    </article>
-<article class="page" id="page-7">
-      <div class="page-label">Trang 7 / 204</div>
-      <img loading="lazy" src="pages/page-007.jpg" alt="Trang 7">
-    </article>
-<article class="page" id="page-8">
-      <div class="page-label">Trang 8 / 204</div>
-      <img loading="lazy" src="pages/page-008.jpg" alt="Trang 8">
-    </article>
-<article class="page" id="page-9">
-      <div class="page-label">Trang 9 / 204</div>
-      <img loading="lazy" src="pages/page-009.jpg" alt="Trang 9">
-    </article>
-<article class="page" id="page-10">
-      <div class="page-label">Trang 10 / 204</div>
-      <img loading="lazy" src="pages/page-010.jpg" alt="Trang 10">
-    </article>
-<article class="page" id="page-11">
-      <div class="page-label">Trang 11 / 204</div>
-      <img loading="lazy" src="pages/page-011.jpg" alt="Trang 11">
-    </article>
-<article class="page" id="page-12">
-      <div class="page-label">Trang 12 / 204</div>
-      <img loading="lazy" src="pages/page-012.jpg" alt="Trang 12">
-    </article>
-<article class="page" id="page-13">
-      <div class="page-label">Trang 13 / 204</div>
-      <img loading="lazy" src="pages/page-013.jpg" alt="Trang 13">
-    </article>
-<article class="page" id="page-14">
-      <div class="page-label">Trang 14 / 204</div>
-      <img loading="lazy" src="pages/page-014.jpg" alt="Trang 14">
-    </article>
-<article class="page" id="page-15">
-      <div class="page-label">Trang 15 / 204</div>
-      <img loading="lazy" src="pages/page-015.jpg" alt="Trang 15">
-    </article>
-<article class="page" id="page-16">
-      <div class="page-label">Trang 16 / 204</div>
-      <img loading="lazy" src="pages/page-016.jpg" alt="Trang 16">
-    </article>
-<article class="page" id="page-17">
-      <div class="page-label">Trang 17 / 204</div>
-      <img loading="lazy" src="pages/page-017.jpg" alt="Trang 17">
-    </article>
-<article class="page" id="page-18">
-      <div class="page-label">Trang 18 / 204</div>
-      <img loading="lazy" src="pages/page-018.jpg" alt="Trang 18">
-    </article>
-<article class="page" id="page-19">
-      <div class="page-label">Trang 19 / 204</div>
-      <img loading="lazy" src="pages/page-019.jpg" alt="Trang 19">
-    </article>
-<article class="page" id="page-20">
-      <div class="page-label">Trang 20 / 204</div>
-      <img loading="lazy" src="pages/page-020.jpg" alt="Trang 20">
-    </article>
-<article class="page" id="page-21">
-      <div class="page-label">Trang 21 / 204</div>
-      <img loading="lazy" src="pages/page-021.jpg" alt="Trang 21">
-    </article>
-<article class="page" id="page-22">
-      <div class="page-label">Trang 22 / 204</div>
-      <img loading="lazy" src="pages/page-022.jpg" alt="Trang 22">
-    </article>
-<article class="page" id="page-23">
-      <div class="page-label">Trang 23 / 204</div>
-      <img loading="lazy" src="pages/page-023.jpg" alt="Trang 23">
-    </article>
-<article class="page" id="page-24">
-      <div class="page-label">Trang 24 / 204</div>
-      <img loading="lazy" src="pages/page-024.jpg" alt="Trang 24">
-    </article>
-<article class="page" id="page-25">
-      <div class="page-label">Trang 25 / 204</div>
-      <img loading="lazy" src="pages/page-025.jpg" alt="Trang 25">
-    </article>
-<article class="page" id="page-26">
-      <div class="page-label">Trang 26 / 204</div>
-      <img loading="lazy" src="pages/page-026.jpg" alt="Trang 26">
-    </article>
-<article class="page" id="page-27">
-      <div class="page-label">Trang 27 / 204</div>
-      <img loading="lazy" src="pages/page-027.jpg" alt="Trang 27">
-    </article>
-<article class="page" id="page-28">
-      <div class="page-label">Trang 28 / 204</div>
-      <img loading="lazy" src="pages/page-028.jpg" alt="Trang 28">
-    </article>
-<article class="page" id="page-29">
-      <div class="page-label">Trang 29 / 204</div>
-      <img loading="lazy" src="pages/page-029.jpg" alt="Trang 29">
-    </article>
-<article class="page" id="page-30">
-      <div class="page-label">Trang 30 / 204</div>
-      <img loading="lazy" src="pages/page-030.jpg" alt="Trang 30">
-    </article>
-<article class="page" id="page-31">
-      <div class="page-label">Trang 31 / 204</div>
-      <img loading="lazy" src="pages/page-031.jpg" alt="Trang 31">
-    </article>
-<article class="page" id="page-32">
-      <div class="page-label">Trang 32 / 204</div>
-      <img loading="lazy" src="pages/page-032.jpg" alt="Trang 32">
-    </article>
-<article class="page" id="page-33">
-      <div class="page-label">Trang 33 / 204</div>
-      <img loading="lazy" src="pages/page-033.jpg" alt="Trang 33">
-    </article>
-<article class="page" id="page-34">
-      <div class="page-label">Trang 34 / 204</div>
-      <img loading="lazy" src="pages/page-034.jpg" alt="Trang 34">
-    </article>
-<article class="page" id="page-35">
-      <div class="page-label">Trang 35 / 204</div>
-      <img loading="lazy" src="pages/page-035.jpg" alt="Trang 35">
-    </article>
-<article class="page" id="page-36">
-      <div class="page-label">Trang 36 / 204</div>
-      <img loading="lazy" src="pages/page-036.jpg" alt="Trang 36">
-    </article>
-<article class="page" id="page-37">
-      <div class="page-label">Trang 37 / 204</div>
-      <img loading="lazy" src="pages/page-037.jpg" alt="Trang 37">
-    </article>
-<article class="page" id="page-38">
-      <div class="page-label">Trang 38 / 204</div>
-      <img loading="lazy" src="pages/page-038.jpg" alt="Trang 38">
-    </article>
-<article class="page" id="page-39">
-      <div class="page-label">Trang 39 / 204</div>
-      <img loading="lazy" src="pages/page-039.jpg" alt="Trang 39">
-    </article>
-<article class="page" id="page-40">
-      <div class="page-label">Trang 40 / 204</div>
-      <img loading="lazy" src="pages/page-040.jpg" alt="Trang 40">
-    </article>
-<article class="page" id="page-41">
-      <div class="page-label">Trang 41 / 204</div>
-      <img loading="lazy" src="pages/page-041.jpg" alt="Trang 41">
-    </article>
-<article class="page" id="page-42">
-      <div class="page-label">Trang 42 / 204</div>
-      <img loading="lazy" src="pages/page-042.jpg" alt="Trang 42">
-    </article>
-<article class="page" id="page-43">
-      <div class="page-label">Trang 43 / 204</div>
-      <img loading="lazy" src="pages/page-043.jpg" alt="Trang 43">
-    </article>
-<article class="page" id="page-44">
-      <div class="page-label">Trang 44 / 204</div>
-      <img loading="lazy" src="pages/page-044.jpg" alt="Trang 44">
-    </article>
-<article class="page" id="page-45">
-      <div class="page-label">Trang 45 / 204</div>
-      <img loading="lazy" src="pages/page-045.jpg" alt="Trang 45">
-    </article>
-<article class="page" id="page-46">
-      <div class="page-label">Trang 46 / 204</div>
-      <img loading="lazy" src="pages/page-046.jpg" alt="Trang 46">
-    </article>
-<article class="page" id="page-47">
-      <div class="page-label">Trang 47 / 204</div>
-      <img loading="lazy" src="pages/page-047.jpg" alt="Trang 47">
-    </article>
-<article class="page" id="page-48">
-      <div class="page-label">Trang 48 / 204</div>
-      <img loading="lazy" src="pages/page-048.jpg" alt="Trang 48">
-    </article>
-<article class="page" id="page-49">
-      <div class="page-label">Trang 49 / 204</div>
-      <img loading="lazy" src="pages/page-049.jpg" alt="Trang 49">
-    </article>
-<article class="page" id="page-50">
-      <div class="page-label">Trang 50 / 204</div>
-      <img loading="lazy" src="pages/page-050.jpg" alt="Trang 50">
-    </article>
-<article class="page" id="page-51">
-      <div class="page-label">Trang 51 / 204</div>
-      <img loading="lazy" src="pages/page-051.jpg" alt="Trang 51">
-    </article>
-<article class="page" id="page-52">
-      <div class="page-label">Trang 52 / 204</div>
-      <img loading="lazy" src="pages/page-052.jpg" alt="Trang 52">
-    </article>
-<article class="page" id="page-53">
-      <div class="page-label">Trang 53 / 204</div>
-      <img loading="lazy" src="pages/page-053.jpg" alt="Trang 53">
-    </article>
-<article class="page" id="page-54">
-      <div class="page-label">Trang 54 / 204</div>
-      <img loading="lazy" src="pages/page-054.jpg" alt="Trang 54">
-    </article>
-<article class="page" id="page-55">
-      <div class="page-label">Trang 55 / 204</div>
-      <img loading="lazy" src="pages/page-055.jpg" alt="Trang 55">
-    </article>
-<article class="page" id="page-56">
-      <div class="page-label">Trang 56 / 204</div>
-      <img loading="lazy" src="pages/page-056.jpg" alt="Trang 56">
-    </article>
-<article class="page" id="page-57">
-      <div class="page-label">Trang 57 / 204</div>
-      <img loading="lazy" src="pages/page-057.jpg" alt="Trang 57">
-    </article>
-<article class="page" id="page-58">
-      <div class="page-label">Trang 58 / 204</div>
-      <img loading="lazy" src="pages/page-058.jpg" alt="Trang 58">
-    </article>
-<article class="page" id="page-59">
-      <div class="page-label">Trang 59 / 204</div>
-      <img loading="lazy" src="pages/page-059.jpg" alt="Trang 59">
-    </article>
-<article class="page" id="page-60">
-      <div class="page-label">Trang 60 / 204</div>
-      <img loading="lazy" src="pages/page-060.jpg" alt="Trang 60">
-    </article>
-<article class="page" id="page-61">
-      <div class="page-label">Trang 61 / 204</div>
-      <img loading="lazy" src="pages/page-061.jpg" alt="Trang 61">
-    </article>
-<article class="page" id="page-62">
-      <div class="page-label">Trang 62 / 204</div>
-      <img loading="lazy" src="pages/page-062.jpg" alt="Trang 62">
-    </article>
-<article class="page" id="page-63">
-      <div class="page-label">Trang 63 / 204</div>
-      <img loading="lazy" src="pages/page-063.jpg" alt="Trang 63">
-    </article>
-<article class="page" id="page-64">
-      <div class="page-label">Trang 64 / 204</div>
-      <img loading="lazy" src="pages/page-064.jpg" alt="Trang 64">
-    </article>
-<article class="page" id="page-65">
-      <div class="page-label">Trang 65 / 204</div>
-      <img loading="lazy" src="pages/page-065.jpg" alt="Trang 65">
-    </article>
-<article class="page" id="page-66">
-      <div class="page-label">Trang 66 / 204</div>
-      <img loading="lazy" src="pages/page-066.jpg" alt="Trang 66">
-    </article>
-<article class="page" id="page-67">
-      <div class="page-label">Trang 67 / 204</div>
-      <img loading="lazy" src="pages/page-067.jpg" alt="Trang 67">
-    </article>
-<article class="page" id="page-68">
-      <div class="page-label">Trang 68 / 204</div>
-      <img loading="lazy" src="pages/page-068.jpg" alt="Trang 68">
-    </article>
-<article class="page" id="page-69">
-      <div class="page-label">Trang 69 / 204</div>
-      <img loading="lazy" src="pages/page-069.jpg" alt="Trang 69">
-    </article>
-<article class="page" id="page-70">
-      <div class="page-label">Trang 70 / 204</div>
-      <img loading="lazy" src="pages/page-070.jpg" alt="Trang 70">
-    </article>
-<article class="page" id="page-71">
-      <div class="page-label">Trang 71 / 204</div>
-      <img loading="lazy" src="pages/page-071.jpg" alt="Trang 71">
-    </article>
-<article class="page" id="page-72">
-      <div class="page-label">Trang 72 / 204</div>
-      <img loading="lazy" src="pages/page-072.jpg" alt="Trang 72">
-    </article>
-<article class="page" id="page-73">
-      <div class="page-label">Trang 73 / 204</div>
-      <img loading="lazy" src="pages/page-073.jpg" alt="Trang 73">
-    </article>
-<article class="page" id="page-74">
-      <div class="page-label">Trang 74 / 204</div>
-      <img loading="lazy" src="pages/page-074.jpg" alt="Trang 74">
-    </article>
-<article class="page" id="page-75">
-      <div class="page-label">Trang 75 / 204</div>
-      <img loading="lazy" src="pages/page-075.jpg" alt="Trang 75">
-    </article>
-<article class="page" id="page-76">
-      <div class="page-label">Trang 76 / 204</div>
-      <img loading="lazy" src="pages/page-076.jpg" alt="Trang 76">
-    </article>
-<article class="page" id="page-77">
-      <div class="page-label">Trang 77 / 204</div>
-      <img loading="lazy" src="pages/page-077.jpg" alt="Trang 77">
-    </article>
-<article class="page" id="page-78">
-      <div class="page-label">Trang 78 / 204</div>
-      <img loading="lazy" src="pages/page-078.jpg" alt="Trang 78">
-    </article>
-<article class="page" id="page-79">
-      <div class="page-label">Trang 79 / 204</div>
-      <img loading="lazy" src="pages/page-079.jpg" alt="Trang 79">
-    </article>
-<article class="page" id="page-80">
-      <div class="page-label">Trang 80 / 204</div>
-      <img loading="lazy" src="pages/page-080.jpg" alt="Trang 80">
-    </article>
-<article class="page" id="page-81">
-      <div class="page-label">Trang 81 / 204</div>
-      <img loading="lazy" src="pages/page-081.jpg" alt="Trang 81">
-    </article>
-<article class="page" id="page-82">
-      <div class="page-label">Trang 82 / 204</div>
-      <img loading="lazy" src="pages/page-082.jpg" alt="Trang 82">
-    </article>
-<article class="page" id="page-83">
-      <div class="page-label">Trang 83 / 204</div>
-      <img loading="lazy" src="pages/page-083.jpg" alt="Trang 83">
-    </article>
-<article class="page" id="page-84">
-      <div class="page-label">Trang 84 / 204</div>
-      <img loading="lazy" src="pages/page-084.jpg" alt="Trang 84">
-    </article>
-<article class="page" id="page-85">
-      <div class="page-label">Trang 85 / 204</div>
-      <img loading="lazy" src="pages/page-085.jpg" alt="Trang 85">
-    </article>
-<article class="page" id="page-86">
-      <div class="page-label">Trang 86 / 204</div>
-      <img loading="lazy" src="pages/page-086.jpg" alt="Trang 86">
-    </article>
-<article class="page" id="page-87">
-      <div class="page-label">Trang 87 / 204</div>
-      <img loading="lazy" src="pages/page-087.jpg" alt="Trang 87">
-    </article>
-<article class="page" id="page-88">
-      <div class="page-label">Trang 88 / 204</div>
-      <img loading="lazy" src="pages/page-088.jpg" alt="Trang 88">
-    </article>
-<article class="page" id="page-89">
-      <div class="page-label">Trang 89 / 204</div>
-      <img loading="lazy" src="pages/page-089.jpg" alt="Trang 89">
-    </article>
-<article class="page" id="page-90">
-      <div class="page-label">Trang 90 / 204</div>
-      <img loading="lazy" src="pages/page-090.jpg" alt="Trang 90">
-    </article>
-<article class="page" id="page-91">
-      <div class="page-label">Trang 91 / 204</div>
-      <img loading="lazy" src="pages/page-091.jpg" alt="Trang 91">
-    </article>
-<article class="page" id="page-92">
-      <div class="page-label">Trang 92 / 204</div>
-      <img loading="lazy" src="pages/page-092.jpg" alt="Trang 92">
-    </article>
-<article class="page" id="page-93">
-      <div class="page-label">Trang 93 / 204</div>
-      <img loading="lazy" src="pages/page-093.jpg" alt="Trang 93">
-    </article>
-<article class="page" id="page-94">
-      <div class="page-label">Trang 94 / 204</div>
-      <img loading="lazy" src="pages/page-094.jpg" alt="Trang 94">
-    </article>
-<article class="page" id="page-95">
-      <div class="page-label">Trang 95 / 204</div>
-      <img loading="lazy" src="pages/page-095.jpg" alt="Trang 95">
-    </article>
-<article class="page" id="page-96">
-      <div class="page-label">Trang 96 / 204</div>
-      <img loading="lazy" src="pages/page-096.jpg" alt="Trang 96">
-    </article>
-<article class="page" id="page-97">
-      <div class="page-label">Trang 97 / 204</div>
-      <img loading="lazy" src="pages/page-097.jpg" alt="Trang 97">
-    </article>
-<article class="page" id="page-98">
-      <div class="page-label">Trang 98 / 204</div>
-      <img loading="lazy" src="pages/page-098.jpg" alt="Trang 98">
-    </article>
-<article class="page" id="page-99">
-      <div class="page-label">Trang 99 / 204</div>
-      <img loading="lazy" src="pages/page-099.jpg" alt="Trang 99">
-    </article>
-<article class="page" id="page-100">
-      <div class="page-label">Trang 100 / 204</div>
-      <img loading="lazy" src="pages/page-100.jpg" alt="Trang 100">
-    </article>
-<article class="page" id="page-101">
-      <div class="page-label">Trang 101 / 204</div>
-      <img loading="lazy" src="pages/page-101.jpg" alt="Trang 101">
-    </article>
-<article class="page" id="page-102">
-      <div class="page-label">Trang 102 / 204</div>
-      <img loading="lazy" src="pages/page-102.jpg" alt="Trang 102">
-    </article>
-<article class="page" id="page-103">
-      <div class="page-label">Trang 103 / 204</div>
-      <img loading="lazy" src="pages/page-103.jpg" alt="Trang 103">
-    </article>
-<article class="page" id="page-104">
-      <div class="page-label">Trang 104 / 204</div>
-      <img loading="lazy" src="pages/page-104.jpg" alt="Trang 104">
-    </article>
-<article class="page" id="page-105">
-      <div class="page-label">Trang 105 / 204</div>
-      <img loading="lazy" src="pages/page-105.jpg" alt="Trang 105">
-    </article>
-<article class="page" id="page-106">
-      <div class="page-label">Trang 106 / 204</div>
-      <img loading="lazy" src="pages/page-106.jpg" alt="Trang 106">
-    </article>
-<article class="page" id="page-107">
-      <div class="page-label">Trang 107 / 204</div>
-      <img loading="lazy" src="pages/page-107.jpg" alt="Trang 107">
-    </article>
-<article class="page" id="page-108">
-      <div class="page-label">Trang 108 / 204</div>
-      <img loading="lazy" src="pages/page-108.jpg" alt="Trang 108">
-    </article>
-<article class="page" id="page-109">
-      <div class="page-label">Trang 109 / 204</div>
-      <img loading="lazy" src="pages/page-109.jpg" alt="Trang 109">
-    </article>
-<article class="page" id="page-110">
-      <div class="page-label">Trang 110 / 204</div>
-      <img loading="lazy" src="pages/page-110.jpg" alt="Trang 110">
-    </article>
-<article class="page" id="page-111">
-      <div class="page-label">Trang 111 / 204</div>
-      <img loading="lazy" src="pages/page-111.jpg" alt="Trang 111">
-    </article>
-<article class="page" id="page-112">
-      <div class="page-label">Trang 112 / 204</div>
-      <img loading="lazy" src="pages/page-112.jpg" alt="Trang 112">
-    </article>
-<article class="page" id="page-113">
-      <div class="page-label">Trang 113 / 204</div>
-      <img loading="lazy" src="pages/page-113.jpg" alt="Trang 113">
-    </article>
-<article class="page" id="page-114">
-      <div class="page-label">Trang 114 / 204</div>
-      <img loading="lazy" src="pages/page-114.jpg" alt="Trang 114">
-    </article>
-<article class="page" id="page-115">
-      <div class="page-label">Trang 115 / 204</div>
-      <img loading="lazy" src="pages/page-115.jpg" alt="Trang 115">
-    </article>
-<article class="page" id="page-116">
-      <div class="page-label">Trang 116 / 204</div>
-      <img loading="lazy" src="pages/page-116.jpg" alt="Trang 116">
-    </article>
-<article class="page" id="page-117">
-      <div class="page-label">Trang 117 / 204</div>
-      <img loading="lazy" src="pages/page-117.jpg" alt="Trang 117">
-    </article>
-<article class="page" id="page-118">
-      <div class="page-label">Trang 118 / 204</div>
-      <img loading="lazy" src="pages/page-118.jpg" alt="Trang 118">
-    </article>
-<article class="page" id="page-119">
-      <div class="page-label">Trang 119 / 204</div>
-      <img loading="lazy" src="pages/page-119.jpg" alt="Trang 119">
-    </article>
-<article class="page" id="page-120">
-      <div class="page-label">Trang 120 / 204</div>
-      <img loading="lazy" src="pages/page-120.jpg" alt="Trang 120">
-    </article>
-<article class="page" id="page-121">
-      <div class="page-label">Trang 121 / 204</div>
-      <img loading="lazy" src="pages/page-121.jpg" alt="Trang 121">
-    </article>
-<article class="page" id="page-122">
-      <div class="page-label">Trang 122 / 204</div>
-      <img loading="lazy" src="pages/page-122.jpg" alt="Trang 122">
-    </article>
-<article class="page" id="page-123">
-      <div class="page-label">Trang 123 / 204</div>
-      <img loading="lazy" src="pages/page-123.jpg" alt="Trang 123">
-    </article>
-<article class="page" id="page-124">
-      <div class="page-label">Trang 124 / 204</div>
-      <img loading="lazy" src="pages/page-124.jpg" alt="Trang 124">
-    </article>
-<article class="page" id="page-125">
-      <div class="page-label">Trang 125 / 204</div>
-      <img loading="lazy" src="pages/page-125.jpg" alt="Trang 125">
-    </article>
-<article class="page" id="page-126">
-      <div class="page-label">Trang 126 / 204</div>
-      <img loading="lazy" src="pages/page-126.jpg" alt="Trang 126">
-    </article>
-<article class="page" id="page-127">
-      <div class="page-label">Trang 127 / 204</div>
-      <img loading="lazy" src="pages/page-127.jpg" alt="Trang 127">
-    </article>
-<article class="page" id="page-128">
-      <div class="page-label">Trang 128 / 204</div>
-      <img loading="lazy" src="pages/page-128.jpg" alt="Trang 128">
-    </article>
-<article class="page" id="page-129">
-      <div class="page-label">Trang 129 / 204</div>
-      <img loading="lazy" src="pages/page-129.jpg" alt="Trang 129">
-    </article>
-<article class="page" id="page-130">
-      <div class="page-label">Trang 130 / 204</div>
-      <img loading="lazy" src="pages/page-130.jpg" alt="Trang 130">
-    </article>
-<article class="page" id="page-131">
-      <div class="page-label">Trang 131 / 204</div>
-      <img loading="lazy" src="pages/page-131.jpg" alt="Trang 131">
-    </article>
-<article class="page" id="page-132">
-      <div class="page-label">Trang 132 / 204</div>
-      <img loading="lazy" src="pages/page-132.jpg" alt="Trang 132">
-    </article>
-<article class="page" id="page-133">
-      <div class="page-label">Trang 133 / 204</div>
-      <img loading="lazy" src="pages/page-133.jpg" alt="Trang 133">
-    </article>
-<article class="page" id="page-134">
-      <div class="page-label">Trang 134 / 204</div>
-      <img loading="lazy" src="pages/page-134.jpg" alt="Trang 134">
-    </article>
-<article class="page" id="page-135">
-      <div class="page-label">Trang 135 / 204</div>
-      <img loading="lazy" src="pages/page-135.jpg" alt="Trang 135">
-    </article>
-<article class="page" id="page-136">
-      <div class="page-label">Trang 136 / 204</div>
-      <img loading="lazy" src="pages/page-136.jpg" alt="Trang 136">
-    </article>
-<article class="page" id="page-137">
-      <div class="page-label">Trang 137 / 204</div>
-      <img loading="lazy" src="pages/page-137.jpg" alt="Trang 137">
-    </article>
-<article class="page" id="page-138">
-      <div class="page-label">Trang 138 / 204</div>
-      <img loading="lazy" src="pages/page-138.jpg" alt="Trang 138">
-    </article>
-<article class="page" id="page-139">
-      <div class="page-label">Trang 139 / 204</div>
-      <img loading="lazy" src="pages/page-139.jpg" alt="Trang 139">
-    </article>
-<article class="page" id="page-140">
-      <div class="page-label">Trang 140 / 204</div>
-      <img loading="lazy" src="pages/page-140.jpg" alt="Trang 140">
-    </article>
-<article class="page" id="page-141">
-      <div class="page-label">Trang 141 / 204</div>
-      <img loading="lazy" src="pages/page-141.jpg" alt="Trang 141">
-    </article>
-<article class="page" id="page-142">
-      <div class="page-label">Trang 142 / 204</div>
-      <img loading="lazy" src="pages/page-142.jpg" alt="Trang 142">
-    </article>
-<article class="page" id="page-143">
-      <div class="page-label">Trang 143 / 204</div>
-      <img loading="lazy" src="pages/page-143.jpg" alt="Trang 143">
-    </article>
-<article class="page" id="page-144">
-      <div class="page-label">Trang 144 / 204</div>
-      <img loading="lazy" src="pages/page-144.jpg" alt="Trang 144">
-    </article>
-<article class="page" id="page-145">
-      <div class="page-label">Trang 145 / 204</div>
-      <img loading="lazy" src="pages/page-145.jpg" alt="Trang 145">
-    </article>
-<article class="page" id="page-146">
-      <div class="page-label">Trang 146 / 204</div>
-      <img loading="lazy" src="pages/page-146.jpg" alt="Trang 146">
-    </article>
-<article class="page" id="page-147">
-      <div class="page-label">Trang 147 / 204</div>
-      <img loading="lazy" src="pages/page-147.jpg" alt="Trang 147">
-    </article>
-<article class="page" id="page-148">
-      <div class="page-label">Trang 148 / 204</div>
-      <img loading="lazy" src="pages/page-148.jpg" alt="Trang 148">
-    </article>
-<article class="page" id="page-149">
-      <div class="page-label">Trang 149 / 204</div>
-      <img loading="lazy" src="pages/page-149.jpg" alt="Trang 149">
-    </article>
-<article class="page" id="page-150">
-      <div class="page-label">Trang 150 / 204</div>
-      <img loading="lazy" src="pages/page-150.jpg" alt="Trang 150">
-    </article>
-<article class="page" id="page-151">
-      <div class="page-label">Trang 151 / 204</div>
-      <img loading="lazy" src="pages/page-151.jpg" alt="Trang 151">
-    </article>
-<article class="page" id="page-152">
-      <div class="page-label">Trang 152 / 204</div>
-      <img loading="lazy" src="pages/page-152.jpg" alt="Trang 152">
-    </article>
-<article class="page" id="page-153">
-      <div class="page-label">Trang 153 / 204</div>
-      <img loading="lazy" src="pages/page-153.jpg" alt="Trang 153">
-    </article>
-<article class="page" id="page-154">
-      <div class="page-label">Trang 154 / 204</div>
-      <img loading="lazy" src="pages/page-154.jpg" alt="Trang 154">
-    </article>
-<article class="page" id="page-155">
-      <div class="page-label">Trang 155 / 204</div>
-      <img loading="lazy" src="pages/page-155.jpg" alt="Trang 155">
-    </article>
-<article class="page" id="page-156">
-      <div class="page-label">Trang 156 / 204</div>
-      <img loading="lazy" src="pages/page-156.jpg" alt="Trang 156">
-    </article>
-<article class="page" id="page-157">
-      <div class="page-label">Trang 157 / 204</div>
-      <img loading="lazy" src="pages/page-157.jpg" alt="Trang 157">
-    </article>
-<article class="page" id="page-158">
-      <div class="page-label">Trang 158 / 204</div>
-      <img loading="lazy" src="pages/page-158.jpg" alt="Trang 158">
-    </article>
-<article class="page" id="page-159">
-      <div class="page-label">Trang 159 / 204</div>
-      <img loading="lazy" src="pages/page-159.jpg" alt="Trang 159">
-    </article>
-<article class="page" id="page-160">
-      <div class="page-label">Trang 160 / 204</div>
-      <img loading="lazy" src="pages/page-160.jpg" alt="Trang 160">
-    </article>
-<article class="page" id="page-161">
-      <div class="page-label">Trang 161 / 204</div>
-      <img loading="lazy" src="pages/page-161.jpg" alt="Trang 161">
-    </article>
-<article class="page" id="page-162">
-      <div class="page-label">Trang 162 / 204</div>
-      <img loading="lazy" src="pages/page-162.jpg" alt="Trang 162">
-    </article>
-<article class="page" id="page-163">
-      <div class="page-label">Trang 163 / 204</div>
-      <img loading="lazy" src="pages/page-163.jpg" alt="Trang 163">
-    </article>
-<article class="page" id="page-164">
-      <div class="page-label">Trang 164 / 204</div>
-      <img loading="lazy" src="pages/page-164.jpg" alt="Trang 164">
-    </article>
-<article class="page" id="page-165">
-      <div class="page-label">Trang 165 / 204</div>
-      <img loading="lazy" src="pages/page-165.jpg" alt="Trang 165">
-    </article>
-<article class="page" id="page-166">
-      <div class="page-label">Trang 166 / 204</div>
-      <img loading="lazy" src="pages/page-166.jpg" alt="Trang 166">
-    </article>
-<article class="page" id="page-167">
-      <div class="page-label">Trang 167 / 204</div>
-      <img loading="lazy" src="pages/page-167.jpg" alt="Trang 167">
-    </article>
-<article class="page" id="page-168">
-      <div class="page-label">Trang 168 / 204</div>
-      <img loading="lazy" src="pages/page-168.jpg" alt="Trang 168">
-    </article>
-<article class="page" id="page-169">
-      <div class="page-label">Trang 169 / 204</div>
-      <img loading="lazy" src="pages/page-169.jpg" alt="Trang 169">
-    </article>
-<article class="page" id="page-170">
-      <div class="page-label">Trang 170 / 204</div>
-      <img loading="lazy" src="pages/page-170.jpg" alt="Trang 170">
-    </article>
-<article class="page" id="page-171">
-      <div class="page-label">Trang 171 / 204</div>
-      <img loading="lazy" src="pages/page-171.jpg" alt="Trang 171">
-    </article>
-<article class="page" id="page-172">
-      <div class="page-label">Trang 172 / 204</div>
-      <img loading="lazy" src="pages/page-172.jpg" alt="Trang 172">
-    </article>
-<article class="page" id="page-173">
-      <div class="page-label">Trang 173 / 204</div>
-      <img loading="lazy" src="pages/page-173.jpg" alt="Trang 173">
-    </article>
-<article class="page" id="page-174">
-      <div class="page-label">Trang 174 / 204</div>
-      <img loading="lazy" src="pages/page-174.jpg" alt="Trang 174">
-    </article>
-<article class="page" id="page-175">
-      <div class="page-label">Trang 175 / 204</div>
-      <img loading="lazy" src="pages/page-175.jpg" alt="Trang 175">
-    </article>
-<article class="page" id="page-176">
-      <div class="page-label">Trang 176 / 204</div>
-      <img loading="lazy" src="pages/page-176.jpg" alt="Trang 176">
-    </article>
-<article class="page" id="page-177">
-      <div class="page-label">Trang 177 / 204</div>
-      <img loading="lazy" src="pages/page-177.jpg" alt="Trang 177">
-    </article>
-<article class="page" id="page-178">
-      <div class="page-label">Trang 178 / 204</div>
-      <img loading="lazy" src="pages/page-178.jpg" alt="Trang 178">
-    </article>
-<article class="page" id="page-179">
-      <div class="page-label">Trang 179 / 204</div>
-      <img loading="lazy" src="pages/page-179.jpg" alt="Trang 179">
-    </article>
-<article class="page" id="page-180">
-      <div class="page-label">Trang 180 / 204</div>
-      <img loading="lazy" src="pages/page-180.jpg" alt="Trang 180">
-    </article>
-<article class="page" id="page-181">
-      <div class="page-label">Trang 181 / 204</div>
-      <img loading="lazy" src="pages/page-181.jpg" alt="Trang 181">
-    </article>
-<article class="page" id="page-182">
-      <div class="page-label">Trang 182 / 204</div>
-      <img loading="lazy" src="pages/page-182.jpg" alt="Trang 182">
-    </article>
-<article class="page" id="page-183">
-      <div class="page-label">Trang 183 / 204</div>
-      <img loading="lazy" src="pages/page-183.jpg" alt="Trang 183">
-    </article>
-<article class="page" id="page-184">
-      <div class="page-label">Trang 184 / 204</div>
-      <img loading="lazy" src="pages/page-184.jpg" alt="Trang 184">
-    </article>
-<article class="page" id="page-185">
-      <div class="page-label">Trang 185 / 204</div>
-      <img loading="lazy" src="pages/page-185.jpg" alt="Trang 185">
-    </article>
-<article class="page" id="page-186">
-      <div class="page-label">Trang 186 / 204</div>
-      <img loading="lazy" src="pages/page-186.jpg" alt="Trang 186">
-    </article>
-<article class="page" id="page-187">
-      <div class="page-label">Trang 187 / 204</div>
-      <img loading="lazy" src="pages/page-187.jpg" alt="Trang 187">
-    </article>
-<article class="page" id="page-188">
-      <div class="page-label">Trang 188 / 204</div>
-      <img loading="lazy" src="pages/page-188.jpg" alt="Trang 188">
-    </article>
-<article class="page" id="page-189">
-      <div class="page-label">Trang 189 / 204</div>
-      <img loading="lazy" src="pages/page-189.jpg" alt="Trang 189">
-    </article>
-<article class="page" id="page-190">
-      <div class="page-label">Trang 190 / 204</div>
-      <img loading="lazy" src="pages/page-190.jpg" alt="Trang 190">
-    </article>
-<article class="page" id="page-191">
-      <div class="page-label">Trang 191 / 204</div>
-      <img loading="lazy" src="pages/page-191.jpg" alt="Trang 191">
-    </article>
-<article class="page" id="page-192">
-      <div class="page-label">Trang 192 / 204</div>
-      <img loading="lazy" src="pages/page-192.jpg" alt="Trang 192">
-    </article>
-<article class="page" id="page-193">
-      <div class="page-label">Trang 193 / 204</div>
-      <img loading="lazy" src="pages/page-193.jpg" alt="Trang 193">
-    </article>
-<article class="page" id="page-194">
-      <div class="page-label">Trang 194 / 204</div>
-      <img loading="lazy" src="pages/page-194.jpg" alt="Trang 194">
-    </article>
-<article class="page" id="page-195">
-      <div class="page-label">Trang 195 / 204</div>
-      <img loading="lazy" src="pages/page-195.jpg" alt="Trang 195">
-    </article>
-<article class="page" id="page-196">
-      <div class="page-label">Trang 196 / 204</div>
-      <img loading="lazy" src="pages/page-196.jpg" alt="Trang 196">
-    </article>
-<article class="page" id="page-197">
-      <div class="page-label">Trang 197 / 204</div>
-      <img loading="lazy" src="pages/page-197.jpg" alt="Trang 197">
-    </article>
-<article class="page" id="page-198">
-      <div class="page-label">Trang 198 / 204</div>
-      <img loading="lazy" src="pages/page-198.jpg" alt="Trang 198">
-    </article>
-<article class="page" id="page-199">
-      <div class="page-label">Trang 199 / 204</div>
-      <img loading="lazy" src="pages/page-199.jpg" alt="Trang 199">
-    </article>
-<article class="page" id="page-200">
-      <div class="page-label">Trang 200 / 204</div>
-      <img loading="lazy" src="pages/page-200.jpg" alt="Trang 200">
-    </article>
-<article class="page" id="page-201">
-      <div class="page-label">Trang 201 / 204</div>
-      <img loading="lazy" src="pages/page-201.jpg" alt="Trang 201">
-    </article>
-<article class="page" id="page-202">
-      <div class="page-label">Trang 202 / 204</div>
-      <img loading="lazy" src="pages/page-202.jpg" alt="Trang 202">
-    </article>
-<article class="page" id="page-203">
-      <div class="page-label">Trang 203 / 204</div>
-      <img loading="lazy" src="pages/page-203.jpg" alt="Trang 203">
-    </article>
-<article class="page" id="page-204">
-      <div class="page-label">Trang 204 / 204</div>
+<button class="thumb" data-page="204" title="Trang 204">
       <img loading="lazy" src="pages/page-204.jpg" alt="Trang 204">
-    </article>
-  </main>
+      <span>204</span>
+    </button></div>
+</div>
+<div class="scrim" id="scrim"></div>
+
+<div class="settings" id="settings">
+  <div class="setting-row"><span>Cỡ hiển thị</span><input class="range" id="zoom" type="range" min="70" max="130" value="100"></div>
+  <div class="setting-row"><span>Chế độ nền</span>
+    <select id="bgMode"><option value="dark">Đêm</option><option value="paper">Giấy</option></select>
+  </div>
+  <div class="setting-row"><span>Trang hiện tại</span><span id="currentSetting">1</span></div>
 </div>
 
-<button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Lên đầu">↑</button>
+<main class="shell">
+  <section class="hero">
+    <div class="ornament">— ✦ —</div>
+    <h1>Căn Duyên Tiền Định</h1>
+    <p>Không gian đọc sách điện tử tối giản, tập trung vào nội dung và trải nghiệm lật từng trang.</p>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress" id="progress"></div></div>
+      <div class="progress-meta"><span>TIẾN ĐỘ ĐỌC</span><span id="progressText">0%</span></div>
+    </div>
+  </section>
+
+  <div class="reader" id="reader">
+    <section class="page" id="page-1" data-page="1">
+      <div class="page-no">1</div>
+      <img loading="lazy" src="pages/page-001.jpg" alt="Căn Duyên Tiền Định — trang 1">
+    </section>
+<section class="page" id="page-2" data-page="2">
+      <div class="page-no">2</div>
+      <img loading="lazy" src="pages/page-002.jpg" alt="Căn Duyên Tiền Định — trang 2">
+    </section>
+<section class="page" id="page-3" data-page="3">
+      <div class="page-no">3</div>
+      <img loading="lazy" src="pages/page-003.jpg" alt="Căn Duyên Tiền Định — trang 3">
+    </section>
+<section class="page" id="page-4" data-page="4">
+      <div class="page-no">4</div>
+      <img loading="lazy" src="pages/page-004.jpg" alt="Căn Duyên Tiền Định — trang 4">
+    </section>
+<section class="page" id="page-5" data-page="5">
+      <div class="page-no">5</div>
+      <img loading="lazy" src="pages/page-005.jpg" alt="Căn Duyên Tiền Định — trang 5">
+    </section>
+<section class="page" id="page-6" data-page="6">
+      <div class="page-no">6</div>
+      <img loading="lazy" src="pages/page-006.jpg" alt="Căn Duyên Tiền Định — trang 6">
+    </section>
+<section class="page" id="page-7" data-page="7">
+      <div class="page-no">7</div>
+      <img loading="lazy" src="pages/page-007.jpg" alt="Căn Duyên Tiền Định — trang 7">
+    </section>
+<section class="page" id="page-8" data-page="8">
+      <div class="page-no">8</div>
+      <img loading="lazy" src="pages/page-008.jpg" alt="Căn Duyên Tiền Định — trang 8">
+    </section>
+<section class="page" id="page-9" data-page="9">
+      <div class="page-no">9</div>
+      <img loading="lazy" src="pages/page-009.jpg" alt="Căn Duyên Tiền Định — trang 9">
+    </section>
+<section class="page" id="page-10" data-page="10">
+      <div class="page-no">10</div>
+      <img loading="lazy" src="pages/page-010.jpg" alt="Căn Duyên Tiền Định — trang 10">
+    </section>
+<section class="page" id="page-11" data-page="11">
+      <div class="page-no">11</div>
+      <img loading="lazy" src="pages/page-011.jpg" alt="Căn Duyên Tiền Định — trang 11">
+    </section>
+<section class="page" id="page-12" data-page="12">
+      <div class="page-no">12</div>
+      <img loading="lazy" src="pages/page-012.jpg" alt="Căn Duyên Tiền Định — trang 12">
+    </section>
+<section class="page" id="page-13" data-page="13">
+      <div class="page-no">13</div>
+      <img loading="lazy" src="pages/page-013.jpg" alt="Căn Duyên Tiền Định — trang 13">
+    </section>
+<section class="page" id="page-14" data-page="14">
+      <div class="page-no">14</div>
+      <img loading="lazy" src="pages/page-014.jpg" alt="Căn Duyên Tiền Định — trang 14">
+    </section>
+<section class="page" id="page-15" data-page="15">
+      <div class="page-no">15</div>
+      <img loading="lazy" src="pages/page-015.jpg" alt="Căn Duyên Tiền Định — trang 15">
+    </section>
+<section class="page" id="page-16" data-page="16">
+      <div class="page-no">16</div>
+      <img loading="lazy" src="pages/page-016.jpg" alt="Căn Duyên Tiền Định — trang 16">
+    </section>
+<section class="page" id="page-17" data-page="17">
+      <div class="page-no">17</div>
+      <img loading="lazy" src="pages/page-017.jpg" alt="Căn Duyên Tiền Định — trang 17">
+    </section>
+<section class="page" id="page-18" data-page="18">
+      <div class="page-no">18</div>
+      <img loading="lazy" src="pages/page-018.jpg" alt="Căn Duyên Tiền Định — trang 18">
+    </section>
+<section class="page" id="page-19" data-page="19">
+      <div class="page-no">19</div>
+      <img loading="lazy" src="pages/page-019.jpg" alt="Căn Duyên Tiền Định — trang 19">
+    </section>
+<section class="page" id="page-20" data-page="20">
+      <div class="page-no">20</div>
+      <img loading="lazy" src="pages/page-020.jpg" alt="Căn Duyên Tiền Định — trang 20">
+    </section>
+<section class="page" id="page-21" data-page="21">
+      <div class="page-no">21</div>
+      <img loading="lazy" src="pages/page-021.jpg" alt="Căn Duyên Tiền Định — trang 21">
+    </section>
+<section class="page" id="page-22" data-page="22">
+      <div class="page-no">22</div>
+      <img loading="lazy" src="pages/page-022.jpg" alt="Căn Duyên Tiền Định — trang 22">
+    </section>
+<section class="page" id="page-23" data-page="23">
+      <div class="page-no">23</div>
+      <img loading="lazy" src="pages/page-023.jpg" alt="Căn Duyên Tiền Định — trang 23">
+    </section>
+<section class="page" id="page-24" data-page="24">
+      <div class="page-no">24</div>
+      <img loading="lazy" src="pages/page-024.jpg" alt="Căn Duyên Tiền Định — trang 24">
+    </section>
+<section class="page" id="page-25" data-page="25">
+      <div class="page-no">25</div>
+      <img loading="lazy" src="pages/page-025.jpg" alt="Căn Duyên Tiền Định — trang 25">
+    </section>
+<section class="page" id="page-26" data-page="26">
+      <div class="page-no">26</div>
+      <img loading="lazy" src="pages/page-026.jpg" alt="Căn Duyên Tiền Định — trang 26">
+    </section>
+<section class="page" id="page-27" data-page="27">
+      <div class="page-no">27</div>
+      <img loading="lazy" src="pages/page-027.jpg" alt="Căn Duyên Tiền Định — trang 27">
+    </section>
+<section class="page" id="page-28" data-page="28">
+      <div class="page-no">28</div>
+      <img loading="lazy" src="pages/page-028.jpg" alt="Căn Duyên Tiền Định — trang 28">
+    </section>
+<section class="page" id="page-29" data-page="29">
+      <div class="page-no">29</div>
+      <img loading="lazy" src="pages/page-029.jpg" alt="Căn Duyên Tiền Định — trang 29">
+    </section>
+<section class="page" id="page-30" data-page="30">
+      <div class="page-no">30</div>
+      <img loading="lazy" src="pages/page-030.jpg" alt="Căn Duyên Tiền Định — trang 30">
+    </section>
+<section class="page" id="page-31" data-page="31">
+      <div class="page-no">31</div>
+      <img loading="lazy" src="pages/page-031.jpg" alt="Căn Duyên Tiền Định — trang 31">
+    </section>
+<section class="page" id="page-32" data-page="32">
+      <div class="page-no">32</div>
+      <img loading="lazy" src="pages/page-032.jpg" alt="Căn Duyên Tiền Định — trang 32">
+    </section>
+<section class="page" id="page-33" data-page="33">
+      <div class="page-no">33</div>
+      <img loading="lazy" src="pages/page-033.jpg" alt="Căn Duyên Tiền Định — trang 33">
+    </section>
+<section class="page" id="page-34" data-page="34">
+      <div class="page-no">34</div>
+      <img loading="lazy" src="pages/page-034.jpg" alt="Căn Duyên Tiền Định — trang 34">
+    </section>
+<section class="page" id="page-35" data-page="35">
+      <div class="page-no">35</div>
+      <img loading="lazy" src="pages/page-035.jpg" alt="Căn Duyên Tiền Định — trang 35">
+    </section>
+<section class="page" id="page-36" data-page="36">
+      <div class="page-no">36</div>
+      <img loading="lazy" src="pages/page-036.jpg" alt="Căn Duyên Tiền Định — trang 36">
+    </section>
+<section class="page" id="page-37" data-page="37">
+      <div class="page-no">37</div>
+      <img loading="lazy" src="pages/page-037.jpg" alt="Căn Duyên Tiền Định — trang 37">
+    </section>
+<section class="page" id="page-38" data-page="38">
+      <div class="page-no">38</div>
+      <img loading="lazy" src="pages/page-038.jpg" alt="Căn Duyên Tiền Định — trang 38">
+    </section>
+<section class="page" id="page-39" data-page="39">
+      <div class="page-no">39</div>
+      <img loading="lazy" src="pages/page-039.jpg" alt="Căn Duyên Tiền Định — trang 39">
+    </section>
+<section class="page" id="page-40" data-page="40">
+      <div class="page-no">40</div>
+      <img loading="lazy" src="pages/page-040.jpg" alt="Căn Duyên Tiền Định — trang 40">
+    </section>
+<section class="page" id="page-41" data-page="41">
+      <div class="page-no">41</div>
+      <img loading="lazy" src="pages/page-041.jpg" alt="Căn Duyên Tiền Định — trang 41">
+    </section>
+<section class="page" id="page-42" data-page="42">
+      <div class="page-no">42</div>
+      <img loading="lazy" src="pages/page-042.jpg" alt="Căn Duyên Tiền Định — trang 42">
+    </section>
+<section class="page" id="page-43" data-page="43">
+      <div class="page-no">43</div>
+      <img loading="lazy" src="pages/page-043.jpg" alt="Căn Duyên Tiền Định — trang 43">
+    </section>
+<section class="page" id="page-44" data-page="44">
+      <div class="page-no">44</div>
+      <img loading="lazy" src="pages/page-044.jpg" alt="Căn Duyên Tiền Định — trang 44">
+    </section>
+<section class="page" id="page-45" data-page="45">
+      <div class="page-no">45</div>
+      <img loading="lazy" src="pages/page-045.jpg" alt="Căn Duyên Tiền Định — trang 45">
+    </section>
+<section class="page" id="page-46" data-page="46">
+      <div class="page-no">46</div>
+      <img loading="lazy" src="pages/page-046.jpg" alt="Căn Duyên Tiền Định — trang 46">
+    </section>
+<section class="page" id="page-47" data-page="47">
+      <div class="page-no">47</div>
+      <img loading="lazy" src="pages/page-047.jpg" alt="Căn Duyên Tiền Định — trang 47">
+    </section>
+<section class="page" id="page-48" data-page="48">
+      <div class="page-no">48</div>
+      <img loading="lazy" src="pages/page-048.jpg" alt="Căn Duyên Tiền Định — trang 48">
+    </section>
+<section class="page" id="page-49" data-page="49">
+      <div class="page-no">49</div>
+      <img loading="lazy" src="pages/page-049.jpg" alt="Căn Duyên Tiền Định — trang 49">
+    </section>
+<section class="page" id="page-50" data-page="50">
+      <div class="page-no">50</div>
+      <img loading="lazy" src="pages/page-050.jpg" alt="Căn Duyên Tiền Định — trang 50">
+    </section>
+<section class="page" id="page-51" data-page="51">
+      <div class="page-no">51</div>
+      <img loading="lazy" src="pages/page-051.jpg" alt="Căn Duyên Tiền Định — trang 51">
+    </section>
+<section class="page" id="page-52" data-page="52">
+      <div class="page-no">52</div>
+      <img loading="lazy" src="pages/page-052.jpg" alt="Căn Duyên Tiền Định — trang 52">
+    </section>
+<section class="page" id="page-53" data-page="53">
+      <div class="page-no">53</div>
+      <img loading="lazy" src="pages/page-053.jpg" alt="Căn Duyên Tiền Định — trang 53">
+    </section>
+<section class="page" id="page-54" data-page="54">
+      <div class="page-no">54</div>
+      <img loading="lazy" src="pages/page-054.jpg" alt="Căn Duyên Tiền Định — trang 54">
+    </section>
+<section class="page" id="page-55" data-page="55">
+      <div class="page-no">55</div>
+      <img loading="lazy" src="pages/page-055.jpg" alt="Căn Duyên Tiền Định — trang 55">
+    </section>
+<section class="page" id="page-56" data-page="56">
+      <div class="page-no">56</div>
+      <img loading="lazy" src="pages/page-056.jpg" alt="Căn Duyên Tiền Định — trang 56">
+    </section>
+<section class="page" id="page-57" data-page="57">
+      <div class="page-no">57</div>
+      <img loading="lazy" src="pages/page-057.jpg" alt="Căn Duyên Tiền Định — trang 57">
+    </section>
+<section class="page" id="page-58" data-page="58">
+      <div class="page-no">58</div>
+      <img loading="lazy" src="pages/page-058.jpg" alt="Căn Duyên Tiền Định — trang 58">
+    </section>
+<section class="page" id="page-59" data-page="59">
+      <div class="page-no">59</div>
+      <img loading="lazy" src="pages/page-059.jpg" alt="Căn Duyên Tiền Định — trang 59">
+    </section>
+<section class="page" id="page-60" data-page="60">
+      <div class="page-no">60</div>
+      <img loading="lazy" src="pages/page-060.jpg" alt="Căn Duyên Tiền Định — trang 60">
+    </section>
+<section class="page" id="page-61" data-page="61">
+      <div class="page-no">61</div>
+      <img loading="lazy" src="pages/page-061.jpg" alt="Căn Duyên Tiền Định — trang 61">
+    </section>
+<section class="page" id="page-62" data-page="62">
+      <div class="page-no">62</div>
+      <img loading="lazy" src="pages/page-062.jpg" alt="Căn Duyên Tiền Định — trang 62">
+    </section>
+<section class="page" id="page-63" data-page="63">
+      <div class="page-no">63</div>
+      <img loading="lazy" src="pages/page-063.jpg" alt="Căn Duyên Tiền Định — trang 63">
+    </section>
+<section class="page" id="page-64" data-page="64">
+      <div class="page-no">64</div>
+      <img loading="lazy" src="pages/page-064.jpg" alt="Căn Duyên Tiền Định — trang 64">
+    </section>
+<section class="page" id="page-65" data-page="65">
+      <div class="page-no">65</div>
+      <img loading="lazy" src="pages/page-065.jpg" alt="Căn Duyên Tiền Định — trang 65">
+    </section>
+<section class="page" id="page-66" data-page="66">
+      <div class="page-no">66</div>
+      <img loading="lazy" src="pages/page-066.jpg" alt="Căn Duyên Tiền Định — trang 66">
+    </section>
+<section class="page" id="page-67" data-page="67">
+      <div class="page-no">67</div>
+      <img loading="lazy" src="pages/page-067.jpg" alt="Căn Duyên Tiền Định — trang 67">
+    </section>
+<section class="page" id="page-68" data-page="68">
+      <div class="page-no">68</div>
+      <img loading="lazy" src="pages/page-068.jpg" alt="Căn Duyên Tiền Định — trang 68">
+    </section>
+<section class="page" id="page-69" data-page="69">
+      <div class="page-no">69</div>
+      <img loading="lazy" src="pages/page-069.jpg" alt="Căn Duyên Tiền Định — trang 69">
+    </section>
+<section class="page" id="page-70" data-page="70">
+      <div class="page-no">70</div>
+      <img loading="lazy" src="pages/page-070.jpg" alt="Căn Duyên Tiền Định — trang 70">
+    </section>
+<section class="page" id="page-71" data-page="71">
+      <div class="page-no">71</div>
+      <img loading="lazy" src="pages/page-071.jpg" alt="Căn Duyên Tiền Định — trang 71">
+    </section>
+<section class="page" id="page-72" data-page="72">
+      <div class="page-no">72</div>
+      <img loading="lazy" src="pages/page-072.jpg" alt="Căn Duyên Tiền Định — trang 72">
+    </section>
+<section class="page" id="page-73" data-page="73">
+      <div class="page-no">73</div>
+      <img loading="lazy" src="pages/page-073.jpg" alt="Căn Duyên Tiền Định — trang 73">
+    </section>
+<section class="page" id="page-74" data-page="74">
+      <div class="page-no">74</div>
+      <img loading="lazy" src="pages/page-074.jpg" alt="Căn Duyên Tiền Định — trang 74">
+    </section>
+<section class="page" id="page-75" data-page="75">
+      <div class="page-no">75</div>
+      <img loading="lazy" src="pages/page-075.jpg" alt="Căn Duyên Tiền Định — trang 75">
+    </section>
+<section class="page" id="page-76" data-page="76">
+      <div class="page-no">76</div>
+      <img loading="lazy" src="pages/page-076.jpg" alt="Căn Duyên Tiền Định — trang 76">
+    </section>
+<section class="page" id="page-77" data-page="77">
+      <div class="page-no">77</div>
+      <img loading="lazy" src="pages/page-077.jpg" alt="Căn Duyên Tiền Định — trang 77">
+    </section>
+<section class="page" id="page-78" data-page="78">
+      <div class="page-no">78</div>
+      <img loading="lazy" src="pages/page-078.jpg" alt="Căn Duyên Tiền Định — trang 78">
+    </section>
+<section class="page" id="page-79" data-page="79">
+      <div class="page-no">79</div>
+      <img loading="lazy" src="pages/page-079.jpg" alt="Căn Duyên Tiền Định — trang 79">
+    </section>
+<section class="page" id="page-80" data-page="80">
+      <div class="page-no">80</div>
+      <img loading="lazy" src="pages/page-080.jpg" alt="Căn Duyên Tiền Định — trang 80">
+    </section>
+<section class="page" id="page-81" data-page="81">
+      <div class="page-no">81</div>
+      <img loading="lazy" src="pages/page-081.jpg" alt="Căn Duyên Tiền Định — trang 81">
+    </section>
+<section class="page" id="page-82" data-page="82">
+      <div class="page-no">82</div>
+      <img loading="lazy" src="pages/page-082.jpg" alt="Căn Duyên Tiền Định — trang 82">
+    </section>
+<section class="page" id="page-83" data-page="83">
+      <div class="page-no">83</div>
+      <img loading="lazy" src="pages/page-083.jpg" alt="Căn Duyên Tiền Định — trang 83">
+    </section>
+<section class="page" id="page-84" data-page="84">
+      <div class="page-no">84</div>
+      <img loading="lazy" src="pages/page-084.jpg" alt="Căn Duyên Tiền Định — trang 84">
+    </section>
+<section class="page" id="page-85" data-page="85">
+      <div class="page-no">85</div>
+      <img loading="lazy" src="pages/page-085.jpg" alt="Căn Duyên Tiền Định — trang 85">
+    </section>
+<section class="page" id="page-86" data-page="86">
+      <div class="page-no">86</div>
+      <img loading="lazy" src="pages/page-086.jpg" alt="Căn Duyên Tiền Định — trang 86">
+    </section>
+<section class="page" id="page-87" data-page="87">
+      <div class="page-no">87</div>
+      <img loading="lazy" src="pages/page-087.jpg" alt="Căn Duyên Tiền Định — trang 87">
+    </section>
+<section class="page" id="page-88" data-page="88">
+      <div class="page-no">88</div>
+      <img loading="lazy" src="pages/page-088.jpg" alt="Căn Duyên Tiền Định — trang 88">
+    </section>
+<section class="page" id="page-89" data-page="89">
+      <div class="page-no">89</div>
+      <img loading="lazy" src="pages/page-089.jpg" alt="Căn Duyên Tiền Định — trang 89">
+    </section>
+<section class="page" id="page-90" data-page="90">
+      <div class="page-no">90</div>
+      <img loading="lazy" src="pages/page-090.jpg" alt="Căn Duyên Tiền Định — trang 90">
+    </section>
+<section class="page" id="page-91" data-page="91">
+      <div class="page-no">91</div>
+      <img loading="lazy" src="pages/page-091.jpg" alt="Căn Duyên Tiền Định — trang 91">
+    </section>
+<section class="page" id="page-92" data-page="92">
+      <div class="page-no">92</div>
+      <img loading="lazy" src="pages/page-092.jpg" alt="Căn Duyên Tiền Định — trang 92">
+    </section>
+<section class="page" id="page-93" data-page="93">
+      <div class="page-no">93</div>
+      <img loading="lazy" src="pages/page-093.jpg" alt="Căn Duyên Tiền Định — trang 93">
+    </section>
+<section class="page" id="page-94" data-page="94">
+      <div class="page-no">94</div>
+      <img loading="lazy" src="pages/page-094.jpg" alt="Căn Duyên Tiền Định — trang 94">
+    </section>
+<section class="page" id="page-95" data-page="95">
+      <div class="page-no">95</div>
+      <img loading="lazy" src="pages/page-095.jpg" alt="Căn Duyên Tiền Định — trang 95">
+    </section>
+<section class="page" id="page-96" data-page="96">
+      <div class="page-no">96</div>
+      <img loading="lazy" src="pages/page-096.jpg" alt="Căn Duyên Tiền Định — trang 96">
+    </section>
+<section class="page" id="page-97" data-page="97">
+      <div class="page-no">97</div>
+      <img loading="lazy" src="pages/page-097.jpg" alt="Căn Duyên Tiền Định — trang 97">
+    </section>
+<section class="page" id="page-98" data-page="98">
+      <div class="page-no">98</div>
+      <img loading="lazy" src="pages/page-098.jpg" alt="Căn Duyên Tiền Định — trang 98">
+    </section>
+<section class="page" id="page-99" data-page="99">
+      <div class="page-no">99</div>
+      <img loading="lazy" src="pages/page-099.jpg" alt="Căn Duyên Tiền Định — trang 99">
+    </section>
+<section class="page" id="page-100" data-page="100">
+      <div class="page-no">100</div>
+      <img loading="lazy" src="pages/page-100.jpg" alt="Căn Duyên Tiền Định — trang 100">
+    </section>
+<section class="page" id="page-101" data-page="101">
+      <div class="page-no">101</div>
+      <img loading="lazy" src="pages/page-101.jpg" alt="Căn Duyên Tiền Định — trang 101">
+    </section>
+<section class="page" id="page-102" data-page="102">
+      <div class="page-no">102</div>
+      <img loading="lazy" src="pages/page-102.jpg" alt="Căn Duyên Tiền Định — trang 102">
+    </section>
+<section class="page" id="page-103" data-page="103">
+      <div class="page-no">103</div>
+      <img loading="lazy" src="pages/page-103.jpg" alt="Căn Duyên Tiền Định — trang 103">
+    </section>
+<section class="page" id="page-104" data-page="104">
+      <div class="page-no">104</div>
+      <img loading="lazy" src="pages/page-104.jpg" alt="Căn Duyên Tiền Định — trang 104">
+    </section>
+<section class="page" id="page-105" data-page="105">
+      <div class="page-no">105</div>
+      <img loading="lazy" src="pages/page-105.jpg" alt="Căn Duyên Tiền Định — trang 105">
+    </section>
+<section class="page" id="page-106" data-page="106">
+      <div class="page-no">106</div>
+      <img loading="lazy" src="pages/page-106.jpg" alt="Căn Duyên Tiền Định — trang 106">
+    </section>
+<section class="page" id="page-107" data-page="107">
+      <div class="page-no">107</div>
+      <img loading="lazy" src="pages/page-107.jpg" alt="Căn Duyên Tiền Định — trang 107">
+    </section>
+<section class="page" id="page-108" data-page="108">
+      <div class="page-no">108</div>
+      <img loading="lazy" src="pages/page-108.jpg" alt="Căn Duyên Tiền Định — trang 108">
+    </section>
+<section class="page" id="page-109" data-page="109">
+      <div class="page-no">109</div>
+      <img loading="lazy" src="pages/page-109.jpg" alt="Căn Duyên Tiền Định — trang 109">
+    </section>
+<section class="page" id="page-110" data-page="110">
+      <div class="page-no">110</div>
+      <img loading="lazy" src="pages/page-110.jpg" alt="Căn Duyên Tiền Định — trang 110">
+    </section>
+<section class="page" id="page-111" data-page="111">
+      <div class="page-no">111</div>
+      <img loading="lazy" src="pages/page-111.jpg" alt="Căn Duyên Tiền Định — trang 111">
+    </section>
+<section class="page" id="page-112" data-page="112">
+      <div class="page-no">112</div>
+      <img loading="lazy" src="pages/page-112.jpg" alt="Căn Duyên Tiền Định — trang 112">
+    </section>
+<section class="page" id="page-113" data-page="113">
+      <div class="page-no">113</div>
+      <img loading="lazy" src="pages/page-113.jpg" alt="Căn Duyên Tiền Định — trang 113">
+    </section>
+<section class="page" id="page-114" data-page="114">
+      <div class="page-no">114</div>
+      <img loading="lazy" src="pages/page-114.jpg" alt="Căn Duyên Tiền Định — trang 114">
+    </section>
+<section class="page" id="page-115" data-page="115">
+      <div class="page-no">115</div>
+      <img loading="lazy" src="pages/page-115.jpg" alt="Căn Duyên Tiền Định — trang 115">
+    </section>
+<section class="page" id="page-116" data-page="116">
+      <div class="page-no">116</div>
+      <img loading="lazy" src="pages/page-116.jpg" alt="Căn Duyên Tiền Định — trang 116">
+    </section>
+<section class="page" id="page-117" data-page="117">
+      <div class="page-no">117</div>
+      <img loading="lazy" src="pages/page-117.jpg" alt="Căn Duyên Tiền Định — trang 117">
+    </section>
+<section class="page" id="page-118" data-page="118">
+      <div class="page-no">118</div>
+      <img loading="lazy" src="pages/page-118.jpg" alt="Căn Duyên Tiền Định — trang 118">
+    </section>
+<section class="page" id="page-119" data-page="119">
+      <div class="page-no">119</div>
+      <img loading="lazy" src="pages/page-119.jpg" alt="Căn Duyên Tiền Định — trang 119">
+    </section>
+<section class="page" id="page-120" data-page="120">
+      <div class="page-no">120</div>
+      <img loading="lazy" src="pages/page-120.jpg" alt="Căn Duyên Tiền Định — trang 120">
+    </section>
+<section class="page" id="page-121" data-page="121">
+      <div class="page-no">121</div>
+      <img loading="lazy" src="pages/page-121.jpg" alt="Căn Duyên Tiền Định — trang 121">
+    </section>
+<section class="page" id="page-122" data-page="122">
+      <div class="page-no">122</div>
+      <img loading="lazy" src="pages/page-122.jpg" alt="Căn Duyên Tiền Định — trang 122">
+    </section>
+<section class="page" id="page-123" data-page="123">
+      <div class="page-no">123</div>
+      <img loading="lazy" src="pages/page-123.jpg" alt="Căn Duyên Tiền Định — trang 123">
+    </section>
+<section class="page" id="page-124" data-page="124">
+      <div class="page-no">124</div>
+      <img loading="lazy" src="pages/page-124.jpg" alt="Căn Duyên Tiền Định — trang 124">
+    </section>
+<section class="page" id="page-125" data-page="125">
+      <div class="page-no">125</div>
+      <img loading="lazy" src="pages/page-125.jpg" alt="Căn Duyên Tiền Định — trang 125">
+    </section>
+<section class="page" id="page-126" data-page="126">
+      <div class="page-no">126</div>
+      <img loading="lazy" src="pages/page-126.jpg" alt="Căn Duyên Tiền Định — trang 126">
+    </section>
+<section class="page" id="page-127" data-page="127">
+      <div class="page-no">127</div>
+      <img loading="lazy" src="pages/page-127.jpg" alt="Căn Duyên Tiền Định — trang 127">
+    </section>
+<section class="page" id="page-128" data-page="128">
+      <div class="page-no">128</div>
+      <img loading="lazy" src="pages/page-128.jpg" alt="Căn Duyên Tiền Định — trang 128">
+    </section>
+<section class="page" id="page-129" data-page="129">
+      <div class="page-no">129</div>
+      <img loading="lazy" src="pages/page-129.jpg" alt="Căn Duyên Tiền Định — trang 129">
+    </section>
+<section class="page" id="page-130" data-page="130">
+      <div class="page-no">130</div>
+      <img loading="lazy" src="pages/page-130.jpg" alt="Căn Duyên Tiền Định — trang 130">
+    </section>
+<section class="page" id="page-131" data-page="131">
+      <div class="page-no">131</div>
+      <img loading="lazy" src="pages/page-131.jpg" alt="Căn Duyên Tiền Định — trang 131">
+    </section>
+<section class="page" id="page-132" data-page="132">
+      <div class="page-no">132</div>
+      <img loading="lazy" src="pages/page-132.jpg" alt="Căn Duyên Tiền Định — trang 132">
+    </section>
+<section class="page" id="page-133" data-page="133">
+      <div class="page-no">133</div>
+      <img loading="lazy" src="pages/page-133.jpg" alt="Căn Duyên Tiền Định — trang 133">
+    </section>
+<section class="page" id="page-134" data-page="134">
+      <div class="page-no">134</div>
+      <img loading="lazy" src="pages/page-134.jpg" alt="Căn Duyên Tiền Định — trang 134">
+    </section>
+<section class="page" id="page-135" data-page="135">
+      <div class="page-no">135</div>
+      <img loading="lazy" src="pages/page-135.jpg" alt="Căn Duyên Tiền Định — trang 135">
+    </section>
+<section class="page" id="page-136" data-page="136">
+      <div class="page-no">136</div>
+      <img loading="lazy" src="pages/page-136.jpg" alt="Căn Duyên Tiền Định — trang 136">
+    </section>
+<section class="page" id="page-137" data-page="137">
+      <div class="page-no">137</div>
+      <img loading="lazy" src="pages/page-137.jpg" alt="Căn Duyên Tiền Định — trang 137">
+    </section>
+<section class="page" id="page-138" data-page="138">
+      <div class="page-no">138</div>
+      <img loading="lazy" src="pages/page-138.jpg" alt="Căn Duyên Tiền Định — trang 138">
+    </section>
+<section class="page" id="page-139" data-page="139">
+      <div class="page-no">139</div>
+      <img loading="lazy" src="pages/page-139.jpg" alt="Căn Duyên Tiền Định — trang 139">
+    </section>
+<section class="page" id="page-140" data-page="140">
+      <div class="page-no">140</div>
+      <img loading="lazy" src="pages/page-140.jpg" alt="Căn Duyên Tiền Định — trang 140">
+    </section>
+<section class="page" id="page-141" data-page="141">
+      <div class="page-no">141</div>
+      <img loading="lazy" src="pages/page-141.jpg" alt="Căn Duyên Tiền Định — trang 141">
+    </section>
+<section class="page" id="page-142" data-page="142">
+      <div class="page-no">142</div>
+      <img loading="lazy" src="pages/page-142.jpg" alt="Căn Duyên Tiền Định — trang 142">
+    </section>
+<section class="page" id="page-143" data-page="143">
+      <div class="page-no">143</div>
+      <img loading="lazy" src="pages/page-143.jpg" alt="Căn Duyên Tiền Định — trang 143">
+    </section>
+<section class="page" id="page-144" data-page="144">
+      <div class="page-no">144</div>
+      <img loading="lazy" src="pages/page-144.jpg" alt="Căn Duyên Tiền Định — trang 144">
+    </section>
+<section class="page" id="page-145" data-page="145">
+      <div class="page-no">145</div>
+      <img loading="lazy" src="pages/page-145.jpg" alt="Căn Duyên Tiền Định — trang 145">
+    </section>
+<section class="page" id="page-146" data-page="146">
+      <div class="page-no">146</div>
+      <img loading="lazy" src="pages/page-146.jpg" alt="Căn Duyên Tiền Định — trang 146">
+    </section>
+<section class="page" id="page-147" data-page="147">
+      <div class="page-no">147</div>
+      <img loading="lazy" src="pages/page-147.jpg" alt="Căn Duyên Tiền Định — trang 147">
+    </section>
+<section class="page" id="page-148" data-page="148">
+      <div class="page-no">148</div>
+      <img loading="lazy" src="pages/page-148.jpg" alt="Căn Duyên Tiền Định — trang 148">
+    </section>
+<section class="page" id="page-149" data-page="149">
+      <div class="page-no">149</div>
+      <img loading="lazy" src="pages/page-149.jpg" alt="Căn Duyên Tiền Định — trang 149">
+    </section>
+<section class="page" id="page-150" data-page="150">
+      <div class="page-no">150</div>
+      <img loading="lazy" src="pages/page-150.jpg" alt="Căn Duyên Tiền Định — trang 150">
+    </section>
+<section class="page" id="page-151" data-page="151">
+      <div class="page-no">151</div>
+      <img loading="lazy" src="pages/page-151.jpg" alt="Căn Duyên Tiền Định — trang 151">
+    </section>
+<section class="page" id="page-152" data-page="152">
+      <div class="page-no">152</div>
+      <img loading="lazy" src="pages/page-152.jpg" alt="Căn Duyên Tiền Định — trang 152">
+    </section>
+<section class="page" id="page-153" data-page="153">
+      <div class="page-no">153</div>
+      <img loading="lazy" src="pages/page-153.jpg" alt="Căn Duyên Tiền Định — trang 153">
+    </section>
+<section class="page" id="page-154" data-page="154">
+      <div class="page-no">154</div>
+      <img loading="lazy" src="pages/page-154.jpg" alt="Căn Duyên Tiền Định — trang 154">
+    </section>
+<section class="page" id="page-155" data-page="155">
+      <div class="page-no">155</div>
+      <img loading="lazy" src="pages/page-155.jpg" alt="Căn Duyên Tiền Định — trang 155">
+    </section>
+<section class="page" id="page-156" data-page="156">
+      <div class="page-no">156</div>
+      <img loading="lazy" src="pages/page-156.jpg" alt="Căn Duyên Tiền Định — trang 156">
+    </section>
+<section class="page" id="page-157" data-page="157">
+      <div class="page-no">157</div>
+      <img loading="lazy" src="pages/page-157.jpg" alt="Căn Duyên Tiền Định — trang 157">
+    </section>
+<section class="page" id="page-158" data-page="158">
+      <div class="page-no">158</div>
+      <img loading="lazy" src="pages/page-158.jpg" alt="Căn Duyên Tiền Định — trang 158">
+    </section>
+<section class="page" id="page-159" data-page="159">
+      <div class="page-no">159</div>
+      <img loading="lazy" src="pages/page-159.jpg" alt="Căn Duyên Tiền Định — trang 159">
+    </section>
+<section class="page" id="page-160" data-page="160">
+      <div class="page-no">160</div>
+      <img loading="lazy" src="pages/page-160.jpg" alt="Căn Duyên Tiền Định — trang 160">
+    </section>
+<section class="page" id="page-161" data-page="161">
+      <div class="page-no">161</div>
+      <img loading="lazy" src="pages/page-161.jpg" alt="Căn Duyên Tiền Định — trang 161">
+    </section>
+<section class="page" id="page-162" data-page="162">
+      <div class="page-no">162</div>
+      <img loading="lazy" src="pages/page-162.jpg" alt="Căn Duyên Tiền Định — trang 162">
+    </section>
+<section class="page" id="page-163" data-page="163">
+      <div class="page-no">163</div>
+      <img loading="lazy" src="pages/page-163.jpg" alt="Căn Duyên Tiền Định — trang 163">
+    </section>
+<section class="page" id="page-164" data-page="164">
+      <div class="page-no">164</div>
+      <img loading="lazy" src="pages/page-164.jpg" alt="Căn Duyên Tiền Định — trang 164">
+    </section>
+<section class="page" id="page-165" data-page="165">
+      <div class="page-no">165</div>
+      <img loading="lazy" src="pages/page-165.jpg" alt="Căn Duyên Tiền Định — trang 165">
+    </section>
+<section class="page" id="page-166" data-page="166">
+      <div class="page-no">166</div>
+      <img loading="lazy" src="pages/page-166.jpg" alt="Căn Duyên Tiền Định — trang 166">
+    </section>
+<section class="page" id="page-167" data-page="167">
+      <div class="page-no">167</div>
+      <img loading="lazy" src="pages/page-167.jpg" alt="Căn Duyên Tiền Định — trang 167">
+    </section>
+<section class="page" id="page-168" data-page="168">
+      <div class="page-no">168</div>
+      <img loading="lazy" src="pages/page-168.jpg" alt="Căn Duyên Tiền Định — trang 168">
+    </section>
+<section class="page" id="page-169" data-page="169">
+      <div class="page-no">169</div>
+      <img loading="lazy" src="pages/page-169.jpg" alt="Căn Duyên Tiền Định — trang 169">
+    </section>
+<section class="page" id="page-170" data-page="170">
+      <div class="page-no">170</div>
+      <img loading="lazy" src="pages/page-170.jpg" alt="Căn Duyên Tiền Định — trang 170">
+    </section>
+<section class="page" id="page-171" data-page="171">
+      <div class="page-no">171</div>
+      <img loading="lazy" src="pages/page-171.jpg" alt="Căn Duyên Tiền Định — trang 171">
+    </section>
+<section class="page" id="page-172" data-page="172">
+      <div class="page-no">172</div>
+      <img loading="lazy" src="pages/page-172.jpg" alt="Căn Duyên Tiền Định — trang 172">
+    </section>
+<section class="page" id="page-173" data-page="173">
+      <div class="page-no">173</div>
+      <img loading="lazy" src="pages/page-173.jpg" alt="Căn Duyên Tiền Định — trang 173">
+    </section>
+<section class="page" id="page-174" data-page="174">
+      <div class="page-no">174</div>
+      <img loading="lazy" src="pages/page-174.jpg" alt="Căn Duyên Tiền Định — trang 174">
+    </section>
+<section class="page" id="page-175" data-page="175">
+      <div class="page-no">175</div>
+      <img loading="lazy" src="pages/page-175.jpg" alt="Căn Duyên Tiền Định — trang 175">
+    </section>
+<section class="page" id="page-176" data-page="176">
+      <div class="page-no">176</div>
+      <img loading="lazy" src="pages/page-176.jpg" alt="Căn Duyên Tiền Định — trang 176">
+    </section>
+<section class="page" id="page-177" data-page="177">
+      <div class="page-no">177</div>
+      <img loading="lazy" src="pages/page-177.jpg" alt="Căn Duyên Tiền Định — trang 177">
+    </section>
+<section class="page" id="page-178" data-page="178">
+      <div class="page-no">178</div>
+      <img loading="lazy" src="pages/page-178.jpg" alt="Căn Duyên Tiền Định — trang 178">
+    </section>
+<section class="page" id="page-179" data-page="179">
+      <div class="page-no">179</div>
+      <img loading="lazy" src="pages/page-179.jpg" alt="Căn Duyên Tiền Định — trang 179">
+    </section>
+<section class="page" id="page-180" data-page="180">
+      <div class="page-no">180</div>
+      <img loading="lazy" src="pages/page-180.jpg" alt="Căn Duyên Tiền Định — trang 180">
+    </section>
+<section class="page" id="page-181" data-page="181">
+      <div class="page-no">181</div>
+      <img loading="lazy" src="pages/page-181.jpg" alt="Căn Duyên Tiền Định — trang 181">
+    </section>
+<section class="page" id="page-182" data-page="182">
+      <div class="page-no">182</div>
+      <img loading="lazy" src="pages/page-182.jpg" alt="Căn Duyên Tiền Định — trang 182">
+    </section>
+<section class="page" id="page-183" data-page="183">
+      <div class="page-no">183</div>
+      <img loading="lazy" src="pages/page-183.jpg" alt="Căn Duyên Tiền Định — trang 183">
+    </section>
+<section class="page" id="page-184" data-page="184">
+      <div class="page-no">184</div>
+      <img loading="lazy" src="pages/page-184.jpg" alt="Căn Duyên Tiền Định — trang 184">
+    </section>
+<section class="page" id="page-185" data-page="185">
+      <div class="page-no">185</div>
+      <img loading="lazy" src="pages/page-185.jpg" alt="Căn Duyên Tiền Định — trang 185">
+    </section>
+<section class="page" id="page-186" data-page="186">
+      <div class="page-no">186</div>
+      <img loading="lazy" src="pages/page-186.jpg" alt="Căn Duyên Tiền Định — trang 186">
+    </section>
+<section class="page" id="page-187" data-page="187">
+      <div class="page-no">187</div>
+      <img loading="lazy" src="pages/page-187.jpg" alt="Căn Duyên Tiền Định — trang 187">
+    </section>
+<section class="page" id="page-188" data-page="188">
+      <div class="page-no">188</div>
+      <img loading="lazy" src="pages/page-188.jpg" alt="Căn Duyên Tiền Định — trang 188">
+    </section>
+<section class="page" id="page-189" data-page="189">
+      <div class="page-no">189</div>
+      <img loading="lazy" src="pages/page-189.jpg" alt="Căn Duyên Tiền Định — trang 189">
+    </section>
+<section class="page" id="page-190" data-page="190">
+      <div class="page-no">190</div>
+      <img loading="lazy" src="pages/page-190.jpg" alt="Căn Duyên Tiền Định — trang 190">
+    </section>
+<section class="page" id="page-191" data-page="191">
+      <div class="page-no">191</div>
+      <img loading="lazy" src="pages/page-191.jpg" alt="Căn Duyên Tiền Định — trang 191">
+    </section>
+<section class="page" id="page-192" data-page="192">
+      <div class="page-no">192</div>
+      <img loading="lazy" src="pages/page-192.jpg" alt="Căn Duyên Tiền Định — trang 192">
+    </section>
+<section class="page" id="page-193" data-page="193">
+      <div class="page-no">193</div>
+      <img loading="lazy" src="pages/page-193.jpg" alt="Căn Duyên Tiền Định — trang 193">
+    </section>
+<section class="page" id="page-194" data-page="194">
+      <div class="page-no">194</div>
+      <img loading="lazy" src="pages/page-194.jpg" alt="Căn Duyên Tiền Định — trang 194">
+    </section>
+<section class="page" id="page-195" data-page="195">
+      <div class="page-no">195</div>
+      <img loading="lazy" src="pages/page-195.jpg" alt="Căn Duyên Tiền Định — trang 195">
+    </section>
+<section class="page" id="page-196" data-page="196">
+      <div class="page-no">196</div>
+      <img loading="lazy" src="pages/page-196.jpg" alt="Căn Duyên Tiền Định — trang 196">
+    </section>
+<section class="page" id="page-197" data-page="197">
+      <div class="page-no">197</div>
+      <img loading="lazy" src="pages/page-197.jpg" alt="Căn Duyên Tiền Định — trang 197">
+    </section>
+<section class="page" id="page-198" data-page="198">
+      <div class="page-no">198</div>
+      <img loading="lazy" src="pages/page-198.jpg" alt="Căn Duyên Tiền Định — trang 198">
+    </section>
+<section class="page" id="page-199" data-page="199">
+      <div class="page-no">199</div>
+      <img loading="lazy" src="pages/page-199.jpg" alt="Căn Duyên Tiền Định — trang 199">
+    </section>
+<section class="page" id="page-200" data-page="200">
+      <div class="page-no">200</div>
+      <img loading="lazy" src="pages/page-200.jpg" alt="Căn Duyên Tiền Định — trang 200">
+    </section>
+<section class="page" id="page-201" data-page="201">
+      <div class="page-no">201</div>
+      <img loading="lazy" src="pages/page-201.jpg" alt="Căn Duyên Tiền Định — trang 201">
+    </section>
+<section class="page" id="page-202" data-page="202">
+      <div class="page-no">202</div>
+      <img loading="lazy" src="pages/page-202.jpg" alt="Căn Duyên Tiền Định — trang 202">
+    </section>
+<section class="page" id="page-203" data-page="203">
+      <div class="page-no">203</div>
+      <img loading="lazy" src="pages/page-203.jpg" alt="Căn Duyên Tiền Định — trang 203">
+    </section>
+<section class="page" id="page-204" data-page="204">
+      <div class="page-no">204</div>
+      <img loading="lazy" src="pages/page-204.jpg" alt="Căn Duyên Tiền Định — trang 204">
+    </section>
+  </div>
+</main>
+
+<nav class="bottom" aria-label="Điều hướng">
+  <button id="first" title="Trang đầu">⏮</button>
+  <button id="prev" title="Trang trước">‹</button>
+  <div class="center" id="bottomPage">Trang 1</div>
+  <button id="next" title="Trang sau">›</button>
+  <button id="last" title="Trang cuối">⏭</button>
+</nav>
 
 <script>
-const total = 204;
-const input = document.getElementById('pageInput');
+const total=204;
+const jump=document.getElementById('jump');
+const pages=[...document.querySelectorAll('.page')];
+const thumbs=[...document.querySelectorAll('.thumb')];
 
-function goToPage(n) {
-  n = Math.max(1, Math.min(total, Number(n) || 1));
-  input.value = n;
-  document.getElementById('page-' + n)?.scrollIntoView({behavior:'smooth', block:'start'});
+function go(n) {
+  n=Math.max(1,Math.min(total,Number(n)||1));
+  jump.value=n;
+  document.getElementById('page-'+n)?.scrollIntoView({behavior:'smooth',block:'start'});
 }
-document.getElementById('go').onclick = () => goToPage(input.value);
-document.getElementById('prev').onclick = () => goToPage(Number(input.value)-1);
-document.getElementById('next').onclick = () => goToPage(Number(input.value)+1);
-input.addEventListener('keydown', e => { if (e.key === 'Enter') goToPage(input.value); });
-document.querySelectorAll('.thumb').forEach(b => b.onclick = () => goToPage(b.dataset.page));
+jump.addEventListener('keydown',e=>{if(e.key==='Enter')go(jump.value)});
+jump.addEventListener('change',()=>go(jump.value));
+document.getElementById('prev').onclick=()=>go(Number(jump.value)-1);
+document.getElementById('next').onclick=()=>go(Number(jump.value)+1);
+document.getElementById('first').onclick=()=>go(1);
+document.getElementById('last').onclick=()=>go(total);
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const n = e.target.id.split('-')[1];
-      input.value = n;
-    }
-  });
-}, {rootMargin:'-20% 0px -70% 0px', threshold:0});
-document.querySelectorAll('.page').forEach(p => observer.observe(p));
+const drawer=document.getElementById('drawer'),scrim=document.getElementById('scrim');
+function toggleDrawer(v) { drawer.classList.toggle('open',v); scrim.classList.toggle('show',v); }
+document.getElementById('menu').onclick=()=>toggleDrawer(true);
+document.getElementById('closeMenu').onclick=()=>toggleDrawer(false);
+scrim.onclick=()=>toggleDrawer(false);
+thumbs.forEach(t=>t.onclick=()=>{go(t.dataset.page);toggleDrawer(false)});
+
+const observer=new IntersectionObserver(entries=>{
+  const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+  if(!visible)return;
+  const n=Number(visible.target.dataset.page);
+  jump.value=n;
+  document.getElementById('bottomPage').textContent='Trang '+n;
+  document.getElementById('currentSetting').textContent=n;
+  document.getElementById('progress').style.width=((n/total)*100)+'%';
+  document.getElementById('progressText').textContent=Math.round(n/total*100)+'%';
+  thumbs.forEach(t=>t.classList.toggle('active',Number(t.dataset.page)===n));
+},{rootMargin:'-25% 0px -55% 0px',threshold:[.1,.35,.6] });
+pages.forEach(p=>observer.observe(p));
+
+document.getElementById('zoom').oninput=e=>{
+  document.getElementById('reader').style.maxWidth=(980*e.target.value/100)+'px';
+};
+document.getElementById('settingsBtn').onclick=()=>document.getElementById('settings').classList.toggle('open');
+document.getElementById('bgMode').onchange=e=>{
+  if(e.target.value==='paper'){
+    document.body.style.background='linear-gradient(135deg,#d9ccb7,#f3eadc)';
+    document.body.style.color='#2c2118';
+  } else {
+    document.body.style.background='radial-gradient(circle at 50% -20%,#4b3925 0,#211910 32%,#110e0b 70%)';
+    document.body.style.color='#f7f1e8';
+  }
+};
+
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='INPUT')return;
+  if(e.key==='ArrowRight'||e.key==='PageDown')go(Number(jump.value)+1);
+  if(e.key==='ArrowLeft'||e.key==='PageUp')go(Number(jump.value)-1);
+  if(e.key==='Home')go(1);
+  if(e.key==='End')go(total);
+});
 </script>
 </body>
 </html>
