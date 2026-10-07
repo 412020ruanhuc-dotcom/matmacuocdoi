@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Giảng: Nam Quý Sửu 1973 Năm 2027 - Mật Mã Cuộc Đời</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter & Playfair -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#DC2626',
+                        brandRedDark: '#991B1B',
+                        brandBlue: '#1D4ED8',
+                        brandBlueLight: '#EFF6FF',
+                        brandYellow: '#EAB308',
+                        bgLight: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            background-color: #F1F5F9;
+            overflow: hidden;
+        }
+        .slide-card {
+            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+        #drawingCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 20;
+            pointer-events: none;
+        }
+        #drawingCanvas.active-draw {
+            pointer-events: auto;
+            cursor: crosshair;
+        }
+        #drawingCanvas.active-laser {
+            pointer-events: auto;
+            cursor: none;
+        }
+        /* Laser point effect */
+        .laser-pointer {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: rgba(239, 68, 68, 0.9);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 15px 4px rgba(239, 68, 68, 0.8);
+            pointer-events: none;
+            z-index: 30;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-slate-100 h-screen flex flex-col justify-between">
+
+    <!-- TOP HEADER -->
+    <header class="bg-white border-b border-slate-200 px-4 py-2 flex items-center justify-between shrink-0 shadow-sm z-30">
+        <div class="flex items-center space-x-3">
+            <div class="bg-gradient-to-r from-red-600 to-blue-700 text-white font-black px-3 py-1.5 rounded-lg text-sm tracking-wide shadow flex items-center gap-2">
+                <i class="fa-solid fa-compass fa-spin-pulse style='--fa-animation-duration: 10s;'"></i>
+                <span>MẬT MÃ CUỘC ĐỜI</span>
+            </div>
+            <div class="hidden md:block text-xs font-semibold text-slate-500 border-l border-slate-300 pl-3">
+                Bài Giảng Luận Giải 2027: <span class="text-red-600 font-bold">NAM QUÝ SỬU 1973 (55 TUỔI)</span>
+            </div>
+        </div>
+
+        <!-- CENTER TOOLBAR TOGGLE & CONTROLS -->
+        <div class="flex items-center space-x-2">
+            <!-- Draw mode toggle button -->
+            <button id="toggleDrawBtn" onclick="toggleDrawMode()" class="px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-1.5 border border-slate-300 transition">
+                <i class="fa-solid fa-pen-nib text-blue-600" id="drawBtnIcon"></i>
+                <span id="drawBtnText">Mở Bút Vẽ</span>
+            </button>
+
+            <!-- Slide Menu Drawer Button -->
+            <button onclick="toggleSidebar()" class="px-3 py-1.5 rounded-lg text-xs md:text-sm font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 flex items-center gap-1.5 border border-slate-300 transition">
+                <i class="fa-solid fa-list-ol text-slate-600"></i>
+                <span class="hidden sm:inline">Mục Lục</span>
+            </button>
+
+            <!-- Fullscreen Button -->
+            <button onclick="toggleFullscreen()" class="p-1.5 rounded-lg text-slate-600 hover:bg-slate-100 border border-slate-200" title="Toàn màn hình">
+                <i class="fa-solid fa-expand text-sm"></i>
+            </button>
+        </div>
+
+        <!-- RIGHT CTA CONTACT BUTTON -->
+        <div class="flex items-center">
+            <button onclick="openContactModal()" class="bg-red-600 hover:bg-red-700 text-white text-xs md:text-sm px-3 py-1.5 rounded-lg font-bold shadow flex items-center gap-1.5 animate-pulse">
+                <i class="fa-solid fa-headset"></i>
+                <span>Đăng Ký Luận Giải (300K)</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- FLOATING DRAWING TOOLBAR (Shown when Draw Mode is active) -->
+    <div id="drawingToolbar" class="fixed top-14 left-1/2 -translate-x-1/2 z-40 bg-white/95 backdrop-blur border border-slate-300 rounded-full shadow-2xl px-4 py-2 flex items-center gap-3 transition-all transform duration-300 opacity-0 pointer-events-none -translate-y-4">
+        <!-- Tools -->
+        <div class="flex items-center gap-1 border-r border-slate-200 pr-3">
+            <button onclick="setTool('pen')" id="toolPen" class="p-2 rounded-full hover:bg-slate-100 text-blue-600 bg-blue-50" title="Bút Vẽ (Pen)">
+                <i class="fa-solid fa-pencil"></i>
+            </button>
+            <button onclick="setTool('highlighter')" id="toolHighlighter" class="p-2 rounded-full hover:bg-slate-100 text-slate-600" title="Bút Dạ Quang (Highlighter)">
+                <i class="fa-solid fa-highlighter"></i>
+            </button>
+            <button onclick="setTool('laser')" id="toolLaser" class="p-2 rounded-full hover:bg-slate-100 text-slate-600" title="Con Trỏ Laser">
+                <i class="fa-solid fa-bullseye text-red-500"></i>
+            </button>
+            <button onclick="setTool('eraser')" id="toolEraser" class="p-2 rounded-full hover:bg-slate-100 text-slate-600" title="Cục Tẩy">
+                <i class="fa-solid fa-eraser"></i>
+            </button>
+        </div>
+
+        <!-- Colors -->
+        <div class="flex items-center gap-1.5 border-r border-slate-200 pr-3">
+            <button onclick="setColor('#DC2626')" class="w-6 h-6 rounded-full bg-red-600 ring-2 ring-offset-1 ring-red-600 color-btn" title="Đỏ"></button>
+            <button onclick="setColor('#1D4ED8')" class="w-6 h-6 rounded-full bg-blue-600 color-btn" title="Xanh Dương"></button>
+            <button onclick="setColor('#16A34A')" class="w-6 h-6 rounded-full bg-green-600 color-btn" title="Xanh Lá"></button>
+            <button onclick="setColor('#EAB308')" class="w-6 h-6 rounded-full bg-yellow-500 color-btn" title="Vàng"></button>
+            <button onclick="setColor('#0F172A')" class="w-6 h-6 rounded-full bg-slate-900 color-btn" title="Đen"></button>
+        </div>
+
+        <!-- Size -->
+        <div class="flex items-center gap-1 border-r border-slate-200 pr-3">
+            <button onclick="setSize(3)" class="p-1 text-slate-600 hover:text-blue-600 font-bold text-xs">Nét Nhỏ</button>
+            <button onclick="setSize(6)" class="p-1 text-slate-600 hover:text-blue-600 font-bold text-sm">Nét Vừa</button>
+            <button onclick="setSize(12)" class="p-1 text-slate-600 hover:text-blue-600 font-bold text-base">Nét Tốt</button>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-1">
+            <button onclick="undoDraw()" class="p-2 rounded-full hover:bg-slate-100 text-slate-600" title="Hoàn tác (Undo)">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+            <button onclick="clearCanvas()" class="p-2 rounded-full hover:bg-red-100 text-red-600" title="Xóa tất cả hình vẽ">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- LASER POINTER ELEMENT -->
+    <div id="laserDot" class="laser-pointer"></div>
+
+    <!-- MAIN PRESENTATION CONTAINER -->
+    <main class="relative flex-1 flex items-center justify-center p-3 md:p-6 overflow-hidden">
+        
+        <!-- CANVAS OVERLAY -->
+        <canvas id="drawingCanvas"></canvas>
+
+        <!-- SLIDE CONTENT WRAPPER -->
+        <div id="slideViewport" class="w-full max-w-5xl h-full flex items-center justify-center relative">
+            <!-- Dynamic Slide Cards will be rendered here -->
+            <div id="slideContent" class="w-full bg-white rounded-2xl slide-card border border-slate-200 p-6 md:p-10 flex flex-col justify-between overflow-y-auto max-h-[82vh] relative transition-all duration-300">
+                <!-- Content injected via JS -->
+            </div>
+        </div>
+
+        <!-- SIDEBAR INDEX DRAWER -->
+        <div id="sidebarIndex" class="fixed top-0 left-0 h-full w-80 bg-white border-r border-slate-200 shadow-2xl z-50 transform -translate-x-full transition-transform duration-300 ease-in-out flex flex-col">
+            <div class="p-4 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-red-600 text-sm">DANH SÁCH MỤC BÀI GIẢNG</h3>
+                    <p class="text-xs text-slate-500">Kênh Mật Mã Cuộc Đời</p>
+                </div>
+                <button onclick="toggleSidebar()" class="text-slate-400 hover:text-slate-600 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div id="slideIndexList" class="flex-1 overflow-y-auto p-3 space-y-1">
+                <!-- Index links injected via JS -->
+            </div>
+            <div class="p-3 border-t border-slate-200 bg-blue-50 text-center">
+                <button onclick="openContactModal()" class="w-full bg-blue-700 hover:bg-blue-800 text-white py-2 rounded-lg text-xs font-bold shadow">
+                    📢 Đăng Ký Luận Giải Zalo
+                </button>
+            </div>
+        </div>
+        <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/30 z-40 hidden backdrop-blur-sm"></div>
+    </main>
+
+    <!-- BOTTOM NAVIGATION CONTROL BAR -->
+    <footer class="bg-white border-t border-slate-200 px-4 py-3 flex items-center justify-between shrink-0 shadow-lg z-30">
+        <!-- Slide counter -->
+        <div class="flex items-center space-x-3">
+            <span class="text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full border border-slate-200">
+                Trang <span id="currentSlideNum" class="text-red-600 font-extrabold text-sm">1</span> / <span id="totalSlideNum">14</span>
+            </span>
+            <span id="slideCategoryTag" class="hidden sm:inline-block text-xs font-medium text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md border border-blue-200">
+                Mật Mã Cuộc Đời
+            </span>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex items-center space-x-2">
+            <button onclick="prevSlide()" class="px-4 py-2 bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 rounded-xl font-bold text-sm border border-slate-300 transition flex items-center gap-2">
+                <i class="fa-solid fa-chevron-left"></i>
+                <span class="hidden sm:inline">Trang Trước</span>
+            </button>
+            <button onclick="nextSlide()" class="px-5 py-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-xl font-bold text-sm shadow-md transition flex items-center gap-2">
+                <span class="hidden sm:inline">Trang Tiếp</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Quick Info Link -->
+        <div class="hidden lg:flex items-center gap-3 text-xs text-slate-600 font-medium">
+            <a href="https://zalo.me/0789414153" target="_blank" class="hover:text-blue-600 flex items-center gap-1">
+                <i class="fa-solid fa-phone text-blue-600"></i> Zalo: 0789.41.41.53
+            </a>
+            <span class="text-slate-300">|</span>
+            <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="hover:text-red-600 flex items-center gap-1 font-bold text-red-600">
+                <i class="fa-brands fa-youtube"></i> Đăng Ký Kênh
+            </a>
+        </div>
+    </footer>
+
+    <!-- CONTACT / LUẬN GIẢI MODAL -->
+    <div id="contactModal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-2xl border-2 border-red-500 relative animate-scaleUp">
+            <button onclick="closeContactModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold p-1">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-5">
+                <div class="inline-block bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-2">
+                    Kênh Mật Mã Cuộc Đời
+                </div>
+                <h2 class="text-xl md:text-2xl font-black text-slate-900 leading-tight">
+                    📢 PHÍ LUẬN GIẢI = <span class="text-red-600">300K</span>
+                </h2>
+                <p class="text-xs md:text-sm font-semibold text-blue-700 mt-1">
+                    Mãi Mãi Cả Đời • Hỏi Lúc Nào Cũng Được • Luận Cho Cả Nhà!
+                </p>
+            </div>
+
+            <div class="space-y-3 text-xs md:text-sm">
+                <a href="https://zalo.me/0789414153" target="_blank" class="flex items-center justify-between p-3 bg-slate-50 hover:bg-blue-50 border border-slate-200 rounded-xl transition group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-800">Mình Là Nguyễn Tuấn Anh</div>
+                            <div class="text-blue-600 font-mono text-xs">Zalo: 0789.41.41.53</div>
+                        </div>
+                    </div>
+                    <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-xs font-bold group-hover:scale-105 transition">Bấm Nhắn</span>
+                </a>
+
+                <a href="https://zalo.me/0849328628" target="_blank" class="flex items-center justify-between p-3 bg-slate-50 hover:bg-red-50 border border-slate-200 rounded-xl transition group">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-red-600 text-white flex items-center justify-center font-bold text-sm shrink-0">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div>
+                            <div class="font-bold text-slate-800">Kim Nguyên Bảo (Chuyên Gia Luận Giải)</div>
+                            <div class="text-red-600 font-mono text-xs">Zalo: 0849.32.86.28</div>
+                        </div>
+                    </div>
+                    <span class="bg-red-600 text-white px-3 py-1 rounded-lg text-xs font-bold group-hover:scale-105 transition">Bấm Nhắn</span>
+                </a>
+
+                <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="flex items-center justify-between p-3 bg-red-50 hover:bg-red-100 border border-red-200 rounded-xl transition">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-brands fa-youtube text-red-600 text-2xl"></i>
+                        <span class="font-bold text-slate-800">Xem & Đăng Ký Kênh YouTube</span>
+                    </div>
+                    <span class="text-red-600 font-bold text-xs"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <a href="https://zalo.me/g/iljgbe719" target="_blank" class="flex items-center justify-between p-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl transition">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-users text-blue-600 text-xl"></i>
+                        <div>
+                            <div class="font-bold text-slate-800">Group Zalo Hỏi Đáp - Cập Nhật Hàng Ngày</div>
+                            <div class="text-xs text-slate-500">Tham gia trao đổi tử vi, vận mệnh</div>
+                        </div>
+                    </div>
+                    <span class="text-blue-600 font-bold text-xs"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+
+                <div class="grid grid-cols-2 gap-2 pt-1">
+                    <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="flex items-center justify-center gap-2 p-2.5 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">
+                        <i class="fa-brands fa-tiktok"></i> TikTok
+                    </a>
+                    <a href="https://www.facebook.com/thymozin" target="_blank" class="flex items-center justify-center gap-2 p-2.5 bg-blue-600 text-white rounded-xl text-xs font-bold hover:bg-blue-700 transition">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-slate-200 text-center text-xs text-slate-500">
+                Mật Mã Cuộc Đời • Vận mệnh có thể dự đoán, cải vận nằm trong tầm tay
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // SLIDE DATA SOURCE (Full 14 Slides based on PDF)
+        const slideData = [
+            {
+                id: 1,
+                tag: "BÀI GIẢNG TỔNG QUAN",
+                title: "NAM QUÝ SỬU 1973 NĂM 2027 (55 TUỔI)",
+                subtitle: "XUNG ĐỂ THAY ĐỔI, GIỮ MÌNH ĐỂ ĐI QUA",
+                content: `
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-r from-red-50 to-blue-50 p-6 rounded-2xl border-l-8 border-red-600 shadow-sm">
+                            <h3 class="text-lg md:text-xl font-bold text-slate-900 mb-2">Thủ Bản Luận Giải 2027 - Đinh Mùi</h3>
+                            <p class="text-sm md:text-base leading-relaxed text-slate-700">
+                                Nếu quý anh tuổi Quý Sửu 1973 bước sang năm 2027 (55 tuổi âm lịch), đây là một năm <span class="font-bold text-red-600">KHÔNG NÊN</span> nhìn bằng 2 chữ "tốt" hay "xấu" một cách đơn giản.
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-red-50 border border-red-200 rounded-xl">
+                                <div class="font-bold text-red-700 text-sm mb-1"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Yếu Tố Thử Thách</div>
+                                <ul class="text-xs md:text-sm space-y-1 font-semibold text-slate-700">
+                                    <li>• Xung Thái Tuế, Hình Thái Tuế</li>
+                                    <li>• Sao La Hầu chiếu mạng</li>
+                                    <li>• Hạn Tam Kheo & Phạm Kim Lâu Thân</li>
+                                </ul>
+                            </div>
+                            <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                                <div class="font-bold text-blue-700 text-sm mb-1"><i class="fa-solid fa-circle-check mr-1"></i> Yếu Tố Thuận Lợi</div>
+                                <ul class="text-xs md:text-sm space-y-1 font-semibold text-slate-700">
+                                    <li>• KHÔNG phạm Tam Tai</li>
+                                    <li>• Cung Hoang Ốc Tứ Tấn Tài (Cát)</li>
+                                    <li>• Tang Đố Mộc gặp Thiên Hà Thủy (Thủy sinh Mộc)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="text-center bg-red-600 text-white font-black py-3 rounded-xl shadow-lg text-lg tracking-widest uppercase">
+                            TỪ KHÓA CỐT LÕI NĂM 2027: "ĐỘNG"
+                        </div>
+                    </div>
+                `,
+                keyNote: "Động để thay đổi - Động để sắp xếp lại - Động nhưng KHÔNG ĐƯỢC LOẠN!"
+            },
+            {
+                id: 2,
+                tag: "MỤC 1",
+                title: "1. GỐC CỦA NAM QUÝ SỬU 1973",
+                subtitle: "Trách nhiệm - Sự từng trải ở tuổi 55",
+                content: `
+                    <div class="space-y-5">
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center">
+                                <div class="text-xs text-slate-500">Năm Sinh</div>
+                                <div class="font-black text-red-600 text-base md:text-lg">1973</div>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center">
+                                <div class="text-xs text-slate-500">Tuổi Âm Lịch</div>
+                                <div class="font-black text-blue-600 text-base md:text-lg">55 Tuổi</div>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center">
+                                <div class="text-xs text-slate-500">Cầm Tinh</div>
+                                <div class="font-black text-slate-800 text-base md:text-lg">Con Trâu</div>
+                            </div>
+                            <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-center">
+                                <div class="text-xs text-slate-500">Mệnh Nạp Âm</div>
+                                <div class="font-black text-green-700 text-base md:text-lg">Tang Đố Mộc</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 p-5 rounded-2xl border border-amber-200 text-slate-800 space-y-3">
+                            <p class="text-sm md:text-base leading-relaxed">
+                                <i class="fa-solid fa-quote-left text-amber-500 text-xl mr-2"></i>
+                                Một người tuổi Sửu thường đã đi qua rất nhiều năm tháng của gánh nặng trách nhiệm. Đến tuổi 55, điều quý anh cần không còn là chứng minh mình giỏi đến đâu nữa...
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 bg-white border-2 border-blue-500 rounded-xl text-center font-bold text-blue-900 shadow-sm">
+                                <i class="fa-solid fa-shield-halved text-2xl text-blue-600 mb-1 block"></i>
+                                Cái gì đáng giữ thì GIỮ
+                            </div>
+                            <div class="p-4 bg-white border-2 border-red-500 rounded-xl text-center font-bold text-red-900 shadow-sm">
+                                <i class="fa-solid fa-arrows-rotate text-2xl text-red-600 mb-1 block"></i>
+                                Cái không còn phù hợp thì THAY ĐỔI
+                            </div>
+                        </div>
+                    </div>
+                `,
+                keyNote: "Đây chính là tinh thần cốt lõi của Nam Quý Sửu trong năm 2027!"
+            },
+            {
+                id: 3,
+                tag: "MỤC 2",
+                title: "2. SỬU GẶP MÙI – XUNG THÁI TUẾ & HÌNH THÁI TUẾ",
+                subtitle: "Xung không có nghĩa là chắc chắn mất mát",
+                content: `
+                    <div class="space-y-5">
+                        <div class="bg-red-50 border-l-4 border-red-600 p-4 rounded-r-xl">
+                            <h4 class="font-extrabold text-red-700 text-base">Cục Diện: SỬU - MÙI TƯƠNG XUNG & TƯƠNG HÌNH</h4>
+                            <p class="text-xs md:text-sm text-slate-700 mt-1">Xung Thái Tuế & Hình Thái Tuế mang tới sự biển chuyển cực lớn.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                            <p class="text-sm md:text-base text-slate-700 font-medium">
+                                <span class="text-blue-700 font-bold">Xung trước hết là sự chuyển động:</span>
+                            </p>
+                            <ul class="grid grid-cols-2 gap-3 text-xs md:text-sm">
+                                <li class="p-2.5 bg-slate-50 rounded-lg border font-semibold flex items-center gap-2">
+                                    <i class="fa-solid fa-briefcase text-blue-600"></i> Công việc thay đổi
+                                </li>
+                                <li class="p-2.5 bg-slate-50 rounded-lg border font-semibold flex items-center gap-2">
+                                    <i class="fa-solid fa-house text-blue-600"></i> Môi trường thay đổi
+                                </li>
+                                <li class="p-2.5 bg-slate-50 rounded-lg border font-semibold flex items-center gap-2">
+                                    <i class="fa-solid fa-users text-blue-600"></i> Quan hệ thay đổi
+                                </li>
+                                <li class="p-2.5 bg-slate-50 rounded-lg border font-semibold flex items-center gap-2">
+                                    <i class="fa-solid fa-brain text-blue-600"></i> Tư duy thay đổi
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-4 bg-slate-900 text-white rounded-xl text-xs md:text-sm italic text-center">
+                            "Năm 2027 không nhất thiết lấy đi thứ gì của quý anh. Nó buộc quý anh phải thay đổi cách mình đang giữ mọi thứ."
+                        </div>
+                    </div>
+                `,
+                keyNote: "Sửu gặp Mùi: Động để vươn lên, không để bị loạn tâm!"
+            },
+            {
+                id: 4,
+                tag: "MỤC 3",
+                title: "3. SAO LA HẦU – ĐIỀU CẦN GIỮ NHẤT LÀ LỜI NÓI",
+                subtitle: "Khẩu thiệt, thị phi & cách ứng xử bản lĩnh",
+                content: `
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-3 p-4 bg-red-100 rounded-xl text-red-900 font-bold text-sm md:text-base border border-red-200">
+                            <i class="fa-solid fa-comment-slash text-2xl text-red-600"></i>
+                            <span>Sao La Hầu chủ về: Thị phi, tranh chấp, lời nói, chuyện đúng sai & mất bình an.</span>
+                        </div>
+
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3 text-xs md:text-sm text-slate-700">
+                            <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-start gap-2">
+                                <i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1"></i>
+                                <span>Không phải chuyện gì mình biết cũng cần phải nói ra.</span>
+                            </div>
+                            <div class="p-3 bg-white rounded-xl border border-slate-200 flex items-start gap-2">
+                                <i class="fa-solid fa-scale-balanced text-blue-600 mt-1"></i>
+                                <span>Không phải chuyện gì mình đúng cũng cần phải tranh luận tới cùng.</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gradient-to-r from-blue-700 to-blue-900 text-white rounded-xl font-semibold text-xs md:text-sm leading-relaxed text-center shadow">
+                            "Ở tuổi 55... Tranh luận thắng 1 câu nhưng mất 1 mối quan hệ. Giữ miệng không phải là yếu, biết dừng đúng lúc mới là BẢN LĨNH!"
+                        </div>
+                    </div>
+                `,
+                keyNote: "Hạn La Hầu năm 2027: Nhẫn một chút sóng yên gió lặng!"
+            },
+            {
+                id: 5,
+                tag: "MỤC 4",
+                title: "4. HẠN TAM KHEO – ĐỪNG XEM NHẸ SỨC KHỎE",
+                subtitle: "Sức khỏe là vốn liếng lớn nhất ở tuổi 55",
+                content: `
+                    <div class="space-y-5">
+                        <div class="p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-xl">
+                            <h4 class="font-bold text-amber-900">Hạn Tam Kheo: Cảnh báo xương khớp, tay chân & đi lại</h4>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="p-4 bg-white border rounded-xl text-center shadow-sm">
+                                <i class="fa-solid fa-briefcase text-2xl text-slate-400 mb-2"></i>
+                                <div class="font-bold text-xs text-slate-600">Công việc</div>
+                                <div class="text-xs text-slate-500 mt-1">Mất có thể làm lại</div>
+                            </div>
+                            <div class="p-4 bg-white border rounded-xl text-center shadow-sm">
+                                <i class="fa-solid fa-coins text-2xl text-amber-500 mb-2"></i>
+                                <div class="font-bold text-xs text-slate-600">Tiền bạc</div>
+                                <div class="text-xs text-slate-500 mt-1">Thất thu có thể kiếm lại</div>
+                            </div>
+                            <div class="p-4 bg-red-50 border-2 border-red-500 rounded-xl text-center shadow-sm">
+                                <i class="fa-solid fa-heart-pulse text-2xl text-red-600 mb-2"></i>
+                                <div class="font-bold text-xs text-red-700">Cơ thể & Thân thể</div>
+                                <div class="text-xs text-red-600 font-bold mt-1">Tổn hại rất khó phục hồi</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl text-xs md:text-sm text-blue-900 font-medium">
+                            📌 <span class="font-bold">Lời khuyên 2027:</span> Chủ động nghỉ ngơi, tập luyện nhẹ nhàng, chú ý khi đi lại giao thông. Đừng đợi cơ thể lên tiếng thật lớn mới chịu lắng nghe!
+                        </div>
+                    </div>
+                `,
+                keyNote: "Ở tuổi 55: Sức khỏe không còn là chuyện phụ, nó là tài sản lớn nhất!"
+            },
+            {
+                id: 6,
+                tag: "MỤC 5",
+                title: "5. KIM LÂU THÂN – VIỆC LỚN CẦN CÂN NHẮC",
+                subtitle: "Thận trọng tối đa trước các quyết định trọng đại",
+                content: `
+                    <div class="space-y-5">
+                        <div class="p-4 bg-red-50 border border-red-300 rounded-xl text-red-900 font-bold text-sm">
+                            <i class="fa-solid fa-triangle-exclamation text-red-600 mr-2"></i>
+                            Phạm Kim Lâu Thân ở tuổi 55 âm lịch (2027)
+                        </div>
+
+                        <div class="p-5 bg-white border border-slate-200 rounded-2xl space-y-3 text-xs md:text-sm text-slate-700">
+                            <p>• <span class="font-bold text-slate-900">Không có nghĩa là cả năm làm gì cũng xấu</span>, nhưng những đại sự liên quan đến bản thân & gia đình cần tính toán cực kỳ kỹ lưỡng.</p>
+                            <p>• Tránh vì một phút nóng lòng hay nông nổi mà đưa ra quyết định phải trả giá trong nhiều năm sau.</p>
+                            <p>• Đừng đánh đổi sự <span class="font-bold text-blue-700">ổn định của gia đình</span> chỉ vì một cơ hội chưa nhìn rõ hết mặt trái.</p>
+                        </div>
+
+                        <div class="bg-amber-100 p-4 rounded-xl text-center font-bold text-amber-900 text-xs md:text-sm">
+                            "Chậm một bước để nhìn rõ đường - Còn hơn vội vàng để vấp ngã!"
+                        </div>
+                    </div>
+                `,
+                keyNote: "Cân nhắc kỹ trước khi đầu tư lớn, mua nhà hay thay đổi định hướng!"
+            },
+            {
+                id: 7,
+                tag: "MỤC 6",
+                title: "6. KHÔNG PHẠM TAM TAI – ĐIỂM TỰA VỮNG TÂM",
+                subtitle: "Giữ vững tâm lý để đi qua năm Thái Tuế",
+                content: `
+                    <div class="space-y-5">
+                        <div class="p-4 bg-green-50 border border-green-300 rounded-xl text-green-900 font-bold text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-circle-check text-green-600 text-xl"></i>
+                            <span>Tuổi Sửu Tam Tai tại Hợi - Tý - Sửu ➔ Năm Đinh Mùi 2027 KHÔNG PHẠM TAM TAI!</span>
+                        </div>
+
+                        <div class="p-5 bg-white border border-slate-200 rounded-2xl text-xs md:text-sm text-slate-700 space-y-3">
+                            <p class="font-bold text-slate-900">Tại sao đây là điểm tựa lớn?</p>
+                            <p>Giúp quý anh có thêm sự vững tâm. Không bị rơi vào thế "vô phương cứu chữa" hay xui xẻo liên tiếp như những năm Tam Tai.</p>
+                            <p class="text-red-600 font-semibold">tuy nhiên: Không Tam Tai không có nghĩa là chủ quan, vì năm vẫn có Xung Thái Tuế, La Hầu & Kim Lâu.</p>
+                        </div>
+
+                        <div class="p-4 bg-slate-100 border border-slate-300 rounded-xl text-center text-slate-800 font-bold text-xs md:text-sm">
+                            "Cách tốt nhất không phải là SỢ - Mà là biết mình đang ở đâu để đi cho đúng!"
+                        </div>
+                    </div>
+                `,
+                keyNote: "Vững tâm lý là chìa khóa hàng đầu của Nam Quý Sửu 1973!"
+            },
+            {
+                id: 8,
+                tag: "MỤC 7",
+                title: "7. HOANG ỐC TỨ TẤN TÀI – CUNG CÁT LỢI",
+                subtitle: "Điểm sáng hanh thông tài lộc trong năm 2027",
+                content: `
+                    <div class="space-y-5">
+                        <div class="p-4 bg-blue-600 text-white rounded-xl shadow font-bold text-center text-base">
+                            ✨ CUNG HOANG ỐC: TỨ TẤN TÀI ✨
+                        </div>
+
+                        <div class="p-5 bg-blue-50 border border-blue-200 rounded-2xl text-xs md:text-sm text-slate-800 space-y-3">
+                            <p class="font-bold text-blue-900">Tứ Tấn Tài là một trong những cung tốt nhất của Hoang Ốc!</p>
+                            <p>• Chứng minh rằng vận trình năm 2027 <span class="font-bold text-red-600">KHÔNG CHỈ CÓ MỘT MÀU ĐEN</span>.</p>
+                            <p>• Song song với cái Xung, cái Hạn vẫn có yếu tố cát lành, lộc tài mở ra nếu biết làm đúng cách.</p>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-2 text-center text-xs font-bold">
+                            <div class="p-3 bg-white border rounded-lg text-slate-600">Chỗ nào TIẾN</div>
+                            <div class="p-3 bg-white border rounded-lg text-blue-700">Chỗ nào GIỮ</div>
+                            <div class="p-3 bg-white border rounded-lg text-red-600">Chỗ nào DỪNG</div>
+                        </div>
+                    </div>
+                `,
+                keyNote: "Biết tiến, biết giữ, biết dừng đúng chỗ - Tài lộc tự sinh!"
+            },
+            {
+                id: 9,
+                tag: "MỤC 8",
+                title: "8. NẠP ÂM: TANG ĐỐ MỘC GẶP THIÊN HÀ THỦY",
+                subtitle: "Thủy Sinh Mộc - Dòng nước mát tương sinh",
+                content: `
+                    <div class="space-y-5">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-green-50 border border-green-300 rounded-xl text-center">
+                                <div class="text-xs text-green-700 font-bold">Bản Mệnh 1973</div>
+                                <div class="text-lg font-black text-green-900">TANG ĐỐ MỘC</div>
+                            </div>
+                            <div class="p-4 bg-blue-50 border border-blue-300 rounded-xl text-center">
+                                <div class="text-xs text-blue-700 font-bold">Năm 2027 Đinh Mùi</div>
+                                <div class="text-lg font-black text-blue-900">THIÊN HÀ THỦY</div>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-slate-900 text-amber-300 rounded-xl font-bold text-center text-sm">
+                            QUAN HỆ NGŨ HÀNH: THỦY SINH MỘC (RẤT TỐT)
+                        </div>
+
+                        <div class="p-5 bg-white border border-slate-200 rounded-2xl text-xs md:text-sm text-slate-700 space-y-2">
+                            <p class="font-bold text-slate-900">Ý nghĩa thực tế:</p>
+                            <p>• Có dòng nước Thiên Hà Thủy tưới mát giúp cây Tang Đố Mộc phát triển. Năm có quý nhân giúp đỡ, có cơ hội mở ra.</p>
+                            <p class="text-red-600 font-semibold">• Nhưng cây muốn cao vươn thì CÂY PHẢI TỰ RỄ BÁM ĐẤT. Cơ hội không tự biến thành tiền nếu bản thân không chủ động hành động đúng!</p>
+                        </div>
+                    </div>
+                `,
+                keyNote: "Có thế nâng mình lên, nhưng mình vẫn phải tự đứng thật vững!"
+            },
+            {
+                id: 10,
+                tag: "MỤC 9",
+                title: "9. TIỀN BẠC – ĐỪNG HAM MỘT CÚ ĂN LỚN",
+                subtitle: "Quản lý tài chính an toàn ở tuổi 55",
+                content: `
+                    <div class="space-y-5">
+                        <div class="p-4 bg-red-600 text-white rounded-xl font-black text-center text-sm md:text-base shadow">
+                            ⚠️ CẢNH BÁO TÀI CHÍNH NĂM XUNG THÁI TUẾ
+                        </div>
+
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-200 space-y-3 text-xs md:text-sm text-slate-700">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-red-600 font-bold mt-1"></i>
+                                <span>Không đưa ra quyết định đầu tư lớn bằng <span class="font-bold text-red-600">CẢM XÚC</span>.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-red-600 font-bold mt-1"></i>
+                                <span>Không thấy người khác làm được mà vội vã làm theo.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-xmark text-red-600 font-bold mt-1"></i>
+                                <span>Không vì lời hứa lợi nhuận cao mà đem tài sản tích lũy cả đời đặt vào nơi nguy hiểm.</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-green-50 border border-green-300 text-green-900 rounded-xl text-center font-bold text-xs md:text-sm">
+                            "Ở tuổi 55: GIỮ ĐƯỢC TIỀN cũng chính là một loại TÀI LỘC lớn!"
+                        </div>
+                    </div>
+                `,
+                keyNote: "Tài chính 2027: Tích lũy an toàn, phòng thủ hơn tấn công!"
+            },
+            {
+                id: 11,
+                tag: "MỤC 10",
+                title: "10. GIA ĐẠO – ĐỪNG ĐỂ XUNG BÊN NGOÀI THÀNH XUNG TRONG NHÀ",
+                subtitle: "Giữ lửa gia đình, nhường nhịn yêu thương",
+                content: `
+                    <div class="space-y-5">
+                        <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl text-blue-900 text-xs md:text-sm leading-relaxed">
+                            Năm Thái Tuế dễ khiến tâm tính nóng nảy, dễ cảm thấy người thân không hiểu mình hoặc muốn áp đặt ý kiến cá nhân.
+                        </div>
+
+                        <div class="bg-red-50 p-5 rounded-2xl border border-red-200 text-center space-y-2">
+                            <div class="text-red-700 font-black text-sm uppercase">Gia Đình Không Phải Là Nơi Phân Thắng Thua</div>
+                            <p class="text-xs md:text-sm text-slate-700 italic">
+                                "Có những chuyện mình đúng, nhưng cách mình nói làm tổn thương người thân thì cuối cùng mình vẫn là người mất mát..."
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-slate-900 text-white rounded-xl text-center font-bold text-xs md:text-sm">
+                            ❤️ "Đúng lý chưa chắc giữ được người. Giữ được TÌNH mới là điều đáng quý!"
+                        </div>
+                    </div>
+                `,
+                keyNote: "Chuyện nên nói thì nói nhẹ nhàng, chuyện nên bỏ qua hãy hoan hỷ bỏ qua!"
+            },
+            {
+                id: 12,
+                tag: "MỤC 11",
+                title: "11. NĂM 2027 – QUÝ ANH CẦN BUÔNG CÁI GÌ?",
+                subtitle: "Trưởng thành ở tuổi 55 là biết buông đúng lúc",
+                content: `
+                    <div class="space-y-5">
+                        <div class="p-5 bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-2xl shadow-md text-center space-y-2">
+                            <div class="text-xs text-amber-400 font-bold uppercase">Câu Hỏi Quan Trọng Nhất 2027</div>
+                            <div class="text-base md:text-lg font-bold">"Điều gì trong cuộc đời tôi đã đến lúc phải THAY ĐỔI & BUÔNG BỎ?"</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 text-xs md:text-sm">
+                            <div class="p-3 bg-white border rounded-xl text-slate-700 font-medium text-center">Buông một cách làm ăn cũ</div>
+                            <div class="p-3 bg-white border rounded-xl text-slate-700 font-medium text-center">Buông một mối quan hệ độc hại</div>
+                            <div class="p-3 bg-white border rounded-xl text-slate-700 font-medium text-center">Buông thói quen có hại sức khỏe</div>
+                            <div class="p-3 bg-white border rounded-xl text-slate-700 font-medium text-center">Buông chăn trở cố chấp cũ</div>
+                        </div>
+
+                        <div class="p-4 bg-amber-50 border border-amber-300 text-amber-900 rounded-xl text-center font-bold text-xs md:text-sm">
+                            "Bền không có nghĩa là giữ tất cả. Có những thứ càng giữ càng nặng. Biết buông đúng thứ - Đó là trí tuệ!"
+                        </div>
+                    </div>
+                `,
+                keyNote: "Buông bỏ gánh nặng tinh thần để chuẩn bị cho chặng đường nhẹ nhàng hơn!"
+            },
+            {
+                id: 13,
+                tag: "MỤC 12",
+                title: "12. BA CHỮ NÒNG CỐT NÊN NHỚ NĂM 2027",
+                subtitle: "GIỮ TÂM - GIỮ TIỀN - GIỮ MÌNH",
+                content: `
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <div class="p-4 bg-red-50 border-2 border-red-500 rounded-xl text-center space-y-1">
+                                <div class="font-black text-red-700 text-lg">1. GIỮ TÂM</div>
+                                <div class="text-xs text-slate-600">Tránh thị phi La Hầu. Đừng để lời thiên hạ làm mất bình an.</div>
+                            </div>
+                            <div class="p-4 bg-blue-50 border-2 border-blue-500 rounded-xl text-center space-y-1">
+                                <div class="font-black text-blue-700 text-lg">2. GIỮ TIỀN</div>
+                                <div class="text-xs text-slate-600">Xung Thái Tuế không đáng sợ bằng quyết định đầu tư thiếu tỉnh táo.</div>
+                            </div>
+                            <div class="p-4 bg-green-50 border-2 border-green-500 rounded-xl text-center space-y-1">
+                                <div class="font-black text-green-700 text-lg">3. GIỮ MÌNH</div>
+                                <div class="text-xs text-slate-600">Chăm sóc sức khỏe (Tam Kheo) & cẩn trọng việc lớn (Kim Lâu).</div>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-gradient-to-r from-red-600 to-blue-700 text-white rounded-2xl text-center font-serif text-sm md:text-base leading-relaxed shadow-lg">
+                            "55 Tuổi... Không còn là tuổi chạy theo những gì người khác có, mà là tuổi biết cái gì đáng giữ, cái gì nên buông.<br>
+                            <span class="font-bold text-yellow-300 text-base md:text-lg block mt-2">VẬN MỆNH CÓ THỂ DỰ ĐOÁN, NHƯNG CẢI VẬN NẰM TRONG TẦM TAY!"</span>
+                        </div>
+                    </div>
+                `,
+                keyNote: "Mật Mã Cuộc Đời chúc quý anh Quý Sửu 1973 một năm 2027 Bình An & Trí Tuệ!"
+            },
+            {
+                id: 14,
+                tag: "THÔNG TIN LIÊN HỆ",
+                title: "ĐĂNG KÝ LUẬN GIẢI TỬ VI - MẬT MÃ CUỘC ĐỜI",
+                subtitle: "Trực tiếp bởi Chuyên Gia Nguyễn Tuấn Anh & Kim Nguyên Bảo",
+                content: `
+                    <div class="space-y-4">
+                        <div class="p-4 bg-red-600 text-white rounded-2xl text-center shadow">
+                            <h3 class="text-lg md:text-xl font-black">📢 PHÍ LUẬN GIẢI = 300K</h3>
+                            <p class="text-xs md:text-sm font-semibold text-amber-200 mt-1">
+                                Mãi Mãi Cả Đời • Hỏi Lúc Nào Cũng Được • Luận Cho Cả Nhà!
+                            </p>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs md:text-sm">
+                            <a href="https://zalo.me/0789414153" target="_blank" class="p-3 bg-blue-50 border border-blue-300 rounded-xl flex items-center justify-between hover:bg-blue-100 transition">
+                                <div>
+                                    <div class="font-bold text-slate-900">📌 Nguyễn Tuấn Anh</div>
+                                    <div class="text-blue-700 font-mono font-bold">Zalo: 0789.41.41.53</div>
+                                </div>
+                                <span class="bg-blue-600 text-white px-2.5 py-1 rounded text-xs font-bold">Bấm Nhắn</span>
+                            </a>
+
+                            <a href="https://zalo.me/0849328628" target="_blank" class="p-3 bg-red-50 border border-red-300 rounded-xl flex items-center justify-between hover:bg-red-100 transition">
+                                <div>
+                                    <div class="font-bold text-slate-900">👉 Kim Nguyên Bảo (Chuyên Gia)</div>
+                                    <div class="text-red-700 font-mono font-bold">Zalo: 0849.32.86.28</div>
+                                </div>
+                                <span class="bg-red-600 text-white px-2.5 py-1 rounded text-xs font-bold">Bấm Nhắn</span>
+                            </a>
+                        </div>
+
+                        <div class="space-y-2 text-xs md:text-sm">
+                            <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="p-3 bg-red-600 text-white rounded-xl flex items-center justify-between font-bold hover:bg-red-700 transition">
+                                <span><i class="fa-brands fa-youtube text-lg mr-2"></i> Xem & Đăng Ký Kênh YouTube Mật Mã Cuộc Đời</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+
+                            <a href="https://zalo.me/g/iljgbe719" target="_blank" class="p-3 bg-blue-700 text-white rounded-xl flex items-center justify-between font-bold hover:bg-blue-800 transition">
+                                <span><i class="fa-solid fa-users text-lg mr-2"></i> Group Zalo Hỏi Đáp - Cập Nhật Hàng Ngày</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+
+                        <div class="flex gap-2">
+                            <a href="https://tiktok.com/@matmacuocdoivn" target="_blank" class="flex-1 p-2.5 bg-slate-900 text-white rounded-xl text-center text-xs font-bold hover:bg-slate-800 transition">
+                                🔗 TikTok @matmacuocdoivn
+                            </a>
+                            <a href="https://www.facebook.com/thymozin" target="_blank" class="flex-1 p-2.5 bg-blue-600 text-white rounded-xl text-center text-xs font-bold hover:bg-blue-700 transition">
+                                🔗 Facebook /thymozin
+                            </a>
+                        </div>
+                    </div>
+                `,
+                keyNote: "Liên hệ Zalo ngay hôm nay để nhận lá số & bản luận chi tiết!"
+            }
+        ];
+
+        // STATE VARIABLES
+        let currentSlide = 0;
+        let isDrawMode = false;
+        let currentTool = 'pen'; // 'pen', 'highlighter', 'eraser', 'laser'
+        let currentColor = '#DC2626'; // Default red accent
+        let currentSize = 6;
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+        let drawHistory = {}; // Store canvas history per slide index
+
+        // CANVAS ELEMENTS
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        const laserDot = document.getElementById('laserDot');
+
+        window.onload = function() {
+            resizeCanvas();
+            renderSlide(currentSlide);
+            renderIndexList();
+            
+            window.addEventListener('resize', resizeCanvas);
+            setupCanvasEvents();
+            setupKeyboardEvents();
+            setupTouchEvents();
+        };
+
+        // RESIZE CANVAS TO FIT VIEWPORT
+        function resizeCanvas() {
+            const viewport = document.getElementById('slideViewport');
+            canvas.width = viewport.clientWidth;
+            canvas.height = viewport.clientHeight;
+            restoreSlideCanvas();
+        }
+
+        // RENDER SPECIFIC SLIDE
+        function renderSlide(index) {
+            saveSlideCanvas(); // Save previous slide drawing
+
+            currentSlide = index;
+            const slide = slideData[index];
+
+            // Update DOM Elements
+            document.getElementById('currentSlideNum').innerText = slide.id;
+            document.getElementById('totalSlideNum').innerText = slideData.length;
+            document.getElementById('slideCategoryTag').innerText = slide.tag;
+
+            const slideContent = document.getElementById('slideContent');
+            slideContent.innerHTML = `
+                <!-- Slide Header -->
+                <div class="border-b border-slate-200 pb-3 mb-4 flex items-center justify-between">
+                    <div>
+                        <span class="text-xs font-extrabold text-red-600 bg-red-50 px-2.5 py-1 rounded-md uppercase tracking-wider border border-red-200">
+                            ${slide.tag}
+                        </span>
+                        <h1 class="text-xl md:text-3xl font-black text-slate-900 mt-2 leading-tight">
+                            ${slide.title}
+                        </h1>
+                        <p class="text-xs md:text-sm font-semibold text-blue-700 mt-1">
+                            ${slide.subtitle}
+                        </p>
+                    </div>
+                    <div class="hidden md:block text-right shrink-0">
+                        <img src="https://placehold.co/100x40/DC2626/FFFFFF?text=MAT+MA" alt="Logo" class="rounded opacity-80 h-8">
+                    </div>
+                </div>
+
+                <!-- Slide Body -->
+                <div class="flex-1 my-2">
+                    ${slide.content}
+                </div>
+
+                <!-- Slide Footer Key Takeaway -->
+                <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between bg-slate-50 -mx-6 -mb-6 p-4 rounded-b-2xl">
+                    <div class="flex items-center gap-2 text-xs md:text-sm font-bold text-slate-800">
+                        <i class="fa-solid fa-lightbulb text-yellow-500 text-base"></i>
+                        <span>${slide.keyNote}</span>
+                    </div>
+                    <button onclick="openContactModal()" class="text-xs text-red-600 font-bold hover:underline shrink-0 hidden sm:block">
+                        📢 Luận Giải Zalo 300K
+                    </button>
+                </div>
+            `;
+
+            // Clear & Restore canvas drawings for new slide
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            restoreSlideCanvas();
+
+            // Highlight current index item
+            updateActiveIndexUI();
+        }
+
+        // SLIDE NAVIGATION
+        function nextSlide() {
+            if (currentSlide < slideData.length - 1) {
+                renderSlide(currentSlide + 1);
+            } else {
+                renderSlide(0); // Loop back to start
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                renderSlide(currentSlide - 1);
+            }
+        }
+
+        function jumpToSlide(index) {
+            renderSlide(index);
+            toggleSidebar(); // Close menu
+        }
+
+        // RENDER SIDEBAR INDEX
+        function renderIndexList() {
+            const listContainer = document.getElementById('slideIndexList');
+            listContainer.innerHTML = slideData.map((item, idx) => `
+                <button onclick="jumpToSlide(${idx})" id="indexItem-${idx}" class="w-full text-left p-2.5 rounded-lg text-xs font-bold transition flex items-center justify-between ${idx === currentSlide ? 'bg-red-50 text-red-600 border border-red-200' : 'hover:bg-slate-100 text-slate-700'}">
+                    <span class="truncate mr-2">${item.id}. ${item.title}</span>
+                    <i class="fa-solid fa-chevron-right text-[10px] opacity-60"></i>
+                </button>
+            `).join('');
+        }
+
+        function updateActiveIndexUI() {
+            slideData.forEach((_, idx) => {
+                const el = document.getElementById(`indexItem-${idx}`);
+                if (el) {
+                    if (idx === currentSlide) {
+                        el.className = "w-full text-left p-2.5 rounded-lg text-xs font-bold transition flex items-center justify-between bg-red-50 text-red-600 border border-red-200";
+                    } else {
+                        el.className = "w-full text-left p-2.5 rounded-lg text-xs font-bold transition flex items-center justify-between hover:bg-slate-100 text-slate-700";
+                    }
+                }
+            });
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebarIndex');
+            const backdrop = document.getElementById('sidebarBackdrop');
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        // TOGGLE DRAWING MODE
+        function toggleDrawMode() {
+            isDrawMode = !isDrawMode;
+            const toolbar = document.getElementById('drawingToolbar');
+            const btnText = document.getElementById('drawBtnText');
+            const btnIcon = document.getElementById('drawBtnIcon');
+            const toggleBtn = document.getElementById('toggleDrawBtn');
+
+            if (isDrawMode) {
+                canvas.classList.add('active-draw');
+                toolbar.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-4');
+                btnText.innerText = "Tắt Bút Vẽ";
+                btnIcon.className = "fa-solid fa-xmark text-red-600";
+                toggleBtn.classList.add('bg-red-50', 'border-red-300', 'text-red-600');
+            } else {
+                canvas.classList.remove('active-draw', 'active-laser');
+                toolbar.classList.add('opacity-0', 'pointer-events-none', '-translate-y-4');
+                laserDot.style.display = 'none';
+                btnText.innerText = "Mở Bút Vẽ";
+                btnIcon.className = "fa-solid fa-pen-nib text-blue-600";
+                toggleBtn.classList.remove('bg-red-50', 'border-red-300', 'text-red-600');
+            }
+        }
+
+        function setTool(tool) {
+            currentTool = tool;
+            
+            // UI Button Reset
+            ['toolPen', 'toolHighlighter', 'toolLaser', 'toolEraser'].forEach(id => {
+                const btn = document.getElementById(id);
+                btn.className = "p-2 rounded-full hover:bg-slate-100 text-slate-600";
+            });
+
+            if (tool === 'pen') {
+                document.getElementById('toolPen').className = "p-2 rounded-full bg-blue-100 text-blue-600 font-bold";
+                canvas.classList.remove('active-laser');
+                canvas.classList.add('active-draw');
+                laserDot.style.display = 'none';
+            } else if (tool === 'highlighter') {
+                document.getElementById('toolHighlighter').className = "p-2 rounded-full bg-yellow-100 text-yellow-600 font-bold";
+                canvas.classList.remove('active-laser');
+                canvas.classList.add('active-draw');
+                laserDot.style.display = 'none';
+            } else if (tool === 'eraser') {
+                document.getElementById('toolEraser').className = "p-2 rounded-full bg-red-100 text-red-600 font-bold";
+                canvas.classList.remove('active-laser');
+                canvas.classList.add('active-draw');
+                laserDot.style.display = 'none';
+            } else if (tool === 'laser') {
+                document.getElementById('toolLaser').className = "p-2 rounded-full bg-red-100 text-red-600 font-bold";
+                canvas.classList.remove('active-draw');
+                canvas.classList.add('active-laser');
+            }
+        }
+
+        function setColor(color) {
+            currentColor = color;
+            document.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('ring-2', 'ring-offset-1', 'ring-slate-800'));
+            event.target.classList.add('ring-2', 'ring-offset-1', 'ring-slate-800');
+        }
+
+        function setSize(size) {
+            currentSize = size;
+        }
+
+        // CANVAS EVENT HANDLERS
+        function setupCanvasEvents() {
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+        }
+
+        function getCanvasCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top
+            };
+        }
+
+        function startDrawing(e) {
+            if (!isDrawMode) return;
+            const coords = getCanvasCoords(e);
+            isDrawing = true;
+            lastX = coords.x;
+            lastY = coords.y;
+
+            if (currentTool === 'laser') {
+                laserDot.style.display = 'block';
+                updateLaserPos(e);
+            }
+        }
+
+        function draw(e) {
+            const coords = getCanvasCoords(e);
+
+            if (currentTool === 'laser' && isDrawMode) {
+                updateLaserPos(e);
+            }
+
+            if (!isDrawing || !isDrawMode || currentTool === 'laser') return;
+
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(coords.x, coords.y);
+
+            if (currentTool === 'eraser') {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.lineWidth = currentSize * 4;
+                ctx.lineCap = 'round';
+            } else if (currentTool === 'highlighter') {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.strokeStyle = currentColor + '55'; // Transparent color
+                ctx.lineWidth = currentSize * 3;
+                ctx.lineCap = 'square';
+            } else {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.strokeStyle = currentColor;
+                ctx.lineWidth = currentSize;
+                ctx.lineCap = 'round';
+            }
+
+            ctx.stroke();
+            lastX = coords.x;
+            lastY = coords.y;
+        }
+
+        function stopDrawing() {
+            if (isDrawing) {
+                isDrawing = false;
+                saveSlideCanvas();
+            }
+        }
+
+        function updateLaserPos(e) {
+            laserDot.style.left = e.clientX + 'px';
+            laserDot.style.top = e.clientY + 'px';
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            delete drawHistory[currentSlide];
+        }
+
+        function saveSlideCanvas() {
+            if (canvas.width > 0 && canvas.height > 0) {
+                drawHistory[currentSlide] = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function restoreSlideCanvas() {
+            if (drawHistory[currentSlide]) {
+                ctx.putImageData(drawHistory[currentSlide], 0, 0);
+            }
+        }
+
+        function undoDraw() {
+            clearCanvas();
+        }
+
+        // TOUCH & KEYBOARD NAVIGATION
+        function setupKeyboardEvents() {
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'Space') {
+                    nextSlide();
+                } else if (e.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (e.key === 'Escape') {
+                    closeContactModal();
+                    if (isDrawMode) toggleDrawMode();
+                }
+            });
+        }
+
+        function setupTouchEvents() {
+            let touchStartX = 0;
+            const viewport = document.getElementById('slideViewport');
+
+            viewport.addEventListener('touchstart', (e) => {
+                if (isDrawMode) return;
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                if (isDrawMode) return;
+                let touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    nextSlide(); // Swipe Left
+                } else if (touchEndX - touchStartX > 50) {
+                    prevSlide(); // Swipe Right
+                }
+            }, { passive: true });
+        }
+
+        // FULLSCREEN & MODAL CONTROLS
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => console.log(err));
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        function openContactModal() {
+            document.getElementById('contactModal').classList.remove('hidden');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
