@@ -1,0 +1,301 @@
+    <!-- 1. Thanh điều hướng màu đỏ trên cùng -->
+    <div class="top-menu">
+        <div class="brand">● MẬT MÃ CUỘC ĐỜI</div>
+        <div class="title-lecture">Bài Giảng Luận Giải 2027: NAM QUÝ SỬU 1973 (55 TUỔI)</div>
+        <div class="menu-buttons">
+            <button class="btn btn-toggle" id="togglePaintBtn" onclick="toggleDrawingMode()">✏️ Bật Bút Vẽ</button>
+            <button class="btn btn-reg">🔴 Đăng Ký Luận Giải (300K)</button>
+        </div>
+    </div>
+
+    <!-- 2. Hộp công cụ bút vẽ nổi trên màn hình -->
+    <div class="paint-tools" id="paintTools">
+        <div class="color-picker active" style="background-color: #ef4444;" onclick="changeColor('#ef4444', this)"></div>
+        <div class="color-picker" style="background-color: #3b82f6;" onclick="changeColor('#3b82f6', this)"></div>
+        <div class="color-picker" style="background-color: #22c55e;" onclick="changeColor('#22c55e', this)"></div>
+        <div class="color-picker" style="background-color: #000000;" onclick="changeColor('#000000', this)"></div>
+        <button class="size-btn" onclick="changeSize(2, this)">Nét Nhỏ</button>
+        <button class="size-btn active" onclick="changeSize(4, this)">Nét Vừa</button>
+        <button class="size-btn" onclick="changeSize(7, this)">Nét Tốt</button>
+        <button class="btn-clear" onclick="clearCanvas()">🗑️ Xóa Nét</button>
+    </div>
+
+    <!-- 3. Khung lớn chứa bài giảng chính (Có Canvas bọc ngoài chống lệch bút) -->
+    <div class="main-container">
+        <canvas id="paintCanvas"></canvas>
+
+        <!-- TRANG 1: TỔNG QUAN VẬN HẠN -->
+        <div class="slide-card active">
+            <div class="headline">NAM QUÝ SỬU 1973 NĂM 2027 (55 TUỔI)</div>
+            <div class="sub-headline">XUNG ĐỂ THAY ĐỔI, GIỮ MÌNH ĐỂ ĐI QUA</div>
+            <div class="content-box">
+                Nếu quý anh tuổi Quý Sửu 1973, bước sang năm 2027 Đinh Mùi, thì đây là một năm không nên nhìn bằng hai chữ “tốt” hay “xấu” một cách đơn giản.
+            </div>
+            <div class="grid-box">
+                <div class="box-item box-danger">
+                    <div class="box-title">⚠️ Yếu Tố Thử Thách</div>
+                    <ul>
+                        <li>Xung Thái Tuế, Hình Thái Tuế</li>
+                        <li>Sao La Hầu chiếu mạng</li>
+                        <li>Hạn Tam Kheo & Phạm Kim Lâu Thân</li>
+                    </ul>
+                </div>
+                <div class="box-item box-success">
+                    <div class="box-title">🔹 Yếu Tố Thuận Lợi</div>
+                    <ul>
+                        <li>Không phạm Tam Tai</li>
+                        <li>Cung Hoang Ốc Tứ Tấn Tài</li>
+                        <li>Tang Đố Mộc gặp Thiên Hà Thủy (Thủy sinh Mộc)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANG 2: TINH THẦN CỐT LÕI -->
+        <div class="slide-card">
+            <div class="headline">TỪ KHÓA CỐT LÕI NĂM 2027: "ĐỘNG"</div>
+            <div class="content-box" style="text-align: center; font-size: 22px; font-weight: bold; color: #e02424; margin: 30px 0;">
+                ĐỘNG ĐỂ THAY ĐỔI - ĐỘNG ĐỂ SẮP XẾP LẠI<br>ĐỘNG NHƯNG KHÔNG ĐƯỢC LOẠN!
+            </div>
+            <div class="content-box">
+                Đến tuổi 55, điều quý anh cần không còn là chứng minh mình giỏi đến đâu nữa. Mà quan trọng là: <span class="highlight-red">Cái gì đáng giữ thì giữ, cái gì không còn phù hợp thì phải biết thay đổi.</span> Đây chính là bản lĩnh tinh thần của năm 2027.
+            </div>
+        </div>
+
+        <!-- TRANG 3: LỜI KHUYÊN GIA ĐẠO & BUÔNG BỎ -->
+        <div class="slide-card">
+            <div class="headline">GIA ĐẠO & LỜI KHUYÊN NHÂN SINH</div>
+            <div class="content-box">
+                Gia đình không phải là nơi để phân thắng thua. Năm có Xung dễ khiến quý anh nóng nảy, nhưng hãy luôn khắc cốt ghi tâm câu này:
+            </div>
+            <div class="content-box" style="background-color: #fffbeb; border-left: 5px solid #d97706; padding: 15px; font-style: italic; font-weight: bold; color: #b45309;">
+                "Đúng lý chưa chắc đã giữ được người. Giữ được tình mới là điều đáng quý."
+            </div>
+            <div class="content-box">
+                Quý Sửu vốn có chữ <span class="highlight-red">BỀN</span>. Nhưng đôi khi, bền không có nghĩa là ôm giữ tất cả. Biết buông đúng thứ, đúng lúc... đó mới là sự trưởng thành thực sự của tuổi 55.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Thanh điều hướng chân trang giống hệt web của chú -->
+    <div class="bottom-nav">
+        <div style="font-size: 13px; color: #64748b;" id="pageIndicator">Trang 1 / 3</div>
+        <div>
+            <button class="btn" style="background:#e5e7eb;" onclick="changeSlide(-1)">❮ Trang Trước</button>
+            <button class="btn" style="background:#e02424; color:white;" onclick="changeSlide(1)">Trang Tiếp ❯</button>
+        </div>
+        <div style="font-size: 13px; color: #64748b;">📞 Zalo: 0789.41.41.53</div>
+    </div>
+    <!-- 1. Thanh điều hướng màu đỏ trên cùng -->
+    <div class="top-menu">
+        <div class="brand">● MẬT MÃ CUỘC ĐỜI</div>
+        <div class="title-lecture">Bài Giảng Luận Giải 2027: NAM QUÝ SỬU 1973 (55 TUỔI)</div>
+        <div class="menu-buttons">
+            <button class="btn btn-toggle" id="togglePaintBtn" onclick="toggleDrawingMode()">✏️ Bật Bút Vẽ</button>
+            <button class="btn btn-reg">🔴 Đăng Ký Luận Giải (300K)</button>
+        </div>
+    </div>
+
+    <!-- 2. Hộp công cụ bút vẽ nổi trên màn hình -->
+    <div class="paint-tools" id="paintTools">
+        <div class="color-picker active" style="background-color: #ef4444;" onclick="changeColor('#ef4444', this)"></div>
+        <div class="color-picker" style="background-color: #3b82f6;" onclick="changeColor('#3b82f6', this)"></div>
+        <div class="color-picker" style="background-color: #22c55e;" onclick="changeColor('#22c55e', this)"></div>
+        <div class="color-picker" style="background-color: #000000;" onclick="changeColor('#000000', this)"></div>
+        <button class="size-btn" onclick="changeSize(2, this)">Nét Nhỏ</button>
+        <button class="size-btn active" onclick="changeSize(4, this)">Nét Vừa</button>
+        <button class="size-btn" onclick="changeSize(7, this)">Nét Tốt</button>
+        <button class="btn-clear" onclick="clearCanvas()">🗑️ Xóa Nét</button>
+    </div>
+
+    <!-- 3. Khung lớn chứa bài giảng chính (Có Canvas bọc ngoài chống lệch bút) -->
+    <div class="main-container">
+        <canvas id="paintCanvas"></canvas>
+
+        <!-- TRANG 1: TỔNG QUAN VẬN HẠN -->
+        <div class="slide-card active">
+            <div class="headline">NAM QUÝ SỬU 1973 NĂM 2027 (55 TUỔI)</div>
+            <div class="sub-headline">XUNG ĐỂ THAY ĐỔI, GIỮ MÌNH ĐỂ ĐI QUA</div>
+            <div class="content-box">
+                Nếu quý anh tuổi Quý Sửu 1973, bước sang năm 2027 Đinh Mùi, thì đây là một năm không nên nhìn bằng hai chữ “tốt” hay “xấu” một cách đơn giản.
+            </div>
+            <div class="grid-box">
+                <div class="box-item box-danger">
+                    <div class="box-title">⚠️ Yếu Tố Thử Thách</div>
+                    <ul>
+                        <li>Xung Thái Tuế, Hình Thái Tuế</li>
+                        <li>Sao La Hầu chiếu mạng</li>
+                        <li>Hạn Tam Kheo & Phạm Kim Lâu Thân</li>
+                    </ul>
+                </div>
+                <div class="box-item box-success">
+                    <div class="box-title">🔹 Yếu Tố Thuận Lợi</div>
+                    <ul>
+                        <li>Không phạm Tam Tai</li>
+                        <li>Cung Hoang Ốc Tứ Tấn Tài</li>
+                        <li>Tang Đố Mộc gặp Thiên Hà Thủy (Thủy sinh Mộc)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRANG 2: TINH THẦN CỐT LÕI -->
+        <div class="slide-card">
+            <div class="headline">TỪ KHÓA CỐT LÕI NĂM 2027: "ĐỘNG"</div>
+            <div class="content-box" style="text-align: center; font-size: 22px; font-weight: bold; color: #e02424; margin: 30px 0;">
+                ĐỘNG ĐỂ THAY ĐỔI - ĐỘNG ĐỂ SẮP XẾP LẠI<br>ĐỘNG NHƯNG KHÔNG ĐƯỢC LOẠN!
+            </div>
+            <div class="content-box">
+                Đến tuổi 55, điều quý anh cần không còn là chứng minh mình giỏi đến đâu nữa. Mà quan trọng là: <span class="highlight-red">Cái gì đáng giữ thì giữ, cái gì không còn phù hợp thì phải biết thay đổi.</span> Đây chính là bản lĩnh tinh thần của năm 2027.
+            </div>
+        </div>
+
+        <!-- TRANG 3: LỜI KHUYÊN GIA ĐẠO & BUÔNG BỎ -->
+        <div class="slide-card">
+            <div class="headline">GIA ĐẠO & LỜI KHUYÊN NHÂN SINH</div>
+            <div class="content-box">
+                Gia đình không phải là nơi để phân thắng thua. Năm có Xung dễ khiến quý anh nóng nảy, nhưng hãy luôn khắc cốt ghi tâm câu này:
+            </div>
+            <div class="content-box" style="background-color: #fffbeb; border-left: 5px solid #d97706; padding: 15px; font-style: italic; font-weight: bold; color: #b45309;">
+                "Đúng lý chưa chắc đã giữ được người. Giữ được tình mới là điều đáng quý."
+            </div>
+            <div class="content-box">
+                Quý Sửu vốn có chữ <span class="highlight-red">BỀN</span>. Nhưng đôi khi, bền không có nghĩa là ôm giữ tất cả. Biết buông đúng thứ, đúng lúc... đó mới là sự trưởng thành thực sự của tuổi 55.
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Thanh điều hướng chân trang giống hệt web của chú -->
+    <div class="bottom-nav">
+        <div style="font-size: 13px; color: #64748b;" id="pageIndicator">Trang 1 / 3</div>
+        <div>
+            <button class="btn" style="background:#e5e7eb;" onclick="changeSlide(-1)">❮ Trang Trước</button>
+            <button class="btn" style="background:#e02424; color:white;" onclick="changeSlide(1)">Trang Tiếp ❯</button>
+        </div>
+        <div style="font-size: 13px; color: #64748b;">📞 Zalo: 0789.41.41.53</div>
+    </div>
+    <!-- 5. Đoạn mã xử lý tính năng bút vẽ chuẩn xác, chống lệch tọa độ và chuyển slide -->
+    <script>
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let drawColor = '#ef4444';
+        let drawSize = 4;
+        let isDrawingModeActive = false;
+
+        // Hàm tự động cân bằng kích thước Canvas theo khung nội dung bài giảng
+        function resizeCanvas() {
+            const container = document.querySelector('.main-container');
+            if (container && canvas) {
+                canvas.width = container.clientWidth;
+                canvas.height = container.clientHeight;
+                clearCanvas();
+            }
+        }
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('load', resizeCanvas);
+
+        // Bật hoặc tắt chức năng vẽ
+        function toggleDrawingMode() {
+            isDrawingModeActive = !isDrawingModeActive;
+            const btn = document.getElementById('togglePaintBtn');
+            const tools = document.getElementById('paintTools');
+            
+            if(isDrawingModeActive) {
+                btn.innerText = "❌ Tắt Bút Vẽ";
+                btn.classList.add('active');
+                tools.classList.add('active');
+                canvas.classList.add('drawing');
+            } else {
+                btn.innerText = "✏️ Bật Bút Vẽ";
+                btn.classList.remove('active');
+                tools.classList.remove('active');
+                canvas.classList.remove('drawing');
+                isDrawing = false;
+            }
+        }
+
+        // --- ĐOẠN CODE ĐỂ SỬA DỨT ĐIỂM LỖI LỆCH TÂM BÚT VẼ CỦA CHÚ ---
+        function getCanvasCoordinates(e) {
+            const rect = canvas.getBoundingClientRect(); // Đo chính xác khung hình hiển thị hiện tại
+            
+            // Lấy tọa độ chuột hoặc tọa độ ngón tay cảm ứng trên điện thoại
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            
+            // Lấy tọa độ thực tế trừ đi khoảng lề của khung hình.
+            // Điều này xóa bỏ 100% lỗi lệch vị trí do thanh menu đỏ phía trên gây ra.
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        // Bắt đầu đặt bút vẽ
+        function startDrawing(e) {
+            if (!isDrawingModeActive) return;
+            isDrawing = true;
+            const coords = getCanvasCoordinates(e);
+            ctx.beginPath();
+            ctx.moveTo(coords.x, coords.y);
+            
+            // Chống hiện tượng cuộn màn hình khi vẽ trên điện thoại
+            if (e.cancelable) e.preventDefault();
+        }
+
+        // Di chuyển chuột để vẽ nét mực
+        function draw(e) {
+            if (!isDrawing || !isDrawingModeActive) return;
+            const coords = getCanvasCoordinates(e);
+            ctx.lineWidth = drawSize;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = drawColor;
+            ctx.lineTo(coords.x, coords.y);
+            ctx.stroke();
+            
+            if (e.cancelable) e.preventDefault();
+        }
+
+        // Nhấc bút lên khỏi màn hình
+        function stopDrawing() { isDrawing = false; }
+
+        // Đăng ký sự kiện điều khiển chuột trên máy tính
+        canvas.addEventListener('mousedown', startDrawing);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDrawing);
+        canvas.addEventListener('mouseleave', stopDrawing);
+
+        // Đăng ký sự kiện dùng ngón tay vẽ trên điện thoại
+        canvas.addEventListener('touchstart', startDrawing);
+        canvas.addEventListener('touchmove', draw);
+        canvas.addEventListener('touchend', stopDrawing);
+
+        // Thay đổi màu sắc và kích cỡ nét vẽ
+        function changeColor(color, element) {
+            drawColor = color;
+            document.querySelectorAll('.color-picker').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        }
+        function changeSize(size, element) {
+            drawSize = size;
+            document.querySelectorAll('.color-picker').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.size-btn').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+        }
+        function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+
+        // Phần chuyển tiếp giữa các trang bài giảng
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-card');
+        function changeSlide(direction) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide += direction;
+            if (currentSlide >= slides.length) currentSlide = 0;
+            if (currentSlide < 0) currentSlide = slides.length - 1;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('pageIndicator').innerText = `Trang ${currentSlide + 1} / ${slides.length}`;
+            clearCanvas(); // Tự động xóa nét vẽ cũ khi chuyển sang bài mới để giảng lại từ đầu
+        }
+    </script>
+</body>
+</html>
