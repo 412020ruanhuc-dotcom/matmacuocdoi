@@ -150,7 +150,8 @@
         let namHienTai = new Date().getFullYear();
        
 
-for(let i=namHienTai; i>=1940; i--) namSel.options.add(new Option(i, i));
+        let namHienTai = new Date().getFullYear();
+        for(let i=namHienTai; i>1940; i--) namSel.options.add(new Option(i, i));
 
         let gioSel = document.getElementById('gio生');
         for(let i=0; i<=23; i++) gioSel.options.add(new Option(i + ' Giờ', i));
@@ -159,14 +160,11 @@ for(let i=namHienTai; i>=1940; i--) namSel.options.add(new Option(i, i));
         for(let i=0; i<=59; i++) phutSel.options.add(new Option(i + ' Phút', i));
     };
 
-    // BẢNG ĐỊNH NGHĨA CÁC CẶP SỐ CÁT TINH (TỐT)
     const bangCatTinh = {
         '11': 'Phục Vị', '22': 'Phục Vị', '33': 'Phục Vị', '44': 'Phục Vị', '66': 'Phục Vị', '77': 'Phục Vị', '88': 'Phục Vị', '99': 'Phục Vị',
         '13': 'Thiên Y', '31': 'Thiên Y', '68': 'Thiên Y', '86': 'Thiên Y', '49': 'Thiên Y', '94': 'Thiên Y', '27': 'Thiên Y', '72': 'Thiên Y',
         '14': 'Sinh Khí', '41': 'Sinh Khí', '67': 'Sinh Khí', '76': 'Sinh Khí', '39': 'Sinh Khí', '93': 'Sinh Khí', '28': 'Sinh Khí', '82': 'Sinh Khí'
     };
-
-    // BẢNG ĐỊNH NGHĨA CÁC CẶP SỐ HUNG TINH (XẤU)
     const bangHungTinh = {
         '19': 'Diên Niên', '91': 'Diên Niên', '78': 'Diên Niên', '87': 'Diên Niên',
         '17': 'Họa Hại', '71': 'Họa Hại', '89': 'Họa Hại', '98': 'Họa Hại',
@@ -175,28 +173,21 @@ for(let i=namHienTai; i>=1940; i--) namSel.options.add(new Option(i, i));
         '16': 'Lục Sát', '61': 'Lục Sát', '47': 'Lục Sát', '74': 'Lục Sát'
     };
 
-    // HÀM TỰ ĐỘNG TÍNH TOÁN VÀ XUẤT KẾT QUẢ RA MÀN HÌNH
     function chayLuanGiai() {
         let soSim = document.getElementById('sosim').value.trim();
         let chuoiSo = soSim.replace(/[^0-9]/g, '');
-        if(chuoiSo.length < 4) { alert("Số sim quá ngắn, vui lòng nhập lại!"); return; }
-
+        if(chuoiSo.length < 4) { alert("Số sim quá ngắn!"); return; }
         let htmlKetQua = "<strong>Các cặp năng lượng tìm thấy trong SIM:</strong><br><br>";
-        
         for(let i = 0; i < chuoiSo.length - 1; i++) {
             let capSo = chuoiSo.substring(i, i + 2);
             if(capSo.includes('0') || capSo.includes('5')) continue; 
-
             let tenTinh = bangCatTinh[capSo] || bangHungTinh[capSo];
-            let loaiTinh = bangCatTinh[capSo] ? 'cat' : 'hung';
-            
             if(tenTinh) {
-                let lopMau = loaiTinh === 'cat' ? 'background-color: #2ed573; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;' : 'background-color: #ff4757; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold;';
-                htmlKetQua += `• Cặp số <strong>${capSo}</strong>: <span style="${lopMau}">${tenTinh}</span><br>`;
+                let mau = bangCatTinh[capSo] ? '#2ed573' : '#ff4757';
+                htmlKetQua += `• Cặp số <b>${capSo}</b>: <span style="background:${mau};color:white;padding:2px 6px;border-radius:4px;font-weight:bold;">${tenTinh}</span><br>`;
             }
         }
-        
-        document.getElementById('kqSim').innerHTML = `Số điện thoại kiểm tra: <b style="color: #b30000; font-size: 18px;">${soSim}</b><hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">`;
+        document.getElementById('kqSim').innerHTML = `Số kiểm tra: <b>${soSim}</b>`;
         document.getElementById('kqChiTiet').innerHTML = htmlKetQua;
         document.getElementById('vungKetQua').style.display = "block";
         document.getElementById('vungKetQua').scrollIntoView({ behavior: 'smooth' });
