@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Năng Lượng Sim Theo Bát Cực Linh Số - Miễn Phí Vì Cộng Đồng</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #b30000; font-size: 24px; margin-bottom: 5px; }
+        p.subtitle { text-align: center; font-style: italic; color: #666; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #444; }
+        input[type="text"], select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
+        .radio-group { display: flex; gap: 20px; padding: 5px 0; }
+        .radio-group label { font-weight: normal; cursor: pointer; display: flex; align-items: center; gap: 5px; }
+        button { width: 100%; background-color: #b30000; color: white; padding: 12px; border: none; border-radius: 4px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; transition: background 0.3s; }
+        button:hover { background-color: #8a0000; }
+        .footer-text { text-align: center; margin-top: 25px; font-size: 13px; color: #888; border-top: 1px solid #eee; padding-top: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>BÁT CỰC LINH SỐ</h1>
+    <p class="subtitle">Công cụ tra cứu năng lượng số điện thoại miễn phí cho cộng đồng</p>
+    
+    <!-- KHUNG NHẬP THÔNG TIN TRA CỨU ĐÃ LÀM SẠCH BẢN QUYỀN -->
+    <form id="formTraCuu">
+        <div class="form-group">
+            <label for="sosim">Số sim cần xem *</label>
+            <input type="text" id="sosim" placeholder="Ví dụ: 0912345678" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cccd">Số CCCD *</label>
+            <input type="text" id="cccd" placeholder="Nhập số căn cước công dân" required>
+        </div>
+
+        <div class="form-group">
+            <label>Giới tính *</label>
+            <div class="radio-group">
+                <label><input type="radio" name="gioitinh" value="nam" checked> Nam</label>
+                <label><input type="radio" name="gioitinh" value="nu"> Nữ</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Loại lịch sinh</label>
+            <div class="radio-group">
+                <label><input type="radio" name="loailich" value="dl" checked> Dương lịch</label>
+                <label><input type="radio" name="loailich" value="al"> Âm lịch</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Ngày tháng năm sinh</label>
+            <div style="display: flex; gap: 10px;">
+                <select id="ngay生"><option value="">Ngày</option></select>
+                <select id="thang生"><option value="">Tháng</option></select>
+                <select id="nam生"><option value="">Năm</option></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Giờ phút sinh (Nếu nhớ)</label>
+            <div style="display: flex; gap: 10px;">
+                <select id="gio生"><option value="">Giờ</option></select>
+                <select id="phut生"><option value="">Phút</option></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="mucdich">Mục đích sử dụng sim (Tùy chọn)</label>
+            <select id="mucdich">
+                <option value="">-- Chọn mục đích --</option>
+                <option value="ca-nhan">Phát Triển Cá Nhân</option>
+                <option value="tai-loc">Tài Lộc – Giữ Tiền</option>
+                <option value="quy-nhan">Quý Nhân Khai Lộc</option>
+                <option value="gia-dao">Gia Đạo – Hôn Nhân</option>
+                <option value="suc-khoe">Sức Khỏe – An Yên</option>
+                <option value="tri-tue">Trí Tuệ</option>
+                <option value="dau-tu">Đầu Tư – Kinh Doanh</option>
+                <option value="cong-danh">Công Danh - Thăng Tiến</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="honnhan">Tình trạng hôn nhân (Tùy chọn)</label>
+            <select id="honnhan">
+                <option value="">-- Chọn tình trạng --</option>
+                <option value="doc-than">Độc thân</option>
+                <option value="ket-hon">Đã kết hôn</option>
+                <option value="ly-hon">Đã ly hôn</option>
+            </select>
+        </div>
+
+        <button type="button" onclick="chayLuanGiai()">✦ XEM NĂNG LƯỢNG SỐ →</button>
+    </form>
+    <!-- VÙNG TỰ ĐỘNG HIỆN KẾT QUẢ SẠCH -->
+    <div id="vungKetQua" style="display: none; margin-top: 30px; padding: 20px; border: 2px dashed #b30000; background: #fffbfb; border-radius: 6px;">
+        <div style="color: #b30000; font-size: 20px; font-weight: bold; text-align: center; margin-bottom: 15px; border-bottom: 1px solid #ecc; padding-bottom: 10px;">KẾT QUẢ LUẬN GIẢI NĂNG LƯỢNG</div>
+        <div id="kqSim" style="margin-bottom: 12px; font-size: 16px;"></div>
+        <div id="kqChiTiet" style="margin-bottom: 12px; font-size: 16px; line-height: 1.8;"></div>
+        <div style="margin-top: 15px; font-style: italic; color: #555; font-size: 14px;">
+            * Lưu ý: Kết quả phân tích dựa trên phương pháp Bát Cực Linh Số đối chiếu từng cặp số. Hãy giữ tâm an và dùng kiến thức làm phương tiện tham khảo cho cộng đồng.
+        </div>
+    </div>
+
+    <div class="footer-text">
+        Website chia sẻ kiến thức Tử Vi & Năng Lượng Số phi lợi nhuận vì cộng đồng.
+    </div>
+</div>
+
+<script>
+    // Tự động tạo danh sách ngày (1-31), tháng (1-12), năm (1940-2026) cho bác dễ chọn
+    window.onload = function() {
+        let ngaySel = document.getElementById('ngay生');
+        for(let i=1; i<=31; i++) ngaySel.options.add(new Option(i, i));
+        
+        let thangSel = document.getElementById('thang生');
+        for(let i=1; i<=12; i++) thangSel.options.add(new Option(i, i));
+        
+        let namSel = document.getElementById('nam生');
+        let namHienTai = new Date().getFullYear();
+        for(let i=namHienTai; i>=1940; i--) namSel.options.add(new Option(i, i));
+
+        let gioSel = document.getElementById('gio生');
+        for(let i=0; i<=23; i++) gioSel.options.add(new Option(i + ' Giờ', i));
+
+        let phutSel = document.getElementById('phut生');
+        for(let i=0; i<=59; i++) phutSel.options.add(new Option(i + ' Phút', i));
+    }
+
+// ĐOẠN 1: BẢNG TRA CỨU CÁC CẶP SỐ CÁT TINH (TỐT)
+const bangCatTinh = {
+    '11': 'Phục Vị', '22': 'Phục Vị', '33': 'Phục Vị', '44': 'Phục Vị', 
+    '66': 'Phục Vị', '77': 'Phục Vị', '88': 'Phục Vị', '99': 'Phục Vị',
+    '13': 'Thiên Y', '31': 'Thiên Y', '68': 'Thiên Y', '86': 'Thiên Y', 
+    '49': 'Thiên Y', '94': 'Thiên Y', '27': 'Thiên Y', '72': 'Thiên Y',
+    '14': 'Sinh Khí', '41': 'Sinh Khí', '67': 'Sinh Khí', '76': 'Sinh Khí', 
+    '39': 'Sinh Khí', '93': 'Sinh Khí', '28': 'Sinh Khí', '82': 'Sinh Khí'
+};
+// ĐOẠN 2: BẢNG TRA CỨU CÁC CẶP SỐ HUNG TINH (XẤU)
+const bangHungTinh = {
+    '19': 'Diên Niên', '91': 'Diên Niên', '78': 'Diên Niên', '87': 'Diên Niên',
+    '17': 'Họa Hại', '71': 'Họa Hại', '89': 'Họa Hại', '98': 'Họa Hại',
+    '12': 'Tuyệt Mệnh', '21': 'Tuyệt Mệnh', '69': 'Tuyệt Mệnh', '96': 'Tuyệt Mệnh',
+    '18': 'Ngũ Quỷ', '81': 'Ngũ Quỷ', '79': 'Ngũ Quỷ', '97': 'Ngũ Quỷ',
+    '16': 'Lục Sát', '61': 'Lục Sát', '47': 'Lục Sát', '74': 'Lục Sát'
+};
+// ĐOẠN 3: HÀM TỰ ĐỘNG TÍNH TOÁN VÀ XUẤT KẾT QUẢ RA MÀN HÌNH
+function chayLuanGiai() {
+    let soSim = document.getElementById('sosim').value.trim();
+    let chuoiSo = soSim.replace(/[^0-9]/g, '');
+    if(chuoiSo.length < 4) { alert("Số sim quá ngắn, vui lòng nhập lại!"); return; }
+
+    let htmlKetQua = "<strong>Các cặp năng lượng tìm thấy trong SIM:</strong><br><br>";
+    
+    for(let i = 0; i < chuoiSo.length - 1; i++) {
+        let capSo = chuoiSo.substring(i, i + 2);
+        if(capSo.includes('0') || capSo.includes('5')) continue; 
+
+        let tenTinh = bangCatTinh[capSo] || bangHungTinh[capSo];
+        let loaiTinh = bangCatTinh[capSo] ? 'cat' : 'hung';
+        
+        if(tenTinh) {
+            let lopMau = loaiTinh === 'cat' ? 'energy-tag cat-tinh' : 'energy-tag hung-tinh';
+            htmlKetQua += `• Cặp số <strong>${capSo}</strong>: <span class="${lopMau}">${tenTinh}</span><br>`;
+        }
+    }
+    
+    document.getElementById('kqSim').innerHTML = `Số điện thoại kiểm tra: <strong>${soSim}</strong>`;
+    document.getElementById('kqChiTiet').innerHTML = htmlKetQua;
+    document.getElementById('vungKetQua').style.display = "block";
+    document.getElementById('vungKetQua').scrollIntoView({ behavior: 'smooth' });
+}
+
+   </script>
+
+</body>
+</html>
+
