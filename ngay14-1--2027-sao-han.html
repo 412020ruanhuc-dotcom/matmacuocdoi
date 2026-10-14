@@ -127,29 +127,32 @@ function tinhToanTuVi() {
         saoHienThi = mapSaoNu[soDuSao];
     }
 
-    // 4. BẢNG ĐỐI CHIẾU SAO - HẠN TAM NGUYÊN NGÀN XƯA ĐỂ LẠI
+        // 4. BẢNG ĐỐI CHIẾU SAO - HẠN TỰ ĐỘNG CHUẨN XÁC
     var hanNienHienThi = "";
-    if (gioiTinh === "Nam") {
-        if (saoHienThi === "La Hầu") { hanNienHienThi = "Tam Kheo"; }
-        else if (saoHienThi === "Thổ Tú") { hanNienHienThi = "Ngũ Mộ"; }
-        else if (saoHienThi === "Thủy Diệu") { hanNienHienThi = "Thiên Tinh"; }
-        else if (saoHienThi === "Thái Bạch") { hanNienHienThi = "Toán Tận"; }
-        else if (saoHienThi === "Thái Dương") { hanNienHienThi = "Toán Tận"; }
-        else if (saoHienThi === "Vân Hớn") { hanNienHienThi = "Thiên La"; }
-        else if (saoHienThi === "Kế Đô") { hanNienHienThi = "Địa Võng"; }
-        else if (saoHienThi === "Thái Âm") { hanNienHienThi = "Diêm Vương"; }
-        else if (saoHienThi === "Mộc Đức") { hanNienHienThi = "Huỳnh Tuyền"; }
+ if (gioiTinh === "Nam") {
+        // BẢNG CỦA NAM: Đổi chữ saoHienThi thành SAONAM
+        if (saoNam === "La Hầu") { hanNienHienThi = "Tam Kheo"; }
+        else if (saoNam === "Thổ Tú") { hanNienHienThi = "Ngũ Mộ"; }
+        else if (saoNam === "Thủy Diệu") { hanNienHienThi = "Thiên Tinh"; }
+        else if (saoNam === "Thái Bạch") { hanNienHienThi = "Toán Tận"; }
+        else if (saoNam === "Thái Dương") { hanNienHienThi = "Toán Tận"; }
+        else if (saoNam === "Vân Hớn") { hanNienHienThi = "Thiên La"; }
+        else if (saoNam === "Kế Đô") { hanNienHienThi = "Địa Võng"; }
+        else if (saoNam === "Thái Âm") { hanNienHienThi = "Diêm Vương"; }
+        else if (saoNam === "Mộc Đức") { hanNienHienThi = "Huỳnh Tuyền"; }
     } else {
-        if (saoHienThi === "Kế Đô") { hanNienHienThi = "Tam Kheo"; }
-        else if (saoHienThi === "Vân Hớn") { hanNienHienThi = "Ngũ Mộ"; }
-        else if (saoHienThi === "Mộc Đức") { hanNienHienThi = "Thiên Tinh"; }
-        else if (saoHienThi === "Thái Âm") { hanNienHienThi = "Toán Tận"; }
-        else if (saoHienThi === "Thổ Tú") { hanNienHienThi = "Huỳnh Tuyền"; }
-        else if (saoHienThi === "La Hầu") { hanNienHienThi = "Thiên La"; }
-        else if (saoHienThi === "Thái Dương") { hanNienHienThi = "Địa Võng"; }
-        else if (saoHienThi === "Thái Bạch") { hanNienHienThi = "Diêm Vương"; }
-        else if (saoHienThi === "Thủy Diệu") { hanNienHienThi = "Toán Tận"; }
+        // BẢNG CỦA NỮ: Đổi chữ saoHienThi thành SAONU
+        if (saoNu === "Kế Đô") { hanNienHienThi = "Tam Kheo"; }
+        else if (saoNu === "Vân Hớn") { hanNienHienThi = "Ngũ Mộ"; }
+        else if (saoNu === "Mộc Đức") { hanNienHienThi = "Thiên Tinh"; }
+        else if (saoNu === "Thái Bạch") { hanNienHienThi = "Diêm Vương"; }
+        else if (saoNu === "Thổ Tú") { hanNienHienThi = "Huỳnh Tuyền"; }
+        else if (saoNu === "La Hầu") { hanNienHienThi = "Thiên La"; }
+        else if (saoNu === "Thái Dương") { hanNienHienThi = "Địa Võng"; }
+        else if (saoNu === "Thái Âm") { hanNienHienThi = "Toán Tận"; }
+        else if (saoNu === "Thủy Diệu") { hanNienHienThi = "Toán Tận"; }
     }
+
 
     // 5. ĐỒ HÌNH ĐỐI CHIẾU VÒNG THÁI TUẾ (Chuẩn 100% Địa Chi - Không dùng toán học tính nhẩm)
     var thaiTueText = "Không phạm";
