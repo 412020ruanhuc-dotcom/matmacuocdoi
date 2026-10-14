@@ -119,7 +119,8 @@ function tinhToanTuVi() {
     var soDuSao = tuoiAm % 9;
     if (soDuSao == 0) { soDuSao = 9; }
 
-    if (gioiTinh === "Nam") {
+var gioiTinh = document.getElementById("gioiTinh").value;
+if (gioiTinh === "Nam") {
         var mapSaoNam = {1:"La Hầu", 2:"Thổ Tú", 3:"Thủy Diệu", 4:"Thái Bạch", 5:"Thái Dương", 6:"Vân Hớn", 7:"Kế Đô", 8:"Thái Âm", 9:"Mộc Đức"};
         saoHienThi = mapSaoNam[soDuSao];
     } else {
