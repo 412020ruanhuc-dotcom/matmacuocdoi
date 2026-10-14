@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRA CỨU HẠN 2026</title>
+    <title>TRA CỨU HẠN CHUẨN XÁC</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; display: flex; justify-content: center; }
         .wrapper { width: 100%; max-width: 550px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 30px 25px; border-top: 8px solid #b31010; box-sizing: border-box; }
@@ -30,8 +30,8 @@
 <body>
 
 <div class="wrapper">
-    <h1 id="mainTitle">TRA CỨU HẠN 2026</h1>
-    <p class="subtitle">Dữ liệu Sao-Hạn theo bảng chuẩn & Logic Tứ Đại Hạn</p>
+    <h1 id="mainTitle">TRA CỨU HẠN 2027</h1>
+    <p class="subtitle">Dữ liệu Sao-Hạn theo bảng chuẩn cổ thư ngàn xưa đúc kết</p>
     
     <div class="row">
         <div class="col">
@@ -40,7 +40,7 @@
         </div>
         <div class="col">
             <label>Năm xem hạn:</label>
-            <input type="number" id="namXem" value="2026">
+            <input type="number" id="namXem" value="2027">
         </div>
     </div>
     
@@ -90,8 +90,100 @@
         </div>
     </div>
 </div>
-
 <script>
+const SAO_HAN_DATA = {
+    10: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    11: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    12: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    13: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    14: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    15: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    16: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    17: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    18: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    19: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    20: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    21: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    22: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    23: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    24: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    25: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    26: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    27: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    28: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    29: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    30: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    31: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    32: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    33: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    34: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    35: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    36: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    37: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    38: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    39: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    40: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    41: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    42: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    43: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    44: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    45: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    46: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    47: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    48: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    49: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    50: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    51: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    52: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    53: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    54: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    55: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    56: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    57: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    58: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    59: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    60: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    61: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    62: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    63: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    64: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    65: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    66: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    67: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    68: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    69: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    70: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    71: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    72: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    73: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    74: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    75: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    76: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    77: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    78: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    79: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    80: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    81: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    82: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    83: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    84: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    85: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    86: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    87: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    88: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    89: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    90: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    91: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"},
+    92: {namSao:"Thổ Tú", namHan:"Ngũ Mộ", nuSao:"Vân Hớn", nuHan:"Ngũ Mộ"},
+    93: {namSao:"Thủy Diệu", namHan:"Thiên Tinh", nuSao:"Mộc Đức", nuHan:"Thiên Tinh"},
+    94: {namSao:"Thái Bạch", namHan:"Toán Tận", nuSao:"Thái Âm", nuHan:"Toán Tận"},
+    95: {namSao:"Thái Dương", namHan:"Toán Tận", nuSao:"Thổ Tú", nuHan:"Huỳnh Tuyền"},
+    96: {namSao:"Vân Hớn", namHan:"Thiên La", nuSao:"La Hầu", nuHan:"Thiên La"},
+    97: {namSao:"Kế Đô", namHan:"Địa Võng", nuSao:"Thái Dương", nuHan:"Địa Võng"},
+    98: {namSao:"Thái Âm", namHan:"Diêm Vương", nuSao:"Thái Bạch", nuHan:"Diêm Vương"},
+    99: {namSao:"Mộc Đức", namHan:"Huỳnh Tuyền", nuSao:"Thủy Diệu", nuHan:"Toán Tận"},
+    100: {namSao:"La Hầu", namHan:"Tam Kheo", nuSao:"Kế Đô", nuHan:"Tam Kheo"}
+};
 function tinhToanTuVi() {
     var namSinh = parseInt(document.getElementById("namSinh").value);
     var namXem = parseInt(document.getElementById("namXem").value);
@@ -102,10 +194,16 @@ function tinhToanTuVi() {
         return;
     }
 
-    // 1. TÍNH TUỔI MỤ THEO ĐÚNG PHÉP LẬP TRÌNH CỔ XƯA
+    // 1. Tính tuổi âm (Tuổi mụ) để làm chìa khóa tra bảng
     var tuoiAm = namXem - namSinh + 1;
 
-    // 2. QUY ĐỔI NĂM RA THIÊN CAN - ĐỊA CHI CHUẨN 60 HOA GIÁP
+    // Kiểm tra nếu tuổi nằm ngoài bảng tra từ 10 đến 100
+    if (tuoiAm < 10 || tuoiAm > 100) {
+        alert("Hệ thống hiện tại hỗ trợ tra cứu cho tuổi mụ từ 10 đến 100 tuổi!");
+        return;
+    }
+
+    // 2. Quy đổi năm ra Can Chi chuẩn 60 Hoa Giáp
     var dsCan = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
     var dsChi = ["Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi"];
     
@@ -114,74 +212,35 @@ function tinhToanTuVi() {
     var canChiSinh = canSinh + " " + chiSinh;
     var chiXem = dsChi[namXem % 12];
 
-    // 3. BẢNG TRA SAO CỬU DIỆU TRUYỀN THỐNG (Khóa chặt theo tuổi mụ từ 10 - 100 tuổi)
-    var saoHienThi = "";
-    var soDuSao = tuoiAm % 9;
-    if (soDuSao == 0) { soDuSao = 9; }
+    // 3. Gọi bảng tra tự động bốc Sao và Hạn niên chuẩn xác tuyệt đối cho Nam/Nữ
+    var dataTuoi = SAO_HAN_DATA[tuoiAm];
+    var saoHienThi = (gioiTinh === "Nam") ? dataTuoi.namSao : dataTuoi.nuSao;
+    var hanNienHienThi = (gioiTinh === "Nam") ? dataTuoi.namHan : dataTuoi.nuHan;
 
-var gioiTinh = document.getElementById("gioiTinh").value;
-if (gioiTinh === "Nam") {
-        var mapSaoNam = {1:"La Hầu", 2:"Thổ Tú", 3:"Thủy Diệu", 4:"Thái Bạch", 5:"Thái Dương", 6:"Vân Hớn", 7:"Kế Đô", 8:"Thái Âm", 9:"Mộc Đức"};
-        saoHienThi = mapSaoNam[soDuSao];
-    } else {
-        var mapSaoNu = {1:"Kế Đô", 2:"Vân Hớn", 3:"Mộc Đức", 4:"Thái Âm", 5:"Thổ Tú", 6:"La Hầu", 7:"Thái Dương", 8:"Thái Bạch", 9:"Thủy Diệu"};
-        saoHienThi = mapSaoNu[soDuSao];
-    }
-
-        // 4. BẢNG ĐỐI CHIẾU SAO - HẠN TỰ ĐỘNG CHUẨN XÁC
-    var hanNienHienThi = "";
-    
-    if (gioiTinh === "Nam") {
-        if (saoHienThi === "La Hầu") { hanNienHienThi = "Tam Kheo"; }
-        else if (saoHienThi === "Thổ Tú") { hanNienHienThi = "Ngũ Mộ"; }
-        else if (saoHienThi === "Thủy Diệu") { hanNienHienThi = "Thiên Tinh"; }
-        else if (saoHienThi === "Thái Bạch") { hanNienHienThi = "Toán Tận"; }
-        else if (saoHienThi === "Thái Dương") { hanNienHienThi = "Toán Tận"; }
-        else if (saoHienThi === "Vân Hớn") { hanNienHienThi = "Thiên La"; }
-        else if (saoHienThi === "Kế Đô") { hanNienHienThi = "Địa Võng"; }
-        else if (saoHienThi === "Thái Âm") { hanNienHienThi = "Diêm Vương"; }
-        else if (saoHienThi === "Mộc Đức") { hanNienHienThi = "Huỳnh Tuyền"; }
-    } else {
-        if (saoHienThi === "Kế Đô") { hanNienHienThi = "Tam Kheo"; }
-        else if (saoHienThi === "Vân Hớn") { hanNienHienThi = "Ngũ Mộ"; }
-        else if (saoHienThi === "Mộc Đức") { hanNienHienThi = "Thiên Tinh"; }
-        else if (saoHienThi === "Thái Âm") { hanNienHienThi = "Toán Tận"; }
-        else if (saoHienThi === "Thổ Tú") { hanNienHienThi = "Huỳnh Tuyền"; }
-        else if (saoHienThi === "La Hầu") { hanNienHienThi = "Thiên La"; }
-        else if (saoHienThi === "Thái Dương") { hanNienHienThi = "Địa Võng"; }
-        else if (saoHienThi === "Thái Bạch") { hanNienHienThi = "Diêm Vương"; }
-        else if (saoHienThi === "Thủy Diệu") { hanNienHienThi = "Toán Tận"; }
-    }
-
-
-
-    // 5. ĐỒ HÌNH ĐỐI CHIẾU VÒNG THÁI TUẾ (Chuẩn 100% Địa Chi - Không dùng toán học tính nhẩm)
+    // 4. Tính hạn Thái Tuế cố định theo Địa Chi cổ truyền
     var thaiTueText = "Không phạm";
     if (chiSinh === chiXem) { 
         thaiTueText = "Trực Thái Tuế"; 
     } else {
-        // Áp dụng đúng định lý: Lục Xung, Lục Hại, Tứ Hành Xung Hình Phá phương Đông
         var mapXung = {"Tý":"Ngọ", "Ngọ":"Tý", "Sửu":"Mùi", "Mùi":"Sửu", "Dần":"Thân", "Thân":"Dần", "Mão":"Dậu", "Dậu":"Mão", "Thìn":"Tuất", "Tuất":"Thìn", "Tỵ":"Hợi", "Hợi":"Tỵ"};
         var mapHai = {"Tý":"Mùi", "Mùi":"Tý", "Sửu":"Ngọ", "Ngọ":"Sửu", "Dần":"Tỵ", "Tỵ":"Dần", "Mão":"Thìn", "Thìn":"Mão", "Thân":"Hợi", "Hợi":"Thân", "Dậu":"Tuất", "Tuất":"Dậu"};
         var mapPha = {"Tý":"Dậu", "Dậu":"Tý", "Sửu":"Thìn", "Thìn":"Sửu", "Dần":"Hợi", "Hợi":"Dần", "Mão":"Ngọ", "Ngọ":"Mão", "Tỵ":"Thân", "Thân":"Tỵ", "Thìn":"Tuất", "Tuất":"Thìn", "Mùi":"Tuất", "Tuất":"Mùi"};
         
-        // Khóa chặt bộ Hình Thái Tuế (Tý - Mão hình nhau, Sửu - Tuất - Mùi tam hình)
         if ((chiXem === "Mão" && chiSinh === "Tý") || (chiXem === "Tý" && chiSinh === "Mão")) { thaiTueText = "Hình Thái Tuế"; }
         else if ((chiXem === "Tuất" && chiSinh === "Sửu") || (chiXem === "Mùi" && chiSinh === "Tuất") || (chiXem === "Sửu" && chiSinh === "Mùi")) { thaiTueText = "Hình Thái Tuế"; }
         
-        // Kiểm tra đối chiếu tự động
         if (mapXung[chiSinh] === chiXem) { thaiTueText = "Xung Thái Tuế"; }
         if (mapHai[chiSinh] === chiXem) { thaiTueText = "Hại Thái Tuế"; }
         if (mapPha[chiSinh] === chiXem) { thaiTueText = "Phá Thái Tuế"; }
     }
 
-    // 6. PHÉP TÍNH KIM LÂU DÂN GIAN TRUYỀN TỤNG
+    // 5. Tính hạn Kim Lâu
     var soDuKL = tuoiAm % 9;
     var kimLauText = "Không phạm";
     var bangKL = {1: "Kim Lâu Thân", 3: "Kim Lâu Thê", 6: "Kim Lâu Tử", 8: "Kim Lâu Lục Súc"};
     if (bangKL[soDuKL]) { kimLauText = "Phạm " + bangKL[soDuKL]; }
 
-    // 7. PHÉP BẤM ĐỐT NGÓN TAY VÒNG HOANG ỐC CỔ TRUYỀN
+    // 6. Tính hạn Hoang Ốc
     var hangChuc = Math.floor(tuoiAm / 10);
     var hangDonVi = tuoiAm % 10;
     var cungKhoi = hangChuc <= 6 ? hangChuc : (hangChuc % 6 == 0 ? 6 : hangChuc % 6);
@@ -189,7 +248,7 @@ if (gioiTinh === "Nam") {
     var bangHoangOc = {1: "1. Nhất Cát (Tốt)", 2: "2. Nhì Nghi (Tốt)", 3: "3. Tam Địa Sát (Xấu)", 4: "4. Tứ Tấn Tài (Tốt)", 5: "5. Ngũ Thọ Tử (Xấu)", 6: "6. Lục Hoang Ốc (Xấu)"};
     var hoangOcText = bangHoangOc[vongHoangOc];
 
-    // 8. BẢNG TRA TAM TAI THEO BỘ TAM HỢP ĐỊA CHI CỐ ĐỊNH
+    // 7. Tính hạn Tam Tai cố định theo bộ Tam Hợp
     var tamTaiText = "Không phạm";
     var tamTaiMap = { 
         "Thân": ["Dần", "Mão", "Thìn"], "Tý": ["Dần", "Mão", "Thìn"], "Thìn": ["Dần", "Mão", "Thìn"], 
@@ -199,7 +258,7 @@ if (gioiTinh === "Nam") {
     };
     if (tamTaiMap[chiSinh] && tamTaiMap[chiSinh].includes(chiXem)) { tamTaiText = "Phạm Tam Tai"; }
 
-    // 9. ĐỔ DỮ LIỆU CHUẨN XÁC RA CÁC Ô HIỂN THỊ TRÊN GIAO DIỆN WEB
+    // 8. In toàn bộ dữ liệu ra các ô card giao diện
     document.getElementById("resSao").innerText = "S. " + saoHienThi;
     document.getElementById("resHanNien").innerText = "H. " + hanNienHienThi;
     document.getElementById("resTamTai").innerText = tamTaiText;
@@ -209,7 +268,7 @@ if (gioiTinh === "Nam") {
     document.getElementById("resTuoiMu").innerText = tuoiAm + " Tuổi Mụ";
     document.getElementById("resCanChiTuoi").innerText = canChiSinh.toUpperCase();
 
-    // 10. PHÂN ĐỊNH MÀU SẮC CHỮ XANH / ĐỎ TỰ ĐỘNG THEO TÍNH CHẤT CÁT HUNG
+    // 9. Tự động đổi màu chữ Cát (Xanh) - Hung (Đỏ) chuẩn chuyên nghiệp
     document.getElementById("resTamTai").className = (tamTaiText === "Không phạm") ? "card-value text-green" : "card-value text-red";
     document.getElementById("resKimLau").className = (kimLauText === "Không phạm") ? "card-value text-green" : "card-value text-red";
     document.getElementById("resHoangOc").className = (vongHoangOc === 1 || vongHoangOc === 2 || vongHoangOc === 4) ? "card-value text-green" : "card-value text-red";
@@ -218,7 +277,6 @@ if (gioiTinh === "Nam") {
     document.getElementById("mainTitle").innerText = "TRA CỨU HẠN " + namXem;
     document.getElementById("vungKetQua").style.display = "block";
 }
-
 </script>
 </body>
 </html>
