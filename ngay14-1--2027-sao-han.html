@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRA CỨU HẠN 2026</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .wrapper { width: 100%; max-width: 550px; background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); padding: 30px 25px; border-top: 8px solid #b31010; box-sizing: border-box; }
+        .title { color: #b31010; font-size: 24px; font-weight: bold; text-transform: uppercase; margin: 0 0 5px 0; text-align: center; }
+        .subtitle { font-style: italic; color: #777; font-size: 13px; margin: 0 0 25px 0; text-align: center; }
+        .row { display: flex; gap: 15px; margin-bottom: 15px; text-align: left; }
+        .col { flex: 1; display: flex; flex-direction: column; }
+        label { font-size: 12px; font-weight: bold; color: #333; margin-bottom: 8px; }
+        input, select { width: 100%; padding: 12px; font-size: 15px; font-weight: bold; border: 1px solid #ddd; border-radius: 8px; background-color: #f0f2f5; box-sizing: border-box; text-align: center; color: #000; }
+        .btn-submit { width: 100%; background-color: #b31010; color: white; border: none; padding: 14px; font-size: 15px; font-weight: bold; text-transform: uppercase; border-radius: 12px; cursor: pointer; margin: 15px 0; }
+        .result-container { display: none; }
+        .grid-result { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .card { background: #f4f7fa; padding: 12px 15px; border-radius: 10px; text-align: left; border: 1px solid #eef1f6; }
+        .card-label { font-size: 11px; text-transform: uppercase; color: #7f8c8d; font-weight: bold; margin-bottom: 5px; }
+        .card-value { font-size: 16px; font-weight: bold; }
+        .text-blue { color: #1a3a8a; }
+        .text-red { color: #b31010; }
+        .text-green { color: #10b981; }
+        .tuoi-mu-box { background-color: #111827; color: white; padding: 15px; border-radius: 12px; text-align: center; margin-top: 15px; }
+        .tuoi-mu-number { font-size: 20px; font-weight: bold; color: #fbbf24; margin-bottom: 3px; }
+        .tuoi-mu-text { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #9ca3af; }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <h1 id="mainTitle">TRA CỨU HẠN 2026</h1>
+    <p class="subtitle">Dữ liệu Sao-Hạn theo bảng chuẩn & Logic Tứ Đại Hạn</p>
+    
+    <div class="row">
+        <div class="col">
+            <label>Năm sinh (Dương lịch):</label>
+            <input type="number" id="namSinh" value="1984">
+        </div>
+        <div class="col">
+            <label>Năm xem hạn:</label>
+            <input type="number" id="namXem" value="2026">
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col">
+            <label>Giới tính:</label>
+            <select id="gioiTinh">
+                <option value="Nam">Nam mạng</option>
+                <option value="Nữ" selected>Nữ mạng</option>
+            </select>
+        </div>
+    </div>
+    
+    <button class="btn-submit" onclick="tinhToanTuVi()">XEM KẾT QUẢ CHUẨN</button>
+
+    <div id="vungKetQua" class="result-container">
+        <div class="grid-result">
+            <div class="card">
+                <div class="card-label">Sao Chiếu Mệnh</div>
+                <div class="card-value text-blue" id="resSao"></div>
+            </div>
+            <div class="card">
+                <div class="card-label">Hạn Niên</div>
+                <div class="card-value text-red" id="resHanNien"></div>
+            </div>
+            <div class="card">
+                <div class="card-label">Tam Tai</div>
+                <div class="card-value" id="resTamTai"></div>
+            </div>
+            <div class="card">
+                <div class="card-label">Thái Tuế</div>
+                <div class="card-value" id="resThaiTue"></div>
+            </div>
+            <div class="card">
+                <div class="card-label">Kim Lâu</div>
+                <div class="card-value" id="resKimLau"></div>
+            </div>
+            <div class="card">
+                <div class="card-label">Hoang Ốc</div>
+                <div class="card-value" id="resHoangOc"></div>
+            </div>
+        </div>
+        
+        <div class="tuoi-mu-box">
+            <div class="tuoi-mu-number" id="resTuoiMu"></div>
+            <div class="tuoi-mu-text" id="resCanChiTuoi"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+function tinhToanTuVi() {
+    var namSinh = parseInt(document.getElementById("namSinh").value);
+    var namXem = parseInt(document.getElementById("namXem").value);
+    var gioiTinh = document.getElementById("gioiTinh").value;
+    
+    if (!namSinh || !namXem || namXem < namSinh) {
+        alert("Vui lòng nhập năm sinh và năm xem hợp lệ!");
+        return;
+    }
+
+    // 1. TÍNH TUỔI MỤ THEO ĐÚNG PHÉP LẬP TRÌNH CỔ XƯA
+    var tuoiAm = namXem - namSinh + 1;
+
+    // 2. QUY ĐỔI NĂM RA THIÊN CAN - ĐỊA CHI CHUẨN 60 HOA GIÁP
+    var dsCan = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
+    var dsChi = ["Thân", "Dậu", "Tuất", "Hợi", "Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi"];
+    
+    var chiSinh = dsChi[namSinh % 12];
+    var canSinh = dsCan[namSinh % 10];
+    var canChiSinh = canSinh + " " + chiSinh;
+    var chiXem = dsChi[namXem % 12];
+
+    // 3. BẢNG TRA SAO CỬU DIỆU TRUYỀN THỐNG (Khóa chặt theo tuổi mụ từ 10 - 100 tuổi)
+    var saoHienThi = "";
+    var soDuSao = tuoiAm % 9;
+    if (soDuSao == 0) { soDuSao = 9; }
+
+    if (gioiTinh === "Nam") {
+        var mapSaoNam = {1:"La Hầu", 2:"Thổ Tú", 3:"Thủy Diệu", 4:"Thái Bạch", 5:"Thái Dương", 6:"Vân Hớn", 7:"Kế Đô", 8:"Thái Âm", 9:"Mộc Đức"};
+        saoHienThi = mapSaoNam[soDuSao];
+    } else {
+        var mapSaoNu = {1:"Kế Đô", 2:"Vân Hớn", 3:"Mộc Đức", 4:"Thái Âm", 5:"Thổ Tú", 6:"La Hầu", 7:"Thái Dương", 8:"Thái Bạch", 9:"Thủy Diệu"};
+        saoHienThi = mapSaoNu[soDuSao];
+    }
+
+    // 4. BẢNG ĐỐI CHIẾU SAO - HẠN TAM NGUYÊN NGÀN XƯA ĐỂ LẠI
+    var hanNienHienThi = "";
+    if (gioiTinh === "Nam") {
+        if (saoHienThi === "La Hầu") { hanNienHienThi = "Tam Kheo"; }
+        else if (saoHienThi === "Thổ Tú") { hanNienHienThi = "Ngũ Mộ"; }
+        else if (saoHienThi === "Thủy Diệu") { hanNienHienThi = "Thiên Tinh"; }
+        else if (saoHienThi === "Thái Bạch") { hanNienHienThi = "Toán Tận"; }
+        else if (saoHienThi === "Thái Dương") { hanNienHienThi = "Toán Tận"; }
+        else if (saoHienThi === "Vân Hớn") { hanNienHienThi = "Thiên La"; }
+        else if (saoHienThi === "Kế Đô") { hanNienHienThi = "Địa Võng"; }
+        else if (saoHienThi === "Thái Âm") { hanNienHienThi = "Diêm Vương"; }
+        else if (saoHienThi === "Mộc Đức") { hanNienHienThi = "Huỳnh Tuyền"; }
+    } else {
+        if (saoHienThi === "Kế Đô") { hanNienHienThi = "Tam Kheo"; }
+        else if (saoHienThi === "Vân Hớn") { hanNienHienThi = "Ngũ Mộ"; }
+        else if (saoHienThi === "Mộc Đức") { hanNienHienThi = "Thiên Tinh"; }
+        else if (saoHienThi === "Thái Âm") { hanNienHienThi = "Toán Tận"; }
+        else if (saoHienThi === "Thổ Tú") { hanNienHienThi = "Huỳnh Tuyền"; }
+        else if (saoHienThi === "La Hầu") { hanNienHienThi = "Thiên La"; }
+        else if (saoHienThi === "Thái Dương") { hanNienHienThi = "Địa Võng"; }
+        else if (saoHienThi === "Thái Bạch") { hanNienHienThi = "Diêm Vương"; }
+        else if (saoHienThi === "Thủy Diệu") { hanNienHienThi = "Toán Tận"; }
+    }
+
+    // 5. ĐỒ HÌNH ĐỐI CHIẾU VÒNG THÁI TUẾ (Chuẩn 100% Địa Chi - Không dùng toán học tính nhẩm)
+    var thaiTueText = "Không phạm";
+    if (chiSinh === chiXem) { 
+        thaiTueText = "Trực Thái Tuế"; 
+    } else {
+        // Áp dụng đúng định lý: Lục Xung, Lục Hại, Tứ Hành Xung Hình Phá phương Đông
+        var mapXung = {"Tý":"Ngọ", "Ngọ":"Tý", "Sửu":"Mùi", "Mùi":"Sửu", "Dần":"Thân", "Thân":"Dần", "Mão":"Dậu", "Dậu":"Mão", "Thìn":"Tuất", "Tuất":"Thìn", "Tỵ":"Hợi", "Hợi":"Tỵ"};
+        var mapHai = {"Tý":"Mùi", "Mùi":"Tý", "Sửu":"Ngọ", "Ngọ":"Sửu", "Dần":"Tỵ", "Tỵ":"Dần", "Mão":"Thìn", "Thìn":"Mão", "Thân":"Hợi", "Hợi":"Thân", "Dậu":"Tuất", "Tuất":"Dậu"};
+        var mapPha = {"Tý":"Dậu", "Dậu":"Tý", "Sửu":"Thìn", "Thìn":"Sửu", "Dần":"Hợi", "Hợi":"Dần", "Mão":"Ngọ", "Ngọ":"Mão", "Tỵ":"Thân", "Thân":"Tỵ", "Thìn":"Tuất", "Tuất":"Thìn", "Mùi":"Tuất", "Tuất":"Mùi"};
+        
+        // Khóa chặt bộ Hình Thái Tuế (Tý - Mão hình nhau, Sửu - Tuất - Mùi tam hình)
+        if ((chiXem === "Mão" && chiSinh === "Tý") || (chiXem === "Tý" && chiSinh === "Mão")) { thaiTueText = "Hình Thái Tuế"; }
+        else if ((chiXem === "Tuất" && chiSinh === "Sửu") || (chiXem === "Mùi" && chiSinh === "Tuất") || (chiXem === "Sửu" && chiSinh === "Mùi")) { thaiTueText = "Hình Thái Tuế"; }
+        
+        // Kiểm tra đối chiếu tự động
+        if (mapXung[chiSinh] === chiXem) { thaiTueText = "Xung Thái Tuế"; }
+        if (mapHai[chiSinh] === chiXem) { thaiTueText = "Hại Thái Tuế"; }
+        if (mapPha[chiSinh] === chiXem) { thaiTueText = "Phá Thái Tuế"; }
+    }
+
+    // 6. PHÉP TÍNH KIM LÂU DÂN GIAN TRUYỀN TỤNG
+    var soDuKL = tuoiAm % 9;
+    var kimLauText = "Không phạm";
+    var bangKL = {1: "Kim Lâu Thân", 3: "Kim Lâu Thê", 6: "Kim Lâu Tử", 8: "Kim Lâu Lục Súc"};
+    if (bangKL[soDuKL]) { kimLauText = "Phạm " + bangKL[soDuKL]; }
+
+    // 7. PHÉP BẤM ĐỐT NGÓN TAY VÒNG HOANG ỐC CỔ TRUYỀN
+    var hangChuc = Math.floor(tuoiAm / 10);
+    var hangDonVi = tuoiAm % 10;
+    var cungKhoi = hangChuc <= 6 ? hangChuc : (hangChuc % 6 == 0 ? 6 : hangChuc % 6);
+    var vongHoangOc = (cungKhoi + hangDonVi - 1) % 6 + 1;
+    var bangHoangOc = {1: "1. Nhất Cát (Tốt)", 2: "2. Nhì Nghi (Tốt)", 3: "3. Tam Địa Sát (Xấu)", 4: "4. Tứ Tấn Tài (Tốt)", 5: "5. Ngũ Thọ Tử (Xấu)", 6: "6. Lục Hoang Ốc (Xấu)"};
+    var hoangOcText = bangHoangOc[vongHoangOc];
+
+    // 8. BẢNG TRA TAM TAI THEO BỘ TAM HỢP ĐỊA CHI CỐ ĐỊNH
+    var tamTaiText = "Không phạm";
+    var tamTaiMap = { 
+        "Thân": ["Dần", "Mão", "Thìn"], "Tý": ["Dần", "Mão", "Thìn"], "Thìn": ["Dần", "Mão", "Thìn"], 
+        "Dần": ["Thân", "Dậu", "Tuất"], "Ngọ": ["Thân", "Dậu", "Tuất"], "Tuất": ["Thân", "Dậu", "Tuất"], 
+        "Tỵ": ["Hợi", "Tý", "Sửu"], "Dậu": ["Hợi", "Tý", "Sửu"], "Sửu": ["Hợi", "Tý", "Sửu"], 
+        "Hợi": ["Tỵ", "Ngọ", "Mùi"], "Mão": ["Tỵ", "Ngọ", "Mùi"], "Mùi": ["Tỵ", "Ngọ", "Mùi"] 
+    };
+    if (tamTaiMap[chiSinh] && tamTaiMap[chiSinh].includes(chiXem)) { tamTaiText = "Phạm Tam Tai"; }
+
+    // 9. ĐỔ DỮ LIỆU CHUẨN XÁC RA CÁC Ô HIỂN THỊ TRÊN GIAO DIỆN WEB
+    document.getElementById("resSao").innerText = "S. " + saoHienThi;
+    document.getElementById("resHanNien").innerText = "H. " + hanNienHienThi;
+    document.getElementById("resTamTai").innerText = tamTaiText;
+    document.getElementById("resThaiTue").innerText = thaiTueText;
+    document.getElementById("resKimLau").innerText = kimLauText;
+    document.getElementById("resHoangOc").innerText = hoangOcText;
+    document.getElementById("resTuoiMu").innerText = tuoiAm + " Tuổi Mụ";
+    document.getElementById("resCanChiTuoi").innerText = canChiSinh.toUpperCase();
+
+    // 10. PHÂN ĐỊNH MÀU SẮC CHỮ XANH / ĐỎ TỰ ĐỘNG THEO TÍNH CHẤT CÁT HUNG
+    document.getElementById("resTamTai").className = (tamTaiText === "Không phạm") ? "card-value text-green" : "card-value text-red";
+    document.getElementById("resKimLau").className = (kimLauText === "Không phạm") ? "card-value text-green" : "card-value text-red";
+    document.getElementById("resHoangOc").className = (vongHoangOc === 1 || vongHoangOc === 2 || vongHoangOc === 4) ? "card-value text-green" : "card-value text-red";
+    document.getElementById("resThaiTue").className = (thaiTueText === "Không phạm") ? "card-value text-green" : "card-value text-red";
+
+    document.getElementById("mainTitle").innerText = "TRA CỨU HẠN " + namXem;
+    document.getElementById("vungKetQua").style.display = "block";
+}
+
+</script>
+</body>
+</html>
