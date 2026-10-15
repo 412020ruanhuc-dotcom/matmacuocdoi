@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mật Mã Cuộc Đời - Năng Lượng Số</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .font-serif-custom {
+            font-family: 'Merriweather', serif;
+        }
+
+        .slide-aspect {
+            aspect-ratio: 16 / 9;
+        }
+
+        /* Custom Audio Waves / Loading pulse */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 0.4; }
+            100% { transform: scale(0.95); opacity: 0.8; }
+        }
+        .animate-pulse-ring {
+            animation: pulse-ring 2s infinite ease-in-out;
+        }
+
+        /* Canvas drawing layer */
+        #drawing-canvas {
+            touch-action: none;
+        }
+
+        /* Scrollbar custom */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(180, 83, 9, 0.3);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(180, 83, 9, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-stone-100 dark:bg-stone-900 text-stone-800 dark:text-stone-100 min-h-screen flex flex-col transition-colors duration-200">
+
+    <header class="bg-white/90 dark:bg-stone-800/90 backdrop-blur border-b border-stone-200 dark:border-stone-700 sticky top-0 z-40 px-4 py-2.5 flex items-center justify-between shadow-sm">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-gold-400 flex items-center justify-center text-white font-bold text-xl shadow-md border border-amber-300">
+                ☯
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-amber-800 dark:text-amber-400 leading-tight">MẬT MÃ CUỘC ĐỜI</h1>
+                <p class="text-xs text-stone-500 dark:text-stone-400 flex items-center gap-1">
+                    <span>Trình Chiếu & Luận Giải Năng Lượng Số</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Dynamic Brand Action Links -->
+        <div class="hidden lg:flex items-center space-x-2 text-xs">
+            <a href="https://matmacuocdoi.vn" target="_blank" class="px-2.5 py-1.5 rounded-md bg-stone-100 dark:bg-stone-700 hover:bg-amber-100 dark:hover:bg-stone-600 text-stone-700 dark:text-stone-200 transition flex items-center gap-1 border border-stone-200 dark:border-stone-600">
+                <i data-lucide="globe" class="w-3.5 h-3.5 text-amber-600"></i> Website Official
+            </a>
+            <a href="https://zalo.me/0789414153" target="_blank" class="px-2.5 py-1.5 rounded-md bg-blue-50 dark:bg-blue-950/40 hover:bg-blue-100 text-blue-700 dark:text-blue-300 transition flex items-center gap-1 border border-blue-200 dark:border-blue-800">
+                <i data-lucide="message-square" class="w-3.5 h-3.5 text-blue-600"></i> Tuấn Anh Zalo
+            </a>
+            <a href="https://zalo.me/0849328628" target="_blank" class="px-2.5 py-1.5 rounded-md bg-emerald-50 dark:bg-emerald-950/40 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 transition flex items-center gap-1 border border-emerald-200 dark:border-emerald-800">
+                <i data-lucide="user-check" class="w-3.5 h-3.5 text-emerald-600"></i> Kim Nguyên Bảo
+            </a>
+            <a href="https://www.youtube.com/@matmacuocdoi?sub_confirmation=1" target="_blank" class="px-2.5 py-1.5 rounded-md bg-red-50 dark:bg-red-950/40 hover:bg-red-100 text-red-700 dark:text-red-300 transition flex items-center gap-1 border border-red-200 dark:border-red-800">
+                <i data-lucide="youtube" class="w-3.5 h-3.5 text-red-600"></i> Đăng Ký Yêu Thích
+            </a>
+        </div>
+
+        <div class="flex items-center space-x-2">
+            <button id="toggle-dark" class="p-2 rounded-lg bg-stone-100 dark:bg-stone-700 text-stone-600 dark:text-stone-300 hover:bg-stone-200 dark:hover:bg-stone-600 transition" title="Đổi Chế Độ Sáng/Tối">
+                <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                <i data-lucide="moon" class="w-5 h-5 block dark:hidden"></i>
+            </button>
+            <button id="open-ai-panel" class="p-2 rounded-lg bg-gradient-to-r from-amber-600 to-purple-600 text-white hover:opacity-90 transition flex items-center gap-1.5 text-sm font-semibold shadow-md">
+                <i data-lucide="sparkles" class="w-4 h-4 animate-spin-slow"></i>
+                <span>Trợ Lý Trí Tuệ Nhân Tạo AI</span>
+            </button>
+            <button id="fullscreen-btn" class="p-2 rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition flex items-center gap-1 text-sm font-medium shadow-sm">
+                <i data-lucide="maximize" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Trình Chiếu</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- AI Floating Sidebar Panel -->
+    <div id="ai-panel" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white dark:bg-stone-900 shadow-2xl border-l border-stone-200 dark:border-stone-700 z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-4 bg-gradient-to-r from-amber-800 to-purple-900 text-white flex items-center justify-between shadow">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="bot" class="w-5 h-5 text-amber-300"></i>
+                <h3 class="font-bold text-sm">Trợ Lý Phong Thủy AI (Gemini)</h3>
+            </div>
+            <button id="close-ai-panel" class="p-1 hover:bg-white/20 rounded text-stone-200">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="p-3 bg-stone-100 dark:bg-stone-800/60 border-b border-stone-200 dark:border-stone-700 flex gap-1">
+            <button id="tab-explain" class="ai-tab flex-1 py-1.5 text-xs font-semibold rounded bg-amber-600 text-white shadow-sm flex items-center justify-center gap-1">
+                <i data-lucide="book-open" class="w-3.5 h-3.5"></i> Luận Giải
+            </button>
+            <button id="tab-ask" class="ai-tab flex-1 py-1.5 text-xs font-semibold rounded bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-300 flex items-center justify-center gap-1">
+                <i data-lucide="message-square" class="w-3.5 h-3.5"></i> Hỏi Đáp
+            </button>
+
+            <button id="tab-tts" class="ai-tab flex-1 py-1.5 text-xs font-semibold rounded bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-stone-300 hover:bg-stone-300 flex items-center justify-center gap-1">
+                <i data-lucide="volume-2" class="w-3.5 h-3.5"></i> Đọc Giọng AI
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+            <!-- Explain Tab Content -->
+            <div id="ai-content-explain" class="ai-tab-content space-y-3">
+                <div class="p-3 bg-amber-50 dark:bg-amber-950/40 rounded-lg border border-amber-200 dark:border-amber-800">
+                    <p class="font-semibold text-amber-900 dark:text-amber-200 mb-1">
+                        ✨ Thấu Thị Slide Hiện Tại
+                    </p>
+                    <p class="text-stone-600 dark:text-stone-300">
+                        Nhấn nút dưới đây để AI phân tích chi tiết ý nghĩa mật mã số của trang này và đưa ra lời khuyên ứng dụng.
+                    </p>
+                    <button id="btn-analyze-slide" class="mt-2 w-full py-2 bg-amber-700 hover:bg-amber-600 text-white font-bold rounded-md shadow flex items-center justify-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4"></i> Phân Tích Bằng AI Gemini
+                    </button>
+                </div>
+                <div id="ai-explain-output" class="p-3 bg-stone-50 dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 leading-relaxed space-y-2">
+                    <span class="text-stone-400 italic">Chưa có kết quả luận giải. Hãy bấm nút phân tích trên.</span>
+                </div>
+            </div>
+
+            <!-- Ask Tab Content -->
+            <div id="ai-content-ask" class="ai-tab-content hidden space-y-3">
+                <div class="space-y-2">
+                    <label class="font-semibold text-stone-700 dark:text-stone-300 block">
+                        Nhập dãy số SIM hoặc câu hỏi muốn tra cứu:
+                    </label>
+                    <textarea id="ai-ask-input" rows="3" class="w-full p-2.5 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-100 focus:ring-2 focus:ring-amber-500 focus:outline-none" placeholder="Ví dụ: Dãy số 0912069001 có tốt không? Cần chú ý điều gì?"></textarea>
+                    
+                    <div class="flex items-center space-x-2">
+                        <input type="checkbox" id="use-grounding" class="rounded text-amber-600 focus:ring-amber-500">
+                        <label for="use-grounding" class="text-stone-600 dark:text-stone-400 text-[11px]">Tìm kiếm thực tế với Google Search</label>
+                    </div>
+
+                    <button id="btn-submit-ask" class="w-full py-2 bg-purple-700 hover:bg-purple-600 text-white font-bold rounded-md shadow flex items-center justify-center gap-2">
+                        <i data-lucide="send" class="w-4 h-4"></i> Tra Cứu Ngay
+                    </button>
+                </div>
+                <div id="ai-ask-output" class="p-3 bg-stone-50 dark:bg-stone-800 rounded-lg border border-stone-200 dark:border-stone-700 text-stone-800 dark:text-stone-200 leading-relaxed space-y-2">
+                    <span class="text-stone-400 italic">Kết quả trả lời từ AI sẽ hiển thị ở đây...</span>
+                </div>
+            </div>
+
+            <!-- TTS Tab Content -->
+            <div id="ai-content-tts" class="ai-tab-content hidden space-y-3">
+                <div class="p-3 bg-purple-50 dark:bg-purple-950/40 rounded-lg border border-purple-200 dark:border-purple-800 space-y-2">
+                    <p class="font-semibold text-purple-900 dark:text-purple-200">
+                        🎙️ Đọc Luận Giải Bằng Giọng Nói AI
+                    </p>
+                    <p class="text-stone-600 dark:text-stone-300">
+                        Tạo giọng nói thuyết minh chuyên nghiệp cho Slide hiện tại bằng công nghệ Gemini TTS.
+                    </p>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[11px] font-medium text-stone-600 dark:text-stone-400">Chọn giọng đọc:</label>
+                        <select id="tts-voice" class="w-full p-2 rounded bg-white dark:bg-stone-800 border border-stone-300 dark:border-stone-700">
+                            <option value="Zephyr">Zephyr (Tố Âm - Nhẹ Nhàng)</option>
+                            <option value="Kore">Kore (Hùng Anh - Trang Trọng)</option>
+                            <option value="Puck">Puck (Sôi Nổi)</option>
+                            <option value="Fenrir">Fenrir (Mạnh Mẽ)</option>
+                        </select>
+                    </div>
+
+                    <button id="btn-generate-tts" class="w-full py-2 bg-gradient-to-r from-amber-600 to-purple-700 hover:opacity-90 text-white font-bold rounded-md shadow flex items-center justify-center gap-2">
+                        <i data-lucide="play-circle" class="w-4 h-4"></i> Phát Giọng Đọc AI
+                    </button>
+                </div>
+
+                <div id="tts-player-container" class="hidden p-3 bg-stone-100 dark:bg-stone-800 rounded-lg border border-stone-300 dark:border-stone-700 space-y-2 text-center">
+                    <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 flex items-center justify-center gap-1">
+                        <i data-lucide="volume-2" class="w-4 h-4 animate-bounce"></i> Đang Phát Thuyết Minh AI
+                    </p>
+                    <audio id="audio-player" controls class="w-full mt-2"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-amber-900 text-stone-100 px-4 py-2 flex flex-wrap items-center justify-between gap-2 shadow-inner border-b border-amber-800">
+        <!-- Navigation Controls -->
+        <div class="flex items-center space-x-2">
+            <button id="prev-slide" class="p-1.5 bg-amber-800 hover:bg-amber-700 rounded-md transition text-amber-100 disabled:opacity-40">
+                <i data-lucide="chevron-left" class="w-5 h-5"></i>
+            </button>
+            <span class="text-sm font-semibold px-2 text-amber-200">
+                Trang <span id="current-page-num" class="text-white font-bold text-base">1</span> / <span id="total-page-num">33</span>
+            </span>
+            <button id="next-slide" class="p-1.5 bg-amber-800 hover:bg-amber-700 rounded-md transition text-amber-100 disabled:opacity-40">
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Annotation & Drawing Toolbar -->
+        <div class="flex items-center space-x-2 bg-amber-950/60 p-1 rounded-lg border border-amber-700/50">
+            <span class="text-xs text-amber-300 px-2 hidden md:inline font-medium">Bút vẽ trình chiếu:</span>
+            <button id="tool-cursor" class="tool-btn p-1.5 rounded bg-amber-700 text-white" title="Con trỏ chuột">
+                <i data-lucide="mouse-pointer" class="w-4 h-4"></i>
+            </button>
+            <button id="tool-pen" class="tool-btn p-1.5 rounded hover:bg-amber-800 text-stone-300" title="Bút vẽ">
+                <i data-lucide="pen-tool" class="w-4 h-4"></i>
+            </button>
+            <button id="tool-highlighter" class="tool-btn p-1.5 rounded hover:bg-amber-800 text-stone-300" title="Bút dạ quang">
+                <i data-lucide="highlighter" class="w-4 h-4"></i>
+            </button>
+            <input type="color" id="pen-color" value="#ef4444" class="w-7 h-7 rounded cursor-pointer border-0 bg-transparent" title="Chọn Màu">
+            <select id="pen-size" class="bg-amber-900 text-xs text-amber-100 rounded px-1.5 py-1 border border-amber-700 focus:outline-none">
+                <option value="3">Nét nhỏ</option>
+                <option value="6" selected>Nét vừa</option>
+                <option value="12">Nét to</option>
+            </select>
+            <button id="clear-canvas" class="p-1.5 rounded hover:bg-red-900/60 text-red-300 transition" title="Xóa tất cả nét vẽ">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+        </div>
+
+        <!-- Quick Jump Select -->
+        <div class="flex items-center space-x-2">
+            <select id="slide-jump" class="bg-amber-950 text-amber-100 text-xs rounded border border-amber-700 px-2 py-1.5 focus:outline-none max-w-[200px]">
+                <!-- Options populated dynamically -->
+            </select>
+        </div>
+    </div>
+
+    <main class="flex-1 flex overflow-hidden relative">
+        <!-- Sidebar Thumbnails -->
+        <aside class="w-64 bg-stone-200 dark:bg-stone-800/80 border-r border-stone-300 dark:border-stone-700 hidden md:flex flex-col overflow-y-auto p-3 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-stone-400 px-1 mb-1">
+                Danh Sách Trang Luận Giải
+            </h3>
+            <div id="thumbnail-list" class="space-y-2">
+                <!-- Dynamic thumbnails will render here -->
+            </div>
+        </aside>
+
+        <!-- Main Workspace Presentation Canvas -->
+        <section class="flex-1 flex flex-col items-center justify-center p-2 sm:p-6 overflow-auto bg-stone-300/50 dark:bg-stone-950/60 relative">
+            
+            <!-- Slide Container Frame -->
+            <div id="slide-frame" class="relative bg-white dark:bg-stone-900 rounded-xl shadow-2xl border border-stone-300 dark:border-stone-700 w-full max-w-5xl slide-aspect overflow-hidden flex flex-col justify-between transition-all duration-300">
+                
+                <!-- Watermark Background -->
+                <div class="absolute inset-0 flex items-center justify-center opacity-[0.03] dark:opacity-[0.05] pointer-events-none select-none">
+                    <span class="text-[120px] font-bold text-amber-900 dark:text-white">☯ MẬT MÃ CUỘC ĐỜI</span>
+                </div>
+
+                <!-- Interactive Drawing Canvas Layer Overlay -->
+                <canvas id="drawing-canvas" class="absolute inset-0 z-20 pointer-events-none w-full h-full"></canvas>
+
+                <!-- Slide Content Layer -->
+                <div id="slide-content" class="relative z-10 p-6 sm:p-10 flex-1 flex flex-col overflow-y-auto">
+                    <!-- Dynamic Slide Text & Tables Render Here -->
+                </div>
+
+                <!-- Slide Footer Brand Ribbon -->
+                <footer class="relative z-10 bg-amber-900 text-amber-100 px-6 py-2 text-xs flex flex-wrap justify-between items-center border-t border-amber-800/60">
+                    <div class="flex items-center space-x-3">
+                        <span class="font-bold tracking-wide text-amber-300">MẬT MÃ CUỘC ĐỜI</span>
+                        <span class="hidden sm:inline text-amber-400/60">|</span>
+                        <span class="hidden sm:inline">Mật Mã Cuộc Đời-Tử Vi-Năng Lượng Số</span>
+                    </div>
+                    <div class="flex items-center space-x-4 text-[11px] text-amber-200">
+                        <span>Chuyên Gia: <strong class="text-amber-400">Kim Nguyên Bảo</strong></span>
+                        <span>Hotline/Zalo: <strong class="text-amber-400">0849.328.628</strong></span>
+                    </div>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const SLIDES_DATA = [
+            {
+                page: 1,
+                title: "Năng Lượng Số & Tuyệt Mệnh Phối Số 0",
+                subtitle: "MẬT MÃ CUỘC ĐỜI",
+                content: `
+                    <div class="mb-4">
+                        <h3 class="text-lg font-bold text-amber-800 dark:text-amber-400 mb-2 border-b pb-1 border-amber-200 dark:border-stone-700">
+                            MẬT MÃ CUỘC ĐỜI-NĂNG LƯỢNG SỐ
+                        </h3>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-center border-collapse text-xs sm:text-sm my-2">
+                                <thead>
+                                    <tr class="bg-amber-800 text-white font-bold">
+                                        <th class="p-1.5 border border-amber-700">Phục Vị</th>
+                                        <th class="p-1.5 border border-amber-700">Thiên Y</th>
+                                        <th class="p-1.5 border border-amber-700">Sinh Khí</th>
+                                        <th class="p-1.5 border border-amber-700">Diên Niên</th>
+                                        <th class="p-1.5 border border-amber-700">Lục Sát</th>
+                                        <th class="p-1.5 border border-amber-700">Tuyệt Mệnh</th>
+                                        <th class="p-1.5 border border-amber-700">Họa Hại</th>
+                                        <th class="p-1.5 border border-amber-700">Ngũ Quỷ</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="dark:text-stone-200">
+                                    <tr class="bg-amber-50 dark:bg-stone-800">
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold">11</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-emerald-600">13</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-green-600">14</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-blue-600">19</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-rose-500">16</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-red-600">12</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-orange-600">17</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-purple-600">18</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold">22</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-emerald-600">31</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-green-600">41</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-blue-600">91</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-rose-500">61</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-red-600">21</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-orange-600">71</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-purple-600">81</td>
+                                    </tr>
+                                    <tr class="bg-amber-50 dark:bg-stone-800">
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">88</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">68</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">67</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">78</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">74</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">69</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">98</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">97</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">99</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">86</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">76</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">87</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">47</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">96</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">89</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">79</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-amber-50 dark:bg-stone-800/80 rounded-lg border-l-4 border-amber-600 shadow-sm my-3 font-serif-custom italic">
+                        <p class="text-stone-700 dark:text-stone-300">
+                            "Số vốn không dữ, nhưng con người bất tri bất giác mà tạo thành dữ; nước vốn không sâu, nhưng kẻ liều mình lội sâu mà chìm."
+                        </p>
+                    </div>
+
+                    <div class="mt-3">
+                        <p class="text-stone-700 dark:text-stone-300 leading-relaxed mb-2">
+                            Số 0 - trong cổ học là vô, là hư không, là trống rỗng. Khi phối cùng Tuyệt Mệnh - vốn đã là sát khí, nay lại rơi vào hư vô, chẳng khác nào đèn leo lét trong cơn giông.
+                        </p>
+                        <div class="p-3 bg-red-50 dark:bg-red-950/40 rounded-lg border border-red-200 dark:border-red-900">
+                            <h4 class="font-bold text-red-700 dark:text-red-400 text-xs uppercase mb-1">Các Cặp Tuyệt Mệnh Phối Số 0:</h4>
+                            <p class="font-mono text-sm text-red-800 dark:text-red-300 tracking-wide font-bold">
+                                012 - 021 - 069 - 096 - 037 - 073 - 084 - 048<br>
+                                102 - 201 - 609 - 906 - 307 - 703 - 804 - 408<br>
+                                120 - 210 - 690 - 960 - 370 - 730 - 840 - 480
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                page: 2,
+                title: "Tuyệt Mệnh Phối Số 0 - Hung Tượng Hiển Lộ (Phần 1)",
+                subtitle: "LUẬN GIẢI SÁT KHÍ TUYỆT MỆNH",
+                content: `
+                    <div class="space-y-4">
+                        <div class="p-4 bg-red-50 dark:bg-stone-800 rounded-lg border-l-4 border-red-600">
+                            <h4 class="text-base font-bold text-red-700 dark:text-red-400 flex items-center gap-2">
+                                <span>◇ Hôn nhân tan nát, cốt nhục chia lìa</span>
+                            </h4>
+                            <p class="text-sm text-stone-700 dark:text-stone-300 mt-1 leading-relaxed">
+                                Kẻ mang bộ số này, tình duyên hôn phối lắm bề ngang trái, vợ chồng khó hòa thuận, dễ nảy sinh ly biệt, lắm kẻ đến cuối đời lẻ bóng đơn côi. Có duyên mà không có phần, hoặc phần mà chẳng còn duyên.
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-amber-50 dark:bg-stone-800 rounded-lg border-l-4 border-amber-600">
+                            <h4 class="text-base font-bold text-amber-800 dark:text-amber-400 flex items-center gap-2">
+                                <span>◇ Tiền bạc tiêu tán, tài sản trôi sông</span>
+                            </h4>
+                            <p class="text-sm text-stone-700 dark:text-stone-300 mt-1 leading-relaxed">
+                                Phàm là mưu sinh, kinh doanh, đầu tư, đều khó tụ tài, đã khó lại dễ tiêu, dễ phá, dễ mắc phải cảnh “kiếm mười mất tám”, lao lực mà kết quả chẳng bao nhiêu. Không khéo lại gặp cảnh “vừa bốc lên đã ngã xuống”.
+                            </p>
+                        </div>
+
+                        <div class="p-4 bg-red-50 dark:bg-stone-800 rounded-lg border-l-4 border-red-600">
+                            <h4 class="text-base font-bold text-red-700 dark:text-red-400 flex items-center gap-2">
+                                <span>◇ Sự nghiệp trì trệ, pháp đình kề cận</span>
+                            </h4>
+                            <p class="text-sm text-stone-700 dark:text-stone-300 mt-1 leading-relaxed">
+                                Việc không thành, sự không suôn, làm gì cũng như đá đè vai, khó thở mà không có đường ra. Đặc biệt dễ vướng vào kiện tụng, tranh chấp pháp luật, người đời ghét bỏ, tiểu nhân rình rập.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                page: 3,
+                title: "Tuyệt Mệnh Phối Số 0 - Cảnh Giới Cảnh Báo",
+                subtitle: "CẢNH GIỚI VÀ HÓA GIẢI HUNG KHÍ",
+                content: `
+                    <div class="space-y-3">
+                        <div class="p-3 bg-red-100 dark:bg-red-950/60 rounded-lg border border-red-300 text-center">
+                            <p class="text-xs uppercase font-bold text-red-600 dark:text-red-400">Khái Quát Bộ Số:</p>
+                            <p class="text-lg font-serif-custom font-bold text-red-800 dark:text-red-200 my-1">
+                                "Đại sát vô hình, sát thân, sát phúc, sát tài, sát duyên, sát thọ."
+                            </p>
+                        </div>
+
+                        <ul class="space-y-2 text-sm text-stone-700 dark:text-stone-300 list-disc pl-5">
+                            <li><strong>Thân thể suy yếu, tử lộ cận kề:</strong> Chiêu cảm bệnh nan y: gan, thận, huyết áp, tiểu đường, u nhọt. Phụ nữ dễ gặp cảnh khó mang thai, con cái yếu đuối.</li>
+                            <li><strong>Cô thân độc hành:</strong> Vận số khó được người nâng đỡ, mọi việc tự mình gánh vác, đêm dài gió lớn.</li>
+                            <li><strong>Tác hại theo giới tính:</strong> Đàn ông dùng dễ khiến vợ đoản thọ, ly tán; Phụ nữ dùng dễ tổn thọ, nạn thai sản, gia đạo bất ổn.</li>
+                        </ul>
+
+                        <div class="p-4 bg-stone-100 dark:bg-stone-800 rounded-lg border border-stone-300 dark:border-stone-700">
+                            <h4 class="font-bold text-amber-800 dark:text-amber-400 text-sm mb-2">Các Việc Cần Tránh Tuyệt Đối Khi Vướng Tinh Kỳ Nay:</h4>
+                            <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-stone-700 dark:text-stone-300">
+                                <span class="p-1.5 bg-white dark:bg-stone-900 rounded border">❌ Đầu tư liều lĩnh</span>
+                                <span class="p-1.5 bg-white dark:bg-stone-900 rounded border">❌ Vung tiền vô độ</span>
+                                <span class="p-1.5 bg-white dark:bg-stone-900 rounded border">❌ Kinh doanh một sống một còn</span>
+                                <span class="p-1.5 bg-white dark:bg-stone-900 rounded border">❌ Tranh chấp kiện tụng</span>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                page: 4,
+                title: "Ngũ Quỷ Phối Số 0 - Luận Giải Dương Sát",
+                subtitle: "THIÊN CƯƠNG TỈNH PHÁP KHAI THỊ",
+                content: `
+                    <div class="p-4 bg-purple-50 dark:bg-purple-950/40 rounded-lg border-l-4 border-purple-600 mb-4">
+                        <p class="font-serif-custom italic text-purple-900 dark:text-purple-200 text-sm">
+                            "Ngũ Quỷ giả, dương sát chi tinh; Số 0 giả, vô trụ chi khí. Lưỡng giả câu hội, bất dữ càn khôn đồng an."
+                        </p>
+                        <p class="text-xs text-stone-600 dark:text-stone-400 mt-2">
+                            (Ngũ Quỷ là sát tinh động loạn, Số 0 là hư vô trống rỗng, hai khí gặp nhau, đất trời cũng chao nghiêng.)
+                        </p>
+                    </div>
+
+                    <div class="mb-4">
+                        <p class="text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
+                            Ngũ Quỷ bản chất là biến động, nhanh nhạy, nhưng khi kết hợp cùng số 0 (hư không, bất ổn) sẽ sinh ra trường khí cực nguy, cuốn con người vào vòng xoáy của loạn, bệnh, sát, tuyệt.
+                        </p>
+                    </div>
+
+                    <div class="p-3 bg-purple-100 dark:bg-purple-900/40 rounded-lg border border-purple-300 dark:border-purple-800">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-xs uppercase mb-1">Các Cặp Ngũ Quỷ Phối Số 0:</h4>
+                        <p class="font-mono text-sm text-purple-900 dark:text-purple-200 tracking-wide font-bold">
+                            018 - 081 - 097 - 079 - 036 - 063 - 042 - 024<br>
+                            108 - 801 - 907 - 709 - 306 - 603 - 402 - 204<br>
+                            180 - 810 - 970 - 790 - 360 - 630 - 420 - 240
+                        </p>
+                    </div>
+                `
+            },
+            {
+                page: 5,
+                title: "Ngũ Quỷ Phối Số 0 - Five Major Hazards",
+                subtitle: "HUNG TƯỢNG BỆNH TẬT VÀ TÂM TRÍ",
+                content: `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 bg-stone-50 dark:bg-stone-800 rounded border-l-2 border-purple-500">
+                            <h5 class="font-bold text-purple-700 dark:text-purple-400">1. Họa Sát Thân & Bệnh Ẩn</h5>
+                            <p class="text-stone-600 dark:text-stone-300 mt-1">Dễ mắc đột quỵ, tim mạch, xuất huyết脑, bệnh tai biến, ung thư bộc phát bất ngờ.</p>
+                        </div>
+                        <div class="p-3 bg-stone-50 dark:bg-stone-800 rounded border-l-2 border-purple-500">
+                            <h5 class="font-bold text-purple-700 dark:text-purple-400">2. Suy Nghĩ Đình Trệ</h5>
+                            <p class="text-stone-600 dark:text-stone-300 mt-1">Ý tưởng mâu thuẫn, làm dở dang, hay bùng nổ rồi tắt ngấm, sự nghiệp ngã nghiêng.</p>
+                        </div>
+                        <div class="p-3 bg-stone-50 dark:bg-stone-800 rounded border-l-2 border-purple-500">
+                            <h5 class="font-bold text-purple-700 dark:text-purple-400">3. Tâm Cơ Hiểm & Đa Nghi</h5>
+                            <p class="text-stone-600 dark:text-stone-300 mt-1">Hay nghi ngờ, phản phục, khó giữ lời, dẫn tới bị cô lập, đơn đao độc mã.</p>
+                        </div>
+                        <div class="p-3 bg-stone-50 dark:bg-stone-800 rounded border-l-2 border-purple-500">
+                            <h5 class="font-bold text-purple-700 dark:text-purple-400">4. Nợ Nần & Lo Âu</h5>
+                            <p class="text-stone-600 dark:text-stone-300 mt-1">Cảm giác thiếu an toàn, dễ gánh nợ thay cho người khác, loanh quanh khổ hải.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-amber-50 dark:bg-stone-800 rounded-lg border border-amber-300 text-center">
+                        <p class="text-xs font-bold text-amber-800 dark:text-amber-300">
+                            ⚠️ Cảnh Báo Đặc Biệt: Thức khuya, lao tâm tổn thân khi dùng số này sẽ tự thúc sớm hung vận phá mệnh!
+                        </p>
+                    </div>
+                `
+            },
+            {
+                page: 6,
+                title: "Họa Hại Phối Số 0 - Khẩu Nghiệp Thành Sát",
+                subtitle: "TÂM LINH CHÂN KINH KHAI THỊ",
+                content: `
+                    <div class="p-4 bg-orange-50 dark:bg-orange-950/40 rounded-lg border-l-4 border-orange-500 mb-3">
+                        <p class="font-serif-custom italic text-orange-900 dark:text-orange-200 text-sm">
+                            "Họa hại vô hình, khởi từ ngôn; Khẩu nghiệp thành sát, bại bởi lời."
+                        </p>
+                    </div>
+
+                    <p class="text-sm text-stone-700 dark:text-stone-300 mb-3 leading-relaxed">
+                        Họa Hại chủ về ngôn từ, thị phi. Khi gặp Số 0 (hư vô, không căn cứ) chẳng khác nào thuyền đứt neo lật úp giữa dòng. Hung khí lặng lẽ qua lời nói, cảm xúc và sự lơ là.
+                    </p>
+
+                    <div class="p-3 bg-orange-100 dark:bg-orange-900/40 rounded-lg border border-orange-300 mb-3">
+                        <h4 class="font-bold text-orange-800 dark:text-orange-300 text-xs uppercase mb-1">Cặp Họa Hại Phối Số 0:</h4>
+                        <p class="font-mono text-xs text-orange-900 dark:text-orange-200 font-bold">
+                            017 - 071 - 098 - 089 - 064 - 046 - 032 - 023<br>
+                            107 - 701 - 908 - 809 - 604 - 406 - 302 - 203<br>
+                            170 - 710 - 980 - 890 - 640 - 460 - 320 - 230
+                        </p>
+                    </div>
+
+                    <ul class="text-xs text-stone-700 dark:text-stone-300 space-y-1.5 list-disc pl-4">
+                        <li><strong>Hôn nhân:</strong> Ban đầu ngọt ngào, về sau khẩu chiến cãi vã, tình phai trong tiếng quát tháo.</li>
+                        <li><strong>Tài vận & Bạn bè:</strong> Tiêu hao qua ăn nhậu vô bổ, sĩ diện. Lời nói đả kích khiến bạn hóa thù.</li>
+                    </ul>
+                `
+            },
+            {
+                page: 7,
+                title: "Lục Sát Phối Số 0 - Duyên Tình Nghiệt Ngã",
+                subtitle: "TÌNH NHIỄU SƯƠNG ĐÊM MỊT MÙ",
+                content: `
+                    <div class="p-3 bg-rose-50 dark:bg-rose-950/40 rounded-lg border-l-4 border-rose-500 mb-3">
+                        <p class="text-xs text-rose-900 dark:text-rose-200 italic font-serif-custom">
+                            "Lục Sát – vốn là sát tinh tình cảm nhiễu loạn. Gặp Số 0 thành vô phương vô lối, tình tài thân mệnh rơi vào cảnh mịt mù."
+                        </p>
+                    </div>
+
+                    <div class="p-3 bg-rose-100 dark:bg-stone-800 rounded border border-rose-200 mb-3">
+                        <h4 class="font-bold text-rose-800 dark:text-rose-300 text-xs uppercase mb-1">Cặp Lục Sát Phối Số 0:</h4>
+                        <p class="font-mono text-xs text-rose-900 dark:text-rose-200 font-bold">
+                            016 - 061 - 074 - 047 - 038 - 083 - 092 - 029 | 106 - 601...
+                        </p>
+                    </div>
+
+                    <div class="space-y-2 text-xs text-stone-700 dark:text-stone-300">
+                        <div class="p-2 bg-white dark:bg-stone-800 rounded border">
+                            <strong class="text-rose-600">💔 Tình cảm:</strong> Ngoại tình tư tưởng hoặc thân xác, dễ xuất hiện người thứ ba, ly tan đứt gánh.
+                        </div>
+                        <div class="p-2 bg-white dark:bg-stone-800 rounded border">
+                            <strong class="text-rose-600">🧠 Tinh thần:</strong> Uất ức nội tâm, ngoài cười trong khóc, dễ sa vào trầm cảm, tự sát.
+                        </div>
+                        <div class="p-2 bg-white dark:bg-stone-800 rounded border">
+                            <strong class="text-rose-600">🏥 Bệnh lý:</strong> Phụ khoa, u nang, dạ dày, âm hư hỏa vượng.
+                        </div>
+                    </div>
+                `
+            },
+            {
+                page: 8,
+                title: "Thiên Y Phối Số 0 - Cát Tinh Lạc Hư Không",
+                subtitle: "TÀI TRÔI NHƯ NƯỚC BẮT BÓNG TRĂNG",
+                content: `
+                    <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 rounded border-l-4 border-emerald-600 mb-3">
+                        <p class="text-xs text-emerald-900 dark:text-emerald-200">
+                            "Thiên Y vốn là tài tinh phúc lộc. Khi lạc vào hư không (Số 0) thì tài có cũng như không, cho mà không giữ, như vớt trăng đáy nước."
+                        </p>
+                    </div>
+
+                    <div class="p-3 bg-emerald-100 dark:bg-stone-800 rounded border mb-3">
+                        <h4 class="font-bold text-emerald-800 dark:text-emerald-300 text-xs uppercase mb-1">Cặp Thiên Y Phối Số 0:</h4>
+                        <p class="font-mono text-xs font-bold text-emerald-900 dark:text-emerald-200">
+                            013 - 031 - 068 - 086 - 094 - 049 - 072 - 027<br>
+                            103 - 301 - 608 - 806 - 904 - 409 - 702 - 207
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="p-2 bg-white dark:bg-stone-800 rounded border">💸 Tiền vào cửa trước ra cửa sau, dễ bị lừa gạt cho vay không đòi được.</div>
+                        <div class="p-2 bg-white dark:bg-stone-800 rounded border">🥀 Hôn nhân nhạt nhòa, dễ ngoại tình ngầm, bèo trôi theo gió.</div>
+                    </div>
+                `
+            },
+            {
+                page: 9,
+                title: "Sinh Khí & Diên Niên Phối Số 0",
+                subtitle: "QUÝ NHÂN HÓA TIỂU NHÂN & KHẮC PHU KHẮC THÊ",
+                content: `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 bg-green-50 dark:bg-stone-800 rounded border border-green-300">
+                            <h4 class="font-bold text-green-800 dark:text-green-400 text-sm mb-1">Sinh Khí Phối Số 0</h4>
+                            <p class="text-stone-600 dark:text-stone-300">Quý nhân ban đầu hóa thành kẻ phản bội. Tạo tính lười nhác, buông xuôi, mất chí tiến thủ. Nam nhân đại kỵ dùng đuôi số này!</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 dark:bg-stone-800 rounded border border-blue-300">
+                            <h4 class="font-bold text-blue-800 dark:text-blue-400 text-sm mb-1">Diên Niên Phối Số 0</h4>
+                            <p class="text-stone-600 dark:text-stone-300">Nữ nhân mang số này dễ khắc chồng, góa phụ hoặc cô độc. Lao lực vất vả nhưng công lao bị che mờ, dễ mắc bệnh cột sống, vai cổ gáy.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 bg-amber-100 dark:bg-amber-950/60 rounded text-center">
+                        <p class="text-xs font-serif-custom font-bold text-amber-900 dark:text-amber-200">
+                            "Biết hung mà lùi, còn hơn biết cát mà ham. Lấy tĩnh dưỡng tâm, lấy thiện làm phúc!"
+                        </p>
+                    </div>
+                `
+            },
+            {
+                page: 10,
+                title: "Tổng Kết Đại Kỵ - Số 0 & Số 5",
+                subtitle: "TỨ ĐẠI SÁT TRẬN VÀ BÍ TRUYỀN PHONG THỦY SỐ",
+                content: `
+                    <div class="p-3 bg-red-100 dark:bg-red-950/60 rounded border border-red-300 mb-3 text-xs">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 uppercase mb-1">🔥 Số 0 Và Số 5 - Lưỡng Cực Đối Ứng:</h4>
+                        <ul class="list-disc pl-4 space-y-1 text-stone-700 dark:text-stone-300">
+                            <li><strong>Số 0:</strong> Chủ Âm, hư không. Giống như <em>Kẻ Trộm</em> rình rập rút cạn phúc đức.</li>
+                            <li><strong>Số 5:</strong> Chủ kích phát. Giống như <em>Kẻ Tiếp Tay</em> - gặp cát tăng cát, gặp hung tăng hung!</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-4 bg-stone-900 text-amber-200 rounded-lg text-center shadow-lg">
+                        <h3 class="font-bold text-base text-amber-400 mb-1">THÔNG TIN LIÊN HỆ & TƯ VẤN TRỰC TIẾP</h3>
+                        <p class="text-xs mb-2">Thương Hiệu: <strong class="text-white">MẬT MÃ CUỘC ĐỜI</strong></p>
+                        <div class="flex flex-wrap justify-center gap-2 text-xs">
+                            <a href="https://matmacuocdoi.vn" target="_blank" class="px-2 py-1 bg-amber-700 hover:bg-amber-600 text-white rounded">🌐 matmacuocdoi.vn</a>
+                            <a href="https://zalo.me/0789414153" target="_blank" class="px-2 py-1 bg-blue-600 hover:bg-blue-500 text-white rounded">💬 Zalo Tuấn Anh: 0789.414.153</a>
+                            <a href="https://zalo.me/0849328628" target="_blank" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded">☯ Zalo Chuyên Gia Kim Nguyên Bảo</a>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        let currentPage = 1;
+        let isDrawing = false;
+        let currentTool = 'cursor'; // 'cursor', 'pen', 'highlighter'
+        let ctx = null;
+
+        // DOM elements
+        const currentPageNumEl = document.getElementById('current-page-num');
+        const totalPageNumEl = document.getElementById('total-page-num');
+        const slideContentEl = document.getElementById('slide-content');
+        const thumbnailListEl = document.getElementById('thumbnail-list');
+        const slideJumpEl = document.getElementById('slide-jump');
+        const prevBtn = document.getElementById('prev-slide');
+        const nextBtn = document.getElementById('next-slide');
+        const canvas = document.getElementById('drawing-canvas');
+        const slideFrame = document.getElementById('slide-frame');
+
+        function initApp() {
+            totalPageNumEl.textContent = SLIDES_DATA.length;
+            setupCanvas();
+            renderThumbnails();
+            populateJumpSelect();
+            renderSlide(currentPage);
+
+            // Bind events
+            prevBtn.addEventListener('click', () => changePage(currentPage - 1));
+            nextBtn.addEventListener('click', () => changePage(currentPage + 1));
+            slideJumpEl.addEventListener('change', (e) => changePage(parseInt(e.target.value)));
+
+            // Theme toggle
+            document.getElementById('toggle-dark').addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+
+            // Fullscreen trigger
+            document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
+
+            // Tools setup
+            setupDrawingTools();
+            window.addEventListener('resize', resizeCanvas);
+        }
+
+        // Render current slide
+        function renderSlide(pageNumber) {
+            const slide = SLIDES_DATA.find(s => s.page === pageNumber) || SLIDES_DATA[0];
+            currentPage = slide.page;
+            currentPageNumEl.textContent = currentPage;
+            slideJumpEl.value = currentPage;
+
+            slideContentEl.innerHTML = `
+                <div class="mb-2">
+                    <span class="text-xs font-bold uppercase tracking-widest text-amber-600 dark:text-amber-400">
+                        ${slide.subtitle}
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-stone-900 dark:text-stone-100 mt-0.5">
+                        ${slide.title}
+                    </h2>
+                </div>
+                <div class="flex-1 mt-2">
+                    ${slide.content}
+                </div>
+            `;
+
+            // Update disabled buttons
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === SLIDES_DATA.length;
+
+            // Highlight thumbnail
+            document.querySelectorAll('.thumb-item').forEach((el, idx) => {
+                if (idx + 1 === currentPage) {
+                    el.classList.add('ring-2', 'ring-amber-500', 'bg-amber-100', 'dark:bg-amber-950');
+                } else {
+                    el.classList.remove('ring-2', 'ring-amber-500', 'bg-amber-100', 'dark:bg-amber-950');
+                }
+            });
+
+            clearCanvas();
+            lucide.createIcons();
+        }
+
+        function changePage(newPage) {
+            if (newPage >= 1 && newPage <= SLIDES_DATA.length) {
+                renderSlide(newPage);
+            }
+        }
+
+        // Render sidebar thumbnail list
+        function renderThumbnails() {
+            thumbnailListEl.innerHTML = '';
+            SLIDES_DATA.forEach((slide) => {
+                const item = document.createElement('div');
+                item.className = `thumb-item p-2.5 rounded-lg border border-stone-300 dark:border-stone-700 bg-white dark:bg-stone-800 cursor-pointer hover:border-amber-500 transition text-xs`;
+                item.innerHTML = `
+                    <div class="font-bold text-amber-800 dark:text-amber-400">Trang ${slide.page}</div>
+                    <div class="text-stone-600 dark:text-stone-300 truncate">${slide.title}</div>
+                `;
+                item.addEventListener('click', () => renderSlide(slide.page));
+                thumbnailListEl.appendChild(item);
+            });
+        }
+
+        function populateJumpSelect() {
+            slideJumpEl.innerHTML = '';
+            SLIDES_DATA.forEach(slide => {
+                const opt = document.createElement('option');
+                opt.value = slide.page;
+                opt.textContent = `Trang ${slide.page}: ${slide.title.substring(0, 20)}...`;
+                slideJumpEl.appendChild(opt);
+            });
+        }
+
+        function setupCanvas() {
+            ctx = canvas.getContext('2d');
+            resizeCanvas();
+
+            let lastX = 0;
+            let lastY = 0;
+
+            function getPos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: clientX - rect.left,
+                    y: clientY - rect.top
+                };
+            }
+
+            function startDrawing(e) {
+                if (currentTool === 'cursor') return;
+                isDrawing = true;
+                const pos = getPos(e);
+                lastX = pos.x;
+                lastY = pos.y;
+            }
+
+            function draw(e) {
+                if (!isDrawing || currentTool === 'cursor') return;
+                e.preventDefault();
+                const pos = getPos(e);
+                const color = document.getElementById('pen-color').value;
+                const size = parseInt(document.getElementById('pen-size').value);
+
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.strokeStyle = currentTool === 'highlighter' ? `${color}55` : color;
+                ctx.lineWidth = currentTool === 'highlighter' ? size * 3 : size;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
+
+                lastX = pos.x;
+                lastY = pos.y;
+            }
+
+            function stopDrawing() {
+                isDrawing = false;
+            }
+
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+
+            canvas.addEventListener('touchstart', startDrawing);
+            canvas.addEventListener('touchmove', draw);
+            canvas.addEventListener('touchend', stopDrawing);
+        }
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            canvas.width = slideFrame.clientWidth;
+            canvas.height = slideFrame.clientHeight;
+        }
+
+        function clearCanvas() {
+            if (ctx) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function setupDrawingTools() {
+            const toolCursor = document.getElementById('tool-cursor');
+            const toolPen = document.getElementById('tool-pen');
+            const toolHighlighter = document.getElementById('tool-highlighter');
+            const clearBtn = document.getElementById('clear-canvas');
+
+            function setTool(tool, activeBtn) {
+                currentTool = tool;
+                document.querySelectorAll('.tool-btn').forEach(b => {
+                    b.classList.remove('bg-amber-700', 'text-white');
+                    b.classList.add('hover:bg-amber-800', 'text-stone-300');
+                });
+                activeBtn.classList.add('bg-amber-700', 'text-white');
+                activeBtn.classList.remove('hover:bg-amber-800', 'text-stone-300');
+
+                if (tool === 'cursor') {
+                    canvas.style.pointerEvents = 'none';
+                } else {
+                    canvas.style.pointerEvents = 'auto';
+                }
+            }
+
+            toolCursor.addEventListener('click', () => setTool('cursor', toolCursor));
+            toolPen.addEventListener('click', () => setTool('pen', toolPen));
+            toolHighlighter.addEventListener('click', () => setTool('highlighter', toolHighlighter));
+            clearBtn.addEventListener('click', clearCanvas);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                slideFrame.requestFullscreen().catch(err => {
+                    alert(`Không thể mở toàn màn hình: ${err.message}`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Initialize Lucide Icons & App
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            initApp();
+            initAIFeatures();
+        });
+
+        // AI Integration Logic
+        function initAIFeatures() {
+            const aiPanel = document.getElementById('ai-panel');
+            const openBtn = document.getElementById('open-ai-panel');
+            const closeBtn = document.getElementById('close-ai-panel');
+
+            openBtn.addEventListener('click', () => aiPanel.classList.remove('translate-x-full'));
+            closeBtn.addEventListener('click', () => aiPanel.classList.add('translate-x-full'));
+
+            // Tab Switching
+            const tabs = {
+                'tab-explain': 'ai-content-explain',
+                'tab-ask': 'ai-content-ask',
+                'tab-tts': 'ai-content-tts'
+            };
+
+            Object.keys(tabs).forEach(tabId => {
+                document.getElementById(tabId).addEventListener('click', (e) => {
+                    document.querySelectorAll('.ai-tab').forEach(b => {
+                        b.classList.remove('bg-amber-600', 'text-white');
+                        b.classList.add('bg-stone-200', 'dark:bg-stone-700', 'text-stone-700', 'dark:text-stone-300');
+                    });
+                    e.currentTarget.classList.add('bg-amber-600', 'text-white');
+                    e.currentTarget.classList.remove('bg-stone-200', 'dark:bg-stone-700', 'text-stone-700', 'dark:text-stone-300');
+
+                    document.querySelectorAll('.ai-tab-content').forEach(c => c.classList.add('hidden'));
+                    document.getElementById(tabs[tabId]).classList.remove('hidden');
+                });
+            });
+
+            // Analyze Slide Feature
+            document.getElementById('btn-analyze-slide').addEventListener('click', analyzeCurrentSlide);
+            // Ask AI Query
+            document.getElementById('btn-submit-ask').addEventListener('click', askAIQuery);
+            // TTS Feature
+            document.getElementById('btn-generate-tts').addEventListener('click', generateTTSForSlide);
+        }
+
+        // Generic API Fetch with Exponential Backoff
+        async function fetchWithBackoff(url, payload, retries = 3) {
+            let delay = 1000;
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const res = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (res.ok) return await res.json();
+                } catch (e) {
+                    if (i === retries - 1) throw e;
+                }
+                await new Promise(r => setTimeout(r, delay));
+                delay *= 2;
+            }
+            throw new Error("Không thể kết nối đến AI Server. Vui lòng thử lại.");
+        }
+
+        async function analyzeCurrentSlide() {
+            const output = document.getElementById('ai-explain-output');
+            const slide = SLIDES_DATA.find(s => s.page === currentPage);
+            if (!slide) return;
+
+            output.innerHTML = `<div class="flex items-center gap-2 text-amber-600"><i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Đang thấu thị slide...</div>`;
+            lucide.createIcons();
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const systemPrompt = "Bạn là chuyên gia phong thủy số Mật Mã Cuộc Đời. Hãy tóm tắt nội dung slide được cung cấp thành 3 điểm cốt lõi ngắn gọn và đưa ra 1 lời khuyên thực tế giúp gia chủ tránh hung phùng cát.";
+            const userQuery = `Hãy phân tích Slide sau:\nTiêu đề: ${slide.title}\nPhụ đề: ${slide.subtitle}\nNội dung: ${slide.content.replace(/<[^>]*>?/gm, '')}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const result = await fetchWithBackoff(apiUrl, payload);
+                const text = result?.candidates?.[0]?.content?.parts?.[0]?.text || "Không thể phân tích nội dung.";
+                output.innerHTML = `<div class="prose prose-sm dark:prose-invert text-xs">${text.replace(/\n/g, '<br>')}</div>`;
+            } catch (err) {
+                output.innerHTML = `<span class="text-red-500">Lỗi: ${err.message}</span>`;
+            }
+        }
+
+        async function askAIQuery() {
+            const input = document.getElementById('ai-ask-input').value.trim();
+            const output = document.getElementById('ai-ask-output');
+            const useGrounding = document.getElementById('use-grounding').checked;
+
+            if (!input) {
+                output.innerHTML = `<span class="text-amber-600">Vui lòng nhập dãy số hoặc câu hỏi!</span>`;
+                return;
+            }
+
+            output.innerHTML = `<div class="flex items-center gap-2 text-purple-600"><i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Đang luận giải câu hỏi...</div>`;
+            lucide.createIcons();
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+            const systemPrompt = "Bạn là chuyên gia tư vấn năng lượng số Mật Mã Cuộc Đời. Giải đáp thắc mắc về SIM phong thủy, năng lượng các con số một cách chính xác, tinh tế, trang trọng.";
+
+            const payload = {
+                contents: [{ parts: [{ text: input }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            if (useGrounding) {
+                payload.tools = [{ "google_search": {} }];
+            }
+
+            try {
+                const result = await fetchWithBackoff(apiUrl, payload);
+                const candidate = result?.candidates?.[0];
+                let text = candidate?.content?.parts?.[0]?.text || "Chưa thể trả lời câu hỏi này.";
+
+                // Extract citations if grounding used
+                let sourcesHtml = '';
+                const groundingMetadata = candidate?.groundingMetadata;
+                if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                    const sources = groundingMetadata.groundingAttributions
+                        .map(a => `<a href="${a.web?.uri}" target="_blank" class="text-blue-500 underline block text-[10px]">${a.web?.title}</a>`)
+                        .filter(Boolean);
+                    if (sources.length > 0) {
+                        sourcesHtml = `<div class="mt-2 border-t pt-2"><span class="font-bold text-[10px]">Nguồn tham khảo Google:</span>${sources.join('')}</div>`;
+                    }
+                }
+
+                output.innerHTML = `<div class="prose prose-sm dark:prose-invert text-xs">${text.replace(/\n/g, '<br>')}${sourcesHtml}</div>`;
+            } catch (err) {
+                output.innerHTML = `<span class="text-red-500">Lỗi: ${err.message}</span>`;
+            }
+        }
+
+        async function generateTTSForSlide() {
+            const slide = SLIDES_DATA.find(s => s.page === currentPage);
+            if (!slide) return;
+
+            const voice = document.getElementById('tts-voice').value;
+            const container = document.getElementById('tts-player-container');
+            const audioPlayer = document.getElementById('audio-player');
+
+            container.classList.remove('hidden');
+            audioPlayer.src = '';
+
+            const rawText = slide.content.replace(/<[^>]*>?/gm, ' ').replace(/\s+/g, ' ').substring(0, 300);
+            const promptText = `Nói bằng giọng phong thủy truyền cảm, chậm rãi: Trình chiếu trang ${slide.page}. ${slide.title}. ${rawText}`;
+
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: promptText }] }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: { voiceName: voice }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+
+            try {
+                const result = await fetchWithBackoff(apiUrl, payload);
+                const part = result?.candidates?.[0]?.content?.parts?.[0];
+                const audioDataBase64 = part?.inlineData?.data;
+                const mimeType = part?.inlineData?.mimeType || "audio/L16;rate=24000";
+
+                if (audioDataBase64) {
+                    const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                    const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 24000;
+                    
+                    const pcmBuffer = base64ToArrayBuffer(audioDataBase64);
+                    const pcm16 = new Int16Array(pcmBuffer);
+                    const wavBlob = pcmToWav(pcm16, sampleRate);
+                    const audioUrl = URL.createObjectURL(wavBlob);
+
+                    audioPlayer.src = audioUrl;
+                    audioPlayer.play();
+                } else {
+                    alert("Không nhận được dữ liệu âm thanh từ AI.");
+                }
+            } catch (err) {
+                alert(`Lỗi tạo giọng nói: ${err.message}`);
+            }
+        }
+
+        // Helper Functions for Raw PCM 16-bit to WAV Conversion
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function pcmToWav(pcm16Array, sampleRate) {
+            const numChannels = 1;
+            const bytesPerSample = 2;
+            const blockAlign = numChannels * bytesPerSample;
+            const byteRate = sampleRate * blockAlign;
+            const dataSize = pcm16Array.length * bytesPerSample;
+            const buffer = new ArrayBuffer(44 + dataSize);
+            const view = new DataView(buffer);
+
+            /* RIFF identifier */
+            writeString(view, 0, 'RIFF');
+            /* RIFF chunk length */
+            view.setUint32(4, 36 + dataSize, true);
+            /* RIFF type */
+            writeString(view, 8, 'WAVE');
+            /* format chunk identifier */
+            writeString(view, 12, 'fmt ');
+            /* format chunk length */
+            view.setUint32(16, 16, true);
+            /* sample format (raw PCM) */
+            view.setUint16(20, 1, true);
+            /* channel count */
+            view.setUint16(22, numChannels, true);
+            /* sample rate */
+            view.setUint32(24, sampleRate, true);
+            /* byte rate (sample rate * block align) */
+            view.setUint32(28, byteRate, true);
+            /* block align */
+            view.setUint16(32, blockAlign, true);
+            /* bits per sample */
+            view.setUint16(34, 16, true);
+            /* data chunk identifier */
+            writeString(view, 36, 'data');
+            /* data chunk length */
+            view.setUint32(40, dataSize, true);
+
+            // Write PCM samples
+            let offset = 44;
+            for (let i = 0; i < pcm16Array.length; i++, offset += 2) {
+                view.setInt16(offset, pcm16Array[i], true);
+            }
+
+            return new Blob([buffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+    </script>
+</body>
+</html>
