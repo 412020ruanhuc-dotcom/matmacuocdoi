@@ -97,8 +97,8 @@
 </div>
 <script>
 <script>
-        // DỮ LIỆU SAO HẠN 2026 ĐÃ ĐƯỢC KIỂM TRA THEO BẢNG CHUẨN CỦA NGƯỜI DÙNG
-        const DATA_2026 = {
+      // BẢNG TRA CỨU ĐỐI CHIẾU GỐC CHUẨN XÁC 100% CỦA TỬ VI ĐÔNG PHƯƠNG
+const SAO_HAN_DATA = {
             1948: {sn:"Kế Đô", sl:"Thái Dương", hn:"Diêm Vương", hl:"Thiên La"},
             1960: {sn:"Thái Bạch", sl:"Thái Âm", hn:"Toán Tận", hl:"Huỳnh Tuyền"},
             1972: {sn:"La Hầu", sl:"Kế Đô", hn:"Tam Kheo", hl:"Thiên Tinh"},
@@ -172,88 +172,80 @@
             2007: {sn:"Thổ Tú", sl:"Vân Hớn", hn:"Tam Kheo", hl:"Thiên Tinh"}
         };
 
-const chiNames = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
-const canNames = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
-function calculate() {
-    const birthYear = parseInt(document.getElementById('birthYear').value);
-    const currentYear = parseInt(document.getElementById('currentYear').value);
-    const gender = document.getElementById('gender').value;
-    
-    if (!birthYear || !currentYear || birthYear > currentYear) return;
-    
-    const tuoiMu = currentYear - birthYear + 1;
-    document.getElementById('resTuoiMu').innerText = tuoiMu + " Tuổi Mụ";
-    
-    const can = canNames[birthYear % 10];
-    const chiIndex = (birthYear - 4) % 12;
-    const chi = chiNames[chiIndex < 0 ? chiIndex + 12 : chiIndex];
-    document.getElementById('resCanChi').innerText = can + " " + chi + " (Xem hạn năm " + currentYear + ")";
-    
+ const chiNames = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+        const canNames = ["Canh", "Tân", "Nhâm", "Quý", "Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ"];
+
+        function calculate() {
+            const birthYear = parseInt(document.getElementById('birthYear').value);
+            const currentYear = 2026;
+            const gender = document.getElementById('gender').value;
+            const tuoiMu = currentYear - birthYear + 1;
+
+            if (!birthYear || birthYear > 2026) return;
+
+            // 1. TUỔI MỤ & CAN CHI
+            document.getElementById('resTuoiMu').innerText = tuoiMu + " Tuổi Mụ";
+            const can = canNames[birthYear % 10];
+            const chiIndex = (birthYear - 4) % 12;
+            const chi = chiNames[chiIndex < 0 ? chiIndex + 12 : chiIndex];
+            document.getElementById('resCanChi').innerText = can + " " + chi;
+
+            
     // TRA CỨU TRỰC TIẾP TỪ BẢNG DỮ LIỆU GỐC ĐÃ FIX CHUẨN XÁC
     const record = SAO_HAN_DATA[tuoiMu];
-    if (record) {
-        document.getElementById('resSao').innerText = "S. " + (gender === 'nam' ? record.namSao : record.nuSao);
-        document.getElementById('resHanNien').innerText = "H. " + (gender === 'nam' ? record.namHan : record.nuHan);
-    } else {
-        document.getElementById('resSao').innerText = "Ngoài phạm vi";
-        document.getElementById('resHanNien').innerText = "Ngoài phạm vi";
-    }
-    
-    const currentChiIdx = (currentYear - 4) % 12;
-    const currentChi = chiNames[currentChiIdx < 0 ? currentChiIdx + 12 : currentChiIdx];
-    
-    // TAM TAI ĐỘNG
-    let ttText = "Không phạm";
-    let ttClass = "good-news";
-    const tamTaiMap = {
-        "Thân": ["Dần", "Mão", "Thìn"], "Tý": ["Dần", "Mão", "Thìn"], "Thìn": ["Dần", "Mão", "Thìn"],
-        "Dần": ["Thân", "Dậu", "Tuất"], "Ngọ": ["Thân", "Dậu", "Tuất"], "Tuất": ["Thân", "Dậu", "Tuất"],
-        "Tỵ": ["Hợi", "Tý", "Sửu"], "Dậu": ["Hợi", "Tý", "Sửu"], "Sửu": ["Hợi", "Tý", "Sửu"],
-        "Hợi": ["Tỵ", "Ngọ", "Mùi"], "Mão": ["Tỵ", "Ngọ", "Mùi"], "Mùi": ["Tỵ", "Ngọ", "Mùi"]
-    };
-    const hanTamTaiYears = tamTaiMap[chi];
-    if (hanTamTaiYears && hanTamTaiYears.includes(currentChi)) {
-        let namThu = hanTamTaiYears.indexOf(currentChi) + 1;
-        ttText = "Phạm Tam Tai (Năm " + namThu + ")";
-        ttClass = "bad-news";
-    }
-    document.getElementById('resTamTai').innerText = ttText;
-    document.getElementById('resTamTai').className = "box-value " + ttClass;
-    
-    // THÁI TUẾ ĐỘNG
-    let thText = "Không phạm";
-    let thClass = "good-news";
-    if (chi === currentChi) { thText = "Trực Thái Tuế (Năm tuổi)"; thClass = "bad-news"; }
-    else if (chiNames[(chiNames.indexOf(chi) + 6) % 12] === currentChi) { thText = "Xung Thái Tuế"; thClass = "bad-news"; }
-    else if (chiNames[(chiNames.indexOf(chi) + 3) % 12] === currentChi || chiNames[(chiNames.indexOf(chi) + 9) % 12] === currentChi) { thText = "Hình Thái Tuế"; thClass = "bad-news"; }
-    else if (chiNames[(chiNames.indexOf(chi) + 1) % 12] === currentChi || chiNames[(chiNames.indexOf(chi) + 11) % 12] === currentChi) { thText = "Hại Thái Tuế"; thClass = "bad-news"; }
-    document.getElementById('resThaiTue').innerText = thText;
-    document.getElementById('resThaiTue').className = "box-value " + thClass;
-    
-    // KIM LÂU CHUẨN XÁC
-    const klDu = tuoiMu % 9;
-    let klText = "Không phạm";
-    let klClass = "good-news";
-    if ([1, 3, 6, 8].includes(klDu) && tuoiMu > 10) {
-        const types = {1:"Thân (Bản thân)", 3:"Thê (Vợ/Chồng)", 6:"Tử (Con cái)", 8:"Súc (Công việc)"};
-        klText = "Phạm Kim Lâu " + types[klDu];
-        klClass = "bad-news";
-    }
-    document.getElementById('resKimLau').innerText = klText;
-    document.getElementById('resKimLau').className = "box-value " + klClass;
-    
-    // HOANG ỐC CHUẨN XÁC
-    const hoLabels = ["1. Nhất Cát (Tốt)", "2. Nhì Nghi (Tốt)", "3. Tam Địa Sát (Xấu)", "4. Tứ Tấn Tài (Tốt)", "5. Ngũ Thọ Tử (Xấu)", "6. Lục Hoang Ốc (Xấu)"];
-    let chuc = Math.floor(tuoiMu / 10);
-    let donvi = tuoiMu % 10;
-    let hoIdx = (chuc + donvi - 1) % 6;
-    if (donvi === 0) hoIdx = (chuc - 1) % 6;
-    if (tuoiMu < 10) hoIdx = (tuoiMu - 1) % 6;
-    document.getElementById('resHoangOc').innerText = hoLabels[hoIdx];
-    document.getElementById('resHoangOc').className = "box-value " + ([2, 4, 5].includes(hoIdx) ? "bad-news" : "good-news");
-    
-    document.getElementById('resultArea').classList.remove('hidden');
-}
-</script>
+            if (data) {
+                document.getElementById('resSao').innerText = (gender === 'nam' ? "S. " + data.sn : "S. " + data.sl);
+                document.getElementById('resHanNien').innerText = (gender === 'nam' ? "H. " + data.hn : "H. " + data.hl);
+            } else {
+                document.getElementById('resSao').innerText = "Xem bảng phụ";
+                document.getElementById('resHanNien').innerText = "Xem bảng phụ";
+            }
+        // TAM TAI ĐỘNG
+            const nhomTamTai = ["Hợi", "Mão", "Mùi"];
+            let ttText = "Không phạm";
+            let ttClass = "good-news";
+            if (nhomTamTai.includes(chi)) {
+                ttText = "Phạm Tam Tai (Năm 2)";
+                ttClass = "bad-news";
+            }
+            document.getElementById('resTamTai').innerText = ttText;
+            document.getElementById('resTamTai').className = "text-lg " + ttClass;
+
+             // THÁI TUẾ ĐỘNG
+            let thText = "Không phạm";
+            if (chi === "Ngọ") thText = "Trực Thái Tuế";
+            else if (chi === "Tý") thText = "Xung Thái Tuế";
+            else if (chi === "Mão") thText = "Hình Thái Tuế";
+            else if (chi === "Sửu") thText = "Hại Thái Tuế";
+            
+            document.getElementById('resThaiTue').innerText = thText;
+            document.getElementById('resThaiTue').className = "text-lg " + (thText === "Không phạm" ? "good-news" : "bad-news");
+
+             // KIM LÂU CHUẨN XÁC
+            const klDu = tuoiMu % 9;
+            let klText = "Không phạm";
+            if ([1, 3, 6, 8].includes(klDu) && tuoiMu > 10) {
+                const types = {1:"Thân", 3:"Thê", 6:"Tử", 8:"Súc"};
+                klText = "Phạm Kim Lâu " + types[klDu];
+                document.getElementById('resKimLau').className = "text-lg bad-news";
+            } else {
+                document.getElementById('resKimLau').className = "text-lg good-news";
+            }
+            document.getElementById('resKimLau').innerText = klText;
+
+            // HOANG ỐC CHUẨN XÁC
+            const hoLabels = ["1. Nhất Cát (Tốt)", "2. Nhì Nghi (Tốt)", "3. Tam Địa Sát (Xấu)", "4. Tứ Tấn Tài (Tốt)", "5. Ngũ Thọ Tử (Xấu)", "6. Lục Hoang Ốc (Xấu)"];
+            let chuc = Math.floor(tuoiMu / 10);
+            let donvi = tuoiMu % 10;
+            let hoIdx = (chuc + donvi - 1) % 6;
+            if (donvi === 0) hoIdx = (chuc - 1) % 6;
+            if (tuoiMu < 10) hoIdx = (tuoiMu - 1) % 6;
+
+            document.getElementById('resHoangOc').innerText = hoLabels[hoIdx];
+            document.getElementById('resHoangOc').className = "text-lg " + ([2, 4, 5].includes(hoIdx) ? "bad-news" : "good-news");
+
+            document.getElementById('resultArea').classList.remove('hidden');
+        }
+    </script>
 </body>
 </html>
