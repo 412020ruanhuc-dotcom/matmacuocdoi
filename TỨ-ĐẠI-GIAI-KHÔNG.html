@@ -230,7 +230,7 @@
                 <i data-lucide="chevron-left" class="w-5 h-5"></i>
             </button>
             <span class="text-sm font-semibold px-2 text-amber-200">
-                Trang <span id="current-page-num" class="text-white font-bold text-base">1</span> / <span id="total-page-num">33</span>
+                Trang <span id="current-page-num" class="text-white font-bold text-base">1</span> / <span id="total-page-num">10</span>
             </span>
             <button id="next-slide" class="p-1.5 bg-amber-800 hover:bg-amber-700 rounded-md transition text-amber-100 disabled:opacity-40">
                 <i data-lucide="chevron-right" class="w-5 h-5"></i>
@@ -318,86 +318,91 @@
         const SLIDES_DATA = [
             {
                 page: 1,
-                title: "Năng Lượng Số & Tuyệt Mệnh Phối Số 0",
-                subtitle: "MẬT MÃ CUỘC ĐỜI",
+                title: "Bảng Bát Tinh Năng Lượng Số & Tuyệt Mệnh Phối Số 0",
+                subtitle: "MẬT MÃ CUỘC ĐỜI - BẢNG TRA CỨU HOÀN CHỈNH",
                 content: `
-                    <div class="mb-4">
-                        <h3 class="text-lg font-bold text-amber-800 dark:text-amber-400 mb-2 border-b pb-1 border-amber-200 dark:border-stone-700">
-                            MẬT MÃ CUỘC ĐỜI-NĂNG LƯỢNG SỐ
+                    <div class="mb-2">
+                        <h3 class="text-sm font-bold text-amber-800 dark:text-amber-400 mb-1 border-b pb-1 border-amber-200 dark:border-stone-700">
+                            BẢNG BÁT TINH NĂNG LƯỢNG SỐ (ĐỦ 8 CẶP SỐ CHO MỖI TINH TÚ)
                         </h3>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-center border-collapse text-xs sm:text-sm my-2">
+                            <table class="w-full text-center border-collapse text-[11px] sm:text-xs my-1">
                                 <thead>
                                     <tr class="bg-amber-800 text-white font-bold">
-                                        <th class="p-1.5 border border-amber-700">Phục Vị</th>
-                                        <th class="p-1.5 border border-amber-700">Thiên Y</th>
-                                        <th class="p-1.5 border border-amber-700">Sinh Khí</th>
-                                        <th class="p-1.5 border border-amber-700">Diên Niên</th>
-                                        <th class="p-1.5 border border-amber-700">Lục Sát</th>
-                                        <th class="p-1.5 border border-amber-700">Tuyệt Mệnh</th>
-                                        <th class="p-1.5 border border-amber-700">Họa Hại</th>
-                                        <th class="p-1.5 border border-amber-700">Ngũ Quỷ</th>
+                                        <th class="p-1 border border-amber-700">Cấp</th>
+                                        <th class="p-1 border border-amber-700">Phục Vị</th>
+                                        <th class="p-1 border border-amber-700">Thiên Y</th>
+                                        <th class="p-1 border border-amber-700">Sinh Khí</th>
+                                        <th class="p-1 border border-amber-700">Diên Niên</th>
+                                        <th class="p-1 border border-amber-700">Lục Sát</th>
+                                        <th class="p-1 border border-amber-700">Tuyệt Mệnh</th>
+                                        <th class="p-1 border border-amber-700">Họa Hại</th>
+                                        <th class="p-1 border border-amber-700">Ngũ Quỷ</th>
                                     </tr>
                                 </thead>
                                 <tbody class="dark:text-stone-200">
-                                    <tr class="bg-amber-50 dark:bg-stone-800">
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold">11</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-emerald-600">13</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-green-600">14</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-blue-600">19</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-rose-500">16</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-red-600">12</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-orange-600">17</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-purple-600">18</td>
+                                    <tr class="bg-amber-50/80 dark:bg-stone-800">
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-bold text-amber-800 dark:text-amber-400">Mức 1</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold">11, 22</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-emerald-600">13, 31</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-green-600">14, 41</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-blue-600">19, 91</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-rose-500">16, 61</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-red-600">12, 21</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-orange-600">17, 71</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-purple-600">18, 81</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold">22</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-emerald-600">31</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-green-600">41</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-blue-600">91</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-rose-500">61</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-red-600">21</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-orange-600">71</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-purple-600">81</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-bold text-amber-800 dark:text-amber-400">Mức 2</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold">88, 99</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-emerald-600">68, 86</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-green-600">67, 76</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-blue-600">78, 87</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-rose-500">47, 74</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-red-600">69, 96</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-orange-600">89, 98</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-semibold text-purple-600">79, 97</td>
                                     </tr>
-                                    <tr class="bg-amber-50 dark:bg-stone-800">
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">88</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">68</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">67</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">78</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">74</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">69</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">98</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">97</td>
+                                    <tr class="bg-amber-50/80 dark:bg-stone-800">
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-bold text-amber-800 dark:text-amber-400">Mức 3</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">66, 77</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">94, 49</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">39, 93</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">34, 43</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">38, 83</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">84, 48</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">46, 64</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">36, 63</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">99</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">86</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">76</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">87</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">47</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">96</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">89</td>
-                                        <td class="p-1 border border-stone-300 dark:border-stone-700">79</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700 font-bold text-amber-800 dark:text-amber-400">Mức 4</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">33, 44</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">72, 27</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">28, 82</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">26, 62</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">29, 92</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">37, 73</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">23, 32</td>
+                                        <td class="p-1 border border-stone-300 dark:border-stone-700">24, 42</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <div class="p-4 bg-amber-50 dark:bg-stone-800/80 rounded-lg border-l-4 border-amber-600 shadow-sm my-3 font-serif-custom italic">
+                    <div class="p-2.5 bg-amber-50 dark:bg-stone-800/80 rounded-lg border-l-4 border-amber-600 shadow-sm my-2 font-serif-custom italic text-xs">
                         <p class="text-stone-700 dark:text-stone-300">
                             "Số vốn không dữ, nhưng con người bất tri bất giác mà tạo thành dữ; nước vốn không sâu, nhưng kẻ liều mình lội sâu mà chìm."
                         </p>
                     </div>
 
-                    <div class="mt-3">
-                        <p class="text-stone-700 dark:text-stone-300 leading-relaxed mb-2">
+                    <div class="mt-2 text-xs">
+                        <p class="text-stone-700 dark:text-stone-300 leading-relaxed mb-1.5">
                             Số 0 - trong cổ học là vô, là hư không, là trống rỗng. Khi phối cùng Tuyệt Mệnh - vốn đã là sát khí, nay lại rơi vào hư vô, chẳng khác nào đèn leo lét trong cơn giông.
                         </p>
-                        <div class="p-3 bg-red-50 dark:bg-red-950/40 rounded-lg border border-red-200 dark:border-red-900">
-                            <h4 class="font-bold text-red-700 dark:text-red-400 text-xs uppercase mb-1">Các Cặp Tuyệt Mệnh Phối Số 0:</h4>
-                            <p class="font-mono text-sm text-red-800 dark:text-red-300 tracking-wide font-bold">
+                        <div class="p-2.5 bg-red-50 dark:bg-red-950/40 rounded-lg border border-red-200 dark:border-red-900">
+                            <h4 class="font-bold text-red-700 dark:text-red-400 text-[11px] uppercase mb-1">Các Cặp Tuyệt Mệnh Phối Số 0:</h4>
+                            <p class="font-mono text-xs text-red-800 dark:text-red-300 tracking-wide font-bold">
                                 012 - 021 - 069 - 096 - 037 - 073 - 084 - 048<br>
                                 102 - 201 - 609 - 906 - 307 - 703 - 804 - 408<br>
                                 120 - 210 - 690 - 960 - 370 - 730 - 840 - 480
@@ -510,7 +515,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                         <div class="p-3 bg-stone-50 dark:bg-stone-800 rounded border-l-2 border-purple-500">
                             <h5 class="font-bold text-purple-700 dark:text-purple-400">1. Họa Sát Thân & Bệnh Ẩn</h5>
-                            <p class="text-stone-600 dark:text-stone-300 mt-1">Dễ mắc đột quỵ, tim mạch, xuất huyết脑, bệnh tai biến, ung thư bộc phát bất ngờ.</p>
+                            <p class="text-stone-600 dark:text-stone-300 mt-1">Dễ mắc đột quỵ, tim mạch, xuất huyết brain, bệnh tai biến, ung thư bộc phát bất ngờ.</p>
                         </div>
                         <div class="p-3 bg-stone-50 dark:bg-stone-800 rounded border-l-2 border-purple-500">
                             <h5 class="font-bold text-purple-700 dark:text-purple-400">2. Suy Nghĩ Đình Trệ</h5>
