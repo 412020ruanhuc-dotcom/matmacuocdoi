@@ -6,7 +6,6 @@
     <title>MẬT MÃ CUỘC ĐỜI</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -78,6 +77,7 @@
         .community-card {
             transition: all 0.2s;
             border-left-width: 8px;
+            cursor: pointer;
         }
 
         .community-card:active {
@@ -100,6 +100,16 @@
             margin-bottom: 2rem;
             box-shadow: 0 8px 20px rgba(200, 35, 51, 0.3);
         }
+
+        /* Nút màu đỏ đậm chuẩn giao diện mẫu */
+        .btn-red-submit {
+            background-color: #b91c1c;
+            color: white;
+            transition: all 0.2s;
+        }
+        .btn-red-submit:hover {
+            background-color: #991b1b;
+        }
     </style>
 </head>
 
@@ -109,249 +119,220 @@
 
     <!-- GIỚI THIỆU -->
     <div class="card-custom p-6 border-t-[6px] border-red-700">
-
         <div class="text-center mb-4">
             <span class="section-tag">Giới thiệu</span>
-
-            <h1 class="font-black text-2xl text-gray-800 leading-tight uppercase">
-                MẬT MÃ CUỘC ĐỜI
-            </h1>
-
-            <p class="font-black text-xl text-red-700 uppercase tracking-tight mt-1">
-                TỬ VI - NĂNG LƯỢNG SỐ
-            </p>
+            <h1 class="font-black text-2xl text-gray-800 leading-tight uppercase">MẬT MÃ CUỘC ĐỜI</h1>
+            <p class="font-black text-xl text-red-700 uppercase tracking-tight mt-1">TỬ VI - NĂNG LƯỢNG SỐ</p>
         </div>
 
         <div class="space-y-4 text-[1.05rem] mt-6">
-
             <div class="flex items-start">
                 <span class="check-icon">✔</span>
-
                 <p class="font-black text-gray-900 italic">
-                    Bạn không thiếu may mắn. Bạn chỉ đang chưa hiểu đúng
-                    <strong>“mật mã”</strong> của chính mình.
+                    Bạn không thiếu may mắn. Bạn chỉ đang chưa hiểu đúng <strong>“mật mã”</strong> của chính mình.
                 </p>
             </div>
-
             <div class="flex items-start">
                 <span class="check-icon">✔</span>
-
                 <p class="font-black text-gray-900 italic">
-                    Khi hiểu rõ bản mệnh và dòng năng lượng các con số xung quanh,
-                    bạn có thể
-                    <strong>
-                        chủ động nắm bắt cơ hội – tránh sai lầm – định hình lại vận trình.
-                    </strong>
+                    Khi hiểu rõ bản mệnh và dòng năng lượng các con số xung quanh, bạn có thể <strong>chủ động nắm bắt cơ hội – tránh sai lầm – định hình lại vận trình.</strong>
                 </p>
             </div>
-
             <div class="flex items-start">
                 <span class="check-icon">✔</span>
-
                 <p class="font-black text-gray-900 italic">
-                    <strong>MẬT MÃ CUỘC ĐỜI</strong>
-                    là thương hiệu chuyên sâu, kết hợp giữa Tử Vi Chính Thống
-                    và Năng Lượng Số, giúp bạn
-                    <strong>
-                        hiểu đúng – điều chỉnh đúng – hành động đúng thời điểm.
-                    </strong>
+                    <strong>MẬT MÃ CUỘC ĐỜI</strong> là thương hiệu chuyên sâu, kết hợp giữa Tử Vi Chính Thống và Năng Lượng Số, giúp bạn <strong>hiểu đúng – điều chỉnh đúng – hành động đúng thời điểm.</strong>
                 </p>
             </div>
-
         </div>
     </div>
 
     <!-- CỘNG ĐỒNG -->
     <div class="pt-4 space-y-3 text-center">
-
-        <h2 class="font-black text-black uppercase text-xl mb-4">
-            CỘNG ĐỒNG & GIAO LƯU
-        </h2>
+        <h2 class="font-black text-black uppercase text-xl mb-4">CỘNG ĐỒNG & GIAO LƯU</h2>
 
         <!-- YOUTUBE -->
-        <a href="https://youtube.com/@matmacuocdoi"
-           class="card-custom p-4 flex items-center border-l-[8px] border-red-600 community-card">
-
+        <a href="https://youtube.com/@matmacuocdoi" class="card-custom p-4 flex items-center border-l-[8px] border-red-600 community-card">
             <div class="w-12 flex justify-center text-red-600">
                 <i class="fa-brands fa-youtube text-3xl"></i>
             </div>
-
             <div class="ml-4 text-left">
-                <p class="font-black text-[15px] uppercase text-red-700 leading-none mb-1">
-                    YOUTUBE
-                </p>
-
-                <p class="text-[11px] text-gray-500 font-bold uppercase">
-                    Video bài giảng & Kiến thức tử vi
-                </p>
+                <p class="font-black text-[15px] uppercase text-red-700 leading-none mb-1">YOUTUBE</p>
+                <p class="text-[11px] text-gray-500 font-bold uppercase">Video bài giảng & Kiến thức tử vi</p>
             </div>
         </a>
 
         <!-- TIKTOK 1 -->
-        <a href="https://tiktok.com/@matmacuocdoivn"
-           class="card-custom p-4 flex items-center border-l-[8px] border-black community-card">
-
+        <a href="https://tiktok.com/@matmacuocdoivn" class="card-custom p-4 flex items-center border-l-[8px] border-black community-card">
             <div class="w-12 flex justify-center text-black">
                 <i class="fa-brands fa-tiktok text-3xl"></i>
             </div>
-
             <div class="ml-4 text-left">
-                <p class="font-black text-[16px] uppercase text-black leading-none">
-                    TIKTOK (KÊNH 1)
-                </p>
+                <p class="font-black text-[16px] uppercase text-black leading-none">TIKTOK (KÊNH 1)</p>
             </div>
         </a>
 
         <!-- TIKTOK 2 -->
-        <a href="https://tiktok.com/@matmacuocdoituvi"
-           class="card-custom p-4 flex items-center border-l-[8px] border-gray-800 community-card">
-
+        <a href="https://tiktok.com/@matmacuocdoituvi" class="card-custom p-4 flex items-center border-l-[8px] border-gray-800 community-card">
             <div class="w-12 flex justify-center text-gray-800">
                 <i class="fa-brands fa-tiktok text-3xl"></i>
             </div>
-
             <div class="ml-4 text-left">
-                <p class="font-black text-[16px] uppercase text-gray-800 leading-none">
-                    TIKTOK (KÊNH 2)
-                </p>
+                <p class="font-black text-[16px] uppercase text-gray-800 leading-none">TIKTOK (KÊNH 2)</p>
             </div>
         </a>
 
         <!-- ZALO -->
-        <a href="https://zalo.me/g/iljgbe719"
-           class="card-custom p-4 flex items-center border-l-[8px] border-blue-500 community-card">
-
+        <a href="https://zalo.me/g/iljgbe719" class="card-custom p-4 flex items-center border-l-[8px] border-blue-500 community-card">
             <div class="w-12 flex justify-center">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
-                     class="w-10 h-10"
-                     alt="Zalo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" class="w-10 h-10" alt="Zalo">
             </div>
-
             <div class="ml-4 text-left">
-                <p class="font-black text-[15px] uppercase text-blue-700 leading-none mb-1">
-                    NHÓM ZALO CỘNG ĐỒNG
-                </p>
-
-                <p class="text-[11px] text-gray-500 font-bold uppercase">
-                    Giao lưu & Luận giải miễn phí
-                </p>
+                <p class="font-black text-[15px] uppercase text-blue-700 leading-none mb-1">NHÓM ZALO CỘNG ĐỒNG</p>
+                <p class="text-[11px] text-gray-500 font-bold uppercase">Giao lưu & Luận giải miễn phí</p>
             </div>
         </a>
 
         <!-- FACEBOOK -->
-        <a href="https://www.facebook.com/groups/1109080170054834"
-           class="card-custom p-4 flex items-center border-l-[8px] border-blue-800 community-card">
-
+        <a href="https://www.facebook.com/groups/1109080170054834" class="card-custom p-4 flex items-center border-l-[8px] border-blue-800 community-card">
             <div class="w-12 flex justify-center text-blue-800">
                 <i class="fa-brands fa-facebook text-3xl"></i>
             </div>
-
             <div class="ml-4 text-left">
-                <p class="font-black text-[15px] uppercase text-blue-800 leading-none mb-1">
-                    CỘNG ĐỒNG FACEBOOK
-                </p>
-
-                <p class="text-[11px] text-gray-500 font-bold uppercase">
-                    Cập nhật tin tức & Giải đáp
-                </p>
+                <p class="font-black text-[15px] uppercase text-blue-800 leading-none mb-1">CỘNG ĐỒNG FACEBOOK</p>
+                <p class="text-[11px] text-gray-500 font-bold uppercase">Cập nhật tin tức & Giải đáp</p>
             </div>
         </a>
+
+        <!-- NÚT TRA CỨU SAO HẠN (ẢNH 1: HIỂN THỊ GỌN GÀNG) -->
+        <div onclick="toggleSaoHanModal()" class="card-custom p-4 flex items-center border-l-[8px] border-red-700 community-card">
+            <div class="w-12 flex justify-center text-red-700">
+                <i class="fa-solid fa-star text-3xl"></i>
+            </div>
+            <div class="ml-4 text-left">
+                <p class="font-black text-[15px] uppercase text-red-700 leading-none mb-1">TRA CỨU SAO HẠN</p>
+                <p class="text-[11px] text-gray-500 font-bold uppercase">Bấm để mở công cụ tra cứu</p>
+            </div>
+        </div>
     </div>
 
-    <!-- TOOL SAO HẠN -->
-<a href="saohan.html"
-   class="card-custom p-4 flex items-center border-l-[8px] border-red-700 community-card">
+    <!-- MODAL / KHỐI TRA CỨU SAO HẠN (ẢNH 2 & ẢNH 3) -->
+    <div id="saoHanModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm p-4 flex items-center justify-center overflow-y-auto">
+        <div class="card-custom w-full max-w-md bg-white border-t-[8px] border-red-700 p-6 relative my-auto shadow-2xl">
+            
+            <!-- Nút đóng -->
+            <button onclick="toggleSaoHanModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-xl font-black">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
 
-    <div class="w-12 flex justify-center text-red-700">
-        <i class="fa-solid fa-star text-3xl"></i>
+            <!-- TIÊU ĐỀ KHỐI TRA CỨU (GIỐNG MẪU ẢNH 2) -->
+            <div class="text-center mb-6">
+                <h2 class="font-black text-2xl text-red-800 uppercase tracking-tight">TRA CỨU HẠN </h2>
+                <p class="text-xs text-gray-500 font-bold italic mt-1">Dữ liệu Sao-Hạn theo bảng chuẩn & Logic Tứ Đại Hạn</p>
+            </div>
+
+            <!-- FORM CHỌN -->
+            <form id="lookupForm" class="space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-black text-gray-700 mb-1">Năm sinh (Dương lịch):</label>
+                        <select id="birthYear" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl p-3 font-black text-center">
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-black text-gray-700 mb-1">Năm xem hạn:</label>
+                        <select id="targetYear" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl p-3 font-black text-center">
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black text-gray-700 mb-1">Giới tính:</label>
+                    <select id="genderSelect" class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-xl p-3 font-black">
+                        <option value="nam">Nam mạng</option>
+                        <option value="nu">Nữ mạng</option>
+                    </select>
+                </div>
+
+                <!-- NÚT XEM KẾT QUẢ CHUẨN (ẢNH 2) -->
+                <button type="button" onclick="calculateTuVi()" class="w-full btn-red-submit font-black py-4 px-6 rounded-xl text-base uppercase tracking-wider shadow-md">
+                    XEM KẾT QUẢ CHUẨN
+                </button>
+            </form>
+
+            <!-- KẾT QUẢ HIỂN THỊ (ẢNH 3) -->
+            <div id="resultSection" class="hidden mt-6 space-y-3">
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-blue-50/70 border border-blue-100 rounded-xl p-3">
+                        <span class="text-[10px] font-black text-gray-500 uppercase block mb-1">SAO CHIẾU MỆNH</span>
+                        <div id="resSao" class="text-sm font-black text-blue-900">S. --</div>
+                    </div>
+                    <div class="bg-amber-50/70 border border-amber-100 rounded-xl p-3">
+                        <span class="text-[10px] font-black text-gray-500 uppercase block mb-1">HẠN NIÊN</span>
+                        <div id="resHan" class="text-sm font-black text-amber-900">H. --</div>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+                        <span class="text-[10px] font-black text-gray-500 uppercase block mb-1">TAM TAI</span>
+                        <div id="resTamTai" class="text-sm font-black text-gray-800">--</div>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+                        <span class="text-[10px] font-black text-gray-500 uppercase block mb-1">THÁI TUẾ</span>
+                        <div id="resThaiTue" class="text-sm font-black text-gray-800">--</div>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+                        <span class="text-[10px] font-black text-gray-500 uppercase block mb-1">KIM LÂU</span>
+                        <div id="resKimLau" class="text-sm font-black text-gray-800">--</div>
+                    </div>
+                    <div class="bg-gray-50 border border-gray-200 rounded-xl p-3">
+                        <span class="text-[10px] font-black text-gray-500 uppercase block mb-1">HOANG ỐC</span>
+                        <div id="resHoangOc" class="text-sm font-black text-gray-800">--</div>
+                    </div>
+                </div>
+
+                <!-- BANNER TUỔI MỤ & CAN CHI (ĐÚNG MẪU ẢNH 3) -->
+                <div class="bg-[#121827] text-white rounded-xl p-4 text-center mt-3 shadow-md">
+                    <div id="resAgeLarge" class="text-2xl font-black text-yellow-400">-- Tuổi Mụ</div>
+                    <div id="resCanChiDetail" class="text-xs font-black tracking-widest text-gray-300 uppercase mt-1">--</div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <div class="ml-4 text-left">
-        <p class="font-black text-[15px] uppercase text-red-700 leading-none mb-1">
-            TRA CỨU SAO HẠN 2026
-        </p>
-
-        <p class="text-[11px] text-gray-500 font-bold uppercase">
-            Bấm để mở công cụ tra cứu
-        </p>
-    </div>
-</a>
-
-    <!-- ĐỘI NGŨ -->
+    <!-- ĐỘI NGŨ CHUYÊN GIA -->
     <div class="pt-4">
-
-        <h2 class="text-center font-black text-black uppercase text-xl mb-4">
-            ĐỘI NGŨ CHUYÊN GIA
-        </h2>
+        <h2 class="text-center font-black text-black uppercase text-xl mb-4">ĐỘI NGŨ CHUYÊN GIA</h2>
 
         <!-- NGUYỄN TUẤN ANH -->
         <div class="card-custom">
-
             <div class="bg-[#c82333] py-4 text-center">
-                <h3 class="text-white font-black text-xl tracking-wider uppercase">
-                    NGUYỄN TUẤN ANH
-                </h3>
-
-                <p class="text-red-100 text-[10px] font-bold uppercase tracking-widest">
-                    TỬ VI - PHONG THỦY
-                </p>
+                <h3 class="text-white font-black text-xl tracking-wider uppercase">NGUYỄN TUẤN ANH</h3>
+                <p class="text-red-100 text-[10px] font-bold uppercase tracking-widest">TỬ VI - PHONG THỦY</p>
             </div>
-
             <div class="p-4 space-y-3">
-
-                <a href="https://zalo.me/0789414153"
-                   class="btn-action bg-blue-600 text-white shadow-lg">
-
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
-                         class="zalo-icon-svg"
-                         alt="Zalo">
-
-                    <span class="font-bold uppercase">
-                        ZALO: 0789.414.153
-                    </span>
+                <a href="https://zalo.me/0789414153" class="btn-action bg-blue-600 text-white shadow-lg">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" class="zalo-icon-svg" alt="Zalo">
+                    <span class="font-bold uppercase">ZALO: 0789.414.153</span>
                 </a>
-
-                <a href="https://www.facebook.com/thymozin"
-                   class="btn-action bg-[#2d4373] text-white">
-
-                    <i class="fa-brands fa-facebook text-xl"></i>
-                    FACEBOOK CÁ NHÂN
+                <a href="https://www.facebook.com/thymozin" class="btn-action bg-[#2d4373] text-white">
+                    <i class="fa-brands fa-facebook text-xl"></i> FACEBOOK CÁ NHÂN
                 </a>
             </div>
         </div>
 
         <!-- KIM NGUYÊN BẢO -->
         <div class="card-custom mt-4">
-
             <div class="bg-[#1e40af] py-4 text-center">
-                <h3 class="text-white font-black text-xl tracking-wider uppercase">
-                    KIM NGUYÊN BẢO
-                </h3>
-
-                <p class="text-blue-100 text-[10px] font-bold uppercase tracking-widest">
-                    NĂNG LƯỢNG SỐ
-                </p>
+                <h3 class="text-white font-black text-xl tracking-wider uppercase">KIM NGUYÊN BẢO</h3>
+                <p class="text-blue-100 text-[10px] font-bold uppercase tracking-widest">NĂNG LƯỢNG SỐ</p>
             </div>
-
             <div class="p-4 space-y-3">
-
-                <a href="https://zalo.me/0849328628"
-                   class="btn-action bg-blue-600 text-white shadow-lg">
-
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg"
-                         class="zalo-icon-svg"
-                         alt="Zalo">
-
-                    <span class="font-bold uppercase">
-                        ZALO: 0849.328.628
-                    </span>
+                <a href="https://zalo.me/0849328628" class="btn-action bg-blue-600 text-white shadow-lg">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" class="zalo-icon-svg" alt="Zalo">
+                    <span class="font-bold uppercase">ZALO: 0849.328.628</span>
                 </a>
-
-                <a href="https://www.facebook.com/Kimnguyenbao414135"
-                   class="btn-action bg-[#17338a] text-white">
-
-                    <i class="fa-brands fa-facebook text-xl"></i>
-                    FACEBOOK CÁ NHÂN
+                <a href="https://www.facebook.com/Kimnguyenbao414135" class="btn-action bg-[#17338a] text-white">
+                    <i class="fa-brands fa-facebook text-xl"></i> FACEBOOK CÁ NHÂN
                 </a>
             </div>
         </div>
@@ -359,93 +340,192 @@
 
     <!-- SỨ MỆNH -->
     <div class="mission-box">
-
-        <h2 class="font-black text-lg uppercase tracking-widest mb-2">
-            SỨ MỆNH CỦA CHÚNG TÔI
-        </h2>
-
-        <p class="font-black text-xl italic leading-tight">
-            “Vận mệnh có thể dự đoán, nhưng cải vận nằm trong tầm tay.”
-        </p>
+        <h2 class="font-black text-lg uppercase tracking-widest mb-2">SỨ MỆNH CỦA CHÚNG TÔI</h2>
+        <p class="font-black text-xl italic leading-tight">“Vận mệnh có thể dự đoán, nhưng cải vận nằm trong tầm tay.”</p>
     </div>
 
     <!-- GIÁ TRỊ CỐT LÕI -->
     <div class="card-custom p-6">
-
         <div class="text-center mb-6">
-            <h2 class="text-2xl font-black text-red-800 uppercase">
-                GIÁ TRỊ CỐT LÕI
-            </h2>
+            <h2 class="text-2xl font-black text-red-800 uppercase">GIÁ TRỊ CỐT LÕI</h2>
         </div>
-
         <div class="space-y-8">
-
             <div class="value-item border-red-700">
-
                 <div class="flex items-center gap-2 mb-2">
                     <i class="fa-solid fa-star text-red-700"></i>
-
-                    <h3 class="font-black text-red-800 text-lg uppercase">
-                        TỬ VI VẬN MỆNH CHUYÊN SÂU
-                    </h3>
+                    <h3 class="font-black text-red-800 text-lg uppercase">TỬ VI VẬN MỆNH CHUYÊN SÂU</h3>
                 </div>
-
                 <p class="desc-italic-bold text-[0.95rem] leading-relaxed">
-                    Phân tích 12 con giáp theo năm – tháng – thời vận.
-                    Giải mã biến động cuộc đời, định hướng sự nghiệp –
-                    tài lộc – tình duyên – gia đạo.
+                    Phân tích 12 con giáp theo năm – tháng – thời vận. Giải mã biến động cuộc đời, định hướng sự nghiệp – tài lộc – tình duyên – gia đạo.
                 </p>
             </div>
-
             <div class="value-item border-blue-700">
-
                 <div class="flex items-center gap-2 mb-2">
                     <i class="fa-solid fa-bolt text-blue-700"></i>
-
-                    <h3 class="font-black text-blue-900 text-lg uppercase">
-                        NĂNG LƯỢNG SỐ & GIẢI PHÁP
-                    </h3>
+                    <h3 class="font-black text-blue-900 text-lg uppercase">NĂNG LƯỢNG SỐ & GIẢI PHÁP</h3>
                 </div>
-
                 <p class="desc-italic-bold text-[0.95rem] leading-relaxed">
-                    Luận giải các con số gắn liền với bạn:
-                    Số điện thoại, CCCD, tài khoản, biển số xe, số nhà…
-                    Giúp bổ trợ bản mệnh – kích hoạt cung tốt – giảm điểm khuyết.
+                    Luận giải các con số gắn liền với bạn: Số điện thoại, CCCD, tài khoản, biển số xe, số nhà… Giúp bổ trợ bản mệnh – kích hoạt cung tốt – giảm điểm khuyết.
                 </p>
             </div>
-
             <div class="value-item border-yellow-600">
-
                 <div class="flex items-center gap-2 mb-2">
                     <i class="fa-solid fa-gem text-yellow-600"></i>
-
-                    <h3 class="font-black text-yellow-700 text-lg uppercase">
-                        THIẾT KẾ SỐ THEO BẢN MỆNH
-                    </h3>
+                    <h3 class="font-black text-yellow-700 text-lg uppercase">THIẾT KẾ SỐ THEO BẢN MỆNH</h3>
                 </div>
-
                 <p class="desc-italic-bold text-[0.95rem] leading-relaxed">
-                    Xây dựng bộ số cá nhân hóa giúp gia tăng tài lộc –
-                    ổn định năng lượng – phát triển bền vững.
+                    Xây dựng bộ số cá nhân hóa giúp gia tăng tài lộc – ổn định năng lượng – phát triển bền vững.
                 </p>
             </div>
-
         </div>
     </div>
 
     <!-- FOOTER -->
     <div class="text-center py-8 bg-[#1a1c2e] rounded-[30px] mt-8 shadow-xl">
-
-        <p class="text-xl text-yellow-400 font-black uppercase italic mb-1">
-            THAY TƯ DUY ĐỔI VẬN MỆNH
-        </p>
-
-        <p class="text-gray-500 text-[9px] font-bold uppercase tracking-[0.4em]">
-            © 2026 MẬT MÃ CUỘC ĐỜI
-        </p>
+        <p class="text-xl text-yellow-400 font-black uppercase italic mb-1">THAY TƯ DUY ĐỔI VẬN MỆNH</p>
+        <p class="text-gray-500 text-[9px] font-bold uppercase tracking-[0.4em]">© 2026 MẬT MÃ CUỘC ĐỜI</p>
     </div>
 
 </div>
+
+<script>
+    const THIEN_CAN = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
+    const DIA_CHI = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+
+    function getCanIndex(year) { return (year + 6) % 10; }
+    function getChiIndex(year) { return (year + 8) % 12; }
+    function getCanChi(year) { return `${THIEN_CAN[getCanIndex(year)]} ${DIA_CHI[getChiIndex(year)]}`; }
+
+    // Toggle Modal
+    function toggleSaoHanModal() {
+        const modal = document.getElementById('saoHanModal');
+        modal.classList.toggle('hidden');
+    }
+
+    // Nạp dữ liệu Năm sinh từ 1942 - 2043
+    window.addEventListener('DOMContentLoaded', () => {
+        const birthSelect = document.getElementById('birthYear');
+        const targetSelect = document.getElementById('targetYear');
+
+        for (let year = 2043; year >= 1942; year--) {
+            const opt = document.createElement('option');
+            opt.value = year;
+            opt.textContent = year;
+            if (year === 1984) opt.selected = true; // Mặc định giống ảnh mẫu
+            birthSelect.appendChild(opt);
+        }
+
+        const currentYear = 2026;
+        for (let year = 2045; year >= 1942; year--) {
+            const opt = document.createElement('option');
+            opt.value = year;
+            opt.textContent = year;
+            if (year === currentYear) opt.selected = true;
+            targetSelect.appendChild(opt);
+        }
+    });
+
+    // Thuật toán Sao Cửu Diệu
+    function getSaoChieuMenh(age, isNam) {
+        let rem = age % 9 || 9;
+        return isNam ? 
+            {1:"La Hầu", 2:"Thổ Tú", 3:"Thủy Diệu", 4:"Thái Bạch", 5:"Thái Dương", 6:"Vân Hớn", 7:"Kế Đô", 8:"Thái Âm", 9:"Mộc Đức"}[rem] :
+            {1:"Kế Đô", 2:"Vân Hớn", 3:"Mộc Đức", 4:"Thái Âm", 5:"Thổ Tú", 6:"La Hầu", 7:"Thái Dương", 8:"Thái Bạch", 9:"Thủy Diệu"}[rem];
+    }
+
+    // Thuật toán Bát Hạn chuẩn
+    function getHanNhatNien(age, isNam) {
+        const tens = Math.floor(age / 10), ones = age % 10;
+        const hanNam = ["Huỳnh Tuyền", "Tam Kheo", "Ngũ Mộ", "Thiên Tinh", "Toán Tận", "Thiên La", "Địa Võng", "Diêm Vương"];
+        const hanNu = ["Toán Tận", "Thiên Tinh", "Ngũ Mộ", "Tam Kheo", "Huỳnh Tuyền", "Diêm Vương", "Địa Võng", "Thiên La"];
+        return (isNam ? hanNam : hanNu)[((tens - 1) + ones) % 8];
+    }
+
+    // Tam Tai
+    function getTamTai(birthYear, targetYear) {
+        const bChi = getChiIndex(birthYear), tChi = getChiIndex(targetYear);
+        let tt = [];
+        if ([8, 0, 4].includes(bChi)) tt = [2, 3, 4];
+        else if ([5, 9, 1].includes(bChi)) tt = [11, 0, 1];
+        else if ([2, 6, 10].includes(bChi)) tt = [8, 9, 10];
+        else if ([11, 3, 7].includes(bChi)) tt = [5, 6, 7];
+
+        const idx = tt.indexOf(tChi);
+        if (idx >= 0) return { text: `Phạm Tam Tai (Năm ${idx + 1})`, isBad: true };
+        return { text: "Không phạm", isBad: false };
+    }
+
+    // Thái Tuế
+    function getThaiTue(birthYear, targetYear) {
+        const bChi = getChiIndex(birthYear), tChi = getChiIndex(targetYear);
+        if (bChi === tChi) return { text: "Trực Thái Tuế", isBad: true };
+        if ((bChi + 6) % 12 === tChi) return { text: "Xung Thái Tuế", isBad: true };
+
+        const isP = (arr) => arr.some(([x, y]) => (x === bChi && y === tChi) || (x === tChi && y === bChi));
+        if (isP([[0, 3], [2, 5], [5, 8], [8, 2], [1, 7], [7, 10], [10, 1]])) return { text: "Hình Thái Tuế", isBad: true };
+        if (isP([[0, 7], [1, 6], [2, 5], [3, 4], [8, 11], [9, 10]])) return { text: "Hại Thái Tuế", isBad: true };
+        if (isP([[0, 9], [1, 4], [2, 11], [3, 6], [5, 8], [7, 10]])) return { text: "Phá Thái Tuế", isBad: true };
+
+        return { text: "Không phạm", isBad: false };
+    }
+
+    // Kim Lâu
+    function getKimLau(age) {
+        const rem = age % 9;
+        const m = {1: "Thân", 3: "Thê", 6: "Tử", 8: "Súc"};
+        return m[rem] ? { text: `Phạm Kim Lâu ${m[rem]}`, isBad: true } : { text: "Không phạm", isBad: false };
+    }
+
+    // Hoang Ốc
+    function getHoangOc(age) {
+        const names = ["1. Nhất Cát (Tốt)", "2. Nhị Nghi (Tốt)", "3. Tam Địa Sát (Xấu)", "4. Tứ Tấn Tài (Tốt)", "5. Ngũ Thọ Tử (Xấu)", "6. Lục Hoang Ốc (Xấu)"];
+        let tens = Math.floor(age / 10), ones = age % 10;
+        let start = (tens % 6) || 6;
+        let finalPos = ((start + ones) % 6) || 6;
+        const name = names[finalPos - 1];
+        return { text: name, isBad: name.includes("Xấu") };
+    }
+
+    // Tính toán kết quả
+    function calculateTuVi() {
+        const birthYear = parseInt(document.getElementById('birthYear').value);
+        const targetYear = parseInt(document.getElementById('targetYear').value);
+        const isNam = document.getElementById('genderSelect').value === 'nam';
+
+        const age = targetYear - birthYear + 1;
+
+        if (age <= 0) {
+            alert("Năm xem phải lớn hơn hoặc bằng năm sinh!");
+            return;
+        }
+
+        document.getElementById('resSao').textContent = `S. ${getSaoChieuMenh(age, isNam)}`;
+        document.getElementById('resHan').textContent = `H. ${getHanNhatNien(age, isNam)}`;
+
+        const setRes = (id, obj) => {
+            const el = document.getElementById(id);
+            el.textContent = obj.text;
+            if (obj.isBad) {
+                el.className = "text-sm font-black text-red-600";
+            } else if (obj.text.includes("Tốt") || obj.text === "Không phạm") {
+                el.className = "text-sm font-black text-emerald-600";
+            } else {
+                el.className = "text-sm font-black text-gray-800";
+            }
+        };
+
+        setRes('resTamTai', getTamTai(birthYear, targetYear));
+        setRes('resThaiTue', getThaiTue(birthYear, targetYear));
+        setRes('resKimLau', getKimLau(age));
+        setRes('resHoangOc', getHoangOc(age));
+
+        document.getElementById('resAgeLarge').textContent = `${age} Tuổi Mụ`;
+        document.getElementById('resCanChiDetail').textContent = getCanChi(birthYear);
+
+        const resultSection = document.getElementById('resultSection');
+        resultSection.classList.remove('hidden');
+    }
+</script>
 
 </body>
 </html>
