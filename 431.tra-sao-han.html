@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Sao Hạn - Mật Mã Cuộc Đời</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+        }
+        .custom-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            border: 1px solid #e2e8f0;
+        }
+        .red-gradient-btn {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            transition: all 0.3s ease;
+        }
+        .red-gradient-btn:hover {
+            background: linear-gradient(135deg, #be123c 0%, #9f1239 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(225, 29, 72, 0.4);
+        }
+        .badge-good { background-color: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+        .badge-bad { background-color: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
+        .badge-neutral { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 pb-12">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-rose-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    <i class="fa-solid font-star text-yellow-300"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg text-slate-900 leading-tight">MẬT MÃ CUỘC ĐỜI</h1>
+                    <p class="text-xs text-rose-600 font-semibold tracking-wide">TRA CỨU SAO HẠN THEO BẢNG DÂN GIAN</p>
+                </div>
+            </div>
+            <a href="https://zalo.me/0789414153" class="text-xs font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 px-3 py-2 rounded-full transition">
+             <i class="fa-solid fa-phone text-rose-600 mr-1"></i>0789.414.153
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-xl mx-auto px-4 mt-6">
+
+        <div class="custom-card p-6 mb-6">
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-rose-100 text-rose-600 mb-2">
+                    <i class="fa-solid fa-compass text-xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-900">TRA CỨU HẠN CHUẨN</h2>
+                <p class="text-xs text-slate-500 mt-1">Cửu Diệu, Bát Hạn và các quan hệ tuổi năm xem (1924 - 2043)</p>
+            </div>
+
+            <form id="lookupForm" class="space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- Chọn Năm Sinh -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1" for="birthYear">
+                            Năm sinh (theo năm âm lịch):
+                        </label>
+                        <div class="relative">
+                            <select id="birthYear" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 block p-3 pr-8 appearance-none font-bold">
+                                <!-- Populated by JS -->
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-500">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chọn Năm Xem -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1" for="targetYear">
+                            Năm xem (năm âm lịch):
+                        </label>
+                        <div class="relative">
+                            <select id="targetYear" class="w-full bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-xl focus:ring-2 focus:ring-rose-500 focus:border-rose-500 block p-3 pr-8 appearance-none font-bold">
+                                <!-- Populated by JS -->
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-500">
+                                <i class="fa-solid fa-chevron-down text-xs"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed">Lưu ý: Chọn năm theo Can Chi âm lịch. Nếu chỉ biết năm dương lịch và sinh trước Tết Nguyên đán, cần xác định năm âm lịch thực tế trước khi tra cứu.</p>
+
+                <!-- Chọn Giới Tính -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Giới tính:</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="relative flex items-center justify-center p-3 border-2 rounded-xl cursor-pointer transition-all border-rose-500 bg-rose-50/50 font-bold text-rose-700" id="labelNam">
+                            <input type="radio" name="gender" value="nam" checked class="sr-only" onchange="updateGenderUI()">
+                            <i class="fa-solid fa-mars mr-2 text-base"></i> Nam mạng
+                        </label>
+                        <label class="relative flex items-center justify-center p-3 border-2 border-slate-200 rounded-xl cursor-pointer transition-all text-slate-600 font-bold hover:bg-slate-50" id="labelNu">
+                            <input type="radio" name="gender" value="nu" class="sr-only" onchange="updateGenderUI()">
+                            <i class="fa-solid fa-venus mr-2 text-base"></i> Nữ mạng
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Nút Tra Cứu -->
+                <button type="button" onclick="calculateTuVi()" class="w-full red-gradient-btn text-white font-extrabold py-3.5 px-6 rounded-xl shadow-lg flex items-center justify-center space-x-2 text-base mt-4">
+                    <span>XEM KẾT QUẢ CHUẨN</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Kết Quả Hiển Thị Dạng Grid Giống Hình Snap -->
+        <div id="resultSection" class="hidden space-y-4">
+            
+            <div class="grid grid-cols-2 gap-3">
+                <!-- 1. Sao Chiếu Mệnh -->
+                <div class="bg-blue-50/60 border border-blue-100 rounded-2xl p-4">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">SAO CHIẾU MỆNH</span>
+                    <div id="resSao" class="text-base font-black text-blue-900">S. --</div>
+                </div>
+
+                <!-- 2. Hạn Niên -->
+                <div class="bg-amber-50/60 border border-amber-100 rounded-2xl p-4">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">HẠN NIÊN</span>
+                    <div id="resHan" class="text-base font-black text-amber-900">H. --</div>
+                </div>
+
+                <!-- 3. Tam Tai -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">TAM TAI</span>
+                    <div id="resTamTai" class="text-base font-black text-slate-800">--</div>
+                </div>
+
+                <!-- 4. Thái Tuế -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">THÁI TUẾ</span>
+                    <div id="resThaiTue" class="text-base font-black text-slate-800">--</div>
+                </div>
+
+                <!-- 5. Kim Lâu -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">KIM LÂU</span>
+                    <div id="resKimLau" class="text-base font-black text-slate-800">--</div>
+                </div>
+
+                <!-- 6. Hoang Ốc -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                    <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">HOANG ỐC</span>
+                    <div id="resHoangOc" class="text-base font-black text-slate-800">--</div>
+                </div>
+            </div>
+
+            <!-- Banner Tuổi Mụ & Can Chi -->
+            <div class="bg-slate-900 text-white rounded-2xl p-5 text-center shadow-md">
+                <div id="resAgeLarge" class="text-3xl font-black text-amber-400">-- Tuổi Mụ</div>
+                <div id="resCanChiDetail" class="text-sm font-bold tracking-widest text-slate-300 uppercase mt-1">--</div>
+            </div>
+
+            <!-- Chuyên gia liên hệ -->
+            <div class="custom-card p-6 text-center bg-white border border-slate-200">
+                <div class="w-14 h-14 rounded-full bg-rose-600 mx-auto mb-2 flex items-center justify-center text-white text-xl font-bold shadow">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <h4 class="font-extrabold text-base text-slate-900">NGUYỄN TUẤN ANH - KIM NGUYÊN BẢO</h4>
+                <p class="text-xs text-rose-600 font-semibold mb-3">TỬ VI-PHONG THỦY-NĂNG LƯỢNG SỐ</p>
+                <a href="https://zalo.me/0789414153" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition text-sm mb-2">
+               <i class="fa-solid fa-comments mr-2"></i> LIÊN HỆ ZALO: 0789.414.153
+                </a>
+                <a href="https://zalo.me/0849328628" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition text-sm">
+               <i class="fa-solid fa-comments mr-2"></i> LIÊN HỆ ZALO: 0849.328.628
+                </a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        const THIEN_CAN = ["Giáp", "Ất", "Bính", "Đinh", "Mậu", "Kỷ", "Canh", "Tân", "Nhâm", "Quý"];
+        const DIA_CHI = ["Tý", "Sửu", "Dần", "Mão", "Thìn", "Tỵ", "Ngọ", "Mùi", "Thân", "Dậu", "Tuất", "Hợi"];
+
+        function getCanIndex(year) { return (year + 6) % 10; }
+        function getChiIndex(year) { return (year + 8) % 12; }
+
+        function getCanChi(year) {
+            return `${THIEN_CAN[getCanIndex(year)]} ${DIA_CHI[getChiIndex(year)]}`;
+        }
+
+        // 1. Sao Cửu Diệu
+        function getSaoChieuMenh(age, isNam) {
+            let rem = age % 9;
+            if (rem === 0) rem = 9;
+            if (isNam) {
+                const map = {1:"La Hầu", 2:"Thổ Tú", 3:"Thủy Diệu", 4:"Thái Bạch", 5:"Thái Dương", 6:"Vân Hớn", 7:"Kế Đô", 8:"Thái Âm", 9:"Mộc Đức"};
+                return map[rem];
+            } else {
+                const map = {1:"Kế Đô", 2:"Vân Hớn", 3:"Mộc Đức", 4:"Thái Âm", 5:"Thổ Tú", 6:"La Hầu", 7:"Thái Dương", 8:"Thái Bạch", 9:"Thủy Diệu"};
+                return map[rem];
+            }
+        }
+
+        // 2. Bát Hạn theo cách đếm truyền thống: lấy mốc từng hàng chục rồi đếm tiếp tuổi lẻ.
+        // Nam: 10 Huỳnh Tuyền, 20 Tam Kheo, 30 Ngũ Mộ, 40 Thiên Tinh...
+        // Nữ: khởi Toán Tận ở tuổi 10 và đếm nghịch theo vòng hạn.
+        function getHanNhatNien(age, isNam) {
+            const tens = Math.floor(age / 10);
+            const ones = age % 10;
+            const hanNam = [
+                "Huỳnh Tuyền", "Tam Kheo", "Ngũ Mộ", "Thiên Tinh",
+                "Toán Tận", "Thiên La", "Địa Võng", "Diêm Vương"
+            ];
+            const hanNu = [
+                "Toán Tận", "Thiên Tinh", "Ngũ Mộ", "Tam Kheo",
+                "Huỳnh Tuyền", "Diêm Vương", "Địa Võng", "Thiên La"
+            ];
+            // Mỗi hàng chục là một mốc mới; sau đó đếm tiếp từng tuổi lẻ.
+            const index = ((tens - 1) + ones) % 8;
+            return (isNam ? hanNam : hanNu)[index];
+        }
+
+        // 3. Logic Tam Tai chuẩn Tử Vi
+        function getTamTai(birthYear, targetYear) {
+            const birthChi = getChiIndex(birthYear); // 0:Tý .. 11:Hợi
+            const targetChi = getChiIndex(targetYear);
+
+            // Nhóm Tam Hợp & Tam Tai
+            // Thân-Tý-Thìn (8,0,4) -> Tam Tai ở Dần-Mão-Thìn (2,3,4)
+            // Tỵ-Dậu-Sửu (5,9,1) -> Tam Tai ở Hợi-Tý-Sửu (11,0,1)
+            // Dần-Ngọ-Tuất (2,6,10) -> Tam Tai ở Thân-Dậu-Tuất (8,9,10)
+            // Hợi-Mão-Mùi (11,3,7) -> Tam Tai ở Tỵ-Ngọ-Mùi (5,6,7)
+
+            let ttGroup = [];
+            if ([8, 0, 4].includes(birthChi)) ttGroup = [2, 3, 4];
+            else if ([5, 9, 1].includes(birthChi)) ttGroup = [11, 0, 1];
+            else if ([2, 6, 10].includes(birthChi)) ttGroup = [8, 9, 10];
+            else if ([11, 3, 7].includes(birthChi)) ttGroup = [5, 6, 7];
+
+            const idx = ttGroup.indexOf(targetChi);
+            if (idx === 0) return { text: "Phạm Tam Tai (Năm 1)", isBad: true };
+            if (idx === 1) return { text: "Phạm Tam Tai (Năm 2)", isBad: true };
+            if (idx === 2) return { text: "Phạm Tam Tai (Năm 3)", isBad: true };
+
+            return { text: "Không phạm", isBad: false };
+        }
+
+        // 4. Quan hệ Thái Tuế theo Địa Chi năm sinh và Địa Chi năm xem.
+        // Ưu tiên phân loại: Trực, Xung, Hình, Hại, Phá.
+        function getThaiTue(birthYear, targetYear) {
+            const birthChi = getChiIndex(birthYear);
+            const targetChi = getChiIndex(targetYear);
+
+            if (birthChi === targetChi) return { text: "Trực Thái Tuế", isBad: true };
+            if ((birthChi + 6) % 12 === targetChi) return { text: "Xung Thái Tuế", isBad: true };
+
+            // Tam hình: Tý-Mão; Dần-Tỵ-Thân; Sửu-Mùi-Tuất. Cùng chi đã được xếp là Trực Thái Tuế ở trên.
+            const xingPairs = [
+                [0, 3], [2, 5], [5, 8], [8, 2],
+                [1, 7], [7, 10], [10, 1]
+            ];
+            const isPair = (pairs, a, b) => pairs.some(([x, y]) =>
+                (x === a && y === b) || (x === b && y === a));
+            if (isPair(xingPairs, birthChi, targetChi)) {
+                return { text: "Hình Thái Tuế", isBad: true };
+            }
+
+            // Lục Hại: Tý-Mùi, Sửu-Ngọ, Dần-Tỵ, Mão-Thìn, Thân-Hợi, Dậu-Tuất.
+            const haiPairs = [[0, 7], [1, 6], [2, 5], [3, 4], [8, 11], [9, 10]];
+            if (isPair(haiPairs, birthChi, targetChi)) {
+                return { text: "Hại Thái Tuế", isBad: true };
+            }
+
+            // Lục Phá: Tý-Dậu, Sửu-Thìn, Dần-Hợi, Mão-Ngọ, Tỵ-Thân, Mùi-Tuất.
+            const phaPairs = [[0, 9], [1, 4], [2, 11], [3, 6], [5, 8], [7, 10]];
+            if (isPair(phaPairs, birthChi, targetChi)) {
+                return { text: "Phá Thái Tuế", isBad: true };
+            }
+
+            return { text: "Không phạm", isBad: false };
+        }
+
+        // 5. Logic Kim Lâu
+        function getKimLau(age) {
+            const rem = age % 9;
+            if ([1, 3, 6, 8].includes(rem)) {
+                if (rem === 1) return { text: "Phạm Kim Lâu Thân", isBad: true };
+                if (rem === 3) return { text: "Phạm Kim Lâu Thê", isBad: true };
+                if (rem === 6) return { text: "Phạm Kim Lâu Tử", isBad: true };
+                if (rem === 8) return { text: "Phạm Kim Lâu Súc", isBad: true };
+            }
+            return { text: "Không phạm", isBad: false };
+        }
+
+        // 6. Logic Hoang Ốc
+        function getHoangOc(age) {
+            // Khởi 10 tại Nhất Cát (1), 20 Nhị Nghi (2), 30 Tam Địa Sát (3), 40 Tứ Tấn Tài (4), 50 Ngũ Thọ Tử (5), 60 Lục Hoang Ốc (6)
+            const hoangOcNames = [
+                "1. Nhất Cát (Tốt)",
+                "2. Nhị Nghi (Tốt)",
+                "3. Tam Địa Sát (Xấu)",
+                "4. Tứ Tấn Tài (Tốt)",
+                "5. Ngũ Thọ Tử (Xấu)",
+                "6. Lục Hoang Ốc (Xấu)"
+            ];
+
+            let tens = Math.floor(age / 10);
+            let ones = age % 10;
+
+            let startPos = (tens % 6);
+            if (startPos === 0) startPos = 6;
+
+            let finalPos = (startPos + ones) % 6;
+            if (finalPos === 0) finalPos = 6;
+
+            const name = hoangOcNames[finalPos - 1];
+            const isBad = name.includes("Xấu");
+
+            return { text: name, isBad };
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const birthSelect = document.getElementById('birthYear');
+            const targetSelect = document.getElementById('targetYear');
+
+            for (let year = 2043; year >= 1924; year--) {
+                const opt = document.createElement('option');
+                opt.value = year;
+                opt.textContent = `${year} (${getCanChi(year)})`;
+                if (year === 1987) opt.selected = true; // Match image test case 1987 (Đinh Mão)
+                birthSelect.appendChild(opt);
+            }
+
+            const currentYear = 2026; // Năm xem mặc định
+            for (let year = 2045; year >= 1924; year--) {
+                const opt = document.createElement('option');
+                opt.value = year;
+                opt.textContent = `${year} (${getCanChi(year)})`;
+                if (year === currentYear) opt.selected = true;
+                targetSelect.appendChild(opt);
+            }
+        });
+
+        function updateGenderUI() {
+            const isNam = document.querySelector('input[name="gender"]:checked').value === 'nam';
+            const labelNam = document.getElementById('labelNam');
+            const labelNu = document.getElementById('labelNu');
+
+            if (isNam) {
+                labelNam.className = "relative flex items-center justify-center p-3 border-2 rounded-xl cursor-pointer transition-all border-rose-500 bg-rose-50/50 font-bold text-rose-700";
+                labelNu.className = "relative flex items-center justify-center p-3 border-2 border-slate-200 rounded-xl cursor-pointer transition-all text-slate-600 font-bold hover:bg-slate-50";
+            } else {
+                labelNu.className = "relative flex items-center justify-center p-3 border-2 rounded-xl cursor-pointer transition-all border-rose-500 bg-rose-50/50 font-bold text-rose-700";
+                labelNam.className = "relative flex items-center justify-center p-3 border-2 border-slate-200 rounded-xl cursor-pointer transition-all text-slate-600 font-bold hover:bg-slate-50";
+            }
+        }
+
+        function calculateTuVi() {
+            const birthYear = parseInt(document.getElementById('birthYear').value);
+            const targetYear = parseInt(document.getElementById('targetYear').value);
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const isNam = gender === 'nam';
+
+            const age = targetYear - birthYear + 1;
+
+            if (age <= 0) {
+                alert("Năm xem phải lớn hơn hoặc bằng năm sinh theo năm âm lịch!");
+                return;
+            }
+
+            // Tính 6 yếu tố chuẩn Tử Vi
+            const sao = getSaoChieuMenh(age, isNam);
+            const han = getHanNhatNien(age, isNam);
+            const tamtai = getTamTai(birthYear, targetYear);
+            const thaitue = getThaiTue(birthYear, targetYear);
+            const kimlau = getKimLau(age);
+            const hoangoc = getHoangOc(age);
+
+            // Render
+            document.getElementById('resSao').textContent = `S. ${sao}`;
+            document.getElementById('resHan').textContent = `H. ${han}`;
+
+            // Helper set text & color
+            const setRes = (id, obj) => {
+                const el = document.getElementById(id);
+                el.textContent = obj.text;
+                if (obj.isBad) {
+                    el.className = "text-base font-black text-rose-600";
+                } else if (obj.text.includes("Tốt") || obj.text === "Không phạm") {
+                    el.className = "text-base font-black text-emerald-600";
+                } else {
+                    el.className = "text-base font-black text-slate-800";
+                }
+            };
+
+            setRes('resTamTai', tamtai);
+            setRes('resThaiTue', thaitue);
+            setRes('resKimLau', kimlau);
+            setRes('resHoangOc', hoangoc);
+
+            document.getElementById('resAgeLarge').textContent = `${age} Tuổi Mụ`;
+            document.getElementById('resCanChiDetail').textContent = `Sinh: ${getCanChi(birthYear)} (${birthYear}) • Xem: ${getCanChi(targetYear)} (${targetYear})`;
+
+            const resultSection = document.getElementById('resultSection');
+            resultSection.classList.remove('hidden');
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
