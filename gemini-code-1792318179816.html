@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hệ Thống Bài Giảng Tương Tác Can Chi Ngũ Hành</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            touch-action: manipulation;
+            background-color: #f3f4f6;
+        }
+
+        /* Custom UI matching target site theme */
+        .btn-card-red {
+            background: #ffffff;
+            border: 2.5px solid #c81e1e;
+            box-shadow: 0 4px 12px rgba(200, 30, 30, 0.15);
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-card-red:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(200, 30, 30, 0.25);
+        }
+
+        /* Bold crisp typography setup */
+        .text-bold-crisp {
+            font-weight: 800;
+            letter-spacing: -0.01em;
+            color: #111827;
+        }
+
+        /* Teaching canvas positioning */
+        #canvas-container {
+            overflow: hidden;
+            touch-action: none;
+            cursor: default;
+        }
+
+        /* Smooth slide scrolling transitions */
+        .slide-content {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hide scrollbars for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* PRINT STYLES - Hide header, footer, modals and print only slide content */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #slide-viewport, #slide-viewport * {
+                visibility: visible;
+            }
+            #slide-viewport {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100% !important;
+                height: 100% !important;
+                transform: scale(1) !important;
+                box-shadow: none !important;
+                border: none !important;
+            }
+            header, footer, #open-board-btn {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <!-- MAIN TRIGGER CARD -->
+    <div class="w-full max-w-md mx-auto">
+        <button id="open-board-btn" onclick="openTeachingModal()" class="w-full btn-card-red rounded-2xl p-4 flex items-center justify-between group cursor-pointer text-left">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-xl bg-red-100 flex items-center justify-center text-red-700 text-2xl group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl font-black text-red-700 uppercase tracking-wide">BÀI GIẢNG CAN CHI NGŨ HÀNH</h3>
+                    <p class="text-xs font-bold text-gray-500 uppercase tracking-wider">Bấm để mở công cụ bảng tương tác</p>
+                </div>
+            </div>
+            <div class="text-red-600 text-xl pl-2">
+                <i class="fa-solid fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
+            </div>
+        </button>
+    </div>
+
+    <!-- FULL-SCREEN TEACHING BOARD MODAL -->
+    <div id="teaching-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-md z-50 hidden flex-col transition-opacity duration-300">
+        
+        <!-- TOP TOOLBAR / HEADER -->
+        <header class="bg-white border-b border-gray-200 px-4 py-2.5 flex items-center justify-between shadow-md z-10 flex-wrap gap-2">
+            <!-- Left: Title & Slide Nav -->
+            <div class="flex items-center space-x-3">
+                <div class="bg-red-700 text-white font-black text-sm px-3 py-1.5 rounded-lg flex items-center space-x-2">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span class="hidden sm:inline">BÀI GIẢNG TƯƠNG TÁC</span>
+                </div>
+                <!-- Slide selector -->
+                <div class="flex items-center bg-gray-100 rounded-lg p-1 border border-gray-300">
+                    <button onclick="changeSlide(-1)" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:bg-white rounded font-bold"><i class="fa-solid fa-chevron-left"></i></button>
+                    <span id="slide-indicator" class="px-3 font-bold text-sm text-gray-800">Trang 1 / 4</span>
+                    <button onclick="changeSlide(1)" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:bg-white rounded font-bold"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <button onclick="addNewSlide()" class="px-3 py-1.5 bg-green-600 text-white text-xs font-bold rounded-lg hover:bg-green-700 flex items-center space-x-1">
+                    <i class="fa-solid fa-plus"></i> <span class="hidden md:inline">Thêm trang</span>
+                </button>
+            </div>
+
+            <!-- Center: Interactive Drawing Tools -->
+            <div class="flex items-center space-x-1 sm:space-x-2 bg-gray-100 p-1 rounded-xl border border-gray-300 overflow-x-auto no-scrollbar">
+                <button id="tool-select" onclick="setTool('select')" class="tool-btn p-2 rounded-lg text-gray-700 hover:bg-white font-bold bg-white shadow-sm" title="Chọn & Di chuyển">
+                    <i class="fa-solid fa-hand"></i>
+                </button>
+                <button id="tool-pen" onclick="setTool('pen')" class="tool-btn p-2 rounded-lg text-gray-700 hover:bg-white font-bold" title="Bút vẽ">
+                    <i class="fa-solid fa-pen-nib"></i>
+                </button>
+                <button id="tool-eraser" onclick="setTool('eraser')" class="tool-btn p-2 rounded-lg text-gray-700 hover:bg-white font-bold" title="Tẩy xóa">
+                    <i class="fa-solid fa-eraser"></i>
+                </button>
+
+                <div class="h-6 w-px bg-gray-300 mx-1"></div>
+
+                <!-- Color picker -->
+                <div class="flex items-center space-x-1">
+                    <button onclick="setColor('#dc2626')" class="w-6 h-6 rounded-full bg-red-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                    <button onclick="setColor('#2563eb')" class="w-6 h-6 rounded-full bg-blue-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                    <button onclick="setColor('#16a34a')" class="w-6 h-6 rounded-full bg-green-600 border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                    <button onclick="setColor('#000000')" class="w-6 h-6 rounded-full bg-black border-2 border-white shadow-sm hover:scale-110 transition-transform"></button>
+                    <input type="color" id="custom-color" onchange="setColor(this.value)" class="w-6 h-6 rounded border-0 cursor-pointer p-0" title="Chọn màu tùy chỉnh">
+                </div>
+
+                <!-- Brush Size -->
+                <select id="pen-size" onchange="setPenLineWidth(this.value)" class="bg-white text-xs border border-gray-300 rounded-lg p-1 font-bold">
+                    <option value="3">Thỏai mái (Nét nhỏ)</option>
+                    <option value="6" selected>Đậm rõ (Nét vừa)</option>
+                    <option value="12">Siêu đậm (Nét to)</option>
+                </select>
+
+                <button onclick="clearCanvas()" class="p-2 rounded-lg text-red-600 hover:bg-red-50 font-bold" title="Xóa toàn bộ nét vẽ">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            </div>
+
+            <!-- Right: Content Insert Tools, Print & Zoom & Close -->
+            <div class="flex items-center space-x-2">
+                <!-- Add Text, Image, Link Dropdown -->
+                <div class="relative inline-block text-left">
+                    <button onclick="toggleInsertMenu()" class="px-3 py-1.5 bg-red-700 text-white font-bold text-xs rounded-lg hover:bg-red-800 flex items-center space-x-1">
+                        <i class="fa-solid fa-folder-plus"></i>
+                        <span>Thêm nội dung</span>
+                    </button>
+                    <div id="insert-menu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 py-1">
+                        <button onclick="addTextPrompt()" class="w-full text-left px-4 py-2 text-sm font-bold text-gray-700 hover:bg-red-50 flex items-center space-x-2">
+                            <i class="fa-solid fa-font text-red-600"></i>
+                            <span>Thêm Chữ Tùy Chỉnh</span>
+                        </button>
+                        <button onclick="addImagePrompt()" class="w-full text-left px-4 py-2 text-sm font-bold text-gray-700 hover:bg-red-50 flex items-center space-x-2">
+                            <i class="fa-solid fa-image text-blue-600"></i>
+                            <span>Thêm Ảnh Minh Họa</span>
+                        </button>
+                        <button onclick="addVideoPrompt()" class="w-full text-left px-4 py-2 text-sm font-bold text-gray-700 hover:bg-red-50 flex items-center space-x-2">
+                            <i class="fa-brands fa-youtube text-red-600"></i>
+                            <span>Thêm Video Youtube</span>
+                        </button>
+                        <button onclick="addLinkPrompt()" class="w-full text-left px-4 py-2 text-sm font-bold text-gray-700 hover:bg-red-50 flex items-center space-x-2">
+                            <i class="fa-solid fa-link text-green-600"></i>
+                            <span>Thêm Liên Kết (Link)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Print Button (NEW) -->
+                <button onclick="printCurrentSlide()" class="px-3 py-1.5 bg-slate-700 text-white font-bold text-xs rounded-lg hover:bg-slate-800 flex items-center space-x-1" title="In hoặc lưu dạng PDF">
+                    <i class="fa-solid fa-print"></i>
+                    <span class="hidden md:inline">In / PDF</span>
+                </button>
+
+                <!-- Zoom Controls -->
+                <div class="hidden sm:flex items-center bg-gray-100 rounded-lg p-1 border border-gray-300">
+                    <button onclick="adjustZoom(-0.1)" class="w-7 h-7 font-bold text-gray-700 hover:bg-white rounded"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                    <span id="zoom-level" class="px-2 font-bold text-xs text-gray-700">100%</span>
+                    <button onclick="adjustZoom(0.1)" class="w-7 h-7 font-bold text-gray-700 hover:bg-white rounded"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                    <button onclick="resetZoom()" class="w-7 h-7 font-bold text-gray-500 hover:bg-white rounded text-xs" title="Reset Thu/Phóng"><i class="fa-solid fa-rotate-left"></i></button>
+                </div>
+
+                <!-- Close Modal -->
+                <button onclick="closeTeachingModal()" class="w-9 h-9 rounded-full bg-red-100 text-red-700 font-bold hover:bg-red-200 flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- PRESENTATION / CANVAS WORKSPACE -->
+        <main class="flex-1 relative overflow-hidden bg-slate-800 flex items-center justify-center p-2 sm:p-6" id="workspace">
+            <!-- Scalable Slide & Canvas Container -->
+            <div id="slide-viewport" class="relative bg-white rounded-2xl slide-content overflow-hidden transition-transform duration-75 origin-center" style="width: 1000px; min-height: 650px;">
+                <!-- Slide Content Layer -->
+                <div id="slide-container" class="p-8 sm:p-12 text-gray-900 select-none relative z-0 min-h-[650px] flex flex-col justify-between">
+                </div>
+
+                <!-- Drawing Canvas Overlay -->
+                <canvas id="drawing-canvas" class="absolute inset-0 z-10 touch-none pointer-events-auto"></canvas>
+            </div>
+        </main>
+
+        <!-- FOOTER BAR -->
+        <footer class="bg-gray-900 text-gray-300 px-4 py-2 border-t border-gray-800 flex items-center justify-between text-xs font-semibold">
+            <div class="flex items-center space-x-4">
+                <span><i class="fa-solid fa-chalkboard text-red-500 mr-1"></i> Chế độ Bài Giảng Chuẩn</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-keyboard text-gray-400 mr-1"></i> Dùng phím mũi tên Trái/Phải để chuyển trang</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <button onclick="editCurrentSlideContent()" class="px-2.5 py-1 bg-amber-600 text-white rounded hover:bg-amber-700 flex items-center space-x-1">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>Sửa trực tiếp slide này</span>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // SLIDES DATASET
+        let slidesData = [
+            {
+                id: 1,
+                title: "1. KHÁI NIỆM CAN CHI NGŨ HÀNH",
+                content: `
+                    <div class="border-b-4 border-red-700 pb-3 mb-6">
+                        <h1 class="text-3xl font-black text-red-700 uppercase tracking-tight">1. Khái Niệm Can Chi Ngũ Hành & Tứ Trụ</h1>
+                        <p class="text-gray-500 font-bold text-sm mt-1">Lý thuyết nền tảng vũ trụ & con người</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-red-50 p-5 rounded-2xl border-2 border-red-200">
+                            <h2 class="text-xl font-black text-red-800 mb-2 uppercase"><i class="fa-solid fa-arrows-spin mr-2"></i>Hệ Thống Can Chi (60 Khí Trường)</h2>
+                            <p class="text-base text-gray-800 leading-relaxed font-semibold">
+                                Can Chi gồm <span class="text-red-700 font-black">10 Thiên Can</span> và <span class="text-red-700 font-black">12 Địa Chi</span>. Tạo thành 60 khí trường không gian lặp lại theo chu kỳ 60 năm (Lục thập hoa giáp).
+                            </p>
+                        </div>
+                        <div class="bg-amber-50 p-5 rounded-2xl border-2 border-amber-200">
+                            <h2 class="text-xl font-black text-amber-900 mb-2 uppercase"><i class="fa-solid fa-house-user mr-2"></i>Tứ Trụ Mệnh Con Người</h2>
+                            <p class="text-base text-gray-800 leading-relaxed font-semibold">
+                                Tứ Trụ gồm <span class="text-amber-800 font-black">Năm - Tháng - Ngày - Giờ sinh</span>. Như 4 cột trụ căn nhà. Ngũ hành cân bằng thì cuộc đời thuận lợi, thiên lệch dễ gặp sóng gió.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 border-2 border-gray-300 rounded-2xl p-5">
+                        <h3 class="text-lg font-black text-gray-900 uppercase mb-3 text-red-700">Phân Phối Ngũ Hành & Can Chi:</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-3 text-center">
+                            <div class="p-3 bg-green-100 border border-green-300 rounded-xl">
+                                <div class="font-black text-green-800 text-lg">MỘC (Xanh)</div>
+                                <div class="text-xs font-bold text-gray-700 mt-1">Giáp, Ất, Dần, Mão</div>
+                            </div>
+                            <div class="p-3 bg-red-100 border border-red-300 rounded-xl">
+                                <div class="font-black text-red-800 text-lg">HỎA (Đỏ)</div>
+                                <div class="text-xs font-bold text-gray-700 mt-1">Bính, Đinh, Tị, Ngọ</div>
+                            </div>
+                            <div class="p-3 bg-amber-100 border border-amber-300 rounded-xl">
+                                <div class="font-black text-amber-800 text-lg">THỔ (Vàng)</div>
+                                <div class="text-xs font-bold text-gray-700 mt-1">Mậu, Kỷ, Thìn, Tuất, Sửu, Mùi</div>
+                            </div>
+                            <div class="p-3 bg-slate-200 border border-slate-400 rounded-xl">
+                                <div class="font-black text-gray-800 text-lg">KIM (Trắng)</div>
+                                <div class="text-xs font-bold text-gray-700 mt-1">Canh, Tân, Thân, Dậu</div>
+                            </div>
+                            <div class="p-3 bg-blue-100 border border-blue-300 rounded-xl">
+                                <div class="font-black text-blue-800 text-lg">THỦY (Đen)</div>
+                                <div class="text-xs font-bold text-gray-700 mt-1">Nhâm, Quý, Hợi, Tý</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "2. HỌC THUYẾT ÂM DƯƠNG NGŨ HÀNH",
+                content: `
+                    <div class="border-b-4 border-red-700 pb-3 mb-6">
+                        <h1 class="text-3xl font-black text-red-700 uppercase tracking-tight">2. Thuyết Âm Dương & Quy Luật Tương Sinh Tương Khắc</h1>
+                        <p class="text-gray-500 font-bold text-sm mt-1">Quy luật vận hành của tự nhiên</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-4">
+                            <div class="p-4 bg-emerald-50 border-l-4 border-emerald-600 rounded-r-xl">
+                                <h3 class="font-black text-emerald-800 text-lg uppercase mb-1">Vòng Tương Sinh (Thúc đẩy)</h3>
+                                <p class="text-base font-bold text-gray-800">
+                                    Thủy Sinh Mộc &rarr; Mộc Sinh Hỏa &rarr; Hỏa Sinh Thổ &rarr; Thổ Sinh Kim &rarr; Kim Sinh Thủy.
+                                </p>
+                            </div>
+
+                            <div class="p-4 bg-rose-50 border-l-4 border-rose-600 rounded-r-xl">
+                                <h3 class="font-black text-rose-800 text-lg uppercase mb-1">Vòng Tương Khắc (Kìm hãm)</h3>
+                                <p class="text-base font-bold text-gray-800">
+                                    Mộc Khắc Thổ &rarr; Thổ Khắc Thủy &rarr; Thủy Khắc Hỏa &rarr; Hỏa Khắc Kim &rarr; Kim Khắc Mộc.
+                                </p>
+                            </div>
+
+                            <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                                <h4 class="font-black text-blue-900 text-sm uppercase">Cơ quan cơ thể con người:</h4>
+                                <ul class="text-xs font-bold text-gray-700 mt-2 space-y-1">
+                                    <li>&bull; <strong class="text-green-700">Mộc:</strong> Gan, mật, thần kinh, tay chân</li>
+                                    <li>&bull; <strong class="text-red-700">Hỏa:</strong> Tim, mạch máu, mắt, lưỡi</li>
+                                    <li>&bull; <strong class="text-amber-700">Thổ:</strong> Dạ dày, lá lách, bụng, tỳ vị</li>
+                                    <li>&bull; <strong class="text-gray-800">Kim:</strong> Phổi, ruột già, khí quản</li>
+                                    <li>&bull; <strong class="text-blue-700">Thủy:</strong> Thận, bàng quang, hệ tiêu hóa</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Illustrated pentagram element -->
+                        <div class="flex flex-col items-center justify-center bg-gray-50 p-6 rounded-2xl border-2 border-gray-200">
+                            <svg viewBox="0 0 200 200" class="w-64 h-64">
+                                <circle cx="100" cy="100" r="80" fill="none" stroke="#e5e7eb" stroke-width="4"/>
+                                <circle cx="100" cy="30" r="18" fill="#16a34a" /> <text x="100" y="35" text-anchor="middle" fill="white" font-weight="bold" font-size="12">MỘC</text>
+                                <circle cx="165" cy="80" r="18" fill="#dc2626" /> <text x="165" y="85" text-anchor="middle" fill="white" font-weight="bold" font-size="12">HỎA</text>
+                                <circle cx="140" cy="160" r="18" fill="#d97706" /> <text x="140" y="165" text-anchor="middle" fill="white" font-weight="bold" font-size="12">THỔ</text>
+                                <circle cx="60" cy="160" r="18" fill="#475569" /> <text x="60" y="165" text-anchor="middle" fill="white" font-weight="bold" font-size="12">KIM</text>
+                                <circle cx="35" cy="80" r="18" fill="#2563eb" /> <text x="35" y="85" text-anchor="middle" fill="white" font-weight="bold" font-size="12">THỦY</text>
+                            </svg>
+                            <span class="text-xs font-bold text-gray-500 mt-2">Sơ đồ Tương Sinh & Tương Khắc</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "3. 10 THIÊN CAN & 12 ĐỊA CHI",
+                content: `
+                    <div class="border-b-4 border-red-700 pb-3 mb-4">
+                        <h1 class="text-3xl font-black text-red-700 uppercase tracking-tight">3. Chi Tiết Thiên Can & Địa Chi</h1>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white border-2 border-red-200 rounded-xl overflow-hidden shadow-sm">
+                            <div class="bg-red-700 text-white font-black px-4 py-2 text-sm uppercase">10 THIÊN CAN (ÂM DƯƠNG)</div>
+                            <div class="p-3 overflow-x-auto">
+                                <table class="w-full text-xs font-bold text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-gray-100 text-gray-800">
+                                            <th class="p-2 border">STT</th>
+                                            <th class="p-2 border">Can</th>
+                                            <th class="p-2 border">Thuộc</th>
+                                            <th class="p-2 border">Ngũ Hành</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr><td class="p-2 border">1</td><td class="p-2 border text-red-700 font-extrabold">Giáp</td><td class="p-2 border">Dương</td><td class="p-2 border text-green-700">Mộc</td></tr>
+                                        <tr><td class="p-2 border">2</td><td class="p-2 border text-red-700 font-extrabold">Ất</td><td class="p-2 border">Âm</td><td class="p-2 border text-green-700">Mộc</td></tr>
+                                        <tr><td class="p-2 border">3</td><td class="p-2 border text-red-700 font-extrabold">Bính</td><td class="p-2 border">Dương</td><td class="p-2 border text-red-600">Hỏa</td></tr>
+                                        <tr><td class="p-2 border">4</td><td class="p-2 border text-red-700 font-extrabold">Đinh</td><td class="p-2 border">Âm</td><td class="p-2 border text-red-600">Hỏa</td></tr>
+                                        <tr><td class="p-2 border">5</td><td class="p-2 border text-red-700 font-extrabold">Mậu</td><td class="p-2 border">Dương</td><td class="p-2 border text-amber-600">Thổ</td></tr>
+                                        <tr><td class="p-2 border">6</td><td class="p-2 border text-red-700 font-extrabold">Kỷ</td><td class="p-2 border">Âm</td><td class="p-2 border text-amber-600">Thổ</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-amber-50 border-2 border-amber-300 p-4 rounded-xl">
+                                <h3 class="font-black text-amber-900 text-base uppercase mb-2"><i class="fa-solid fa-star text-amber-600"></i> Quan Hệ Tam Hợp (Rất Tốt)</h3>
+                                <ul class="text-xs font-bold text-gray-800 space-y-1.5">
+                                    <li class="bg-white p-2 rounded border border-amber-200">1. <strong class="text-red-700">Thân - Tý - Thìn</strong> (Thủy cục)</li>
+                                    <li class="bg-white p-2 rounded border border-amber-200">2. <strong class="text-red-700">Dần - Ngọ - Tuất</strong> (Hỏa cục)</li>
+                                    <li class="bg-white p-2 rounded border border-amber-200">3. <strong class="text-red-700">Tị - Sửu - Dậu</strong> (Kim cục)</li>
+                                    <li class="bg-white p-2 rounded border border-amber-200">4. <strong class="text-red-700">Hợi - Mão - Mùi</strong> (Mộc cục)</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-red-50 border-2 border-red-300 p-4 rounded-xl">
+                                <h3 class="font-black text-red-900 text-base uppercase mb-2"><i class="fa-solid fa-triangle-exclamation text-red-600"></i> Tứ Hành Xung (Xấu)</h3>
+                                <p class="text-xs font-bold text-gray-800 leading-relaxed">
+                                    &bull; Tý - Ngọ - Mão - Dậu<br>
+                                    &bull; Dần - Thân - Tị - Hợi<br>
+                                    &bull; Thìn - Tuất - Sửu - Mùi
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "4. TÀI LIỆU KHAM KHẢO & VIDEO BÀI GIẢNG",
+                content: `
+                    <div class="border-b-4 border-red-700 pb-3 mb-6">
+                        <h1 class="text-3xl font-black text-red-700 uppercase tracking-tight">4. Video Giảng Bài & Liên Kết Minh Họa</h1>
+                        <p class="text-gray-500 font-bold text-sm mt-1">Đa phương tiện tích hợp trực tiếp</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-black rounded-2xl overflow-hidden aspect-video shadow-lg relative flex items-center justify-center group">
+                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Bài Giảng Can Chi Ngũ Hành" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+
+                        <div class="bg-gray-50 p-6 rounded-2xl border-2 border-gray-200 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-black text-red-700 uppercase mb-3"><i class="fa-solid fa-link mr-2"></i>Tài Nguyên Mở Rộng:</h3>
+                                <div class="space-y-3">
+                                    <a href="https://zalo.me" target="_blank" class="flex items-center justify-between p-3 bg-white border border-gray-300 rounded-xl hover:border-blue-500 hover:shadow-md transition-all">
+                                        <div class="flex items-center space-x-3">
+                                            <i class="fa-solid fa-users text-blue-600 text-xl"></i>
+                                            <span class="font-bold text-sm text-gray-800">Nhóm Zalo Luận Giải Tử Vi Miễn Phí</span>
+                                        </div>
+                                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-400"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 bg-red-100 rounded-xl text-xs font-bold text-red-800">
+                                <i class="fa-solid fa-circle-info mr-1"></i> Bấm nút "In / PDF" ở góc trên để in bài giảng kèm ghi chú nét vẽ của bạn ra giấy A4 hoặc file PDF!
+                            </div>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // Global State Variables
+        let currentSlideIndex = 0;
+        let currentTool = 'select';
+        let currentPenColor = '#dc2626';
+        let currentPenWidth = 6;
+        let isDrawing = false;
+        let currentZoom = 1;
+
+        let canvas, ctx;
+
+        window.onload = function() {
+            canvas = document.getElementById('drawing-canvas');
+            ctx = canvas.getContext('2d');
+
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+
+            canvas.addEventListener('touchstart', handleTouchStart, {passive: false});
+            canvas.addEventListener('touchmove', handleTouchMove, {passive: false});
+            canvas.addEventListener('touchend', stopDrawing);
+
+            window.addEventListener('resize', resizeCanvas);
+
+            document.addEventListener('keydown', function(e) {
+                if (document.getElementById('teaching-modal').classList.contains('hidden')) return;
+                if (e.key === 'ArrowRight') changeSlide(1);
+                if (e.key === 'ArrowLeft') changeSlide(-1);
+            });
+        };
+
+        function openTeachingModal() {
+            document.getElementById('teaching-modal').classList.remove('hidden');
+            document.getElementById('teaching-modal').classList.add('flex');
+            renderSlide(currentSlideIndex);
+            setTimeout(resizeCanvas, 100);
+        }
+
+        function closeTeachingModal() {
+            document.getElementById('teaching-modal').classList.add('hidden');
+            document.getElementById('teaching-modal').classList.remove('flex');
+        }
+
+        function renderSlide(index) {
+            const slideContainer = document.getElementById('slide-container');
+            slideContainer.innerHTML = slidesData[index].content;
+            document.getElementById('slide-indicator').innerText = `Trang ${index + 1} / ${slidesData.length}`;
+            clearCanvas();
+        }
+
+        function changeSlide(direction) {
+            const newIndex = currentSlideIndex + direction;
+            if (newIndex >= 0 && newIndex < slidesData.length) {
+                currentSlideIndex = newIndex;
+                renderSlide(currentSlideIndex);
+            }
+        }
+
+        function addNewSlide() {
+            const newId = slidesData.length + 1;
+            const newSlide = {
+                id: newId,
+                title: `TRANG BÀI GIẢNG MỚI ${newId}`,
+                content: `
+                    <div class="border-b-4 border-red-700 pb-3 mb-6">
+                        <h1 class="text-3xl font-black text-red-700 uppercase tracking-tight">Trang Bài Giảng Mới #${newId}</h1>
+                        <p class="text-gray-500 font-bold text-sm mt-1">Bấm nút "Sửa trực tiếp slide này" ở góc dưới để viết nội dung bài học mới.</p>
+                    </div>
+                    <div class="p-8 bg-gray-50 border-2 border-dashed border-gray-300 rounded-2xl text-center">
+                        <p class="font-bold text-gray-600 text-lg">Nội dung trang mới trống.</p>
+                    </div>
+                `
+            };
+            slidesData.push(newSlide);
+            currentSlideIndex = slidesData.length - 1;
+            renderSlide(currentSlideIndex);
+        }
+
+        function editCurrentSlideContent() {
+            const currentHTML = slidesData[currentSlideIndex].content;
+            const updatedHTML = prompt("Sửa mã HTML/Nội dung của Slide này:", currentHTML);
+            if (updatedHTML !== null && updatedHTML.trim() !== "") {
+                slidesData[currentSlideIndex].content = updatedHTML;
+                renderSlide(currentSlideIndex);
+            }
+        }
+
+        function printCurrentSlide() {
+            resetZoom();
+            window.print();
+        }
+
+        function resizeCanvas() {
+            const viewport = document.getElementById('slide-viewport');
+            if (viewport && canvas) {
+                canvas.width = viewport.offsetWidth;
+                canvas.height = viewport.offsetHeight;
+            }
+        }
+
+        function setTool(toolName) {
+            currentTool = toolName;
+            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('bg-white', 'shadow-sm'));
+            document.getElementById(`tool-${toolName}`).classList.add('bg-white', 'shadow-sm');
+
+            if (toolName === 'select') {
+                canvas.style.pointerEvents = 'none';
+            } else {
+                canvas.style.pointerEvents = 'auto';
+            }
+        }
+
+        function setColor(color) {
+            currentPenColor = color;
+            if (currentTool === 'eraser') setTool('pen');
+        }
+
+        function setPenLineWidth(width) {
+            currentPenWidth = width;
+        }
+
+        function getCanvasCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: (e.clientX - rect.left) / currentZoom,
+                y: (e.clientY - rect.top) / currentZoom
+            };
+        }
+
+        function startDrawing(e) {
+            if (currentTool === 'select') return;
+            isDrawing = true;
+            const coords = getCanvasCoordinates(e);
+            ctx.beginPath();
+            ctx.moveTo(coords.x, coords.y);
+        }
+
+        function draw(e) {
+            if (!isDrawing || currentTool === 'select') return;
+            const coords = getCanvasCoordinates(e);
+
+            ctx.lineWidth = currentPenWidth;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+
+            if (currentTool === 'pen') {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.strokeStyle = currentPenColor;
+            } else if (currentTool === 'eraser') {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.lineWidth = currentPenWidth * 3;
+            }
+
+            ctx.lineTo(coords.x, coords.y);
+            ctx.stroke();
+        }
+
+        function stopDrawing() {
+            if (isDrawing) {
+                ctx.closePath();
+                isDrawing = false;
+            }
+        }
+
+        function handleTouchStart(e) {
+            if (currentTool === 'select') return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            startDrawing(touch);
+        }
+
+        function handleTouchMove(e) {
+            if (currentTool === 'select') return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            draw(touch);
+        }
+
+        function clearCanvas() {
+            if (ctx && canvas) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function adjustZoom(delta) {
+            currentZoom = Math.min(Math.max(0.6, currentZoom + delta), 1.8);
+            document.getElementById('slide-viewport').style.transform = `scale(${currentZoom})`;
+            document.getElementById('zoom-level').innerText = `${Math.round(currentZoom * 100)}%`;
+        }
+
+        function resetZoom() {
+            currentZoom = 1;
+            document.getElementById('slide-viewport').style.transform = `scale(1)`;
+            document.getElementById('zoom-level').innerText = `100%`;
+        }
+
+        function toggleInsertMenu() {
+            const menu = document.getElementById('insert-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function addTextPrompt() {
+            toggleInsertMenu();
+            const text = prompt("Nhập văn bản cần thêm vào slide:");
+            if (text) {
+                const textHTML = `<div class="mt-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 rounded text-xl font-extrabold text-gray-900">${text}</div>`;
+                slidesData[currentSlideIndex].content += textHTML;
+                renderSlide(currentSlideIndex);
+            }
+        }
+
+        function addImagePrompt() {
+            toggleInsertMenu();
+            const url = prompt("Nhập đường dẫn (URL) hình ảnh minh họa:", "https://placehold.co/600x300/dc2626/ffffff?text=Hinh+Minh+Hoa");
+            if (url) {
+                const imgHTML = `<div class="mt-4 flex justify-center"><img src="${url}" class="max-h-64 rounded-xl border-2 border-gray-300 shadow-md"></div>`;
+                slidesData[currentSlideIndex].content += imgHTML;
+                renderSlide(currentSlideIndex);
+            }
+        }
+
+        function addVideoPrompt() {
+            toggleInsertMenu();
+            const url = prompt("Nhập mã Embed YouTube hoặc URL Video:", "https://www.youtube.com/embed/dQw4w9WgXcQ");
+            if (url) {
+                const videoHTML = `<div class="mt-4 aspect-video w-full rounded-xl overflow-hidden border-2 border-gray-800 shadow-md"><iframe class="w-full h-full" src="${url}" frameborder="0" allowfullscreen></iframe></div>`;
+                slidesData[currentSlideIndex].content += videoHTML;
+                renderSlide(currentSlideIndex);
+            }
+        }
+
+        function addLinkPrompt() {
+            toggleInsertMenu();
+            const title = prompt("Nhập tên tiêu đề đường link:");
+            const link = prompt("Nhập đường dẫn (URL):", "https://");
+            if (title && link) {
+                const linkHTML = `<div class="mt-3"><a href="${link}" target="_blank" class="inline-flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white font-black rounded-lg hover:bg-blue-700 shadow"><i class="fa-solid fa-link"></i><span>${title}</span></a></div>`;
+                slidesData[currentSlideIndex].content += linkHTML;
+                renderSlide(currentSlideIndex);
+            }
+        }
+    </script>
+</body>
+</html>
