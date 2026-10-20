@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Trình Chiếu - Mật Mã Cuộc Đời & Hồ Sơ Gia Đình</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            goldlight: '#F3E5AB',
+                            dark: '#0F172A',
+                            accent: '#8B5CF6',
+                            red: '#991B1B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            user-select: none;
+            -webkit-user-select: none;
+            overflow: hidden;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+
+        /* Perspective for 3D flip effect */
+        .slide-stage {
+            perspective: 1500px;
+        }
+
+        .slide-card {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Flip animation classes */
+        .slide-card.flip-next-out {
+            transform: rotateY(-90deg) scale(0.95);
+            opacity: 0;
+        }
+
+        .slide-card.flip-next-in {
+            animation: flipNextIn 0.6s ease forwards;
+        }
+
+        .slide-card.flip-prev-out {
+            transform: rotateY(90deg) scale(0.95);
+            opacity: 0;
+        }
+
+        .slide-card.flip-prev-in {
+            animation: flipPrevIn 0.6s ease forwards;
+        }
+
+        @keyframes flipNextIn {
+            from { transform: rotateY(90deg) scale(0.95); opacity: 0; }
+            to { transform: rotateY(0deg) scale(1); opacity: 1; }
+        }
+
+        @keyframes flipPrevIn {
+            from { transform: rotateY(-90deg) scale(0.95); opacity: 0; }
+            to { transform: rotateY(0deg) scale(1); opacity: 1; }
+        }
+
+        /* Canvas overlay layer */
+        #annotation-canvas {
+            touch-action: none;
+        }
+
+        /* Custom Scrollbar for slide overflow content */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(212, 175, 55, 0.6);
+        }
+
+        /* Active Tool Highlight */
+        .tool-btn.active {
+            background-color: rgba(212, 175, 55, 0.25);
+            border-color: #D4AF37;
+            color: #F3E5AB;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF5C0 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-border-gradient {
+            border-image: linear-gradient(to right, #D4AF37, #8B5CF6) 1;
+        }
+    </style>
+</head>
+<body class="h-screen w-screen flex flex-col font-sans">
+
+    <!-- TOP TOOLBAR / NAVIGATION HEADER -->
+    <header class="glass-panel h-16 px-4 flex items-center justify-between z-30 shrink-0 border-b border-slate-800">
+        <!-- Logo & Title -->
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-300 flex items-center justify-center text-slate-950 font-bold text-lg shadow-lg">
+                ☯
+            </div>
+            <div>
+                <h1 class="font-bold text-sm md:text-base gold-gradient-text">MẬT MÃ CUỘC ĐỜI</h1>
+                <p class="text-xs text-slate-400 hidden sm:block">Bài Giảng & Luận Giải Phong Thủy Gia Đình</p>
+            </div>
+        </div>
+
+        <!-- Center: Slide Navigation -->
+        <div class="flex items-center space-x-2 bg-slate-900/80 px-3 py-1.5 rounded-full border border-slate-700/60">
+            <button id="btn-prev" onclick="prevSlide()" class="p-2 hover:bg-slate-800 rounded-full text-slate-300 hover:text-amber-400 transition" title="Slide trước (Trái)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <span id="slide-indicator" class="text-xs font-semibold px-2 text-amber-200">1 / 6</span>
+            <button id="btn-next" onclick="nextSlide()" class="p-2 hover:bg-slate-800 rounded-full text-slate-300 hover:text-amber-400 transition" title="Slide tiếp (Phải)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Right: Zoom Controls & Fullscreen -->
+        <div class="flex items-center space-x-2">
+            <!-- Zoom Controls -->
+            <div class="flex items-center bg-slate-900/80 rounded-lg p-1 border border-slate-700/60">
+                <button onclick="zoomOut()" class="p-1.5 hover:bg-slate-800 rounded text-slate-300 hover:text-white" title="Thu nhỏ (-)">
+                    <i class="fa-solid fa-magnifying-glass-minus"></i>
+                </button>
+                <span id="zoom-level" class="text-xs px-2 text-slate-300 font-mono">100%</span>
+                <button onclick="zoomIn()" class="p-1.5 hover:bg-slate-800 rounded text-slate-300 hover:text-white" title="Phóng to (+)">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </button>
+                <button onclick="resetZoom()" class="p-1.5 hover:bg-slate-800 rounded text-slate-400 hover:text-white text-xs ml-1" title="Khôi phục zoom">
+                    Reset
+                </button>
+            </div>
+
+            <!-- Fullscreen -->
+            <button onclick="toggleFullscreen()" class="p-2 hover:bg-slate-800 rounded-lg text-slate-300 hover:text-amber-400 transition border border-slate-700/60" title="Toàn màn hình">
+                <i class="fa-solid fa-expand" id="fullscreen-icon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN PRESENTATION AREA -->
+    <main class="flex-1 relative overflow-hidden flex items-center justify-center p-2 sm:p-6" id="presentation-container">
+        
+        <!-- STAGE / CONTAINER FOR SLIDES & CANVAS OVERLAY -->
+        <div id="zoom-wrapper" class="relative transition-transform duration-100 ease-out flex items-center justify-center w-full h-full">
+            
+            <div id="slide-stage" class="slide-stage relative w-full max-w-5xl aspect-[16/10] max-h-[82vh] rounded-2xl">
+                
+                <!-- CANVASES FOR DRAWING (Overlaying top of slides) -->
+                <canvas id="annotation-canvas" class="absolute inset-0 z-20 pointer-events-auto rounded-2xl cursor-crosshair"></canvas>
+
+                <!-- SLIDE CONTAINER (Rendered dynamically via JS) -->
+                <div id="slides-viewport" class="relative w-full h-full rounded-2xl overflow-hidden glass-panel border border-amber-500/20 shadow-2xl">
+                    <!-- Slides injected here -->
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- FLOATING DRAWING TOOLBAR (LEFT SIDE / BOTTOM ON MOBILE) -->
+        <div class="absolute left-4 top-1/2 -translate-y-1/2 z-30 glass-panel p-2 rounded-2xl border border-slate-700/80 shadow-2xl flex flex-col space-y-3">
+            <!-- Mode Toggle: Pointer vs Draw -->
+            <button onclick="setTool('pointer')" id="tool-pointer" class="tool-btn active p-3 rounded-xl hover:bg-slate-800 text-slate-300 border border-transparent transition flex items-center justify-center" title="Chế độ Chọn / Di chuyển">
+                <i class="fa-solid fa-arrow-pointer text-lg"></i>
+            </button>
+
+            <div class="w-full h-px bg-slate-700/50"></div>
+
+            <!-- Pen Tool -->
+            <button onclick="setTool('pen')" id="tool-pen" class="tool-btn p-3 rounded-xl hover:bg-slate-800 text-slate-300 border border-transparent transition flex items-center justify-center" title="Bút vẽ tự do">
+                <i class="fa-solid fa-pen-nib text-lg"></i>
+            </button>
+
+            <!-- Highlighter Tool -->
+            <button onclick="setTool('highlighter')" id="tool-highlighter" class="tool-btn p-3 rounded-xl hover:bg-slate-800 text-slate-300 border border-transparent transition flex items-center justify-center" title="Bút tô dạ quang">
+                <i class="fa-solid fa-highlighter text-lg"></i>
+            </button>
+
+            <!-- Eraser -->
+            <button onclick="setTool('eraser')" id="tool-eraser" class="tool-btn p-3 rounded-xl hover:bg-slate-800 text-slate-300 border border-transparent transition flex items-center justify-center" title="Cục Tẩy">
+                <i class="fa-solid fa-eraser text-lg"></i>
+            </button>
+
+            <div class="w-full h-px bg-slate-700/50"></div>
+
+            <!-- Color Palette Popover / Palette Buttons -->
+            <div class="flex flex-col space-y-2 items-center py-1">
+                <button onclick="setColor('#EF4444')" class="w-6 h-6 rounded-full bg-red-500 border-2 border-slate-900 hover:scale-110 transition" title="Màu Đỏ"></button>
+                <button onclick="setColor('#F59E0B')" class="w-6 h-6 rounded-full bg-amber-500 border-2 border-slate-900 hover:scale-110 transition" title="Màu Vàng"></button>
+                <button onclick="setColor('#10B981')" class="w-6 h-6 rounded-full bg-emerald-500 border-2 border-slate-900 hover:scale-110 transition" title="Màu Xanh Lá"></button>
+                <button onclick="setColor('#3B82F6')" class="w-6 h-6 rounded-full bg-blue-500 border-2 border-slate-900 hover:scale-110 transition" title="Màu Xanh Dương"></button>
+                <input type="color" id="custom-color-picker" onchange="setColor(this.value)" class="w-6 h-6 rounded-full bg-transparent cursor-pointer border-0" title="Chọn màu tùy chỉnh">
+            </div>
+
+            <div class="w-full h-px bg-slate-700/50"></div>
+
+            <!-- Clear Canvas Button -->
+            <button onclick="clearCurrentCanvas()" class="p-3 rounded-xl hover:bg-red-500/20 text-red-400 hover:text-red-300 transition flex items-center justify-center" title="Xóa toàn bộ đường vẽ trên Slide này">
+                <i class="fa-solid fa-trash-can text-lg"></i>
+            </button>
+        </div>
+
+        <!-- PAN INSTRUCTION OVERLAY -->
+        <div id="pan-hint" class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 border border-amber-500/40 text-amber-300 text-xs px-4 py-2 rounded-full pointer-events-none opacity-0 transition-opacity duration-300 flex items-center space-x-2 shadow-xl z-40">
+            <i class="fa-solid fa-hand"></i>
+            <span>Đang ở chế độ Zoom. Giữ phím Space hoặc dùng chuột để di chuyển canvas.</span>
+        </div>
+
+    </main>
+
+    <!-- FOOTER / THUMBNAIL QUICK NAV -->
+    <footer class="glass-panel h-14 px-4 flex items-center justify-between z-30 shrink-0 border-t border-slate-800 text-xs text-slate-400">
+        <!-- Contact quick links -->
+        <div class="flex items-center space-x-4">
+            <span class="flex items-center space-x-1"><i class="fa-brands fa-whatsapp text-emerald-400"></i><span>Zalo Tuấn Anh: <b>0789.414.153</b></span></span>
+            <span class="hidden md:flex items-center space-x-1"><i class="fa-brands fa-whatsapp text-amber-400"></i><span>Chuyên gia Bảo: <b>0849.328.628</b></span></span>
+        </div>
+
+        <!-- Quick Jump Buttons -->
+        <div id="thumbnail-nav" class="flex items-center space-x-1.5 overflow-x-auto py-1">
+            <!-- Rendered via JS -->
+        </div>
+
+        <div>
+            <span class="text-amber-400 font-medium">Mật Mã Cuộc Đời</span> © 2026
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // SLIDE DATA CONTENT
+        const slidesData = [
+            {
+                title: "MẬT MÃ CUỘC ĐỜI & HỒ SƠ LUẬN GIẢI",
+                subtitle: "Hệ Sinh Thái Luận Giải Phong Thủy - Bát Tự - Tử Vi - Sim Số",
+                bgClass: "from-slate-950 via-slate-900 to-amber-950/40",
+                content: `
+                    <div class="h-full flex flex-col justify-between p-6 md:p-10 text-center">
+                        <div class="my-auto space-y-6">
+                            <div class="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm font-semibold tracking-wide uppercase mb-2">
+                                Hồ Sơ Chuyên Sâu Gia Đình
+                            </div>
+                            <h1 class="text-3xl md:text-5xl font-extrabold gold-gradient-text tracking-tight leading-tight font-serif">
+                                Hệ Sinh Thái Mật Mã Cuộc Đời
+                            </h1>
+                            <p class="text-slate-300 text-base md:text-lg max-w-2xl mx-auto font-light leading-relaxed">
+                                Phương pháp khai phá vận mệnh, hóa giải xung khắc Ngũ Hành, định hướng Tài Lộc & Gia Đạo thông qua Bát Tự và Sim Số Điện Thoại.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-3xl mx-auto">
+                                <div class="p-4 rounded-xl bg-slate-800/60 border border-amber-500/20 backdrop-blur-sm">
+                                    <div class="text-amber-400 text-2xl font-bold mb-1">05</div>
+                                    <div class="text-xs text-slate-400">Thành Viên Gia Đình</div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-800/60 border border-amber-500/20 backdrop-blur-sm">
+                                    <div class="text-amber-400 text-2xl font-bold mb-1">30+</div>
+                                    <div class="text-xs text-slate-400">Năm Dùng SĐT Chính</div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-800/60 border border-amber-500/20 backdrop-blur-sm">
+                                    <div class="text-amber-400 text-2xl font-bold mb-1">300K</div>
+                                    <div class="text-xs text-slate-400">Phí Luận Trọn Đời</div>
+                                </div>
+                                <div class="p-4 rounded-xl bg-slate-800/60 border border-amber-500/20 backdrop-blur-sm">
+                                    <div class="text-emerald-400 text-2xl font-bold mb-1">100%</div>
+                                    <div class="text-xs text-slate-400">Cam Kết Bảo Mặt</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-400 flex justify-between items-center border-t border-slate-800 pt-4">
+                            <span>Phụ trách: <b>Nguyễn Tuấn Anh</b></span>
+                            <span>Chuyên gia: <b>Kim Nguyên Bảo</b></span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "CAM KẾT & TÔN CHỈ HOẠT ĐỘNG",
+                subtitle: "Lương Tâm - Đạo Đức - Tôn Chỉ Mật Mã Cuộc Đời",
+                bgClass: "from-slate-950 via-slate-900 to-indigo-950/40",
+                content: `
+                    <div class="h-full flex flex-col justify-between p-6 md:p-8">
+                        <div class="border-b border-slate-800 pb-3 mb-4">
+                            <h2 class="text-2xl md:text-3xl font-bold gold-gradient-text font-serif">I. Tôn Chỉ & Thông Tin Hỗ Trợ</h2>
+                            <p class="text-xs text-slate-400">Thông tin càng đầy đủ – Luận giải càng chính xác</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 my-auto">
+                            <!-- Left Block: Commitment -->
+                            <div class="p-5 rounded-2xl bg-gradient-to-br from-amber-500/10 to-transparent border border-amber-500/30 space-y-3">
+                                <div class="flex items-center space-x-3 text-amber-400">
+                                    <i class="fa-solid fa-shield-halved text-2xl"></i>
+                                    <h3 class="font-bold text-lg text-white">Bảo Mật Tuyệt Đối</h3>
+                                </div>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    Yên tâm tuyệt đối về bảo mật thông tin gia đình. Không bao giờ bị tiết lộ ra bên ngoài. Đó là <span class="text-amber-300 font-semibold">Lương tâm – Đạo đức – Tôn chỉ</span> duy nhất của chúng tôi.
+                                </p>
+                                <div class="mt-3 p-3 rounded-xl bg-slate-900/80 border border-slate-700 text-xs text-emerald-400 flex items-center space-x-2">
+                                    <i class="fa-solid fa-heart-circle-check text-base"></i>
+                                    <span>Trường hợp khó khăn đặc biệt: Miễn phí (Chỉ thu 10K tránh nợ duyên nghiệp quả).</span>
+                                </div>
+                            </div>
+
+                            <!-- Right Block: Contacts -->
+                            <div class="p-5 rounded-2xl bg-slate-800/50 border border-slate-700 space-y-3">
+                                <h3 class="font-bold text-lg text-amber-300 mb-2 border-b border-slate-700 pb-2">Kênh Liên Hệ & Hỗ Trợ</h3>
+                                <ul class="space-y-3 text-xs md:text-sm">
+                                    <li class="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+                                        <span class="text-slate-400">Phụ trách hỗ trợ:</span>
+                                        <a href="https://zalo.me/0789414153" target="_blank" class="text-amber-400 font-medium hover:underline"><i class="fa-brands fa-whatsapp mr-1"></i>Nguyễn Tuấn Anh (0789.414.153)</a>
+                                    </li>
+                                    <li class="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+                                        <span class="text-slate-400">Chuyên gia luận giải:</span>
+                                        <a href="https://zalo.me/0849328628" target="_blank" class="text-amber-400 font-medium hover:underline"><i class="fa-brands fa-whatsapp mr-1"></i>Kim Nguyên Bảo (0849.328.628)</a>
+                                    </li>
+                                    <li class="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+                                        <span class="text-slate-400">Kênh YouTube:</span>
+                                        <a href="https://www.youtube.com/@matmacuocdoi" target="_blank" class="text-red-400 font-medium hover:underline"><i class="fa-brands fa-youtube mr-1"></i>Mật Mã Cuộc Đời</a>
+                                    </li>
+                                    <li class="flex items-center justify-between p-2 rounded-lg bg-slate-900/60 border border-slate-800">
+                                        <span class="text-slate-400">Cộng đồng Zalo:</span>
+                                        <a href="https://zalo.me/g/iljgbe719" target="_blank" class="text-blue-400 font-medium hover:underline"><i class="fa-solid fa-users mr-1"></i>Group Hỏi Đáp & Cập Nhật</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-500 text-center border-t border-slate-800 pt-3">
+                            Phí luận giải trọn đời: <b>300K / Cả nhà</b> (Hỏi đáp bất kỳ lúc nào)
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "HỒ SƠ BỐ & MẸ",
+                subtitle: "Thông Tin Bát Tự & Sim Số Đã Sử Dụng Lâu Năm",
+                bgClass: "from-slate-950 via-slate-900 to-amber-950/30",
+                content: `
+                    <div class="h-full flex flex-col justify-between p-6 md:p-8">
+                        <div class="border-b border-slate-800 pb-3">
+                            <h2 class="text-2xl md:text-3xl font-bold gold-gradient-text font-serif">II. Hồ Sơ Thành Viên (Bố & Mẹ)</h2>
+                            <p class="text-xs text-slate-400">Đối chiếu Ngày Sinh Khai Sinh vs Ngày Sinh Thực Tế (Âm Lịch)</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-6 my-auto">
+                            <!-- Bố -->
+                            <div class="p-5 rounded-2xl bg-slate-900/80 border border-amber-500/30 relative overflow-hidden group hover:border-amber-500 transition">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-amber-500/5 rounded-bl-full pointer-events-none"></div>
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold">1</div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-white">Bố: Nguyễn Văn A</h3>
+                                        <span class="text-xs text-amber-400/80 font-mono">CCCD: 036062XXXXXX</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-xs md:text-sm">
+                                    <div class="p-2.5 rounded-lg bg-slate-800/80">
+                                        <span class="text-slate-400 block text-xs">Ngày sinh (Khai sinh):</span>
+                                        <span class="font-semibold text-slate-200">10/02/1962</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-amber-950/30 border border-amber-500/20">
+                                        <span class="text-amber-400 block text-xs">Thực tế sinh (Âm Lịch):</span>
+                                        <span class="font-bold text-amber-200">Cuối năm 1961 (Khoảng cận Tết Nhâm Dần)</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-slate-800/80 space-y-1">
+                                        <span class="text-slate-400 block text-xs">Số điện thoại:</span>
+                                        <div class="flex justify-between items-center">
+                                            <code class="text-amber-300 font-bold">09032XXXXX</code>
+                                            <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Dùng ~30 năm</span>
+                                        </div>
+                                        <div class="flex justify-between items-center pt-1 border-t border-slate-700/50">
+                                            <code class="text-slate-300">036737XXXX</code>
+                                            <span class="text-[10px] bg-slate-700 text-slate-400 px-2 py-0.5 rounded">Mới dùng 1 tháng</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mẹ -->
+                            <div class="p-5 rounded-2xl bg-slate-900/80 border border-purple-500/30 relative overflow-hidden group hover:border-purple-500 transition">
+                                <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 rounded-bl-full pointer-events-none"></div>
+                                <div class="flex items-center space-x-3 mb-3">
+                                    <div class="w-10 h-10 rounded-full bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold">2</div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-white">Mẹ: Trần Thị B</h3>
+                                        <span class="text-xs text-purple-400/80">Nội tướng gia đình</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-2 text-xs md:text-sm">
+                                    <div class="p-2.5 rounded-lg bg-slate-800/80">
+                                        <span class="text-slate-400 block text-xs">Ngày sinh (Khai sinh):</span>
+                                        <span class="font-semibold text-slate-200">17/06/1967</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-purple-950/30 border border-purple-500/20">
+                                        <span class="text-purple-300 block text-xs">Thực tế sinh (Âm Lịch):</span>
+                                        <span class="font-bold text-purple-200">10/05/1967 (Đinh Mùi)</span>
+                                    </div>
+                                    <div class="p-2.5 rounded-lg bg-slate-800/80 space-y-1">
+                                        <span class="text-slate-400 block text-xs">Số điện thoại chính:</span>
+                                        <div class="flex justify-between items-center">
+                                            <code class="text-purple-300 font-bold">097373XXXX</code>
+                                            <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded">Dùng ~20 năm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-400 text-center border-t border-slate-800 pt-3">
+                            Lưu ý: SĐT dùng >10-20 năm có từ trường năng lượng ăn sâu vào Vận Trình Tài Lộc & Sức Khỏe.
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "HỒ SƠ 3 CON GÁI",
+                subtitle: "Chi Tiết Giờ Sinh & Số Điện Thoại Các Con",
+                bgClass: "from-slate-950 via-slate-900 to-blue-950/30",
+                content: `
+                    <div class="h-full flex flex-col justify-between p-6 md:p-8">
+                        <div class="border-b border-slate-800 pb-3">
+                            <h2 class="text-2xl md:text-3xl font-bold gold-gradient-text font-serif">III. Hồ Sơ 3 Con Gái</h2>
+                            <p class="text-xs text-slate-400">Chi tiết Dương Lịch, Âm Lịch, Giờ Sinh Chuẩn & Sim Số</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-4 my-auto">
+                            <!-- Con 1 -->
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-amber-400 transition">
+                                <div class="text-xs text-amber-400 font-semibold mb-1">CON GÁI LỚN</div>
+                                <h3 class="font-bold text-white text-base mb-2">Nguyễn Huyền C</h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">Dương Lịch:</span>
+                                        <span class="text-slate-200 font-medium">12/09/1990</span>
+                                    </div>
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">Âm Lịch:</span>
+                                        <span class="text-amber-200 font-semibold">24/07/1990 (Canh Ngọ)</span>
+                                    </div>
+                                    <div class="bg-amber-950/20 border border-amber-500/20 p-2 rounded">
+                                        <span class="text-amber-400 block">Giờ sinh:</span>
+                                        <span class="text-amber-200 font-bold">01:30 sáng (Giờ Sửu)</span>
+                                    </div>
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">SĐT (≥ 10 năm):</span>
+                                        <code class="text-amber-300 font-bold">098469XXXX</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Con 2 -->
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-blue-400 transition">
+                                <div class="text-xs text-blue-400 font-semibold mb-1">CON GÁI THỨ</div>
+                                <h3 class="font-bold text-white text-base mb-2">Nguyễn Hương D</h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">Dương Lịch:</span>
+                                        <span class="text-slate-200 font-medium">22/09/1994</span>
+                                    </div>
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">Âm Lịch:</span>
+                                        <span class="text-blue-200 font-semibold">18/08/1994 (Giáp Tuất)</span>
+                                    </div>
+                                    <div class="bg-blue-950/20 border border-blue-500/20 p-2 rounded">
+                                        <span class="text-blue-400 block">Giờ sinh:</span>
+                                        <span class="text-blue-200 font-bold">21:00 tối (Giờ Hợi)</span>
+                                    </div>
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">SĐT (~10 năm):</span>
+                                        <code class="text-blue-300 font-bold">03753XXXX</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Con 3 -->
+                            <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-700 hover:border-emerald-400 transition">
+                                <div class="text-xs text-emerald-400 font-semibold mb-1">CON GÁI ÚT</div>
+                                <h3 class="font-bold text-white text-base mb-2">Nguyễn Hà E</h3>
+                                <div class="space-y-2 text-xs">
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">Dương Lịch:</span>
+                                        <span class="text-slate-200 font-medium">03/03/1999</span>
+                                    </div>
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">Âm Lịch:</span>
+                                        <span class="text-emerald-200 font-semibold">16/01/1999 (Kỷ Mão)</span>
+                                    </div>
+                                    <div class="bg-emerald-950/20 border border-emerald-500/20 p-2 rounded">
+                                        <span class="text-emerald-400 block">Giờ sinh:</span>
+                                        <span class="text-emerald-200 font-bold">05:30 - 06:00 sáng (Mão)</span>
+                                    </div>
+                                    <div class="bg-slate-800/60 p-2 rounded">
+                                        <span class="text-slate-400 block">SĐT (~8 năm):</span>
+                                        <code class="text-emerald-300 font-bold">092893XXXX</code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-400 text-center border-t border-slate-800 pt-3">
+                            Giờ sinh chuẩn xác giúp lập Lá Số Bát Tự / Tử Vi chính xác tới từng hạn năm và tháng.
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "NỘI DUNG YÊU CẦU LUẬN GIẢI",
+                subtitle: "Cấu Trúc Các Hạng Mục Phân Tích Chuyên Sâu",
+                bgClass: "from-slate-950 via-slate-900 to-amber-950/20",
+                content: `
+                    <div class="h-full flex flex-col justify-between p-6 md:p-8">
+                        <div class="border-b border-slate-800 pb-3">
+                            <h2 class="text-2xl md:text-3xl font-bold gold-gradient-text font-serif">IV. Quy Trình & Hạng Mục Luận Giải</h2>
+                            <p class="text-xs text-slate-400">3 Trụ cột phân tích cho toàn thể gia đình</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-5 my-auto">
+                            <!-- Step 1 -->
+                            <div class="p-5 rounded-2xl bg-slate-900/90 border border-amber-500/30 flex flex-col justify-between">
+                                <div>
+                                    <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center font-bold text-sm mb-3">01</div>
+                                    <h3 class="font-bold text-amber-300 text-base mb-2">Bát Tự & Tử Vi Gia Đình</h3>
+                                    <p class="text-xs text-slate-300 leading-relaxed">
+                                        Tính toán trường năng lượng theo ngày sinh thực tế (Âm/Dương). Xem xét sự tương sinh / xung hợp Ngũ Hành giữa Bố Mẹ và Các Con.
+                                    </p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-amber-400/80">
+                                    ✓ Cân bằng Dụng Thần & Hỷ Thần
+                                </div>
+                            </div>
+
+                            <!-- Step 2 -->
+                            <div class="p-5 rounded-2xl bg-slate-900/90 border border-purple-500/30 flex flex-col justify-between">
+                                <div>
+                                    <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-sm mb-3">02</div>
+                                    <h3 class="font-bold text-purple-300 text-base mb-2">Phong Thủy Sim Số Điện Thoại</h3>
+                                    <p class="text-xs text-slate-300 leading-relaxed">
+                                        Đánh giá Hung - Cát của các dãy số lâu năm (30 năm, 20 năm, 10 năm). Phân tích quẻ Kinh Dịch, Linh Số tác động tới Tài Lộc & Gia Đạo.
+                                    </p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-purple-400/80">
+                                    ✓ Định hướng dãy số kích tài vận
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div class="p-5 rounded-2xl bg-slate-900/90 border border-emerald-500/30 flex flex-col justify-between">
+                                <div>
+                                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center font-bold text-sm mb-3">03</div>
+                                    <h3 class="font-bold text-emerald-300 text-base mb-2">Định Hướng Cát Cánh & Hóa Giải</h3>
+                                    <p class="text-xs text-slate-300 leading-relaxed">
+                                        Đưa ra phương án tối ưu hóa vận trình cho từng cá nhân. Hóa giải xung khắc gia đạo, tư vấn thời điểm bứt phá sự nghiệp cho các con.
+                                    </p>
+                                </div>
+                                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-400/80">
+                                    ✓ Phương án thực tế, dễ áp dụng
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-400 text-center border-t border-slate-800 pt-3">
+                            Mọi thắc mắc trong quá trình nghiệm lý sẽ được giải đáp trực tiếp 1:1 qua Zalo.
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: "TỔNG KẾT & LƯU Ý BẮT ĐẦU GIẢNG",
+                subtitle: "Chuẩn Bị Cho Buổi Luận Giải Chi Tiết",
+                bgClass: "from-slate-950 via-slate-900 to-amber-950/40",
+                content: `
+                    <div class="h-full flex flex-col justify-between p-6 md:p-8 text-center">
+                        <div class="my-auto space-y-6 max-w-2xl mx-auto">
+                            <div class="w-16 h-16 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 text-3xl mx-auto shadow-inner">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+
+                            <h2 class="text-2xl md:text-4xl font-extrabold gold-gradient-text font-serif">
+                                Sẵn Sàng Bước Vào Bảng Luận Giải
+                            </h2>
+
+                            <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                                Hãy sử dụng thanh công cụ bút vẽ ở bên trái để **khoanh vùng, tô highlight** hoặc **phóng to** các chỉ số quan trọng trong quá trình thầy trao đổi và giảng bài.
+                            </p>
+
+                            <div class="p-4 rounded-xl bg-slate-900/90 border border-amber-500/30 text-xs md:text-sm text-amber-200 text-left space-y-2">
+                                <div class="font-bold text-amber-400 flex items-center space-x-2">
+                                    <i class="fa-solid fa-lightbulb"></i>
+                                    <span>Mẹo tương tác giảng bài:</span>
+                                </div>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                                    <li>Dùng **Bút Dạ Quang (Highlighter)** để tô đè lên các con số tài lộc.</li>
+                                    <li>Dùng nút **Zoom (+/-)** hoặc cuộn chuột để phóng to vùng Bát Tự cần soi kĩ.</li>
+                                    <li>Nhấn **Nút Xóa (Thùng Rác)** để làm sạch nét vẽ cho slide hiện tại.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="text-xs text-slate-500 border-t border-slate-800 pt-3">
+                            Mật Mã Cuộc Đời – Đồng Hành Cùng Kế Hoạch Vận Mệnh Gia Đình Bạn
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // STATE MANAGEMENT
+        let currentSlide = 0;
+        let zoomScale = 1;
+        let activeTool = 'pointer'; // 'pointer', 'pen', 'highlighter', 'eraser'
+        let currentColor = '#EF4444';
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        // Stores drawing data per slide: { slideIndex: [ strokeObjects ] }
+        const slideDrawings = {};
+
+        // DOM ELEMENTS
+        const slidesViewport = document.getElementById('slides-viewport');
+        const slideIndicator = document.getElementById('slide-indicator');
+        const zoomWrapper = document.getElementById('zoom-wrapper');
+        const zoomLevelText = document.getElementById('zoom-level');
+        const canvas = document.getElementById('annotation-canvas');
+        const ctx = canvas.getContext('2d');
+        const thumbnailNav = document.getElementById('thumbnail-nav');
+        const panHint = document.getElementById('pan-hint');
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            renderSlide(currentSlide);
+            renderThumbnails();
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            setupCanvasEvents();
+        });
+
+        // RENDER SLIDE CONTENT
+        function renderSlide(index, direction = 'none') {
+            const slide = slidesData[index];
+            
+            // Build slide HTML
+            const slideHtml = `
+                <div class="slide-card absolute inset-0 w-full h-full bg-gradient-to-br ${slide.bgClass} flex flex-col overflow-y-auto custom-scrollbar">
+                    ${slide.content}
+                </div>
+            `;
+
+            slidesViewport.innerHTML = slideHtml;
+            slideIndicator.textContent = `${index + 1} / ${slidesData.length}`;
+
+            // Update Thumbnail active states
+            const thumbs = thumbnailNav.querySelectorAll('button');
+            thumbs.forEach((t, idx) => {
+                if (idx === index) {
+                    t.className = "px-2.5 py-1 rounded bg-amber-500/30 text-amber-300 font-bold border border-amber-500/50 text-xs";
+                } else {
+                    t.className = "px-2.5 py-1 rounded bg-slate-800/80 hover:bg-slate-700 text-slate-400 text-xs transition";
+                }
+            });
+
+            // Redraw annotations for this slide
+            redrawCanvas();
+        }
+
+        // RENDER THUMBNAIL NAVIGATION IN FOOTER
+        function renderThumbnails() {
+            thumbnailNav.innerHTML = '';
+            slidesData.forEach((_, idx) => {
+                const btn = document.createElement('button');
+                btn.textContent = `Slide ${idx + 1}`;
+                btn.onclick = () => goToSlide(idx);
+                thumbnailNav.appendChild(btn);
+            });
+        }
+
+        // SLIDE NAVIGATION LOGIC
+        function nextSlide() {
+            if (currentSlide < slidesData.length - 1) {
+                currentSlide++;
+                renderSlide(currentSlide, 'next');
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                renderSlide(currentSlide, 'prev');
+            }
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < slidesData.length && index !== currentSlide) {
+                currentSlide = index;
+                renderSlide(currentSlide);
+            }
+        }
+
+        // KEYBOARD NAVIGATION
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
+            }
+        });
+
+        // ZOOM CONTROLS
+        function zoomIn() {
+            if (zoomScale < 2.5) {
+                zoomScale += 0.25;
+                applyZoom();
+            }
+        }
+
+        function zoomOut() {
+            if (zoomScale > 0.75) {
+                zoomScale -= 0.25;
+                applyZoom();
+            }
+        }
+
+        function resetZoom() {
+            zoomScale = 1;
+            applyZoom();
+        }
+
+        function applyZoom() {
+            zoomWrapper.style.transform = `scale(${zoomScale})`;
+            zoomLevelText.textContent = `${Math.round(zoomScale * 100)}%`;
+            
+            if (zoomScale > 1) {
+                panHint.style.opacity = '1';
+            } else {
+                panHint.style.opacity = '0';
+            }
+        }
+
+        // CANVAS ANNOTATION LOGIC
+        function resizeCanvas() {
+            const rect = slidesViewport.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            redrawCanvas();
+        }
+
+        function setTool(tool) {
+            activeTool = tool;
+            
+            // Update UI Active State
+            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`tool-${tool}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            if (tool === 'pointer') {
+                canvas.style.pointerEvents = 'none';
+            } else {
+                canvas.style.pointerEvents = 'auto';
+            }
+        }
+
+        function setColor(color) {
+            currentColor = color;
+            if (activeTool === 'pointer' || activeTool === 'eraser') {
+                setTool('pen');
+            }
+        }
+
+        function setupCanvasEvents() {
+            canvas.addEventListener('mousedown', startDrawing);
+            canvas.addEventListener('mousemove', draw);
+            canvas.addEventListener('mouseup', stopDrawing);
+            canvas.addEventListener('mouseleave', stopDrawing);
+
+            // Touch events for mobile/tablet
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                startDrawing(touch);
+            });
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                draw(touch);
+            });
+            canvas.addEventListener('touchend', stopDrawing);
+        }
+
+        function getCanvasCoords(e) {
+            const rect = canvas.getBoundingClientRect();
+            return {
+                x: (e.clientX - rect.left) * (canvas.width / rect.width),
+                y: (e.clientY - rect.top) * (canvas.height / rect.height)
+            };
+        }
+
+        function startDrawing(e) {
+            if (activeTool === 'pointer') return;
+            isDrawing = true;
+            const coords = getCanvasCoords(e);
+            lastX = coords.x;
+            lastY = coords.y;
+
+            if (!slideDrawings[currentSlide]) {
+                slideDrawings[currentSlide] = [];
+            }
+        }
+
+        function draw(e) {
+            if (!isDrawing || activeTool === 'pointer') return;
+
+            const coords = getCanvasCoords(e);
+            
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(coords.x, coords.y);
+
+            if (activeTool === 'pen') {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.strokeStyle = currentColor;
+                ctx.lineWidth = 3;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.globalAlpha = 1.0;
+            } else if (activeTool === 'highlighter') {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.strokeStyle = currentColor;
+                ctx.lineWidth = 18;
+                ctx.lineCap = 'square';
+                ctx.lineJoin = 'miter';
+                ctx.globalAlpha = 0.35; // Translucent
+            } else if (activeTool === 'eraser') {
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.lineWidth = 24;
+                ctx.lineCap = 'round';
+                ctx.globalAlpha = 1.0;
+            }
+
+            ctx.stroke();
+
+            // Store stroke point data
+            slideDrawings[currentSlide].push({
+                x1: lastX,
+                y1: lastY,
+                x2: coords.x,
+                y2: coords.y,
+                tool: activeTool,
+                color: currentColor,
+                alpha: ctx.globalAlpha,
+                width: ctx.lineWidth
+            });
+
+            lastX = coords.x;
+            lastY = coords.y;
+        }
+
+        function stopDrawing() {
+            isDrawing = false;
+        }
+
+        function redrawCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const strokes = slideDrawings[currentSlide];
+            if (!strokes || strokes.length === 0) return;
+
+            strokes.forEach(s => {
+                ctx.beginPath();
+                ctx.moveTo(s.x1, s.y1);
+                ctx.lineTo(s.x2, s.y2);
+
+                if (s.tool === 'eraser') {
+                    ctx.globalCompositeOperation = 'destination-out';
+                    ctx.lineWidth = s.width;
+                } else {
+                    ctx.globalCompositeOperation = 'source-over';
+                    ctx.strokeStyle = s.color;
+                    ctx.lineWidth = s.width;
+                    ctx.globalAlpha = s.alpha || 1.0;
+                    ctx.lineCap = s.tool === 'highlighter' ? 'square' : 'round';
+                }
+
+                ctx.stroke();
+            });
+        }
+
+        function clearCurrentCanvas() {
+            slideDrawings[currentSlide] = [];
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // FULLSCREEN TOGGLE
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+                document.getElementById('fullscreen-icon').className = "fa-solid fa-compress";
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                    document.getElementById('fullscreen-icon').className = "fa-solid fa-expand";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
