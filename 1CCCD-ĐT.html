@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tra Cứu Năng Lượng Số Miễn Phí - Vì Cộng Đồng</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <div>
+        <!-- Navigation / Banner -->
+        <header class="border-b border-slate-800 glass-card sticky top-0 z-50">
+            <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-xl shadow-lg shadow-indigo-500/30">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold gradient-text">Tra Cứu Năng Lượng Số</h1>
+                        <p class="text-xs text-slate-400">Dự án công đồng - Miễn phí 100%</p>
+                    </div>
+                </div>
+                <div class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Phi Lợi Nhuận
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-4xl mx-auto px-4 py-10 space-y-8">
+            <!-- Hero Title -->
+            <div class="text-center space-y-3">
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight">
+                    Giải Mã Cát Cát Hung Hung <br class="hidden sm:inline" />Của <span class="gradient-text">Dãy Số Điện Thoại / CCCD</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+                    Công cụ giúp cộng đồng tự luận giải năng lượng dãy số dựa trên Học thuyết Năng Lượng Số (Bát Trạch) hoàn toàn miễn phí, không chèo kéo mua SIM phong thủy.
+                </p>
+            </div>
+
+            <!-- Search Form Card -->
+            <div class="glass-card rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <form id="lookupForm" class="space-y-6" onsubmit="event.preventDefault(); analyzeNumber();">
+                    <div>
+                        <label for="phoneNumber" class="block text-sm font-medium text-slate-300 mb-2">
+                            Nhập dãy số cần tra cứu (Số điện thoại / CCCD):
+                        </label>
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                id="phoneNumber" 
+                                placeholder="Ví dụ: 0965815013 hoặc 0388088704" 
+                                class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-5 py-4 text-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all tracking-wider font-mono"
+                                required
+                            />
+                            <button 
+                                type="submit" 
+                                class="mt-3 sm:mt-0 sm:absolute sm:right-2 sm:top-2 sm:bottom-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white px-6 py-3 sm:py-0 rounded-lg font-semibold flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/30 transition-all w-full sm:w-auto"
+                            >
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                Tra Cứu
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick suggestions -->
+                    <div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+                        <span>Thử nhanh:</span>
+                        <button type="button" onclick="setNumber('0965815013')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded border border-slate-700 font-mono transition-colors">0965815013</button>
+                        <button type="button" onclick="setNumber('0988888888')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded border border-slate-700 font-mono transition-colors">0988888888</button>
+                        <button type="button" onclick="setNumber('0913141516')" class="px-2 py-1 bg-slate-800 hover:bg-slate-700 rounded border border-slate-700 font-mono transition-colors">0913141516</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="resultsSection" class="hidden space-y-6">
+                <!-- Overview Header -->
+                <div class="glass-card rounded-2xl p-6 border-l-4 border-indigo-500 flex flex-wrap justify-between items-center gap-4">
+                    <div>
+                        <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">Dãy số đang phân tích</div>
+                        <div id="displayNumber" class="text-2xl font-extrabold font-mono text-indigo-400"></div>
+                    </div>
+                    <div id="overallEnergyBadge" class="px-4 py-2 rounded-xl text-sm font-bold"></div>
+                </div>
+
+                <!-- Star/Energy Pair Decomposition -->
+                <div class="glass-card rounded-2xl p-6 space-y-4">
+                    <h3 class="text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-indigo-400"></i>
+                        Phân Tách Các Cặp Năng Lượng
+                    </h3>
+                    <div id="pairsContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                        <!-- Dynamic Pairs will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Detailed Explanation Cards -->
+                <div class="glass-card rounded-2xl p-6 space-y-4">
+                    <h3 class="text-lg font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-book-open text-indigo-400"></i>
+                        Chi Tiết Luận Giải Các Từ Trường
+                    </h3>
+                    <div id="detailedAnalysis" class="space-y-4">
+                        <!-- Dynamic details will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-6 space-y-4 border-t border-indigo-500/20">
+                <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    Bảng Tra Cứu Nhanh 8 Bát Tinh Năng Lượng Số
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <!-- Cát Tinh -->
+                    <div class="bg-emerald-950/30 border border-emerald-500/20 p-4 rounded-xl space-y-2">
+                        <div class="font-bold text-emerald-400 flex items-center justify-between">
+                            <span>✨ 4 CÁT TINH (Từ trường Tốt)</span>
+                        </div>
+                        <ul class="space-y-1.5 text-slate-300">
+                            <li><strong class="text-emerald-300">Thiên Y (Tài Lộc, Tình Cảm):</strong> 13/31, 68/86, 49/94, 27/72</li>
+                            <li><strong class="text-emerald-300">Sinh Khí (Quý Nhân, Sự Nghiệp):</strong> 14/41, 67/76, 39/93, 28/82</li>
+                            <li><strong class="text-emerald-300">Diên Niên (Công Danh, Lãnh Đạo):</strong> 19/91, 78/87, 34/43, 26/62</li>
+                            <li><strong class="text-emerald-300">Phục Vị (Bình Hòa, Tích Lũy):</strong> 11/22, 88/99, 66/77, 33/44</li>
+                        </ul>
+                    </div>
+                    <!-- Hung Tinh -->
+                    <div class="bg-rose-950/30 border border-rose-500/20 p-4 rounded-xl space-y-2">
+                        <div class="font-bold text-rose-400 flex items-center justify-between">
+                            <span>⚠️ 4 HUNG TINH (Từ trường Lưu Ý)</span>
+                        </div>
+                        <ul class="space-y-1.5 text-slate-300">
+                            <li><strong class="text-rose-300">Tuyệt Mệnh (Tài Vận Biến Động):</strong> 12/21, 69/96, 48/84, 37/73</li>
+                            <li><strong class="text-rose-300">Ngũ Quỷ (Tâm Trí Biến Động, Thiệt Thòi):</strong> 18/81, 79/97, 36/63, 24/42</li>
+                            <li><strong class="text-rose-300">Lục Sát (Giao Tiếp, Thị Phi):</strong> 16/61, 47/74, 38/83, 29/92</li>
+                            <li><strong class="text-rose-300">Họa Hại (Khẩu Lưỡi, Khả Năng Nói):</strong> 17/71, 89/98, 46/64, 23/32</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 space-y-2">
+            <p>Trang web tra cứu miễn phí xây dựng vì lợi ích cộng đồng. Không kinh doanh mua bán SIM.</p>
+            <p>Phát triển bởi Cộng Đồng Chia Sẻ Tri Thức Năng Lượng Số.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Energy Mapping Dictionary
+        const ENERGY_MAP = {
+            // Thiên Y (Cát - Tài Lộc)
+            '13': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 1', desc: 'Tài lộc vượng, tình cảm hòa hợp, tâm tính hiền hòa, gặp may mắn về tiền bạc.' },
+            '31': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 1', desc: 'Tài lộc vượng, tình cảm hòa hợp, tâm tính hiền hòa, gặp may mắn về tiền bạc.' },
+            '68': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 2', desc: 'Tài vận tốt, sự nghiệp phát triển thuận lợi, hôn nhân mỹ mãn.' },
+            '86': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 2', desc: 'Tài vận tốt, sự nghiệp phát triển thuận lợi, hôn nhân mỹ mãn.' },
+            '49': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 3', desc: 'Tài lộc nhỏ tích tiểu thành đại, tình cảm chân thành.' },
+            '94': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 3', desc: 'Tài lộc nhỏ tích tiểu thành đại, tình cảm chân thành.' },
+            '27': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 4', desc: 'Có lộc ăn uống, tài chính bình ổn, quý nhân giúp đỡ.' },
+            '72': { type: 'Thiên Y', star: 'Tốt (Cát)', level: 'Cấp 4', desc: 'Có lộc ăn uống, tài chính bình ổn, quý nhân giúp đỡ.' },
+
+            // Sinh Khí (Cát - Quý Nhân)
+            '14': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 1', desc: 'Quý nhân phù trợ, tư duy cởi mở, danh tiếng tốt, làm ăn gặp nhiều cơ hội.' },
+            '41': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 1', desc: 'Quý nhân phù trợ, tư duy cởi mở, danh tiếng tốt, làm ăn gặp nhiều cơ hội.' },
+            '67': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 2', desc: 'Bạn bè giúp đỡ, tinh thần lạc quan, công việc tiến triển.' },
+            '76': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 2', desc: 'Bạn bè giúp đỡ, tinh thần lạc quan, công việc tiến triển.' },
+            '39': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 3', desc: 'Cuộc sống vui vẻ, quan hệ giao tế tốt, có người dẫn đường.' },
+            '93': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 3', desc: 'Cuộc sống vui vẻ, quan hệ giao tế tốt, có người dẫn đường.' },
+            '28': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 4', desc: 'Tâm thái bình an, hài lòng với thực tại, ít áp lực.' },
+            '82': { type: 'Sinh Khí', star: 'Tốt (Cát)', level: 'Cấp 4', desc: 'Tâm thái bình an, hài lòng với thực tại, ít áp lực.' },
+
+            // Diên Niên (Cát - Công Danh / Năng Lực)
+            '19': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 1', desc: 'Năng lực lãnh đạo mạnh, tự chủ cao, quyết đoán, tài chính vững vàng.' },
+            '91': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 1', desc: 'Năng lực lãnh đạo mạnh, tự chủ cao, quyết đoán, tài chính vững vàng.' },
+            '78': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 2', desc: 'Chịu khó làm việc, có trách nhiệm cao, năng lực gánh vác công việc lớn.' },
+            '87': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 2', desc: 'Chịu khó làm việc, có trách nhiệm cao, năng lực gánh vác công việc lớn.' },
+            '34': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 3', desc: 'Năng lực làm việc ổn định, cẩn thận, quản lý tài chính tốt.' },
+            '43': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 3', desc: 'Năng lực làm việc ổn định, cẩn thận, quản lý tài chính tốt.' },
+            '26': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 4', desc: 'Chăm chỉ, cần cù, công việc tiến triển từ từ vững chắc.' },
+            '62': { type: 'Diên Niên', star: 'Tốt (Cát)', level: 'Cấp 4', desc: 'Chăm chỉ, cần cù, công việc tiến triển từ từ vững chắc.' },
+
+            // Phục Vị (Cát/Bình - Tích Lũy)
+            '11': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 1', desc: 'Chờ đợi thời cơ, kiên trì, cẩn trọng, suy nghĩ kỹ trước khi làm.' },
+            '22': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 1', desc: 'Chờ đợi thời cơ, kiên trì, cẩn trọng, suy nghĩ kỹ trước khi làm.' },
+            '88': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 2', desc: 'Ổn định tích lũy, không thích mạo hiểm, công việc đều đặn.' },
+            '99': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 2', desc: 'Ổn định tích lũy, không thích mạo hiểm, công việc đều đặn.' },
+            '66': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 3', desc: 'Thích sự an toàn, bảo thủ nhẹ, có tính kiên nhẫn.' },
+            '77': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 3', desc: 'Thích sự an toàn, bảo thủ nhẹ, có tính kiên nhẫn.' },
+            '33': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 4', desc: 'Cần cù nhẫn nại, làm việc theo kế hoạch sẵn có.' },
+            '44': { type: 'Phục Vị', star: 'Bình Hòa', level: 'Cấp 4', desc: 'Cần cù nhẫn nại, làm việc theo kế hoạch sẵn có.' },
+
+            // Tuyệt Mệnh (Hung - Mạo Mới / Biến Động)
+            '12': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Tâm tính nóng nảy, dễ có quyết định cảm tính, giữ tiền kém, thích đầu tư mạo hiểm.' },
+            '21': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Tâm tính nóng nảy, dễ có quyết định cảm tính, giữ tiền kém, thích đầu tư mạo hiểm.' },
+            '69': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Dũng cảm bộc phát nhưng thiếu cân nhắc, tài chính bốc đồng, lên xuống thất thường.' },
+            '96': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Dũng cảm bộc phát nhưng thiếu cân nhắc, tài chính bốc đồng, lên xuống thất thường.' },
+            '48': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Phản ứng nhanh nhẹn nhưng dễ cực đoan, cần chú ý hợp đồng giấy tờ.' },
+            '84': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Phản ứng nhanh nhẹn nhưng dễ cực đoan, cần chú ý hợp đồng giấy tờ.' },
+            '37': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Bày tỏ quan điểm thẳng thắn, đôi khi thiếu kiên nhẫn với người xung quanh.' },
+            '73': { type: 'Tuyệt Mệnh', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Bày tỏ quan điểm thẳng thắn, đôi khi thiếu kiên nhẫn với người xung quanh.' },
+
+            // Ngũ Quỷ (Hung - Mơ Mộng / Biến Động Mental)
+            '18': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Tư duy thông minh đột phá, nhiều ý tưởng nhưng dễ thay đổi tâm trí, ngủ không sâu giấc.' },
+            '81': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Tư duy thông minh đột phá, nhiều ý tưởng nhưng dễ thay đổi tâm trí, ngủ không sâu giấc.' },
+            '79': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Nhiều biến động ngầm, cần chú ý giữ chữ tín và quản lý tiền bạc chắc chắn.' },
+            '97': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Nhiều biến động ngầm, cần chú ý giữ chữ tín và quản lý tiền bạc chắc chắn.' },
+            '36': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Linh hoạt ứng biến nhưng dễ hoài nghi, hay suy nghĩ nhiều về đêm.' },
+            '63': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Linh hoạt ứng biến nhưng dễ hoài nghi, hay suy nghĩ nhiều về đêm.' },
+            '24': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Sáng tạo nhẹ, tính tình có chút lãng mạn nhưng dễ thay đổi dự định.' },
+            '42': { type: 'Ngũ Quỷ', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Sáng tạo nhẹ, tính tình có chút lãng mạn nhưng dễ thay đổi dự định.' },
+
+            // Lục Sát (Hung - Thị Phi / Tình Cảm Mềm)
+            '16': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Thẩm mỹ cao, giao tiếp tốt nhưng tâm trí nhạy cảm, dễ vướng thị phi giao tiếp.' },
+            '61': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Thẩm mỹ cao, giao tiếp tốt nhưng tâm trí nhạy cảm, dễ vướng thị phi giao tiếp.' },
+            '47': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Khéo léo ứng xử, thích cái đẹp nhưng đôi khi hay suy nghĩ buồn phiền nội tâm.' },
+            '74': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Khéo léo ứng xử, thích cái đẹp nhưng đôi khi hay suy nghĩ buồn phiền nội tâm.' },
+            '38': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Nhẹ nhàng nhã nhặn, chú ý duy trì sự tập trung trong công việc.' },
+            '83': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Nhẹ nhàng nhã nhặn, chú ý duy trì sự tập trung trong công việc.' },
+            '29': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Dễ mềm lòng, chan hòa với đồng nghiệp nhưng cần tránh do dự.' },
+            '92': { type: 'Lục Sát', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Dễ mềm lòng, chan hòa với đồng nghiệp nhưng cần tránh do dự.' },
+
+            // Họa Hại (Hung - Khẩu Lưỡi)
+            '17': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Khả năng ăn nói giỏi, diễn đạt tốt nhưng dễ tranh luận khẩu lưỡi, hiếu thắng.' },
+            '71': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 1', desc: 'Khả năng ăn nói giỏi, diễn đạt tốt nhưng dễ tranh luận khẩu lưỡi, hiếu thắng.' },
+            '89': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Nói năng sắc bén, cẩn trọng tránh lời nói vô tình làm mất lòng người khác.' },
+            '98': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 2', desc: 'Nói năng sắc bén, cẩn trọng tránh lời nói vô tình làm mất lòng người khác.' },
+            '46': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Khéo tranh luận, thích thuyết phục người khác bằng lý lẽ.' },
+            '64': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 3', desc: 'Khéo tranh luận, thích thuyết phục người khác bằng lý lẽ.' },
+            '23': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Bày tỏ suy nghĩ nhanh, chú ý lắng nghe nhiều hơn để giữ quan hệ tốt.' },
+            '32': { type: 'Họa Hại', star: 'Cần Lưu Ý', level: 'Cấp 4', desc: 'Bày tỏ suy nghĩ nhanh, chú ý lắng nghe nhiều hơn để giữ quan hệ tốt.' }
+        };
+
+        function setNumber(num) {
+            document.getElementById('phoneNumber').value = num;
+            analyzeNumber();
+        }
+
+        function analyzeNumber() {
+            const rawInput = document.getElementById('phoneNumber').value;
+            // Clean non-digits
+            const cleanNum = rawInput.replace(/\D/g, '');
+
+            if (cleanNum.length < 3) {
+                alert('Vui lòng nhập ít nhất 3 chữ số!');
+                return;
+            }
+
+            // Remove middle zeros or handle zero/five rules roughly (simple standard split)
+            // For standard educational calculation: look at adjacent pairs
+            const pairs = [];
+            let cleanDigits = cleanNum.replace(/0/g, '').replace(/5/g, ''); // Basic reduction for analysis
+
+            if (cleanDigits.length < 2) {
+                cleanDigits = cleanNum; // Fallback if too many zeros
+            }
+
+            for (let i = 0; i < cleanDigits.length - 1; i++) {
+                const pair = cleanDigits.substring(i, i + 2);
+                pairs.push(pair);
+            }
+
+            // Render Output
+            document.getElementById('displayNumber').textContent = cleanNum;
+            const pairsContainer = document.getElementById('pairsContainer');
+            const detailedAnalysis = document.getElementById('detailedAnalysis');
+            
+            pairsContainer.innerHTML = '';
+            detailedAnalysis.innerHTML = '';
+
+            let goodCount = 0;
+            let badCount = 0;
+
+            pairs.forEach((pair, idx) => {
+                const info = ENERGY_MAP[pair];
+                if (info) {
+                    const isGood = info.star === 'Tốt (Cát)';
+                    const isNeutral = info.star === 'Bình Hòa';
+                    if (isGood) goodCount++;
+                    else if (!isNeutral) badCount++;
+
+                    const badgeColor = isGood 
+                        ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' 
+                        : (isNeutral ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-rose-500/20 text-rose-400 border-rose-500/30');
+
+                    // Pair Pill
+                    pairsContainer.innerHTML += `
+                        <div class="bg-slate-900/80 border border-slate-700/80 p-3 rounded-xl flex justify-between items-center">
+                            <div>
+                                <span class="font-mono text-xl font-bold tracking-wider text-amber-300">${pair}</span>
+                                <span class="text-xs text-slate-400 block">${info.type} (${info.level})</span>
+                            </div>
+                            <span class="text-xs px-2.5 py-1 rounded-full border ${badgeColor} font-semibold">
+                                ${info.star}
+                            </span>
+                        </div>
+                    `;
+
+                    // Detail Card
+                    detailedAnalysis.innerHTML += `
+                        <div class="bg-slate-900/50 border border-slate-800 p-4 rounded-xl space-y-1">
+                            <div class="flex items-center gap-3">
+                                <span class="font-mono text-lg font-bold text-amber-300">${pair}</span>
+                                <span class="font-bold text-sm text-indigo-300">${info.type} - ${info.star}</span>
+                            </div>
+                            <p class="text-xs text-slate-300 leading-relaxed">${info.desc}</p>
+                        </div>
+                    `;
+                } else {
+                    // Unknown or repeated numbers
+                    pairsContainer.innerHTML += `
+                        <div class="bg-slate-900/80 border border-slate-800 p-3 rounded-xl flex justify-between items-center">
+                            <div>
+                                <span class="font-mono text-xl font-bold text-slate-400">${pair}</span>
+                                <span class="text-xs text-slate-500 block">Tự nhiên / Trung tính</span>
+                            </div>
+                            <span class="text-xs px-2.5 py-1 rounded-full border border-slate-700 text-slate-400">
+                                Bình Thường
+                            </span>
+                        </div>
+                    `;
+                }
+            });
+
+            // Overall Summary Badge
+            const overallBadge = document.getElementById('overallEnergyBadge');
+            if (goodCount > badCount) {
+                overallBadge.className = "px-4 py-2 rounded-xl text-sm font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+                overallBadge.innerHTML = "<i class='fa-solid fa-circle-check mr-1.5'></i> Năng Lượng Thiên Hướng Tích Cực (Cát)";
+            } else if (badCount > goodCount) {
+                overallBadge.className = "px-4 py-2 rounded-xl text-sm font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40";
+                overallBadge.innerHTML = "<i class='fa-solid fa-triangle-exclamation mr-1.5'></i> Nhiều Từ Trường Cần Chú Ý Nỗ Lực";
+            } else {
+                overallBadge.className = "px-4 py-2 rounded-xl text-sm font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40";
+                overallBadge.innerHTML = "<i class='fa-solid fa-scale-balanced mr-1.5'></i> Năng Lượng Cân Bằng / Bình Hòa";
+            }
+
+            document.getElementById('resultsSection').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
