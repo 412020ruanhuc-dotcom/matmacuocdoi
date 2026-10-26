@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mật Mã Cuộc Đời — Tra Cứu Tứ Trụ Bát Tự Miễn Phí</title>
+  <!-- Sử dụng Tailwind CSS để làm giao diện đẹp, sang trọng -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Thư viện Lunar-JavaScript nổi tiếng thế giới để tính Can Chi, Tiết Khí, Tứ Trụ chuẩn xác -->
+  <script src="https://cdn.jsdelivr.net/npm/lunar-javascript@1.6.12/lunar.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Segoe+UI:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; }
+    .font-serif-custom { font-family: 'Merriweather', serif; }
+    .gold-gradient { background: linear-gradient(135deg, #f39c12, #d35400); }
+    .card-bg { background: rgba(26, 26, 46, 0.95); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen pb-12">
+
+  <!-- HEADER / PHẦN ĐẦU TRANG -->
+  <header class="border-b border-amber-600/30 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 py-4 text-center">
+      <div class="text-amber-400 text-xs font-semibold tracking-widest uppercase mb-1">Kênh Mật Mã Cuộc Đời</div>
+      <h1 class="text-2xl md:text-3xl font-bold font-serif-custom text-amber-300">TRA CỨU TỨ TRỤ BÁT TỰ CHUẨN XÁC</h1>
+      <p class="text-xs md:text-sm text-slate-400 mt-1">Lập lá số miễn phí · Chuẩn Tiết khí · Không thương mại hóa</p>
+    </div>
+  </header>
+
+  <!-- FORM NHẬP THÔNG TIN -->
+  <main class="max-w-4xl mx-auto px-4 mt-6">
+    <div class="bg-slate-900 border border-amber-500/30 rounded-2xl p-6 shadow-2xl">
+      <h2 class="text-lg font-bold text-amber-400 mb-4 text-center border-b border-slate-800 pb-2">
+        ✦ Nhập Thông Tin Ngày Sinh ✦
+      </h2>
+
+      <form id="baziForm" class="space-y-4" onsubmit="event.preventDefault(); lapLaSo();">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Họ tên -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Họ và tên (Tùy chọn)</label>
+            <input type="text" id="fullName" placeholder="Ví dụ: Nguyễn Văn A" 
+                   class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+          </div>
+
+          <!-- Giới tính -->
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Giới tính (Để tính Đại Vận)</label>
+            <select id="gender" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+              <option value="1">Nam (Dương Nam / Âm Nam)</option>
+              <option value="0">Nữ (Dương Nữ / Âm Nữ)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Ngày tháng năm sinh -->
+        <div class="grid grid-cols-3 gap-2 md:gap-4">
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Ngày sinh (Dương)</label>
+            <select id="birthDay" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"></select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Tháng sinh (Dương)</label>
+            <select id="birthMonth" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"></select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-300 mb-1">Năm sinh (Dương)</label>
+            <select id="birthYear" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500"></select>
+          </div>
+        </div>
+
+        <!-- Giờ sinh -->
+        <div>
+          <label class="block text-xs font-medium text-slate-300 mb-1">Giờ sinh (Giờ đồng hồ)</label>
+          <select id="birthHour" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-3 py-2.5 text-sm text-white focus:outline-none focus:border-amber-500">
+            <option value="0">23:00 - 00:59 (Giờ Tý)</option>
+            <option value="2">01:00 - 02:59 (Giờ Sửu)</option>
+            <option value="4">03:00 - 04:59 (Giờ Dần)</option>
+            <option value="6">05:00 - 06:59 (Giờ Mão)</option>
+            <option value="8">07:00 - 08:59 (Giờ Thìn)</option>
+            <option value="10">09:00 - 10:59 (Giờ Tỵ)</option>
+            <option value="12">11:00 - 12:59 (Giờ Ngọ)</option>
+            <option value="14">13:00 - 14:59 (Giờ Mùi)</option>
+            <option value="16">15:00 - 16:59 (Giờ Thân)</option>
+            <option value="18">17:00 - 18:59 (Giờ Dậu)</option>
+            <option value="20">19:00 - 20:59 (Giờ Tuất)</option>
+            <option value="22">21:00 - 22:59 (Giờ Hợi)</option>
+          </select>
+        </div>
+
+        <button type="submit" 
+                class="w-full mt-2 gold-gradient hover:opacity-90 text-amber-950 font-bold py-3 px-4 rounded-xl shadow-lg transition duration-200 text-base">
+          LẬP LÁ SỐ TỨ TRỤ
+        </button>
+      </form>
+    </div>
+
+    <!-- KHU VỰC HIỂN THỊ KẾT QUẢ -->
+    <div id="resultBox" class="hidden mt-8 space-y-6">
+      
+      <!-- BẢNG TỨ TRỤ BÁT TỰ -->
+      <div class="bg-slate-900 border border-amber-500/40 rounded-2xl p-6 shadow-2xl">
+        <div class="text-center mb-6">
+          <h3 id="resName" class="text-xl font-bold text-amber-300 font-serif-custom"></h3>
+          <p id="resSolarLunar" class="text-xs text-slate-400 mt-1"></p>
+          <div class="inline-block bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs px-3 py-1 rounded-full mt-2 font-medium" id="resNhatChu"></div>
+        </div>
+
+        <!-- 4 Trụ Table -->
+        <div class="grid grid-cols-4 gap-2 md:gap-4 text-center">
+          <!-- Trụ Giờ -->
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-3">
+            <div class="text-xs text-slate-400 font-semibold mb-1">TRỤ GIỜ</div>
+            <div id="hourStem" class="text-lg md:text-xl font-bold text-amber-400"></div>
+            <div id="hourBranch" class="text-lg md:text-xl font-bold text-emerald-400 mt-1"></div>
+            <div id="hourHide" class="text-[10px] text-slate-500 mt-2 border-t border-slate-800 pt-1"></div>
+          </div>
+          <!-- Trụ Ngày -->
+          <div class="bg-slate-950 border border-amber-500/50 rounded-xl p-3 bg-amber-950/10">
+            <div class="text-xs text-amber-400 font-semibold mb-1">TRỤ NGÀY</div>
+            <div id="dayStem" class="text-xl md:text-2xl font-bold text-amber-300"></div>
+            <div id="dayBranch" class="text-xl md:text-2xl font-bold text-emerald-400 mt-1"></div>
+            <div id="dayHide" class="text-[10px] text-slate-400 mt-2 border-t border-slate-800 pt-1"></div>
+          </div>
+          <!-- Trụ Tháng -->
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-3">
+            <div class="text-xs text-slate-400 font-semibold mb-1">TRỤ THÁNG</div>
+            <div id="monthStem" class="text-lg md:text-xl font-bold text-amber-400"></div>
+            <div id="monthBranch" class="text-lg md:text-xl font-bold text-emerald-400 mt-1"></div>
+            <div id="monthHide" class="text-[10px] text-slate-500 mt-2 border-t border-slate-800 pt-1"></div>
+          </div>
+          <!-- Trụ Năm -->
+          <div class="bg-slate-950 border border-slate-800 rounded-xl p-3">
+            <div class="text-xs text-slate-400 font-semibold mb-1">TRỤ NĂM</div>
+            <div id="yearStem" class="text-lg md:text-xl font-bold text-amber-400"></div>
+            <div id="yearBranch" class="text-lg md:text-xl font-bold text-emerald-400 mt-1"></div>
+            <div id="yearHide" class="text-[10px] text-slate-500 mt-2 border-t border-slate-800 pt-1"></div>
+          </div>
+        </div>
+
+        <!-- Tiết khí -->
+        <div id="resJieQi" class="mt-4 text-center text-xs text-amber-200/80 bg-slate-950/60 py-2 rounded-lg border border-slate-800"></div>
+      </div>
+
+      <!-- ĐẠI VẬN -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h4 class="text-md font-bold text-amber-400 mb-3 border-b border-slate-800 pb-2">✦ Các Khung Đại Vận (10 Năm) ✦</h4>
+        <div id="daiVanList" class="grid grid-cols-4 md:grid-cols-8 gap-2 text-center text-xs"></div>
+      </div>
+
+      <!-- LỜI NHẮN NHỦ TỪ KÊNH MẬT MÃ CUỘC ĐỜI -->
+      <div class="bg-amber-950/30 border border-amber-600/40 rounded-2xl p-5 text-slate-300 text-sm leading-relaxed">
+        <h4 class="text-amber-400 font-bold mb-2 flex items-center gap-2">
+          <span>📜</span> Lời Nhắc Từ Kênh Mật Mã Cuộc Đời
+        </h4>
+        <p>Lá số Tứ Trụ là bản đồ xu hướng năng lượng tự nhiên khi bạn sinh ra. **Mệnh tốt không bằng Vận tốt, Vận tốt không bằng Tâm tốt.** Đừng quá lo lắng nếu thấy có xung khắc hay khuyết ngũ hành, hãy sống tích cực, tu tâm tích đức thì vận mệnh tự khắc sẽ chuyển hướng tốt đẹp.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- SCRIPT XỬ LÝ TOÁN LẬP BÁT TỰ -->
+  <script>
+    // Tự động điền ngày/tháng/năm
+    window.onload = function() {
+      const daySel = document.getElementById('birthDay');
+      const monthSel = document.getElementById('birthMonth');
+      const yearSel = document.getElementById('birthYear');
+
+      for(let i=1; i<=31; i++) daySel.add(new Option(i, i));
+      for(let i=1; i<=12; i++) monthSel.add(new Option(i, i));
+      const currentYear = new Date().getFullYear();
+      for(let i=currentYear; i>=1930; i--) yearSel.add(new Option(i, i));
+
+      // Mặc định chọn ngày hiện tại
+      daySel.value = 15;
+      monthSel.value = 6;
+      yearSel.value = 1990;
+    };
+
+    function lapLaSo() {
+      const name = document.getElementById('fullName').value || "Tín chủ";
+      const gender = parseInt(document.getElementById('gender').value);
+      const day = parseInt(document.getElementById('birthDay').value);
+      const month = parseInt(document.getElementById('birthMonth').value);
+      const year = parseInt(document.getElementById('birthYear').value);
+      const hour = parseInt(document.getElementById('birthHour').value);
+
+      // Sử dụng thư viện Lunar JS để tạo đối tượng Solar
+      const solar = Solar.fromYmdHms(year, month, day, hour, 0, 0);
+      const lunar = solar.getLunar();
+      const baZi = lunar.getEightChar();
+
+      // Hiển thị khung kết quả
+      document.getElementById('resultBox').classList.remove('hidden');
+
+      // Tên và thông tin ngày
+      document.getElementById('resName').innerText = "Lá Số Tứ Trụ: " + name;
+      document.getElementById('resSolarLunar').innerText = 
+        `Dương lịch: ${solar.toFullString().split(' ')[0]} | Âm lịch: Ngày ${lunar.getDay()} tháng ${lunar.getMonth()} năm ${lunar.getYearInGanZhi()} (${lunar.getShengXiao()})`;
+
+      // Nhật chủ
+      const nhatChuGan = baZi.getDayGan();
+      document.getElementById('resNhatChu').innerText = `Nhật Chủ (Mệnh Bổn): ${nhatChuGan} (${baZi.getDayWuXing().substring(0,1)})`;
+
+      // 4 Trụ (Thiên Can / Địa Chi)
+      document.getElementById('yearStem').innerText = baZi.getYearGan();
+      document.getElementById('yearBranch').innerText = baZi.getYearZhi();
+      document.getElementById('yearHide').innerText = "Tàng: " + baZi.getYearHideGan().join(', ');
+
+      document.getElementById('monthStem').innerText = baZi.getMonthGan();
+      document.getElementById('monthBranch').innerText = baZi.getMonthZhi();
+      document.getElementById('monthHide').innerText = "Tàng: " + baZi.getMonthHideGan().join(', ');
+
+      document.getElementById('dayStem').innerText = baZi.getDayGan();
+      document.getElementById('dayBranch').innerText = baZi.getDayZhi();
+      document.getElementById('dayHide').innerText = "Tàng: " + baZi.getDayHideGan().join(', ');
+
+      document.getElementById('hourStem').innerText = baZi.getTimeGan();
+      document.getElementById('hourBranch').innerText = baZi.getTimeZhi();
+      document.getElementById('hourHide').innerText = "Tàng: " + baZi.getTimeHideGan().join(', ');
+
+      // Tiết khí chuẩn xác
+      const jieQi = lunar.getJieQiTable();
+      document.getElementById('resJieQi').innerText = `Tiết khí gần nhất: ${lunar.getPrevJieQi().getName()} (${lunar.getPrevJieQi().getSolar().toYmd()})`;
+
+      // Tính Đại Vận
+      const yun = baZi.getYun(gender);
+      const daYunList = yun.getDaYun();
+      let daYunHtml = "";
+      for(let i=1; i<Math.min(daYunList.length, 9); i++) {
+        const dy = daYunList[i];
+        daYunHtml += `
+          <div class="bg-slate-950 p-2 rounded-lg border border-slate-800">
+            <div class="text-amber-400 font-bold">${dy.getStartAge()} Tuổi</div>
+            <div class="text-white font-semibold mt-1">${dy.getGanZhi()}</div>
+            <div class="text-[10px] text-slate-500 mt-1">${dy.getStartYear()}</div>
+          </div>
+        `;
+      }
+      document.getElementById('daiVanList').innerHTML = daYunHtml;
+
+      // Cuộn xuống kết quả
+      document.getElementById('resultBox').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
