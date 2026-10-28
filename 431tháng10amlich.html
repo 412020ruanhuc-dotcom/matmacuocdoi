@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Xem Ngày Tốt - Tháng 10 Âm Lịch 2026</title>
-        <style>
-        /* Phong cách nền tảng cho trang web - Đã thêm lệnh khóa nét chữ */
+           <style>
+        /* Phong cách nền tảng - Giữ chữ nét căng và tràn màn hình thông minh */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f0e6;
             margin: 0;
-            padding: 20px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            /* 3 dòng dưới giúp chữ sắc nét nhất khi quay màn hình Zoom */
+            box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
@@ -25,18 +25,20 @@
         h1 {
             color: #8b0000;
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 28px;
+            margin: 5px 0 10px 0;
+            font-size: 26px;
         }
 
-        /* Khung chứa cuốn sách - Đã bỏ hiệu ứng 3D để chống nhòe chữ */
+        /* KHUNG CHỨA TỰ CO DÃN: To rộng trên Máy tính - Tự thu nhỏ trên Điện thoại */
         .book-container {
             position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: 650px;
+            width: 95%;
+            max-width: 900px; /* Tăng chiều rộng tối đa lên 900px để tràn màn hình máy tính */
+            height: 75vh;     /* Chiều cao tự động chiếm 75% chiều cao màn hình hiển thị */
+            min-height: 450px;
         }
 
+        /* Từng trang sách tự động tràn đầy khung chứa */
         .page {
             position: absolute;
             width: 100%;
@@ -47,7 +49,7 @@
             border: 2px solid #d2b48c;
             border-radius: 10px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            padding: 40px;
+            padding: 30px;
             box-sizing: border-box;
             display: none;
             flex-direction: column;
@@ -58,32 +60,42 @@
             display: flex;
         }
 
+        /* TIÊU ĐỀ CHỮ SIÊU TO VÀ RÕ RÀNG */
         .page-title {
-            font-size: 32px;
+            font-size: 36px; /* Tăng cỡ chữ tiêu đề to lên */
             color: #8b0000;
             border-bottom: 3px double #d2b48c;
-            padding-bottom: 15px;
+            padding-bottom: 10px;
             margin-top: 0;
             text-align: center;
             font-weight: bold;
         }
 
+        /* NỘI DUNG THOÁNG ĐÃNG, DỄ ĐỌC */
         .page-content {
-            font-size: 22px;
+            font-size: 26px; /* Tăng cỡ chữ nội dung lên 26px để nhìn cực rõ */
             line-height: 1.8;
             color: #333;
             flex-grow: 1;
-            margin-top: 30px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Đẩy nội dung vào giữa trang cho đẹp */
+        }
+
+        .page-content p {
+            margin: 10px 0;
         }
 
         .page-content ul {
             list-style-type: none;
             padding-left: 0;
+            margin: 0;
         }
 
         .page-content li {
             margin-bottom: 15px;
-            padding-left: 20px;
+            padding-left: 30px;
             position: relative;
         }
 
@@ -104,21 +116,22 @@
             font-weight: bold;
         }
 
+        /* THANH ĐIỀU HƯỚNG TỰ CO DÃN */
         .controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 25px;
-            width: 100%;
-            max-width: 600px;
+            margin-top: 15px;
+            width: 95%;
+            max-width: 900px;
         }
 
         .btn {
             background-color: #8b0000;
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 18px;
+            padding: 12px 30px;
+            font-size: 20px; /* Chữ trên nút bấm cũng to hơn */
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
@@ -135,11 +148,21 @@
         }
 
         .page-number {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: #666;
         }
+
+        /* TỰ ĐỘNG ĐIỀU CHỈNH CHỮ NHỎ LẠI MỘT CHÚT TRÊN ĐIỆN THOẠI ĐỂ KHÔNG BỊ TRÀN CHỮ */
+        @media (max-width: 600px) {
+            .page-title { font-size: 26px; }
+            .page-content { font-size: 19px; }
+            .book-container { height: 70vh; }
+            .btn { padding: 10px 20px; font-size: 16px; }
+            .page-number { font-size: 16px; }
+        }
     </style>
+
 </head>
 <body>
 
