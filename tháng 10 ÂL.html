@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sách Lật Xem Ngày Tốt - Tháng 10 Âm Lịch 2026</title>
-    <style>
+        <style>
+        /* Phong cách nền tảng cho trang web - Đã thêm lệnh khóa nét chữ */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f5f0e6;
@@ -15,6 +16,10 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            /* 3 dòng dưới giúp chữ sắc nét nhất khi quay màn hình Zoom */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
         }
 
         h1 {
@@ -24,12 +29,12 @@
             font-size: 28px;
         }
 
+        /* Khung chứa cuốn sách - Đã bỏ hiệu ứng 3D để chống nhòe chữ */
         .book-container {
             position: relative;
             width: 100%;
             max-width: 600px;
             height: 650px;
-            perspective: 1500px;
         }
 
         .page {
