@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sách Lật Xem Ngày Tốt - Tháng 10 Âm Lịch 2026</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f0e6;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+
+        h1 {
+            color: #8b0000;
+            text-align: center;
+            margin: 5px 0 10px 0;
+            font-size: 26px;
+        }
+
+        .book-container {
+            position: relative;
+            width: 95%;
+            max-width: 900px; 
+            height: 70vh;     
+            min-height: 480px;
+        }
+
+        .page {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #fffdf9;
+            border: 2px solid #d2b48c;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 20px 30px; 
+            box-sizing: border-box;
+            display: none;
+            flex-direction: column;
+            justify-content: flex-start; 
+        }
+
+        .page.active {
+            display: flex;
+        }
+
+        .page-title {
+            font-size: 36px; 
+            color: #8b0000;
+            border-bottom: 3px double #d2b48c;
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 0;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .page-content {
+            font-size: 26px; 
+            line-height: 1.6;
+            color: #333;
+            flex-grow: 1;
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; 
+        }
+
+        .page-content p {
+            margin: 6px 0;
+        }
+
+        .page-content ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .page-content li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .page-content li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #cc0000;
+        }
+
+        .highlight-red {
+            color: #cc0000;
+            font-weight: bold;
+        }
+
+        .highlight-blue {
+            color: #0000cc;
+            font-weight: bold;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            width: 95%;
+            max-width: 900px;
+        }
+
+        .btn {
+            background-color: #8b0000;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 20px; 
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #cc0000;
+        }
+
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .page-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .page-title { font-size: 26px; }
+            .page-content { font-size: 19px; }
+            .book-container { height: 65vh; }
+            .btn { padding: 10px 20px; font-size: 16px; }
+            .page-number { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>MẬT MÃ CUỘC ĐỜI - NGÀY GIỜ ĐẠI CÁT THÁNG 10 ÂM LỊCH (2026)</h1>
+
+    <div class="book-container">
+        <!-- TRANG 1 -->
+        <div class="page active">
+            <div class="page-title">Các Ngày Kỵ Biến Đổi<br><span style="font-size: 18px; color: #666;">(Tính riêng cho Tháng 10 Âm Lịch)</span></div>
+            <div class="page-content">
+                <ul>
+                    <li><strong>Ngày Dương Công Kỵ:</strong> <span class="highlight-red">Ngày 23</span></li>
+                    <li><strong>Ngày Thiên Địa Chuyển Sát:</strong> <span class="highlight-red">Bính Tý, Nhâm Tý</span></li>
+                    <li><strong>Ngày Nguyệt Phá:</strong> <span class="highlight-red">Tất cả ngày Tỵ</span></li>
+                    <li><strong>Ngày Thụ Tử:</strong> <span class="highlight-red">Tất cả ngày Thân</span></li>
+                    <li><strong>Ngày Sát Chủ:</strong> <span class="highlight-red">Tất cả ngày Dậu</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TRANG 2 -->
+        <div class="page">
+            <div class="page-title">Các Ngày Kỵ Cố Định<br><span style="font-size: 18px; color: #666;">(Áp dụng cho tất cả các tháng)</span></div>
+            <div class="page-content">
+                <ul>
+                    <li><strong>Ngày Tam Nương:</strong> <span class="highlight-red">Mùng 3, mùng 7, 13, 18, 22, 27</span></li>
+                    <li><strong>Ngày Nguyệt Kỵ:</strong> <span class="highlight-red">Mùng 5, 14, 23</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TRANG 3 -->
+        <div class="page">
+            <div class="page-title">Ngày Mùng 1 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Ngày (Can Chi):</strong> <span class="highlight-blue">Đinh Hợi</span> - Tháng Kỷ Hợi - năm Bính Ngọ</p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Quý Tỵ, Tân Tỵ</p>
+                <p><strong>Tuổi hợp ngày:</strong> Mão, Mùi, Dần / Tam hợp · lục hợp: Dần</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Giờ Mùi (13h - 15h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 4 -->
+        <div class="page">
+            <div class="page-title">Ngày Mùng 8 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Giáp Ngọ</span></p>
+                <p><strong>Tuổi hợp ngày:</strong> Mão, Mùi, Dần / Tam hợp · lục hợp: Dần</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Mão (5h-7h), Ngọ (11h-13h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 5 -->
+        <div class="page">
+            <div class="page-title">Ngày Mùng 9 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Ất Mùi</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Tân Sửu, Kỷ Sửu</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Mão (5h-7h), Tỵ (9h-11h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 6 -->
+        <div class="page">
+            <div class="page-title">Ngày 15 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Tân Sửu</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Đinh Mùi, Ất Mùi</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Mão (5h-7h), Tỵ (9h-11h)</p>
+            </div>
+        </div>
+        <!-- TRANG 7 -->
+        <div class="page">
+            <div class="page-title">Ngày 16 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Nhâm Dần</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Mậu Thân, Bính Thân</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Tỵ (9h-11h), Mùi (13h-15h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 8 -->
+        <div class="page">
+            <div class="page-title">Ngày 17 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Quý Mão</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Kỷ Dậu, Đinh Dậu</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Ngọ (11h-13h), Mùi (13h-15h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 9 -->
+        <div class="page">
+            <div class="page-title">Ngày 20 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Bính Ngọ</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Nhâm Tý, Canh Tý</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Mão (5h-7h), Ngọ (11h-13h), Thân (15h-17h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 10 -->
+        <div class="page">
+            <div class="page-title">Ngày 21 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Đinh Mùi</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Tân Sửu, Quý Sửu</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Tỵ (9h-11h), Thân (15h-17h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 11 -->
+        <div class="page">
+            <div class="page-title">Ngày 24 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Canh Tuất</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Bính Thìn, Giáp Thìn</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Tỵ (9h-11h), Thân (15h-17h)</p>
+            </div>
+        </div>
+
+        <!-- TRANG 12 -->
+        <div class="page">
+            <div class="page-title">Ngày 25 Tháng 10 Âm Lịch</div>
+            <div class="page-content">
+                <p><strong>Năm:</strong> Bính Ngọ (2026)</p>
+                <p><strong>Tên ngày (Can Chi):</strong> <span class="highlight-blue">Tân Hợi</span></p>
+                <p><strong>Tuổi bị xung kỵ:</strong> Đinh Tỵ, Ất Tỵ</p>
+                <p><strong>Giờ hoàng đạo đẹp:</strong> Mùi (13h-15h)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- THANH ĐIỀU HƯỚNG LẬT TRANG -->
+    <div class="controls">
+        <button class="btn" id="prevBtn" onclick="changePage(-1)" disabled>Trang trước</button>
+        <span class="page-number" id="pageDisplay">Trang 1 / 12</span>
+        <button class="btn" id="nextBtn" onclick="changePage(1)">Trang sau</button>
+    </div>
+
+    <!-- THANH CÔNG CỤ BÚT VẼ MÀU TRÌNH CHIẾU -->
+    <div style="display: flex; gap: 10px; margin-top: 20px; align-items: center; justify-content: center; width: 95%; max-width: 900px; background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); flex-wrap: wrap; position: relative; z-index: 1001;">
+        <span style="font-size: 18px; font-weight: bold; color: #333;">Bút trình chiếu:</span>
+        <button onclick="setTool('mouse')" id="btn-mouse" style="padding: 8px 15px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; border: 2px solid #8b0000; background: #8b0000; color: white;">🖱️ Chuột bấm</button>
+        <button onclick="setTool('pen')" id="btn-pen" style="padding: 8px 15px; font-size: 16px; font-weight: bold; border-radius: 4px; cursor: pointer; border: 2px solid #ccc; background: #f0f0f0; color: #333;">✏️ Bút vẽ</button>
+        
+        <div style="display: flex; gap: 5px; align-items: center; border-left: 2px solid #ccc; padding-left: 10px;">
+            <div onclick="setColor('#cc0000')" style="width: 25px; height: 25px; background: #cc0000; border-radius: 50%; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 4px rgba(0,0,0,0.5);" title="Màu Đỏ"></div>
+            <div onclick="setColor('#0000cc')" style="width: 25px; height: 25px; background: #0000cc; border-radius: 50%; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 4px rgba(0,0,0,0.5);" title="Màu Xanh"></div>
+            <div onclick="setColor('#ffcc00')" style="width: 25px; height: 25px; background: #ffcc00; border-radius: 50%; cursor: pointer; border: 2px solid #fff; box-shadow: 0 0 4px rgba(0,0,0,0.5);" title="Màu Vàng"></div>
+        </div>
+
+        <select onchange="setLineWidth(this.value)" style="padding: 6px; font-size: 16px; border-radius: 4px; border: 1px solid #ccc;">
+            <option value="3">Nét vừa (3px)</option>
+            <option value="6">Nét to (6px)</option>
+            <option value="10">Nét siêu to (10px)</option>
+        </select>
+
+        <button onclick="clearCanvas()" style="padding: 8px 15px; font-size: 16px; font-weight: bold; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer; margin-left: auto;">🧹 Xóa nét vẽ</button>
+    </div>
+
+    <!-- Màn trong suốt phủ lên trên để vẽ đồ họa -->
+    <canvas id="paintCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999;"></canvas>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const pageDisplay = document.getElementById('pageDisplay');
+
+        function changePage(direction) {
+            pages[currentPage].classList.remove('active');
+            currentPage += direction;
+            pages[currentPage].classList.add('active');
+            pageDisplay.innerText = `Trang ${currentPage + 1} / ${pages.length}`;
+            prevBtn.disabled = (currentPage === 0);
+            nextBtn.disabled = (currentPage === pages.length - 1);
+        }
+
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+        let currentTool = 'mouse'; 
+        let currentColor = '#cc0000'; 
+        let currentWidth = 3; 
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function setTool(tool) {
+            currentTool = tool;
+            const btnMouse = document.getElementById('btn-mouse');
+            const btnPen = document.getElementById('btn-pen');
+
+            if (tool === 'mouse') {
+                canvas.style.pointerEvents = 'none'; 
+                btnMouse.style.background = '#8b0000';
+                btnMouse.style.color = 'white';
+                btnPen.style.background = '#f0f0f0';
+                btnPen.style.color = '#333';
+            } else if (tool === 'pen') {
+                canvas.style.pointerEvents = 'auto'; 
+                btnPen.style.background = '#8b0000';
+                btnPen.style.color = 'white';
+                btnMouse.style.background = '#f0f0f0';
+                btnMouse.style.color = '#333';
+            }
+        }
+
+        function setColor(color) {
+            currentColor = color;
+            if (currentTool !== 'pen') setTool('pen'); 
+        }
+
+        function setLineWidth(width) {
+            currentWidth = width;
+        }
+
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        function getPos(e) {
+            if (e.touches && e.touches.length > 0) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        function startDraw(e) {
+            if (currentTool !== 'pen') return;
+            isDrawing = true;
+            const pos = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(pos.x, pos.y);
+            ctx.strokeStyle = currentColor;
+            ctx.lineWidth = currentWidth;
+            if(e.touches) e.preventDefault();
+        }
+
+        function draw(e) {
+            if (!isDrawing || currentTool !== 'pen') return;
+            const pos = getPos(e);
+            ctx.lineTo(pos.x, pos.y);
+            ctx.stroke();
+            if(e.touches) e.preventDefault();
+        }
+
+        function stopDraw() {
+            isDrawing = false;
+        }
+
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mousemove', draw);
+        window.addEventListener('mouseup', stopDraw);
+
+        canvas.addEventListener('touchstart', startDraw, { passive: false });
+        canvas.addEventListener('touchmove', draw, { passive: false });
+        canvas.addEventListener('touchend', stopDraw);
+    </script>
+</body>
+</html>
