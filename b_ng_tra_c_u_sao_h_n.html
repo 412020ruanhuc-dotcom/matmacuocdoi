@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Tra Cứu Sao Hạn Theo Tuổi Mụ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Sans-serif&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #faf9f6;
+        }
+        .title-font {
+            font-family: 'Merriweather', serif;
+        }
+    </style>
+</head>
+<body class="text-gray-800 pb-12">
+    <div class="max-w-5xl mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center mb-10 border-b-2 border-red-800 pb-6">
+            <h1 class="title-font text-3xl md:text-4xl font-bold text-red-900 mb-2">BẢNG TRA CỨU SAO HẠN THEO TUỔI MỤ</h1>
+            <p class="text-gray-600 text-sm md:text-base italic">Tra cứu chi tiết Sao chiếu mệnh và Hạn tuổi cho Nam mạng & Nữ mạng</p>
+        </header>
+
+        <!-- Calculator Tool -->
+        <section class="bg-white rounded-xl shadow-md p-6 mb-10 border border-amber-200">
+            <h2 class="title-font text-xl font-bold text-amber-900 mb-4 flex items-center gap-2">
+                <span>🔮</span> Tra Cứu Nhanh Theo Tuổi
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nhập tuổi mụ (Âm lịch):</label>
+                    <input type="number" id="ageInput" min="10" max="100" value="30" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Giới tính:</label>
+                    <select id="genderSelect" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:outline-none">
+                        <option value="nam">Nam mạng</option>
+                        <option value="nu">Nữ mạng</option>
+                    </select>
+                </div>
+                <div>
+                    <button onclick="calculateStar()" class="w-full bg-red-800 hover:bg-red-900 text-white font-semibold py-2 px-4 rounded-lg transition duration-200 shadow">
+                        Xem Kết Quả
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Display -->
+            <div id="resultBox" class="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-300 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                <div class="p-3 bg-white rounded-md shadow-sm border border-amber-100">
+                    <span class="block text-xs font-bold text-gray-500 uppercase">Tuổi Mụ</span>
+                    <span id="resAge" class="text-2xl font-bold text-red-800">30</span>
+                </div>
+                <div class="p-3 bg-white rounded-md shadow-sm border border-amber-100">
+                    <span class="block text-xs font-bold text-gray-500 uppercase">Sao Chiếu Mệnh</span>
+                    <span id="resStar" class="text-2xl font-bold text-amber-700">Mộc Đức</span>
+                    <span id="resStarType" class="block text-xs mt-1 font-semibold text-green-600">(Tốt)</span>
+                </div>
+                <div class="p-3 bg-white rounded-md shadow-sm border border-amber-100">
+                    <span class="block text-xs font-bold text-gray-500 uppercase">Hạn Niên</span>
+                    <span id="resHan" class="text-2xl font-bold text-red-700">Ngũ Mộ</span>
+                    <span id="resHanType" class="block text-xs mt-1 font-semibold text-yellow-600">(Tiểu hạn)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Info -->
+        <section class="bg-amber-50/50 rounded-xl p-6 mb-10 border border-amber-200">
+            <h2 class="title-font text-lg font-bold text-red-900 mb-3">Quy tắc tính Sao Chiếu Mệnh:</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+                    <h3 class="font-bold text-blue-900 mb-2 border-b pb-1">♂ Nam Mạng (Bắt đầu 10 tuổi = La Hầu)</h3>
+                    <p class="mb-2">Thứ tự 9 sao: <span class="font-semibold text-gray-900">La Hầu ➔ Thổ Tú ➔ Thủy Diệu ➔ Thái Bạch ➔ Thái Dương ➔ Vân Hớn ➔ Kế Đô ➔ Thái Âm ➔ Mộc Đức</span></p>
+                    <p class="text-xs text-gray-500 italic">* Đếm tiếp tục hết Mộc Đức quay lại La Hầu.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-amber-100">
+                    <h3 class="font-bold text-pink-900 mb-2 border-b pb-1">♀ Nữ Mạng (Bắt đầu 10 tuổi = Kế Đô)</h3>
+                    <p class="mb-2">Thứ tự 9 sao: <span class="font-semibold text-gray-900">Kế Đô ➔ Vân Hớn ➔ Mộc Đức ➔ Thái Âm ➔ Thổ Tú ➔ La Hầu ➔ Thái Dương ➔ Thái Bạch ➔ Thủy Diệu</span></p>
+                    <p class="text-xs text-gray-500 italic">* Đếm tiếp tục hết Thủy Diệu quay lại Kế Đô.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Full Master Table -->
+        <section class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200">
+            <div class="p-4 bg-red-900 text-white flex justify-between items-center">
+                <h2 class="title-font text-lg font-bold">BẢNG TRA CỨU SAO HẠN TỔNG HỢP (TUỔI 10 - 72)</h2>
+                <span class="text-xs bg-red-800 px-2 py-1 rounded border border-red-700">Đơn vị: Tuổi mụ</span>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-center border-collapse">
+                    <thead>
+                        <tr class="bg-amber-100 text-amber-900 border-b border-amber-200 font-bold">
+                            <th class="py-3 px-2 border-r border-amber-200">STT</th>
+                            <th class="py-3 px-4 border-r border-amber-200">Các Tuổi Mụ</th>
+                            <th class="py-3 px-4 border-r border-amber-200 text-blue-900">Sao Nam Mạng</th>
+                            <th class="py-3 px-4 border-r border-amber-200 text-blue-900">Hạn Nam</th>
+                            <th class="py-3 px-4 border-r border-amber-200 text-pink-900">Sao Nữ Mạng</th>
+                            <th class="py-3 px-4 text-pink-900">Hạn Nữ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="masterTableBody" class="divide-y divide-gray-200">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Nature of Stars Reference -->
+        <section class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                <h3 class="font-bold text-green-800 mb-2">Cát Sao (Sao Tốt)</h3>
+                <ul class="text-xs space-y-1 text-green-900">
+                    <li>• <b>Thái Dương:</b> Chủ về công danh, tài lộc, sự nghiệp hưng vượng.</li>
+                    <li>• <b>Thái Âm:</b> Danh lợi vẹn toàn, chủ về may mắn, bất động sản.</li>
+                    <li>• <b>Mộc Đức:</b> Đức vượng, may mắn về lộc tài, hôn nhân.</li>
+                </ul>
+            </div>
+            <div class="bg-red-50 p-4 rounded-lg border border-red-200">
+                <h3 class="font-bold text-red-800 mb-2">Hung Sao (Sao Xấu)</h3>
+                <ul class="text-xs space-y-1 text-red-900">
+                    <li>• <b>La Hầu:</b> Kỵ khẩu tongue, thị phi, tai tiếng, bệnh tật.</li>
+                    <li>• <b>Kế Đô:</b> Hao tài tốn của, buồn phiền, tai bay vạ gió.</li>
+                    <li>• <b>Thái Bạch:</b> Hao tốn tiền bạc, sức khỏe sút giảm, kỵ tháng 5.</li>
+                </ul>
+            </div>
+            <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                <h3 class="font-bold text-yellow-800 mb-2">Trung Tính (Tốt Xấu Mới)</h3>
+                <ul class="text-xs space-y-1 text-yellow-900">
+                    <li>• <b>Thổ Tú:</b> Xung kỵ gia đạo, đi xa không lợi.</li>
+                    <li>• <b>Thủy Diệu:</b> Phước lộc tốt nhưng kỵ sông nước.</li>
+                    <li>• <b>Vân Hớn:</b> Phòng thương tật, kiện tụng, nóng nảy.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const starsMale = ["La Hầu", "Thổ Tú", "Thủy Diệu", "Thái Bạch", "Thái Dương", "Vân Hớn", "Kế Đô", "Thái Âm", "Mộc Đức"];
+        const starsFemale = ["Kế Đô", "Vân Hớn", "Mộc Đức", "Thái Âm", "Thổ Tú", "La Hầu", "Thái Dương", "Thái Bạch", "Thủy Diệu"];
+
+        const starDetails = {
+            "Thái Dương": { type: "Tốt", class: "text-green-600" },
+            "Thái Âm": { type: "Tốt", class: "text-green-600" },
+            "Mộc Đức": { type: "Tốt", class: "text-green-600" },
+            "La Hầu": { type: "Xấu", class: "text-red-600" },
+            "Kế Đô": { type: "Xấu", class: "text-red-600" },
+            "Thái Bạch": { type: "Xấu", class: "text-red-600" },
+            "Thổ Tú": { type: "Trung tính", class: "text-yellow-600" },
+            "Thủy Diệu": { type: "Trung tính", class: "text-yellow-600" },
+            "Vân Hớn": { type: "Trung tính", class: "text-yellow-600" }
+        };
+
+        const hansMale = ["Tam Kheo", "Ngu Mo", "Thien La", "Ngu Mo", "Thien Tinh", "Tam Kheo", "Dai Hao", "Tieu Hao", "Huynh Tuyen"];
+        // Standard Hạn cycles mapping for 9 positions:
+        // Position 0 (10, 19, 28...): Nam: Tam Kheo, Nữ: Thiên La
+        const hanData = [
+            { male: "Tam Kheo", female: "Thiên La", typeMale: "Tiểu hạn", typeFemale: "Tiểu hạn" },
+            { male: "Ngũ Mộ", female: "Mộc Rạch", typeMale: "Tiểu hạn", typeFemale: "Tiểu hạn" },
+            { male: "Thiên La", female: "Tam Kheo", typeMale: "Tiểu hạn", typeFemale: "Tiểu hạn" },
+            { male: "Thiên Tinh", female: "Ngũ Mộ", typeMale: "Tiểu hạn", typeFemale: "Tiểu hạn" },
+            { male: "Tán Tận", female: "Huỳnh Tuyền", typeMale: "Đại hạn", typeFemale: "Đại hạn" },
+            { male: "Địa Võng", female: "Quái Âm", typeMale: "Tiểu hạn", typeFemale: "Tiểu hạn" },
+            { male: "Bệnh Phù", female: "Toán Tận", typeMale: "Tiểu hạn", typeFemale: "Đại hạn" },
+            { male: "Huỳnh Tuyền", female: "Địa Võng", typeMale: "Đại hạn", typeFemale: "Tiểu hạn" },
+            { male: "Thái Tuế", female: "Bệnh Phù", typeMale: "Tiểu hạn", typeFemale: "Tiểu hạn" }
+        ];
+
+        // Specific mapping helper for Hạn by age
+        function getHan(age, isMale) {
+            // Simplified standard Hạn sequence calculation
+            const hanListMale = ["Tam Kheo", "Ngũ Mộ", "Thiên La", "Thiên Tinh", "Tán Tận", "Địa Võng", "Bệnh Phù", "Huỳnh Tuyền", "Thái Tuế"];
+            const hanListFemale = ["Thiên La", "Mộc Rạch", "Tam Kheo", "Ngũ Mộ", "Huỳnh Tuyền", "Quái Âm", "Toán Tận", "Địa Võng", "Bệnh Phù"];
+            
+            let idx = (age - 10) % 9;
+            return isMale ? hanListMale[idx] : hanListFemale[idx];
+        }
+
+        function calculateStar() {
+            const age = parseInt(document.getElementById('ageInput').value);
+            const gender = document.getElementById('genderSelect').value;
+
+            if (isNaN(age) || age < 1) {
+                alert("Vui lòng nhập tuổi mụ hợp lệ!");
+                return;
+            }
+
+            const isMale = gender === 'nam';
+            const index = (age - 10) % 9;
+            const normalizedIndex = index < 0 ? (index + 9) % 9 : index;
+
+            const star = isMale ? starsMale[normalizedIndex] : starsFemale[normalizedIndex];
+            const han = getHan(age, isMale);
+            const info = starDetails[star] || { type: "-", class: "text-gray-600" };
+
+            document.getElementById('resAge').innerText = age;
+            document.getElementById('resStar').innerText = star;
+            document.getElementById('resStarType').innerText = `(${info.type})`;
+            document.getElementById('resStarType').className = `block text-xs mt-1 font-semibold ${info.class}`;
+            document.getElementById('resHan').innerText = han;
+        }
+
+        function renderMasterTable() {
+            const tbody = document.getElementById('masterTableBody');
+            tbody.innerHTML = '';
+
+            for (let i = 0; i < 9; i++) {
+                const ages = [];
+                for (let a = 10 + i; a <= 90; a += 9) {
+                    ages.push(a);
+                }
+
+                const starM = starsMale[i];
+                const starF = starsFemale[i];
+
+                const tr = document.createElement('tr');
+                tr.className = i % 2 === 0 ? 'bg-white' : 'bg-gray-50';
+
+                tr.innerHTML = `
+                    <td class="py-3 px-2 border-r font-medium text-gray-500">${i + 1}</td>
+                    <td class="py-3 px-4 border-r font-bold text-gray-800">${ages.slice(0, 7).join(', ')}...</td>
+                    <td class="py-3 px-4 border-r font-semibold text-blue-900">${starM}</td>
+                    <td class="py-3 px-4 border-r text-gray-600">${getHan(10 + i, true)}</td>
+                    <td class="py-3 px-4 border-r font-semibold text-pink-900">${starF}</td>
+                    <td class="py-3 px-4 text-gray-600">${getHan(10 + i, false)}</td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        // Initialize on load
+        window.onload = function() {
+            renderMasterTable();
+            calculateStar();
+        };
+    </script>
+</body>
+</html>
