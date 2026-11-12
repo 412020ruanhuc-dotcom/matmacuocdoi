@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kho Tra Cứu Tử Vi-Phong Thủy-Năng Lượng Số</title>
+<style>
+  * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  body { background: #f3f4f6; margin: 0; padding: 20px; color: #1f2937; }
+  #lockScreen {
+    max-width: 400px; margin: 80px auto; background: #fff; padding: 30px;
+    border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center; border-top: 8px solid #b91c1c;
+  }
+  #lockScreen h2 { margin-top: 0; color: #b91c1c; font-size: 20px; }
+  #lockScreen input {
+    width: 100%; padding: 14px; font-size: 18px; text-align: center;
+    letter-spacing: 3px; border: 2px solid #d1d5db; border-radius: 12px; margin: 15px 0;
+  }
+  #mainApp { display: none; max-width: 960px; margin: 0 auto; }
+  .header-box {
+    background: #b91c1c; color: #fff; text-align: center;
+    padding: 20px; border-radius: 16px; margin-bottom: 20px;
+  }
+  .header-box h1 { margin: 0; font-size: 24px; text-transform: uppercase; }
+  .header-box p { margin: 6px 0 0; font-size: 14px; }
+  .toolbar {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;
+    background: #fff; padding: 15px; border-radius: 16px;
+  }
+  .search-input {
+    flex: 1; min-width: 240px; padding: 12px 16px; font-size: 16px;
+    border: 2px solid #d1d5db; border-radius: 12px;
+  }
+  .btn {
+    padding: 12px 16px; font-size: 14px; font-weight: bold; border: none;
+    border-radius: 12px; cursor: pointer; color: #fff;
+  }
+  .btn-add { background: #b91c1c; }
+  .btn-export { background: #047857; }
+  .btn-backup { background: #1d4ed8; }
+  .btn-restore { background: #4b5563; }
+  .btn-pass { background: #111827; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+  .tab {
+    padding: 8px 16px; background: #fff; border: 1.5px solid #d1d5db;
+    border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 14px;
+  }
+  .tab.active { background: #b91c1c; color: #fff; border-color: #b91c1c; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 14px; }
+  .card {
+    display: flex; align-items: center; justify-content: space-between;
+    background: #fff; border-radius: 16px; padding: 14px 16px;
+    border: 1.5px solid #b91c1c; border-left: 10px solid #b91c1c;
+  }
+  .card.blue { border-color: #1d4ed8; border-left-color: #1d4ed8; }
+  .card.black { border-color: #111827; border-left-color: #111827; }
+  .card-link { flex: 1; text-decoration: none; color: inherit; display: block; }
+  .card-title { font-size: 16px; font-weight: 800; text-transform: uppercase; margin: 0; }
+  .card-desc { font-size: 13px; color: #4b5563; margin: 4px 0 0; }
+  .card-cat {
+    display: inline-block; font-size: 11px; font-weight: bold;
+    background: #fee2e2; color: #991b1b; padding: 2px 8px; border-radius: 6px; margin-top: 6px;
+  }
+  .card-controls { display: flex; flex-direction: column; gap: 4px; margin-left: 10px; }
+  .ctrl-btn {
+    background: #f3f4f6; border: 1px solid #d1d5db; font-size: 12px;
+    font-weight: bold; border-radius: 6px; cursor: pointer; padding: 3px 7px;
+  }
+  .modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.55); align-items: center; justify-content: center; padding: 15px;
+  }
+  .modal-box { background: #fff; padding: 24px; border-radius: 16px; width: 100%; max-width: 450px; }
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-weight: bold; margin-bottom: 4px; font-size: 14px; }
+  .form-group input, .form-group select {
+    width: 100%; padding: 10px; border: 1.5px solid #d1d5db; border-radius: 10px; font-size: 15px;
+  }
+  .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 16px; }
+</style>
+</head>
+<body>
+
+<div id="lockScreen">
+  <h2>KHO DỮ LIỆU RIÊNG TƯ</h2>
+  <p>Nhập mật khẩu (Mặc định: 123456)</p>
+  <input type="password" id="passInput" placeholder="••••••" onkeyup="if(event.key==='Enter') checkPass()">
+  <button class="btn btn-add" style="width:100%; font-size:16px;" onclick="checkPass()">MỞ KHÓA TRANG</button>
+</div>
+
+<div id="mainApp">
+  <div class="header-box">
+    <h1>KHO TRA CỨU TỬ VI - PHONG THỦY</h1>
+    <p>Hệ thống quản lý liên kết riêng tư (Tổng số: <span id="totalCount">0</span> trang)</p>
+  </div>
+  <div class="toolbar">
+    <input type="text" id="searchInput" class="search-input" placeholder="Tìm tên trang..." onkeyup="renderCards()">
+    <button class="btn btn-add" onclick="openModal()">+ Thêm link</button>
+    <button class="btn btn-export" onclick="exportFullHtml()">Xuất tệp Web mới</button>
+    <button class="btn btn-backup" onclick="exportData()">Lưu dự phòng</button>
+    <button class="btn btn-restore" onclick="document.getElementById('fileInput').click()">Khôi phục</button>
+    <button class="btn btn-pass" onclick="changePass()">Đổi mật khẩu</button>
+    <input type="file" id="fileInput" style="display:none" accept=".json" onchange="importData(event)">
+  </div>
+  <div class="tabs" id="categoryTabs"></div>
+  <div class="grid" id="cardGrid"></div>
+</div>
+
+<div class="modal" id="addModal">
+  <div class="modal-box">
+    <h3 style="margin-top:0; color:#b91c1c;">Thêm đường link mới</h3>
+    <div class="form-group"><label>Tên trang:</label><input type="text" id="inTitle" placeholder="VD: LÝ SỐ TỬ VI"></div>
+    <div class="form-group"><label>Ghi chú ngắn:</label><input type="text" id="inDesc" placeholder="VD: Lập lá số tử vi"></div>
+    <div class="form-group"><label>Đường link (URL):</label><input type="text" id="inUrl" placeholder="https://..."></div>
+    <div class="form-group"><label>Nhóm:</label><input type="text" id="inCat" value="Tử Vi"></div>
+    <div class="form-group"><label>Màu viền:</label>
+      <select id="inColor">
+        <option value="red">Viền Đỏ</option>
+        <option value="blue">Viền Xanh Dương</option>
+        <option value="black">Viền Đen</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-restore" onclick="closeModal()">Hủy</button>
+      <button class="btn btn-add" onclick="saveNewCard()">Lưu lại</button>
+    </div>
+  </div>
+</div>
+<script id="appDataScript">
+  let EMBEDDED_PASS = "123456";
+  let EMBEDDED_LINKS = [
+    { title: "LÝ SỐ", desc: "Công cụ tra cứu lý số", url: "https://lyso.vn", cat: "Tử Vi", color: "red" },
+    { title: "SIM KINH DỊCH", desc: "Luận giải quẻ dịch số điện thoại", url: "https://google.com", cat: "Kinh Dịch", color: "black" }
+  ];
+</script>
+
+<script>
+  let currentPass = localStorage.getItem('tuvi_pass') || EMBEDDED_PASS;
+  let links = JSON.parse(localStorage.getItem('tuvi_private_links')) || EMBEDDED_LINKS;
+  let currentCat = 'Tất cả';
+
+  function checkPass() {
+    if (document.getElementById('passInput').value === currentPass) {
+      document.getElementById('lockScreen').style.display = 'none';
+      document.getElementById('mainApp').style.display = 'block';
+      renderTabs(); renderCards();
+    } else { alert('Sai mật khẩu!'); }
+  }
+
+  function changePass() {
+    const newP = prompt('Nhập mật khẩu mới:', currentPass);
+    if (newP && newP.trim()) {
+      currentPass = newP.trim();
+      localStorage.setItem('tuvi_pass', currentPass);
+      alert('Đã đổi mật khẩu thành: ' + currentPass);
+    }
+  }
+
+  function saveToStorage() { localStorage.setItem('tuvi_private_links', JSON.stringify(links)); }
+
+  function renderTabs() {
+    const cats = ['Tất cả', ...new Set(links.map(l => l.cat))];
+    document.getElementById('categoryTabs').innerHTML = cats.map(c =>
+      `<div class="tab ${c === currentCat ? 'active' : ''}" onclick="setCat('${c}')">${c}</div>`
+    ).join('');
+  }
+
+  function setCat(c) { currentCat = c; renderTabs(); renderCards(); }
+
+  function renderCards() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    document.getElementById('totalCount').innerText = links.length;
+    const filtered = links.filter(l => (currentCat === 'Tất cả' || l.cat === currentCat) &&
+      (l.title.toLowerCase().includes(q) || l.desc.toLowerCase().includes(q)));
+
+    document.getElementById('cardGrid').innerHTML = filtered.map(item => {
+      const idx = links.indexOf(item);
+      return `<div class="card ${item.color}">
+        <a href="${item.url}" target="_blank" class="card-link">
+          <div class="card-title">${item.title}</div>
+          <div class="card-desc">${item.desc}</div>
+          <span class="card-cat">${item.cat}</span>
+        </a>
+        <div class="card-controls">
+          <button class="ctrl-btn" onclick="moveCard(${idx},-1)">▲</button>
+          <button class="ctrl-btn" onclick="moveCard(${idx},1)">▼</button>
+          <button class="ctrl-btn" style="color:red;" onclick="deleteCard(${idx})">✖</button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  function moveCard(i, d) {
+    const ni = i + d;
+    if (ni < 0 || ni >= links.length) return;
+    [links[i], links[ni]] = [links[ni], links[i]];
+    saveToStorage(); renderCards();
+  }
+
+  function openModal() { document.getElementById('addModal').style.display = 'flex'; }
+  function closeModal() { document.getElementById('addModal').style.display = 'none'; }
+
+  function saveNewCard() {
+    const title = document.getElementById('inTitle').value.trim();
+    const desc = document.getElementById('inDesc').value.trim();
+    let url = document.getElementById('inUrl').value.trim();
+    const cat = document.getElementById('inCat').value.trim() || 'Chung';
+    const color = document.getElementById('inColor').value;
+    if (!title || !url) return alert('Vui lòng nhập Tên trang và Link!');
+    if (!url.startsWith('http')) url = 'https://' + url;
+    links.unshift({ title, desc, url, cat, color });
+    saveToStorage(); closeModal();
+    document.getElementById('inTitle').value = '';
+    document.getElementById('inDesc').value = '';
+    document.getElementById('inUrl').value = '';
+    renderTabs(); renderCards();
+  }
+
+  function deleteCard(i) {
+    if (confirm('Xóa mục "' + links[i].title + '"?')) {
+      links.splice(i, 1); saveToStorage(); renderTabs(); renderCards();
+    }
+  }
+
+  function exportData() {
+    const a = document.createElement('a');
+    a.href = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(links, null, 2));
+    a.download = "du-lieu-tu-vi.json"; a.click();
+  }
+
+  function importData(e) {
+    const file = e.target.files[0]; if (!file) return;
+    const r = new FileReader();
+    r.onload = function(ev) {
+      links = JSON.parse(ev.target.result);
+      saveToStorage(); renderTabs(); renderCards();
+      alert('Đã nạp thành công ' + links.length + ' trang!');
+    };
+    r.readAsText(file);
+  }
+
+  function exportFullHtml() {
+    const clone = document.documentElement.cloneNode(true);
+    clone.querySelector('#lockScreen').style.display = 'block';
+    clone.querySelector('#mainApp').style.display = 'none';
+    clone.querySelector('#passInput').value = '';
+    clone.querySelector('#appDataScript').textContent =
+      `\nlet EMBEDDED_PASS=${JSON.stringify(currentPass)};\nlet EMBEDDED_LINKS=${JSON.stringify(links)};\n`;
+    const blob = new Blob(["<!DOCTYPE html>\n" + clone.outerHTML], { type: "text/html;charset=utf-8" });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = "kho-tu-vi-cap-nhat.html"; a.click();
+  }
+</script>
+</body>
+</html>
