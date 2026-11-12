@@ -4,64 +4,73 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bài Giảng Phong Thủy: Cách Tính Hạn Kim Lâu</title>
-<script src="https://jsdelivr.net"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; }
   body { background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
   
+  /* Khung Slide vuông tỷ lệ 1:1 (1000x1000) */
   .slide-container {
-    width: 1280px; height: 720px;
+    width: 1000px; height: 1000px;
     background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
     border: 12px solid #b8860b;
     box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0,0,0,0.7);
-    position: relative; padding: 28px 48px;
+    position: relative; padding: 34px 44px;
     display: none; flex-direction: column; justify-content: space-between;
+    transform-origin: center center;
   }
   .slide-container.active { display: flex; }
 
-  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 10px; margin-bottom: 10px; }
-  .header h1 { color: #8b0000; font-size: 37px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 1px 0px #fff; }
-  .header p { color: #2e5a27; font-size: 19px; font-weight: bold; margin-top: 4px; }
+  /* Tiêu đề từng trang */
+  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 14px; margin-bottom: 12px; }
+  .header h1 { color: #8b0000; font-size: 38px; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 1px 1px 0px #fff; line-height: 1.25; }
+  .header p { color: #2e5a27; font-size: 21px; font-weight: bold; margin-top: 6px; }
 
-  .content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
-  .rule-box { background: #fffdf5; border: 2px solid #d4af37; border-left: 8px solid #8b0000; padding: 13px 22px; border-radius: 12px; font-size: 23px; color: #222; line-height: 1.45; display: flex; align-items: center; gap: 16px; }
-  .icon-gold-round { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 28px; flex-shrink: 0; }
+  /* Nội dung chính */
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 16px; }
+  .rule-box { background: #fffdf5; border: 2px solid #d4af37; border-left: 8px solid #8b0000; padding: 16px 22px; border-radius: 12px; font-size: 23px; color: #222; line-height: 1.5; display: flex; align-items: center; gap: 16px; }
+  .icon-gold-round { width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 28px; flex-shrink: 0; }
   .highlight-red { color: #b22222; font-weight: bold; }
   .highlight-green { color: #1e6b1e; font-weight: bold; }
   .highlight-blue { color: #0047ab; font-weight: bold; }
 
-  .grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .card { background: #ffffff; border: 2px solid #c5a059; border-radius: 12px; padding: 13px 18px; font-size: 22px; display: flex; align-items: center; gap: 14px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); }
-  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2px solid #f0c95c; color: #fff; font-weight: bold; width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 21px; flex-shrink: 0; }
-  .badge-diamond { width: 38px; height: 38px; border-radius: 10px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 5px; }
+  /* Danh sách 4 cung lồng ghép ô viền đẹp */
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .card { background: #ffffff; border: 2px solid #c5a059; border-radius: 12px; padding: 18px 18px; font-size: 22px; display: flex; align-items: center; gap: 14px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); line-height: 1.4; }
+  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2px solid #f0c95c; color: #fff; font-weight: bold; width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 21px; flex-shrink: 0; }
+  .badge-diamond { width: 40px; height: 40px; border-radius: 10px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 5px; }
   .badge-diamond span { transform: rotate(-45deg); color: #fff; font-weight: bold; font-size: 20px; }
 
-  .example-box { background: #eef7ee; border: 2.5px dashed #2e7d32; border-radius: 14px; padding: 14px 22px; font-size: 22px; color: #1b4d1b; line-height: 1.5; display: flex; align-items: center; gap: 18px; }
+  /* Khung Ví dụ nâng cấp */
+  .example-box { background: #eef7ee; border: 2.5px dashed #2e7d32; border-radius: 14px; padding: 18px 22px; font-size: 22px; color: #1b4d1b; line-height: 1.6; display: flex; align-items: center; gap: 18px; }
   .icon-house-round { width: 64px; height: 64px; border-radius: 50%; background: #1e6b1e; border: 3px solid #d4af37; display: flex; justify-content: center; align-items: center; font-size: 32px; flex-shrink: 0; }
   .result-tag { display: inline-block; background: linear-gradient(90deg, #165b33, #247a48); color: #fff; padding: 4px 16px; border-radius: 8px; border: 2px solid #f0c95c; font-weight: bold; }
   .result-tag.bad { background: #b22222; border-color: #f0c95c; }
   .pill-taco { background: #0047ab; color: #fff; padding: 3px 14px; border-radius: 16px; font-weight: bold; font-size: 20px; }
 
-  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 22px; }
-  th { background: #8b0000; color: #fff; padding: 14px; border: 2px solid #b8860b; }
-  td { padding: 14px; border: 2px solid #d4af37; text-align: center; font-weight: 500; }
+  /* Bảng tra cứu Slide 2 */
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 21px; }
+  th { background: #8b0000; color: #fff; padding: 16px 10px; border: 2px solid #b8860b; }
+  td { padding: 18px 10px; border: 2px solid #d4af37; text-align: center; font-weight: 500; }
   tr:nth-child(even) { background: #fdf6e3; }
 
-  .ribbon-bar { display: inline-flex; align-items: center; gap: 8px; background: #8b0000; color: #fff; padding: 4px 18px; border-radius: 20px; font-size: 18px; font-weight: bold; border: 2px solid #d4af37; margin-bottom: 6px; }
+  /* Khung bổ sung Slide 4 */
+  .ribbon-bar { display: inline-flex; align-items: center; gap: 8px; background: #8b0000; color: #fff; padding: 6px 20px; border-radius: 20px; font-size: 19px; font-weight: bold; border: 2px solid #d4af37; margin-bottom: 10px; }
   .ribbon-bar.green { background: #1e6b1e; }
-  .folk-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .folk-side { text-align: center; background: #fffdf5; border: 2px solid #d4af37; border-radius: 12px; padding: 8px 14px; min-width: 145px; }
-  .folk-side .emo { font-size: 46px; line-height: 1.1; }
-  .folk-side .lbl { font-size: 16px; font-weight: bold; color: #8b0000; margin-top: 4px; }
-  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
-  .solution-card { background: #fff; border: 2px solid #2e7d32; border-radius: 12px; padding: 14px 16px; text-align: center; }
-  .sol-icon { width: 52px; height: 52px; border-radius: 50%; background: #eef7ee; border: 2px solid #d4af37; margin: 0 auto 8px; display: flex; justify-content: center; align-items: center; font-size: 26px; }
-  .solution-card h3 { background: #2e7d32; color: #fff; padding: 6px; border-radius: 6px; margin-bottom: 8px; font-size: 20px; }
-  .solution-card p { font-size: 19px; color: #333; line-height: 1.4; }
+  .folk-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .folk-side { text-align: center; background: #fffdf5; border: 2px solid #d4af37; border-radius: 12px; padding: 12px 12px; min-width: 130px; }
+  .folk-side .emo { font-size: 44px; line-height: 1.1; }
+  .folk-side .lbl { font-size: 16px; font-weight: bold; color: #8b0000; margin-top: 6px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .solution-card { background: #fff; border: 2px solid #2e7d32; border-radius: 12px; padding: 18px 14px; text-align: center; }
+  .sol-icon { width: 54px; height: 54px; border-radius: 50%; background: #eef7ee; border: 2px solid #d4af37; margin: 0 auto 10px; display: flex; justify-content: center; align-items: center; font-size: 26px; }
+  .solution-card h3 { background: #2e7d32; color: #fff; padding: 8px 6px; border-radius: 6px; margin-bottom: 10px; font-size: 19px; }
+  .solution-card p { font-size: 18px; color: #333; line-height: 1.45; }
 
+  /* Bảng vẽ Canvas phủ kín 100% màn hình */
   #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
   #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
 
+  /* Thanh công cụ điều khiển góc dưới */
   .toolbar {
     position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
     background: rgba(20, 20, 20, 0.92); padding: 8px 18px; border-radius: 30px;
@@ -241,6 +250,20 @@
   let currentSlide = 1;
   const totalSlides = 4;
 
+  // Tự động thu phóng khung 1000x1000 cho vừa khít chiều cao màn hình
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1000,
+      (window.innerHeight - 75) / 1000,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
   function showSlide(n) {
     for (let i = 1; i <= totalSlides; i++) {
       document.getElementById('slide' + i).classList.remove('active');
@@ -248,6 +271,7 @@
     document.getElementById('slide' + n).classList.add('active');
     document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
     clearCanvas();
+    fitSlideToScreen();
   }
 
   function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; showSlide(currentSlide); } }
@@ -316,7 +340,7 @@
   canvas.addEventListener('pointerup', () => { isDrawing = false; });
   canvas.addEventListener('pointercancel', () => { isDrawing = false; });
 
-  // Hàm xuất ảnh Offline 100% không bao giờ bị trình duyệt chặn
+  // Hàm xuất ảnh vuông tỷ lệ 1:1 (1000x1000)
   function exportSlideImage() {
     const slideEl = document.getElementById('slide' + currentSlide);
     const bar = document.getElementById('mainToolbar');
@@ -335,25 +359,25 @@
     const mergeAndDownload = (slideCanvas) => {
       try {
         const finalCanvas = document.createElement('canvas');
-        finalCanvas.width = 1280;
-        finalCanvas.height = 720;
+        finalCanvas.width = 1000;
+        finalCanvas.height = 1000;
         const fCtx = finalCanvas.getContext('2d');
 
-        // 1. Vẽ nền Slide
-        fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+        // 1. Vẽ nền Slide vuông 1:1
+        fCtx.drawImage(slideCanvas, 0, 0, 1000, 1000);
 
-        // 2. Gộp nét bút vẽ lên đúng vị trí Slide
+        // 2. Gộp nét bút vẽ khớp chính xác kể cả khi màn hình đang thu phóng
         const rect = slideEl.getBoundingClientRect();
         fCtx.drawImage(
           canvas,
           rect.left, rect.top, rect.width, rect.height,
-          0, 0, 1280, 720
+          0, 0, 1000, 1000
         );
 
         // 3. Tải file PNG về máy
         const link = document.createElement('a');
         link.href = finalCanvas.toDataURL('image/png');
-        link.download = `Bai_Giang_Kim_Lau_Trang_${currentSlide}.png`;
+        link.download = `Bai_Giang_Kim_Lau_Trang_${currentSlide}_1x1.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -362,62 +386,54 @@
       }
     };
 
-    // Nếu có mạng và tải được html2canvas thì dùng html2canvas, nếu lỗi thì dùng bộ vẽ thuần
-    if (typeof html2canvas !== 'undefined') {
-      html2canvas(slideEl, { scale: 2, backgroundColor: '#fdf8e8', logging: false })
-        .then(cvs => mergeAndDownload(cvs))
-        .catch(() => {
-          const nativeCvs = renderSlideNative(slideEl);
-          mergeAndDownload(nativeCvs);
-        });
-    } else {
-      const nativeCvs = renderSlideNative(slideEl);
-      mergeAndDownload(nativeCvs);
-    }
+    const nativeCvs = renderSlideNative(slideEl);
+    mergeAndDownload(nativeCvs);
   }
 
-    // Bộ vẽ Slide thuần bằng Canvas (Đã tinh chỉnh đẹp y hệt bản gốc)
+  // Bộ vẽ Slide vuông 1000x1000 chuẩn sắc nét
   function renderSlideNative(slideEl) {
     const c = document.createElement('canvas');
-    c.width = 1280;
-    c.height = 720;
+    c.width = 1000;
+    c.height = 1000;
     const g = c.getContext('2d');
     const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1000 / baseRect.width;
 
-    // 1. Vẽ nền Gradient & khung viền vàng đỏ 16:9
-    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    // 1. Vẽ nền Gradient & khung viền vàng đỏ vuông 1:1
+    const bgGrad = g.createLinearGradient(0, 0, 1000, 1000);
     bgGrad.addColorStop(0, '#fdf8e8');
     bgGrad.addColorStop(1, '#f5ebd1');
     g.fillStyle = bgGrad;
-    g.fillRect(0, 0, 1280, 720);
+    g.fillRect(0, 0, 1000, 1000);
 
     g.lineWidth = 24;
     g.strokeStyle = '#b8860b';
-    g.strokeRect(0, 0, 1280, 720);
+    g.strokeRect(0, 0, 1000, 1000);
 
     g.lineWidth = 4;
     g.strokeStyle = '#8b0000';
-    g.strokeRect(14, 14, 1252, 692);
+    g.strokeRect(14, 14, 972, 972);
 
-    // 2. Vẽ tất cả các khung hộp, thẻ, huy hiệu, bảng biểu
+    // 2. Vẽ các khung hộp, thẻ, huy hiệu, bảng biểu
     const boxes = slideEl.querySelectorAll(
       '.header, .rule-box, .card, .example-box, th, td, .folk-side, .solution-card, .ribbon-bar, .badge, .badge-diamond, .result-tag, .pill-taco, .icon-gold-round, .icon-house-round'
     );
     boxes.forEach(el => {
       const r = el.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) return;
-      const x = r.left - baseRect.left;
-      const y = r.top - baseRect.top;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
       const st = window.getComputedStyle(el);
 
       g.save();
-      // Xử lý riêng hình thoi xoay 45 độ ở Slide 3
       if (el.classList.contains('badge-diamond')) {
-        g.translate(x + r.width / 2, y + r.height / 2);
+        g.translate(x + w / 2, y + h / 2);
         g.rotate((45 * Math.PI) / 180);
         g.fillStyle = '#1b4f9c';
         g.beginPath();
-        g.roundRect(-19, -19, 38, 38, 8);
+        g.roundRect(-20, -20, 40, 40, 8);
         g.fill();
         g.lineWidth = 2;
         g.strokeStyle = '#90cdf4';
@@ -426,7 +442,6 @@
         return;
       }
 
-      // Tô màu nền (hỗ trợ cả ô dùng gradient như badge, result-tag, icon)
       let fill = st.backgroundColor;
       if (el.classList.contains('badge')) fill = '#b22222';
       else if (el.classList.contains('icon-gold-round')) fill = '#9c6b28';
@@ -437,29 +452,28 @@
       if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
         g.fillStyle = fill;
         g.beginPath();
-        g.roundRect(x, y, r.width, r.height, parseFloat(st.borderRadius) || 0);
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
         g.fill();
       }
 
-      // Vẽ đường viền
       if (el.classList.contains('header')) {
         g.strokeStyle = '#b8860b';
         g.lineWidth = 3;
         g.beginPath();
-        g.moveTo(x, y + r.height);
-        g.lineTo(x + r.width, y + r.height);
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
         g.stroke();
       } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
         g.strokeStyle = st.borderColor;
         g.lineWidth = parseFloat(st.borderWidth);
         g.beginPath();
-        g.roundRect(x, y, r.width, r.height, parseFloat(st.borderRadius) || 0);
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
         g.stroke();
       }
       g.restore();
     });
 
-    // 3. Quét từng từ (word-by-word) để không bao giờ bị dính chữ hay lặp dòng
+    // 3. Vẽ từng từ theo đúng tọa độ chuẩn 1000x1000
     const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
     let node;
     while ((node = walker.nextNode())) {
@@ -472,25 +486,22 @@
       g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
       g.textBaseline = 'top';
 
-      // Tách từng từ kèm vị trí chính xác trên màn hình
       const regex = /\S+/g;
       let match;
       while ((match = regex.exec(rawText)) !== null) {
         const range = document.createRange();
         range.setStart(node, match.index);
-        range.setEnd(node, match.index + match[0].length);
+        range.setEnd(node, match.index + match.length);
         const rr = range.getBoundingClientRect();
         if (rr.width === 0) continue;
 
-        const tx = rr.left - baseRect.left;
-        const ty = rr.top - baseRect.top;
-        g.fillText(match[0], tx, ty);
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match, tx, ty);
       }
     }
     return c;
   }
-
 </script>
 </body>
 </html>
-
