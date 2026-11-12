@@ -376,7 +376,7 @@
     }
   }
 
-  // Bộ vẽ Slide thuần bằng Canvas (Chạy mượt 100% khi không có mạng)
+    // Bộ vẽ Slide thuần bằng Canvas (Đã tinh chỉnh đẹp y hệt bản gốc)
   function renderSlideNative(slideEl) {
     const c = document.createElement('canvas');
     c.width = 1280;
@@ -399,8 +399,10 @@
     g.strokeStyle = '#8b0000';
     g.strokeRect(14, 14, 1252, 692);
 
-    // 2. Quét từng khối hộp có nền/viền trong Slide để vẽ lại
-    const boxes = slideEl.querySelectorAll('.header, .rule-box, .card, .example-box, th, td, .folk-side, .solution-card, .ribbon-bar, .badge, .result-tag, .pill-taco');
+    // 2. Vẽ tất cả các khung hộp, thẻ, huy hiệu, bảng biểu
+    const boxes = slideEl.querySelectorAll(
+      '.header, .rule-box, .card, .example-box, th, td, .folk-side, .solution-card, .ribbon-bar, .badge, .badge-diamond, .result-tag, .pill-taco, .icon-gold-round, .icon-house-round'
+    );
     boxes.forEach(el => {
       const r = el.getBoundingClientRect();
       if (r.width === 0 || r.height === 0) return;
@@ -408,47 +410,86 @@
       const y = r.top - baseRect.top;
       const st = window.getComputedStyle(el);
 
-      if (st.backgroundColor && st.backgroundColor !== 'rgba(0, 0, 0, 0)' && st.backgroundColor !== 'transparent') {
-        g.fillStyle = st.backgroundColor;
+      g.save();
+      // Xử lý riêng hình thoi xoay 45 độ ở Slide 3
+      if (el.classList.contains('badge-diamond')) {
+        g.translate(x + r.width / 2, y + r.height / 2);
+        g.rotate((45 * Math.PI) / 180);
+        g.fillStyle = '#1b4f9c';
+        g.beginPath();
+        g.roundRect(-19, -19, 38, 38, 8);
+        g.fill();
+        g.lineWidth = 2;
+        g.strokeStyle = '#90cdf4';
+        g.stroke();
+        g.restore();
+        return;
+      }
+
+      // Tô màu nền (hỗ trợ cả ô dùng gradient như badge, result-tag, icon)
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) fill = '#b22222';
+      else if (el.classList.contains('icon-gold-round')) fill = '#9c6b28';
+      else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : '#1b693c';
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
         g.beginPath();
         g.roundRect(x, y, r.width, r.height, parseFloat(st.borderRadius) || 0);
         g.fill();
       }
-      if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+
+      // Vẽ đường viền
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + r.height);
+        g.lineTo(x + r.width, y + r.height);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
         g.strokeStyle = st.borderColor;
         g.lineWidth = parseFloat(st.borderWidth);
         g.beginPath();
         g.roundRect(x, y, r.width, r.height, parseFloat(st.borderRadius) || 0);
         g.stroke();
       }
+      g.restore();
     });
 
-    // 3. Quét toàn bộ chữ hiển thị trên màn hình và vẽ đúng tọa độ
+    // 3. Quét từng từ (word-by-word) để không bao giờ bị dính chữ hay lặp dòng
     const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
     let node;
     while ((node = walker.nextNode())) {
-      const txt = node.nodeValue.replace(/\s+/g, ' ');
-      if (!txt.trim()) continue;
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
       const parent = node.parentElement;
       const st = window.getComputedStyle(parent);
-      const range = document.createRange();
-      range.selectNodeContents(node);
-      const rects = range.getClientRects();
 
       g.fillStyle = st.color;
       g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
       g.textBaseline = 'top';
 
-      for (let i = 0; i < rects.length; i++) {
-        const rr = rects[i];
+      // Tách từng từ kèm vị trí chính xác trên màn hình
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match[0].length);
+        const rr = range.getBoundingClientRect();
         if (rr.width === 0) continue;
+
         const tx = rr.left - baseRect.left;
         const ty = rr.top - baseRect.top;
-        g.fillText(txt.trim(), tx, ty);
+        g.fillText(match[0], tx, ty);
       }
     }
     return c;
   }
+
 </script>
 </body>
 </html>
