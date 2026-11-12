@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bài Giảng Phong Thủy: Cách Tính Hạn Kim Lâu</title>
+<script src="https://jsdelivr.net"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Arial, sans-serif; }
+  body { background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+  
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0,0,0,0.7);
+    position: relative; padding: 28px 48px;
+    display: none; flex-direction: column; justify-content: space-between;
+  }
+  .slide-container.active { display: flex; }
+
+  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 10px; margin-bottom: 10px; }
+  .header h1 { color: #8b0000; font-size: 37px; text-transform: uppercase; letter-spacing: 1px; text-shadow: 1px 1px 0px #fff; }
+  .header p { color: #2e5a27; font-size: 19px; font-weight: bold; margin-top: 4px; }
+
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .rule-box { background: #fffdf5; border: 2px solid #d4af37; border-left: 8px solid #8b0000; padding: 13px 22px; border-radius: 12px; font-size: 23px; color: #222; line-height: 1.45; display: flex; align-items: center; gap: 16px; }
+  .icon-gold-round { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 28px; flex-shrink: 0; }
+  .highlight-red { color: #b22222; font-weight: bold; }
+  .highlight-green { color: #1e6b1e; font-weight: bold; }
+  .highlight-blue { color: #0047ab; font-weight: bold; }
+
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { background: #ffffff; border: 2px solid #c5a059; border-radius: 12px; padding: 13px 18px; font-size: 22px; display: flex; align-items: center; gap: 14px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); }
+  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2px solid #f0c95c; color: #fff; font-weight: bold; width: 42px; height: 42px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 21px; flex-shrink: 0; }
+  .badge-diamond { width: 38px; height: 38px; border-radius: 10px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 5px; }
+  .badge-diamond span { transform: rotate(-45deg); color: #fff; font-weight: bold; font-size: 20px; }
+
+  .example-box { background: #eef7ee; border: 2.5px dashed #2e7d32; border-radius: 14px; padding: 14px 22px; font-size: 22px; color: #1b4d1b; line-height: 1.5; display: flex; align-items: center; gap: 18px; }
+  .icon-house-round { width: 64px; height: 64px; border-radius: 50%; background: #1e6b1e; border: 3px solid #d4af37; display: flex; justify-content: center; align-items: center; font-size: 32px; flex-shrink: 0; }
+  .result-tag { display: inline-block; background: linear-gradient(90deg, #165b33, #247a48); color: #fff; padding: 4px 16px; border-radius: 8px; border: 2px solid #f0c95c; font-weight: bold; }
+  .result-tag.bad { background: #b22222; border-color: #f0c95c; }
+  .pill-taco { background: #0047ab; color: #fff; padding: 3px 14px; border-radius: 16px; font-weight: bold; font-size: 20px; }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 22px; }
+  th { background: #8b0000; color: #fff; padding: 14px; border: 2px solid #b8860b; }
+  td { padding: 14px; border: 2px solid #d4af37; text-align: center; font-weight: 500; }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  .ribbon-bar { display: inline-flex; align-items: center; gap: 8px; background: #8b0000; color: #fff; padding: 4px 18px; border-radius: 20px; font-size: 18px; font-weight: bold; border: 2px solid #d4af37; margin-bottom: 6px; }
+  .ribbon-bar.green { background: #1e6b1e; }
+  .folk-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .folk-side { text-align: center; background: #fffdf5; border: 2px solid #d4af37; border-radius: 12px; padding: 8px 14px; min-width: 145px; }
+  .folk-side .emo { font-size: 46px; line-height: 1.1; }
+  .folk-side .lbl { font-size: 16px; font-weight: bold; color: #8b0000; margin-top: 4px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .solution-card { background: #fff; border: 2px solid #2e7d32; border-radius: 12px; padding: 14px 16px; text-align: center; }
+  .sol-icon { width: 52px; height: 52px; border-radius: 50%; background: #eef7ee; border: 2px solid #d4af37; margin: 0 auto 8px; display: flex; justify-content: center; align-items: center; font-size: 26px; }
+  .solution-card h3 { background: #2e7d32; color: #fff; padding: 6px; border-radius: 6px; margin-bottom: 8px; font-size: 20px; }
+  .solution-card p { font-size: 19px; color: #333; line-height: 1.4; }
+
+  #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+
+  .toolbar {
+    position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92); padding: 8px 18px; border-radius: 30px;
+    display: flex; gap: 10px; align-items: center; z-index: 100; border: 1px solid #888;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .toolbar button { background: #333; color: #fff; border: 1px solid #777; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 15px; font-weight: bold; }
+  .toolbar button:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000; border-color: #fff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .toolbar button.btn-print:disabled { background: #666; cursor: wait; }
+  .color-dot { width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  .page-indicator { color: #ffd700; font-weight: bold; font-size: 16px; margin: 0 6px; }
+</style>
+</head>
+<body>
+
+  <!-- SLIDE 1 -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>Cách Tính Kim Lâu – Cách 1 (Chia Cho 9)</h1>
+      <p>Áp dụng xem tuổi làm nhà, cưới hỏi, tậu trâu</p>
+    </div>
+    <div class="content">
+      <div class="rule-box">
+        <div class="icon-gold-round">🧮</div>
+        <div><strong>Công thức:</strong> Lấy <strong>số tuổi mụ</strong> của năm cần xem <strong>chia cho 9</strong>. Nếu số dư là <span class="highlight-red">1, 3, 6, 8</span> thì phạm Kim Lâu.</div>
+      </div>
+      <div class="grid-4">
+        <div class="card"><div class="badge">1</div><div>Nếu dư <strong>1</strong> ➔ Phạm <span class="highlight-red">Kim Lâu Thân</span> (Hại bản thân)</div></div>
+        <div class="card"><div class="badge">3</div><div>Nếu dư <strong>3</strong> ➔ Phạm <span class="highlight-red">Kim Lâu Thê</span> (Hại người vợ)</div></div>
+        <div class="card"><div class="badge">6</div><div>Nếu dư <strong>6</strong> ➔ Phạm <span class="highlight-red">Kim Lâu Tử</span> (Hại con cái)</div></div>
+        <div class="card"><div class="badge">8</div><div>Nếu dư <strong>8</strong> ➔ Phạm <span class="highlight-red">Kim Lâu Lục Súc</span> (Hại vật nuôi)</div></div>
+      </div>
+      <div class="example-box">
+        <div class="icon-house-round">🏡</div>
+        <div>
+          <strong>Ví dụ thực hành:</strong> Người sinh năm <strong>1980</strong> vào năm <strong>2022</strong> có phạm Kim Lâu không?<br>
+          ➔ Năm 2022, người sinh năm 1980 được <strong>43 tuổi mụ</strong>. Lấy <strong>43 : 9 = 4 dư 7</strong>.<br>
+          ➔ Kết luận: <span class="result-tag">❖ KHÔNG PHẠM KIM LÂU ❖</span> (Dư 7 được tuổi làm việc lớn).
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SLIDE 2 -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>Thực Hành Tính Nhanh Năm Bính Ngọ 2026</h1>
+      <p>Áp dụng công thức lấy tuổi mụ chia cho 9</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th>Năm Sinh (Âm Lịch)</th>
+            <th>Tuổi Mụ (Năm 2026)</th>
+            <th>Phép Tính Chia Cho 9</th>
+            <th>Số Dư</th>
+            <th>Kết Quả Luận Giải</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1980</strong> (Canh Thân)</td>
+            <td><strong>47 tuổi</strong></td>
+            <td>47 : 9 = 5</td>
+            <td><span class="highlight-green">Dư 2</span></td>
+            <td><span class="result-tag">Không Phạm Kim Lâu</span></td>
+          </tr>
+          <tr>
+            <td><strong>1981</strong> (Tân Dậu)</td>
+            <td><strong>46 tuổi</strong></td>
+            <td>46 : 9 = 5</td>
+            <td><span class="highlight-red">Dư 1</span></td>
+            <td><span class="result-tag bad">Phạm Kim Lâu Thân</span></td>
+          </tr>
+          <tr>
+            <td><strong>1990</strong> (Canh Ngọ)</td>
+            <td><strong>37 tuổi</strong></td>
+            <td>37 : 9 = 4</td>
+            <td><span class="highlight-red">Dư 1</span></td>
+            <td><span class="result-tag bad">Phạm Kim Lâu Thân</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="rule-box">
+        <div class="icon-gold-round">📜</div>
+        <div><strong>Ghi nhớ nhanh:</strong> Phép chia hết (dư 0) hoặc dư <strong>2, 4, 5, 7</strong> là những năm <span class="highlight-green">tốt, không phạm Kim Lâu</span>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>Cách Tính Kim Lâu – Cách 2 (Cộng Dồn Chữ Số)</h1>
+      <p>Mẹo tính nhẩm siêu nhanh không cần chia</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #0047ab;">
+        <div class="icon-gold-round">🧭</div>
+        <div><strong>Quy tắc tính nhẩm:</strong> Cộng các chữ số của <strong>tuổi mụ</strong> lại với nhau cho đến khi còn <strong>1 chữ số duy nhất</strong>. Nếu ra <span class="highlight-red">1, 3, 6, 8</span> là phạm Kim Lâu.</div>
+      </div>
+      <div class="grid-4">
+        <div class="card"><div class="badge-diamond"><span>1</span></div><div>Còn <strong>1</strong> ▶ Phạm <span class="highlight-red">Kim Lâu Thân</span></div></div>
+        <div class="card"><div class="badge-diamond"><span>3</span></div><div>Còn <strong>3</strong> ▶ Phạm <span class="highlight-red">Kim Lâu Thê</span></div></div>
+        <div class="card"><div class="badge-diamond"><span>6</span></div><div>Còn <strong>6</strong> ▶ Phạm <span class="highlight-red">Kim Lâu Tử</span></div></div>
+        <div class="card"><div class="badge-diamond"><span>8</span></div><div>Còn <strong>8</strong> ▶ Phạm <span class="highlight-red">Kim Lâu Lục Súc</span></div></div>
+      </div>
+      <div class="example-box" style="border-color: #0047ab; background: #f0f6fc; color: #102a43;">
+        <div>
+          <div style="margin-bottom:6px;"><span class="pill-taco">Ta có Ví dụ 1 (Tuổi 37):</span> <strong>37 = 3 + 7 = 10 = 1 + 0 = 1</strong> ➔ <span class="result-tag bad">Phạm Kim Lâu Thân</span></div>
+          <div><span class="pill-taco">Ta có Ví dụ 2 (Tuổi 1985 năm 2026 là 42 tuổi):</span> <strong>42 = 4 + 2 = 6</strong> ➔ <span class="result-tag bad">Phạm Kim Lâu Tử</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4 -->
+  <div class="slide-container" id="slide4">
+    <div class="header">
+      <h1>Ý Nghĩa Dân Gian & Cách Hóa Giải Hạn Kim Lâu</h1>
+      <p>Kinh nghiệm đúc kết từ cổ nhân</p>
+    </div>
+    <div class="content" style="gap: 10px;">
+      <div>
+        <div class="ribbon-bar">1. Trong đó (Câu nói dân gian):</div>
+        <div class="folk-row">
+          <div class="folk-side"><div class="emo">🏡</div><div class="lbl">Dựng nhà</div></div>
+          <div class="rule-box" style="flex:1; text-align: center; font-size: 24px; justify-content: center; border-left: 2px solid #d4af37;">
+            <div>
+              <em>“1, 3, 6, 8 Kim Lâu — Dựng nhà, lấy vợ, tậu trâu thì đừng.”</em><br>
+              <span style="font-size: 18px; color: #333;">(Lưu ý: Xem cưới hỏi chỉ tính <strong>tuổi Kim Lâu của cô dâu</strong>, chú rể phạm vẫn cưới bình thường)</span>
+            </div>
+          </div>
+          <div class="folk-side"><div class="emo">👩‍❤️‍👨🐃</div><div class="lbl">Lấy vợ • Tậu trâu</div></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="ribbon-bar green">2. Cách hóa giải khi cần làm việc trọng đại:</div>
+        <div class="grid-3">
+          <div class="solution-card">
+            <div class="sol-icon">📅</div>
+            <h3>1. Chọn Năm Khác</h3>
+            <p>Dời kế hoạch làm nhà, cưới hỏi sang năm đẹp không phạm hạn để mọi sự hanh thông, thuận lợi.</p>
+          </div>
+          <div class="solution-card">
+            <div class="sol-icon">⏳</div>
+            <h3>2. Hoãn Thời Điểm</h3>
+            <p>Nếu chưa gấp gáp, nên tạm hoãn lại qua thời điểm xung khắc trong năm để tránh vận xui.</p>
+          </div>
+          <div class="solution-card">
+            <div class="sol-icon">💑</div>
+            <h3>3. Xin Dâu Hai Lần</h3>
+            <p>Đối với việc cưới hỏi bắt buộc phải tổ chức, dân gian làm lễ xin dâu hai lần để hóa giải vận hạn.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 4</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét Vẽ</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 4;
+
+  function showSlide(n) {
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+    }
+    document.getElementById('slide' + n).classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
+    clearCanvas();
+  }
+
+  function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; showSlide(currentSlide); } }
+  function prevSlide() { if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); } }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Bảng vẽ phủ kín 100% toàn màn hình
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm để tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Hàm xuất ảnh Offline 100% không bao giờ bị trình duyệt chặn
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất ảnh...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    const mergeAndDownload = (slideCanvas) => {
+      try {
+        const finalCanvas = document.createElement('canvas');
+        finalCanvas.width = 1280;
+        finalCanvas.height = 720;
+        const fCtx = finalCanvas.getContext('2d');
+
+        // 1. Vẽ nền Slide
+        fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+        // 2. Gộp nét bút vẽ lên đúng vị trí Slide
+        const rect = slideEl.getBoundingClientRect();
+        fCtx.drawImage(
+          canvas,
+          rect.left, rect.top, rect.width, rect.height,
+          0, 0, 1280, 720
+        );
+
+        // 3. Tải file PNG về máy
+        const link = document.createElement('a');
+        link.href = finalCanvas.toDataURL('image/png');
+        link.download = `Bai_Giang_Kim_Lau_Trang_${currentSlide}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } finally {
+        restoreToolbar();
+      }
+    };
+
+    // Nếu có mạng và tải được html2canvas thì dùng html2canvas, nếu lỗi thì dùng bộ vẽ thuần
+    if (typeof html2canvas !== 'undefined') {
+      html2canvas(slideEl, { scale: 2, backgroundColor: '#fdf8e8', logging: false })
+        .then(cvs => mergeAndDownload(cvs))
+        .catch(() => {
+          const nativeCvs = renderSlideNative(slideEl);
+          mergeAndDownload(nativeCvs);
+        });
+    } else {
+      const nativeCvs = renderSlideNative(slideEl);
+      mergeAndDownload(nativeCvs);
+    }
+  }
+
+  // Bộ vẽ Slide thuần bằng Canvas (Chạy mượt 100% khi không có mạng)
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+
+    // 1. Vẽ nền Gradient & khung viền vàng đỏ 16:9
+    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    bgGrad.addColorStop(0, '#fdf8e8');
+    bgGrad.addColorStop(1, '#f5ebd1');
+    g.fillStyle = bgGrad;
+    g.fillRect(0, 0, 1280, 720);
+
+    g.lineWidth = 24;
+    g.strokeStyle = '#b8860b';
+    g.strokeRect(0, 0, 1280, 720);
+
+    g.lineWidth = 4;
+    g.strokeStyle = '#8b0000';
+    g.strokeRect(14, 14, 1252, 692);
+
+    // 2. Quét từng khối hộp có nền/viền trong Slide để vẽ lại
+    const boxes = slideEl.querySelectorAll('.header, .rule-box, .card, .example-box, th, td, .folk-side, .solution-card, .ribbon-bar, .badge, .result-tag, .pill-taco');
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = r.left - baseRect.left;
+      const y = r.top - baseRect.top;
+      const st = window.getComputedStyle(el);
+
+      if (st.backgroundColor && st.backgroundColor !== 'rgba(0, 0, 0, 0)' && st.backgroundColor !== 'transparent') {
+        g.fillStyle = st.backgroundColor;
+        g.beginPath();
+        g.roundRect(x, y, r.width, r.height, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+      if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        g.beginPath();
+        g.roundRect(x, y, r.width, r.height, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+    });
+
+    // 3. Quét toàn bộ chữ hiển thị trên màn hình và vẽ đúng tọa độ
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const txt = node.nodeValue.replace(/\s+/g, ' ');
+      if (!txt.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const rects = range.getClientRects();
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      for (let i = 0; i < rects.length; i++) {
+        const rr = rects[i];
+        if (rr.width === 0) continue;
+        const tx = rr.left - baseRect.left;
+        const ty = rr.top - baseRect.top;
+        g.fillText(txt.trim(), tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
+
