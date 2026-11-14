@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mật Mã Cuộc Đời: Cẩm Nang Xem Tuổi Động Thổ & Đo Sơn Hướng (16:9)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+  
+  /* Khung Slide ngang tỷ lệ chuẩn 16:9 (1280x720) */
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0,0,0,0.7);
+    position: relative; padding: 24px 44px;
+    display: none; flex-direction: column; justify-content: space-between;
+    transform-origin: center center;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Tiêu đề từng trang - Chữ dày nét đậm */
+  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 9px; margin-bottom: 8px; }
+  .header h1 { color: #8b0000; font-size: 38px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 1px 1px 0px #fff; line-height: 1.15; }
+  .header p { color: #1e5618; font-size: 22px; font-weight: 800; margin-top: 4px; }
+
+  /* Nội dung chính */
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 12px; }
+  .rule-box { background: #fffdf5; border: 2.5px solid #d4af37; border-left: 10px solid #8b0000; padding: 14px 22px; border-radius: 12px; font-size: 24px; font-weight: 700; color: #1a1a1a; line-height: 1.45; display: flex; align-items: center; gap: 16px; }
+  .icon-gold-round { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 26px; flex-shrink: 0; }
+  
+  strong, b { font-weight: 900; }
+  .highlight-red { color: #b22222; font-weight: 900; }
+  .highlight-green { color: #166516; font-weight: 900; }
+  .highlight-blue { color: #003d99; font-weight: 900; }
+
+  /* Lưới chia cột */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .card { background: #ffffff; border: 2.5px solid #c5a059; border-radius: 12px; padding: 15px 18px; font-size: 23px; font-weight: 700; color: #1a1a1a; display: flex; align-items: center; gap: 14px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); line-height: 1.4; }
+  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2.5px solid #f0c95c; color: #fff; font-weight: 900; width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 22px; flex-shrink: 0; }
+  .badge-diamond { width: 40px; height: 40px; border-radius: 9px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2.5px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 6px; }
+  .badge-diamond span { transform: rotate(-45deg); color: #fff; font-weight: 900; font-size: 20px; }
+
+  /* Khung Ví dụ & Thẻ kết quả */
+  .example-box { background: #eef7ee; border: 3px dashed #2e7d32; border-radius: 14px; padding: 15px 22px; font-size: 23px; font-weight: 700; color: #143d14; line-height: 1.48; display: flex; align-items: center; gap: 16px; }
+  .example-box.warn { background: #fff4f4; border-color: #b22222; color: #4a0d0d; }
+  .icon-house-round { width: 60px; height: 60px; border-radius: 50%; background: #1e6b1e; border: 3px solid #d4af37; display: flex; justify-content: center; align-items: center; font-size: 30px; flex-shrink: 0; }
+  .icon-house-round.red { background: #8b0000; }
+  .result-tag { display: inline-block; background: linear-gradient(90deg, #165b33, #247a48); color: #fff; padding: 4px 14px; border-radius: 8px; border: 2px solid #f0c95c; font-weight: 900; font-size: 20px; }
+  .result-tag.bad { background: #b22222; border-color: #f0c95c; }
+  .ribbon-bar { display: inline-flex; align-items: center; gap: 8px; background: #8b0000; color: #fff; padding: 5px 20px; border-radius: 20px; font-size: 20px; font-weight: 900; border: 2px solid #d4af37; margin-bottom: 6px; }
+  .ribbon-bar.green { background: #1e6b1e; }
+
+  /* Bảng tra cứu chuẩn */
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 21px; font-weight: 700; }
+  th { background: #8b0000; color: #fff; padding: 11px 10px; border: 2px solid #b8860b; font-weight: 900; font-size: 22px; }
+  td { padding: 10px 10px; border: 2px solid #d4af37; text-align: center; font-weight: 800; color: #1a1a1a; }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  /* Thẻ bước & Mẫu bảng tổng hợp Slide 13 */
+  .step-card { background: #fff; border: 2.5px solid #2e7d32; border-radius: 12px; padding: 15px 16px; text-align: left; }
+  .step-card h3 { background: #8b0000; color: #fff; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; font-size: 22px; font-weight: 900; text-align: center; }
+  .step-card p { font-size: 21px; font-weight: 700; color: #1a1a1a; line-height: 1.42; }
+  .ratio-banner { background: linear-gradient(135deg, #8b0000, #b22222); border: 3px solid #f0c95c; border-radius: 14px; padding: 16px 22px; color: #fff; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .ratio-banner .big-num { font-size: 34px; font-weight: 900; color: #ffd700; margin-bottom: 4px; }
+
+  /* Mẫu Slide 13 sạch viền rèm */
+  .clean-slide { background: #ffffff !important; border: 6px solid #1b4d2e !important; box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important; }
+  .section-pill { display: inline-block; background: linear-gradient(180deg, #24613b 0%, #164227 100%); color: #fff; font-size: 23px; font-weight: 900; padding: 6px 24px; border-radius: 10px; border: 2px solid #c5a059; margin-bottom: 8px; }
+  .td-yellow { background-color: #f4e816 !important; color: #1b3b14 !important; font-weight: 900 !important; text-align: left !important; padding-left: 18px !important; }
+  .th-yellow { background-color: #f4e816 !important; color: #1b3b14 !important; font-weight: 900 !important; font-size: 20px !important; }
+  .conclusion-banner { display: inline-block; background: linear-gradient(180deg, #24613b 0%, #154025 100%); color: #fff; font-size: 29px; font-weight: 900; padding: 11px 42px; border-radius: 12px; border: 3px solid #d4af37; }
+
+  /* Bảng vẽ & Thanh công cụ nổi ở góc trên */
+  #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+  .toolbar {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92); padding: 6px 16px; border-radius: 30px;
+    display: flex; gap: 9px; align-items: center; z-index: 100; border: 1px solid #888;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .toolbar button { background: #333; color: #fff; border: 1px solid #777; padding: 5px 12px; border-radius: 18px; cursor: pointer; font-size: 14px; font-weight: bold; }
+  .toolbar button:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000; border-color: #fff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  .page-indicator { color: #ffd700; font-weight: bold; font-size: 15px; margin: 0 4px; }
+</style>
+</head>
+<body>
+
+  <!-- TRANG 1: VÌ SAO KHÔNG CÓ TUỔI ĐẸP 100% -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ☯ Trang 1 / 14: Vì Sao Không Có Tuổi Đẹp 100%?</p>
+    </div>
+    <div class="content">
+      <div class="rule-box">
+        <div class="icon-gold-round">☯</div>
+        <div><strong>Nguyên lý thực chiến:</strong> Trong phong thủy không có tuổi nào đạt cát khí <strong>100%</strong>. Chỉ cần tổng cát khí đạt <span class="highlight-green">trên 70%</span> (tức <strong>5/7 tiêu chí tốt</strong>) là động thổ đại cát.</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card"><div class="badge">1</div><div><strong>Thái Tuế:</strong> Niên vận xung khắc năm làm nhà.</div></div>
+        <div class="card"><div class="badge">2</div><div><strong>Tam Tai:</strong> Hạn 3 năm liên tiếp của nhóm tuổi.</div></div>
+        <div class="card"><div class="badge">3</div><div><strong>Hoang Ốc:</strong> Cung nhà hoang vắng, lạnh lẽo.</div></div>
+      </div>
+      <div class="grid-2">
+        <div class="card"><div class="badge">4</div><div><strong>Kim Lâu:</strong> Hạn kỵ bản thân, vợ con, vật nuôi.</div></div>
+        <div class="card"><div class="badge">5</div><div><strong>Cửu Trạch:</strong> Cung trạch tốt xấu theo tuổi mụ.</div></div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">⚠️</div>
+        <div>
+          <strong>Nguyên tắc chọn tuổi:</strong> Người đứng tên động thổ chỉ cần đạt <strong>3 đến 4 cát khí chính</strong> trở lên (không phạm đại kỵ bắt buộc) là làm nhà hanh thông, vượng khí.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 2: 2 ĐIỀU ĐẠI KỴ BẮT BUỘC PHẢI LOẠI TRỪ -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🚫 Trang 2 / 14: Hai Điều Đại Kỵ Bắt Buộc Loại Trừ</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #b22222;">
+        <div class="icon-gold-round">1️⃣</div>
+        <div><strong>Đại Kỵ 1 – Phạm Thái Tuế:</strong> Tuổi trạch chủ xung khắc Thái Tuế của năm xây dựng thì <span class="highlight-red">tuyệt đối không động thổ</span>, dù các yếu tố khác đều đẹp.</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge">1</div>
+          <div><strong>Kim Lâu Thân:</strong> Hại trực tiếp bản thân người đứng tuổi (<span class="highlight-red">Loại ngay</span>).</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge">3</div>
+          <div><strong>Kim Lâu Thê:</strong> Gây tai ương, bệnh tật cho người vợ (<span class="highlight-red">Loại ngay</span>).</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge">6</div>
+          <div><strong>Kim Lâu Tử:</strong> Ảnh hưởng trực tiếp đến con cái (<span class="highlight-red">Loại ngay</span>).</div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">💡</div>
+        <div>
+          <strong>Châm chước Kim Lâu Lục Súc (Số 8):</strong> Chỉ ảnh hưởng đến việc chăn nuôi gia súc, không hại người. Nếu tránh được <strong>Thái Tuế</strong> và <strong>Kim Lâu 1 – 3 – 6</strong> thì xét tiếp các bước sau.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 3: CÁCH ĐO ĐỘ SỐ SƠN HƯỚNG NHÀ ĐẤT THỰC TẾ -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 3 / 14: Cách Đo Độ Số Sơn – Hướng Nhà Đất Thực Tế</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>Bước 1: Vị Trí Đứng Đo</h3>
+          <p>Đứng ở <strong>trước cửa chính</strong> (cách nhà 1,5m – 2m) hoặc ngay <strong>tâm mảnh đất</strong>, mặt hướng thẳng ra phía đường/mặt tiền.</p>
+        </div>
+        <div class="step-card">
+          <h3>Bước 2: Đặt La Bàn Chuẩn</h3>
+          <p>Giữ la bàn (hoặc điện thoại) nằm ngang <strong>song song với mặt đất</strong> và vuông góc với tường mặt tiền. Tránh xa sắt thép, cột điện.</p>
+        </div>
+        <div class="step-card">
+          <h3>Bước 3: Đọc Độ Số &amp; Tọa</h3>
+          <p>Đo <strong>3 lần lấy số trung bình</strong>. Số chỉ phía trước mặt là <strong>HƯỚNG</strong>; lấy độ số đó cộng/trừ <strong>180°</strong> sẽ ra <strong>TỌA</strong>.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">📐</div>
+        <div>
+          <strong>Ví dụ thực tế đo được độ số 325°:</strong><br>
+          • Mặt tiền nhìn về <strong>325° (Tây Bắc)</strong> ➔ Tra bảng 24 Sơn Hướng thuộc <strong>Sơn HỢI</strong> (Hướng Hợi).<br>
+          • Lưng nhà quay về <strong>325° - 180° = 145° (Đông Nam)</strong> ➔ Thuộc <strong>Sơn TỴ</strong> (Tọa Tỵ).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 3: CÁCH ĐO ĐỘ SỐ SƠN HƯỚNG NHÀ ĐẤT THỰC TẾ -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 3 / 14: Cách Đo Độ Số Sơn – Hướng Nhà Đất Thực Tế</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>Bước 1: Vị Trí Đứng Đo</h3>
+          <p>Đứng ở <strong>trước cửa chính</strong> (cách nhà 1,5m – 2m) hoặc ngay <strong>tâm mảnh đất</strong>, mặt hướng thẳng ra phía đường/mặt tiền.</p>
+        </div>
+        <div class="step-card">
+          <h3>Bước 2: Đặt La Bàn Chuẩn</h3>
+          <p>Giữ la bàn (hoặc điện thoại) nằm ngang <strong>song song với mặt đất</strong> và vuông góc với tường mặt tiền. Tránh xa sắt thép, cột điện.</p>
+        </div>
+        <div class="step-card">
+          <h3>Bước 3: Đọc Độ Số &amp; Tọa</h3>
+          <p>Đo <strong>3 lần lấy số trung bình</strong>. Số chỉ phía trước mặt là <strong>HƯỚNG</strong>; lấy độ số đó cộng/trừ <strong>180°</strong> sẽ ra <strong>TỌA</strong>.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">📐</div>
+        <div>
+          <strong>Ví dụ thực tế đo được độ số 325°:</strong><br>
+          • Mặt tiền nhìn về <strong>325° (Tây Bắc)</strong> ➔ Tra bảng 24 Sơn Hướng thuộc <strong>Sơn HỢI</strong> (Hướng Hợi).<br>
+          • Lưng nhà quay về <strong>325° - 180° = 145° (Đông Nam)</strong> ➔ Thuộc <strong>Sơn TỴ</strong> (Tọa Tỵ).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 5: CÔNG THỨC TÍNH KIM LÂU CHUẨN XÁC -->
+  <div class="slide-container" id="slide5">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🧮 Trang 5 / 14: Công Thức Tính Kim Lâu Chuẩn Xác</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card">
+          <h3>Cách 1: Lấy Tuổi Mụ Chia Cho 9</h3>
+          <p>• Công thức: <strong>Tuổi mụ : 9</strong> (Lấy số dư).<br>• Nếu số dư rơi vào <span class="highlight-red">1, 3, 6, 8</span> là phạm Kim Lâu.<br>• Chia hết (dư 0) hoặc dư <strong>2, 4, 5, 7</strong> là tốt.</p>
+        </div>
+        <div class="step-card">
+          <h3>Cách 2: Cộng Dồn Chữ Số (Tính Nhẩm)</h3>
+          <p>• Công thức: Cộng các chữ số của <strong>tuổi mụ</strong> cho đến khi còn <strong>1 chữ số duy nhất</strong>.<br>• Ví dụ tuổi 40: <strong>4 + 0 = 4</strong> ➔ Không phạm.<br>• Ví dụ tuổi 37: <strong>3 + 7 = 10 ➔ 1 + 0 = 1</strong> (Phạm).</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Số Dư / Số Cuối</th>
+            <th>Tên Cung Hạn</th>
+            <th>Mức Độ Ảnh Hưởng</th>
+            <th>Quyết Định Động Thổ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="highlight-red">Số 1</span></td>
+            <td><strong>Kim Lâu Thân</strong></td>
+            <td>Hại trực tiếp bản thân trạch chủ</td>
+            <td><span class="result-tag bad">Kỵ Tuyệt Đối – Loại</span></td>
+          </tr>
+          <tr>
+            <td><span class="highlight-red">Số 3</span></td>
+            <td><strong>Kim Lâu Thê</strong></td>
+            <td>Hại người vợ trong gia đình</td>
+            <td><span class="result-tag bad">Kỵ Tuyệt Đối – Loại</span></td>
+          </tr>
+          <tr>
+            <td><span class="highlight-red">Số 6</span></td>
+            <td><strong>Kim Lâu Tử</strong></td>
+            <td>Hại con cái, đường tử tức</td>
+            <td><span class="result-tag bad">Kỵ Tuyệt Đối – Loại</span></td>
+          </tr>
+          <tr>
+            <td><span class="highlight-blue">Số 8</span></td>
+            <td><strong>Kim Lâu Lục Súc</strong></td>
+            <td>Hại vật nuôi, chăn nuôi (Không hại người)</td>
+            <td><span class="result-tag">Có Thể Châm Chước</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 6: CÔNG THỨC BẤM BÀN TAY HOANG ỐC 6 CUNG -->
+  <div class="slide-container" id="slide6">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ✋ Trang 6 / 14: Công Thức Bấm Bàn Tay Hoang Ốc 6 Cung</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 12px 20px; font-size: 22px;">
+        <div class="icon-gold-round">🖐️</div>
+        <div>
+          <strong>Quy tắc bấm độn:</strong> Khởi <strong>10 tuổi</strong> tại cung <strong>Nhất Cát</strong>, đếm thuận chiều kim đồng hồ mỗi đốt 10 năm (10 – 20 – 30 – 40 – 50 – 60). Nếu có <strong>tuổi lẻ</strong> thì đếm tiếp mỗi tuổi 1 cung.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">10</div>
+          <div><strong>1. Nhất Cát (Tốt):</strong> Làm nhà an cư lạc nghiệp, mọi việc hanh thông.</div>
+        </div>
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">20</div>
+          <div><strong>2. Nhì Nghi (Tốt):</strong> Hưng vượng, giàu có, nhà cửa êm ấm.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff4f4;">
+          <div class="badge">30</div>
+          <div><strong>3. Tam Địa Sát (Xấu):</strong> Phạm hạn bệnh tật, sức khỏe suy giảm.</div>
+        </div>
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">40</div>
+          <div><strong>4. Tứ Tấn Tài (Tốt):</strong> Phúc lộc tới nhà, làm ăn tấn tới.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff4f4;">
+          <div class="badge">50</div>
+          <div><strong>5. Ngũ Thọ Tử (Xấu):</strong> Đại kỵ chia rẽ, ly biệt trong gia đạo.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff4f4;">
+          <div class="badge">60</div>
+          <div><strong>6. Lục Hoang Ốc (Xấu):</strong> Nhà hoang lạnh, khó thành đạt.</div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">✅</div>
+        <div>
+          <strong>Ví dụ tuổi 40 (1987 năm 2026):</strong> Đếm 10 (Nhất Cát) ➔ 20 (Nhì Nghi) ➔ 30 (Tam Địa Sát) ➔ <strong>40 rơi đúng cung Tứ Tấn Tài</strong> ➔ <span class="result-tag">ĐẠI CÁT – KHÔNG PHẠM</span>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 7: THỰC HÀNH TÍNH NHANH HOANG ỐC TUỔI CHẴN VÀ TUỔI LẺ -->
+  <div class="slide-container" id="slide7">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ✋ Trang 7 / 14: Tính Nhanh Hoang Ốc Tuổi Chẵn &amp; Tuổi Lẻ</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 12px 20px; font-size: 22px;">
+        <div class="icon-gold-round">🔢</div>
+        <div>
+          <strong>Mẹo tính nhanh không cần bấm tay:</strong> Lấy <strong>chữ số hàng chục + chữ số hàng đơn vị</strong> của tuổi mụ. Nếu tổng lớn hơn 6 thì <strong>trừ đi 6</strong> (hoặc trừ 12). Ra <strong>1, 2, 4</strong> là tốt; ra <strong>3, 5, 6</strong> là phạm.
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tuổi Mụ</th>
+            <th>Cách Bấm Tay Truyền Thống</th>
+            <th>Mẹo Cộng Số Nhanh</th>
+            <th>Cung Rơi Vào</th>
+            <th>Kết Quả</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>31 tuổi</strong></td>
+            <td>30 (Tam Địa Sát) ➔ +1 tuổi</td>
+            <td>3 + 1 = <strong>4</strong></td>
+            <td><strong>Tứ Tấn Tài</strong></td>
+            <td><span class="result-tag">Tốt (Không Phạm)</span></td>
+          </tr>
+          <tr>
+            <td><strong>37 tuổi</strong></td>
+            <td>30 (Tam Địa Sát) ➔ đếm thêm 7 cung</td>
+            <td>3 + 7 = 10 ➔ 10 - 6 = <strong>4</strong></td>
+            <td><strong>Tứ Tấn Tài</strong></td>
+            <td><span class="result-tag">Tốt (Không Phạm)</span></td>
+          </tr>
+          <tr>
+            <td><strong>40 tuổi</strong></td>
+            <td>10 ➔ 20 ➔ 30 ➔ <strong>40</strong></td>
+            <td>4 + 0 = <strong>4</strong></td>
+            <td><strong>Tứ Tấn Tài</strong></td>
+            <td><span class="result-tag">Tốt (Không Phạm)</span></td>
+          </tr>
+          <tr>
+            <td><strong>45 tuổi</strong></td>
+            <td>40 (Tứ Tấn Tài) ➔ đếm thêm 5 cung</td>
+            <td>4 + 5 = 9 ➔ 9 - 6 = <strong>3</strong></td>
+            <td><strong>Tam Địa Sát</strong></td>
+            <td><span class="result-tag bad">Xấu (Phạm Hạn)</span></td>
+          </tr>
+          <tr>
+            <td><strong>56 tuổi</strong></td>
+            <td>50 (Ngũ Thọ Tử) ➔ đếm thêm 6 cung</td>
+            <td>5 + 6 = 11 ➔ 11 - 6 = <strong>5</strong></td>
+            <td><strong>Ngũ Thọ Tử</strong></td>
+            <td><span class="result-tag bad">Xấu (Phạm Hạn)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 8: CÔNG THỨC TÍNH CỬU TRẠCH 9 CUNG -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 8 / 14: Công Thức Tính Cửu Trạch 9 Cung</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 12px 20px; font-size: 22px;">
+        <div class="icon-gold-round">🧮</div>
+        <div>
+          <strong>Công thức tính chuẩn:</strong> Lấy <strong>tuổi mụ chia cho 9</strong> lấy số dư (hoặc cộng dồn các chữ số tuổi mụ cho đến khi còn <strong>1 chữ số từ 1 đến 9</strong>) rồi đối chiếu vào bảng 9 cung dưới đây.
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Số Dư</th>
+            <th>Tên Cung Trạch</th>
+            <th>Tính Chất</th>
+            <th>Ý Nghĩa Khi Động Thổ Làm Nhà</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Trạch Phúc</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Gia đạo có phúc đức, làm ăn hưng thịnh, bình an</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Trạch Đức</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Có quý nhân phù trợ, con cháu hiếu thuận</td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Trạch Bại</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Dễ hao tài tốn của, công việc trắc trở</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Trạch Hư</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Tiền bạc khó tụ, dễ hư hao (Tuổi 40: 4+0=4 rơi cung này)</td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Trạch Khắc</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Trong nhà hay bất hòa, xung khắc khẩu thiệt</td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td>
+            <td><strong>Trạch Quỷ</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Dễ ốm đau bệnh tật, tinh thần bất an</td>
+          </tr>
+          <tr>
+            <td><strong>7</strong></td>
+            <td><strong>Trạch Tử</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Rất xấu cho sức khỏe và nhân đinh</td>
+          </tr>
+          <tr>
+            <td><strong>8</strong></td>
+            <td><strong>Trạch Bảo</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Giữ được của cải, tài lộc vững bền</td>
+          </tr>
+          <tr>
+            <td><strong>9 (hoặc 0)</strong></td>
+            <td><strong>Trạch Lộc</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Tài lộc dồi dào, thăng tiến công danh</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 8: CÔNG THỨC TÍNH CỬU TRẠCH 9 CUNG -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 8 / 14: Công Thức Tính Cửu Trạch 9 Cung</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 12px 20px; font-size: 22px;">
+        <div class="icon-gold-round">🧮</div>
+        <div>
+          <strong>Công thức tính chuẩn:</strong> Lấy <strong>tuổi mụ chia cho 9</strong> lấy số dư (hoặc cộng dồn các chữ số tuổi mụ cho đến khi còn <strong>1 chữ số từ 1 đến 9</strong>) rồi đối chiếu vào bảng 9 cung dưới đây.
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Số Dư</th>
+            <th>Tên Cung Trạch</th>
+            <th>Tính Chất</th>
+            <th>Ý Nghĩa Khi Động Thổ Làm Nhà</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Trạch Phúc</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Gia đạo có phúc đức, làm ăn hưng thịnh, bình an</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Trạch Đức</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Có quý nhân phù trợ, con cháu hiếu thuận</td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Trạch Bại</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Dễ hao tài tốn của, công việc trắc trở</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Trạch Hư</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Tiền bạc khó tụ, dễ hư hao (Tuổi 40: 4+0=4 rơi cung này)</td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Trạch Khắc</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Trong nhà hay bất hòa, xung khắc khẩu thiệt</td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td>
+            <td><strong>Trạch Quỷ</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Dễ ốm đau bệnh tật, tinh thần bất an</td>
+          </tr>
+          <tr>
+            <td><strong>7</strong></td>
+            <td><strong>Trạch Tử</strong></td>
+            <td><span class="highlight-red">Hung (Xấu)</span></td>
+            <td>Rất xấu cho sức khỏe và nhân đinh</td>
+          </tr>
+          <tr>
+            <td><strong>8</strong></td>
+            <td><strong>Trạch Bảo</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Giữ được của cải, tài lộc vững bền</td>
+          </tr>
+          <tr>
+            <td><strong>9 (hoặc 0)</strong></td>
+            <td><strong>Trạch Lộc</strong></td>
+            <td><span class="highlight-green">Cát (Tốt)</span></td>
+            <td>Tài lộc dồi dào, thăng tiến công danh</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 10: CÔNG THỨC TÍNH TUẾ PHÁ, XUNG SƠN VÀ XUNG HƯỚNG -->
+  <div class="slide-container" id="slide10">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 10 / 14: Tính Tuế Phá, Xung Sơn &amp; Xung Hướng</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card">
+          <h3>1. Tuế Phá (Xung Niên Vận)</h3>
+          <p>• Là phương vị xung trực diện với Địa Chi của năm xây dựng (Lục Xung).<br>• Năm <strong>2026 Bính Ngọ</strong>: Ngọ xung <strong>Tý</strong> ➔ Phương <strong>Tý (Bắc)</strong> là Tuế Phá.<br>• Nhà hướng Hợi, tuổi Mão ➔ <strong>Không phạm</strong>.</p>
+        </div>
+        <div class="step-card">
+          <h3>2. Xung Sơn &amp; Xung Hướng</h3>
+          <p>• Tuổi trạch chủ không được Lục Xung với <strong>Tọa (Sơn)</strong> và <strong>Hướng</strong> của ngôi nhà.<br>• 6 cặp Lục Xung: <strong>Tý–Ngọ, Sửu–Mùi, Dần–Thân, Mão–Dậu, Thìn–Tuất, Tỵ–Hợi</strong>.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🏡</div>
+        <div>
+          <strong>Áp dụng thực tế cho tuổi 1987 (Đinh Mão) làm nhà 325°:</strong><br>
+          • Nhà đo <strong>325°</strong> ➔ <strong>Hướng HỢI – Tọa TỴ</strong>.<br>
+          • Trạch chủ tuổi <strong>MÃO</strong> chỉ xung với tuổi <strong>DẬU</strong> (không xung Tỵ, không xung Hợi) ➔ <span class="result-tag">Không Xung Sơn – Không Xung Hướng</span>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 11: TỔNG HỢP CHẤM ĐIỂM CHI TIẾT TUỔI 1987 NĂM 2026 -->
+  <div class="slide-container" id="slide11">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 📋 Trang 11 / 14: Chấm Điểm Chi Tiết Tuổi 1987 Năm 2026</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tiêu Chí Xét</th>
+            <th>Kết Quả Tính Toán (Tuổi 40 – Nhà 325°)</th>
+            <th>Trạng Thái</th>
+            <th>Chấm Điểm</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Thái Tuế</strong></td>
+            <td>Tuổi Mão gặp năm Ngọ (Không xung khắc)</td>
+            <td>Không phạm</td>
+            <td><span class="result-tag">Cát Khí (1)</span></td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Kim Lâu</strong></td>
+            <td>40 tuổi ➔ 4 + 0 = <strong>4</strong> (Tránh 1, 3, 6, 8)</td>
+            <td>Không phạm</td>
+            <td><span class="result-tag">Cát Khí (2)</span></td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Hoang Ốc</strong></td>
+            <td>Bấm tay 10–20–30–40 ➔ Cung <strong>Tứ Tấn Tài</strong></td>
+            <td>Cung tốt</td>
+            <td><span class="result-tag">Cát Khí (3)</span></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Tuế Phá</strong></td>
+            <td>Năm Ngọ (Tuế phá tại Tý) ➔ Bình an</td>
+            <td>Không phạm</td>
+            <td><span class="result-tag">Cát Khí (4)</span></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Xung Sơn – Hướng</strong></td>
+            <td>Tuổi Mão chỉ xung Dậu (Không xung Tỵ – Hợi)</td>
+            <td>Không xung</td>
+            <td><span class="result-tag">Cát Khí (5)</span></td>
+          </tr>
+          <tr>
+            <td><strong>6</strong></td>
+            <td><strong>Tam Tai</strong></td>
+            <td>Nhóm Hợi–Mão–Mùi gặp năm Ngọ</td>
+            <td>Phạm hạn nhẹ</td>
+            <td><span class="result-tag bad">Hung Khí (1)</span></td>
+          </tr>
+          <tr>
+            <td><strong>7</strong></td>
+            <td><strong>Cửu Trạch</strong></td>
+            <td>40 tuổi dư 4 ➔ Rơi vào <strong>Trạch Hư</strong></td>
+            <td>Trạch xấu</td>
+            <td><span class="result-tag bad">Hung Khí (2)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 12: PHÂN TÍCH TỶ LỆ CÁT - HUNG TRÊN 70% -->
+  <div class="slide-container" id="slide12">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ⚖️ Trang 12 / 14: Nguyên Tắc Đánh Giá Tỷ Lệ Cát – Hung</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">TỶ LỆ CÁT KHÍ: 5 / 7 TIÊU CHÍ ≈ 71,4% (ĐẠT CHUẨN &gt; 70%)</div>
+        <div style="font-size: 22px; font-weight: 800;">Kết luận tuổi <strong>1987 (Đinh Mão)</strong> năm <strong>2026</strong>: <strong>ĐỘNG THỔ ĐẠI CÁT</strong></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee; flex-direction: column; align-items: flex-start; gap: 10px;">
+          <div style="font-weight: 900; color: #166516; font-size: 24px;">✅ 5 YẾU TỐ CÁT KHÍ (ĐẠT):</div>
+          <div style="font-size: 22px; font-weight: 700; line-height: 1.5;">
+            • <strong>Thái Tuế:</strong> Không phạm (Tiên quyết)<br>
+            • <strong>Kim Lâu:</strong> Không phạm (Tuổi 40 dư 4)<br>
+            • <strong>Hoang Ốc:</strong> Cung <strong>Tứ Tấn Tài</strong> (Đại cát)<br>
+            • <strong>Tuế Phá &amp; Sơn Hướng:</strong> Đều bình an
+          </div>
+        </div>
+
+        <div class="card" style="border-color: #b22222; background: #fff4f4; flex-direction: column; align-items: flex-start; gap: 10px;">
+          <div style="font-weight: 900; color: #b22222; font-size: 24px;">⚠️ 2 YẾU TỐ HUNG KHÍ (NHẸ):</div>
+          <div style="font-size: 22px; font-weight: 700; line-height: 1.5;">
+            • <strong>Phạm Tam Tai:</strong> Hạn nhẹ, hóa giải được bằng chọn ngày giờ khởi công tốt.<br>
+            • <strong>Cửu Trạch Hư:</strong> Yếu tố phụ, không phá được đại cục khi 5 cát khí đã vượng.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 13: BẢNG TỔNG HỢP TUỔI ĐỘNG THỔ CHUẨN MẪU (SẠCH VIỀN RÈM) -->
+  <div class="slide-container clean-slide" id="slide13">
+    <div style="text-align: center;">
+      <div style="display: inline-block; background: #8b0000; color: #ffd700; font-size: 19px; font-weight: 900; padding: 4px 22px; border-radius: 20px; border: 2px solid #d4af37; margin-bottom: 4px;">
+        MẬT MÃ CUỘC ĐỜI • KẾT BẠN ✆ 0789.414.153
+      </div>
+      <div style="color: #1b4d2e; font-size: 46px; font-weight: 900; letter-spacing: 1px; line-height: 1.1;">
+        TUỔI ĐỘNG THỔ
+      </div>
+    </div>
+
+    <div>
+      <div class="section-pill">1- Thông tin</div>
+      <table>
+        <tbody>
+          <tr>
+            <td class="td-yellow" style="width: 22%;">Trạch chủ:</td>
+            <td style="width: 28%; text-align: left; padding-left: 18px; font-size: 23px;">1987</td>
+            <td class="td-yellow" style="width: 22%;">Nạp giáp:</td>
+            <td style="width: 28%; text-align: left; padding-left: 18px; font-size: 23px;">Đinh Mão</td>
+          </tr>
+          <tr>
+            <td class="td-yellow">Hướng nhà:</td>
+            <td style="text-align: left; padding-left: 18px; font-size: 23px;">Tây Bắc</td>
+            <td class="td-yellow">Độ số:</td>
+            <td style="text-align: left; padding-left: 18px; font-size: 23px;">325°</td>
+          </tr>
+          <tr>
+            <td class="td-yellow">Tọa:</td>
+            <td style="text-align: left; padding-left: 18px; font-size: 23px;">TỴ</td>
+            <td class="td-yellow">Hướng:</td>
+            <td style="text-align: left; padding-left: 18px; font-size: 23px;">HỢI</td>
+          </tr>
+          <tr>
+            <td class="td-yellow">Năm:</td>
+            <td colspan="3" style="text-align: left; padding-left: 18px; font-size: 23px;">2026 – BÍNH NGỌ (40 Tuổi Mụ)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <div class="section-pill">2- Tuổi động thổ</div>
+      <table>
+        <thead>
+          <tr>
+            <th colspan="7" style="background: #ffffff; color: #1b4d2e; border: 2px solid #d4af37; font-size: 24px;">
+              CÁC PHẠM SÁT CỦA TRẠCH CHỦ
+            </th>
+          </tr>
+          <tr>
+            <th class="th-yellow">THÁI TUẾ</th>
+            <th class="th-yellow">TAM TAI</th>
+            <th class="th-yellow">HOANG ỐC</th>
+            <th class="th-yellow">KIM LÂU</th>
+            <th class="th-yellow">CỬU TRẠCH</th>
+            <th class="th-yellow">TUẾ PHÁ</th>
+            <th class="th-yellow">XUNG SƠN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-size: 23px; color: #166516;">Không</td>
+            <td style="font-size: 23px; color: #b22222;">Phạm</td>
+            <td style="font-size: 23px; color: #166516;">Không</td>
+            <td style="font-size: 23px; color: #166516;">Không</td>
+            <td style="font-size: 23px; color: #b22222;">Hư</td>
+            <td style="font-size: 23px; color: #166516;">Không</td>
+            <td style="font-size: 23px; color: #166516;">Không</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="text-align: center;">
+      <div class="conclusion-banner">
+        KẾT LUẬN: TUỔI 1987 ĐỘNG THỔ ĐƯỢC (<span style="color: #ffeb3b;">ĐẠT 71,4% CÁT KHÍ</span>)
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 14: TỔNG KẾT CÔNG THỨC VÀNG CHỌN TUỔI ĐỘNG THỔ -->
+  <div class="slide-container" id="slide14">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🏆 Trang 14 / 14: Tổng Kết Công Thức Vàng Chọn Tuổi Động Thổ</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #b22222;">
+        <div class="icon-gold-round">1️⃣</div>
+        <div><strong>Bước 1 – Lọc Đại Kỵ Bắt Buộc:</strong> Loại bỏ ngay tuổi phạm <strong>Thái Tuế</strong> hoặc phạm <strong>Kim Lâu Thân (1) – Thê (3) – Tử (6)</strong>.</div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #0047ab;">
+        <div class="icon-gold-round">2️⃣</div>
+        <div><strong>Bước 2 – Đo La Bàn &amp; Xét Đủ 7 Tiêu Chí:</strong> Đo chuẩn độ số <strong>Sơn – Hướng</strong>, đối chiếu đủ Thái Tuế, Kim Lâu, Tam Tai, Hoang Ốc, Cửu Trạch, Tuế Phá và Xung Sơn Hướng.</div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🎯</div>
+        <div>
+          <strong>Bước 3 – Chốt Quyết Định:</strong> Không có tuổi nào đẹp 100%. Tổng hợp đạt <span class="highlight-green">từ 70% cát khí trở lên</span> (tối thiểu <strong>5/7 tiêu chí tốt</strong>) là <span class="result-tag">ĐỘNG THỔ ĐẠI CÁT</span>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANH CÔNG CỤ ĐIỀU KHIỂN NỔI PHÍA TRÊN -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 14</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét Vẽ</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 14;
+
+  // Tự động thu phóng khung ngang 1280x720 cho vừa khít màn hình máy tính/tivi
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1280,
+      (window.innerHeight - 75) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  function showSlide(n) {
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+    }
+    document.getElementById('slide' + n).classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; showSlide(currentSlide); } }
+  function prevSlide() { if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); } }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Bảng vẽ phủ kín 100% toàn màn hình
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm để tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Hàm xuất ảnh ngang tỷ lệ 16:9 (1280x720) kèm nét bút vẽ
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất ảnh...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    try {
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 1280;
+      finalCanvas.height = 720;
+      const fCtx = finalCanvas.getContext('2d');
+
+      const slideCanvas = renderSlideNative(slideEl);
+      fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+      const rect = slideEl.getBoundingClientRect();
+      fCtx.drawImage(
+        canvas,
+        rect.left, rect.top, rect.width, rect.height,
+        0, 0, 1280, 720
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png');
+      link.download = `Mat_Ma_Cuoc_Doi_Dong_Tho_Trang_${currentSlide}_16x9.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } finally {
+      restoreToolbar();
+    }
+  }
+
+  // Bộ vẽ Slide ngang 1280x720 chuẩn nét đậm offline 100%
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1280 / baseRect.width;
+
+    // 1. Nền & khung viền (phân biệt trang 13 nền trắng sạch và các trang nền kem vàng)
+    if (slideEl.classList.contains('clean-slide')) {
+      g.fillStyle = '#ffffff';
+      g.fillRect(0, 0, 1280, 720);
+      g.lineWidth = 12;
+      g.strokeStyle = '#1b4d2e';
+      g.strokeRect(0, 0, 1280, 720);
+    } else {
+      const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+      bgGrad.addColorStop(0, '#fdf8e8');
+      bgGrad.addColorStop(1, '#f5ebd1');
+      g.fillStyle = bgGrad;
+      g.fillRect(0, 0, 1280, 720);
+
+      g.lineWidth = 24;
+      g.strokeStyle = '#b8860b';
+      g.strokeRect(0, 0, 1280, 720);
+
+      g.lineWidth = 4;
+      g.strokeStyle = '#8b0000';
+      g.strokeRect(14, 14, 1252, 692);
+    }
+
+    // 2. Vẽ các khung hộp, thẻ, bảng biểu, huy hiệu
+    const boxes = slideEl.querySelectorAll(
+      '.header, .rule-box, .card, .example-box, th, td, .step-card, .ratio-banner, .ribbon-bar, .badge, .badge-diamond, .result-tag, .icon-gold-round, .icon-house-round, .section-pill, .conclusion-banner'
+    );
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
+      const st = window.getComputedStyle(el);
+
+      g.save();
+      if (el.classList.contains('badge-diamond')) {
+        g.translate(x + w / 2, y + h / 2);
+        g.rotate((45 * Math.PI) / 180);
+        g.fillStyle = '#1b4f9c';
+        g.beginPath();
+        g.roundRect(-21, -21, 42, 42, 9);
+        g.fill();
+        g.lineWidth = 2.5;
+        g.strokeStyle = '#90cdf4';
+        g.stroke();
+        g.restore();
+        return;
+      }
+
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) {
+        fill = el.style.backgroundColor || '#b22222';
+      } else if (el.classList.contains('icon-gold-round')) {
+        fill = '#9c6b28';
+      } else if (el.classList.contains('ratio-banner')) {
+        fill = '#991111';
+      } else if (el.classList.contains('section-pill') || el.classList.contains('conclusion-banner')) {
+        fill = '#1b5230';
+      } else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : '#1b693c';
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+      g.restore();
+    });
+
+    // 3. Vẽ từng từ chuẩn nét đậm không dính chữ
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match.length);
+        const rr = range.getBoundingClientRect();
+        if (rr.width === 0) continue;
+
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match[0], tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
