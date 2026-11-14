@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mật Mã Cuộc Đời: Vì Sao Cùng Con Giáp Nhưng Vận Năm 2027 Mỗi Người Một Khác? (16:9)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+  
+  /* Khung Slide ngang tỷ lệ chuẩn 16:9 (1280x720) */
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0,0,0,0.7);
+    position: relative; padding: 24px 44px;
+    display: none; flex-direction: column; justify-content: space-between;
+    transform-origin: center center;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Tiêu đề từng trang - Chữ dày nét đậm */
+  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 9px; margin-bottom: 8px; }
+  .header h1 { color: #8b0000; font-size: 38px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 1px 1px 0px #fff; line-height: 1.15; }
+  .header p { color: #1e5618; font-size: 22px; font-weight: 800; margin-top: 4px; }
+
+  /* Nội dung chính */
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 12px; }
+  .rule-box { background: #fffdf5; border: 2.5px solid #d4af37; border-left: 10px solid #8b0000; padding: 14px 22px; border-radius: 12px; font-size: 23px; font-weight: 700; color: #1a1a1a; line-height: 1.45; display: flex; align-items: center; gap: 16px; }
+  .icon-gold-round { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 26px; flex-shrink: 0; }
+  
+  strong, b { font-weight: 900; }
+  .highlight-red { color: #b22222; font-weight: 900; }
+  .highlight-green { color: #166516; font-weight: 900; }
+  .highlight-blue { color: #003d99; font-weight: 900; }
+
+  /* Lưới chia cột */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+  .card { background: #ffffff; border: 2.5px solid #c5a059; border-radius: 12px; padding: 15px 18px; font-size: 22px; font-weight: 700; color: #1a1a1a; display: flex; align-items: center; gap: 14px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); line-height: 1.4; }
+  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2.5px solid #f0c95c; color: #fff; font-weight: 900; width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 22px; flex-shrink: 0; }
+  .badge-diamond { width: 40px; height: 40px; border-radius: 9px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2.5px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 6px; }
+  .badge-diamond span { transform: rotate(-45deg); color: #fff; font-weight: 900; font-size: 20px; }
+
+  /* Khung Ví dụ & Thẻ kết quả */
+  .example-box { background: #eef7ee; border: 3px dashed #2e7d32; border-radius: 14px; padding: 15px 22px; font-size: 22px; font-weight: 700; color: #143d14; line-height: 1.48; display: flex; align-items: center; gap: 16px; }
+  .example-box.warn { background: #fff4f4; border-color: #b22222; color: #4a0d0d; }
+  .icon-house-round { width: 60px; height: 60px; border-radius: 50%; background: #1e6b1e; border: 3px solid #d4af37; display: flex; justify-content: center; align-items: center; font-size: 30px; flex-shrink: 0; }
+  .icon-house-round.red { background: #8b0000; }
+  .result-tag { display: inline-block; background: linear-gradient(90deg, #165b33, #247a48); color: #fff; padding: 4px 14px; border-radius: 8px; border: 2px solid #f0c95c; font-weight: 900; font-size: 19px; white-space: nowrap; }
+  .result-tag.bad { background: #b22222; border-color: #f0c95c; }
+  .result-tag.warn-tag { background: #b86b00; border-color: #f0c95c; }
+
+  /* Bảng tra cứu chuẩn */
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 20px; font-weight: 700; }
+  th { background: #8b0000; color: #fff; padding: 10px 10px; border: 2px solid #b8860b; font-weight: 900; font-size: 21px; }
+  td { padding: 9px 10px; border: 2px solid #d4af37; text-align: center; font-weight: 800; color: #1a1a1a; }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  /* Thẻ bước & Băng rôn nhấn mạnh */
+  .step-card { background: #fff; border: 2.5px solid #2e7d32; border-radius: 12px; padding: 16px 18px; text-align: left; }
+  .step-card h3 { background: #8b0000; color: #fff; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; font-size: 22px; font-weight: 900; text-align: center; }
+  .step-card p { font-size: 21px; font-weight: 700; color: #1a1a1a; line-height: 1.44; }
+  .ratio-banner { background: linear-gradient(135deg, #8b0000, #b22222); border: 3px solid #f0c95c; border-radius: 14px; padding: 16px 22px; color: #fff; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .ratio-banner .big-num { font-size: 32px; font-weight: 900; color: #ffd700; margin-bottom: 4px; }
+
+  /* Chỉnh bảng 12 con giáp Trang 4 & Trang 5 cho thoáng đẹp */
+  .table-compact th { padding: 8px 10px; font-size: 20px; }
+  .table-compact td { padding: 8px 10px; font-size: 19px; }
+
+  /* Bảng vẽ & Thanh công cụ nổi phía trên */
+  #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+  .toolbar {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92); padding: 6px 16px; border-radius: 30px;
+    display: flex; gap: 9px; align-items: center; z-index: 100; border: 1px solid #888;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .toolbar button { background: #333; color: #fff; border: 1px solid #777; padding: 5px 12px; border-radius: 18px; cursor: pointer; font-size: 14px; font-weight: bold; }
+  .toolbar button:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000; border-color: #fff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .toolbar button.btn-print:disabled { background: #666; cursor: wait; }
+  .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  .page-indicator { color: #ffd700; font-weight: bold; font-size: 15px; margin: 0 4px; }
+</style>
+</head>
+<body>
+
+  <!-- TRANG 1: TỔNG QUAN NĂM 2027 ĐINH MÙI -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ☯ Trang 1 / 14: Tổng Quan Năm 2027 Đinh Mùi</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">VÌ SAO CÙNG CON GIÁP NHƯNG VẬN NĂM 2027 MỖI NGƯỜI MỘT KHÁC?</div>
+        <div style="font-size: 21px; font-weight: 800;">Luận giải chuẩn quy tắc <strong>Can Chi</strong> &amp; <strong>Tử Vi Đẩu Số</strong> – Loại bỏ nỗi lo mê tín</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>1. Năm Đinh Mùi (Con Dê)</h3>
+          <p>Năm thứ <strong>44</strong> trong vòng 60 Hoa Giáp. Thời gian tính từ Tết Nguyên Đán <strong>06/02/2027</strong> đến hết <strong>25/01/2028</strong> Dương lịch.</p>
+        </div>
+        <div class="step-card">
+          <h3>2. Nạp Âm Thiên Hà Thủy</h3>
+          <p><strong>Thiên Hà Thủy</strong> (Nước trên trời / Nước mưa). Trẻ sinh trong năm 2027 mang tuổi <strong>Đinh Mùi</strong>, bản mệnh Thủy.</p>
+        </div>
+        <div class="step-card">
+          <h3>3. Ngũ Hành Can Sinh Chi</h3>
+          <p>Can <strong>Đinh</strong> thuộc <span class="highlight-red">Hỏa âm</span>, Chi <strong>Mùi</strong> thuộc <span class="highlight-blue">Thổ âm</span>. Hỏa sinh Thổ ➔ <strong>Can sinh Chi</strong> (nền tảng hài hòa).</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">📜</div>
+        <div>
+          <strong>Mục tiêu bài giảng:</strong> Phân tách rõ phần <strong>tính cố định theo tuổi</strong> (Thái Tuế, Tam Tai, Kim Lâu) và phần <strong>biến hóa riêng trên từng lá số</strong> (Mệnh, Cục, Tứ Hóa, Đại Vận).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 2: 6 THÔNG SỐ CỐT LÕI CỦA NĂM 2027 ĐINH MÙI -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 📋 Trang 2 / 14: Bảng 6 Thông Số Cốt Lõi Của Năm 2027</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%;">Thông Số Cốt Lõi</th>
+            <th style="width: 70%;">Chi Tiết Năm 2027 (Đinh Mùi)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Thời gian (Dương lịch)</strong></td>
+            <td style="text-align: left; padding-left: 22px;">Từ <strong>06/02/2027</strong> đến hết ngày <strong>25/01/2028</strong></td>
+          </tr>
+          <tr>
+            <td><strong>2. Ngũ hành Can – Chi</strong></td>
+            <td style="text-align: left; padding-left: 22px;">Can <strong>Đinh (Hỏa âm)</strong> • Chi <strong>Mùi (Thổ âm)</strong> ➔ <span class="highlight-green">Can sinh Chi</span></td>
+          </tr>
+          <tr>
+            <td><strong>3. Ngũ hành Nạp âm</strong></td>
+            <td style="text-align: left; padding-left: 22px;"><span class="highlight-blue">Thiên Hà Thủy</span> (Nước trên trời)</td>
+          </tr>
+          <tr>
+            <td><strong>4. Lưu Thái Tuế</strong></td>
+            <td style="text-align: left; padding-left: 22px;">Đóng cố định tại <strong>cung Mùi</strong> trên mọi lá số Tử Vi</td>
+          </tr>
+          <tr>
+            <td><strong>5. Tứ Hóa Can Đinh</strong></td>
+            <td style="text-align: left; padding-left: 22px;"><strong>Thái Âm</strong> Hóa Lộc • <strong>Thiên Đồng</strong> Hóa Quyền • <strong>Thiên Cơ</strong> Hóa Khoa • <strong>Cự Môn</strong> Hóa Kỵ</td>
+          </tr>
+          <tr>
+            <td><strong>6. Nhóm tuổi Tam Tai</strong></td>
+            <td style="text-align: left; padding-left: 22px;"><strong>Hợi – Mão – Mùi</strong> (Bước vào <strong>năm cuối</strong> của chu kỳ Tỵ – Ngọ – Mùi)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 3: CÁC CON GIÁP PHẠM THÁI TUẾ & TAM TAI NĂM 2027 -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🐉 Trang 3 / 14: Tuổi Phạm Thái Tuế &amp; Tam Tai Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #b22222; padding: 12px 20px;">
+        <div class="icon-gold-round">⚠️</div>
+        <div><strong>4 Con Giáp Phạm Thái Tuế Năm Mùi:</strong> Lưu Thái Tuế đóng tại cung Mùi tạo ra 4 mối quan hệ xung khắc đặc biệt cần lưu ý khi quyết định việc lớn.</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge">1</div>
+          <div><strong>Tuổi Mùi (Trực Thái Tuế):</strong> Chính năm tuổi, dễ có thay đổi lớn về môi trường, công việc.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge">2</div>
+          <div><strong>Tuổi Sửu (Xung Thái Tuế):</strong> Sửu – Mùi Lục Xung, đối đầu trực diện, dễ biến động mạnh.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge">3</div>
+          <div><strong>Tuổi Tuất (Hình &amp; Phá):</strong> Tuất – Mùi tương hình, tương phá, đề phòng rắc rối giấy tờ.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge">4</div>
+          <div><strong>Tuổi Tý (Hại Thái Tuế):</strong> Tý – Mùi tương hại, dễ gặp hiểu lầm, thị phi quan hệ.</div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🔄</div>
+        <div>
+          <strong>Chu kỳ Tam Tai 2025 – 2027 (Tỵ – Ngọ – Mùi):</strong> Ba tuổi <strong>Hợi – Mão – Mùi</strong> bước sang năm 2027 là <strong>năm Tam Tai thứ 3 (năm cuối)</strong>. Sang năm <strong>2028 Mậu Thân</strong>, Tam Tai chuyển sang nhóm <strong>Dần – Ngọ – Tuất</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 4: BẢNG TRA CỨU 12 CON GIÁP NĂM 2027 (PHẦN 1: TÝ ĐẾN TỴ) -->
+  <div class="slide-container" id="slide4">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 📊 Trang 4 / 14: Tra Cứu Thái Tuế &amp; Tam Tai (Tý – Tỵ)</p>
+    </div>
+    <div class="content">
+      <table class="table-compact">
+        <thead>
+          <tr>
+            <th style="width: 14%;">Con Giáp</th>
+            <th style="width: 34%;">Năm Sinh (Âm Lịch)</th>
+            <th style="width: 30%;">Quan Hệ Với Thái Tuế (Mùi)</th>
+            <th style="width: 22%;">Tam Tai 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tý</strong></td>
+            <td>1960, 1972, 1984, 1996, 2008</td>
+            <td><span class="highlight-red">Hại Thái Tuế</span> (Tý – Mùi tương hại)</td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Sửu</strong></td>
+            <td>1961, 1973, 1985, 1997, 2009</td>
+            <td><span class="highlight-red">Xung Thái Tuế</span> (Sửu – Mùi lục xung)</td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dần</strong></td>
+            <td>1962, 1974, 1986, 1998, 2010</td>
+            <td><span class="highlight-green">Không phạm</span></td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mão</strong></td>
+            <td>1963, 1975, 1987, 1999, 2011</td>
+            <td><strong>Tam hợp</strong> (Hợi – Mão – Mùi)</td>
+            <td><span class="result-tag bad">Có (Năm cuối)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Thìn</strong></td>
+            <td>1964, 1976, 1988, 2000, 2012</td>
+            <td><span class="highlight-green">Không phạm</span></td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tỵ</strong></td>
+            <td>1965, 1977, 1989, 2001, 2013</td>
+            <td><span class="highlight-green">Không phạm</span></td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 5: BẢNG TRA CỨU 12 CON GIÁP NĂM 2027 (PHẦN 2: NGỌ ĐẾN HỢI) -->
+  <div class="slide-container" id="slide5">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 📊 Trang 5 / 14: Tra Cứu Thái Tuế &amp; Tam Tai (Ngọ – Hợi)</p>
+    </div>
+    <div class="content">
+      <table class="table-compact">
+        <thead>
+          <tr>
+            <th style="width: 14%;">Con Giáp</th>
+            <th style="width: 34%;">Năm Sinh (Âm Lịch)</th>
+            <th style="width: 30%;">Quan Hệ Với Thái Tuế (Mùi)</th>
+            <th style="width: 22%;">Tam Tai 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ngọ</strong></td>
+            <td>1966, 1978, 1990, 2002, 2014</td>
+            <td><span class="highlight-blue">Lục hợp</span> (Ngọ – Mùi nhị hợp)</td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mùi</strong></td>
+            <td>1967, 1979, 1991, 2003, 2015</td>
+            <td><span class="highlight-red">Trực Thái Tuế</span> (Năm tuổi)</td>
+            <td><span class="result-tag bad">Có (Năm cuối)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Thân</strong></td>
+            <td>1968, 1980, 1992, 2004, 2016</td>
+            <td><span class="highlight-green">Không phạm</span></td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Dậu</strong></td>
+            <td>1969, 1981, 1993, 2005, 2017</td>
+            <td><span class="highlight-green">Không phạm</span></td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tuất</strong></td>
+            <td>1970, 1982, 1994, 2006, 2018</td>
+            <td><span class="highlight-red">Hình, Phá Thái Tuế</span></td>
+            <td><span class="result-tag">Không</span></td>
+          </tr>
+          <tr>
+            <td><strong>Hợi</strong></td>
+            <td>1971, 1983, 1995, 2007, 2019</td>
+            <td><strong>Tam hợp</strong> (Hợi – Mão – Mùi)</td>
+            <td><span class="result-tag bad">Có (Năm cuối)</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 6: PHẠM THÁI TUẾ HAY TAM TAI CÓ PHẢI CẢ NĂM ĐỀU XẤU? -->
+  <div class="slide-container" id="slide6">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 💡 Trang 6 / 14: Phạm Thái Tuế Hay Tam Tai Có Xấu Toàn Tập?</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">CÂU TRẢ LỜI CHÍNH XÁC: KHÔNG PHẢI CẢ NĂM ĐỀU XẤU!</div>
+        <div style="font-size: 21px; font-weight: 800;">Thái Tuế &amp; Tam Tai chỉ là tín hiệu biến động chung cho <strong>1/12 dân số</strong> cùng con giáp</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>1. Sao Tại Cung Mùi</h3>
+          <p>Mức độ tốt hay xấu phụ thuộc trực tiếp vào việc <strong>cung Mùi trên lá số</strong> của bạn đang chứa <strong>cát tinh</strong> hay <strong>sát tinh</strong>.</p>
+        </div>
+        <div class="step-card">
+          <h3>2. Vị Trí Tứ Hóa 2027</h3>
+          <p>Xem <strong>Hóa Lộc, Quyền, Khoa, Kỵ</strong> của năm Đinh Mùi kích hoạt vào cung nào (Tài Bạch, Quan Lộc hay Tật Ách).</p>
+        </div>
+        <div class="step-card">
+          <h3>3. Bối Cảnh Đại Vận</h3>
+          <p>Nếu đang nằm trong <strong>Đại vận 10 năm hanh thông</strong>, năm Thái Tuế lại chính là đòn bẩy tạo ra bước ngoặt bứt phá.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">🛡️</div>
+        <div>
+          <strong>Cách ứng xử thông tuệ:</strong> Giữ tâm thế <strong>thận trọng hơn trước các quyết định lớn</strong> (đầu tư, chuyển việc, xây dựng) – tuyệt đối <strong>không tốn tiền làm lễ giải hạn</strong> theo lời hù dọa mê tín.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 7: TRA CỨU TUỔI PHẠM KIM LÂU NĂM 2027 (XÂY NHÀ, CƯỚI HỎI) -->
+  <div class="slide-container" id="slide7">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🏡 Trang 7 / 14: Tuổi Phạm Kim Lâu Năm 2027 (Làm Nhà, Cưới Hỏi)</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 11px 20px; font-size: 21px;">
+        <div class="icon-gold-round">🧮</div>
+        <div>
+          <strong>Công thức tính năm 2027:</strong> <strong>Tuổi mụ = 2028 − Năm sinh âm lịch</strong>. Lấy tuổi mụ chia cho 9, nếu số dư rơi vào <span class="highlight-red">1, 3, 6, 8</span> là phạm Kim Lâu (Tra cứu giai đoạn 1953 – 2009):
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 26%;">Loại Kim Lâu</th>
+            <th style="width: 14%;">Số Dư</th>
+            <th style="width: 60%;">Các Năm Sinh Âm Lịch Phạm Hạn Năm 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. Kim Lâu Thân</strong></td>
+            <td><span class="highlight-red">Dư 1</span></td>
+            <td style="text-align: left; padding-left: 18px;">1955, 1964, 1973, 1982, <span class="highlight-red">1991</span>, 2000, 2009</td>
+          </tr>
+          <tr>
+            <td><strong>2. Kim Lâu Thê</strong></td>
+            <td><span class="highlight-red">Dư 3</span></td>
+            <td style="text-align: left; padding-left: 18px;">1953, 1962, 1971, 1980, 1989, 1998, 2007</td>
+          </tr>
+          <tr>
+            <td><strong>3. Kim Lâu Tử</strong></td>
+            <td><span class="highlight-red">Dư 6</span></td>
+            <td style="text-align: left; padding-left: 18px;">1959, 1968, 1977, 1986, 1995, 2004</td>
+          </tr>
+          <tr>
+            <td><strong>4. Kim Lâu Lục Súc</strong></td>
+            <td><span class="highlight-blue">Dư 8</span></td>
+            <td style="text-align: left; padding-left: 18px;">1957, 1966, 1975, 1984, 1993, 2002</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">⚠️</div>
+        <div>
+          <strong>Lưu ý đặc biệt tuổi 1991 (Tân Mùi):</strong> Năm 2027 vừa <strong>Trực Thái Tuế</strong>, vừa <strong>Tam Tai năm cuối</strong>, vừa phạm <strong>Kim Lâu Thân</strong> ➔ Cần thận trọng nhất khi khởi công hoặc cưới hỏi (có thể mượn tuổi làm nhà).
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 8: TỨ HÓA CAN ĐINH NĂM 2027 TÁC ĐỘNG LÊN LÁ SỐ -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ✨ Trang 8 / 14: Tứ Hóa Can Đinh 2027 Tác Động Lên Lá Số</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 11px 20px; font-size: 21px;">
+        <div class="icon-gold-round">🌟</div>
+        <div>
+          <strong>Bản chất Tứ Hóa lưu niên:</strong> 4 sao biến hóa gắn vào 4 chính tinh gốc trên từng lá số. Vì vị trí 4 sao gốc mỗi người mỗi khác nên <strong>điểm sáng và điểm nghẽn</strong> trong năm 2027 hoàn toàn khác nhau.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">Lộc</div>
+          <div><strong>Thái Âm Hóa Lộc:</strong> Cung nhận Hóa Lộc là nơi mở ra <strong>cơ hội, nguồn lợi tài chính</strong>, mọi việc dễ hanh thông thuận lợi.</div>
+        </div>
+        <div class="card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <div class="badge" style="background: #1b4f9c;">Quyền</div>
+          <div><strong>Thiên Đồng Hóa Quyền:</strong> Cung nhận Hóa Quyền giúp tăng <strong>quyền chủ động, vị thế</strong>, đi kèm trách nhiệm và áp lực lớn.</div>
+        </div>
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">Khoa</div>
+          <div><strong>Thiên Cơ Hóa Khoa:</strong> Cung nhận Hóa Khoa cực thuận cho <strong>học hành, thi cử, giấy tờ, danh tiếng</strong> và gặp quý nhân.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff4f4;">
+          <div class="badge">Kỵ</div>
+          <div><strong>Cự Môn Hóa Kỵ:</strong> Cung nhận Hóa Kỵ dễ vướng <strong>thị phi, hiểu lầm, trì trệ</strong>; cần chuẩn bị kỹ và giao tiếp rõ ràng.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 9: HỆ THỐNG PHÂN NHÓM 14 CHÍNH TINH TRÊN 12 CUNG -->
+  <div class="slide-container" id="slide9">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🌌 Trang 9 / 14: Hệ Thống 14 Chính Tinh &amp; Động Thái Tĩnh – Động</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 11px 20px; font-size: 21px;">
+        <div class="icon-gold-round">🔭</div>
+        <div>
+          <strong>Nền tảng cấu trúc lá số:</strong> 14 Chính Tinh an trên 12 cung Địa Chi (theo trạng thái <em>Miếu • Vượng • Đắc • Bình • Hãm</em>) quyết định cốt cách và phản ứng của mỗi người trước vận hạn.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card">
+          <h3>1. Chòm Bắc Đẩu Tinh (Khí Chất Mạnh Mẽ)</h3>
+          <p>• Gồm các sao chủ lực: <strong>Tử Vi, Tham Lang, Cự Môn, Liêm Trinh, Vũ Khúc, Phá Quân</strong> (cùng phụ tinh Lộc Tồn, Văn Khúc).<br>• Đặc tính: Quyết đoán, chủ động tạo thế, năng lượng bộc phát rõ rệt.</p>
+        </div>
+        <div class="step-card">
+          <h3>2. Chòm Nam Đẩu Tinh (Khí Chất Bền Bỉ)</h3>
+          <p>• Gồm các sao chủ lực: <strong>Thiên Phủ, Thiên Cơ, Thiên Tướng, Thiên Lương, Thiên Đồng, Thất Sát</strong> (cùng Thái Âm, Thái Dương).<br>• Đặc tính: Dẻo dai, chiều sâu nội lực, phát triển bền vững theo thời gian.</p>
+        </div>
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">3. Nhóm Tĩnh – Văn Cách (Tử Phủ, Cơ Nguyệt)</h3>
+          <p>Thiên về <strong>quản trị, tài chính, mưu lược, ổn định</strong>. Năm biến động thường chọn phương án phòng thủ chắc chắn, tích lũy.</p>
+        </div>
+        <div class="step-card" style="border-color: #b22222;">
+          <h3 style="background: #b22222;">4. Nhóm Động – Võ Cách (Sát Phá Liêm Tham)</h3>
+          <p>Thiên về <strong>khai phá, kinh doanh, đột phá, hành động mạnh</strong>. Năm biến động dễ xoay chuyển cục diện, dám thay đổi lớn.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 10: VÌ SAO CÙNG CON GIÁP NHƯNG VẬN NĂM 2027 MỖI NGƯỜI MỘT KHÁC? -->
+  <div class="slide-container" id="slide10">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🔑 Trang 10 / 14: Vì Sao Cùng Con Giáp Nhưng Vận Mỗi Người Một Khác?</p>
+    </div>
+    <div class="content">
+      <div class="rule-box">
+        <div class="icon-gold-round">🧬</div>
+        <div><strong>Nguyên lý cốt lõi:</strong> <strong>Con giáp (Năm sinh)</strong> chỉ là <strong>1 trong 4 trụ cột</strong> lập nên lá số Tử Vi. Hai người cùng tuổi (ví dụ cùng sinh năm 1991 Tân Mùi) nhưng khác <strong>Tháng – Ngày – Giờ sinh</strong> sẽ cho ra hai cuộc đời hoàn toàn khác nhau:</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge-diamond"><span>1</span></div>
+          <div><strong>Cung Mệnh &amp; Thân Khác Nhau:</strong> Quyết định tính cách, năng lực cốt lõi và bản lĩnh xử lý biến cố.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>2</span></div>
+          <div><strong>Ngũ Hành Cục Khác Nhau:</strong> Thủy Nhị Cục, Mộc Tam Cục, Kim Tứ Cục, Thổ Ngũ Cục, Hỏa Lục Cục chi phối nhịp độ phát triển.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>3</span></div>
+          <div><strong>Vị Trí 14 Chính Tinh Khác Nhau:</strong> Người được cách cục Miếu Vượng phò trợ, người gặp cách cục Hãm địa cần nỗ lực nhiều hơn.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>4</span></div>
+          <div><strong>Chu Kỳ Đại Vận 10 Năm Khác Nhau:</strong> Người đang ở đỉnh cao đại vận thuận, người lại đang ở giai đoạn tích lũy chờ thời.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 11: 3 LỚP THỜI GIAN ĐẶT CHỒNG LÊN NHAU KHI XEM VẬN 2027 -->
+  <div class="slide-container" id="slide11">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ⏳ Trang 11 / 14: 3 Lớp Thời Gian Cần Đặt Chồng Khi Đọc Vận 2027</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">1️⃣</div>
+        <div><strong>Lớp 1 – Đại Vận 10 Năm (Bối Cảnh Lớn):</strong> Cho biết toàn bộ giai đoạn 10 năm hiện tại của bạn đang nằm trong <strong>chặng thuận lợi bứt phá</strong> hay <strong>chặng cần thủ thế tích lũy</strong>.</div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #0047ab;">
+        <div class="icon-gold-round">2️⃣</div>
+        <div><strong>Lớp 2 – Lưu Niên 2027 (Tiểu Vận Năm):</strong> Xét <strong>Lưu Thái Tuế tại cung Mùi</strong>, 4 sao <strong>Tứ Hóa Can Đinh</strong> và hệ thống các sao lưu kích hoạt trong năm Đinh Mùi.</div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #8b0000;">
+        <div class="icon-gold-round">3️⃣</div>
+        <div><strong>Lớp 3 – Lưu Nguyệt (12 Tháng Âm Lịch):</strong> Mỗi tháng ứng với một cung trên lá số, chỉ rõ <strong>tháng nào nên tiến công hành động</strong> và <strong>tháng nào nên chậm lại quan sát</strong>.</div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🎯</div>
+        <div>
+          <strong>Kết luận đắt giá:</strong> Lời phán chung cho cả một con giáp trên mạng <strong>chỉ phản ánh được một phần nhỏ của Lớp 2</strong>, hoàn toàn không thay thế được lá số cá nhân!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 12: VÍ DỤ THỰC TẾ HAI NGƯỜI CÙNG TUỔI 1991 NĂM 2027 -->
+  <div class="slide-container" id="slide12">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ⚖️ Trang 12 / 14: Minh Họa Thực Tế Hai Người Cùng Tuổi 1991 Tân Mùi</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 11px 20px; font-size: 21px;">
+        <div class="icon-gold-round">👥</div>
+        <div>
+          <strong>Điểm chung cố định năm 2027:</strong> Cả Người A và Người B đều sinh năm <strong>1991 (Tân Mùi)</strong> ➔ Đều <strong>Trực Thái Tuế</strong>, <strong>Tam Tai năm cuối</strong> và phạm <strong>Kim Lâu Thân (37 tuổi mụ)</strong>.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee; flex-direction: column; align-items: flex-start; gap: 10px;">
+          <div style="font-weight: 900; color: #166516; font-size: 23px;">✅ NGƯỜI A (ĐẠI VẬN THUẬN – CÁT HÓA):</div>
+          <div style="font-size: 21px; font-weight: 700; line-height: 1.48;">
+            • Cung Mùi có chính tinh sáng, được <strong>Thái Âm Hóa Lộc</strong> chiếu vào cung Tài Bạch.<br>
+            • Đang ở Đại vận đẹp ➔ Biến động năm tuổi giúp <strong>thăng chức, mở rộng kinh doanh, đổi nhà mới</strong> (nhờ mượn tuổi).
+          </div>
+        </div>
+
+        <div class="card" style="border-color: #b22222; background: #fff4f4; flex-direction: column; align-items: flex-start; gap: 10px;">
+          <div style="font-weight: 900; color: #b22222; font-size: 23px;">⚠️ NGƯỜI B (ĐẠI VẬN TRẦM – HÓA KỴ):</div>
+          <div style="font-size: 21px; font-weight: 700; line-height: 1.48;">
+            • Cung Mùi gặp nhiều sát tinh, <strong>Cự Môn Hóa Kỵ</strong> rơi đúng vào cung Quan Lộc / Mệnh.<br>
+            • Đang ở Đại vận cần tích lũy ➔ Dễ gặp <strong>thị phi, áp lực giấy tờ</strong>, nên giữ ổn định, tránh đầu tư mạo hiểm.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 13: GIẢI ĐÁP NHANH CÂU HỎI THƯỜNG GẶP VỀ NĂM 2027 -->
+  <div class="slide-container" id="slide13">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 ❓ Trang 13 / 14: Giải Đáp Nhanh Các Câu Hỏi Thường Gặp</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #0047ab;">
+        <div class="icon-gold-round">1</div>
+        <div>
+          <strong>Hỏi: Năm 2027 là năm con gì, mệnh gì, tính từ ngày nào?</strong><br>
+          ➔ Là năm <strong>Đinh Mùi</strong> (con Dê), nạp âm <strong>Thiên Hà Thủy</strong> (nước trên trời). Tính từ ngày <strong>06/02/2027</strong> đến hết ngày <strong>25/01/2028</strong> Dương lịch.
+        </div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #b22222;">
+        <div class="icon-gold-round">2</div>
+        <div>
+          <strong>Hỏi: Tuổi Mùi năm 2027 có phải năm tuổi không, có đáng sợ không?</strong><br>
+          ➔ Đúng là năm tuổi (<strong>Trực Thái Tuế</strong>) kèm <strong>Tam Tai năm cuối</strong>. Đây là năm nhiều bước ngoặt cần thận trọng quyết định lớn, nhưng tốt hay xấu phụ thuộc <strong>Đại vận &amp; cung Mệnh</strong> từng người.
+        </div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">3</div>
+        <div>
+          <strong>Hỏi: Tam Tai năm 2027 gồm tuổi nào và bao giờ kết thúc?</strong><br>
+          ➔ Gồm 3 tuổi <strong>Hợi – Mão – Mùi</strong> (năm cuối cùng của chu kỳ Tỵ – Ngọ – Mùi khởi đầu từ 2025 Ất Tỵ). Hết năm Đinh Mùi là hoàn tất chu kỳ Tam Tai.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 14: TỔNG KẾT PHƯƠNG PHÁP ĐỌC VẬN HẠN NĂM 2027 -->
+  <div class="slide-container" id="slide14">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI</h1>
+      <p>Kết Bạn ✆ 0789.414.153 🏆 Trang 14 / 14: Tổng Kết Kim Chỉ Nam Đón Vận Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #8b0000;">
+        <div class="icon-gold-round">1️⃣</div>
+        <div><strong>Nắm Chắc Phần Chung:</strong> Biết rõ tuổi mình có thuộc nhóm <strong>Thái Tuế (Mùi, Sửu, Tuất, Tý)</strong>, <strong>Tam Tai (Hợi, Mão, Mùi)</strong> hay <strong>Kim Lâu (dư 1, 3, 6, 8)</strong> để chủ động phòng ngừa.</div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #0047ab;">
+        <div class="icon-gold-round">2️⃣</div>
+        <div><strong>Soi Chiếu Lá Số Cá Nhân:</strong> Đặt chồng 3 lớp <strong>Đại Vận 10 năm – Lưu Niên 2027 (Tứ Hóa Can Đinh) – Lưu Nguyệt 12 tháng</strong> để chọn đúng thời điểm hành động.</div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🌟</div>
+        <div>
+          <strong>Thông điệp cốt lõi:</strong> <em>“Vận mệnh có thể dự đoán, nhưng cải vận nằm trong tầm tay.”</em> Hiểu đúng mật mã lá số giúp bạn <strong>biết lúc nào nên tiến – lúc nào nên thủ</strong> mà không bao giờ hoang mang!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANH CÔNG CỤ ĐIỀU KHIỂN NỔI PHÍA TRÊN -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 14</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét Vẽ</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 14;
+
+  // Tự động thu phóng khung ngang 1280x720 cho vừa khít màn hình máy tính/tivi
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1280,
+      (window.innerHeight - 75) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  function showSlide(n) {
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+    }
+    document.getElementById('slide' + n).classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; showSlide(currentSlide); } }
+  function prevSlide() { if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); } }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Bảng vẽ phủ kín 100% toàn màn hình
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm để tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Hàm xuất ảnh ngang tỷ lệ 16:9 (1280x720) kèm nét bút vẽ
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất ảnh...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    try {
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 1280;
+      finalCanvas.height = 720;
+      const fCtx = finalCanvas.getContext('2d');
+
+      const slideCanvas = renderSlideNative(slideEl);
+      fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+      const rect = slideEl.getBoundingClientRect();
+      fCtx.drawImage(
+        canvas,
+        rect.left, rect.top, rect.width, rect.height,
+        0, 0, 1280, 720
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png');
+      link.download = `Mat_Ma_Cuoc_Doi_Van_Han_2027_Trang_${currentSlide}_16x9.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } finally {
+      restoreToolbar();
+    }
+  }
+
+  // Bộ vẽ Slide ngang 1280x720 chuẩn nét đậm offline 100%
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1280 / baseRect.width;
+
+    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    bgGrad.addColorStop(0, '#fdf8e8');
+    bgGrad.addColorStop(1, '#f5ebd1');
+    g.fillStyle = bgGrad;
+    g.fillRect(0, 0, 1280, 720);
+
+    g.lineWidth = 24;
+    g.strokeStyle = '#b8860b';
+    g.strokeRect(0, 0, 1280, 720);
+
+    g.lineWidth = 4;
+    g.strokeStyle = '#8b0000';
+    g.strokeRect(14, 14, 1252, 692);
+
+    const boxes = slideEl.querySelectorAll(
+      '.header, .rule-box, .card, .example-box, th, td, .step-card, .ratio-banner, .badge, .badge-diamond, .result-tag, .icon-gold-round, .icon-house-round'
+    );
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
+      const st = window.getComputedStyle(el);
+
+      g.save();
+      if (el.classList.contains('badge-diamond')) {
+        g.translate(x + w / 2, y + h / 2);
+        g.rotate((45 * Math.PI) / 180);
+        g.fillStyle = '#1b4f9c';
+        g.beginPath();
+        g.roundRect(-21, -21, 42, 42, 9);
+        g.fill();
+        g.lineWidth = 2.5;
+        g.strokeStyle = '#90cdf4';
+        g.stroke();
+        g.restore();
+        return;
+      }
+
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) {
+        fill = el.style.backgroundColor || '#b22222';
+      } else if (el.classList.contains('icon-gold-round')) {
+        fill = '#9c6b28';
+      } else if (el.classList.contains('ratio-banner')) {
+        fill = '#991111';
+      } else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : '#1b693c';
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+      g.restore();
+    });
+
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match.length);
+        const rr = range.getBoundingClientRect();
+        if (rr.width === 0) continue;
+
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match[0], tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
