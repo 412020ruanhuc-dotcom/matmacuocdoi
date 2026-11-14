@@ -59,6 +59,18 @@
   td { padding: 10px 10px; border: 2px solid #d4af37; text-align: center; font-weight: 800; color: #1a1a1a; }
   tr:nth-child(even) { background: #fdf6e3; }
 
+  /* Chỉnh riêng kích thước gọn khung cho Trang 7 & Trang 8 */
+  #slide7 .content, #slide8 .content { gap: 8px; }
+  #slide7 .rule-box, #slide8 .rule-box { padding: 9px 16px; font-size: 20px; line-height: 1.35; }
+  #slide7 .icon-gold-round, #slide8 .icon-gold-round { width: 46px; height: 46px; font-size: 22px; }
+  #slide7 table { font-size: 19px; }
+  #slide7 th { padding: 8px 8px; font-size: 20px; }
+  #slide7 td { padding: 7px 8px; }
+  #slide7 .result-tag { font-size: 17px; padding: 3px 10px; white-space: nowrap; }
+  #slide8 table { font-size: 18px; }
+  #slide8 th { padding: 7px 8px; font-size: 19px; }
+  #slide8 td { padding: 5.5px 8px; }
+
   /* Thẻ bước & Mẫu bảng tổng hợp Slide 13 */
   .step-card { background: #fff; border: 2.5px solid #2e7d32; border-radius: 12px; padding: 15px 16px; text-align: left; }
   .step-card h3 { background: #8b0000; color: #fff; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; font-size: 22px; font-weight: 900; text-align: center; }
@@ -192,36 +204,80 @@
     </div>
   </div>
 
-  <!-- TRANG 3: CÁCH ĐO ĐỘ SỐ SƠN HƯỚNG NHÀ ĐẤT THỰC TẾ -->
-  <div class="slide-container" id="slide3">
+  <!-- TRANG 4: BẢNG TRA CỨU 24 SƠN HƯỚNG THEO ĐỘ SỐ LA BÀN -->
+  <div class="slide-container" id="slide4">
     <div class="header">
       <h1>MẬT MÃ CUỘC ĐỜI</h1>
-      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 3 / 14: Cách Đo Độ Số Sơn – Hướng Nhà Đất Thực Tế</p>
+      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 4 / 14: Bảng Tra Cứu 24 Sơn Hướng Theo Độ Số La Bàn</p>
     </div>
     <div class="content">
-      <div class="grid-3">
-        <div class="step-card">
-          <h3>Bước 1: Vị Trí Đứng Đo</h3>
-          <p>Đứng ở <strong>trước cửa chính</strong> (cách nhà 1,5m – 2m) hoặc ngay <strong>tâm mảnh đất</strong>, mặt hướng thẳng ra phía đường/mặt tiền.</p>
-        </div>
-        <div class="step-card">
-          <h3>Bước 2: Đặt La Bàn Chuẩn</h3>
-          <p>Giữ la bàn (hoặc điện thoại) nằm ngang <strong>song song với mặt đất</strong> và vuông góc với tường mặt tiền. Tránh xa sắt thép, cột điện.</p>
-        </div>
-        <div class="step-card">
-          <h3>Bước 3: Đọc Độ Số &amp; Tọa</h3>
-          <p>Đo <strong>3 lần lấy số trung bình</strong>. Số chỉ phía trước mặt là <strong>HƯỚNG</strong>; lấy độ số đó cộng/trừ <strong>180°</strong> sẽ ra <strong>TỌA</strong>.</p>
+      <div class="rule-box" style="padding: 11px 20px; font-size: 21px;">
+        <div class="icon-gold-round">🧭</div>
+        <div>
+          <strong>Quy tắc chia 24 Sơn:</strong> Vòng tròn <strong>360°</strong> chia đều thành <strong>8 Phương (45°/phương)</strong>, mỗi phương chia làm <strong>3 Sơn (15°/sơn)</strong> để xác định chính xác Địa Chi của Tọa và Hướng.
         </div>
       </div>
 
-      <div class="example-box">
-        <div class="icon-house-round">📐</div>
-        <div>
-          <strong>Ví dụ thực tế đo được độ số 325°:</strong><br>
-          • Mặt tiền nhìn về <strong>325° (Tây Bắc)</strong> ➔ Tra bảng 24 Sơn Hướng thuộc <strong>Sơn HỢI</strong> (Hướng Hợi).<br>
-          • Lưng nhà quay về <strong>325° - 180° = 145° (Đông Nam)</strong> ➔ Thuộc <strong>Sơn TỴ</strong> (Tọa Tỵ).
-        </div>
-      </div>
+      <table style="font-size: 19px;">
+        <thead>
+          <tr>
+            <th>Phương Vị</th>
+            <th>Sơn 1 (15°)</th>
+            <th>Sơn 2 (15° Giữa)</th>
+            <th>Sơn 3 (15°)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bắc (Khảm)</strong></td>
+            <td>Nhâm (337,5° – 352,5°)</td>
+            <td><strong>Tý (352,5° – 7,5°)</strong></td>
+            <td>Quý (7,5° – 22,5°)</td>
+          </tr>
+          <tr>
+            <td><strong>Đông Bắc (Cấn)</strong></td>
+            <td><strong>Sửu (22,5° – 37,5°)</strong></td>
+            <td>Cấn (37,5° – 52,5°)</td>
+            <td><strong>Dần (52,5° – 67,5°)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Đông (Chấn)</strong></td>
+            <td>Giáp (67,5° – 82,5°)</td>
+            <td><strong>Mão (82,5° – 97,5°)</strong></td>
+            <td>Ất (97,5° – 112,5°)</td>
+          </tr>
+          <tr>
+            <td><strong>Đông Nam (Tốn)</strong></td>
+            <td><strong>Thìn (112,5° – 127,5°)</strong></td>
+            <td>Tốn (127,5° – 142,5°)</td>
+            <td><span class="highlight-red">Tỵ (142,5° – 157,5°)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nam (Ly)</strong></td>
+            <td>Bính (157,5° – 172,5°)</td>
+            <td><strong>Ngọ (172,5° – 187,5°)</strong></td>
+            <td>Đinh (187,5° – 202,5°)</td>
+          </tr>
+          <tr>
+            <td><strong>Tây Nam (Khôn)</strong></td>
+            <td><strong>Mùi (202,5° – 217,5°)</strong></td>
+            <td>Khôn (217,5° – 232,5°)</td>
+            <td><strong>Thân (232,5° – 247,5°)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Tây (Đoài)</strong></td>
+            <td>Canh (247,5° – 262,5°)</td>
+            <td><strong>Dậu (262,5° – 277,5°)</strong></td>
+            <td>Tân (277,5° – 292,5°)</td>
+          </tr>
+          <tr>
+            <td><strong>Tây Bắc (Càn)</strong></td>
+            <td><strong>Tuất (292,5° – 307,5°)</strong></td>
+            <td>Càn (307,5° – 322,5°)</td>
+            <td><span class="highlight-green">Hợi (322,5° – 337,5°)</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
