@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SỐ MAY MẮN CHO 12 CON GIÁP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Roboto Condensed', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Khung hình chính - Nén lại để không bị quá dài và chuẩn tỉ lệ */
+        #capture-area {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 9 / 16;
+            background: linear-gradient(145deg, #fceabb 0%, #fccd4d 25%, #f8b500 50%, #fccd4d 75%, #fceabb 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 4px solid #b8860b;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            margin-top: 5px;
+        }
+
+        /* Khung tiêu đề chính tối ưu hóa không gian hiển thị */
+        .header-box {
+            background-color: #000;
+            border: 2px solid #ffd700;
+            padding: 10px 5px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .main-title {
+            color: #ffd700;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.9rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1.1;
+        }
+
+        .sub-title {
+            color: #fff;
+            font-size: 1rem;
+            margin-top: 4px;
+            font-weight: bold;
+        }
+
+        /* Lưới hiển thị 12 con giáp */
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            flex-grow: 1;
+        }
+
+        .zodiac-card {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(184, 134, 11, 0.4);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4px;
+            backdrop-filter: blur(5px);
+        }
+
+        .zodiac-name {
+            font-size: 1.1rem;
+            color: #4b0000;
+            font-weight: 900;
+            margin-bottom: 0px;
+        }
+
+        .zodiac-advice {
+            font-size: 0.7rem;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+
+        .zodiac-numbers {
+            font-size: 1.3rem;
+            color: #8b0000;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 1px 8px;
+            border-radius: 4px;
+            width: 90%;
+            text-align: center;
+        }
+
+        /* Dòng ghi chú cuối trang */
+        .footer-date {
+            text-align: center;
+            margin-top: 8px;
+            font-weight: bold;
+            color: #4b0000;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        /* Nút chụp lưu ảnh */
+        .capture-btn {
+            margin: 10px 0;
+            background: #ffd700;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div id="capture-area">
+    <div class="header-box">
+        <h1 class="main-title">SỐ MAY MẮN 12 CON GIÁP</h1>
+        <p class="sub-title">Thứ Ba - 07/07/2026 (23/05 Âm lịch)</p>
+    </div>
+
+    <div class="zodiac-grid">
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI TÝ</span>
+            <span class="zodiac-advice">Cầu tài đắc tài</span>
+            <div class="zodiac-numbers">12 - 45 - 89</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI SỬU</span>
+            <span class="zodiac-advice">Gia đạo an yên</span>
+            <div class="zodiac-numbers">03 - 37 - 64</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI DẦN</span>
+            <span class="zodiac-advice">Tránh xa tranh cãi</span>
+            <div class="zodiac-numbers">18 - 41 - 72</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI MÃO</span>
+            <span class="zodiac-advice">Quý nhân hỗ trợ</span>
+            <div class="zodiac-numbers">09 - 28 - 85</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI THÌN</span>
+            <span class="zodiac-advice">Vạn sự hanh thông</span>
+            <div class="zodiac-numbers">15 - 56 - 93</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI TỴ</span>
+            <span class="zodiac-advice">Tiền tài gõ cửa</span>
+            <div class="zodiac-numbers">02 - 31 - 67</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI NGỌ</span>
+            <span class="zodiac-advice">Gặp nhiều may mắn</span>
+            <div class="zodiac-numbers">11 - 49 - 80</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI MÙI</span>
+            <span class="zodiac-advice">Sức khỏe dồi dào</span>
+            <div class="zodiac-numbers">06 - 34 - 78</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI THÂN</span>
+            <span class="zodiac-advice">Nhận tin vui lớn</span>
+            <div class="zodiac-numbers">14 - 52 - 91</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI DẬU</span>
+            <span class="zodiac-advice">Tài lộc khởi sắc</span>
+            <div class="zodiac-numbers">05 - 23 - 69</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI TUẤT</span>
+            <span class="zodiac-advice">Đề phòng hao tài</span>
+            <div class="zodiac-numbers">17 - 58 - 82</div>
+        </div>
+        <div class="zodiac-card">
+            <span class="zodiac-name">TUỔI HỢI</span>
+            <span class="zodiac-advice">Vạn sự như ý</span>
+            <div class="zodiac-numbers">08 - 25 - 71</div>
+        </div>
+    </div>
+
+    <div class="footer-date">
+        SỐ THAM KHẢO - TỰ CHỊU TRÁCH NHIỆM
+    </div>
+</div>
+
+<button class="capture-btn" onclick="takeScreenshot()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+    Tải Ảnh Về Máy
+</button>
+
+<script>
+    function takeScreenshot() {
+        const btn = document.querySelector('.capture-btn');
+        const area = document.getElementById('capture-area');
+        btn.innerText = "Đang lưu...";
+        btn.disabled = true;
+
+        html2canvas(area, {
+            scale: 3,
+            useCORS: true,
+            backgroundColor: "#222"
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'so-may-man-07-07-2026.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg> Tải Ảnh Về Máy`;
+            btn.disabled = false;
+        });
+    }
+</script>
+
+</body>
+</html>
