@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SỐ MAY MẮN 12 CON GIÁP - FB 1:1</title>
+    <!-- Tailwind CSS cho thiết kế linh hoạt -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- html2canvas dùng để xuất ảnh chất lượng cao -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Phông chữ phong thủy và hiện đại -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #eeeeee;
+        }
+
+        /* Khung hình vuông 1:1 chuẩn bài đăng Facebook */
+        #capture-area {
+            width: 100%;
+            max-width: 540px;
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(135deg, #fceabb 0%, #fccd4d 25%, #f8b500 50%, #fccd4d 75%, #fceabb 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px;
+            box-sizing: border-box;
+            border: 6px solid #b8860b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+
+        /* Hộp tiêu đề vàng đen phong cách Hoàng Gia */
+        .header-box {
+            background-color: #000000;
+            border: 2px solid #ffd700;
+            padding: 12px 6px;
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .main-title {
+            color: #ffd700;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .sub-title {
+            color: #ffffff;
+            font-size: 0.95rem;
+            margin-top: 4px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Lưới 12 con giáp - Cấu hình 4 cột x 3 hàng cực kỳ cân xứng cho khung hình vuông */
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+
+        /* Thẻ đại diện từng con giáp */
+        .zodiac-card {
+            background: rgba(255, 255, 255, 0.25);
+            border: 1.5px solid rgba(184, 134, 11, 0.45);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 6px 4px;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .zodiac-name {
+            font-size: 1rem;
+            color: #4b0000;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+
+        .zodiac-advice {
+            font-size: 0.65rem;
+            color: #222222;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.1;
+            margin: 2px 0;
+        }
+
+        .zodiac-numbers {
+            font-size: 1.15rem;
+            color: #8b0000;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.65);
+            padding: 1px 4px;
+            border-radius: 4px;
+            width: 95%;
+            text-align: center;
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Chữ ký chân trang */
+        .footer-date {
+            text-align: center;
+            font-weight: bold;
+            color: #4b0000;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* Đống thẻ điều khiển không chụp ảnh */
+        .admin-controls {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            width: 100%;
+            max-width: 540px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen p-4">
+
+    <!-- ĐÂY LÀ KHU VỰC SẼ ĐƯỢC CHỤP HÌNH -->
+    <div id="capture-area">
+        <!-- Khung Header -->
+        <div class="header-box">
+            <h1 class="main-title" id="display-title">SỐ MAY MẮN 12 CON GIÁP</h1>
+            <p class="sub-title" id="display-date">Thứ Ba - 07/07/2026 (23/05 Âm lịch)</p>
+        </div>
+
+        <!-- Khung 12 Con Giáp phong cách 4x3 hoàn hảo cho hình vuông -->
+        <div class="zodiac-grid" id="zodiac-container">
+            <!-- TÝ -->
+            <div class="zodiac-card" data-index="0">
+                <span class="zodiac-name">TUỔI TÝ</span>
+                <span class="zodiac-advice" id="adv-0">Cầu tài đắc tài</span>
+                <div class="zodiac-numbers" id="num-0">12 - 45 - 89</div>
+            </div>
+            <!-- SỬU -->
+            <div class="zodiac-card" data-index="1">
+                <span class="zodiac-name">TUỔI SỬU</span>
+                <span class="zodiac-advice" id="adv-1">Gia đạo an yên</span>
+                <div class="zodiac-numbers" id="num-1">03 - 37 - 64</div>
+            </div>
+            <!-- DẦN -->
+            <div class="zodiac-card" data-index="2">
+                <span class="zodiac-name">TUỔI DẦN</span>
+                <span class="zodiac-advice" id="adv-2">Tránh xa tranh cãi</span>
+                <div class="zodiac-numbers" id="num-2">18 - 41 - 72</div>
+            </div>
+            <!-- MÃO -->
+            <div class="zodiac-card" data-index="3">
+                <span class="zodiac-name">TUỔI MÃO</span>
+                <span class="zodiac-advice" id="adv-3">Quý nhân hỗ trợ</span>
+                <div class="zodiac-numbers" id="num-3">09 - 28 - 85</div>
+            </div>
+
+            <!-- THÌN -->
+            <div class="zodiac-card" data-index="4">
+                <span class="zodiac-name">TUỔI THÌN</span>
+                <span class="zodiac-advice" id="adv-4">Vạn sự hanh thông</span>
+                <div class="zodiac-numbers" id="num-4">15 - 56 - 93</div>
+            </div>
+            <!-- TỴ -->
+            <div class="zodiac-card" data-index="5">
+                <span class="zodiac-name">TUỔI TỴ</span>
+                <span class="zodiac-advice" id="adv-5">Tiền tài gõ cửa</span>
+                <div class="zodiac-numbers" id="num-5">02 - 31 - 67</div>
+            </div>
+            <!-- NGỌ -->
+            <div class="zodiac-card" data-index="6">
+                <span class="zodiac-name">TUỔI NGỌ</span>
+                <span class="zodiac-advice" id="adv-6">Gặp nhiều may mắn</span>
+                <div class="zodiac-numbers" id="num-6">11 - 49 - 80</div>
+            </div>
+            <!-- MÙI -->
+            <div class="zodiac-card" data-index="7">
+                <span class="zodiac-name">TUỔI MÙI</span>
+                <span class="zodiac-advice" id="adv-7">Sức khỏe dồi dào</span>
+                <div class="zodiac-numbers" id="num-7">06 - 34 - 78</div>
+            </div>
+
+            <!-- THÂN -->
+            <div class="zodiac-card" data-index="8">
+                <span class="zodiac-name">TUỔI THÂN</span>
+                <span class="zodiac-advice" id="adv-8">Nhận tin vui lớn</span>
+                <div class="zodiac-numbers" id="num-8">14 - 52 - 91</div>
+            </div>
+            <!-- DẬU -->
+            <div class="zodiac-card" data-index="9">
+                <span class="zodiac-name">TUỔI DẬU</span>
+                <span class="zodiac-advice" id="adv-9">Tài lộc khởi sắc</span>
+                <div class="zodiac-numbers" id="num-9">05 - 23 - 69</div>
+            </div>
+            <!-- TUẤT -->
+            <div class="zodiac-card" data-index="10">
+                <span class="zodiac-name">TUỔI TUẤT</span>
+                <span class="zodiac-advice" id="adv-10">Đề phòng hao tài</span>
+                <div class="zodiac-numbers" id="num-10">17 - 58 - 82</div>
+            </div>
+            <!-- HỢI -->
+            <div class="zodiac-card" data-index="11">
+                <span class="zodiac-name">TUỔI HỢI</span>
+                <span class="zodiac-advice" id="adv-11">Vạn sự như ý</span>
+                <div class="zodiac-numbers" id="num-11">08 - 25 - 71</div>
+            </div>
+        </div>
+
+        <!-- Chân trang -->
+        <div class="footer-date" id="display-footer">
+            SỐ THAM KHẢO - TỰ CHỊU TRÁCH NHIỆM
+        </div>
+    </div>
+
+    <!-- BẢNG ĐIỀU KHIỂN & CẤU HÌNH (Sẽ không nằm trong ảnh tải về) -->
+    <div class="admin-controls shadow-2xl">
+        <h3 class="text-xl font-bold text-yellow-400 mb-4 border-b border-zinc-700 pb-2 flex justify-between items-center">
+            <span>⚙️ Cấu Hình Đăng Facebook</span>
+            <span class="text-xs text-zinc-400 bg-zinc-800 px-2 py-1 rounded">Bản 1:1 Square</span>
+        </h3>
+        
+        <!-- Điều chỉnh ngày tháng và tiêu đề -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div>
+                <label class="block text-xs text-zinc-400 mb-1 font-bold">TIÊU ĐỀ CHÍNH</label>
+                <input type="text" id="input-title" class="w-full bg-zinc-900 border border-zinc-700 text-yellow-400 rounded px-2 py-1.5 text-sm font-semibold focus:outline-none focus:border-yellow-500" value="SỐ MAY MẮN 12 CON GIÁP" oninput="updateHeader()">
+            </div>
+            <div>
+                <label class="block text-xs text-zinc-400 mb-1 font-bold">THỜI GIAN HIỂN THỊ (DƯƠNG & ÂM)</label>
+                <input type="text" id="input-date" class="w-full bg-zinc-900 border border-zinc-700 text-white rounded px-2 py-1.5 text-sm focus:outline-none focus:border-yellow-500" value="Thứ Ba - 07/07/2026 (23/05 Âm lịch)" oninput="updateHeader()">
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-xs text-zinc-400 mb-1 font-bold">DÒNG CHỮ CHÂN TRANG</label>
+            <input type="text" id="input-footer" class="w-full bg-zinc-900 border border-zinc-700 text-red-400 rounded px-2 py-1.5 text-xs focus:outline-none focus:border-red-500" value="SỐ THAM KHẢO - TỰ CHỊU TRÁCH NHIỆM" oninput="updateHeader()">
+        </div>
+
+        <!-- Các tính năng nhanh -->
+        <div class="grid grid-cols-2 gap-3 mb-6">
+            <button onclick="randomizeAllNumbers()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded-lg text-sm transition duration-150 flex items-center justify-center gap-2">
+                🎲 Tạo Số Ngẫu Nhiên
+            </button>
+            <button onclick="takeScreenshot11()" id="btn-save" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-extrabold py-2 px-3 rounded-lg text-sm transition duration-150 flex items-center justify-center gap-2 shadow-lg shadow-yellow-500/20">
+                📥 Tải Ảnh 1:1 Facebook
+            </button>
+        </div>
+
+        <!-- Chỉnh sửa chi tiết nhanh từng con giáp -->
+        <h4 class="text-sm font-bold text-zinc-300 mb-3 border-t border-zinc-700 pt-3">✏️ Chỉnh Sửa Nhanh Từng Con Giáp</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[160px] overflow-y-auto pr-1">
+            <script>
+                // Mảng tên 12 con giáp
+                const zodiacs = ["TÝ", "SỬU", "DẦN", "MÃO", "THÌN", "TỴ", "NGỌ", "MÙI", "THÂN", "DẬU", "TUẤT", "HỢI"];
+                zodiacs.forEach((name, idx) => {
+                    document.write(`
+                        <div class="bg-zinc-900 p-2 rounded border border-zinc-800 text-xs flex flex-col gap-1">
+                            <span class="text-yellow-500 font-bold">Tuổi ${name}</span>
+                            <input type="text" id="edit-adv-${idx}" class="bg-zinc-800 border border-zinc-700 text-white px-1 py-0.5 rounded text-[10px]" value="" placeholder="Lời khuyên" oninput="applyZodiacEdit(${idx})">
+                            <input type="text" id="edit-num-${idx}" class="bg-zinc-800 border border-zinc-700 text-yellow-400 px-1 py-0.5 rounded font-mono text-[11px]" value="" placeholder="Số may mắn" oninput="applyZodiacEdit(${idx})">
+                        </div>
+                    `);
+                });
+            </script>
+        </div>
+    </div>
+
+    <script>
+        // Khởi tạo giá trị ban đầu vào form nhập liệu dựa trên HTML có sẵn
+        const adviceList = [
+            "Cầu tài đắc tài", "Gia đạo an yên", "Tránh xa tranh cãi", "Quý nhân hỗ trợ",
+            "Vạn sự hanh thông", "Tiền tài gõ cửa", "Gặp nhiều may mắn", "Sức khỏe dồi dào",
+            "Nhận tin vui lớn", "Tài lộc khởi sắc", "Đề phòng hao tài", "Vạn sự như ý"
+        ];
+        
+        const numberList = [
+            "12 - 45 - 89", "03 - 37 - 64", "18 - 41 - 72", "09 - 28 - 85",
+            "15 - 56 - 93", "02 - 31 - 67", "11 - 49 - 80", "06 - 34 - 78",
+            "14 - 52 - 91", "05 - 23 - 69", "17 - 58 - 82", "08 - 25 - 71"
+        ];
+
+        // Đẩy giá trị hiện tại lên form
+        function initEditForms() {
+            for (let i = 0; i < 12; i++) {
+                document.getElementById(`edit-adv-${i}`).value = document.getElementById(`adv-${i}`).innerText;
+                document.getElementById(`edit-num-${i}`).value = document.getElementById(`num-${i}`).innerText;
+            }
+        }
+
+        // Cập nhật tiêu đề & Ngày tháng thực tế lên ảnh
+        function updateHeader() {
+            document.getElementById('display-title').innerText = document.getElementById('input-title').value;
+            document.getElementById('display-date').innerText = document.getElementById('input-date').value;
+            document.getElementById('display-footer').innerText = document.getElementById('input-footer').value;
+        }
+
+        // Đồng bộ dữ liệu khi gõ vào form chỉnh sửa chi tiết
+        function applyZodiacEdit(index) {
+            const advVal = document.getElementById(`edit-adv-${index}`).value;
+            const numVal = document.getElementById(`edit-num-${index}`).value;
+            
+            document.getElementById(`adv-${index}`).innerText = advVal;
+            document.getElementById(`num-${index}`).innerText = numVal;
+        }
+
+        // Hàm tạo số ngẫu nhiên 2 chữ số siêu tốc phong thủy
+        function generateRandomNumber() {
+            return String(Math.floor(Math.random() * 99) + 1).padStart(2, '0');
+        }
+
+        // Xáo trộn ngẫu nhiên toàn bộ bộ số của 12 con giáp
+        function randomizeAllNumbers() {
+            for (let i = 0; i < 12; i++) {
+                let n1 = generateRandomNumber();
+                let n2 = generateRandomNumber();
+                while (n2 === n1) n2 = generateRandomNumber();
+                let n3 = generateRandomNumber();
+                while (n3 === n1 || n3 === n2) n3 = generateRandomNumber();
+
+                const freshNumbers = `${n1} - ${n2} - ${n3}`;
+                document.getElementById(`num-${i}`).innerText = freshNumbers;
+                document.getElementById(`edit-num-${i}`).value = freshNumbers;
+            }
+        }
+
+        // Hàm chụp ảnh lưu về thiết bị với định dạng 1:1 chất lượng cao
+        function takeScreenshot11() {
+            const btn = document.getElementById('btn-save');
+            const area = document.getElementById('capture-area');
+            const currentDateStr = document.getElementById('input-date').value.replace(/[\/]/g, '-');
+            
+            btn.innerText = "Đang kết xuất ảnh...";
+            btn.disabled = true;
+
+            // Tiến hành dùng html2canvas tạo ảnh vuông chất lượng siêu cao (scale: 3)
+            html2canvas(area, {
+                scale: 3,
+                useCORS: true,
+                backgroundColor: "#000000"
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `so-may-man-fb-1-1-${currentDateStr}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                btn.innerHTML = `📥 Tải Ảnh 1:1 Facebook`;
+                btn.disabled = false;
+            }).catch(err => {
+                console.error("Lỗi tạo ảnh: ", err);
+                btn.innerHTML = `📥 Tải Ảnh 1:1 Facebook`;
+                btn.disabled = false;
+            });
+        }
+
+        // Chạy ngay khi tải xong trang web
+        window.onload = function() {
+            initEditForms();
+        }
+    </script>
+
+</body>
+</html>
