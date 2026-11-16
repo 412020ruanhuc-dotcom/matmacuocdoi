@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mật Mã Cuộc Đời: Tử Vi Tuổi Kỷ Mùi 1979 Năm 2027 Đinh Mùi (16:9)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+  
+  /* Khung Slide ngang tỷ lệ chuẩn 16:9 (1280x720) */
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0,0,0,0.7);
+    position: relative; padding: 24px 44px;
+    display: none; flex-direction: column; justify-content: space-between;
+    transform-origin: center center;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Tiêu đề từng trang - Chữ dày nét đậm + Biểu tượng con Dê nhỏ gọn tinh tế */
+  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 9px; margin-bottom: 8px; position: relative; }
+  .header h1 { color: #8b0000; font-size: 38px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 1px 1px 0px #fff; line-height: 1.15; }
+  .header p { color: #1e5618; font-size: 22px; font-weight: 800; margin-top: 4px; }
+  .goat-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #fff8dc; border: 2px solid #b8860b; color: #8b0000;
+    padding: 2px 12px; border-radius: 20px; font-size: 18px; font-weight: 900;
+    vertical-align: middle; margin-left: 8px;
+  }
+
+  /* Nội dung chính - Thoáng rộng */
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 14px; }
+  .rule-box { background: #fffdf5; border: 2.5px solid #d4af37; border-left: 10px solid #8b0000; padding: 15px 22px; border-radius: 12px; font-size: 23px; font-weight: 700; color: #1a1a1a; line-height: 1.48; display: flex; align-items: center; gap: 16px; }
+  .icon-gold-round { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 26px; flex-shrink: 0; }
+  
+  strong, b { font-weight: 900; }
+  .highlight-red { color: #b22222; font-weight: 900; }
+  .highlight-green { color: #166516; font-weight: 900; }
+  .highlight-blue { color: #003d99; font-weight: 900; }
+
+  /* Lưới chia cột */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .card { background: #ffffff; border: 2.5px solid #c5a059; border-radius: 12px; padding: 16px 18px; font-size: 22px; font-weight: 700; color: #1a1a1a; display: flex; align-items: center; gap: 14px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); line-height: 1.44; }
+  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2.5px solid #f0c95c; color: #fff; font-weight: 900; width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 21px; flex-shrink: 0; }
+  .badge-diamond { width: 40px; height: 40px; border-radius: 9px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2.5px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 6px; }
+  .badge-diamond span { transform: rotate(-45deg); color: #fff; font-weight: 900; font-size: 20px; }
+
+  /* Khung Ví dụ & Thẻ kết quả */
+  .example-box { background: #eef7ee; border: 3px dashed #2e7d32; border-radius: 14px; padding: 16px 22px; font-size: 22px; font-weight: 700; color: #143d14; line-height: 1.5; display: flex; align-items: center; gap: 16px; }
+  .example-box.warn { background: #fff4f4; border-color: #b22222; color: #4a0d0d; }
+  .icon-house-round { width: 60px; height: 60px; border-radius: 50%; background: #1e6b1e; border: 3px solid #d4af37; display: flex; justify-content: center; align-items: center; font-size: 30px; flex-shrink: 0; }
+  .icon-house-round.red { background: #8b0000; }
+  .result-tag { display: inline-block; background: linear-gradient(90deg, #165b33, #247a48); color: #fff; padding: 4px 14px; border-radius: 8px; border: 2px solid #f0c95c; font-weight: 900; font-size: 19px; white-space: nowrap; }
+  .result-tag.bad { background: #b22222; border-color: #f0c95c; }
+
+  /* Bảng tra cứu chuẩn */
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 20px; font-weight: 700; }
+  th { background: #8b0000; color: #fff; padding: 11px 10px; border: 2px solid #b8860b; font-weight: 900; font-size: 21px; }
+  td { padding: 10px 10px; border: 2px solid #d4af37; text-align: center; font-weight: 800; color: #1a1a1a; }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  /* Thẻ bước & Băng rôn nhấn mạnh */
+  .step-card { background: #fff; border: 2.5px solid #2e7d32; border-radius: 12px; padding: 16px 18px; text-align: left; }
+  .step-card h3 { background: #8b0000; color: #fff; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; font-size: 22px; font-weight: 900; text-align: center; }
+  .step-card p { font-size: 21px; font-weight: 700; color: #1a1a1a; line-height: 1.46; }
+  .ratio-banner { background: linear-gradient(135deg, #8b0000, #b22222); border: 3px solid #f0c95c; border-radius: 14px; padding: 16px 22px; color: #fff; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .ratio-banner .big-num { font-size: 31px; font-weight: 900; color: #ffd700; margin-bottom: 4px; }
+
+  /* Bảng vẽ & Thanh công cụ nổi phía trên */
+  #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+  .toolbar {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92); padding: 6px 16px; border-radius: 30px;
+    display: flex; gap: 9px; align-items: center; z-index: 100; border: 1px solid #888;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .toolbar button { background: #333; color: #fff; border: 1px solid #777; padding: 5px 12px; border-radius: 18px; cursor: pointer; font-size: 14px; font-weight: bold; }
+  .toolbar button:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000; border-color: #fff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .toolbar button.btn-print:disabled { background: #666; cursor: wait; }
+  .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  .page-indicator { color: #ffd700; font-weight: bold; font-size: 15px; margin: 0 4px; }
+</style>
+</head>
+<body>
+
+  <!-- TRANG 1: TỔNG QUAN BẢN MỆNH & Ý NGHĨA SAO HẠN TUỔI KỶ MÙI 1979 -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 KỶ MÙI 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 ☯ Trang 1 / 14: Tổng Quan Sao Hạn Bổn Mạng Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">🐐 TUỔI KỶ MÙI 1979 NĂM 2027 ĐINH MÙI (49 TUỔI MỤ)</div>
+        <div style="font-size: 21px; font-weight: 800;">Luận giải chi tiết: <strong>Sao Hạn Nam Mạng • Sao Hạn Nữ Mạng • Cách Hóa Giải • Kích Tài Lộc</strong></div>
+      </div>
+
+      <div class="rule-box">
+        <div class="icon-gold-round">🙏</div>
+        <div>
+          <strong>Ý nghĩa của Sao Hạn Bổn Mạng:</strong> Hệ thống sao hạn năm 2027 là sự soi chiếu vận trình bổn mạng của anh chị tuổi <strong>Kỷ Mùi 1979</strong> (Nạp âm <strong>Thiên Thượng Hỏa</strong>).
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🌿</div>
+        <div>
+          <strong>Chìa khóa chuyển hóa vận mệnh:</strong> Khi hiểu rõ sao tốt – sao xấu của mình trong năm 2027, anh chị tập trung vào việc <strong>tu tập thân tâm, thành tâm sám hối và làm thật nhiều việc phước thiện</strong>. Khi phước đức tăng trưởng tự nhiên sẽ hóa giải được điều xấu và các ngôi sao bất lợi.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 2: PHÂN CẢNH 2 – ĐÁNH GIÁ CHUNG THIÊN CAN & ĐỊA CHI NĂM 2027 -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 KỶ MÙI 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 ⚖️ Trang 2 / 14: Đánh Giá Chung Thiên Can &amp; Địa Chi Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">1. Thiên Can: Đinh Hỏa Sinh Kỷ Thổ (Cát)</h3>
+          <p>• Tuổi <strong>Kỷ</strong> thuộc hành <strong>Thổ</strong>, gặp năm <strong>Đinh</strong> thuộc hành <strong>Hỏa</strong>.<br>• Theo ngũ hành <strong>Hỏa sinh Thổ</strong> (Can năm sinh cho Can tuổi) ➔ Về yếu tố <strong>Thiên Thời</strong>, tuổi Kỷ Mùi được trợ lực mạnh mẽ và nhận được nhiều sự nâng đỡ của <strong>quý nhân</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">2. Địa Chi: Mùi Gặp Mùi – Trực Thái Tuế</h3>
+          <p>• Tuổi <strong>Mùi</strong> gặp năm <strong>Mùi</strong> (năm tuổi) gọi là <strong>Phạm Thái Tuế</strong>.<br>• <strong>Lưu ý đúng đắn:</strong> Thái Tuế là vị thần cai quản cả <strong>Họa lẫn Phúc</strong> trong năm nên không phải lúc nào cũng xấu, nhưng sẽ tạo ra nhiều biến động lớn.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">📜</div>
+        <div>
+          <strong>Cách hóa giải Thái Tuế chuẩn phong thủy:</strong> Để cầu một năm bình an, biến hung thành cát, gia chủ tuổi Kỷ Mùi 1979 nên <strong>thỉnh và an vị Bài Vị Thái Tuế trang nghiêm tại nhà</strong>, đồng thời <strong>mang theo thẻ/bài vị Thái Tuế hộ thân bên mình</strong> suốt năm 2027.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 3: PHÂN CẢNH 3 – TUYỆT CHIÊU KÍCH TÀI LỘC NĂM 2027 CHO TUỔI KỶ MÙI -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 KỶ MÙI 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 🧭 Trang 3 / 14: Tuyệt Chiêu Kích Tài Lộc Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">PHƯƠNG VỊ LỘC NĂM 2027: CUNG NGỌ – HƯỚNG NAM</div>
+        <div style="font-size: 21px; font-weight: 800;">Năm <strong>Đinh Mùi 2027</strong>, Lộc của năm đóng tại <strong>Cung Ngọ (Phương Nam)</strong> – Lại Nhị Hợp với tuổi Mùi!</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card">
+          <h3>Cách 1: Treo Tranh Mã Đáo Thành Công</h3>
+          <p>• Chọn một bức tranh <strong>Mã Đáo Thành Công</strong> (8 con ngựa phi nước đại tiến vào nhà) treo trang trọng tại <strong>vách tường phía Nam</strong> của phòng khách hoặc văn phòng làm việc để chiêu tài, kích hoạt vận may.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>Cách 2: Treo Đồng Hồ Mã Đáo Thành Công</h3>
+          <p>• Nếu không gian gọn gàng, có thể treo một chiếc <strong>đồng hồ phong thủy hình Mã Đáo Thành Công</strong> tại <strong>hướng Nam</strong> trong nhà hoặc nơi làm việc để kích hoạt dòng chảy tài lộc hanh thông suốt năm.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🔥</div>
+        <div>
+          <strong>Lưu ý bổ trợ:</strong> Ngọ – Mùi là cặp <strong>Lục Hợp (Nhị Hợp)</strong> rất quý. Giữ khu vực <strong>Hướng Nam</strong> luôn sáng sủa, sạch sẽ sẽ giúp tuổi Kỷ Mùi 1979 thu hút quý nhân và tài lộc cực vượng.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 4: PHÂN CẢNH 4 – TỬ VI NAM MẠNG KỶ MÙI 1979 (TỔNG QUAN VẬN NIÊN) -->
+  <div class="slide-container" id="slide4">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NAM 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 👨 Trang 4 / 14: Tử Vi Nam Mạng Kỷ Mùi 1979 – Vận Niên 49 Tuổi</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #0047ab;">
+        <div class="icon-gold-round">🌙</div>
+        <div>
+          <strong>Vận trình Nam mạng 49 tuổi (2027):</strong> Nhận được 4 chữ tổng quan là <span class="highlight-blue">“TRĂNG SÁNG MÂY CHE”</span> – Ánh trăng vốn sáng đẹp nhưng tạm thời bị đám mây che khuất.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #b22222; background: #fff8f8; flex-direction: column; align-items: flex-start;">
+          <strong style="color: #b22222; font-size: 23px;">⚠️ Ý Nghĩa Thử Thách:</strong>
+          <p style="font-size: 21px;">• Trong năm 2027, các anh có tài năng, có ý tưởng nhưng <strong>cao kiến khó bày tỏ, khó phát huy hết khả năng</strong> của mình ngay lập tức.<br>• Mọi việc dễ gặp lực cản tạm thời khiến tâm lý sốt ruột.</p>
+        </div>
+
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee; flex-direction: column; align-items: flex-start;">
+          <strong style="color: #166516; font-size: 23px;">✅ Lời Khuyên Hành Động:</strong>
+          <p style="font-size: 21px;">• Mọi việc nên <strong>nhún nhường, kiên nhẫn và giữ sự ổn định</strong> trong công việc lẫn cuộc sống.<br>• Khi đủ nhẫn nại vượt qua trở ngại thì <strong>“mây tan trăng hiện sẽ đại lợi”</strong>, mọi việc hanh thông tốt đẹp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 5: NAM MẠNG KỶ MÙI 1979 – SAO THÁI BẠCH & HẠN TOÁN TẬN -->
+  <div class="slide-container" id="slide5">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NAM 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 ⚠️ Trang 5 / 14: Nam Mạng 1979 – Sao Thái Bạch &amp; Hạn Toán Tận</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">1. Hung Tinh: Sao Thái Bạch (Hành Kim)</h3>
+          <p>• Dân gian thường ví <em>“Thái Bạch quét sạch cửa nhà”</em> – chủ về <strong>hao tài tốn của</strong>.<br>• Đồng thời chủ về <strong>máu me, tai nạn, đao kiếm, phẫu thuật, pháp luật kiện tụng, tù tội</strong> cần đặc biệt đề phòng.<br>• <strong>Điểm may mắn:</strong> Sao Thái Bạch hành <strong>Kim</strong>, gặp bản mệnh 1979 hành <strong>Hỏa (Hỏa khắc Kim)</strong> nên mức độ xấu đã được giảm bớt phần nào.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">2. Hạn Niên: Hạn Toán Tận (Hạn Nặng)</h3>
+          <p>• <strong>Toán Tận</strong> là hạn lớn chủ về <strong>hao tổn tiền bạc bất ngờ</strong>, đầu tư kinh doanh dễ gặp trắc trở, không thuận lợi.<br>• Kết hợp với sao Thái Bạch nhắc nhở nam mạng tuyệt đối <strong>không đầu tư mạo hiểm</strong>, không đứng ra bảo lãnh vay mượn hoặc tranh chấp pháp lý trong năm 2027.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 6: NAM MẠNG KỶ MÙI 1979 – 3 CÁCH HÓA GIẢI SAO THÁI BẠCH -->
+  <div class="slide-container" id="slide6">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NAM 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 🛡️ Trang 6 / 14: Nam Mạng 1979 – Bí Quyết Hóa Giải Sao Thái Bạch</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>1. Chủ Động Hiến Máu Nhân Đạo</h3>
+          <p>Sao Thái Bạch chủ về máu me, phẫu thuật. Các anh nên <strong>chủ động đi hiến máu nhân đạo</strong> từ đầu năm để “ứng hạn mất máu” một cách thiện lành, vừa cứu người vừa tăng phước đức.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>2. Chủ Động Hao Tài Làm Phước</h3>
+          <p>Thay vì để mất tiền oan, hãy <strong>chủ động chi tiền báo hiếu cha mẹ, giúp đỡ anh em bạn bè, bố thí, cúng dường giúp đời</strong>. <em>“Chủ động hao tài thì đỡ tổn mạng”</em>, nâng cao phước báu hóa giải vận xấu.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>3. Đi Chùa Cầu An &amp; Sám Hối</h3>
+          <p>Thường xuyên <strong>đi chùa lễ Phật, tụng kinh, cầu an và thành tâm sám hối</strong> để giữ tâm sáng, trí tĩnh, hóa giải nghiệp chướng và sự xung khắc của hung tinh Thái Bạch.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">👕</div>
+        <div>
+          <strong>Lưu ý trang phục &amp; trang sức (Hành Kim = Màu Trắng):</strong> Năm 2027 nam mạng nên <strong>hạn chế mặc quần áo màu trắng</strong>, hạn chế đeo vàng bạc, trang sức quý giá ra đường; ăn mặc <strong>giản dị</strong> để tránh cướp giật và tai nạn ảnh hưởng bổn mạng.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 7: NAM MẠNG KỶ MÙI 1979 – THÁNG KỴ & CÁCH CÚNG SAO THÁI BẠCH -->
+  <div class="slide-container" id="slide7">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NAM 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 🕯️ Trang 7 / 14: Nam Mạng 1979 – Tháng Kỵ &amp; Nghi Thức Cúng Sao</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="card" style="border-color: #b22222; background: #fff4f4; flex-direction: column; align-items: flex-start;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="badge">5</div>
+            <strong style="font-size: 24px; color: #b22222;">Tháng Kỵ Nhất: Tháng 5 Âm Lịch</strong>
+          </div>
+          <p style="font-size: 21px; margin-top: 6px;">• Trong cả năm 2027, <strong>Tháng 5 Âm lịch</strong> là tháng xấu nhất đối với người gặp sao Thái Bạch.<br>• Trong tháng này cần giữ gìn sức khỏe, hạn chế đi xa, không ký kết hợp đồng lớn hay xuất tiền đầu tư mạo hiểm.</p>
+        </div>
+
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee; flex-direction: column; align-items: flex-start;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="badge" style="background: #1e6b1e;">15</div>
+            <strong style="font-size: 24px; color: #166516;">Ngày Cúng Sao: Ngày 15 Âm Lịch</strong>
+          </div>
+          <p style="font-size: 21px; margin-top: 6px;">• Nếu muốn làm lễ nghinh sao giải hạn, các anh tiến hành vào <strong>ngày 15 (Rằm) Âm lịch hàng tháng</strong>.<br>• Hướng về chính Tây, giữ lòng thành kính hướng thiện, cầu bình an cho gia đạo và bổn mạng.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">📌</div>
+        <div>
+          <strong>Tóm tắt Nam 1979 năm 2027:</strong> <strong>Nhẫn nhịn chờ mây tan • Chủ động làm thiện &amp; hiến máu • Sống giản dị, tránh màu trắng • Thận trọng Tháng 5 Âm lịch</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 8: PHÂN CẢNH 5 – TỬ VI NỮ MẠNG KỶ MÙI 1979 (TỔNG QUAN VẬN NIÊN) -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NỮ 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 👩 Trang 8 / 14: Tử Vi Nữ Mạng Kỷ Mùi 1979 – Vận Niên 49 Tuổi</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">🌊</div>
+        <div>
+          <strong>Vận trình Nữ mạng 49 tuổi (2027):</strong> Nhận được 4 chữ tổng quan là <span class="highlight-green">“THỦY KHÍ TIỆM TRƯƠNG”</span> – Dòng nước lành đang từ từ dâng lên và mở rộng.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee; flex-direction: column; align-items: flex-start;">
+          <strong style="color: #166516; font-size: 23px;">✅ Quy Luật Thành Công:</strong>
+          <p style="font-size: 21px;">• <em>“Việc thì từ từ có lợi, chớ nên bất cẩn cường hành”</em>: Mọi kế hoạch tiến hành <strong>chậm rãi, chắc chắn từng bước</strong> thì sẽ sinh lợi lớn.<br>• Phải <strong>biết tiến biết thoái</strong> đúng lúc thì ắt đạt thành công như ý.</p>
+        </div>
+
+        <div class="card" style="border-color: #1b4f9c; background: #f0f7ff; flex-direction: column; align-items: flex-start;">
+          <strong style="color: #003d99; font-size: 23px;">💡 Bí Quyết Của Nữ Mạng:</strong>
+          <p style="font-size: 21px;">• Tuyệt đối <strong>không được nóng vội, hấp tấp</strong> hay làm liều.<br>• Trước các quyết định quan trọng, nên <strong>hỏi ý kiến người trên, bậc tiền bối hoặc người có kinh nghiệm</strong> để được chỉ dẫn sáng suốt.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 9: NỮ MẠNG KỶ MÙI 1979 – CÁT TINH SAO THÁI ÂM -->
+  <div class="slide-container" id="slide9">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NỮ 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 🌕 Trang 9 / 14: Nữ Mạng 1979 – Đón Cát Tinh Sao Thái Âm</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner" style="background: linear-gradient(135deg, #165b33, #247a48);">
+        <div class="big-num">TIN MỪNG NỮ MẠNG 1979: GẶP CÁT TINH SAO THÁI ÂM</div>
+        <div style="font-size: 21px; font-weight: 800;">Sao Thái Âm là ngôi sao phúc lộc cực hợp với nữ giới – Mang lại niềm vui và tài sản!</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>1. Tinh Thần &amp; Hỷ Tín</h3>
+          <p>Sao Thái Âm là sao đại diện cho nữ giới. Khi gặp sao này, các chị sẽ được <strong>vui vẻ, hòa lạc, tâm tình thư thái</strong> và dễ <strong>thỏa nguyện ước mơ</strong> bấy lâu.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>2. Nhà Cửa &amp; Bất Động Sản</h3>
+          <p>Thái Âm là tài tinh chủ về <strong>điền sản, làm chủ nhà cửa, làm chủ tài sản và bất động sản</strong>. Rất thuận lợi cho việc mua bán, sửa sang hoặc tích lũy nhà đất.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>3. Công Việc &amp; Tài Lộc</h3>
+          <p>Mọi việc được <strong>hanh thông, công việc thuận lợi, tài lộc phát triển</strong> bền vững; đặc biệt là <strong>càng đi xa, mở rộng giao thương càng có lợi</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 10: NỮ MẠNG KỶ MÙI 1979 – LƯU Ý QUAN TRỌNG VỀ SAO THÁI ÂM -->
+  <div class="slide-container" id="slide10">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NỮ 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 📋 Trang 10 / 14: Nữ Mạng 1979 – 3 Lưu Ý Khi Gặp Sao Thái Âm</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #b22222;">
+        <div class="icon-gold-round">1️⃣</div>
+        <div>
+          <strong>Không nên hùng hạp làm ăn chung:</strong> Các chị nữ mạng năm 2027 nên tự chủ công việc. Nếu bắt buộc phải hùn vốn làm ăn chung thì phải <strong>ký tá giấy tờ, hợp đồng rõ ràng, minh bạch</strong> để tránh rắc rối pháp luật về sau.
+        </div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #0047ab;">
+        <div class="icon-gold-round">2️⃣</div>
+        <div>
+          <strong>Chú ý sức khỏe Tim Mạch và Mắt:</strong> Đối với người gặp sao Thái Âm, những ai có tiền sử hoặc bệnh lý về <strong>tim mạch và thị lực (mắt)</strong> cần theo dõi, chăm sóc kỹ lưỡng hơn trong năm 2027.
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">⚖️</div>
+        <div>
+          <strong>3. Tương tác Ngũ Hành Thủy – Hỏa:</strong> Sao Thái Âm thuộc hành <strong>Thủy</strong>, mà tuổi Kỷ Mùi 1979 nạp âm thuộc hành <strong>Hỏa</strong> (Thủy khắc Hỏa). Vì vậy <strong>cái tốt của sao Thái Âm bị giảm bớt một phần</strong>, càng đòi hỏi các chị phải làm việc cẩn trọng, từ tốn.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 11: NỮ MẠNG KỶ MÙI 1979 – HẠN HUỲNH TUYỀN, THÁNG KỴ & CÚNG SAO -->
+  <div class="slide-container" id="slide11">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 NỮ 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 🩺 Trang 11 / 14: Nữ Mạng 1979 – Hạn Huỳnh Tuyền, Tháng Kỵ &amp; Cúng Sao</p>
+    </div>
+    <div class="content">
+      <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+        <h3 style="background: #b22222;">⚠️ Hạn Niên Nữ Mạng: Hạn Huỳnh Tuyền (Chú Ý Sức Khỏe)</h3>
+        <p style="font-size: 22px;">• <strong>Huỳnh Tuyền</strong> là hạn chủ về <strong>sức khỏe không được tốt</strong>, dễ phát sinh bệnh tật khiến sinh hoạt, công việc kém thuận lợi.<br>• <strong>Vị trí tác động chủ yếu:</strong> <span class="highlight-red">Ở Tay và Chân</span> (đau nhức xương khớp, tê mỏi hoặc va chạm tay chân) nên các chị cần giữ gìn cẩn thận.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #b22222; background: #fff4f4;">
+          <div class="badge">9-11</div>
+          <div><strong>2 Tháng Kỵ Nhất:</strong> Cần đặc biệt thận trọng trong <strong>Tháng 9 và Tháng 11 Âm lịch</strong> (2 tháng bất lợi nhất với sao Thái Âm).</div>
+        </div>
+
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">26</div>
+          <div><strong>Ngày Cúng Sao Thái Âm:</strong> Nếu muốn cúng nghinh sao cầu bình an, tiến hành vào <strong>ngày 26 Âm lịch hàng tháng</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 12: BẢNG ĐỐI CHIẾU NHANH NAM MẠNG & NỮ MẠNG KỶ MÙI 1979 -->
+  <div class="slide-container" id="slide12">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 KỶ MÙI 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 📊 Trang 12 / 14: Bảng So Sánh Nhanh Nam Mạng &amp; Nữ Mạng 2027</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Tiêu Chí So Sánh</th>
+            <th style="width: 39%;">👨 Nam Mạng Kỷ Mùi (1979)</th>
+            <th style="width: 39%;">👩 Nữ Mạng Kỷ Mùi (1979)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tuổi Mụ &amp; Can Chi</strong></td>
+            <td colspan="2"><strong>49 Tuổi Mụ</strong> • Đinh Hỏa sinh Kỷ Thổ (<strong>Quý nhân trợ</strong>) • Địa chi Mùi gặp Mùi (<strong>Trực Thái Tuế</strong>)</td>
+          </tr>
+          <tr>
+            <td><strong>Vận Niên Tổng Quan</strong></td>
+            <td><strong>Trăng Sáng Mây Che</strong> (Nhẫn nhịn chờ thời)</td>
+            <td><strong>Thủy Khí Tiệm Trương</strong> (Từ từ tiến bước)</td>
+          </tr>
+          <tr>
+            <td><strong>Sao Chiếu Mệnh</strong></td>
+            <td><span class="highlight-red">Sao Thái Bạch</span> (Hành Kim – Hao tài, pháp lý)</td>
+            <td><span class="highlight-green">Sao Thái Âm</span> (Hành Thủy – Nhà đất, tài lộc)</td>
+          </tr>
+          <tr>
+            <td><strong>Hạn Niên</strong></td>
+            <td><span class="highlight-red">Hạn Toán Tận</span> (Hao tài, kinh doanh khó)</td>
+            <td><span class="highlight-red">Hạn Huỳnh Tuyền</span> (Sức khỏe, chú ý Tay – Chân)</td>
+          </tr>
+          <tr>
+            <td><strong>Tháng Kỵ Trong Năm</strong></td>
+            <td><strong>Tháng 5 Âm lịch</strong></td>
+            <td><strong>Tháng 9 và Tháng 11 Âm lịch</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Ngày Cúng Sao</strong></td>
+            <td><strong>Ngày 15 Âm lịch</strong> hàng tháng</td>
+            <td><strong>Ngày 26 Âm lịch</strong> hàng tháng</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 13: CẨM NANG HÓA GIẢI & CẢI VẬN CHO CẢ HAI PHÁI NĂM 2027 -->
+  <div class="slide-container" id="slide13">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 KỶ MÙI 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 🔑 Trang 13 / 14: 4 Hành Động Cải Vận Vàng Năm Đinh Mùi 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge-diamond"><span>1</span></div>
+          <div><strong>An Vị Bài Vị Thái Tuế:</strong> Thỉnh bài vị Thái Tuế đặt tại nhà và mang theo bên mình để hóa giải năm tuổi, cầu bình an suốt năm 2027.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>2</span></div>
+          <div><strong>Kích Tài Lộc Hướng Nam:</strong> Treo tranh hoặc đồng hồ <strong>Mã Đáo Thành Công</strong> ở phía Nam nhà / văn phòng để đón lộc cung Ngọ.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>3</span></div>
+          <div><strong>Nam Giản Dị – Nữ Chậm Chắc:</strong> Nam tránh màu trắng, hiến máu &amp; bố thí; Nữ tránh hùng hạp mập mờ, giữ sức khỏe tim mạch, mắt, tay chân.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>4</span></div>
+          <div><strong>Tu Tập &amp; Làm Việc Thiện:</strong> Sám hối, đi chùa cầu an, báo hiếu cha mẹ và giúp đỡ người khó khăn để tích lũy phước báu hóa giải mọi hung tinh.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 14: TỔNG KẾT LỜI CHÚC BÌNH AN & THỊNH VƯỢNG -->
+  <div class="slide-container" id="slide14">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI <span class="goat-tag">🐐 KỶ MÙI 1979</span></h1>
+      <p>Kết Bạn ✆ 0789.414.153 🏆 Trang 14 / 14: Tổng Kết Vận Trình Tuổi Kỷ Mùi 1979 Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">“PHƯỚC ĐỨC TẠI TÂM – THÀNH CÔNG NHỜ NHẪN NẠI &amp; THIỆN LÀNH”</div>
+        <div style="font-size: 21px; font-weight: 800;">Năm 2027 Đinh Mùi tuy có thử thách của năm tuổi nhưng luôn mở sẵn cơ hội từ quý nhân!</div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">🐐</div>
+        <div>
+          <strong>Lời nhắn gửi tuổi Kỷ Mùi 1979:</strong> Chỉ cần anh chị giữ tâm bình an, biết <strong>nhún nhường đúng lúc (Nam)</strong>, <strong>tiến thoái từ tốn (Nữ)</strong>, kết hợp an vị Thái Tuế và kích lộc Hướng Nam thì năm 2027 ắt sẽ <strong>mây tan trăng hiện, gia đạo bình an, tài lộc hanh thông</strong>!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANH CÔNG CỤ ĐIỀU KHIỂN NỔI PHÍA TRÊN -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 14</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét Vẽ</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 14;
+
+  // Tự động thu phóng khung ngang 1280x720 cho vừa khít màn hình máy tính/tivi
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1280,
+      (window.innerHeight - 75) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  function showSlide(n) {
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+    }
+    document.getElementById('slide' + n).classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; showSlide(currentSlide); } }
+  function prevSlide() { if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); } }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Bảng vẽ phủ kín 100% toàn màn hình
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm để tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Hàm xuất ảnh ngang tỷ lệ 16:9 (1280x720) kèm nét bút vẽ
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất ảnh...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    try {
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 1280;
+      finalCanvas.height = 720;
+      const fCtx = finalCanvas.getContext('2d');
+
+      const slideCanvas = renderSlideNative(slideEl);
+      fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+      const rect = slideEl.getBoundingClientRect();
+      fCtx.drawImage(
+        canvas,
+        rect.left, rect.top, rect.width, rect.height,
+        0, 0, 1280, 720
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png');
+      link.download = `Mat_Ma_Cuoc_Doi_Ky_Mui_1979_2027_Trang_${currentSlide}_16x9.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } finally {
+      restoreToolbar();
+    }
+  }
+
+  // Bộ vẽ Slide ngang 1280x720 chuẩn nét đậm offline 100%
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1280 / baseRect.width;
+
+    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    bgGrad.addColorStop(0, '#fdf8e8');
+    bgGrad.addColorStop(1, '#f5ebd1');
+    g.fillStyle = bgGrad;
+    g.fillRect(0, 0, 1280, 720);
+
+    g.lineWidth = 24;
+    g.strokeStyle = '#b8860b';
+    g.strokeRect(0, 0, 1280, 720);
+
+    g.lineWidth = 4;
+    g.strokeStyle = '#8b0000';
+    g.strokeRect(14, 14, 1252, 692);
+
+    const boxes = slideEl.querySelectorAll(
+      '.header, .rule-box, .card, .example-box, th, td, .step-card, .ratio-banner, .badge, .badge-diamond, .result-tag, .icon-gold-round, .icon-house-round, .goat-tag'
+    );
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
+      const st = window.getComputedStyle(el);
+
+      g.save();
+      if (el.classList.contains('badge-diamond')) {
+        g.translate(x + w / 2, y + h / 2);
+        g.rotate((45 * Math.PI) / 180);
+        g.fillStyle = '#1b4f9c';
+        g.beginPath();
+        g.roundRect(-21, -21, 42, 42, 9);
+        g.fill();
+        g.lineWidth = 2.5;
+        g.strokeStyle = '#90cdf4';
+        g.stroke();
+        g.restore();
+        return;
+      }
+
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) {
+        fill = el.style.backgroundColor || '#b22222';
+      } else if (el.classList.contains('icon-gold-round')) {
+        fill = '#9c6b28';
+      } else if (el.classList.contains('ratio-banner')) {
+        fill = el.style.background.includes('165b33') ? '#165b33' : '#991111';
+      } else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : '#1b693c';
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+      g.restore();
+    });
+
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match.length);
+        const rr = range.getBoundingClientRect();
+        if (rr.width === 0) continue;
+
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match[0], tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
