@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luận Giải Chuyên Sâu Tuổi Canh Tuất 1970 Năm Đinh Mùi 2027 (Đầy Đủ 11 Phần)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+  
+  /* Khung Slide ngang tỷ lệ chuẩn 16:9 (1280x720) */
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0,0,0,0.7);
+    position: relative; padding: 19px 38px;
+    display: none; flex-direction: column; justify-content: space-between;
+    transform-origin: center center;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Tiêu đề từng trang */
+  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 7px; margin-bottom: 5px; position: relative; }
+  .header h1 { color: #8b0000; font-size: 33px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.4px; text-shadow: 1px 1px 0px #fff; line-height: 1.15; }
+  .header p { color: #1e5618; font-size: 19.5px; font-weight: 800; margin-top: 3px; }
+  .zodiac-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #fff8dc; border: 2px solid #b8860b; color: #8b0000;
+    padding: 2px 12px; border-radius: 20px; font-size: 16.5px; font-weight: 900;
+    vertical-align: middle; margin-left: 8px;
+  }
+
+  /* Nội dung chính */
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 10px; }
+  .rule-box { background: #fffdf5; border: 2.5px solid #d4af37; border-left: 10px solid #8b0000; padding: 11px 17px; border-radius: 12px; font-size: 19.5px; font-weight: 700; color: #1a1a1a; line-height: 1.4; display: flex; align-items: center; gap: 13px; }
+  .icon-gold-round { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 23px; flex-shrink: 0; }
+  
+  strong, b { font-weight: 900; }
+  .highlight-red { color: #b22222; font-weight: 900; }
+  .highlight-green { color: #166516; font-weight: 900; }
+  .highlight-blue { color: #003d99; font-weight: 900; }
+
+  /* Lưới chia cột */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 13px; }
+  .card { background: #ffffff; border: 2.5px solid #c5a059; border-radius: 12px; padding: 12px 15px; font-size: 19px; font-weight: 700; color: #1a1a1a; display: flex; align-items: center; gap: 11px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); line-height: 1.38; }
+  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2.5px solid #f0c95c; color: #fff; font-weight: 900; width: 38px; height: 38px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 18px; flex-shrink: 0; }
+  .badge-diamond { width: 34px; height: 34px; border-radius: 8px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2.5px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 5px; }
+  .badge-diamond span { transform: rotate(-45deg); color: #fff; font-weight: 900; font-size: 17px; }
+
+  /* Khung Ví dụ & Thẻ kết quả */
+  .example-box { background: #eef7ee; border: 3px dashed #2e7d32; border-radius: 14px; padding: 12px 17px; font-size: 19px; font-weight: 700; color: #143d14; line-height: 1.42; display: flex; align-items: center; gap: 13px; }
+  .example-box.warn { background: #fff4f4; border-color: #b22222; color: #4a0d0d; }
+  .icon-house-round { width: 50px; height: 50px; border-radius: 50%; background: #1e6b1e; border: 3px solid #d4af37; display: flex; justify-content: center; align-items: center; font-size: 24px; flex-shrink: 0; }
+  .icon-house-round.red { background: #8b0000; }
+  .result-tag { display: inline-block; background: linear-gradient(90deg, #165b33, #247a48); color: #fff; padding: 3px 11px; border-radius: 8px; border: 2px solid #f0c95c; font-weight: 900; font-size: 16.5px; white-space: nowrap; }
+  .result-tag.bad { background: #b22222; border-color: #f0c95c; }
+
+  /* Bảng tra cứu chuẩn */
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 18px; font-weight: 700; }
+  th { background: #8b0000; color: #fff; padding: 8px 9px; border: 2px solid #b8860b; font-weight: 900; font-size: 19px; }
+  td { padding: 7.5px 9px; border: 2px solid #d4af37; text-align: center; font-weight: 800; color: #1a1a1a; line-height: 1.34; }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  /* Thẻ bước & Băng rôn nhấn mạnh */
+  .step-card { background: #fff; border: 2.5px solid #2e7d32; border-radius: 12px; padding: 12px 15px; text-align: left; }
+  .step-card h3 { background: #8b0000; color: #fff; padding: 6px 10px; border-radius: 8px; margin-bottom: 7px; font-size: 19.5px; font-weight: 900; text-align: center; }
+  .step-card p { font-size: 18.5px; font-weight: 700; color: #1a1a1a; line-height: 1.4; }
+  .ratio-banner { background: linear-gradient(135deg, #8b0000, #b22222); border: 3px solid #f0c95c; border-radius: 14px; padding: 12px 18px; color: #fff; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .ratio-banner .big-num { font-size: 27px; font-weight: 900; color: #ffd700; margin-bottom: 3px; }
+
+  /* Bảng vẽ & Thanh công cụ nổi phía trên */
+  #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+  .toolbar {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92); padding: 6px 16px; border-radius: 30px;
+    display: flex; gap: 9px; align-items: center; z-index: 100; border: 1px solid #888;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .toolbar button { background: #333; color: #fff; border: 1px solid #777; padding: 5px 12px; border-radius: 18px; cursor: pointer; font-size: 14px; font-weight: bold; }
+  .toolbar button:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000; border-color: #fff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .toolbar button.btn-print:disabled { background: #666; cursor: wait; }
+  .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  .page-indicator { color: #ffd700; font-weight: bold; font-size: 15px; margin: 0 4px; }
+</style>
+</head>
+<body>
+
+  <!-- TRANG 1: MỞ ĐẦU – BA LỚP LUẬN GIẢI & NGUYÊN TẮC TIẾP CẬN -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐕 58 TUỔI MỤ</span></h1>
+      <p>Mở Đầu (Trang 1 / 22): Tách Bạch Ba Lớp Luận Giải Để Tránh Nhầm Lẫn</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">NĂM SINH 1970 (CANH TUẤT) • NĂM XEM 2027 (ĐINH MÙI)</div>
+        <div style="font-size: 19px; font-weight: 800;">Phân tích chuẩn xác: Đâu là <strong>quan niệm phong thủy dân gian</strong> – Đâu là <strong>nguyên tắc quản trị thực tế</strong></div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>Lớp 1: Can Chi – Ngũ Hành</h3>
+          <p>Xem xét quan hệ tương tác giữa <strong>Thiên can, Địa chi, Nạp âm</strong> của tuổi <strong>Canh Tuất 1970</strong> và năm <strong>Đinh Mùi 2027</strong>.</p>
+        </div>
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">Lớp 2: Sao Chiếu Mệnh – Hạn Tuổi</h3>
+          <p>Luận giải riêng biệt cho <strong>Nam mạng</strong> và <strong>Nữ mạng</strong> (58 tuổi mụ) theo hệ thống sao <strong>Cửu Diệu</strong> và hạn tuổi dân gian.</p>
+        </div>
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3 style="background: #8b0000;">Lớp 3: Ứng Dụng Thực Tế</h3>
+          <p>Chuyển hóa các luận giải truyền thống thành kế hoạch hành động cụ thể về <strong>tiền bạc, công việc, gia đạo và sức khỏe</strong>.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">🧭</div>
+        <div>
+          <strong>Nguyên tắc tiếp cận tỉnh táo:</strong> Sao hạn hay ngũ hành không phải công cụ khoa học để dự đoán chắc chắn tai nạn, bệnh tật hoặc hao tài; vì vậy <strong>không nên vì một sao được gọi là “xấu” mà lo sợ hoặc đưa ra quyết định cực đoan</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 2: PHẦN 1 – TỔNG QUAN BẢN MỆNH CANH TUẤT 1970 & NĂM ĐINH MÙI 2027 -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐕 58 TUỔI MỤ</span></h1>
+      <p>Phần 1 (Trang 2 / 22): Bảng Đối Chiếu Can Chi – Ngũ Hành – Nạp Âm &amp; Luận Thiên Can, Địa Chi</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Thành Phần</th>
+            <th style="width: 28%;">Canh Tuất 1970</th>
+            <th style="width: 50%;">Đinh Mùi 2027 &amp; Quan Hệ Nổi Bật</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Thiên can</strong></td>
+            <td>Canh – Kim</td>
+            <td style="text-align: left; padding-left: 14px;">Đinh – Hỏa ➔ <span class="highlight-red">Hỏa khắc Kim</span> (Tạo áp lực, yêu cầu cao, cạnh tranh)</td>
+          </tr>
+          <tr>
+            <td><strong>Địa chi</strong></td>
+            <td>Tuất – Thổ</td>
+            <td style="text-align: left; padding-left: 14px;">Mùi – Thổ ➔ Tuất – Mùi có <strong>quan hệ hình</strong> thuộc nhóm Sửu – Mùi – Tuất</td>
+          </tr>
+          <tr>
+            <td><strong>Nạp âm</strong></td>
+            <td><strong>Thoa Xuyến Kim</strong></td>
+            <td style="text-align: left; padding-left: 14px;"><strong>Thiên Hà Thủy</strong> (Kim sinh Thủy – Lưu ý các lớp khác nhau, không chỉ nhìn Hỏa khắc Kim)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">Luận Thiên Can: Canh Gặp Đinh (Hỏa Khắc Kim)</h3>
+          <p>• Dễ gặp yêu cầu cao, thay đổi kế hoạch, cạnh tranh hoặc phải chứng minh năng lực.<br>• <strong>Cách ứng xử:</strong> Chuẩn bị kỹ, không quyết định vì nóng giận, không dùng đòn bẩy tài chính quá sức.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Luận Địa Chi: Tuất Gặp Mùi (“Hình Thái Tuế”)</h3>
+          <p>• Lời nhắc về: <strong>Mâu thuẫn quan hệ &amp; trách nhiệm gia đình • Việc tồn đọng cần giải quyết • Tranh chấp giấy tờ, tài sản • Tránh cố chấp, hơn thua</strong>.<br>• <em>An vị Thái Tuế là nghi thức tinh thần, không thay thế quản trị rủi ro.</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 3: PHẦN 2 – TỔNG HỢP SAO CHIẾU MỆNH & HẠN TUỔI 58 NĂM 2027 -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐕 58 TUỔI MỤ</span></h1>
+      <p>Phần 2 (Trang 3 / 22): Bảng Đối Chiếu Sao Chiếu Mệnh &amp; Hạn Tuổi Nam Mạng – Nữ Mạng</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">Nội Dung Đối Chiếu</th>
+            <th style="width: 38%;">👨 Nam Mạng Canh Tuất 1970</th>
+            <th style="width: 38%;">👩 Nữ Mạng Canh Tuất 1970</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tuổi mụ năm 2027</strong></td>
+            <td><strong>58 tuổi mụ</strong></td>
+            <td><strong>58 tuổi mụ</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Sao chiếu mệnh</strong></td>
+            <td><span class="highlight-red">Sao Thái Bạch</span> (Kim tinh – Cần thận trọng)</td>
+            <td><span class="highlight-green">Sao Thái Âm</span> (Biểu tượng Mặt Trăng – Cát tinh)</td>
+          </tr>
+          <tr>
+            <td><strong>Hạn theo bảng đối chiếu</strong></td>
+            <td><span class="highlight-red">Hạn Toán Tận</span></td>
+            <td><span class="highlight-red">Hạn Huỳnh Tuyền</span></td>
+          </tr>
+          <tr>
+            <td><strong>Trọng tâm nên lưu ý</strong></td>
+            <td style="text-align: left; padding-left: 14px;">Tài chính, tài sản, hợp đồng, đi lại</td>
+            <td style="text-align: left; padding-left: 14px;">Sức khỏe, thể lực, công việc và hợp tác</td>
+          </tr>
+          <tr>
+            <td><strong>Cách ứng xử chủ đạo</strong></td>
+            <td style="text-align: left; padding-left: 14px;">Giữ vốn, minh bạch giấy tờ, hạn chế đầu tư nóng</td>
+            <td style="text-align: left; padding-left: 14px;">Giữ sức, kiểm tra sức khỏe, hợp tác có ràng buộc rõ</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box">
+        <div class="icon-house-round">📌</div>
+        <div>
+          <strong>Lưu ý hệ thống:</strong> Sao chiếu mệnh và hạn tuổi là hai hệ thống riêng biệt. Một số bảng tra trên mạng có khác biệt về hạn, vì vậy phần luận giải sau đây đi sâu theo cặp dữ kiện chuẩn xác: <strong>Nam Thái Bạch – Toán Tận</strong> và <strong>Nữ Thái Âm – Huỳnh Tuyền</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 4: PHẦN 2.1 – NAM MẠNG: THÁI BẠCH – TOÁN TẬN (Ý NGHĨA & TÀI CHÍNH) -->
+  <div class="slide-container" id="slide4">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">👨 NAM 1970</span></h1>
+      <p>Phần 2.1 (Trang 4 / 22): Nam Mạng – Thái Bạch &amp; Hạn Toán Tận: Quản Trị Tài Chính – Kinh Doanh</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #b22222; padding: 10px 16px; font-size: 18.5px;">
+        <div class="icon-gold-round">⚠️</div>
+        <div>
+          <strong>Sao Thái Bạch (Kim tinh – Ngày cúng truyền thống: 15 âm lịch):</strong> Câu <em>“Thái Bạch quét sạch cửa nhà”</em> là lời cảnh báo mang tính biểu tượng về việc <strong>giữ gìn tài sản</strong> (không phải khẳng định chắc chắn mất tiền). Kết hợp <strong>hạn Toán Tận</strong> càng nhấn mạnh phòng ngừa tổn thất tài chính và rủi ro đi lại.
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%;">Tình Huống Tài Chính</th>
+            <th style="width: 70%;">Điều Nên Làm Trong Năm 2027 (Nam Mạng Canh Tuất)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Đang kinh doanh ổn định</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Giữ dòng tiền, kiểm soát công nợ, không mở rộng chỉ vì thấy thị trường đang tốt</td>
+          </tr>
+          <tr>
+            <td><strong>Muốn đầu tư lớn</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Chia vốn thành nhiều phần, có giới hạn thua lỗ và phương án rút lui</td>
+          </tr>
+          <tr>
+            <td><strong>Góp vốn với người khác</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Có hợp đồng, tỷ lệ góp vốn, quyền quyết định và cách chia lợi nhuận rõ ràng</td>
+          </tr>
+          <tr>
+            <td><strong>Mua bán nhà đất</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Kiểm tra pháp lý, quy hoạch, nghĩa vụ thuế và tình trạng thế chấp</td>
+          </tr>
+          <tr>
+            <td><strong>Cho vay hoặc bảo lãnh</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Chỉ thực hiện trong giới hạn có thể chịu được nếu khoản tiền không thu hồi được</td>
+          </tr>
+          <tr>
+            <td><strong>Có tiền nhàn rỗi</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Ưu tiên quỹ dự phòng, tài sản dễ kiểm soát và kế hoạch tài chính dài hạn</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 5: PHẦN 2.1 – NAM MẠNG: CÔNG VIỆC, AN TOÀN, MÀU TRẮNG & CÚNG SAO -->
+  <div class="slide-container" id="slide5">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">👨 NAM 1970</span></h1>
+      <p>Phần 2.1 (Trang 5 / 22): Nam Mạng – Công Việc, Sức Khỏe, An Toàn &amp; Góc Nhìn Về Kiêng Kỵ</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">Luận Về Công Việc</h3>
+          <p>• Ưu tiên <strong>củng cố vị thế</strong> hơn là chứng minh bản thân bằng những quyết định lớn.<br>• <strong>Quản lý:</strong> Chú trọng kiểm soát nội bộ, hợp đồng, nhân sự và trách nhiệm từng bộ phận.<br>• <strong>Kinh doanh:</strong> Xem lại <strong>lợi nhuận thực sau chi phí</strong>, tránh nhầm doanh thu cao với hiệu quả cao.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Luận Về Sức Khỏe &amp; An Toàn</h3>
+          <p>• Không hiểu Thái Bạch là chắc chắn có tai nạn hoặc đổ máu.<br>• <strong>Phòng ngừa thiết thực:</strong> Khám sức khỏe định kỳ, lái xe tỉnh táo, <strong>không dùng rượu bia khi điều khiển phương tiện</strong>, tuân thủ an toàn lao động và không chủ quan dấu hiệu bất thường.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">👕</div>
+        <div>
+          <strong>Về màu trắng, trang sức &amp; lễ cúng ngày 15 âm lịch:</strong> Không có bằng chứng mặc áo trắng hay đeo vàng bạc làm tăng nguy cơ tai nạn, mất tiền ➔ Không cần kiêng kỵ cực đoan, chỉ cần bảo quản tài sản và giữ an toàn. Nếu cúng sao ngày 15 âm lịch, hãy thực hiện giản dị cầu an – <strong>không vay tiền, mua lễ đắt đỏ hay tin cúng lễ thay thế được quản trị rủi ro</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 6: PHẦN 2.2 – NỮ MẠNG: THÁI ÂM – HẠN HUỲNH TUYỀN (TỔNG QUAN & ỨNG XỬ) -->
+  <div class="slide-container" id="slide6">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">👩 NỮ 1970</span></h1>
+      <p>Phần 2.2 (Trang 6 / 22): Nữ Mạng – Sao Thái Âm &amp; Hạn Huỳnh Tuyền: Bảng Ứng Xử Toàn Diện</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e; padding: 10px 16px; font-size: 18.5px;">
+        <div class="icon-gold-round">🌕</div>
+        <div>
+          <strong>Sao Thái Âm (Biểu tượng Mặt Trăng – Ngày cúng: 26 âm lịch):</strong> Cát tinh tượng trưng cho sự trợ giúp, tài sản, nhà cửa, tích lũy có kế hoạch. <strong>Hạn Huỳnh Tuyền:</strong> Lời nhắc chăm sóc sức khỏe, thể lực (không thể dùng hạn tuổi để xác định cơ quan cụ thể nào mắc bệnh).
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">Lĩnh Vực</th>
+            <th style="width: 76%;">Cách Ứng Xử Phù Hợp (Nữ Mạng Canh Tuất 1970)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sức khỏe</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Khám định kỳ, theo dõi huyết áp, đường huyết và các chỉ số theo tư vấn bác sĩ</td>
+          </tr>
+          <tr>
+            <td><strong>Vận động</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Đi bộ, tập sức mạnh nhẹ, giữ thăng bằng và tránh quá sức</td>
+          </tr>
+          <tr>
+            <td><strong>Công việc</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Không ôm đồm, phân công và ủy quyền hợp lý</td>
+          </tr>
+          <tr>
+            <td><strong>Tài chính</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Tích lũy đều đặn, tránh đầu tư theo lời rủ rê</td>
+          </tr>
+          <tr>
+            <td><strong>Hợp tác</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Có hợp đồng, phân chia trách nhiệm và quyền kiểm soát</td>
+          </tr>
+          <tr>
+            <td><strong>Gia đạo</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Dành thời gian nghỉ ngơi, chia sẻ công việc gia đình</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 7: PHẦN 2.2 – NỮ MẠNG: TÀI LỘC BẤT ĐỘNG SẢN & MỐC THÁNG 9, THÁNG 11 ÂM LỊCH -->
+  <div class="slide-container" id="slide7">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">👩 NỮ 1970</span></h1>
+      <p>Phần 2.2 (Trang 7 / 22): Nữ Mạng – Tài Lộc, Bất Động Sản &amp; Lưu Ý Tháng 9, Tháng 11 Âm Lịch</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Luận Về Tài Lộc &amp; Bất Động Sản (Thái Âm)</h3>
+          <p>• Rà soát tài sản đang sở hữu.<br>
+          • Hoàn thiện giấy tờ nhà đất, thừa kế, quyền sở hữu.<br>
+          • Xây dựng nguồn thu ổn định, hạn chế phụ thuộc một nguồn tiền.<br>
+          • Nếu mua bán BĐS, phải kiểm tra <strong>pháp lý, dòng tiền và khả năng thanh khoản</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">Về Tháng 9 &amp; Tháng 11 Âm Lịch (Mốc Nhắc Nhở)</h3>
+          <p>• Không ký kết vội khi chưa đọc kỹ điều khoản.<br>
+          • Không nhận thêm trách nhiệm vượt quá khả năng.<br>
+          • Sắp xếp lịch nghỉ ngơi và chăm sóc sức khỏe.<br>
+          • Tránh tranh cãi kéo dài trong gia đình.<br>
+          • <em>(Không phải căn cứ kết luận hai tháng đó chắc chắn xảy ra chuyện xấu).</em></p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">⚖️</div>
+        <div>
+          <strong>Hiểu đúng lời khuyên “không đứng mũi chịu sào”:</strong> Không có nghĩa là nữ mạng phải đứng sau hay phụ thuộc người khác. Điều cần tránh là <strong>nhận trách nhiệm pháp lý và tài chính mà không có quyền kiểm soát tương ứng</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 8: PHẦN 3.1 – MỆNH: BẢN CHẤT THOA XUYẾN KIM & CÁCH HÀNH XỬ -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐕 MỆNH – TÀI – QUAN</span></h1>
+      <p>Phần 3.1 (Trang 8 / 22): Mệnh – Bản Chất Thoa Xuyến Kim &amp; Nghệ Thuật Giữ Nền Tảng</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 10px 17px; font-size: 19px;">
+        <div class="icon-gold-round">💍</div>
+        <div>
+          <strong>Cốt cách Canh Tuất 1970 (Thoa Xuyến Kim – Vàng trang sức):</strong> Giá trị nằm ở <strong>sự tinh luyện, độ bền và sự chỉn chu</strong>. Thiên can Canh (Kim) tạo nét quyết đoán, trọng nguyên tắc, thẳng thắn và ý thức trách nhiệm cao. <em>(Luận theo tuổi và năm, chưa phải kết quả an sao lá số cá nhân).</em>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Điểm Mạnh Nên Phát Huy</h3>
+          <p>• Có nguyên tắc, giữ chữ tín.<br>
+          • Có khả năng chịu trách nhiệm và bảo vệ người thân.<br>
+          • Coi trọng chất lượng, danh dự và sự ổn định.<br>
+          • Phát huy kinh nghiệm tích lũy qua nhiều năm.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Điểm Cần Điều Chỉnh</h3>
+          <p>• Tránh quá cứng trong giao tiếp.<br>
+          • Không biến lòng tự trọng thành sự cố chấp.<br>
+          • Không tự gánh mọi việc vì nghĩ người khác không làm tốt bằng mình.<br>
+          • Biết thay đổi khi dữ liệu thực tế cho thấy kế hoạch cũ không còn phù hợp.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🏆</div>
+        <div>
+          <strong>Thông điệp cho năm 2027:</strong> Sức mạnh của Canh Tuất không nằm ở việc <strong>thắng mọi cuộc tranh luận</strong>, mà ở khả năng <strong>giữ được nền tảng, tài sản, uy tín và những mối quan hệ quan trọng</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 9: PHẦN 3.2 – TÀI: TIỀN BẠC, TÍCH LŨY & BẢO TOÀN TÀI SẢN -->
+  <div class="slide-container" id="slide9">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐕 MỆNH – TÀI – QUAN</span></h1>
+      <p>Phần 3.2 (Trang 9 / 22): Tài – Chiến Lược Bảo Toàn Vốn, Kiểm Soát Dòng Tiền &amp; Chất Lượng Tài Sản</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 28%;">Hạng Mục Tài Sản</th>
+            <th style="width: 72%;">Chiến Lược Nên Áp Dụng Năm Đinh Mùi 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Thu nhập chính</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Giữ nguồn thu ổn định, nâng hiệu quả thay vì chỉ tăng quy mô</td>
+          </tr>
+          <tr>
+            <td><strong>Kinh doanh</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Kiểm tra biên lợi nhuận, công nợ và vòng quay vốn</td>
+          </tr>
+          <tr>
+            <td><strong>Đầu tư</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Chỉ đầu tư vào lĩnh vực hiểu rõ, có giới hạn rủi ro</td>
+          </tr>
+          <tr>
+            <td><strong>Bất động sản</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Kiểm tra pháp lý, thanh khoản, quy hoạch và khả năng trả nợ</td>
+          </tr>
+          <tr>
+            <td><strong>Tiền dự phòng</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Duy trì quỹ dự phòng đủ cho các khoản chi thiết yếu</td>
+          </tr>
+          <tr>
+            <td><strong>Tài sản gia đình</strong></td>
+            <td style="text-align: left; padding-left: 16px;">Rà soát quyền sở hữu, thừa kế, bảo hiểm và giấy tờ liên quan</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box">
+        <div class="icon-house-round">💰</div>
+        <div>
+          <strong>Khác biệt trọng tâm hai phái:</strong> <strong>Nam mạng (Thái Bạch – Toán Tận):</strong> Không để vốn phân tán, không bảo lãnh tùy tiện, không đánh cược vào một thương vụ • <strong>Nữ mạng (Thái Âm – Huỳnh Tuyền):</strong> Nhìn dài hạn về tích lũy, đồng thời coi <strong>sức khỏe và khả năng duy trì công việc là một phần của tài sản</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 10: PHẦN 3.3 – QUAN: CÔNG VIỆC, SỰ NGHIỆP & UY TÍN Ở TUỔI 58 MỤ -->
+  <div class="slide-container" id="slide10">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐕 MỆNH – TÀI – QUAN</span></h1>
+      <p>Phần 3.3 (Trang 10 / 22): Quan – Chọn Đúng Vai Trò Để Kinh Nghiệm Tạo Ra Giá Trị Ở Tuổi 58</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 26%;">Nếu Đang Ở Vị Trí...</th>
+            <th style="width: 42%;">Nên Ưu Tiên</th>
+            <th style="width: 32%;">Nên Hạn Chế</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Chủ doanh nghiệp</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Chuẩn hóa quy trình, kiểm soát dòng tiền, đào tạo người kế nhiệm</td>
+            <td style="text-align: left; padding-left: 12px;">Mở rộng nóng, vay quá sức</td>
+          </tr>
+          <tr>
+            <td><strong>Quản lý</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Xây đội ngũ kế thừa, phân quyền, giữ nhân sự chủ chốt</td>
+            <td style="text-align: left; padding-left: 12px;">Ôm hết việc, xử lý theo cảm tính</td>
+          </tr>
+          <tr>
+            <td><strong>Người làm chuyên môn</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Tư vấn, đào tạo, chuyển giao kinh nghiệm</td>
+            <td style="text-align: left; padding-left: 12px;">Cạnh tranh bằng sức lực đơn thuần</td>
+          </tr>
+          <tr>
+            <td><strong>Người chuẩn bị nghỉ hưu</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Tạo nguồn thu ổn định, bàn giao công việc</td>
+            <td style="text-align: left; padding-left: 12px;">Đầu tư mạo hiểm tìm lợi nhuận nhanh</td>
+          </tr>
+          <tr>
+            <td><strong>Người làm tự do</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Chọn khách hàng tốt, giữ uy tín, chuẩn hóa hợp đồng</td>
+            <td style="text-align: left; padding-left: 12px;">Nhận việc không rõ phạm vi &amp; thanh toán</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ratio-banner" style="padding: 10px 18px;">
+        <div class="big-num" style="font-size: 23px;">TƯ DUY CỐT LÕI NĂM 2027: “LÀM CHẮC – LÀM SÂU – LÀM CÓ KIỂM SOÁT”</div>
+        <div style="font-size: 18.5px; font-weight: 800;">Thay vì “làm nhiều – làm nhanh – mở rộng bằng mọi giá”</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 11: PHẦN 4 – GIA ĐẠO – HÔN NHÂN – QUAN HỆ GIA ĐÌNH -->
+  <div class="slide-container" id="slide11">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🏠 GIA ĐẠO</span></h1>
+      <p>Phần 4 (Trang 11 / 22): Hóa Giải Quan Hệ Hình Tuất – Mùi Trong Hôn Nhân &amp; Quan Hệ Gia Đình</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%;">Phương Diện</th>
+            <th style="width: 38%;">Điều Có Thể Phát Sinh</th>
+            <th style="width: 42%;">Cách Ứng Xử Nên Chọn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Vợ chồng</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Khác biệt về tiền bạc, con cái, nhà cửa</td>
+            <td style="text-align: left; padding-left: 12px;">Thống nhất nguyên tắc tài chính và trách nhiệm</td>
+          </tr>
+          <tr>
+            <td><strong>Con cái</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Khác biệt thế hệ, cách sống, chọn nghề nghiệp</td>
+            <td style="text-align: left; padding-left: 12px;">Tôn trọng quyền tự quyết, góp ý thay vì áp đặt</td>
+          </tr>
+          <tr>
+            <td><strong>Anh chị em</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Tranh luận tài sản, chăm sóc cha mẹ, thừa kế</td>
+            <td style="text-align: left; padding-left: 12px;">Minh bạch giấy tờ, thống nhất bằng văn bản</td>
+          </tr>
+          <tr>
+            <td><strong>Họ hàng</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Dễ phát sinh chuyện nhờ vả, vay mượn</td>
+            <td style="text-align: left; padding-left: 12px;">Giúp đỡ trong khả năng, không đứng tên hộ tùy tiện</td>
+          </tr>
+          <tr>
+            <td><strong>Quan hệ xã hội</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Có thể gặp bất đồng hoặc hiểu lầm</td>
+            <td style="text-align: left; padding-left: 12px;">Nói rõ, nói đúng lúc, tránh phản ứng nóng</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box">
+        <div class="icon-house-round">❤️</div>
+        <div>
+          <strong>Lưu ý riêng &amp; Lời khuyên vàng:</strong> <strong>Nam mạng:</strong> Giảm tâm lý tự gánh tất cả; việc lớn tài sản, con cái, họ hàng hãy bàn bạc trước • <strong>Nữ mạng:</strong> Kết nối điều hòa nhưng không ôm hết trách nhiệm hay hy sinh sức khỏe • <em>Gia đạo yên vì mọi người biết trao đổi, tôn trọng giới hạn và giải quyết công bằng.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 12: PHẦN 5 – SỨC KHỎE – THÂN THỂ – TINH THẦN -->
+  <div class="slide-container" id="slide12">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🩺 SỨC KHỎE</span></h1>
+      <p>Phần 5 (Trang 12 / 22): Kế Hoạch Chăm Sóc Sức Khỏe Thực Tế Cho Nam Mạng &amp; Nữ Mạng (Tuổi 58)</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Nội Dung</th>
+            <th style="width: 39%;">👨 Nam Mạng Canh Tuất</th>
+            <th style="width: 39%;">👩 Nữ Mạng Canh Tuất</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Theo dõi sức khỏe</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Khám định kỳ, theo dõi các chỉ số tim mạch, chuyển hóa theo tư vấn y tế</td>
+            <td style="text-align: left; padding-left: 12px;">Khám định kỳ, theo dõi tim mạch, chuyển hóa và các vấn đề theo độ tuổi</td>
+          </tr>
+          <tr>
+            <td><strong>Vận động</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Đi bộ, tập sức mạnh phù hợp, tránh gắng sức đột ngột</td>
+            <td style="text-align: left; padding-left: 12px;">Duy trì vận động đều, tập thăng bằng và sức mạnh cơ</td>
+          </tr>
+          <tr>
+            <td><strong>An toàn</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Cẩn trọng khi lái xe, làm việc với máy móc, đi xa</td>
+            <td style="text-align: left; padding-left: 12px;">Cẩn trọng khi đi lại, leo trèo, mang vác nặng</td>
+          </tr>
+          <tr>
+            <td><strong>Tinh thần</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Tránh áp lực phải kiểm soát mọi việc</td>
+            <td style="text-align: left; padding-left: 12px;">Tránh ôm đồm và lo lắng kéo dài</td>
+          </tr>
+          <tr>
+            <td><strong>Sinh hoạt</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Ngủ đủ, ăn uống điều độ, hạn chế rượu bia</td>
+            <td style="text-align: left; padding-left: 12px;">Ngủ đủ, ăn uống cân bằng, duy trì kết nối xã hội</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">🏥</div>
+        <div>
+          <strong>Nguyên tắc y tế thực tế:</strong> Hạn <em>Toán Tận</em> và <em>Huỳnh Tuyền</em> là lời nhắc giữ gìn sức khỏe và tài sản, không thể suy ra một người sẽ mắc bệnh cụ thể hay gặp tai nạn. <strong>Nếu có triệu chứng, hãy đi khám ngay thay vì chờ qua tháng hạn.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 13: PHẦN 6 – KÍCH TÀI LỘC NĂM ĐINH MÙI 2027: HƯỚNG NAM & BIỂU TƯỢNG NGỌ -->
+  <div class="slide-container" id="slide13">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🧭 PHONG THỦY</span></h1>
+      <p>Phần 6 (Trang 13 / 22): Kích Tài Lộc Năm 2027 – Hướng Nam (Đinh Lộc Tại Ngọ) &amp; Hành Động Thực Chất</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Vị Trí Bài Trí</th>
+            <th style="width: 34%;">Gợi Ý Biểu Tượng</th>
+            <th style="width: 44%;">Ý Nghĩa Tượng Trưng (Đinh Lộc Tại Ngọ – Phương Nam)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Phòng khách</strong></td>
+            <td>Tranh Mã Đáo Thành Công</td>
+            <td style="text-align: left; padding-left: 12px;">Tinh thần tiến lên, đoàn kết, bền bỉ (hài hòa kiến trúc, ánh sáng)</td>
+          </tr>
+          <tr>
+            <td><strong>Văn phòng</strong></td>
+            <td>Hình tượng ngựa / biểu tượng thành tựu</td>
+            <td style="text-align: left; padding-left: 12px;">Nhắc nhở mục tiêu và quyết tâm</td>
+          </tr>
+          <tr>
+            <td><strong>Góc làm việc</strong></td>
+            <td>Bảng mục tiêu tài chính, kế hoạch KD</td>
+            <td style="text-align: left; padding-left: 12px;">Tập trung vào cơ hội và kết quả thực tế</td>
+          </tr>
+          <tr>
+            <td><strong>Phương Nam</strong></td>
+            <td>Tranh hoặc vật trang trí phù hợp</td>
+            <td style="text-align: left; padding-left: 12px;">Tượng trưng phương vị tài lộc (tránh gây chói, vướng lối đi)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box">
+        <div class="icon-house-round">🚀</div>
+        <div>
+          <strong>5 Chiến lược kích tài lộc thực sự (Biến biểu tượng thành kết quả):</strong><br>
+          <strong>(1) Kích hoạt năng lực:</strong> Nâng cấp kỹ năng, chất lượng sản phẩm • <strong>(2) Kích hoạt quan hệ:</strong> Kết nối đối tác tin cậy • <strong>(3) Kích hoạt dòng tiền:</strong> Quản lý công nợ, giảm thất thoát • <strong>(4) Kích hoạt tài sản:</strong> Hoàn thiện pháp lý • <strong>(5) Kích hoạt phước đức:</strong> Sống có trách nhiệm, giúp người trong khả năng.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 14: PHẦN 7 – BẢN ĐỒ HÀNH ĐỘNG THEO 4 GIAI ĐOẠN & CÁC MỐC ÂM LỊCH -->
+  <div class="slide-container" id="slide14">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">📅 KẾ HOẠCH</span></h1>
+      <p>Phần 7 (Trang 14 / 22): Bản Đồ Quản Trị 4 Giai Đoạn &amp; Các Mốc Thời Gian Âm Lịch Cần Nhớ</p>
+    </div>
+    <div class="content">
+      <div class="grid-2" style="gap: 10px;">
+        <div class="card" style="padding: 9px 13px; font-size: 18px;">
+          <div class="badge" style="width: 34px; height: 34px; font-size: 16px;">Q1</div>
+          <div><strong>Đầu năm (Rà soát):</strong> Kiểm tra tài chính, sức khỏe, hợp đồng và mục tiêu.</div>
+        </div>
+        <div class="card" style="padding: 9px 13px; font-size: 18px;">
+          <div class="badge" style="width: 34px; height: 34px; font-size: 16px;">Q2</div>
+          <div><strong>Quý II (Củng cố):</strong> Sắp xếp nhân sự, dòng tiền, kế hoạch gia đình.</div>
+        </div>
+        <div class="card" style="padding: 9px 13px; font-size: 18px;">
+          <div class="badge" style="width: 34px; height: 34px; font-size: 16px;">Q3</div>
+          <div><strong>Quý III (Chọn lọc):</strong> Chọn cơ hội phù hợp, tránh đầu tư theo cảm xúc.</div>
+        </div>
+        <div class="card" style="padding: 9px 13px; font-size: 18px;">
+          <div class="badge" style="width: 34px; height: 34px; font-size: 16px;">Q4</div>
+          <div><strong>Quý IV (Tổng kết):</strong> Đánh giá hiệu quả, giảm rủi ro, lập kế hoạch năm sau.</div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">Mốc Thời Gian Âm Lịch</th>
+            <th style="width: 32%;">Theo Quan Niệm Dân Gian</th>
+            <th style="width: 44%;">Việc Nên Làm Trong Thực Tế (Kiểm Soát Rủi Ro)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Ngày 15 hằng tháng</strong></td>
+            <td>Lệ cúng sao Thái Bạch (Nam)</td>
+            <td style="text-align: left; padding-left: 12px;">Nếu có tín ngưỡng, thực hiện cầu an đơn giản</td>
+          </tr>
+          <tr>
+            <td><strong>Tháng 5 âm lịch</strong></td>
+            <td>Tháng nam mạng cần thận trọng</td>
+            <td style="text-align: left; padding-left: 12px;">Kiểm tra kỹ hợp đồng, tài sản, đầu tư và đi lại</td>
+          </tr>
+          <tr>
+            <td><strong>Ngày 26 hằng tháng</strong></td>
+            <td>Lệ cúng sao Thái Âm (Nữ)</td>
+            <td style="text-align: left; padding-left: 12px;">Có thể thực hiện nghi thức cầu an theo tín ngưỡng</td>
+          </tr>
+          <tr>
+            <td><strong>Tháng 9 &amp; Tháng 11 ÂL</strong></td>
+            <td>Tháng nữ mạng cần lưu ý</td>
+            <td style="text-align: left; padding-left: 12px;">T9: Giảm quá sức, rà soát tài chính • T11: Tránh ôm đồm, nghỉ ngơi</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 15: PHẦN 8 – TU TẬP, SÁM HỐI VÀ LÀM PHƯỚC ĐÚNG ĐẮN -->
+  <div class="slide-container" id="slide15">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🌿 TÂM LINH</span></h1>
+      <p>Phần 8 (Trang 15 / 22): Tu Tập, Sám Hối Và Làm Phước – Hiểu Thế Nào Để Thực Sự Có Ích?</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 26%;">Việc Thực Hành</th>
+            <th style="width: 30%;">Ý Nghĩa Cốt Lõi</th>
+            <th style="width: 44%;">Ứng Dụng Thiết Thực Trong Đời Sống</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Sám hối</strong></td>
+            <td>Nhận ra điều chưa đúng</td>
+            <td style="text-align: left; padding-left: 14px;">Sửa sai, xin lỗi, khắc phục hậu quả</td>
+          </tr>
+          <tr>
+            <td><strong>Tu tập</strong></td>
+            <td>Rèn tâm và hành vi</td>
+            <td style="text-align: left; padding-left: 14px;">Giữ bình tĩnh, sống có kỷ luật</td>
+          </tr>
+          <tr>
+            <td><strong>Bố thí</strong></td>
+            <td>Biết chia sẻ</td>
+            <td style="text-align: left; padding-left: 14px;">Giúp người khó khăn phù hợp khả năng</td>
+          </tr>
+          <tr>
+            <td><strong>Phóng sinh có trách nhiệm</strong></td>
+            <td>Nuôi dưỡng lòng từ</td>
+            <td style="text-align: left; padding-left: 14px;">Không mua bán, thả động vật gây hại môi trường</td>
+          </tr>
+          <tr>
+            <td><strong>Hiến máu nhân đạo</strong></td>
+            <td>Chia sẻ sự sống</td>
+            <td style="text-align: left; padding-left: 14px;">Chỉ hiến máu khi đủ điều kiện sức khỏe và theo hướng dẫn y tế</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">💡</div>
+        <div>
+          <strong>Hiểu đúng câu “hao tài thì đỡ tổn mạng”:</strong> Không hiểu theo nghĩa phải chủ động mất tiền hoặc làm mình chảy máu để đổi lấy an toàn. <strong>Làm thiện phải xuất phát từ sự tự nguyện, đúng khả năng và không gây hại cho bản thân.</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 16: PHẦN 9 – ĐÚNG THỜI – ĐÚNG NGƯỜI – ĐÚNG LÚC – ĐÚNG NƠI – ĐÚNG CÁCH -->
+  <div class="slide-container" id="slide16">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🔑 5 NGUYÊN TẮC</span></h1>
+      <p>Phần 9 (Trang 16 / 22): Chuyển Thời Vận Thành Năng Lực Lựa Chọn &amp; Hành Động</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 19%;">Nguyên Tắc</th>
+            <th style="width: 33%;">Nghĩa Cốt Lõi</th>
+            <th style="width: 48%;">Ứng Dụng Vào Tuổi Canh Tuất 1970 Năm 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1. ĐÚNG THỜI</strong></td>
+            <td style="text-align: left; padding-left: 10px;">Nhìn được xu thế và chọn thời điểm phù hợp</td>
+            <td style="text-align: left; padding-left: 10px;">Biết khi nào củng cố, khi nào mở rộng; không cố tiến khi chưa đủ điều kiện</td>
+          </tr>
+          <tr>
+            <td><strong>2. ĐÚNG NGƯỜI</strong></td>
+            <td style="text-align: left; padding-left: 10px;">Chọn người có năng lực, đạo đức và mục tiêu tương hợp</td>
+            <td style="text-align: left; padding-left: 10px;">Chọn đối tác minh bạch, người đồng hành đáng tin, người có chuyên môn</td>
+          </tr>
+          <tr>
+            <td><strong>3. ĐÚNG LÚC</strong></td>
+            <td style="text-align: left; padding-left: 10px;">Hành động khi điều kiện đã chín muồi</td>
+            <td style="text-align: left; padding-left: 10px;">Không ký hợp đồng khi chưa kiểm tra; không đầu tư khi chưa hiểu rủi ro</td>
+          </tr>
+          <tr>
+            <td><strong>4. ĐÚNG NƠI</strong></td>
+            <td style="text-align: left; padding-left: 10px;">Chọn môi trường phù hợp để phát triển</td>
+            <td style="text-align: left; padding-left: 10px;">Chọn thị trường, địa điểm kinh doanh, môi trường sống &amp; làm việc có lợi thế</td>
+          </tr>
+          <tr>
+            <td><strong>5. ĐÚNG CÁCH</strong></td>
+            <td style="text-align: left; padding-left: 10px;">Dùng phương pháp phù hợp, hợp pháp và bền vững</td>
+            <td style="text-align: left; padding-left: 10px;">Có kế hoạch, dữ liệu, hợp đồng, giới hạn rủi ro và phương án dự phòng</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 17: PHẦN 9 – VÍ DỤ THỰC CHIẾN KẾT HỢP 5 NGUYÊN TẮC KHI GÓP VỐN KINH DOANH -->
+  <div class="slide-container" id="slide17">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🔑 THỰC CHIẾN</span></h1>
+      <p>Phần 9 (Trang 17 / 22): Áp Dụng 5 Nguyên Tắc Vàng Vào Một Quyết Định Góp Vốn Kinh Doanh</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="card">
+          <div class="badge">1</div>
+          <div><strong>Đúng Thời:</strong> Thị trường có nhu cầu thực, không phải chỉ vì thấy người khác đang kiếm lời.</div>
+        </div>
+        <div class="card">
+          <div class="badge">2</div>
+          <div><strong>Đúng Người:</strong> Đối tác có năng lực, uy tín và lịch sử làm ăn rõ ràng, minh bạch.</div>
+        </div>
+        <div class="card">
+          <div class="badge">3</div>
+          <div><strong>Đúng Lúc:</strong> Doanh nghiệp có dòng tiền ổn định và bản thân có đủ nguồn lực dự phòng.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">4</div>
+          <div><strong>Đúng Nơi:</strong> Mô hình kinh doanh phù hợp với đặc điểm thị trường và tệp khách hàng mục tiêu.</div>
+        </div>
+        <div class="card">
+          <div class="badge">5</div>
+          <div><strong>Đúng Cách:</strong> Có hợp đồng chặt chẽ, quyền kiểm soát, phương án thoái vốn và giới hạn thua lỗ.</div>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">🛑</div>
+        <div>
+          <strong>Quy tắc dừng khẩn cấp:</strong> Nếu thiếu <strong>một trong năm yếu tố</strong> trên, hãy dừng lại để đánh giá. Tuyệt đối <strong>không dùng câu “năm nay có lộc” làm lý do để bỏ qua bước kiểm tra rủi ro</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 18: PHẦN 10 – KẾT LUẬN TỔNG THỂ CHO CANH TUẤT 1970 NĂM ĐINH MÙI 2027 -->
+  <div class="slide-container" id="slide18">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🏆 TỔNG KẾT</span></h1>
+      <p>Phần 10 (Trang 18 / 22): Định Hướng Tổng Thể – Giữ Nền Tảng • Bảo Toàn Tài Sản • Củng Cố Gia Đạo</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th>Mệnh</th>
+            <th>Tài</th>
+            <th>Quan</th>
+            <th>Gia Đạo</th>
+            <th>Sức Khỏe</th>
+            <th>Tâm Linh</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mềm mỏng hơn, tránh cố chấp</td>
+            <td>Giữ vốn, kiểm soát dòng tiền</td>
+            <td>Củng cố vị thế, phát huy kinh nghiệm</td>
+            <td>Minh bạch, chia sẻ trách nhiệm</td>
+            <td>Khám định kỳ, duy trì vận động</td>
+            <td>Tu tập, làm thiện, cầu an trong khả năng</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">👨 Tóm Lược Nam Mạng (Thái Bạch – Toán Tận)</h3>
+          <p>Đặt trọng tâm vào <strong>bảo toàn tài chính, bảo vệ tài sản, tránh đầu tư nóng, cẩn trọng khi góp vốn và ký kết</strong>. Không cần sợ hãi, nhưng phải quản trị rủi ro nghiêm túc.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">👩 Tóm Lược Nữ Mạng (Thái Âm – Huỳnh Tuyền)</h3>
+          <p>Phát huy thế mạnh về <strong>tích lũy, quản lý tài sản và xây dựng quan hệ</strong>. Đồng thời xem <strong>sức khỏe và sự cân bằng cuộc sống</strong> là ưu tiên, không ôm đồm vượt khả năng.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🌟</div>
+        <div>
+          <strong>Giá trị quý nhất ở tuổi 58:</strong> Không phải chạy theo mọi cơ hội, mà là <strong>biết chọn việc đáng làm, giữ người đáng tin, bảo vệ những gì đã gây dựng và truyền lại kinh nghiệm cho thế hệ sau</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 19: PHẦN 11 – LẬP LÁ SỐ TỬ VI ĐẨU SỐ CÁ NHÂN SÂU HƠN -->
+  <div class="slide-container" id="slide19">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🌌 LÁ SỐ CÁ NHÂN</span></h1>
+      <p>Phần 11 (Trang 19 / 22): Dữ Liệu Cần Thiết Để Luận Chuyên Sâu Lá Số Tử Vi Đẩu Số Cá Nhân</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1b4f9c;">
+        <div class="icon-gold-round">🔭</div>
+        <div>
+          <strong>Phạm vi luận giải hiện tại:</strong> Toàn bộ 10 phần trên là luận giải tổng hợp theo <strong>năm sinh Canh Tuất 1970</strong> và <strong>năm Đinh Mùi 2027</strong>, chưa phải lá số Tử Vi Đẩu Số cá nhân.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>1. Ngày – Tháng – Năm Sinh</h3>
+          <p>Cung cấp chính xác <strong>ngày, tháng, năm sinh Dương lịch</strong> (hoặc Âm lịch ghi chú rõ) để xác định cung Mệnh, Thân và Ngũ Hành Cục.</p>
+        </div>
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">2. Giờ Sinh Chính Xác</h3>
+          <p>Cung cấp <strong>giờ sinh</strong> (ví dụ: 08h30 sáng hoặc giờ Thìn) để an chính xác hệ thống 14 chính tinh và các sao phụ tinh.</p>
+        </div>
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3 style="background: #8b0000;">3. Giới Tính (Nam / Nữ)</h3>
+          <p>Xác định chiều vận hành <strong>Âm Nam, Dương Nam, Âm Nữ, Dương Nữ</strong> để tính chính xác chu kỳ Đại Vận 10 năm và Tiểu Vận.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">📜</div>
+        <div>
+          <strong>12 Cung &amp; Đại Vận được luận sâu khi đủ dữ liệu:</strong> Cung <strong>Mệnh, Thân, Tài Bạch, Quan Lộc, Phu Thê, Tử Tức, Điền Trạch, Phúc Đức</strong> cùng toàn bộ <strong>Đại Vận 10 năm – Tiểu Vận 2027</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 20: PHỤ LỤC – BẢNG SO SÁNH NHANH NAM MẠNG & NỮ MẠNG CANH TUẤT 1970 -->
+  <div class="slide-container" id="slide20">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">📊 ĐỐI CHIẾU</span></h1>
+      <p>Phụ Lục 1 (Trang 20 / 22): Bảng Tra Cứu Nhanh Nam Mạng &amp; Nữ Mạng Canh Tuất 1970 Năm 2027</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Tiêu Chí</th>
+            <th style="width: 39%;">👨 Nam Mạng Canh Tuất (1970)</th>
+            <th style="width: 39%;">👩 Nữ Mạng Canh Tuất (1970)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bản mệnh &amp; Tuổi mụ</strong></td>
+            <td colspan="2">Nạp âm <strong>Thoa Xuyến Kim</strong> • <strong>58 tuổi mụ</strong> • Đinh Hỏa khắc Canh Kim • Tuất – Mùi quan hệ Hình</td>
+          </tr>
+          <tr>
+            <td><strong>Sao &amp; Hạn 2027</strong></td>
+            <td><span class="highlight-red">Sao Thái Bạch • Hạn Toán Tận</span></td>
+            <td><span class="highlight-green">Sao Thái Âm</span> • <span class="highlight-red">Hạn Huỳnh Tuyền</span></td>
+          </tr>
+          <tr>
+            <td><strong>Tài chính &amp; Kinh doanh</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Giữ vốn, chia nhỏ đầu tư, không bảo lãnh tùy tiện, kiểm tra lợi nhuận thực</td>
+            <td style="text-align: left; padding-left: 12px;">Tích lũy dài hạn, rà soát giấy tờ nhà đất, không chịu trách nhiệm khi thiếu quyền kiểm soát</td>
+          </tr>
+          <tr>
+            <td><strong>Sức khỏe &amp; Vận động</strong></td>
+            <td style="text-align: left; padding-left: 12px;">Khám định kỳ tim mạch – chuyển hóa, lái xe không rượu bia, tránh gắng sức đột ngột</td>
+            <td style="text-align: left; padding-left: 12px;">Theo dõi huyết áp – đường huyết, đi bộ &amp; tập thăng bằng, tránh ôm đồm quá sức</td>
+          </tr>
+          <tr>
+            <td><strong>Mốc thời gian lưu ý</strong></td>
+            <td>Cúng sao: <strong>Ngày 15 ÂL</strong> • Thận trọng: <strong>Tháng 5 ÂL</strong></td>
+            <td>Cúng sao: <strong>Ngày 26 ÂL</strong> • Lưu ý: <strong>Tháng 9 &amp; 11 ÂL</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 21: PHỤ LỤC – CHECKLIST 6 HẠNG MỤC KIỂM TRA ĐẦU NĂM 2027 -->
+  <div class="slide-container" id="slide21">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">✅ CHECKLIST</span></h1>
+      <p>Phụ Lục 2 (Trang 21 / 22): Danh Mục 6 Hạng Mục Kiểm Tra Quản Trị Rủi Ro Đầu Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">1</div>
+          <div><strong>Quỹ dự phòng &amp; Công nợ:</strong> Rà soát dòng tiền thực, thiết lập quỹ dự phòng thiết yếu, siết chặt công nợ kinh doanh.</div>
+        </div>
+        <div class="card">
+          <div class="badge">2</div>
+          <div><strong>Hợp đồng &amp; Pháp lý tài sản:</strong> Kiểm tra sổ đỏ, giấy tờ thừa kế, bảo hiểm và điều khoản hợp đồng góp vốn trước khi ký.</div>
+        </div>
+        <div class="card">
+          <div class="badge">3</div>
+          <div><strong>Phân quyền &amp; Nhân sự:</strong> Chuyển giao kinh nghiệm, phân quyền rõ ràng cho đội ngũ kế thừa, tránh ôm đồm một mình.</div>
+        </div>
+        <div class="card">
+          <div class="badge">4</div>
+          <div><strong>Thống nhất gia đạo:</strong> Bàn bạc minh bạch tài chính, nhà cửa, kế hoạch con cái và việc chung họ hàng bằng văn bản.</div>
+        </div>
+        <div class="card">
+          <div class="badge">5</div>
+          <div><strong>Khám sức khỏe định kỳ:</strong> Kiểm tra chỉ số tim mạch, chuyển hóa, huyết áp, đường huyết; duy trì đi bộ và ngủ đủ giấc.</div>
+        </div>
+        <div class="card">
+          <div class="badge">6</div>
+          <div><strong>Bộ lọc 5 Đúng trước đầu tư:</strong> Chỉ xuống tiền khi hội tụ đủ <strong>Đúng Thời – Đúng Người – Đúng Lúc – Đúng Nơi – Đúng Cách</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 22: LỜI KẾT CHÚC BÌNH AN & THỊNH VƯỢNG TUỔI CANH TUẤT 1970 -->
+  <div class="slide-container" id="slide22">
+    <div class="header">
+      <h1>LUẬN GIẢI CHUYÊN SÂU TUỔI CANH TUẤT 1970 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐕 58 TUỔI MỤ</span></h1>
+      <p>Kết Luận Toàn Bài (Trang 22 / 22): Kim Chỉ Nam Vững Vàng Cho Tuổi Canh Tuất 1970 Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">GIỮ NỀN TẢNG • BẢO TOÀN TÀI SẢN • CỦNG CỐ GIA ĐẠO</div>
+        <div style="font-size: 20px; font-weight: 800;">Chuyển hóa nhận thức thời vận thành bản lĩnh quản trị thực tế trong năm Đinh Mùi 2027!</div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">🐕</div>
+        <div>
+          <strong>Thông điệp đúc kết dành cho Canh Tuất 1970:</strong><br>
+          • <em>“Sức mạnh của Canh Tuất không nằm ở việc thắng mọi cuộc tranh luận, mà ở khả năng giữ được nền tảng, tài sản, uy tín và những mối quan hệ quan trọng.”</em><br>
+          • <em>“Mọi quyết định lớn chỉ tiến hành khi hội tụ đủ: Đúng Thời – Đúng Người – Đúng Lúc – Đúng Nơi – Đúng Cách.”</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANH CÔNG CỤ ĐIỀU KHIỂN NỔI PHÍA TRÊN -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 22</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét Vẽ</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 22;
+
+  // Tự động thu phóng khung ngang 1280x720 cho vừa khít màn hình
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1280,
+      (window.innerHeight - 75) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  function showSlide(n) {
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+    }
+    document.getElementById('slide' + n).classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; showSlide(currentSlide); } }
+  function prevSlide() { if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); } }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Bảng vẽ phủ kín 100% toàn màn hình
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm để tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Hàm xuất ảnh ngang tỷ lệ 16:9 (1280x720) kèm nét bút vẽ
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất ảnh...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    try {
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 1280;
+      finalCanvas.height = 720;
+      const fCtx = finalCanvas.getContext('2d');
+
+      const slideCanvas = renderSlideNative(slideEl);
+      fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+      const rect = slideEl.getBoundingClientRect();
+      fCtx.drawImage(
+        canvas,
+        rect.left, rect.top, rect.width, rect.height,
+        0, 0, 1280, 720
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png');
+      link.download = `Luan_Giai_Canh_Tuat_1970_Nam_2027_Trang_${currentSlide}_16x9.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } finally {
+      restoreToolbar();
+    }
+  }
+
+  // Bộ vẽ Slide ngang 1280x720 chuẩn nét đậm offline 100%
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1280 / baseRect.width;
+
+    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    bgGrad.addColorStop(0, '#fdf8e8');
+    bgGrad.addColorStop(1, '#f5ebd1');
+    g.fillStyle = bgGrad;
+    g.fillRect(0, 0, 1280, 720);
+
+    g.lineWidth = 24;
+    g.strokeStyle = '#b8860b';
+    g.strokeRect(0, 0, 1280, 720);
+
+    g.lineWidth = 4;
+    g.strokeStyle = '#8b0000';
+    g.strokeRect(14, 14, 1252, 692);
+
+    const boxes = slideEl.querySelectorAll(
+      '.header, .rule-box, .card, .example-box, th, td, .step-card, .ratio-banner, .badge, .badge-diamond, .result-tag, .icon-gold-round, .icon-house-round, .zodiac-tag'
+    );
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
+      const st = window.getComputedStyle(el);
+
+      g.save();
+      if (el.classList.contains('badge-diamond')) {
+        g.translate(x + w / 2, y + h / 2);
+        g.rotate((45 * Math.PI) / 180);
+        g.fillStyle = '#1b4f9c';
+        g.beginPath();
+        g.roundRect(-18, -18, 36, 36, 8);
+        g.fill();
+        g.lineWidth = 2.5;
+        g.strokeStyle = '#90cdf4';
+        g.stroke();
+        g.restore();
+        return;
+      }
+
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) {
+        fill = el.style.backgroundColor || '#b22222';
+      } else if (el.classList.contains('icon-gold-round')) {
+        fill = '#9c6b28';
+      } else if (el.classList.contains('ratio-banner')) {
+        fill = '#991111';
+      } else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : '#1b693c';
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+      g.restore();
+    });
+
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match.length);
+        const rr = range.getBoundingClientRect();
+        if (rr.width === 0) continue;
+
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match[0], tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
