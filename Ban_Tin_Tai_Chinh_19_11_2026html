@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Ban Tin Tai Chinh 19/11/2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, sans-serif; }
+  body { background: #0b132b; display: flex; justify-content: center; align-items: center; min-height: 100vh; overflow: hidden; }
+  #stage { position: relative; width: 96vw; max-width: 1360px; aspect-ratio: 16 / 9; background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-radius: 14px; border: 4px solid #1e3a8a; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+  .slide { display: none; width: 100%; height: 100%; padding: 24px 36px 76px 36px; flex-direction: column; justify-content: space-between; }
+  .slide.active { display: flex; }
+  .header { background: linear-gradient(90deg, #0f172a, #1e3a8a, #0f172a); color: #facc15; text-align: center; padding: 14px 20px; border-radius: 12px; border: 2px solid #eab308; }
+  .header h1 { font-size: 28px; font-weight: 900; text-transform: uppercase; }
+  .sub { background: #dc2626; color: #fff; display: inline-block; padding: 4px 16px; border-radius: 20px; font-size: 14px; font-weight: bold; margin-top: 6px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; flex: 1; margin: 18px 0; }
+  .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; flex: 1; margin: 18px 0; }
+  .card { background: #fff; border-radius: 12px; border: 2px solid #cbd5e1; display: flex; flex-direction: column; overflow: hidden; }
+  .c-title { padding: 12px; color: #fff; font-weight: bold; font-size: 18px; text-align: center; text-transform: uppercase; }
+  .bg-gold { background: #d97706; } .bg-blue { background: #2563eb; } .bg-red { background: #dc2626; } .bg-green { background: #16a34a; }
+  .c-body { padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px; font-size: 18px; line-height: 1.4; }
+  .big { font-size: 34px; font-weight: 900; text-align: center; }
+  .t-red { color: #dc2626; } .t-blue { color: #1d4ed8; } .t-green { color: #16a34a; }
+  .chart-box { background: #0f172a; border-radius: 12px; padding: 18px; color: #fff; display: flex; flex-direction: column; justify-content: space-between; border: 2px solid #334155; }
+  .bar-row { display: flex; align-items: center; gap: 10px; margin: 8px 0; font-weight: bold; }
+  .bar-fill { height: 26px; border-radius: 6px; display: flex; align-items: center; padding-left: 10px; color: #fff; font-size: 14px; }
+  .footer { background: #fef08a; border: 2px solid #eab308; border-radius: 10px; padding: 12px 18px; font-weight: bold; font-size: 16px; color: #713f12; }
+  #drawCanvas { position: absolute; inset: 0; z-index: 10; pointer-events: none; cursor: crosshair; }
+  #drawCanvas.drawing { pointer-events: auto; }
+  #toolbar { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 20; background: rgba(15, 23, 42, 0.95); padding: 8px 16px; border-radius: 30px; display: flex; align-items: center; gap: 10px; border: 1px solid #475569; }
+  .btn { background: #1e293b; color: #fff; border: 1px solid #475569; padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; }
+  .btn.active { background: #eab308; color: #000; }
+  .dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  #pageNum { color: #facc15; font-weight: bold; font-size: 15px; min-width: 55px; text-align: center; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="drawCanvas"></canvas>
+  <div class="slide active" id="s1">
+    <div class="header"><h1>MẬT LỆNH SĂN TIN TÀI CHÍNH & ĐẦU TƯ (19/11/2026)</h1><div class="sub">TỔNG QUAN 4 MŨI NHỌN TÁC ĐỘNG TRỰC TIẾP TÚI TIỀN</div></div>
+    <div class="grid-4">
+      <div class="card"><div class="c-title bg-gold">1. Giá Vàng</div><div class="c-body"><div class="big t-red">3.787 USD</div><p>- Thủng mốc 3.800 USD/oz (đáy 14 tháng).</p><p>- SJC neo cao: 134,2 - 137,2 tr/lượng.</p></div></div>
+      <div class="card"><div class="c-title bg-blue">2. BĐS & Lãi Suất</div><div class="c-body"><div class="big t-blue">PHÂN HÓA</div><p>- Lãi suất cao, người vay thận trọng.</p><p>- KDH (+3,19%) ngược dòng VHM, VIC.</p></div></div>
+      <div class="card"><div class="c-title bg-red">3. Chứng Khoán</div><div class="c-body"><div class="big t-red">1.703,01</div><p>- VN-Index mất 23,71 điểm (-1,37%).</p><p>- 272 mã giảm, kiểm định mốc 1.700.</p></div></div>
+      <div class="card"><div class="c-title bg-green">4. Quốc Tế</div><div class="c-body"><div class="big t-green">MỸ-TRUNG-NGA</div><p>- Gặp ba bên tại Thâm Quyến (19/11).</p><p>- Mỹ siết chip AI Nvidia sang Trung Quốc.</p></div></div>
+    </div>
+    <div class="footer">LƯU Ý DỮ LIỆU: Số liệu trong nước lấy theo chốt phiên 18/11; tin quốc tế & giá vàng cập nhật mới nhất trước phiên 19/11/2026.</div>
+  </div>
+  <div class="slide" id="s2">
+    <div class="header"><h1>1. GIÁ VÀNG THẾ GIỚI & TRONG NƯỚC (19/11/2026)</h1><div class="sub">ÁP LỰC TỪ ĐỒNG USD MẠNH & KỲ VỌNG LÃI SUẤT FED</div></div>
+    <div class="grid-2">
+      <div class="chart-box">
+        <h3 style="color:#facc15;">SO SÁNH MỐC GIÁ VÀNG (USD/OZ)</h3>
+        <div>
+          <div class="bar-row"><span style="width:110px;">Đỉnh cũ:</span><div class="bar-fill" style="width:85%; background:#16a34a;">3.846 USD/oz</div></div>
+          <div class="bar-row"><span style="width:110px;">Hỗ trợ cứng:</span><div class="bar-fill" style="width:72%; background:#eab308; color:#000;">3.800 USD/oz (Đã thủng)</div></div>
+          <div class="bar-row"><span style="width:110px;">Hiện tại:</span><div class="bar-fill" style="width:65%; background:#dc2626;">3.787 USD/oz (-59 USD)</div></div>
+        </div>
+        <p style="color:#94a3b8; font-size:15px;">Nguyên nhân: Đồng USD tăng mạnh + Lợi suất trái phiếu Mỹ tăng + Fed có thể tăng thêm 0,25% lãi suất.</p>
+      </div>
+      <div class="card"><div class="c-title bg-gold">TÁC ĐỘNG TÚI TIỀN NGƯỜI DÂN</div><div class="c-body">
+        <p><b>- Vàng SJC:</b> Niêm yết 134,2 - 137,2 triệu/lượng (giảm 500k, rơi chậm hơn thế giới).</p>
+        <p><b>- Người đang giữ vàng:</b> Chịu lỗ tạm thời nếu mua vùng cao, tuyệt đối không bán tháo theo cảm xúc.</p>
+        <p><b>- Người muốn mua mới:</b> Không mua đuổi khi biến động mạnh, chờ vùng cân bằng mới.</p>
+      </div></div>
+    </div>
+    <div class="footer">CHIẾN LƯỢC: Căng thẳng địa chính trị vẫn là lực đỡ trung hạn cho vàng, ưu tiên giữ tỷ trọng an toàn.</div>
+  </div>
+  <div class="slide" id="s3">
+    <div class="header"><h1>2. BẤT ĐỘNG SẢN, ĐẤT ĐAI & LÃI SUẤT</h1><div class="sub">DÒNG TIỀN CHỌN LỌC DOANH NGHIỆP SẠCH & DỰ ÁN THẬT</div></div>
+    <div class="grid-2">
+      <div class="chart-box">
+        <h3 style="color:#38bdf8;">DIỄN BIẾN CỔ PHIẾU BĐS (PHIÊN 18/11)</h3>
+        <div>
+          <div class="bar-row"><span style="width:70px;">KDH</span><div class="bar-fill" style="width:85%; background:#16a34a;">+3,19% (Hút tiền mạnh)</div></div>
+          <div class="bar-row"><span style="width:70px;">HDC</span><div class="bar-fill" style="width:45%; background:#22c55e;">+0,79%</div></div>
+          <div class="bar-row"><span style="width:70px;">TCH</span><div class="bar-fill" style="width:42%; background:#22c55e;">+0,75%</div></div>
+          <div class="bar-row"><span style="width:70px;">VIC</span><div class="bar-fill" style="width:55%; background:#ef4444;">-1,21%</div></div>
+          <div class="bar-row"><span style="width:70px;">VHM</span><div class="bar-fill" style="width:68%; background:#dc2626;">-1,62%</div></div>
+        </div>
+        <p style="color:#94a3b8; font-size:15px;">Nhóm đứng giá: DXG, VRE, CEO, PDR.</p>
+      </div>
+      <div class="card"><div class="c-title bg-blue">TÍN DỤNG & LƯU Ý VAY VỐN</div><div class="c-body">
+        <p><b>- Lãi suất cao:</b> Người mua nhà và doanh nghiệp thận trọng, kéo dài thời gian vay dài hạn.</p>
+        <p><b>- Chính sách NHNN:</b> Điều hành thanh khoản chủ động để tạo điều kiện hạ lãi suất.</p>
+        <p><b>- Lời khuyên:</b> Tính kỹ lãi suất thả nổi sau ưu đãi; tránh mua cổ phiếu BĐS theo phong trào.</p>
+      </div></div>
+    </div>
+    <div class="footer">TÁC ĐỘNG TÚI TIỀN: Người vay mua nhà phải tính bài toán dòng tiền theo lãi suất sau ưu đãi, không chỉ nhìn lãi mồi ban đầu.</div>
+  </div>
+  <div class="slide" id="s4">
+    <div class="header"><h1>3. THỊ TRƯỜNG CHỨNG KHOÁN (VN-INDEX 1.703,01 ĐIỂM)</h1><div class="sub">ÁP LỰC BÁN LAN RỘNG - KIỂM ĐỊNH NGƯỠNG HỖ TRỢ 1.700</div></div>
+    <div class="grid-2">
+      <div class="chart-box">
+        <h3 style="color:#f87171;">THỐNG KÊ PHIÊN GIAO DỊCH 18/11</h3>
+        <div>
+          <div class="bar-row"><span style="width:110px;">VN-Index:</span><div class="bar-fill" style="width:80%; background:#dc2626;">1.703,01 điểm (-23,71đ / -1,37%)</div></div>
+          <div class="bar-row"><span style="width:110px;">HNX-Index:</span><div class="bar-fill" style="width:65%; background:#ef4444;">242,73 điểm (-5,87đ / -2,36%)</div></div>
+          <div class="bar-row"><span style="width:110px;">Mã giảm:</span><div class="bar-fill" style="width:85%; background:#b91c1c;">272 mã giảm giá</div></div>
+          <div class="bar-row"><span style="width:110px;">Mã tăng:</span><div class="bar-fill" style="width:30%; background:#16a34a;">64 mã tăng</div></div>
+        </div>
+        <p style="color:#facc15; font-size:15px;">Ngân hàng trụ giảm: VCB (-0,96%), BID (-0,97%), TCB (-0,95%).</p>
+      </div>
+      <div class="card"><div class="c-title bg-red">DÒNG TIỀN & HÀNH ĐỘNG</div><div class="c-body">
+        <p><b>- Áp lực bán:</b> Khối ngoại bán ròng mạnh và lực xả tập trung ở nhóm vốn hóa lớn.</p>
+        <p><b>- Điểm sáng hiếm:</b> Du lịch giải trí, dịch vụ tài chính, thực phẩm đồ uống giữ sắc xanh.</p>
+        <p><b>- Kỷ luật:</b> Tránh dùng đòn bẩy (Margin), không bắt đáy sớm cổ phiếu trụ quanh 1.700.</p>
+      </div></div>
+    </div>
+    <div class="footer">QUẢN TRỊ RỦI RO: Chỉ tăng tỷ trọng khi thị trường có phiên hồi phục xác nhận kèm thanh khoản cải thiện.</div>
+  </div>
+  <div class="slide" id="s5">
+    <div class="header"><h1>4. THỜI SỰ QUỐC TẾ NỔI BẬT (19/11/2026)</h1><div class="sub">THƯỢNG ĐỈNH MỸ - TRUNG - NGA TẠI THÂM QUYẾN & CUỘC CHIẾN CHIP AI</div></div>
+    <div class="grid-2">
+      <div class="chart-box">
+        <h3 style="color:#4ade80;">3 ĐIỂM NÓNG ĐỊA CHÍNH TRỊ</h3>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="background:#1e293b; padding:12px; border-left:5px solid #38bdf8; border-radius:6px;"><b>1. Gặp ba bên Mỹ - Trung - Nga (19/11):</b> Bàn về hạt nhân, an ninh quốc tế, Ukraine và Iran.</div>
+          <div style="background:#1e293b; padding:12px; border-left:5px solid #ef4444; border-radius:6px;"><b>2. Mỹ siết chip AI Nvidia:</b> Hạn chế Trung Quốc tiếp cận chip AI tiên tiến.</div>
+          <div style="background:#1e293b; padding:12px; border-left:5px solid #22c55e; border-radius:6px;"><b>3. Đình chiến thương mại:</b> Mỹ - Trung gia hạn thêm 2 tháng từ ngày 9/11.</div>
+        </div>
+      </div>
+      <div class="card"><div class="c-title bg-green">TÁC ĐỘNG ĐẾN KINH TẾ & TÚI TIỀN</div><div class="c-body">
+        <p><b>- Kịch bản tích cực:</b> Cuộc gặp 3 bên giảm căng thẳng giúp giá dầu và cước vận tải hạ nhiệt.</p>
+        <p><b>- Kịch bản rủi ro:</b> Xung đột công nghệ leo thang làm tăng chi phí nhập khẩu và biến động tỷ giá.</p>
+        <p><b>- Trung Đông:</b> Nguy cơ quân sự Mỹ - Iran hạ nhiệt làm giảm bớt lực mua trú ẩn vàng.</p>
+      </div></div>
+    </div>
+    <div class="footer">TÁC ĐỘNG CHI PHÍ SINH HOẠT: Theo dõi sát kết quả hội nghị Thâm Quyến để lường trước biến động giá xăng dầu cuối năm.</div>
+  </div>
+  <div id="toolbar">
+    <button class="btn" onclick="go(-1)">Truoc</button>
+    <span id="pageNum">1 / 5</span>
+    <button class="btn" onclick="go(1)">Sau</button>
+    <button class="btn" id="penBtn" onclick="togglePen()">But Ve</button>
+    <div class="dot" style="background:#ef4444;" onclick="setCol('#ef4444')"></div>
+    <div class="dot" style="background:#facc15;" onclick="setCol('#facc15')"></div>
+    <div class="dot" style="background:#22c55e;" onclick="setCol('#22c55e')"></div>
+    <div class="dot" style="background:#2563eb;" onclick="setCol('#2563eb')"></div>
+    <button class="btn" onclick="clearPen()">Xoa Net</button>
+    <button class="btn" onclick="fullScr()">Toan Man Hinh</button>
+  </div>
+</div>
+<script>
+  let cur = 1, tot = 5;
+  function go(d) {
+    document.getElementById('s' + cur).classList.remove('active');
+    cur += d; if (cur > tot) cur = 1; if (cur < 1) cur = tot;
+    document.getElementById('s' + cur).classList.add('active');
+    document.getElementById('pageNum').innerText = cur + ' / ' + tot;
+    clearPen();
+  }
+  document.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') go(1); if (e.key === 'ArrowLeft') go(-1); });
+  const cvs = document.getElementById('drawCanvas'), ctx = cvs.getContext('2d'), stg = document.getElementById('stage');
+  let drawMode = false, painting = false, col = '#ef4444';
+  function resize() { cvs.width = stg.clientWidth; cvs.height = stg.clientHeight; }
+  window.addEventListener('resize', resize); resize();
+  function togglePen() { drawMode = !drawMode; cvs.classList.toggle('drawing', drawMode); document.getElementById('penBtn').classList.toggle('active', drawMode); }
+  function setCol(c) { col = c; if (!drawMode) togglePen(); }
+  function clearPen() { ctx.clearRect(0, 0, cvs.width, cvs.height); }
+  cvs.addEventListener('mousedown', (e) => { if (!drawMode) return; painting = true; ctx.beginPath(); ctx.moveTo(e.offsetX, e.offsetY); });
+  cvs.addEventListener('mousemove', (e) => { if (!painting || !drawMode) return; ctx.strokeStyle = col; ctx.lineWidth = 4; ctx.lineCap = 'round'; ctx.lineTo(e.offsetX, e.offsetY); ctx.stroke(); });
+  cvs.addEventListener('mouseup', () => { painting = false; });
+  cvs.addEventListener('mouseleave', () => { painting = false; });
+  function fullScr() { if (!document.fullscreenElement) stg.requestFullscreen().then(resize); else document.exitFullscreen().then(resize); }
+</script>
+</body>
+</html>
