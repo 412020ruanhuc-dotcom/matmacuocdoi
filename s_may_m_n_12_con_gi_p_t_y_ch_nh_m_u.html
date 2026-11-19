@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SỐ MAY MẮN 12 CON GIÁP - FB 1:1</title>
+    <!-- Tailwind CSS cho thiết kế linh hoạt -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- html2canvas dùng để xuất ảnh chất lượng cao -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Phông chữ phong thủy và hiện đại -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-grad-1: #fceabb;
+            --bg-grad-2: #f8b500;
+            --border-main: #b8860b;
+            --header-bg: #000000;
+            --header-border: #ffd700;
+            --title-color: #ffd700;
+            --sub-title-color: #ffffff;
+            --card-bg: rgba(255, 255, 255, 0.25);
+            --card-border: rgba(184, 134, 11, 0.45);
+            --zodiac-name-color: #4b0000;
+            --advice-color: #222222;
+            --num-bg: rgba(255, 255, 255, 0.65);
+            --num-color: #8b0000;
+            --footer-color: #4b0000;
+        }
+
+        body {
+            background-color: #121212;
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #eeeeee;
+        }
+
+        /* Khung hình vuông 1:1 chuẩn bài đăng Facebook */
+        #capture-area {
+            width: 100%;
+            max-width: 540px;
+            aspect-ratio: 1 / 1;
+            background: linear-gradient(135deg, var(--bg-grad-1) 0%, var(--bg-grad-2) 50%, var(--bg-grad-1) 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 16px;
+            box-sizing: border-box;
+            border: 6px solid var(--border-main);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Hộp tiêu đề */
+        .header-box {
+            background-color: var(--header-bg);
+            border: 2px solid var(--header-border);
+            padding: 12px 6px;
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: all 0.3s ease;
+        }
+
+        .main-title {
+            color: var(--title-color);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .sub-title {
+            color: var(--sub-title-color);
+            font-size: 0.95rem;
+            margin-top: 4px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        /* Lưới 12 con giáp - Cấu hình 4 cột x 3 hàng */
+        .zodiac-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+
+        /* Thẻ đại diện từng con giáp */
+        .zodiac-card {
+            background: var(--card-bg);
+            border: 1.5px solid var(--card-border);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 6px 4px;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .zodiac-name {
+            font-size: 1rem;
+            color: var(--zodiac-name-color);
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+
+        .zodiac-advice {
+            font-size: 0.65rem;
+            color: var(--advice-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1.1;
+            margin: 2px 0;
+        }
+
+        .zodiac-numbers {
+            font-size: 1.15rem;
+            color: var(--num-color);
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            background: var(--num-bg);
+            padding: 1px 4px;
+            border-radius: 4px;
+            width: 95%;
+            text-align: center;
+            letter-spacing: 0.5px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Chữ ký chân trang */
+        .footer-date {
+            text-align: center;
+            font-weight: bold;
+            color: var(--footer-color);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* Bảng điều khiển */
+        .admin-controls {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            width: 100%;
+            max-width: 540px;
+            margin-top: 20px;
+        }
+
+        /* Tùy chỉnh input color cho đẹp */
+        input[type="color"] {
+            -webkit-appearance: none;
+            border: none;
+            width: 100%;
+            height: 28px;
+            border-radius: 4px;
+            cursor: pointer;
+            background: transparent;
+        }
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        input[type="color"]::-webkit-color-swatch {
+            border: 1px solid #555;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen p-4">
+
+    <!-- ĐÂY LÀ KHU VỰC SẼ ĐƯỢC CHỤP HÌNH -->
+    <div id="capture-area">
+        <!-- Khung Header -->
+        <div class="header-box">
+            <h1 class="main-title" id="display-title">SỐ MAY MẮN 12 CON GIÁP</h1>
+            <p class="sub-title" id="display-date">Thứ Ba - 07/07/2026 (23/05 Âm lịch)</p>
+        </div>
+
+        <!-- Khung 12 Con Giáp phong cách 4x3 -->
+        <div class="zodiac-grid" id="zodiac-container">
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI TÝ</span><span class="zodiac-advice" id="adv-0">Cầu tài đắc tài</span><div class="zodiac-numbers" id="num-0">12 - 45 - 89</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI SỬU</span><span class="zodiac-advice" id="adv-1">Gia đạo an yên</span><div class="zodiac-numbers" id="num-1">03 - 37 - 64</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI DẦN</span><span class="zodiac-advice" id="adv-2">Tránh xa tranh cãi</span><div class="zodiac-numbers" id="num-2">18 - 41 - 72</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI MÃO</span><span class="zodiac-advice" id="adv-3">Quý nhân hỗ trợ</span><div class="zodiac-numbers" id="num-3">09 - 28 - 85</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI THÌN</span><span class="zodiac-advice" id="adv-4">Vạn sự hanh thông</span><div class="zodiac-numbers" id="num-4">15 - 56 - 93</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI TỴ</span><span class="zodiac-advice" id="adv-5">Tiền tài gõ cửa</span><div class="zodiac-numbers" id="num-5">02 - 31 - 67</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI NGỌ</span><span class="zodiac-advice" id="adv-6">Gặp nhiều may mắn</span><div class="zodiac-numbers" id="num-6">11 - 49 - 80</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI MÙI</span><span class="zodiac-advice" id="adv-7">Sức khỏe dồi dào</span><div class="zodiac-numbers" id="num-7">06 - 34 - 78</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI THÂN</span><span class="zodiac-advice" id="adv-8">Nhận tin vui lớn</span><div class="zodiac-numbers" id="num-8">14 - 52 - 91</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI DẬU</span><span class="zodiac-advice" id="adv-9">Tài lộc khởi sắc</span><div class="zodiac-numbers" id="num-9">05 - 23 - 69</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI TUẤT</span><span class="zodiac-advice" id="adv-10">Đề phòng hao tài</span><div class="zodiac-numbers" id="num-10">17 - 58 - 82</div></div>
+            <div class="zodiac-card"><span class="zodiac-name">TUỔI HỢI</span><span class="zodiac-advice" id="adv-11">Vạn sự như ý</span><div class="zodiac-numbers" id="num-11">08 - 25 - 71</div></div>
+        </div>
+
+        <!-- Chân trang -->
+        <div class="footer-date" id="display-footer">
+            SỐ THAM KHẢO - TỰ CHỊU TRÁCH NHIỆM
+        </div>
+    </div>
+
+    <!-- BẢNG ĐIỀU KHIỂN & CẤU HÌNH -->
+    <div class="admin-controls shadow-2xl">
+        <h3 class="text-xl font-bold text-yellow-400 mb-4 border-b border-zinc-700 pb-2 flex justify-between items-center">
+            <span>⚙️ Cấu Hình Đăng Facebook</span>
+            <span class="text-xs text-zinc-400 bg-zinc-800 px-2 py-1 rounded">Bản 1:1 Square</span>
+        </h3>
+        
+        <!-- Các nút chức năng chính -->
+        <div class="grid grid-cols-2 gap-3 mb-5">
+            <button onclick="randomizeAllNumbers()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-3 rounded-lg text-sm transition duration-150 flex items-center justify-center gap-2 shadow-lg">
+                🎲 Tạo Số Ngẫu Nhiên
+            </button>
+            <button onclick="takeScreenshot11()" id="btn-save" class="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-extrabold py-2.5 px-3 rounded-lg text-sm transition duration-150 flex items-center justify-center gap-2 shadow-lg shadow-yellow-500/20">
+                📥 Tải Ảnh 1:1 Facebook
+            </button>
+        </div>
+
+        <!-- PHẦN MỚI: BẢNG CHỈNH MÀU SẮC & GIAO DIỆN -->
+        <div class="bg-zinc-900/90 border border-zinc-700/80 rounded-lg p-3 mb-5">
+            <div class="flex justify-between items-center mb-3">
+                <h4 class="text-sm font-bold text-amber-400 flex items-center gap-1.5">
+                    🎨 Tùy Chỉnh Màu Sắc & Phong Thủy
+                </h4>
+                <button onclick="resetColors()" class="text-[11px] text-zinc-400 hover:text-white underline">Khôi phục mặc định</button>
+            </div>
+
+            <!-- Bộ màu mẫu chọn nhanh (Presets) -->
+            <div class="mb-3">
+                <span class="block text-[11px] text-zinc-400 mb-1.5 font-semibold">BỘ MÀU MẪU NHANH:</span>
+                <div class="grid grid-cols-4 gap-2">
+                    <button onclick="applyPreset('gold')" class="bg-gradient-to-r from-[#fceabb] to-[#f8b500] text-black font-bold text-[11px] py-1.5 rounded border border-yellow-600 shadow hover:opacity-90">
+                        Vàng Hoàng Gia
+                    </button>
+                    <button onclick="applyPreset('red')" class="bg-gradient-to-r from-[#b91c1c] to-[#7f1d1d] text-yellow-300 font-bold text-[11px] py-1.5 rounded border border-red-400 shadow hover:opacity-90">
+                        Đỏ Tài Lộc
+                    </button>
+                    <button onclick="applyPreset('emerald')" class="bg-gradient-to-r from-[#065f46] to-[#064e3b] text-emerald-200 font-bold text-[11px] py-1.5 rounded border border-emerald-400 shadow hover:opacity-90">
+                        Ngọc Lục Bảo
+                    </button>
+                    <button onclick="applyPreset('royal')" class="bg-gradient-to-r from-[#1e1b4b] to-[#312e81] text-amber-300 font-bold text-[11px] py-1.5 rounded border border-indigo-400 shadow hover:opacity-90">
+                        Xanh Huyền Bí
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chi tiết từng ô màu tự chọn -->
+            <div class="grid grid-cols-3 sm:grid-cols-4 gap-2.5 text-[11px]">
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Nền chính 1</label>
+                    <input type="color" id="col-bg-1" value="#fceabb" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Nền chính 2</label>
+                    <input type="color" id="col-bg-2" value="#f8b500" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Viền khung lớn</label>
+                    <input type="color" id="col-border" value="#b8860b" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Nền tiêu đề</label>
+                    <input type="color" id="col-header-bg" value="#000000" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Chữ tiêu đề</label>
+                    <input type="color" id="col-title" value="#ffd700" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Chữ ngày tháng</label>
+                    <input type="color" id="col-subtitle" value="#ffffff" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Tên con giáp</label>
+                    <input type="color" id="col-zodiac" value="#4b0000" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Màu con số</label>
+                    <input type="color" id="col-num" value="#8b0000" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Chữ lời khuyên</label>
+                    <input type="color" id="col-advice" value="#222222" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700">
+                    <label class="block text-zinc-300 mb-1 truncate">Chữ chân trang</label>
+                    <input type="color" id="col-footer" value="#4b0000" oninput="updateCustomColors()">
+                </div>
+                <div class="bg-zinc-800 p-1.5 rounded border border-zinc-700 col-span-2">
+                    <label class="block text-zinc-300 mb-1 truncate">Độ sáng ô con giáp</label>
+                    <input type="range" id="col-card-alpha" min="0.05" max="0.95" step="0.05" value="0.25" class="w-full accent-yellow-500 mt-1" oninput="updateCustomColors()">
+                </div>
+            </div>
+        </div>
+
+        <!-- Điều chỉnh ngày tháng và tiêu đề -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
+            <div>
+                <label class="block text-xs text-zinc-400 mb-1 font-bold">TIÊU ĐỀ CHÍNH</label>
+                <input type="text" id="input-title" class="w-full bg-zinc-900 border border-zinc-700 text-yellow-400 rounded px-2 py-1.5 text-sm font-semibold focus:outline-none focus:border-yellow-500" value="SỐ MAY MẮN 12 CON GIÁP" oninput="updateHeader()">
+            </div>
+            <div>
+                <label class="block text-xs text-zinc-400 mb-1 font-bold">THỜI GIAN HIỂN THỊ (DƯƠNG & ÂM)</label>
+                <input type="text" id="input-date" class="w-full bg-zinc-900 border border-zinc-700 text-white rounded px-2 py-1.5 text-sm focus:outline-none focus:border-yellow-500" value="Thứ Ba - 07/07/2026 (23/05 Âm lịch)" oninput="updateHeader()">
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="block text-xs text-zinc-400 mb-1 font-bold">DÒNG CHỮ CHÂN TRANG</label>
+            <input type="text" id="input-footer" class="w-full bg-zinc-900 border border-zinc-700 text-red-400 rounded px-2 py-1.5 text-xs focus:outline-none focus:border-red-500" value="SỐ THAM KHẢO - TỰ CHỊU TRÁCH NHIỆM" oninput="updateHeader()">
+        </div>
+
+        <!-- Chỉnh sửa chi tiết nhanh từng con giáp -->
+        <h4 class="text-sm font-bold text-zinc-300 mb-3 border-t border-zinc-700 pt-3">✏️ Chỉnh Sửa Nhanh Từng Con Giáp</h4>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 max-h-[160px] overflow-y-auto pr-1" id="zodiac-edit-list">
+            <!-- Sẽ được render bằng JS -->
+        </div>
+    </div>
+
+    <script>
+        const zodiacs = ["TÝ", "SỬU", "DẦN", "MÃO", "THÌN", "TỴ", "NGỌ", "MÙI", "THÂN", "DẬU", "TUẤT", "HỢI"];
+
+        // Bộ cấu hình màu sắc mẫu (Presets)
+        const colorPresets = {
+            gold: {
+                bg1: '#fceabb', bg2: '#f8b500', border: '#b8860b',
+                headerBg: '#000000', headerBorder: '#ffd700', title: '#ffd700', subtitle: '#ffffff',
+                zodiac: '#4b0000', advice: '#222222', num: '#8b0000', numBg: 'rgba(255, 255, 255, 0.65)',
+                footer: '#4b0000', cardAlpha: 0.25, cardBorder: 'rgba(184, 134, 11, 0.45)'
+            },
+            red: {
+                bg1: '#dc2626', bg2: '#7f1d1d', border: '#fbbf24',
+                headerBg: '#450a0a', headerBorder: '#fbbf24', title: '#fde047', subtitle: '#ffffff',
+                zodiac: '#fef08a', advice: '#fecaca', num: '#991b1b', numBg: 'rgba(255, 255, 255, 0.9)',
+                footer: '#fde047', cardAlpha: 0.15, cardBorder: 'rgba(251, 191, 36, 0.5)'
+            },
+            emerald: {
+                bg1: '#10b981', bg2: '#064e3b', border: '#fcd34d',
+                headerBg: '#022c22', headerBorder: '#fcd34d', title: '#fde047', subtitle: '#ecfdf5',
+                zodiac: '#fef08a', advice: '#d1fae5', num: '#065f46', numBg: 'rgba(255, 255, 255, 0.9)',
+                footer: '#fde047', cardAlpha: 0.15, cardBorder: 'rgba(252, 211, 77, 0.4)'
+            },
+            royal: {
+                bg1: '#312e81', bg2: '#0f172a', border: '#f59e0b',
+                headerBg: '#020617', headerBorder: '#f59e0b', title: '#fbbf24', subtitle: '#e2e8f0',
+                zodiac: '#fcd34d', advice: '#cbd5e1', num: '#1e1b4b', numBg: 'rgba(254, 243, 199, 0.92)',
+                footer: '#fbbf24', cardAlpha: 0.12, cardBorder: 'rgba(245, 158, 11, 0.45)'
+            }
+        };
+
+        // Áp dụng bộ màu mẫu
+        function applyPreset(key) {
+            const p = colorPresets[key];
+            if (!p) return;
+
+            document.getElementById('col-bg-1').value = p.bg1;
+            document.getElementById('col-bg-2').value = p.bg2;
+            document.getElementById('col-border').value = p.border;
+            document.getElementById('col-header-bg').value = p.headerBg;
+            document.getElementById('col-title').value = p.title;
+            document.getElementById('col-subtitle').value = p.subtitle;
+            document.getElementById('col-zodiac').value = p.zodiac;
+            document.getElementById('col-advice').value = p.advice;
+            document.getElementById('col-num').value = p.num;
+            document.getElementById('col-footer').value = p.footer;
+            document.getElementById('col-card-alpha').value = p.cardAlpha;
+
+            document.documentElement.style.setProperty('--header-border', p.headerBorder);
+            document.documentElement.style.setProperty('--num-bg', p.numBg);
+            document.documentElement.style.setProperty('--card-border', p.cardBorder);
+
+            updateCustomColors();
+        }
+
+        // Cập nhật biến CSS theo từng ô chọn màu
+        function updateCustomColors() {
+            const root = document.documentElement;
+            const alpha = document.getElementById('col-card-alpha').value;
+            const borderCol = document.getElementById('col-border').value;
+
+            root.style.setProperty('--bg-grad-1', document.getElementById('col-bg-1').value);
+            root.style.setProperty('--bg-grad-2', document.getElementById('col-bg-2').value);
+            root.style.setProperty('--border-main', borderCol);
+            root.style.setProperty('--header-bg', document.getElementById('col-header-bg').value);
+            root.style.setProperty('--header-border', document.getElementById('col-title').value);
+            root.style.setProperty('--title-color', document.getElementById('col-title').value);
+            root.style.setProperty('--sub-title-color', document.getElementById('col-subtitle').value);
+            root.style.setProperty('--zodiac-name-color', document.getElementById('col-zodiac').value);
+            root.style.setProperty('--advice-color', document.getElementById('col-advice').value);
+            root.style.setProperty('--num-color', document.getElementById('col-num').value);
+            root.style.setProperty('--footer-color', document.getElementById('col-footer').value);
+            root.style.setProperty('--card-bg', `rgba(255, 255, 255, ${alpha})`);
+        }
+
+        function resetColors() {
+            applyPreset('gold');
+        }
+
+        // Khởi tạo danh sách form chỉnh sửa 12 con giáp
+        function initEditForms() {
+            const container = document.getElementById('zodiac-edit-list');
+            container.innerHTML = '';
+            zodiacs.forEach((name, idx) => {
+                const currentAdv = document.getElementById(`adv-${idx}`).innerText;
+                const currentNum = document.getElementById(`num-${idx}`).innerText;
+                container.innerHTML += `
+                    <div class="bg-zinc-900 p-2 rounded border border-zinc-800 text-xs flex flex-col gap-1">
+                        <span class="text-yellow-500 font-bold">Tuổi ${name}</span>
+                        <input type="text" id="edit-adv-${idx}" class="bg-zinc-800 border border-zinc-700 text-white px-1 py-0.5 rounded text-[10px]" value="${currentAdv}" placeholder="Lời khuyên" oninput="applyZodiacEdit(${idx})">
+                        <input type="text" id="edit-num-${idx}" class="bg-zinc-800 border border-zinc-700 text-yellow-400 px-1 py-0.5 rounded font-mono text-[11px]" value="${currentNum}" placeholder="Số may mắn" oninput="applyZodiacEdit(${idx})">
+                    </div>
+                `;
+            });
+        }
+
+        function updateHeader() {
+            document.getElementById('display-title').innerText = document.getElementById('input-title').value;
+            document.getElementById('display-date').innerText = document.getElementById('input-date').value;
+            document.getElementById('display-footer').innerText = document.getElementById('input-footer').value;
+        }
+
+        function applyZodiacEdit(index) {
+            document.getElementById(`adv-${index}`).innerText = document.getElementById(`edit-adv-${index}`).value;
+            document.getElementById(`num-${index}`).innerText = document.getElementById(`edit-num-${index}`).value;
+        }
+
+        function generateRandomNumber() {
+            return String(Math.floor(Math.random() * 99) + 1).padStart(2, '0');
+        }
+
+        function randomizeAllNumbers() {
+            for (let i = 0; i < 12; i++) {
+                let n1 = generateRandomNumber();
+                let n2 = generateRandomNumber();
+                while (n2 === n1) n2 = generateRandomNumber();
+                let n3 = generateRandomNumber();
+                while (n3 === n1 || n3 === n2) n3 = generateRandomNumber();
+
+                const freshNumbers = `${n1} - ${n2} - ${n3}`;
+                document.getElementById(`num-${i}`).innerText = freshNumbers;
+                document.getElementById(`edit-num-${i}`).value = freshNumbers;
+            }
+        }
+
+        function takeScreenshot11() {
+            const btn = document.getElementById('btn-save');
+            const area = document.getElementById('capture-area');
+            const currentDateStr = document.getElementById('input-date').value.replace(/[\/]/g, '-');
+            
+            btn.innerText = "Đang kết xuất ảnh...";
+            btn.disabled = true;
+
+            html2canvas(area, {
+                scale: 3,
+                useCORS: true,
+                backgroundColor: "#000000"
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `so-may-man-fb-1-1-${currentDateStr}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+                
+                btn.innerHTML = `📥 Tải Ảnh 1:1 Facebook`;
+                btn.disabled = false;
+            }).catch(err => {
+                console.error("Lỗi tạo ảnh: ", err);
+                btn.innerHTML = `📥 Tải Ảnh 1:1 Facebook`;
+                btn.disabled = false;
+            });
+        }
+
+        window.onload = function() {
+            initEditForms();
+        }
+    </script>
+
+</body>
+</html>
