@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tin quốc tế và túi tiền người Việt</title>
+<style>
+:root{
+ --navy:#102d52;--blue:#176ca4;--red:#c92d35;
+ --green:#16804d;--gold:#efbc38;--ink:#17314a;
+}
+*{box-sizing:border-box}
+body{
+ margin:0;background:#dce9f2;color:var(--ink);
+ font-family:Arial,Helvetica,sans-serif;
+}
+header{
+ background:var(--navy);color:white;padding:12px 22px;
+ display:flex;align-items:center;justify-content:space-between;
+ gap:12px;flex-wrap:wrap;
+}
+header strong{font-size:18px}
+header span{font-size:14px;color:#d6e8f4}
+main{max-width:1420px;margin:auto;padding:20px 26px 105px}
+.slide{display:none;animation:appear .2s ease}
+.slide.active{display:block}
+@keyframes appear{from{opacity:.3}to{opacity:1}}
+.kicker{
+ color:var(--blue);font-weight:bold;letter-spacing:1px;
+ font-size:15px;text-transform:uppercase;margin:0 0 10px;
+}
+h1{font-size:clamp(30px,4.3vw,57px);line-height:1.12;margin:0 0 18px}
+h2{font-size:clamp(28px,3.4vw,43px);margin:0 0 20px}
+h3{font-size:23px;margin:0 0 12px}
+p,li{font-size:clamp(18px,1.8vw,24px);line-height:1.5}
+p{margin:10px 0}
+ul{margin:8px 0;padding-left:25px}
+li{margin-bottom:10px}
+.lead{font-size:clamp(21px,2.3vw,30px);max-width:1000px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+ background:white;border-radius:18px;padding:24px;
+ box-shadow:0 6px 24px #17314a0b;border:1px solid #d0dfe9;
+}
+.card.red{border-top:7px solid var(--red)}
+.card.green{border-top:7px solid var(--green)}
+.card.blue{border-top:7px solid var(--blue)}
+.card.gold{border-top:7px solid var(--gold)}
+.band{
+ background:var(--navy);color:white;border-radius:16px;
+ padding:17px 22px;margin-top:20px;font-size:23px;line-height:1.45;
+}
+.warning{
+ padding:14px 18px;border-left:5px solid var(--gold);
+ background:#fff7df;border-radius:8px;margin:16px 0;
+ font-size:18px;line-height:1.5;
+}
+.small{font-size:15px;line-height:1.5;color:#52697b}
+.big{font-size:clamp(28px,3.4vw,46px);font-weight:bold}
+.tag{
+ display:inline-block;background:#e6f1f8;color:var(--blue);
+ border-radius:20px;padding:7px 14px;font-size:16px;margin:4px;
+}
+.flow{
+ display:grid;grid-template-columns:repeat(5,1fr);gap:12px;
+ margin:26px 0;
+}
+.step{
+ background:white;padding:22px 13px;border-radius:14px;
+ text-align:center;border-bottom:6px solid var(--blue);
+ font-size:22px;font-weight:bold;
+}
+.step small{display:block;font-size:16px;font-weight:normal;margin-top:12px;line-height:1.4}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:Arial,Helvetica,sans-serif}
+footer{
+ position:fixed;bottom:0;left:0;right:0;background:#102d52;
+ color:white;padding:11px 15px;z-index:30;display:flex;
+ align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+}
+button{
+ border:0;border-radius:8px;background:#fff;color:var(--navy);
+ padding:10px 13px;font-size:15px;cursor:pointer;
+}
+button:hover{background:#ffdf77}
+button.on{background:var(--gold)}
+.counter{min-width:70px;text-align:center}
+#ink{
+ position:fixed;inset:0;width:100%;height:100%;
+ z-index:20;pointer-events:none;touch-action:none;
+}
+#notesPanel{
+ display:none;position:fixed;inset:5%;background:white;
+ z-index:50;border:3px solid var(--navy);border-radius:16px;
+ overflow:auto;padding:25px;box-shadow:0 15px 100px #0005;
+}
+#notesPanel.open{display:block}
+#notesPanel h2{font-size:28px}
+#notesPanel p{font-size:19px}
+.notesActions{display:flex;gap:10px;position:sticky;top:0;background:white;padding-bottom:14px}
+.notesActions button{background:var(--navy);color:white}
+.notePage{padding:15px 0;border-bottom:1px solid #ddd}
+[contenteditable="true"]{outline:2px dashed #d99e12;outline-offset:3px}
+@media(max-width:800px){
+ main{padding:18px 15px 155px}
+ .grid,.three{grid-template-columns:1fr}
+ .flow{grid-template-columns:1fr 1fr}
+ .step{font-size:19px}
+ footer{gap:5px}
+ button{font-size:13px;padding:9px}
+}
+@media print{
+ body{background:white}
+ header,main,footer,#ink,.notesActions{display:none!important}
+ #notesPanel{display:block!important;position:static;border:0;
+ box-shadow:none;overflow:visible;padding:0}
+ .notePage{break-inside:avoid}
+ #notesPanel p{font-size:12pt}
+ #notesPanel h3{font-size:16pt}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <strong>BẢN TIN GIẢI THÍCH • 19/11/2026</strong>
+ <span>Nhìn sự kiện quốc tế qua chi phí và thu nhập của gia đình</span>
+</header>
+
+<main>
+
+<section class="slide active">
+ <p class="kicker">Chuyện thế giới • Chuyện túi tiền</p>
+ <h1>TIN QUỐC TẾ<br>TÁC ĐỘNG ĐẾN TIỀN CỦA CHÚNG TA THẾ NÀO?</h1>
+ <p class="lead">
+ Từ đối thoại giữa các nước lớn đến giá dầu,
+ tiền chợ, lãi vay và tài sản của người Việt.
+ </p>
+ <div class="grid">
+  <div class="card red">
+   <h3>Khi rủi ro tăng</h3>
+   <p>Thị trường lo về nguồn cung, vận chuyển và chi phí.</p>
+  </div>
+  <div class="card green">
+   <h3>Khi căng thẳng hạ nhiệt</h3>
+   <p>Tâm lý có thể ổn định hơn — nhưng phải xem kết quả thực tế.</p>
+  </div>
+ </div>
+ <div class="warning">
+ Trạng thái kiểm chứng: bài này không xác nhận cuộc gặp
+ ba bên Mỹ – Trung Quốc – Nga đã diễn ra hoặc có kết quả.
+ Nội dung là phân tích kịch bản, không phải bản tin kết quả hội nghị.
+ </div>
+ <p class="small">
+ Nội dung giáo dục và giải thích cơ chế; không phải chỉ dẫn mua bán tài sản.
+ </p>
+</section>
+
+<section class="slide">
+ <p class="kicker">01 • Trước khi bình luận</p>
+ <h2>ĐỪNG ĐI TỪ “DỰ KIẾN” ĐẾN “ĐÃ XẢY RA”</h2>
+ <div class="three">
+  <div class="card blue">
+   <h3>Bước 1: Xác nhận</h3>
+   <p>Ai gặp ai? Ở đâu? Khi nào? Có thông báo chính thức không?</p>
+  </div>
+  <div class="card gold">
+   <h3>Bước 2: Đọc kết quả</h3>
+   <p>Có thỏa thuận cụ thể hay chỉ có tuyên bố thiện chí?</p>
+  </div>
+  <div class="card green">
+   <h3>Bước 3: Xem thực thi</h3>
+   <p>Nguồn cung, thuế quan và vận chuyển có thực sự thay đổi không?</p>
+  </div>
+ </div>
+ <div class="band">
+ Thị trường có thể phản ứng với kỳ vọng trước,
+ nhưng đời sống thay đổi qua những việc được thực hiện sau đó.
+ </div>
+</section>
+
+<section class="slide">
+ <p class="kicker">02 • Đường truyền tác động</p>
+ <h2>TỪ BÀN ĐÀM PHÁN ĐẾN BỮA CƠM GIA ĐÌNH</h2>
+ <div class="flow">
+  <div class="step">Sự kiện quốc tế<small>Xung đột, đối thoại, thương mại</small></div>
+  <div class="step">Nguồn cung<small>Dầu, vận chuyển, nguyên liệu</small></div>
+  <div class="step">Chi phí doanh nghiệp<small>Nhiên liệu, vốn vay, nhập hàng</small></div>
+  <div class="step">Giá và việc làm<small>Giá bán, đơn hàng, thu nhập</small></div>
+  <div class="step">Túi tiền<small>Tiền chợ, tiền vay, tiền để dành</small></div>
+ </div>
+ <div class="grid">
+  <div class="card red">
+   <h3>Không phải tác động tức thì</h3>
+   <p>Còn tùy hợp đồng, tồn kho, thuế phí và cơ chế điều hành.</p>
+  </div>
+  <div class="card green">
+   <h3>Không phải ngành nào cũng giống nhau</h3>
+   <p>Cùng một biến động giá dầu, có bên chịu chi phí và có bên hưởng lợi.</p>
+  </div>
+ </div>
+</section>
+
+<section class="slide">
+ <p class="kicker">03 • Năng lượng</p>
+ <h2>GIÁ DẦU: ĐỪNG CHỈ NHÌN MỘT CHIỀU</h2>
+ <div class="grid">
+  <div class="card">
+   <svg class="chart" viewBox="0 0 650 390" role="img"
+        aria-label="Sơ đồ kịch bản giá dầu, không phải số liệu thị trường">
+    <line x1="65" y1="320" x2="610" y2="320" stroke="#9aafbe" stroke-width="2"/>
+    <text x="70" y="40" fill="#17314a" font-size="22" font-weight="bold">BA ĐƯỜNG ĐI CÓ THỂ XẢY RA</text>
+    <path d="M75 190 L230 185 L380 130 L570 75"
+      stroke="#c92d35" stroke-width="7" fill="none"/>
+    <path d="M75 190 L230 185 L380 185 L570 175"
+      stroke="#bd8715" stroke-width="7" fill="none" stroke-dasharray="12 8"/>
+    <path d="M75 190 L230 185 L380 240 L570 285"
+      stroke="#16804d" stroke-width="7" fill="none"/>
+    <text x="385" y="104" fill="#c92d35" font-size="20">Lo gián đoạn nguồn cung</text>
+    <text x="395" y="215" fill="#91630e" font-size="20">Chưa có thay đổi rõ</text>
+    <text x="385" y="317" fill="#16804d" font-size="20">Rủi ro nguồn cung giảm</text>
+    <text x="75" y="365" fill="#52697b" font-size="17">Sơ đồ minh họa • Không có mục tiêu giá</text>
+   </svg>
+  </div>
+  <div class="card blue">
+   <h3>Điều cần giải thích cho người xem</h3>
+   <ul>
+    <li>Lo thiếu nguồn cung có thể đẩy giá lên.</li>
+    <li>Rủi ro giảm có thể làm giá dịu lại.</li>
+    <li>Nhu cầu kinh tế yếu cũng có thể làm dầu giảm.</li>
+   </ul>
+  </div>
+ </div>
+ <div class="band">
+ Dầu giảm vì nguồn cung tốt hơn khác với dầu giảm vì kinh tế yếu đi.
+ </div>
+</section>
+
+<section class="slide">
+ <p class="kicker">04 • Cuộc sống</p>
+ <h2>AI CẢM NHẬN TRƯỚC TRONG ĐỜI SỐNG?</h2>
+ <div class="three">
+  <div class="card blue">
+   <h3>Gia đình</h3>
+   <p>Chi phí đi lại, giao hàng và những khoản chi thường xuyên.</p>
+   <p class="small">Giá bán lẻ không nhất thiết thay đổi ngay theo giá dầu.</p>
+  </div>
+  <div class="card gold">
+   <h3>Người kinh doanh</h3>
+   <p>Giá nhập hàng, vận chuyển, đơn hàng và mức lợi nhuận.</p>
+   <p class="small">Khả năng tăng giá bán khác nhau giữa các ngành.</p>
+  </div>
+  <div class="card green">
+   <h3>Người làm công</h3>
+   <p>Sức mua của tiền lương và sự ổn định của thu nhập.</p>
+   <p class="small">Tác động việc làm còn tùy tình hình từng doanh nghiệp.</p>
+  </div>
+ </div>
+ <div class="band">
+ Câu hỏi quan trọng: chi phí tăng hay thu nhập giảm có làm
+ gia đình thiếu tiền vào cuối tháng không?
+ </div>
+</section>
+
+<section class="slide">
+ <p class="kicker">05 • Vàng và tiền gửi</p>
+ <h2>VÀNG VÀ TIẾT KIỆM KHÔNG PHẢI HAI CHIẾC BẬP BÊNH</h2>
+ <div class="grid">
+  <div class="card gold">
+   <h3>Vàng chịu nhiều lực cùng lúc</h3>
+   <ul>
+    <li>Nhu cầu trú ẩn khi bất ổn tăng.</li>
+    <li>Lãi suất và sức mạnh đồng đô la Mỹ.</li>
+    <li>Tỷ giá và chênh lệch mua – bán trong nước.</li>
+   </ul>
+  </div>
+  <div class="card green">
+   <h3>Tiền gửi cần xem đúng điều kiện</h3>
+   <ul>
+    <li>Lãi suất theo kỳ hạn và số tiền gửi.</li>
+    <li>Khi nào gia đình cần dùng lại tiền?</li>
+    <li>Điều kiện rút trước hạn và nhận lãi.</li>
+   </ul>
+  </div>
+ </div>
+ <div class="band">
+ Vàng giảm không có nghĩa lãi suất tiết kiệm Việt Nam sẽ tăng.
+ Cần kiểm tra từng biến số riêng.
+ </div>
+</section>
+
+<section class="slide">
+ <p class="kicker">06 • Bất động sản</p>
+ <h2>NHÀ ĐẤT: NHÌN DÒNG TIỀN TRƯỚC KHI NHÌN TIN NÓNG</h2>
+ <div class="grid">
+  <div class="card red">
+   <h3>Đường truyền có thể gây áp lực</h3>
+   <p>Chi phí nguyên liệu, vận chuyển, vốn vay và khả năng trả nợ.</p>
+   <p>Nhưng từ tin quốc tế đến giá một căn nhà là một chuỗi dài.</p>
+  </div>
+  <div class="card blue">
+   <h3>Bốn câu cần hỏi</h3>
+   <ul>
+    <li>Pháp lý tài sản đã rõ chưa?</li>
+    <li>Có người mua hoặc thuê thực không?</li>
+    <li>Nếu lãi vay đổi, còn trả được không?</li>
+    <li>Nếu chưa bán được, giữ được bao lâu?</li>
+   </ul>
+  </div>
+ </div>
+ <div class="band">
+ Một cuộc gặp ngoại giao không tự giải quyết pháp lý dự án,
+ sức mua hay lịch trả nợ.
+ </div>
+</section>
+
+<section class="slide">
+ <p class="kicker">07 • Chứng khoán</p>
+ <h2>CÙNG MỘT TIN — CÁC NGÀNH CÓ THỂ ĐI KHÁC NHAU</h2>
+ <div class="three">
+  <div class="card blue">
+   <h3>Năng lượng</h3>
+   <p>Cần tách khai thác, lọc dầu và phân phối.</p>
+   <p class="small">Không mặc định dầu tăng thì mọi cổ phiếu dầu khí đều có lợi.</p>
+  </div>
+  <div class="card gold">
+   <h3>Vận tải, sản xuất</h3>
+   <p>Theo dõi chi phí nhiên liệu, nguyên liệu và sức mua.</p>
+   <p class="small">Còn tùy hợp đồng và khả năng chuyển chi phí sang giá bán.</p>
+  </div>
+  <div class="card red">
+   <h3>Doanh nghiệp vay nhiều</h3>
+   <p>Theo dõi lãi vay, tỷ giá, nợ đến hạn và tiền mặt.</p>
+   <p class="small">Tin tốt không thay thế được khả năng trả nợ.</p>
+  </div>
+ </div>
+ <div class="band">
+ Phân tích ngành là bước đầu. Kết luận về một cổ phiếu
+ cần báo cáo tài chính và định giá riêng.
+ </div>
+ <p class="small">
+ Không có số liệu chứng khoán trực tiếp hoặc chỉ dẫn giao dịch trong bản này.
+ </p>
+</section>
+
+<section class="slide">
+ <p class="kicker">08 • Bảng theo dõi</p>
+ <h2>BA KỊCH BẢN — BA CÁCH ĐẶT CÂU HỎI</h2>
+ <div class="three">
+  <div class="card green">
+   <h3>1. Căng thẳng hạ nhiệt</h3>
+   <p>Có thay đổi thực về vận chuyển, nguồn cung hay thuế quan không?</p>
+   <p class="small">Không chỉ nhìn ảnh bắt tay hoặc lời tuyên bố.</p>
+  </div>
+  <div class="card gold">
+   <h3>2. Chưa có bước tiến</h3>
+   <p>Thị trường đã kỳ vọng quá nhiều trước sự kiện hay chưa?</p>
+   <p class="small">Giá có thể dao động dù tình hình chưa đổi.</p>
+  </div>
+  <div class="card red">
+   <h3>3. Căng thẳng tăng</h3>
+   <p>Tuyến vận tải, nguồn năng lượng hoặc thương mại nào bị ảnh hưởng?</p>
+   <p class="small">Tìm tác động cụ thể, không suy diễn mọi thứ cùng xấu.</p>
+  </div>
+ </div>
+ <div class="warning">
+ Các kịch bản không được gán xác suất hoặc mục tiêu giá vì chưa có
+ cơ sở định lượng trong bài này.
+ </div>
+</section>
+
+<section class="slide">
+ <p class="kicker">09 • Lời kết</p>
+ <h2>HIỂU TIN ĐỂ BÌNH TĨNH HƠN,<br>KHÔNG PHẢI ĐỂ VỘI VÀNG HƠN</h2>
+ <div class="card">
+  <p class="big">Tin gì? → Đã xác nhận chưa? → Ảnh hưởng qua đâu?</p>
+  <p class="big">→ Khi nào? → Liên quan gì đến gia đình mình?</p>
+ </div>
+ <div class="band">
+ “Chúng ta không cần đoán đúng mọi biến động.
+ Chúng ta cần hiểu mình đang giữ gì, đang nợ gì
+ và khi nào cần dùng tiền.”
+ </div>
+ <div class="warning">
+ Ghi chú biên tập: đây là bài giải thích kịch bản.
+ Muốn chuyển thành bản tin thời sự, cần bổ sung nguồn chính thức,
+ kết quả sự kiện và số liệu có thời điểm cập nhật.
+ </div>
+</section>
+
+</main>
+
+<canvas id="ink"></canvas>
+
+<footer>
+ <button onclick="move(-1)">← Trước</button>
+ <span class="counter" id="counter"></span>
+ <button onclick="move(1)">Sau →</button>
+ <button id="penBtn" onclick="togglePen()">Bút vẽ: Tắt</button>
+ <button onclick="setColor('#e32e38')" style="color:#c92d35">Đỏ</button>
+ <button onclick="setColor('#16804d')" style="color:#16804d">Xanh</button>
+ <button onclick="clearInk()">Xóa nét</button>
+ <button id="editBtn" onclick="toggleEdit()">Sửa nội dung</button>
+ <button onclick="toggleFull()">Toàn màn hình</button>
+ <button onclick="openNotes()">Bản dẫn chuyện</button>
+</footer>
+
+<div id="notesPanel" role="dialog" aria-label="Bản dẫn chuyện để in">
+ <div class="notesActions">
+  <button onclick="window.print()">In bản dẫn chuyện</button>
+  <button onclick="closeNotes()">Đóng</button>
+ </div>
+ <h2>BẢN DẪN CHUYỆN • 19/11/2026</h2>
+ <p>
+ Dành để nhìn ý rồi nói tự nhiên. Đây là bài phân tích kịch bản,
+ không xác nhận một cuộc gặp ba bên hoặc kết quả chưa được kiểm chứng.
+ </p>
+
+ <div class="notePage">
+  <h3>Trang 1 • Mở câu chuyện</h3>
+  <p>
+  “Thưa anh chị, nghe chuyện các nước lớn gặp nhau, chúng ta thường hỏi:
+  thế giới sẽ thay đổi ra sao? Hôm nay tôi muốn bắt đầu bằng câu gần gũi hơn:
+  tiền đi chợ, tiền xăng, tiền vay và khoản để dành của gia đình
+  có thể chịu ảnh hưởng qua những con đường nào?”
+  </p>
+  <p>
+  Nhấn mạnh: chỉ bàn về cơ chế và kịch bản. Không thông báo kết quả
+  một cuộc gặp khi chưa có nguồn xác nhận.
+  </p>
+  <p>Gợi ý khoanh: “Chuyện túi tiền”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 2 • Phân biệt dự kiến và sự thật</h3>
+  <p>
+  “Một sự kiện được dự kiến không có nghĩa là đã diễn ra.
+  Đã diễn ra không có nghĩa là đã có thỏa thuận.
+  Và có thỏa thuận rồi, chúng ta còn phải xem thực hiện thế nào.”
+  </p>
+  <p>
+  Ví dụ cách giải thích: giống như chuyện hai người hẹn bàn mua bán.
+  Hẹn gặp, ký hợp đồng và giao hàng là ba bước khác nhau.
+  </p>
+  <p>Gợi ý khoanh: ba chữ “Xác nhận – Kết quả – Thực thi”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 3 • Từ tin thế giới đến gia đình</h3>
+  <p>
+  “Không phải ở nước ngoài có một tin lớn là ngay lập tức
+  giá ở chợ thay đổi. Tin ấy phải đi qua nguồn cung, vận chuyển,
+  chi phí doanh nghiệp rồi mới có thể đến giá bán hoặc thu nhập.”
+  </p>
+  <p>
+  Nhấn mạnh: có độ trễ và không tác động như nhau đến mọi gia đình.
+  </p>
+  <p>Gợi ý vẽ: nối từ “Nguồn cung” sang “Chi phí” rồi đến “Túi tiền”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 4 • Giải thích giá dầu</h3>
+  <p>
+  “Giá dầu giảm chưa chắc lúc nào cũng là tin tốt như nhau.
+  Nếu giảm vì nguồn cung thuận lợi hơn thì khác với giảm vì
+  người ta lo kinh tế yếu, ít sản xuất và ít vận chuyển hơn.”
+  </p>
+  <p>
+  Chỉ vào ba đường: đây là sơ đồ minh họa, không phải biểu đồ giá hôm nay
+  và không có mục tiêu giá.
+  </p>
+  <p>Gợi ý khoanh: “Không có mục tiêu giá”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 5 • Câu chuyện đời sống</h3>
+  <p>
+  “Người có ô tô nhìn giá xăng. Người bán hàng nhìn tiền chở hàng.
+  Người làm công nhìn lương có đủ chi hay không.
+  Cùng một tin quốc tế nhưng mỗi người cảm nhận ở một khoản khác nhau.”
+  </p>
+  <p>
+  Câu hỏi gợi chuyện: “Trong gia đình anh chị, khoản nào thay đổi
+  làm mình cảm thấy rõ nhất: đi lại, thực phẩm hay tiền trả nợ?”
+  </p>
+  <p>Gợi ý khoanh: “Gia đình – Người kinh doanh – Người làm công”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 6 • Vàng và tiền gửi</h3>
+  <p>
+  “Tôi không muốn biến câu chuyện thành vàng giảm thì
+  phải chuyển hết sang tiết kiệm. Hai tài sản này khác nhau.
+  Trước hết phải biết khi nào mình cần tiền và chịu được biến động đến đâu.”
+  </p>
+  <p>
+  Nếu có người hỏi lãi suất hoặc giá vàng hôm nay:
+  cần tra bảng mới, nói rõ ngân hàng, sản phẩm và giờ cập nhật;
+  không dùng con số nhớ từ hôm trước.
+  </p>
+  <p>Gợi ý khoanh: “Khi nào cần dùng lại tiền?”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 7 • Nhà đất</h3>
+  <p>
+  “Một tin tốt ở nước ngoài không tự làm giấy tờ căn nhà rõ hơn,
+  không tự tạo người thuê và không trả lãi ngân hàng thay chúng ta.
+  Vì vậy, nói về nhà đất vẫn phải quay lại pháp lý và dòng tiền.”
+  </p>
+  <p>
+  Ví dụ giả định: nếu một tài sản chưa bán được trong thời gian dài,
+  gia đình có chịu được tiền lãi và chi phí giữ tài sản không?
+  </p>
+  <p>Gợi ý khoanh: “Nếu chưa bán được, giữ được bao lâu?”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 8 • Chứng khoán</h3>
+  <p>
+  “Nghe dầu tăng, không nên kết luận mọi doanh nghiệp dầu khí đều có lợi.
+  Phải nhìn doanh nghiệp làm khâu nào, chi phí ra sao và vay nợ bao nhiêu.”
+  </p>
+  <p>
+  Nhấn mạnh: phân tích ngành khác với kết luận mua một cổ phiếu.
+  Không có bảng giá trực tiếp hoặc điểm mua bán trong bản trình chiếu này.
+  </p>
+  <p>Gợi ý khoanh: “Khai thác – Lọc dầu – Phân phối”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 9 • Ba kịch bản</h3>
+  <p>
+  “Chúng ta không cần đoán trước chắc chắn một hướng.
+  Ta chuẩn bị ba câu hỏi: nếu hạ nhiệt thì điều gì thay đổi;
+  nếu chưa tiến triển thì thị trường đã kỳ vọng quá mức chưa;
+  nếu căng thẳng tăng thì nguồn cung nào bị ảnh hưởng thật?”
+  </p>
+  <p>
+  Không đọc các kịch bản thành dự báo chắc chắn.
+  Không tự gán xác suất.
+  </p>
+  <p>Gợi ý khoanh: một kịch bản rồi nhắc “Đây là khả năng, chưa phải kết quả”.</p>
+ </div>
+
+ <div class="notePage">
+  <h3>Trang 10 • Kết</h3>
+  <p>
+  “Điều tôi muốn chia sẻ không phải là một lời thúc giục mua hoặc bán.
+  Tôi mong chúng ta nghe tin bình tĩnh hơn, biết kiểm tra hơn
+  và hiểu tiền của gia đình mình rõ hơn.”
+  </p>
+  <p>
+  “Cảm ơn anh chị đã theo dõi. Trước mỗi quyết định lớn,
+  hãy kiểm tra lại thông tin và khả năng tài chính của mình.”
+  </p>
+ </div>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+const canvas=document.getElementById('ink');
+const ctx=canvas.getContext('2d');
+let page=0,pen=false,drawing=false,editing=false;
+let color='#e32e38',strokes=[],current=null;
+const saved={};
+
+function redraw(){
+ ctx.clearRect(0,0,innerWidth,innerHeight);
+ for(const line of strokes){
+  if(!line.points.length)continue;
+  ctx.beginPath();
+  ctx.strokeStyle=line.color;
+  ctx.fillStyle=line.color;
+  ctx.lineWidth=4;
+  ctx.lineCap='round';ctx.lineJoin='round';
+  const pts=line.points;
+  ctx.moveTo(pts[0].x*innerWidth,pts[0].y*innerHeight);
+  if(pts.length===1){
+   ctx.arc(pts[0].x*innerWidth,pts[0].y*innerHeight,2,0,Math.PI*2);
+   ctx.fill();
+  }else{
+   for(let j=1;j<pts.length;j++)
+    ctx.lineTo(pts[j].x*innerWidth,pts[j].y*innerHeight);
+   ctx.stroke();
+  }
+ }
+}
+function resize(){
+ const dpr=window.devicePixelRatio||1;
+ canvas.width=innerWidth*dpr;canvas.height=innerHeight*dpr;
+ ctx.setTransform(dpr,0,0,dpr,0,0);redraw();
+}
+function move(delta){
+ if(page+delta<0||page+delta>=slides.length)return;
+ drawing=false;current=null;
+ saved[page]=strokes;
+ slides[page].classList.remove('active');
+ page+=delta;
+ slides[page].classList.add('active');
+ strokes=saved[page]||[];
+ window.scrollTo(0,0);
+ update();redraw();
+}
+function update(){
+ document.getElementById('counter').textContent=(page+1)+' / '+slides.length;
+}
+function togglePen(){
+ if(editing)toggleEdit();
+ pen=!pen;
+ canvas.style.pointerEvents=pen?'auto':'none';
+ const b=document.getElementById('penBtn');
+ b.textContent='Bút vẽ: '+(pen?'Bật':'Tắt');
+ b.classList.toggle('on',pen);
+}
+function setColor(c){color=c;if(!pen)togglePen()}
+function clearInk(){strokes=[];saved[page]=strokes;redraw()}
+function toggleEdit(){
+ if(pen)togglePen();
+ editing=!editing;
+ document.querySelectorAll('main h1,main h2,main h3,main p,main li')
+ .forEach(el=>el.contentEditable=editing?'true':'false');
+ document.getElementById('editBtn').textContent=
+ editing?'Xong sửa':'Sửa nội dung';
+}
+function openNotes(){
+ document.getElementById('notesPanel').classList.add('open');
+}
+function closeNotes(){
+ document.getElementById('notesPanel').classList.remove('open');
+}
+async function toggleFull(){
+ try{
+  if(!document.fullscreenElement)await document.documentElement.requestFullscreen();
+  else await document.exitFullscreen();
+ }catch(e){
+  alert('Trình duyệt chưa cho phép toàn màn hình. Chị có thể phóng to cửa sổ để xem.');
+ }
+}
+canvas.addEventListener('pointerdown',e=>{
+ if(!pen)return;
+ drawing=true;
+ current={color,points:[{x:e.clientX/innerWidth,y:e.clientY/innerHeight}]};
+ strokes.push(current);
+ canvas.setPointerCapture(e.pointerId);
+ redraw();
+});
+canvas.addEventListener('pointermove',e=>{
+ if(!drawing||!current)return;
+ current.points.push({x:e.clientX/innerWidth,y:e.clientY/innerHeight});
+ redraw();
+});
+function endStroke(){drawing=false;current=null}
+canvas.addEventListener('pointerup',endStroke);
+canvas.addEventListener('pointercancel',endStroke);
+document.addEventListener('keydown',e=>{
+ if(editing||document.getElementById('notesPanel').classList.contains('open'))return;
+ if(e.key==='ArrowRight'){e.preventDefault();move(1)}
+ if(e.key==='ArrowLeft'){e.preventDefault();move(-1)}
+ if(e.key==='Escape'&&pen)togglePen();
+});
+window.addEventListener('resize',resize);
+update();resize();
+</script>
+</body>
+</html>
