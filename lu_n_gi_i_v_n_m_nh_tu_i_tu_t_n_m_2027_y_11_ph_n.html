@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mật Mã Cuộc Đời: Luận Giải Vận Mệnh Tuổi Tuất Năm 2027 (Đầy Đủ 11 Phần)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body { background-color: #1a1a1a; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+  
+  /* Khung Slide ngang tỷ lệ chuẩn 16:9 (1280x720) */
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0,0,0,0.7);
+    position: relative; padding: 20px 40px;
+    display: none; flex-direction: column; justify-content: space-between;
+    transform-origin: center center;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Tiêu đề từng trang */
+  .header { text-align: center; border-bottom: 3px solid #b8860b; padding-bottom: 8px; margin-bottom: 6px; position: relative; }
+  .header h1 { color: #8b0000; font-size: 35px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; text-shadow: 1px 1px 0px #fff; line-height: 1.15; }
+  .header p { color: #1e5618; font-size: 20px; font-weight: 800; margin-top: 3px; }
+  .zodiac-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #fff8dc; border: 2px solid #b8860b; color: #8b0000;
+    padding: 2px 12px; border-radius: 20px; font-size: 17px; font-weight: 900;
+    vertical-align: middle; margin-left: 8px;
+  }
+
+  /* Nội dung chính */
+  .content { flex: 1; display: flex; flex-direction: column; justify-content: space-evenly; gap: 11px; }
+  .rule-box { background: #fffdf5; border: 2.5px solid #d4af37; border-left: 10px solid #8b0000; padding: 12px 18px; border-radius: 12px; font-size: 20px; font-weight: 700; color: #1a1a1a; line-height: 1.42; display: flex; align-items: center; gap: 14px; }
+  .icon-gold-round { width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(135deg, #8b5a2b, #b8860b); border: 3px solid #f5deb3; display: flex; justify-content: center; align-items: center; font-size: 24px; flex-shrink: 0; }
+  
+  strong, b { font-weight: 900; }
+  .highlight-red { color: #b22222; font-weight: 900; }
+  .highlight-green { color: #166516; font-weight: 900; }
+  .highlight-blue { color: #003d99; font-weight: 900; }
+
+  /* Lưới chia cột */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .card { background: #ffffff; border: 2.5px solid #c5a059; border-radius: 12px; padding: 13px 16px; font-size: 19.5px; font-weight: 700; color: #1a1a1a; display: flex; align-items: center; gap: 12px; box-shadow: 2px 3px 8px rgba(0,0,0,0.08); line-height: 1.4; }
+  .badge { background: radial-gradient(circle, #d93829, #8b0000); border: 2.5px solid #f0c95c; color: #fff; font-weight: 900; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 19px; flex-shrink: 0; }
+  .badge-diamond { width: 36px; height: 36px; border-radius: 8px; transform: rotate(45deg); background: linear-gradient(135deg, #1b4f9c, #0d2b5c); border: 2.5px solid #90cdf4; display: flex; justify-content: center; align-items: center; flex-shrink: 0; margin: 0 5px; }
+  .badge-diamond span { transform: rotate(-45deg); color: #fff; font-weight: 900; font-size: 18px; }
+
+  /* Khung Ví dụ & Thẻ kết quả */
+  .example-box { background: #eef7ee; border: 3px dashed #2e7d32; border-radius: 14px; padding: 13px 18px; font-size: 19.5px; font-weight: 700; color: #143d14; line-height: 1.44; display: flex; align-items: center; gap: 14px; }
+  .example-box.warn { background: #fff4f4; border-color: #b22222; color: #4a0d0d; }
+  .icon-house-round { width: 52px; height: 52px; border-radius: 50%; background: #1e6b1e; border: 3px solid #d4af37; display: flex; justify-content: center; align-items: center; font-size: 26px; flex-shrink: 0; }
+  .icon-house-round.red { background: #8b0000; }
+  .result-tag { display: inline-block; background: linear-gradient(90deg, #165b33, #247a48); color: #fff; padding: 3px 12px; border-radius: 8px; border: 2px solid #f0c95c; font-weight: 900; font-size: 17px; white-space: nowrap; }
+  .result-tag.bad { background: #b22222; border-color: #f0c95c; }
+
+  /* Bảng tra cứu chuẩn */
+  table { width: 100%; border-collapse: collapse; background: #fff; font-size: 18.5px; font-weight: 700; }
+  th { background: #8b0000; color: #fff; padding: 9px 10px; border: 2px solid #b8860b; font-weight: 900; font-size: 19.5px; }
+  td { padding: 8px 10px; border: 2px solid #d4af37; text-align: center; font-weight: 800; color: #1a1a1a; }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  /* Thẻ bước & Băng rôn nhấn mạnh */
+  .step-card { background: #fff; border: 2.5px solid #2e7d32; border-radius: 12px; padding: 13px 16px; text-align: left; }
+  .step-card h3 { background: #8b0000; color: #fff; padding: 7px 10px; border-radius: 8px; margin-bottom: 8px; font-size: 20px; font-weight: 900; text-align: center; }
+  .step-card p { font-size: 19px; font-weight: 700; color: #1a1a1a; line-height: 1.42; }
+  .ratio-banner { background: linear-gradient(135deg, #8b0000, #b22222); border: 3px solid #f0c95c; border-radius: 14px; padding: 13px 20px; color: #fff; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+  .ratio-banner .big-num { font-size: 28px; font-weight: 900; color: #ffd700; margin-bottom: 3px; }
+
+  /* Bảng vẽ & Thanh công cụ nổi phía trên */
+  #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+  .toolbar {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92); padding: 6px 16px; border-radius: 30px;
+    display: flex; gap: 9px; align-items: center; z-index: 100; border: 1px solid #888;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  .toolbar button { background: #333; color: #fff; border: 1px solid #777; padding: 5px 12px; border-radius: 18px; cursor: pointer; font-size: 14px; font-weight: bold; }
+  .toolbar button:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000; border-color: #fff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .toolbar button.btn-print:disabled { background: #666; cursor: wait; }
+  .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  .page-indicator { color: #ffd700; font-weight: bold; font-size: 15px; margin: 0 4px; }
+</style>
+</head>
+<body>
+
+  <!-- TRANG 1: PHẦN I – BỨC TRANH TỔNG THỂ VẬN MỆNH TUỔI TUẤT NĂM 2027 -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần I (Trang 1 / 22): Bức Tranh Tổng Thể Thời Vận, Công Danh, Tài Lộc, Gia Đạo &amp; Sức Khỏe</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">NĂM ĐINH MÙI 2027 • NẠP ÂM THIÊN HÀ THỦY</div>
+        <div style="font-size: 19.5px; font-weight: 800;">Trọng tâm năm 2027: Cân bằng giữa <strong>Tiến và Giữ</strong> – <strong>Cơ hội và Rủi ro</strong> – <strong>Bên ngoài và Nội lực</strong></div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>1. Đặc Điểm Can Chi &amp; Ngũ Hành</h3>
+          <p>Năm 2027 là năm <strong>Đinh Mùi</strong>, thuộc nạp âm <strong>Thiên Hà Thủy</strong>. Đây là năm mang đặc điểm riêng về sự vận động, thay đổi và điều chỉnh trong đời sống.</p>
+        </div>
+        <div class="step-card" style="border-color: #b22222;">
+          <h3 style="background: #b22222;">2. Tương Phá &amp; Tam Hình</h3>
+          <p>Mùi và Tuất có yếu tố <strong>tương phá</strong>, đồng thời nằm trong hệ thống <strong>tam hình Sửu – Mùi – Tuất</strong> ➔ Có biến động về quan hệ, công việc, trách nhiệm cần giải quyết dứt điểm.</p>
+        </div>
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">3. Tính Cá Nhân Hóa Lá Số</h3>
+          <p>Không phải mọi người tuổi Tuất đều bất lợi. Mỗi người còn chịu ảnh hưởng bởi <strong>năm sinh, tháng sinh, ngày sinh, giờ sinh</strong> và sự cân bằng ngũ hành trong lá số.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🧭</div>
+        <div>
+          <strong>Định hướng cốt lõi:</strong> Năm Đinh Mùi đòi hỏi người tuổi Tuất đặc biệt chú trọng sự cân bằng giữa <strong>phát triển bên ngoài</strong> và <strong>củng cố nội lực bên trong</strong> để vững vàng trước mọi điều chỉnh.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 2: PHẦN I – 4 ĐIỂM NỔI BẬT CỦA TUỔI TUẤT NĂM 2027 (PHẦN 1) -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần I (Trang 2 / 22): Những Điểm Nổi Bật Của Tuổi Tuất Năm 2027 (Điểm 1 &amp; Điểm 2)</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Thứ Nhất: Cơ Hội Khẳng Định Năng Lực (Sao Tướng Quân)</h3>
+          <p>• Sao <strong>Tướng Quân</strong> biểu tượng cho quyền hạn, khả năng chỉ huy, tinh thần trách nhiệm và năng lực tổ chức:<br>
+          • Khẳng định vị trí, chuyên môn &amp; uy tín cá nhân.<br>
+          • Đảm nhận vai trò quản lý, điều hành, lãnh đạo đội nhóm.<br>
+          • Phát triển công việc đòi hỏi <strong>kỷ luật, nguyên tắc, trách nhiệm</strong>.<br>
+          • <strong>Ngành thuận lợi:</strong> Quản lý, hành chính, quân đội, công an, an ninh, pháp luật.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Thứ Hai: Thận Trọng Quan Hệ &amp; Hợp Tác (Quán Sách, Thiếu Âm)</h3>
+          <p>• Nhắc nhở sự cẩn trọng trong giao tiếp, niềm tin và giấy tờ. <strong>Tuổi Tuất cần tránh:</strong><br>
+          • Tin tưởng người khác chỉ vì lời hứa.<br>
+          • Đứng ra bảo lãnh tài chính cho người quen.<br>
+          • Hợp tác khi chưa xác định rõ quyền lợi và trách nhiệm.<br>
+          • Ký kết hợp đồng khi chưa đọc kỹ điều khoản.<br>
+          • Để tình cảm hoặc quan hệ cá nhân chi phối công việc.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">⚖️</div>
+        <div>
+          <strong>Bài học quan trọng trong năm 2027:</strong> <em>“Tốt bụng phải đi cùng nguyên tắc, tin người phải đi cùng kiểm chứng.”</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 3: PHẦN I – ĐIỂM NỔI BẬT (3 & 4) VÀ KẾT LUẬN TỔNG QUAN -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần I (Trang 3 / 22): Điểm Nổi Bật (Điểm 3 &amp; Điểm 4) Và Kết Luận Tổng Quan</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">Thứ Ba: Cơ Hội Tình Cảm &amp; Xã Hội (Sao Hồng Loan)</h3>
+          <p>• <strong>Hồng Loan</strong> tượng trưng cho duyên tình, sự thu hút và các mối quan hệ mới.<br>
+          • <strong>Người độc thân:</strong> Mở rộng quan hệ, gặp gỡ người phù hợp qua công việc, bạn bè, hoạt động xã hội.<br>
+          • <strong>Người đã lập gia đình:</strong> Chú trọng sự chia sẻ, quan tâm và minh bạch trong các mối quan hệ bên ngoài.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Thứ Tư: Chủ Động Phòng Ngừa Sự Cố (Sao Thiên Xác)</h3>
+          <p>• Lời nhắc về quản trị rủi ro, <strong>không nên chủ quan trước:</strong><br>
+          • An toàn giao thông &amp; tai nạn lao động.<br>
+          • Các vấn đề điện, nước và cháy nổ.<br>
+          • Sức khỏe răng miệng và cơ xương khớp.<br>
+          • Những khoản đầu tư thiếu thông tin.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🎯</div>
+        <div>
+          <strong>Kết luận tổng quan (3 nguyên tắc trọng tâm năm 2027):</strong><br>
+          <strong>(1)</strong> Phát huy năng lực nhưng không kiêu ngạo • <strong>(2)</strong> Mở rộng cơ hội nhưng phải kiểm soát rủi ro • <strong>(3)</strong> Giữ gìn các mối quan hệ nhưng không đánh mất nguyên tắc.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 4: PHẦN II – TUỔI TUẤT VÀ THÁI TUẾ NĂM 2027 -->
+  <div class="slide-container" id="slide4">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần II (Trang 4 / 22): Thái Tuế Là Gì &amp; Tác Động Đến 5 Phương Diện Đời Sống</p>
+    </div>
+    <div class="content">
+      <div class="rule-box">
+        <div class="icon-gold-round">🐉</div>
+        <div>
+          <strong>1. Thái Tuế là gì?</strong> Là vị thần cai quản năm theo tín ngưỡng Can Chi. Năm <strong>Đinh Mùi 2027</strong>, tuổi Tuất có quan hệ <strong>tương phá với Mùi</strong> và nằm trong <strong>tam hình Sửu – Mùi – Tuất</strong> ➔ Cần chú trọng sự ổn định trong công việc, tài chính, gia đình và xã hội.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="badge">1</div>
+          <div><strong>Công việc:</strong> Có thể thay đổi vị trí, quản lý, trách nhiệm hoặc môi trường. Nên chuẩn bị phương án dự phòng.</div>
+        </div>
+        <div class="card">
+          <div class="badge">2</div>
+          <div><strong>Tài chính:</strong> Kiểm soát dòng tiền, hạn chế đầu tư theo cảm xúc và tránh đứng tên hộ các khoản vay.</div>
+        </div>
+        <div class="card">
+          <div class="badge">3</div>
+          <div><strong>Quan hệ:</strong> Dễ phát sinh bất đồng do cách hiểu khác nhau về quyền lợi và trách nhiệm.</div>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">4</div>
+          <div><strong>Gia đạo:</strong> Dành thời gian quan tâm người thân, tránh để áp lực công việc ảnh hưởng không khí gia đình.</div>
+        </div>
+        <div class="card">
+          <div class="badge">5</div>
+          <div><strong>Sức khỏe:</strong> Duy trì kiểm tra sức khỏe định kỳ, chú ý an toàn khi di chuyển và làm việc.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 5: PHẦN II – CÓ NÊN THỈNH BÀI VỊ THÁI TUẾ KHÔNG? -->
+  <div class="slide-container" id="slide5">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần II (Trang 5 / 22): Hướng Dẫn Thực Hành Tín Ngưỡng &amp; Thỉnh Bài Vị Thái Tuế Đúng Đắn</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1b4f9c;">
+        <div class="icon-gold-round">🕯️</div>
+        <div>
+          <strong>3. Có nên thỉnh bài vị Thái Tuế không?</strong> Theo tín ngưỡng dân gian, một số người lựa chọn thỉnh bài vị hoặc thực hiện nghi thức an vị Thái Tuế để cầu bình an. Đây là hình thức thực hành tín ngưỡng mang ý nghĩa tinh thần đối với người tin tưởng.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Nguyên Tắc Khi Thực Hiện Nghi Lễ</h3>
+          <p>• Giữ không gian thờ cúng <strong>sạch sẽ, trang nghiêm</strong>.<br>
+          • Tìm hiểu nghi thức từ <strong>nguồn văn hóa đáng tin cậy</strong>.<br>
+          • <strong>Không chi tiêu quá khả năng tài chính</strong> cho lễ nghi.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Tỉnh Táo Tránh Mê Tín Dị Đoan</h3>
+          <p>• <strong>Không tin</strong> vào những lời hứa chắc chắn rằng nghi lễ có thể ngăn chặn mọi tai họa.<br>
+          • Lấy việc <strong>sống thiện lành, tu dưỡng bản thân và hành động có trách nhiệm</strong> làm nền tảng.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">💡</div>
+        <div>
+          <strong>Lời khuyên:</strong> Bình an thực sự không chỉ nằm ở nghi lễ mà còn nằm ở <strong>sự tỉnh táo, cách sống và khả năng chủ động phòng ngừa rủi ro</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 6: PHẦN III – CÔNG DANH – SỰ NGHIỆP – QUAN LỘC (SAO TƯỚNG QUÂN) -->
+  <div class="slide-container" id="slide6">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần III (Trang 6 / 22): Sao Tướng Quân – Biểu Tượng Của Quyền Lực Và Năng Lực Lãnh Đạo</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">🎖️</div>
+        <div>
+          <strong>1. Sao Tướng Quân:</strong> Đại diện cho sự quyết đoán, uy tín, khả năng tổ chức và tinh thần chịu trách nhiệm. Thuận lợi cho người có tố chất lãnh đạo hoặc đang xây dựng vị trí chuyên môn. <strong>Tập trung vào 4 phương diện:</strong>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge-diamond"><span>1</span></div>
+          <div><strong>Phát triển quyền hạn &amp; vị trí:</strong> Quản lý nâng cao điều hành, xây dựng đội ngũ; nhân viên nâng cao chuyên môn, tính kỷ luật và giải quyết vấn đề.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>2</span></div>
+          <div><strong>Xây dựng uy tín cá nhân:</strong> Không nên chỉ tập trung thể hiện bản thân. Hãy để <strong>kết quả công việc chứng minh năng lực</strong>.</div>
+        </div>
+        <div class="card">
+          <div class="badge-diamond"><span>3</span></div>
+          <div><strong>Phát triển khả năng quản lý:</strong> Chú trọng 5 kỹ năng: <strong>Giao tiếp • Quản trị nhân sự • Lập kế hoạch • Xử lý xung đột • Ra quyết định</strong>.</div>
+        </div>
+        <div class="card" style="border-color: #b22222; background: #fff8f8;">
+          <div class="badge-diamond"><span>4</span></div>
+          <div><strong>Không để quyền lực thành áp lực:</strong> Càng có quyền hạn càng phải giữ <strong>sự công bằng và kiểm soát cảm xúc</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 7: PHẦN III – SAO LONG ĐỨC, SAO VONG THẦN & CHIẾN LƯỢC SỰ NGHIỆP -->
+  <div class="slide-container" id="slide7">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần III (Trang 7 / 22): Sao Long Đức, Sao Vong Thần &amp; Chiến Lược Sự Nghiệp 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">2. Sao Long Đức: Quý Nhân &amp; Sự Thiện Lành</h3>
+          <p>• Cát tinh mang ý nghĩa nhân hậu, phúc đức và hỗ trợ. Nên: <strong>Giúp đỡ đồng nghiệp • Giữ chữ tín • Tôn trọng đối tác • Không tranh công đổ lỗi • Minh bạch</strong>.<br>
+          • <em>Vừa có năng lực vừa có uy tín sẽ phát triển lâu dài.</em></p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">3. Sao Vong Thần: Cảnh Báo Vấn Đề Khó Lường</h3>
+          <p>• Tượng trưng cho rắc rối, bất ổn khó nhận biết từ đầu. Lưu ý: <strong>Thông tin thiếu • Thiếu thống nhất • Hợp đồng bất lợi • Hứa suông • Quyết định cảm tính</strong>.<br>
+          • <em>Thay vì quy kết tiểu nhân, hãy xây cơ chế kiểm soát rõ ràng.</em></p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">Giai Đoạn Năm 2027</th>
+            <th style="width: 76%;">Chiến Lược Sự Nghiệp Nên Thực Hiện (Gốc: Năng Lực – Nền: Uy Tín – Công Cụ: Kỷ Luật)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Đầu năm</strong></td>
+            <td style="text-align: left; padding-left: 18px;">Rà soát mục tiêu, đánh giá năng lực và lập kế hoạch hành động chi tiết</td>
+          </tr>
+          <tr>
+            <td><strong>Giữa năm</strong></td>
+            <td style="text-align: left; padding-left: 18px;">Tập trung thực hiện dự án trọng điểm, nâng cao chuyên môn và kỹ năng quản trị</td>
+          </tr>
+          <tr>
+            <td><strong>Cuối năm</strong></td>
+            <td style="text-align: left; padding-left: 18px;">Tổng kết kết quả đạt được, củng cố vị trí và chuẩn bị kế hoạch cho chu kỳ mới</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 8: PHẦN IV – TÀI LỘC – TIỀN BẠC – KINH DOANH (LỘC TỒN & 3 NGUỒN THU) -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần IV (Trang 8 / 22): Sao Lộc Tồn &amp; Ba Nguồn Tài Lộc Của Tuổi Tuất Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">💰</div>
+        <div>
+          <strong>1. Sao Lộc Tồn (Tài Lộc Tích Lũy):</strong> Nhấn mạnh khả năng tạo dựng tài chính bằng năng lực thực tế (tiền bạc không tự nhiên đến). Muốn có tài lộc cần: <strong>Nguồn thu ổn định • Năng lực tạo giá trị • Quản lý dòng tiền • Kế hoạch tiết kiệm • Chiến lược đầu tư phù hợp</strong>.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>Nguồn 1: Thu Nhập Công Việc Chính</h3>
+          <p>Đây là nguồn tài chính nên được <strong>ưu tiên bảo vệ hàng đầu</strong>. Tập trung nâng cao hiệu quả công việc, phát triển chuyên môn và tìm cơ hội tăng thu nhập dựa trên năng lực.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>Nguồn 2: Kinh Doanh &amp; Phụ Trợ</h3>
+          <p>Nghiên cứu những lĩnh vực <strong>mình am hiểu, có lợi thế cạnh tranh và thị trường thực tế</strong>. Không mở rộng kinh doanh chỉ vì thấy người khác thành công.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>Nguồn 3: Tài Sản Tích Lũy</h3>
+          <p>Năm 2027 nên chú trọng việc <strong>hình thành nền tảng tài chính dài hạn</strong>, tích lũy tài sản bền vững thay vì chỉ tìm kiếm lợi nhuận nhanh.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 9: PHẦN IV – SAO TRỰC PHÙ & BẢNG CHIẾN LƯỢC TÀI CHÍNH 2027 -->
+  <div class="slide-container" id="slide9">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần IV (Trang 9 / 22): Sao Trực Phù &amp; Bảng Chiến Lược Tài Chính Tuổi Tuất 2027</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #b22222; padding: 10px 18px; font-size: 19px;">
+        <div class="icon-gold-round">🚫</div>
+        <div>
+          <strong>3. Sao Trực Phù (Cẩn trọng trở ngại tài chính):</strong> <strong>Không</strong> đầu tư khi chưa hiểu rõ sản phẩm • <strong>Không</strong> vay nợ vượt khả năng trả • <strong>Không</strong> cho vay chỉ vì tình cảm • <strong>Không</strong> tham gia mô hình lợi nhuận bất thường • <strong>Không</strong> dùng tiền dự phòng đầu tư rủi ro cao.
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 32%;">4. Hạng Mục Tài Chính</th>
+            <th style="width: 68%;">Chiến Lược Quản Trị Tài Chính Năm 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Thu nhập chính</strong></td>
+            <td style="text-align: left; padding-left: 20px;">Bảo vệ và phát triển bằng hiệu quả chuyên môn</td>
+          </tr>
+          <tr>
+            <td><strong>Thu nhập phụ</strong></td>
+            <td style="text-align: left; padding-left: 20px;">Mở rộng có kiểm chứng thị trường và lợi thế cạnh tranh</td>
+          </tr>
+          <tr>
+            <td><strong>Tiết kiệm</strong></td>
+            <td style="text-align: left; padding-left: 20px;">Duy trì đều đặn theo kỷ luật tài chính hàng tháng</td>
+          </tr>
+          <tr>
+            <td><strong>Đầu tư</strong></td>
+            <td style="text-align: left; padding-left: 20px;">Phân tích kỹ rủi ro trước khi tham gia, không chạy theo phong trào</td>
+          </tr>
+          <tr>
+            <td><strong>Vay nợ &amp; Hợp tác kinh doanh</strong></td>
+            <td style="text-align: left; padding-left: 20px;">Kiểm soát khả năng thanh toán • Ký kết hợp đồng rõ ràng, minh bạch</td>
+          </tr>
+          <tr>
+            <td><strong>Tài sản dài hạn</strong></td>
+            <td style="text-align: left; padding-left: 20px;">Ưu tiên tính bền vững và an toàn vốn</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 10: PHẦN IV – PHONG THỦY KÍCH HOẠT TÀI LỘC NĂM 2027 -->
+  <div class="slide-container" id="slide10">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần IV (Trang 10 / 22): Phong Thủy Kích Hoạt Tài Lộc – Tranh Mã Đáo &amp; Tượng Ngựa Đỏ</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card">
+          <h3>1. Tranh Mã Đáo Thành Công (8 Con Ngựa)</h3>
+          <p>• Hình tượng ngựa tượng trưng cho sự tiến bước, thành công, tốc độ và tinh thần chinh phục.<br>
+          • <strong>Ý nghĩa tám con ngựa:</strong> Mã đáo thành công • Công việc hanh thông • Tinh thần tiến thủ • Sự đồng lòng và hợp tác.</p>
+        </div>
+
+        <div class="step-card">
+          <h3>2. Tượng Ngựa Đỏ &amp; Phương Vị Hướng Nam</h3>
+          <p>• <strong>Màu đỏ (hành Hỏa):</strong> Tượng trưng cho nhiệt huyết, sức sống và động lực hành động. Có thể đặt ở nơi sạch sẽ, trang trọng.<br>
+          • <strong>Hướng Nam:</strong> Liên hệ với hành Hỏa trong Bát Quái (cần xét kết hợp hướng nhà, hướng phòng và bố cục thực tế).</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">💡</div>
+        <div>
+          <strong>Điều quan trọng cần ghi nhớ:</strong> Vật phẩm phong thủy có <strong>giá trị biểu tượng và tinh thần</strong>, hoàn toàn <strong>không thể thay thế</strong> năng lực kinh doanh, kế hoạch tài chính và sự quản trị rủi ro.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 11: PHẦN V – GIA ĐẠO – NHÀ CỬA – PHÚC KHÍ -->
+  <div class="slide-container" id="slide11">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần V (Trang 11 / 22): Sao Thanh Long, Hối Khí, Thiên Không &amp; Cách Tăng Phúc Khí Gia Đình</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">1. Sao Thanh Long (Niềm Vui &amp; Hòa Hợp)</h3>
+          <p>• Cơ hội cải thiện không khí gia đạo, gắn kết và tạo kỷ niệm tích cực.<br>
+          • <strong>Nên chú trọng:</strong> Dành thời gian cho cha mẹ • Quan tâm con cái • Chia sẻ trách nhiệm • Giải quyết hiểu lầm • Cùng quyết định việc lớn.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">2. Hối Khí &amp; Thiên Không (Phòng Bất Ổn)</h3>
+          <p>• Cảnh báo việc bất ngờ, thiếu hụt. <strong>Trong gia đạo cần chú ý:</strong><br>
+          • Tránh chủ quan bảo vệ tài sản • Kiểm tra điện, nước, thiết bị • An toàn bếp &amp; thiết bị nhiệt • Sửa chữa hạng mục xuống cấp • Có kế hoạch dự phòng.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Cha mẹ</th>
+            <th>Vợ chồng</th>
+            <th>Con cái</th>
+            <th>Nhà cửa &amp; Tài sản</th>
+            <th>Quan hệ họ hàng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Thăm hỏi, chăm sóc và lắng nghe</td>
+            <td>Minh bạch tài chính, chia sẻ trách nhiệm</td>
+            <td>Đồng hành học tập và phát triển</td>
+            <td>Giữ sạch, thoáng, an toàn; bảo quản giấy tờ</td>
+            <td>Giữ hòa khí, tránh tranh chấp</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 12: PHẦN VI – TÌNH DUYÊN – HÔN NHÂN – QUAN HỆ XÃ HỘI -->
+  <div class="slide-container" id="slide12">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần VI (Trang 12 / 22): Sao Hồng Loan (Duyên Tình) &amp; Sao Cô Thần (Cảnh Báo Cô Đơn)</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">1A. Hồng Loan – Đối Với Người Độc Thân</h3>
+          <p>• Mở rộng quan hệ, tham gia hoạt động cộng đồng, gặp gỡ người cùng mục tiêu, chủ động tìm hiểu.<br>
+          • Phân biệt <strong>thu hút ban đầu</strong> và <strong>phù hợp lâu dài</strong> qua 3 nền tảng: <strong>(1) Sự tôn trọng • (2) Sự chân thành • (3) Đồng điệu giá trị sống</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">1B. Hồng Loan – Đối Với Người Đã Kết Hôn</h3>
+          <p>• Không để áp lực công việc, tài chính làm thiếu thời gian cho nhau.<br>
+          • Nên: <strong>Thường xuyên trò chuyện • Cùng lập kế hoạch tài chính • Chia sẻ việc gia đình • Giải quyết bất đồng khi còn nhỏ • Minh bạch quan hệ bên ngoài</strong>.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">💭</div>
+        <div>
+          <strong>2. Sao Cô Thần (Cảnh báo cảm giác cô đơn):</strong> Là lời nhắc nhở về tầm quan trọng của giao tiếp. Có người sống trong gia đình đầy đủ nhưng vẫn thấy cô đơn vì thiếu chia sẻ ➔ Tuổi Tuất hãy <strong>học cách nói ra cảm xúc, lắng nghe và quan tâm đúng lúc</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 13: PHẦN VII – SỨC KHỎE – THÂN THỂ – TINH THẦN -->
+  <div class="slide-container" id="slide13">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần VII (Trang 13 / 22): Sao Thiên Trù, Các Vùng Cơ Thể Cần Chú Ý &amp; 3 Lớp Bảo Vệ</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 10px 18px; font-size: 19.5px;">
+        <div class="icon-gold-round">🍽️</div>
+        <div>
+          <strong>1. Sao Thiên Trù (Ăn uống &amp; Hưởng thụ):</strong> Nhắc đến lộc ăn uống nhưng cần kiểm soát: <strong>Ăn uống cân bằng • Hạn chế đường, muối, chất béo • Duy trì vận động • Ngủ đủ giấc • Không lạm dụng rượu bia • Khám định kỳ</strong>.
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 24%;">2. Bộ Phận Cơ Thể</th>
+            <th style="width: 76%;">Kế Hoạch Chăm Sóc Sức Khỏe Thực Tế Năm 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Vai và cổ</strong></td>
+            <td style="text-align: left; padding-left: 18px;">Điều chỉnh tư thế làm việc, vận động giãn cơ và nghỉ ngơi hợp lý</td>
+          </tr>
+          <tr>
+            <td><strong>Răng miệng</strong></td>
+            <td style="text-align: left; padding-left: 18px;">Khám nha khoa định kỳ, vệ sinh và chăm sóc răng miệng đúng cách</td>
+          </tr>
+          <tr>
+            <td><strong>Họng và yết hầu</strong></td>
+            <td style="text-align: left; padding-left: 18px;">Chăm sóc đường hô hấp, thăm khám chuyên môn ngay khi có triệu chứng kéo dài</td>
+          </tr>
+          <tr>
+            <td><strong>Thể lực &amp; Tinh thần</strong></td>
+            <td style="text-align: left; padding-left: 18px;">Duy trì hoạt động thể chất phù hợp • Giảm căng thẳng, cân bằng công việc và nghỉ ngơi</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="example-box">
+        <div class="icon-house-round">🛡️</div>
+        <div>
+          <strong>3. Ba lớp bảo vệ sức khỏe 2027:</strong> <strong>Lớp 1:</strong> Phòng ngừa bằng lối sống lành mạnh, an toàn • <strong>Lớp 2:</strong> Phát hiện sớm qua khám định kỳ • <strong>Lớp 3:</strong> Xử lý kịp thời khi có dấu hiệu bất thường.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 14: PHẦN VIII – QUÝ NHÂN – TIỂU NHÂN – ĐỐI NHÂN XỬ THẾ -->
+  <div class="slide-container" id="slide14">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần VIII (Trang 14 / 22): Quý Nhân Thực Sự, Tiêu Chí Chọn Đối Tác &amp; Phòng Tránh Tiểu Nhân</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">1. Quý Nhân Thực Sự Của Tuổi Tuất</h3>
+          <p>• Trong Tam Hợp <strong>Dần – Ngọ – Tuất</strong>, Dần và Ngọ tương hợp về địa chi, nhưng <strong>quý nhân thực sự</strong> là người:<br>
+          • <strong>Có năng lực &amp; uy tín</strong>.<br>
+          • <strong>Có thiện chí &amp; sẵn sàng chia sẻ kinh nghiệm</strong>.<br>
+          • <strong>Giúp mình nhìn thấy điều mình chưa nhận ra</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">3. Cách Phòng Tránh Tiểu Nhân (Chuyên Nghiệp)</h3>
+          <p>• Không tiết lộ thông tin quan trọng tùy tiện.<br>
+          • Không tham gia chuyện thị phi, tranh chấp không liên quan.<br>
+          • Lưu trữ chứng từ &amp; bằng chứng giao dịch.<br>
+          • Thống nhất quyền lợi trước hợp tác; giải quyết mâu thuẫn bằng đối thoại và quy định rõ ràng.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th colspan="5">2. Năm Tiêu Chí Nhận Diện Người Nên Hợp Tác (Đánh Giá Thực Chất, Không Nhìn Vẻ Bề Ngoài)</th>
+          </tr>
+          <tr>
+            <th>Uy tín</th>
+            <th>Năng lực</th>
+            <th>Minh bạch</th>
+            <th>Trách nhiệm</th>
+            <th>Tầm nhìn</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Giữ đúng cam kết</td>
+            <td>Có kết quả thực tế</td>
+            <td>Không che giấu thông tin</td>
+            <td>Dám chịu trách nhiệm</td>
+            <td>Có định hướng dài hạn</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 15: PHẦN IX – BẢN ĐỒ HÀNH ĐỘNG TUỔI TUẤT NĂM 2027 -->
+  <div class="slide-container" id="slide15">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần IX (Trang 15 / 22): Bản Đồ Hành Động Toàn Diện Cho Tuổi Tuất Năm 2027</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 18%;">Lĩnh Vực</th>
+            <th style="width: 14%;">Ưu Tiên</th>
+            <th style="width: 36%;">Việc Cần Làm</th>
+            <th style="width: 32%;">Điều Cần Tránh</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Công danh</strong></td>
+            <td><span class="result-tag">Cao</span></td>
+            <td style="text-align: left; padding-left: 12px;">Nâng cao năng lực, khẳng định vị trí</td>
+            <td style="text-align: left; padding-left: 12px;">Tranh chấp quyền lực</td>
+          </tr>
+          <tr>
+            <td><strong>Kinh doanh</strong></td>
+            <td><span class="result-tag">Cao</span></td>
+            <td style="text-align: left; padding-left: 12px;">Kiểm chứng thị trường, mở rộng có kế hoạch</td>
+            <td style="text-align: left; padding-left: 12px;">Đầu tư theo phong trào</td>
+          </tr>
+          <tr>
+            <td><strong>Tài chính</strong></td>
+            <td><span class="result-tag bad">Rất cao</span></td>
+            <td style="text-align: left; padding-left: 12px;">Quản lý dòng tiền, tích lũy bền vững</td>
+            <td style="text-align: left; padding-left: 12px;">Vay nợ thiếu kiểm soát</td>
+          </tr>
+          <tr>
+            <td><strong>Gia đạo</strong></td>
+            <td><span class="result-tag bad">Rất cao</span></td>
+            <td style="text-align: left; padding-left: 12px;">Chia sẻ, quan tâm, chăm sóc người thân</td>
+            <td style="text-align: left; padding-left: 12px;">Để mâu thuẫn kéo dài</td>
+          </tr>
+          <tr>
+            <td><strong>Tình cảm</strong></td>
+            <td><span class="result-tag">Cao</span></td>
+            <td style="text-align: left; padding-left: 12px;">Chân thành, minh bạch trong giao tiếp</td>
+            <td style="text-align: left; padding-left: 12px;">Mập mờ trong quan hệ</td>
+          </tr>
+          <tr>
+            <td><strong>Sức khỏe</strong></td>
+            <td><span class="result-tag bad">Rất cao</span></td>
+            <td style="text-align: left; padding-left: 12px;">Kiểm tra định kỳ, duy trì vận động</td>
+            <td style="text-align: left; padding-left: 12px;">Chủ quan trước triệu chứng</td>
+          </tr>
+          <tr>
+            <td><strong>Quan hệ</strong></td>
+            <td><span class="result-tag">Cao</span></td>
+            <td style="text-align: left; padding-left: 12px;">Chọn lọc đối tác, xây dựng uy tín</td>
+            <td style="text-align: left; padding-left: 12px;">Tin lời hứa thiếu căn cứ</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 16: PHẦN X – TRIẾT LÝ VẬN DỤNG (ĐÚNG THỜI & ĐÚNG NGƯỜI) -->
+  <div class="slide-container" id="slide16">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần X (Trang 16 / 22): Triết Lý Vận Dụng – 1. Đúng Thời &amp; 2. Đúng Người</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 11px 18px;">
+        <div class="icon-gold-round">🔑</div>
+        <div>
+          <strong>Chuyển hóa nhận thức thành kết quả:</strong> Hiểu được vận trình mới chỉ là bước đầu. Biết chuyển hóa nhận thức thành hành động thực tế mới là điều tạo nên kết quả bền vững.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card">
+          <h3>1. ĐÚNG THỜI – Biết Khi Nào Tiến, Khi Nào Giữ</h3>
+          <p>• Không phải ngồi chờ cơ hội đến, mà là <strong>đánh giá hoàn cảnh, nguồn lực và khả năng thực hiện</strong> trước khi hành động:<br>
+          • <strong>Có cơ hội nhưng thiếu vốn:</strong> Chuẩn bị thay vì nóng vội.<br>
+          • <strong>Thị trường thuận &amp; đủ nguồn lực:</strong> Chủ động triển khai.<br>
+          • <strong>Rủi ro tăng cao:</strong> Bảo vệ thành quả, điều chỉnh kế hoạch.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">2. ĐÚNG NGƯỜI – Chọn Đúng Người Đồng Hành</h3>
+          <p>• Người giỏi giúp tiến nhanh; người thiếu trách nhiệm gây mất thời gian và nguồn lực. <strong>Đúng người là:</strong><br>
+          • Có cùng giá trị cốt lõi &amp; hướng đến lợi ích lâu dài.<br>
+          • Có năng lực bổ trợ cho mình.<br>
+          • Đáng tin cậy và biết giữ cam kết.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 17: PHẦN X – TRIẾT LÝ VẬN DỤNG (ĐÚNG LÚC – ĐÚNG NƠI – ĐÚNG CÁCH) -->
+  <div class="slide-container" id="slide17">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần X (Trang 17 / 22): Triết Lý Vận Dụng – 3. Đúng Lúc, 4. Đúng Nơi &amp; 5. Đúng Cách</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card">
+          <h3>3. ĐÚNG LÚC</h3>
+          <p><strong>Không nóng vội, không chần chừ:</strong> Nhận ra thời điểm hành động cụ thể. Có cơ hội nhưng chưa chuẩn bị đủ thì chưa phải lúc; đã chuẩn bị đầy đủ mà chần chừ thì sẽ bỏ lỡ.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">4. ĐÚNG NƠI</h3>
+          <p><strong>Chọn đúng môi trường:</strong> Nơi có cơ hội phát triển, phù hợp năng lực, văn hóa minh bạch, có những người tích cực và tạo ra giá trị thực tế.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3 style="background: #8b0000;">5. ĐÚNG CÁCH</h3>
+          <p><strong>Làm đúng phương pháp:</strong> Biến mục tiêu thành kế hoạch ➔ hành động ➔ kết quả đo lường được. Cố gắng đúng hướng và điều chỉnh kịp thời.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ĐÚNG THỜI</th>
+            <th>ĐÚNG NGƯỜI</th>
+            <th>ĐÚNG LÚC</th>
+            <th>ĐÚNG NƠI</th>
+            <th>ĐÚNG CÁCH</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Đánh giá thị trường, xu hướng, chu kỳ</td>
+            <td>Chọn đối tác, cộng sự, người cố vấn</td>
+            <td>Không vội vàng, không bỏ lỡ thời cơ</td>
+            <td>Chọn thị trường, công việc, không gian</td>
+            <td>Lập kế hoạch, thực thi, đo lường</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 18: PHẦN XI – TỔNG HỢP THÔNG ĐIỆP HỆ THỐNG SAO TUỔI TUẤT 2027 -->
+  <div class="slide-container" id="slide18">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần XI (Trang 18 / 22): Ý Nghĩa Nhắc Nhở Của Hệ Thống Sao Chiếu Năm Đinh Mùi 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">1</div>
+          <div><strong>Sao Tướng Quân:</strong> Nhắc nhở về việc phát huy <strong>năng lực lãnh đạo</strong>, tổ chức và tinh thần trách nhiệm.</div>
+        </div>
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">2</div>
+          <div><strong>Sao Long Đức:</strong> Nhắc nhở về giá trị của <strong>lòng thiện, sự tử tế và uy tín</strong> trong công việc.</div>
+        </div>
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">3</div>
+          <div><strong>Sao Lộc Tồn:</strong> Nhắc nhở về giá trị thực chất của <strong>lao động và tích lũy tài chính</strong> bền vững.</div>
+        </div>
+        <div class="card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <div class="badge" style="background: #1b4f9c;">4</div>
+          <div><strong>Sao Hồng Loan &amp; Thanh Long:</strong> Nhắc nhở về <strong>sự kết nối tình cảm</strong> và nuôi dưỡng <strong>niềm vui gia đình</strong>.</div>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">⚠️</div>
+        <div>
+          <strong>Nhóm sao nhắc nhở sự cẩn trọng:</strong> <strong>Quán Sách, Vong Thần</strong> nhắc về sự minh bạch và phòng ngừa rủi ro • <strong>Cô Thần</strong> nhắc về sự quan tâm, chia sẻ • <strong>Thiên Trù</strong> nhắc về ăn uống điều độ và chăm sóc sức khỏe bản thân.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 19: PHẦN XI – KẾT LUẬN VẬN TRÌNH & TRIẾT LÝ THUẬN THIÊN THỪA THẮNG -->
+  <div class="slide-container" id="slide19">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phần XI (Trang 19 / 22): Kết Luận Vận Trình Tuổi Tuất Năm 2027 Đinh Mùi</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">1. Tâm Thế Đón Vận Tốt</h3>
+          <p>• Vận tốt không chỉ nằm ở việc gặp được cơ hội, mà còn nằm ở <strong>khả năng nhận ra, chuẩn bị và nắm bắt cơ hội</strong>.<br>
+          • Người hiểu thời vận không sợ hãi trước tương lai, mà là <strong>người biết chuẩn bị cho tương lai</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">2. Tâm Thế Khi Vận Chưa Thuận</h3>
+          <p>• Vận chưa thuận không có nghĩa là thất bại, mà là thời điểm thích hợp để <strong>củng cố nội lực, sửa chữa thiếu sót và chuẩn bị cho bước tiến tiếp theo</strong>.<br>
+          • Thuận thiên không phải phó mặc cho số phận, mà là <strong>hiểu quy luật và chủ động tạo kết quả bằng hành động</strong>.</p>
+        </div>
+      </div>
+
+      <div class="ratio-banner">
+        <div class="big-num">THUẬN THIÊN THỪA THẮNG</div>
+        <div style="font-size: 21px; font-weight: 800;">BIẾT THỜI • HIỂU THẾ • CHỌN ĐÚNG NGƯỜI • LÀM ĐÚNG VIỆC • HÀNH ĐỘNG ĐÚNG LÚC</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 20: PHỤ LỤC TRA CỨU NHANH 5 TUỔI TUẤT TRONG NĂM 2027 -->
+  <div class="slide-container" id="slide20">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phụ Lục Tổng Hợp (Trang 20 / 22): Đối Chiếu Nhanh Các Năm Sinh Tuổi Tuất Năm 2027</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 18%;">Năm Sinh</th>
+            <th style="width: 16%;">Tuổi Mụ 2027</th>
+            <th style="width: 22%;">Nạp Âm Bản Mệnh</th>
+            <th style="width: 44%;">Trọng Tâm Ứng Dụng Năm Đinh Mùi 2027</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1958 (Mậu Tuất)</strong></td>
+            <td>70 tuổi</td>
+            <td>Bình Địa Mộc</td>
+            <td style="text-align: left; padding-left: 14px;">An dưỡng tinh thần, chăm sóc sức khỏe vai – cổ – răng miệng, vui vầy gia đạo.</td>
+          </tr>
+          <tr>
+            <td><strong>1970 (Canh Tuất)</strong></td>
+            <td>58 tuổi</td>
+            <td>Thoa Xuyến Kim</td>
+            <td style="text-align: left; padding-left: 14px;">Phát huy uy tín quản lý (Tướng Quân), giữ vững tài sản tích lũy, tránh bảo lãnh vay nợ.</td>
+          </tr>
+          <tr>
+            <td><strong>1982 (Nhâm Tuất)</strong></td>
+            <td>46 tuổi</td>
+            <td>Đại Hải Thủy</td>
+            <td style="text-align: left; padding-left: 14px;">Cân bằng tiến và giữ, quản lý dòng tiền chặt chẽ, minh bạch hợp đồng và quan hệ.</td>
+          </tr>
+          <tr>
+            <td><strong>1994 (Giáp Tuất)</strong></td>
+            <td>34 tuổi</td>
+            <td>Sơn Đầu Hỏa</td>
+            <td style="text-align: left; padding-left: 14px;">Khẳng định năng lực chuyên môn &amp; lãnh đạo đội nhóm; chú trọng giao tiếp gia đình.</td>
+          </tr>
+          <tr>
+            <td><strong>2006 (Bính Tuất)</strong></td>
+            <td>22 tuổi</td>
+            <td>Ốc Thượng Thổ</td>
+            <td style="text-align: left; padding-left: 14px;">Rèn luyện kỷ luật, chọn đúng môi trường phát triển, mở rộng quan hệ xã hội lành mạnh.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TRANG 21: DANH MỤC KIỂM TRA (CHECKLIST) QUẢN TRỊ RỦI RO NĂM 2027 -->
+  <div class="slide-container" id="slide21">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Phụ Lục Hành Động (Trang 21 / 22): Checklist 6 Điểm Kiểm Soát Rủi Ro Toàn Diện</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">1</div>
+          <div><strong>Pháp lý &amp; Hợp đồng:</strong> Đọc kỹ từng điều khoản trước khi ký; lưu trữ đầy đủ chứng từ giao dịch; không đứng tên bảo lãnh hộ.</div>
+        </div>
+        <div class="card">
+          <div class="badge">2</div>
+          <div><strong>Tài chính &amp; Đầu tư:</strong> Tách bạch quỹ dự phòng; chỉ đầu tư vào lĩnh vực am hiểu; tránh mô hình lợi nhuận bất thường.</div>
+        </div>
+        <div class="card">
+          <div class="badge">3</div>
+          <div><strong>An toàn nhà cửa:</strong> Kiểm tra định kỳ điện, nước, bếp, thiết bị nhiệt và khóa cửa bảo vệ tài sản.</div>
+        </div>
+        <div class="card">
+          <div class="badge">4</div>
+          <div><strong>An toàn di chuyển:</strong> Tuân thủ luật giao thông, tập trung lái xe, không chủ quan trong lao động hàng ngày.</div>
+        </div>
+        <div class="card">
+          <div class="badge">5</div>
+          <div><strong>Sức khỏe định kỳ:</strong> Khám tổng quát, kiểm tra nha khoa, chăm sóc vùng vai – cổ và đường hô hấp.</div>
+        </div>
+        <div class="card">
+          <div class="badge">6</div>
+          <div><strong>Giao tiếp &amp; Gia đạo:</strong> Nói rõ suy nghĩ, lắng nghe người thân, giữ ranh giới minh bạch trong quan hệ xã hội.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRANG 22: LỜI KẾT CHÚC MỪNG & TỔNG KẾT BÀI LUẬN -->
+  <div class="slide-container" id="slide22">
+    <div class="header">
+      <h1>LUẬN GIẢI VẬN MỆNH TUỔI TUẤT NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Tổng Kết Toàn Bài (Trang 22 / 22): Kim Chỉ Nam Vững Vàng Cho Tuổi Tuất Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">NĂNG LỰC LÀM GỐC • UY TÍN LÀM NỀN • KỶ LUẬT LÀM CÔNG CỤ</div>
+        <div style="font-size: 20.5px; font-weight: 800;">Chủ động nắm bắt thời thế – Kiến tạo thành công bền vững trong năm Đinh Mùi 2027!</div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">🐕</div>
+        <div>
+          <strong>Thông điệp đúc kết:</strong><br>
+          • <em>“Tốt bụng phải đi cùng nguyên tắc, tin người phải đi cùng kiểm chứng.”</em><br>
+          • <em>“Bình an thực sự nằm ở sự tỉnh táo, cách sống thiện lành và khả năng chủ động phòng ngừa rủi ro.”</em><br>
+          • <em>“Thuận thiên thừa thắng – Biết thời, hiểu thế, chọn đúng người, làm đúng việc và hành động đúng lúc.”</em>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THANH CÔNG CỤ ĐIỀU KHIỂN NỔI PHÍA TRÊN -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 22</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét Vẽ</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 22;
+
+  // Tự động thu phóng khung ngang 1280x720 cho vừa khít màn hình
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1280,
+      (window.innerHeight - 75) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  function showSlide(n) {
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+    }
+    document.getElementById('slide' + n).classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; showSlide(currentSlide); } }
+  function prevSlide() { if (currentSlide > 1) { currentSlide--; showSlide(currentSlide); } }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Bảng vẽ phủ kín 100% toàn màn hình
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm để tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Hàm xuất ảnh ngang tỷ lệ 16:9 (1280x720) kèm nét bút vẽ
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất ảnh...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    try {
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 1280;
+      finalCanvas.height = 720;
+      const fCtx = finalCanvas.getContext('2d');
+
+      const slideCanvas = renderSlideNative(slideEl);
+      fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+      const rect = slideEl.getBoundingClientRect();
+      fCtx.drawImage(
+        canvas,
+        rect.left, rect.top, rect.width, rect.height,
+        0, 0, 1280, 720
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png');
+      link.download = `Luan_Giai_Tuoi_Tuat_2027_Trang_${currentSlide}_16x9.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } finally {
+      restoreToolbar();
+    }
+  }
+
+  // Bộ vẽ Slide ngang 1280x720 chuẩn nét đậm offline 100%
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1280 / baseRect.width;
+
+    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    bgGrad.addColorStop(0, '#fdf8e8');
+    bgGrad.addColorStop(1, '#f5ebd1');
+    g.fillStyle = bgGrad;
+    g.fillRect(0, 0, 1280, 720);
+
+    g.lineWidth = 24;
+    g.strokeStyle = '#b8860b';
+    g.strokeRect(0, 0, 1280, 720);
+
+    g.lineWidth = 4;
+    g.strokeStyle = '#8b0000';
+    g.strokeRect(14, 14, 1252, 692);
+
+    const boxes = slideEl.querySelectorAll(
+      '.header, .rule-box, .card, .example-box, th, td, .step-card, .ratio-banner, .badge, .badge-diamond, .result-tag, .icon-gold-round, .icon-house-round, .zodiac-tag'
+    );
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
+      const st = window.getComputedStyle(el);
+
+      g.save();
+      if (el.classList.contains('badge-diamond')) {
+        g.translate(x + w / 2, y + h / 2);
+        g.rotate((45 * Math.PI) / 180);
+        g.fillStyle = '#1b4f9c';
+        g.beginPath();
+        g.roundRect(-19, -19, 38, 38, 8);
+        g.fill();
+        g.lineWidth = 2.5;
+        g.strokeStyle = '#90cdf4';
+        g.stroke();
+        g.restore();
+        return;
+      }
+
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) {
+        fill = el.style.backgroundColor || '#b22222';
+      } else if (el.classList.contains('icon-gold-round')) {
+        fill = '#9c6b28';
+      } else if (el.classList.contains('ratio-banner')) {
+        fill = '#991111';
+      } else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : '#1b693c';
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+      g.restore();
+    });
+
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match.length);
+        const rr = range.getBoundingClientRect();
+        if (rr.width === 0) continue;
+
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match[0], tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
