@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiến Lược: Tiết Kiệm Hay Mua Vàng (Tương Tác)</title>
+    <style>
+        /* ================= CƠ BẢN & NỘI DUNG ================= */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            font-size: 19px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 120px auto 40px auto; /* Chừa chỗ cho thanh công cụ */
+            background: #fff;
+            padding: 45px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #d35400;
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+        .header h1 {
+            color: #d35400;
+            font-size: 34px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+        h2 {
+            color: #2c3e50;
+            border-left: 6px solid #2980b9;
+            padding-left: 15px;
+            margin-top: 45px;
+            font-size: 26px;
+            background-color: #ecf4f8;
+            padding: 12px;
+            text-transform: uppercase;
+        }
+        h3 { color: #c0392b; font-size: 22px; }
+        
+        /* Bảng biểu chuẩn slide bài giảng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 18px;
+        }
+        table, th, td {
+            border: 2px solid #bdc3c7;
+        }
+        th {
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        td {
+            padding: 15px;
+            vertical-align: top;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        
+        .highlight-box {
+            background-color: #fff8e1;
+            border-left: 6px solid #f39c12;
+            padding: 20px;
+            margin: 25px 0;
+            font-size: 20px;
+            border-radius: 4px;
+        }
+        .alert-text { color: #c0392b; font-weight: bold; }
+        .success-text { color: #27ae60; font-weight: bold; }
+        .explanation {
+            color: #555;
+            font-style: italic;
+            font-size: 17px;
+            background-color: #ecf0f1;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* ================= THANH CÔNG CỤ (TOOLBAR) ================= */
+        .toolbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2c3e50;
+            padding: 15px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            z-index: 10000; /* Luôn nổi trên cùng */
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn:active { transform: scale(0.95); }
+        .btn-download { background-color: #27ae60; }
+        .btn-download:hover { background-color: #219653; }
+        .btn-pdf { background-color: #d35400; }
+        .btn-pdf:hover { background-color: #a84300; }
+        
+        /* Nút Chụp Ảnh mới thêm */
+        .btn-screenshot { background-color: #34495e; }
+        .btn-screenshot:hover { background-color: #2c3e50; }
+        
+        /* Công cụ vẽ */
+        .draw-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 2px solid #7f8c8d;
+            padding-left: 15px;
+            margin-left: 10px;
+        }
+        .btn-toggle-draw { background-color: #8e44ad; }
+        .btn-toggle-draw.active { background-color: #f1c40f; color: #333; border: 2px solid #fff; }
+        
+        .color-picker {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .color-picker.active { border-color: #fff; transform: scale(1.2); }
+        .color-red { background-color: #e74c3c; }
+        .color-blue { background-color: #3498db; }
+        .color-yellow { background-color: #f1c40f; }
+        .color-black { background-color: #2c3e50; }
+        
+        .btn-clear { background-color: #c0392b; }
+        .btn-clear:hover { background-color: #922b21; }
+
+        /* ================= CANVAS CHO BÚT VẼ ================= */
+        #drawCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9999; /* Dưới toolbar nhưng trên nội dung */
+            pointer-events: none; /* Mặc định không chặn click chuột vào trang */
+        }
+        body.drawing-mode #drawCanvas {
+            pointer-events: auto; /* Cho phép vẽ khi bật chế độ */
+            cursor: crosshair;
+        }
+        body.drawing-mode {
+            user-select: none; /* Chống bôi đen chữ khi đang vẽ */
+        }
+
+        /* Ẩn giao diện khi in PDF */
+        @media print {
+            .toolbar { display: none !important; }
+            #drawCanvas { display: none !important; }
+            body { background: white; margin: 0; padding: 0; }
+            .container { margin: 0; box-shadow: none; max-width: 100%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- THANH CÔNG CỤ (TOOLBAR) CHO BÁC THAO TÁC -->
+    <div class="toolbar">
+        <button class="btn btn-download" onclick="downloadHTMLCode()">📥 Tải Mã HTML (Lên Git2B)</button>
+        <button class="btn btn-pdf" onclick="window.print()">🖨️ Xuất File PDF / In</button>
+        <button class="btn btn-screenshot" onclick="takeScreenshot()">📸 Chụp Ảnh</button>
+        
+        <div class="draw-controls">
+            <button class="btn btn-toggle-draw" id="toggleDrawBtn" onclick="toggleDrawingMode()">🖊️ Bật Bút Vẽ: ĐANG TẮT</button>
+            <div class="color-picker color-red active" onclick="setColor('#e74c3c', this)" title="Bút Đỏ"></div>
+            <div class="color-picker color-blue" onclick="setColor('#3498db', this)" title="Bút Xanh"></div>
+            <div class="color-picker color-yellow" onclick="setColor('#f1c40f', this)" title="Bút Vàng"></div>
+            <button class="btn btn-clear" onclick="clearCanvas()">🧼 Xóa Bản Vẽ</button>
+        </div>
+    </div>
+
+    <!-- TẤM KÍNH TRONG SUỐT ĐỂ VẼ CHỒNG LÊN CHỮ -->
+    <canvas id="drawCanvas"></canvas>
+
+    <!-- NỘI DUNG BÁO CÁO KINH TẾ (GIỮ NGUYÊN 100% SỐ LIỆU) -->
+    <div class="container" id="reportContent">
+        <div class="header">
+            <h1>TƯ VẤN CHIẾN LƯỢC: CHỌN GỬI TIẾT KIỆM HAY MUA VÀNG?</h1>
+            <p style="font-size: 18px; font-weight: bold; color: #7f8c8d;">Phân tích sâu dựa trên biến động thị trường Tháng 11/2026</p>
+        </div>
+
+        <div class="highlight-box">
+            <strong>🔥 LỜI KHUYÊN CỐT LÕI:</strong> Nếu bạn cần an toàn và có thể dùng tiền trong <strong>6–12 tháng</strong> tới, hãy <strong>ƯU TIÊN TIẾT KIỆM</strong>. Nếu bạn muốn phân bổ dài hạn và chấp nhận biến động, có thể giữ một tỷ trọng vàng nhỏ, nhưng tuyệt đối <span class="alert-text">không nên "chuyển toàn bộ" sang vàng lúc này.</span>
+            <br><br>
+            <strong>Lý do chí mạng:</strong> Lãi suất tiết kiệm 12 tháng hiện rất hấp dẫn (phổ biến quanh <strong>6,1 – 7%/năm</strong>). Trong khi đó, Vàng đang bị bủa vây bởi áp lực từ 3 phía: Đồng USD mạnh, lợi suất trái phiếu Mỹ cao và kỳ vọng Fed tăng lãi suất.
+        </div>
+
+        <h2>1. BÀN CÂN CHIẾN LƯỢC: TIẾT KIỆM NGÂN HÀNG vs. VÀNG</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Tiêu chí</th>
+                    <th style="width: 40%; background-color: #27ae60;">Tiết Kiệm Ngân Hàng 💰</th>
+                    <th style="width: 40%; background-color: #f39c12;">Mua Vàng 🥇</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tính ổn định</strong></td>
+                    <td><span class="success-text">CAO;</span> Gốc và lãi rõ ràng (nếu gửi đúng ngân hàng, đúng hạn).</td>
+                    <td><span class="alert-text">THẤP;</span> Giá có thể giảm rất mạnh và bất ngờ trong ngắn hạn.</td>
+                </tr>
+                <tr>
+                    <td><strong>Thu nhập sinh lời</strong></td>
+                    <td>Kỳ hạn 12 tháng phổ biến từ <strong>6,1 – 7%/năm</strong>. (Một số nơi cao hơn kèm điều kiện số tiền/kênh gửi online).</td>
+                    <td>Không tự sinh ra lãi trực tiếp; lợi nhuận hoàn toàn phụ thuộc vào việc mua thấp - bán cao (chênh lệch giá).</td>
+                </tr>
+                <tr>
+                    <td><strong>Rủi ro ngắn hạn</strong></td>
+                    <td><span class="success-text">RẤT THẤP</span> (trừ khi cần tiền gấp phải rút trước hạn sẽ mất lãi).</td>
+                    <td><span class="alert-text">RẤT CAO;</span> Vàng thế giới đã thủng đáy 3.800 USD/ounce, nằm ở vùng thấp nhất hơn 1 năm qua.</td>
+                </tr>
+                <tr>
+                    <td><strong>Thanh khoản (Dễ bán)</strong></td>
+                    <td>Tốt, rút ra là có tiền mặt ngay (nhưng rút trước hạn bị chuyển về lãi không kỳ hạn rất thấp).</td>
+                    <td>Tốt với vàng miếng/nhẫn tròn trơn. Nhưng mức chênh lệch (khoảng cách) giữa giá Mua và Bán của tiệm vàng có thể ăn lẹm vào vốn.</td>
+                </tr>
+                <tr>
+                    <td><strong>Phù hợp với ai?</strong></td>
+                    <td>Người có tiền cần dùng trong 6-12 tháng, lập Quỹ khẩn cấp, người <strong>ưu tiên bảo toàn vốn</strong> không muốn mạo hiểm.</td>
+                    <td>Người muốn phòng ngừa rủi ro dài hạn (vài năm), muốn phân bổ chia nhỏ tài sản, người chịu được biến động "nhảy múa" của giá.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>2. VÌ SAO PHẢI ƯU TIÊN TIẾT KIỆM NGAY LÚC NÀY?</h2>
+        <ul>
+            <li><strong>Lãi suất đang rất ấm:</strong> Lãi suất tiết kiệm online kỳ hạn 12 tháng tại nhiều ngân hàng đang neo ở khoảng <strong>6,1 – 7%/năm</strong>; thậm chí một số ngân hàng niêm yết cứng <strong>7%/năm</strong> cho kỳ hạn 12 tháng.</li>
+            <li><strong>Áp lực khổng lồ từ Mỹ (Fed):</strong> Thị trường tài chính đang định giá xác suất Fed <span class="explanation">(Cục Dự trữ Liên bang Mỹ)</span> tiếp tục tăng lãi suất thêm 0,25 điểm phần trăm vào tháng 12/2026 lên tới <strong>96%</strong>. Điều này như bơm thêm doping cho đồng USD và lợi suất trái phiếu Mỹ, trực tiếp bóp nghẹt sức hấp dẫn của vàng.</li>
+            <li><strong>Giá vàng đang cắm đầu:</strong> Cập nhật ngày 18/11, vàng thế giới giao dịch quanh mức <strong>3.781 USD/ounce</strong>, bốc hơi 103 USD/ounce so với ngày trước đó. Vàng SJC trong nước cũng bị ép giảm sâu về mốc <strong>137,2 triệu đồng/lượng</strong>.</li>
+        </ul>
+
+        <div class="highlight-box" style="background-color: #e8f8f5; border-color: #1abc9c;">
+            <strong>💡 BÀI TOÁN THỰC TẾ VỚI 100 TRIỆU ĐỒNG:</strong>
+            <br>
+            - <strong>Nếu Gửi Tiết Kiệm:</strong> Gửi 12 tháng với lãi 6,5%/năm, bạn êm ái đút túi khoảng <strong>6,5 triệu đồng</strong> tiền lãi cuối kỳ. Gốc vẫn y nguyên 100 triệu.
+            <br>
+            - <strong>Nếu Mua Vàng:</strong> Vàng không đẻ ra cục tiền 6,5 triệu đó. Ngược lại, nếu giá thế giới và trong nước rơi thêm 5% nữa, giá trị tài sản của bạn <strong>mất ngay 5 triệu đồng</strong> (Đó là chưa tính đến khoản lỗ ngay lập tức do tiệm vàng niêm yết giá Mua thấp hơn giá Bán).
+        </div>
+
+        <h2>3. VẬY KHI NÀO MỚI NÊN MUA VÀNG?</h2>
+        <p>Vàng luôn có vai trò vĩ đại là <strong>phòng ngừa rủi ro dài hạn</strong>, nhất là khi xảy ra lạm phát đình trệ, khủng hoảng địa chính trị (chiến tranh) hoặc đồng tiền giấy bị mất giá mạnh. Nhưng hiện tại, "thiên thời" trong ngắn hạn đang chống lại vàng:</p>
+        <ul>
+            <li>Đồng USD quá mạnh và Lãi suất trái phiếu Mỹ quá cao làm tăng chi phí cơ hội.</li>
+            <li>Kỳ vọng Fed thắt chặt tiền tệ chưa dứt, vàng lấy đâu ra động lực để bật tăng bền vững lúc này?</li>
+            <li><strong>Rủi ro tỷ giá trong nước:</strong> Giá vàng Việt Nam đang cố giữ giá, giảm chậm hơn đà rơi của thế giới. Người lao vào mua lúc này sẽ dính đòn "chênh lệch giá" cực nặng khi bán ra sau này.</li>
+        </ul>
+        <p><strong>Khuyến nghị nếu vẫn "cứng đầu" muốn mua:</strong> Bắt buộc phải <strong>chia nhỏ lệnh (mua rải ra)</strong>, chỉ dùng một phần rất nhỏ trong tổng tài sản. Ưu tiên vàng miếng có thương hiệu, chênh lệch mua-bán minh bạch. <strong>Tối kỵ:</strong> Không vay mượn tiền, không móc Quỹ khẩn cấp ra để đi mua vàng bắt đáy.</p>
+
+        <h2>4. BẢNG PHÂN BỔ TÀI SẢN HỢP LÝ (BÍ QUYẾT THỰC CHIẾN)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th style="background-color: #8e44ad; width: 30%;">Khoản Tiền / Nhu Cầu</th>
+                    <th style="background-color: #8e44ad; width: 70%;">Hành Động Khuyên Dùng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tiền cần dùng gấp (0 - 6 tháng)</strong></td>
+                    <td>Ưu tiên để tiền gửi Không kỳ hạn hoặc Tiết kiệm kỳ hạn cực ngắn (1-3 tháng). <strong>Tuyệt đối không chuyển sang mua vàng.</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Tiền nhàn rỗi (6 - 12 tháng)</strong></td>
+                    <td>Khóa vào Tiết kiệm kỳ hạn 6-12 tháng để chốt lãi suất 6-7%. Chỉ giữ lại một phần nhỏ tiền mặt để phòng hờ linh hoạt.</td>
+                </tr>
+                <tr>
+                    <td><strong>Tiền vốn dài hạn (Trên 3 năm)</strong></td>
+                    <td>Có thể trích một phần nhỏ để mua vàng tích sản. Nhưng hãy chia thành 3-4 lần mua ở các mức giá rơi khác nhau (DCA), cấm mua tất tay 1 lần.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mục tiêu: Giảm rủi ro chung</strong></td>
+                    <td>Lấy Tiền mặt và Tiết kiệm làm "Móng nhà". Chỉ phân bổ mua vàng khi đã lập kế hoạch thật kỹ lưỡng.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="highlight-box" style="border-left-color: #e74c3c;">
+            <strong>🎯 KẾT LUẬN CHỐT HẠ ĐẾN TÚI TIỀN:</strong>
+            <br>
+            Với đại đa số người dân lúc này, <strong>TIẾT KIỆM NGÂN HÀNG LÀ CHÂN ÁI</strong> nếu mục tiêu của bạn là bảo vệ đồng vốn mồ hôi nước mắt và có kế hoạch chi tiêu trong tương lai gần. Vàng chỉ nên là một món gia vị nhỏ bé cho mâm cỗ dài hạn. Hành động ôm một đống tiền đi "bắt đáy" vàng ngay lúc giá đang rơi tự do và Fed chuẩn bị tăng lãi suất là một canh bạc cực kỳ rủi ro!
+        </div>
+
+    </div>
+
+    <!-- THƯ VIỆN HỖ TRỢ CHỤP ẢNH MÀN HÌNH (MỚI THÊM) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <!-- SCRIPT ĐIỀU KHIỂN CHỨC NĂNG -->
+    <script>
+        // 1. TẢI FILE HTML (CODE)
+        function downloadHTMLCode() {
+            // Xóa bớt các nét vẽ trước khi tải code (tùy chọn) để file sạch sẽ
+            // Ở đây ta xuất toàn bộ cây DOM hiện tại
+            let currentHTML = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            let blob = new Blob([currentHTML], { type: "text/html;charset=utf-8" });
+            let url = URL.createObjectURL(blob);
+            let a = document.createElement('a');
+            a.href = url;
+            a.download = "Bao_Cao_Tu_Van_Tiet_Kiem_Hay_Vang.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // 2. TÍNH NĂNG BÚT VẼ (CANVAS)
+        const canvas = document.getElementById('drawCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawingMode = false;
+        let isDrawing = false;
+        let currentColor = '#e74c3c';
+        let lastX = 0;
+        let lastY = 0;
+
+        // Cập nhật kích thước Canvas phủ kín toàn bộ trang web (cả phần cuộn)
+        function resizeCanvas() {
+            canvas.width = document.documentElement.scrollWidth;
+            canvas.height = document.documentElement.scrollHeight;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.lineWidth = 4; // Độ dày bút
+        }
+        
+        window.addEventListener('load', resizeCanvas);
+        window.addEventListener('resize', resizeCanvas);
+        // Cần resize lại nếu nội dung tải thêm làm đổi chiều dài
+        new ResizeObserver(resizeCanvas).observe(document.body); 
+
+        // Bật/tắt chế độ vẽ
+        function toggleDrawingMode() {
+            isDrawingMode = !isDrawingMode;
+            const btn = document.getElementById('toggleDrawBtn');
+            if (isDrawingMode) {
+                document.body.classList.add('drawing-mode');
+                btn.classList.add('active');
+                btn.innerHTML = '🖊️ Bút Vẽ: ĐANG BẬT';
+                ctx.strokeStyle = currentColor;
+            } else {
+                document.body.classList.remove('drawing-mode');
+                btn.classList.remove('active');
+                btn.innerHTML = '🖊️ Bút Vẽ: ĐANG TẮT';
+            }
+        }
+
+        // Chọn màu
+        function setColor(color, element) {
+            currentColor = color;
+            ctx.strokeStyle = color;
+            // Xóa active các nút màu khác
+            document.querySelectorAll('.color-picker').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+            
+            // Nếu đang tắt thì tự động bật khi chọn màu
+            if(!isDrawingMode) toggleDrawingMode();
+        }
+
+        // Xóa toàn bộ
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+
+        // Xử lý sự kiện chuột và cảm ứng (điện thoại/tablet)
+        function startPosition(e) {
+            if (!isDrawingMode) return;
+            isDrawing = true;
+            let rect = canvas.getBoundingClientRect();
+            // Lấy tọa độ kể cả khi cuộn trang
+            lastX = (e.clientX || e.touches[0].clientX) - rect.left + window.scrollX;
+            lastY = (e.clientY || e.touches[0].clientY) - rect.top + window.scrollY;
+        }
+
+        function endPosition() {
+            isDrawing = false;
+            ctx.beginPath();
+        }
+
+        function draw(e) {
+            if (!isDrawing || !isDrawingMode) return;
+            e.preventDefault(); // Ngăn cuộn trang khi đang vẽ trên cảm ứng
+
+            let rect = canvas.getBoundingClientRect();
+            let currentX = (e.clientX || e.touches[0].clientX) - rect.left + window.scrollX;
+            let currentY = (e.clientY || e.touches[0].clientY) - rect.top + window.scrollY;
+
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            ctx.lineTo(currentX, currentY);
+            ctx.stroke();
+
+            lastX = currentX;
+            lastY = currentY;
+        }
+
+        // Mouse events
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', endPosition);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseout', endPosition);
+
+        // Touch events (Điện thoại/Ipad)
+        canvas.addEventListener('touchstart', startPosition, {passive: false});
+        canvas.addEventListener('touchend', endPosition);
+        canvas.addEventListener('touchmove', draw, {passive: false});
+
+        // 3. TÍNH NĂNG CHỤP ẢNH MÀN HÌNH (MỚI THÊM)
+        function takeScreenshot() {
+            const toolbar = document.querySelector('.toolbar');
+            toolbar.style.display = 'none'; // Ẩn toolbar để ảnh chụp không bị vướng
+            
+            // Lưu lại vị trí đang xem, cuộn lên cùng để chụp full trang
+            const currentScrollY = window.scrollY;
+            window.scrollTo(0, 0);
+
+            // Đợi 1 chút cho trang cuộn hẳn rồi mới chụp
+            setTimeout(() => {
+                html2canvas(document.body).then(function(canvasResult) {
+                    toolbar.style.display = 'flex'; // Bật lại toolbar
+                    window.scrollTo(0, currentScrollY); // Trả lại vị trí cuộn cũ cho bác
+                    
+                    // Tạo ảnh và tải về máy
+                    let link = document.createElement('a');
+                    link.download = 'Anh_Chup_Bao_Cao_19_11.png';
+                    link.href = canvasResult.toDataURL('image/png');
+                    link.click();
+                });
+            }, 100);
+        }
+
+    </script>
+</body>
+</html>
