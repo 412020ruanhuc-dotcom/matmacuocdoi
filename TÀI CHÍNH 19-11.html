@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mật Lệnh Săn Tin Tài Chính & Đầu Tư 18/11/2026 - Bản Đồ Họa Chiến Trường</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Be Vietnam Pro', 'Segoe UI', Arial, sans-serif; }
+  body {
+    background-color: #090d16;
+    background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #090d16 100%);
+    display: flex; justify-content: center; align-items: center;
+    height: 100vh; overflow: hidden; user-select: none;
+  }
+
+  /* Khung Slide chuẩn 16:9 (1280x720) phong cách đồ họa chiến trường tài chính */
+  .slide-container {
+    width: 1280px; height: 720px;
+    background: linear-gradient(160deg, #e0f2fe 0%, #f8fafc 45%, #dbeafe 100%);
+    border: 6px solid #03254c;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.85), inset 0 0 0 2px #38bdf8;
+    position: relative; padding: 18px 28px 16px 28px;
+    display: none; flex-direction: column; justify-content: space-between;
+    transform-origin: center center; overflow: hidden;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Nền đồ thị nến mờ & đường sóng tài chính xuyên suốt mọi slide */
+  .slide-bg-chart {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; opacity: 0.32;
+  }
+
+  /* Banner tiêu đề xanh navy đậm khối 3D chữ vàng rực rỡ */
+  .war-header {
+    position: relative; z-index: 10;
+    background: linear-gradient(180deg, #063970 0%, #021d3b 100%);
+    border: 2px solid #38bdf8;
+    border-radius: 22px;
+    padding: 10px 26px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 8px 20px rgba(2, 29, 59, 0.45), inset 0 2px 3px rgba(255,255,255,0.28);
+    margin-bottom: 10px;
+  }
+  .war-header-left { display: flex; flex-direction: column; }
+  .war-header-kicker {
+    font-size: 13px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 1.5px;
+  }
+  .war-header h1 {
+    font-size: 27px; font-weight: 900; font-style: italic;
+    color: #fde047; text-transform: uppercase; letter-spacing: 0.4px;
+    text-shadow: 0 3px 6px rgba(0,0,0,0.75); line-height: 1.15;
+  }
+  .war-header .sub-tag {
+    background: linear-gradient(180deg, #dc2626 0%, #991b1b 100%);
+    border: 2px solid #fca5a5; color: #ffffff;
+    padding: 6px 16px; border-radius: 999px;
+    font-size: 15px; font-weight: 900; white-space: nowrap;
+    box-shadow: 0 4px 10px rgba(185, 28, 28, 0.45);
+  }
+
+  /* Vùng nội dung chính nằm trên nền đồ thị */
+  .content {
+    position: relative; z-index: 10;
+    flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;
+  }
+
+  /* Thẻ tiêu chuẩn kiểu Battle Card có thanh tiêu đề màu rực rỡ */
+  .b-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 16px;
+    border: 2px solid #cbd5e1;
+    box-shadow: 0 8px 20px -4px rgba(15, 23, 42, 0.16);
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .b-card.red-border { border-color: #f87171; }
+  .b-card.green-border { border-color: #4ade80; }
+  .b-card.blue-border { border-color: #60a5fa; }
+  .b-card.amber-border { border-color: #fbbf24; }
+
+  .b-card-head {
+    padding: 7px 16px; color: #ffffff; font-weight: 900;
+    font-size: 18px; text-transform: uppercase; letter-spacing: 0.4px;
+    display: flex; align-items: center; justify-content: space-between;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.45);
+  }
+  .head-red { background: linear-gradient(180deg, #ef4444 0%, #991b1b 100%); }
+  .head-green { background: linear-gradient(180deg, #16a34a 0%, #14532d 100%); }
+  .head-blue { background: linear-gradient(180deg, #2563eb 0%, #1e3a8a 100%); }
+  .head-amber { background: linear-gradient(180deg, #f59e0b 0%, #b45309 100%); }
+  .head-dark { background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%); }
+
+  .b-card-body {
+    padding: 12px 16px; font-size: 17.5px; font-weight: 600;
+    color: #0f172a; line-height: 1.42; flex: 1;
+    display: flex; flex-direction: column; justify-content: center; gap: 6px;
+  }
+
+  /* Con số khổng lồ tạo điểm nhấn dữ dội */
+  .mega-num { font-size: 30px; font-weight: 900; line-height: 1.1; letter-spacing: -0.5px; }
+  .txt-red { color: #dc2626; font-weight: 900; }
+  .txt-green { color: #15803d; font-weight: 900; }
+  .txt-blue { color: #1d4ed8; font-weight: 900; }
+  .txt-amber { color: #b45309; font-weight: 900; }
+
+  /* Nhãn viên thuốc (Pill Badge) giống hệt ảnh mẫu Ý Nghĩa / Kịch Bản */
+  .pill {
+    display: inline-block; padding: 2px 10px; border-radius: 999px;
+    font-size: 13.5px; font-weight: 800; font-style: italic;
+    color: #ffffff; margin-right: 6px; vertical-align: middle;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  .pill-red { background: #dc2626; }
+  .pill-green { background: #15803d; }
+  .pill-blue { background: #0369a1; }
+  .pill-amber { background: #b45309; }
+
+  /* Thanh hành động ngang sắc nét */
+  .war-strip {
+    background: #ffffff; border: 2px solid #cbd5e1; border-left: 10px solid #1d4ed8;
+    border-radius: 14px; padding: 11px 18px;
+    font-size: 18px; font-weight: 600; color: #0f172a; line-height: 1.4;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  }
+  .war-strip.red { border-left-color: #dc2626; border-color: #fca5a5; background: linear-gradient(90deg, #fef2f2 0%, #ffffff 100%); }
+  .war-strip.green { border-left-color: #16a34a; border-color: #86efac; background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%); }
+  .war-strip.amber { border-left-color: #d97706; border-color: #fcd34d; background: linear-gradient(90deg, #fffbeb 0%, #ffffff 100%); }
+  .war-strip.blue { border-left-color: #1d4ed8; border-color: #93c5fd; background: linear-gradient(90deg, #eff6ff 0%, #ffffff 100%); }
+
+  .badge-num {
+    width: 40px; height: 40px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 900; color: #ffffff; flex-shrink: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+  }
+
+  /* Dải vàng rực rỡ Tác Động Đến Túi Tiền (giống thanh đáy của ảnh mẫu) */
+  .wallet-banner {
+    background: linear-gradient(90deg, #fef08a 0%, #fde047 50%, #fef08a 100%);
+    border: 2.5px solid #eab308; border-radius: 16px;
+    padding: 11px 20px; font-size: 17.5px; font-weight: 700;
+    color: #0f172a; line-height: 1.38;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 6px 16px rgba(202, 138, 4, 0.25), inset 0 1px 2px rgba(255,255,255,0.9);
+  }
+
+  /* Lưới chia cột */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* Bảng dữ liệu sắc nét */
+  table.war-table { width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 14px; overflow: hidden; border: 2px solid #03254c; background: #ffffff; box-shadow: 0 6px 16px rgba(15,23,42,0.12); }
+  table.war-table th {
+    background: linear-gradient(180deg, #063970 0%, #03254c 100%);
+    color: #fde047; padding: 11px 14px; font-size: 17.5px; font-weight: 900;
+    text-transform: uppercase; text-align: left; border-bottom: 2px solid #38bdf8;
+  }
+  table.war-table td {
+    padding: 10px 14px; font-size: 17px; font-weight: 600; color: #0f172a;
+    border-bottom: 1.5px solid #cbd5e1; border-right: 1px solid #e2e8f0;
+    line-height: 1.36; vertical-align: middle;
+  }
+  table.war-table tr:last-child td { border-bottom: none; }
+
+  /* Bảng vẽ & Thanh công cụ nổi phía trên */
+  #drawCanvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 50; pointer-events: none; touch-action: none; }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+  .toolbar {
+    position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+    background: rgba(9, 13, 22, 0.96); padding: 7px 18px; border-radius: 999px;
+    display: flex; gap: 10px; align-items: center; z-index: 100; border: 1.5px solid #38bdf8;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.75);
+  }
+  .toolbar button {
+    background: #1e293b; color: #ffffff; border: 1px solid #64748b;
+    padding: 6px 13px; border-radius: 999px; cursor: pointer;
+    font-size: 13.5px; font-weight: 800; transition: 0.15s;
+  }
+  .toolbar button:hover { background: #334155; border-color: #93c5fd; }
+  .toolbar button.active-tool { background: #f59e0b; color: #000000; border-color: #ffffff; }
+  .toolbar button.btn-print { background: linear-gradient(180deg, #16a34a 0%, #14532d 100%); border-color: #86efac; }
+  .toolbar button.btn-print:disabled { background: #475569; cursor: wait; }
+  .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #ffffff; transition: transform 0.15s; }
+  .color-dot:hover { transform: scale(1.18); }
+  .page-indicator { color: #fde047; font-weight: 900; font-size: 14.5px; margin: 0 4px; white-space: nowrap; }
+  .jump-select {
+    background: #0f172a; color: #fde047; border: 1px solid #475569;
+    border-radius: 999px; padding: 4px 10px; font-size: 13px; font-weight: 800; cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 1: BÌA CHIẾN TRƯỜNG MẬT LỆNH SĂN TIN NGÀY 18/11/2026             -->
+  <!-- ===================================================================== -->
+  <div class="slide-container active" id="slide1">
+    <!-- Nền biểu đồ nến & ánh sáng chiến trường -->
+    <svg class="slide-bg-chart" viewBox="0 0 1280 720" preserveAspectRatio="none">
+      <path d="M0,450 Q280,320 560,390 T1120,210 L1280,160 L1280,720 L0,720 Z" fill="#93c5fd" opacity="0.5"/>
+      <g stroke="#94a3b8" stroke-width="1" stroke-dasharray="5 5">
+        <line x1="0" y1="220" x2="1280" y2="220"/><line x1="0" y1="360" x2="1280" y2="360"/><line x1="0" y1="500" x2="1280" y2="500"/>
+      </g>
+    </svg>
+
+    <!-- BÒ ĐỎ HÚC TỚI BÊN TRÁI -->
+    <svg viewBox="0 0 260 250" style="position:absolute; left:12px; top:128px; width:235px; height:235px; z-index:12; pointer-events:none; filter:drop-shadow(0 12px 16px rgba(185,28,28,0.45));">
+      <defs>
+        <linearGradient id="bullG1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ef4444"/><stop offset="55%" stop-color="#dc2626"/><stop offset="100%" stop-color="#7f1d1d"/>
+        </linearGradient>
+        <linearGradient id="hornG1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#fef3c7"/><stop offset="70%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#991b1b"/>
+        </linearGradient>
+      </defs>
+      <ellipse cx="95" cy="215" rx="75" ry="18" fill="#bae6fd" opacity="0.8"/>
+      <path d="M18,125 C25,85 75,65 125,75 C155,80 175,95 190,115 L205,148 L175,168 L145,162 L125,205 L102,202 L112,158 L75,165 L52,208 L28,200 L45,152 C22,148 14,138 18,125 Z" fill="url(#bullG1)" stroke="#7f1d1d" stroke-width="2.5"/>
+      <path d="M168,95 L212,102 L222,135 L196,154 L168,136 Z" fill="url(#bullG1)" stroke="#7f1d1d" stroke-width="2.5"/>
+      <path d="M178,96 C172,68 186,46 202,38 C194,56 192,76 196,96 Z" fill="url(#hornG1)" stroke="#78350f" stroke-width="1.5"/>
+      <path d="M206,104 C226,95 245,78 252,58 C242,82 228,102 212,115 Z" fill="url(#hornG1)" stroke="#78350f" stroke-width="1.5"/>
+      <polygon points="196,115 207,118 202,124" fill="#fef08a"/>
+      <circle cx="215" cy="142" r="5" fill="none" stroke="#fbbf24" stroke-width="2.5"/>
+    </svg>
+
+    <!-- GẤU XANH GẦM VANG BÊN PHẢI -->
+    <svg viewBox="0 0 250 240" style="position:absolute; right:12px; top:128px; width:225px; height:225px; z-index:12; pointer-events:none; filter:drop-shadow(0 12px 16px rgba(30,58,138,0.45));">
+      <defs>
+        <linearGradient id="bearG1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#3b82f6"/><stop offset="55%" stop-color="#1d4ed8"/><stop offset="100%" stop-color="#172554"/>
+        </linearGradient>
+      </defs>
+      <path d="M95,115 C115,65 175,55 215,88 C242,112 248,162 238,205 L145,205 L140,165 L102,175 L82,202 L58,192 L78,148 Z" fill="url(#bearG1)" stroke="#172554" stroke-width="2.5"/>
+      <circle cx="88" cy="48" r="14" fill="#1d4ed8" stroke="#172554" stroke-width="2.5"/>
+      <circle cx="128" cy="44" r="14" fill="#2563eb" stroke="#172554" stroke-width="2.5"/>
+      <path d="M62,72 C68,46 112,38 134,58 C148,74 144,108 122,122 L75,122 L52,104 Z" fill="url(#bearG1)" stroke="#172554" stroke-width="2.5"/>
+      <path d="M44,82 L78,76 L82,96 L48,98 Z" fill="#93c5fd"/>
+      <polygon points="48,98 84,96 78,118 52,114" fill="#0f172a"/>
+      <polygon points="52,98 57,106 61,98" fill="#ffffff"/><polygon points="72,97 76,105 80,97" fill="#ffffff"/>
+      <polygon points="54,114 58,107 62,114" fill="#ffffff"/><polygon points="70,115 74,108 78,115" fill="#ffffff"/>
+      <polygon points="78,68 92,65 88,74" fill="#e0f2fe"/>
+    </svg>
+
+    <div class="war-header" style="justify-content:center; text-align:center; padding:14px 30px;">
+      <div class="war-header-left" style="align-items:center;">
+        <span class="war-header-kicker">BẢN TIN CHIẾN LƯỢC TÀI CHÍNH &amp; ĐẦU TƯ THỰC CHIẾN</span>
+        <h1 style="font-size:36px;">MẬT LỆNH SĂN TIN NGÀY 18/11/2026</h1>
+      </div>
+    </div>
+
+    <div class="content" style="justify-content:space-between;">
+      <!-- Khối trung tâm giữa Bò & Gấu -->
+      <div style="margin: 0 225px; background: linear-gradient(135deg, #03254c 0%, #0f172a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 20px 26px; color: #ffffff; text-align: center; box-shadow: 0 12px 28px rgba(0,0,0,0.35);">
+        <div style="font-size: 21px; font-weight: 800; color: #fde047; text-transform: uppercase; margin-bottom: 8px;">
+          TRỌNG TÂM DỮ LIỆU TÁC ĐỘNG ĐẾN TÚI TIỀN NGƯỜI DÂN
+        </div>
+        <div style="font-size: 18px; font-weight: 600; color: #e2e8f0; line-height: 1.48;">
+          Tập trung vào các dữ liệu và diễn biến ảnh hưởng trực tiếp đến <span style="color:#fde047; font-weight:900;">chi phí sinh hoạt, tiết kiệm, vay nợ và danh mục đầu tư</span>. Do phiên Việt Nam <span style="color:#38bdf8; font-weight:900;">18/11</span> chưa kết thúc tại thời điểm tổng hợp, một số số liệu là <span style="color:#fca5a5; font-weight:900;">mức niêm yết/đóng cửa gần nhất ngày 17/11</span> và <span style="color:#86efac; font-weight:900;">dự báo cho phiên 18/11</span>.
+        </div>
+      </div>
+
+      <!-- 4 trụ cột nội dung chính -->
+      <div class="grid-2">
+        <div class="b-card amber-border">
+          <div class="b-card-head head-amber"><span>1. GIÁ VÀNG SJC &amp; THẾ GIỚI</span><span>FOMC 18/11</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>Vàng thế giới giữ quanh <span class="txt-red">3.850 USD/ounce</span>; vàng SJC niêm yết <span class="txt-blue">134,2–137,7 triệu đ/lượng</span>, chênh thế giới tới <span class="txt-red">~16,4 triệu đ/lượng</span>.</div>
+          </div>
+        </div>
+
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>2. BẤT ĐỘNG SẢN &amp; LÃI SUẤT</span><span>ÁP LỰC NỢ</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>Lãi vay ưu đãi <span class="txt-green">9–10%/năm</span> nhưng sau ưu đãi có thể vọt lên <span class="txt-red">15%/năm</span>; <span class="txt-red">235.000 tỷ đồng</span> trái phiếu BĐS đáo hạn 12 tháng tới.</div>
+          </div>
+        </div>
+
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>3. CHỨNG KHOÁN &amp; VN-INDEX</span><span>1.700 – 1.780</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>VN-Index đóng cửa <span class="txt-red">1.726,72 điểm (-10,17đ)</span>; kịch bản tuần tới giằng co vùng <span class="txt-blue">1.700–1.780 điểm</span>, phân hóa mạnh theo dòng tiền.</div>
+          </div>
+        </div>
+
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>4. ĐỊA CHÍNH TRỊ &amp; DẦU BRENT</span><span>94,01 USD</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>Tấn công tàu tại <span class="txt-red">Eo biển Hormuz</span> đẩy dầu Brent lên <span class="txt-red">94,01 USD/thùng</span>; EU phạt <span class="txt-red">49 ngân hàng Nga</span>; chờ thượng đỉnh Thâm Quyến.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 2: PHẦN 1A - GIÁ VÀNG TRONG NƯỚC VÀ THẾ GIỚI (DIỄN BIẾN)        -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide2">
+    <svg class="slide-bg-chart" viewBox="0 0 1280 720" preserveAspectRatio="none">
+      <path d="M0,520 Q320,380 640,440 T1280,260 L1280,720 L0,720 Z" fill="#fde68a" opacity="0.55"/>
+    </svg>
+
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 1 • THỊ TRƯỜNG KIM LOẠI QUÝ &amp; CHÍNH SÁCH FED</span>
+        <h1>GIÁ VÀNG TRONG NƯỚC VÀ THẾ GIỚI (17–18/11)</h1>
+      </div>
+      <span class="sub-tag">Trang 2 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-3" style="flex:1;">
+        <!-- Thẻ 1: Vàng Thế Giới -->
+        <div class="b-card amber-border">
+          <div class="b-card-head head-amber"><span>VÀNG THẾ GIỚI (XAU)</span><span>ÁP LỰC USD</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-amber">~3.850 USD/oz</div>
+            <div>• Vàng thế giới đang cố giữ quanh mốc <span class="txt-red">3.850 USD/ounce</span>.</div>
+            <div>• <strong>Nguyên nhân chính:</strong> <span class="txt-red">Đồng USD mạnh lên</span> và kỳ vọng Fed có thể tiếp tục thắt chặt chính sách tiền tệ.</div>
+            <div>• Vàng (tài sản không sinh lời lãi) trở nên kém hấp dẫn hơn so với các tài sản sinh lãi suất.</div>
+          </div>
+        </div>
+
+        <!-- Thẻ 2: Vàng SJC Trong Nước -->
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>VÀNG SJC TRONG NƯỚC</span><span>PHIÊN 17/11</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-blue">134,2 – 137,7 Tr</div>
+            <div>• Sáng 17/11 niêm yết khoảng <span class="txt-blue">134,2–137,2 triệu đồng/lượng</span> (mua vào–bán ra), <span class="txt-red">giảm 300.000 đồng/lượng</span> so với phiên trước.</div>
+            <div>• Một số hệ thống sau đó điều chỉnh niêm yết quanh vùng <span class="txt-blue">134,7–137,7 triệu đồng/lượng</span>.</div>
+          </div>
+        </div>
+
+        <!-- Thẻ 3: Chênh Lệch & FOMC -->
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>CHÊNH LỆCH &amp; BIÊN BẢN FED</span><span>CẢNH BÁO</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-red">~16,4 Triệu/lượng</div>
+            <div>• Chênh lệch giữa vàng SJC và vàng thế giới vẫn rất lớn, khoảng <span class="txt-red">16,4 triệu đồng/lượng</span> ở một mốc niêm yết gần nhất.</div>
+            <div>• Thị trường đang chờ <span class="txt-red">biên bản họp FOMC của Fed công bố ngày 18/11</span> để tìm tín hiệu về lãi suất Mỹ — yếu tố có thể khiến giá vàng biến động mạnh ngắn hạn.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-red" style="font-size:15px; padding:5px 14px;">TÁC ĐỘNG TÚI TIỀN</span>
+        <div>Người mua vàng cần đặc biệt lưu ý <span class="txt-red">chênh lệch mua–bán</span> và khoảng cách giá nội – ngoại <span class="txt-red">16,4 triệu đồng/lượng</span> trước giờ công bố biên bản FOMC ngày 18/11.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 3: PHẦN 1B - GIÁ VÀNG: TÁC ĐỘNG CHI TIẾT ĐẾN TÚI TIỀN           -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide3">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 1 • HÀNH ĐỘNG CHO NGƯỜI NẮM GIỮ &amp; NGƯỜI MUA VÀNG</span>
+        <h1>GIÁ VÀNG — TÁC ĐỘNG TRỰC TIẾP ĐẾN TÚI TIỀN</h1>
+      </div>
+      <span class="sub-tag">Trang 3 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="war-strip amber">
+        <div class="badge-num" style="background:#d97706;">1</div>
+        <div>
+          <span class="pill pill-amber">NHÓM ĐÃ MUA VÀNG Ở GIÁ CAO</span>
+          Có thể tiếp tục chịu <span class="txt-red">biến động mạnh trong ngắn hạn</span> khi thị trường phản ứng với tín hiệu lãi suất từ biên bản họp FOMC của Fed công bố ngày <span class="txt-blue">18/11</span>.
+        </div>
+      </div>
+
+      <div class="war-strip red">
+        <div class="badge-num" style="background:#dc2626;">2</div>
+        <div>
+          <span class="pill pill-red">NGƯỜI MUA TRANG SỨC HOẶC TÍCH TRỮ</span>
+          Nên chú ý kỹ <span class="txt-red">chênh lệch giá mua–bán</span> và <span class="txt-red">khoảng cách giá trong nước–quốc tế (~16,4 triệu đồng/lượng)</span>, vì khi bán ra có thể <span class="txt-red">mất đáng kể</span> so với giá niêm yết.
+        </div>
+      </div>
+
+      <div class="war-strip blue">
+        <div class="badge-num" style="background:#1d4ed8;">3</div>
+        <div>
+          <span class="pill pill-blue">KỊCH BẢN LÃI SUẤT TỪ FED</span>
+          Nếu Fed duy trì kỳ vọng giữ lãi suất ở mức cao để kiềm chế lạm phát, <span class="txt-red">áp lực giảm giá vàng có thể tiếp diễn</span> do đồng USD duy trì sức mạnh.
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-amber" style="font-size:15px; padding:5px 14px;">NGUYÊN TẮC PHÒNG THỦ</span>
+        <div>Không nên dùng vốn vay hoặc lướt sóng ngắn hạn với vàng vật chất SJC khi biên độ chênh lệch mua–bán và chênh lệch quốc tế đang neo ở vùng rủi ro cao.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 4: PHẦN 2A - BẤT ĐỘNG SẢN, ĐẤT ĐAI VÀ LÃI SUẤT                  -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide4">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • TÍN DỤNG ĐỊA ỐC &amp; MẶT BẰNG LÃI VAY NGÂN HÀNG</span>
+        <h1>BẤT ĐỘNG SẢN, ĐẤT ĐAI VÀ LÃI SUẤT</h1>
+      </div>
+      <span class="sub-tag">Trang 4 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-3" style="flex:1;">
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>BẪY LÃI SUẤT SAU ƯU ĐÃI</span><span>CẢNH BÁO</span></div>
+          <div class="b-card-body">
+            <div class="mega-num"><span class="txt-green">9–10%</span> → <span class="txt-red">15%/năm</span></div>
+            <div>• Nhiều ngân hàng tung gói vay mua nhà ưu đãi khoảng <span class="txt-green">9–10%/năm</span> trong giai đoạn đầu.</div>
+            <div>• Tuy nhiên, một số gói <span class="txt-red">sau ưu đãi có thể tăng lên tới 15%/năm</span> — người vay cần đọc kỹ thời hạn và điều kiện điều chỉnh lãi suất.</div>
+          </div>
+        </div>
+
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>ĐỘNG THÁI NGÂN HÀNG</span><span>ĐẦU THÁNG 11</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-green">46/46 &amp; 22 NH</div>
+            <div>• Đến đầu tháng 11, <span class="txt-green">46/46 ngân hàng thương mại</span> đã giảm lãi suất huy động, còn <span class="txt-blue">22 ngân hàng</span> giảm lãi suất cho vay.</div>
+            <div>• Dù vậy, <span class="txt-red">tín dụng bất động sản vẫn khó tiếp cận hơn</span> và chi phí vốn của doanh nghiệp địa ốc vẫn cao.</div>
+          </div>
+        </div>
+
+        <div class="b-card amber-border">
+          <div class="b-card-head head-amber"><span>THANH KHOẢN &amp; DỰ BÁO</span><span>1–2 NĂM TỚI</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-amber">11 – 14%/năm</div>
+            <div>• <span class="txt-red">Thanh khoản bất động sản vẫn yếu</span>, đặc biệt đối với nhà đầu tư sử dụng đòn bẩy tài chính.</div>
+            <div>• Chuyên gia dự báo lãi vay BĐS trong <span class="txt-amber">1–2 năm tới có thể dao động quanh 11–14%/năm</span>, thay vì trở về mức quá thấp.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-red" style="font-size:15px; padding:5px 14px;">CON SỐ TÚI TIỀN</span>
+        <div>Vay <span class="txt-blue">1 tỷ đồng</span>, cứ chênh <span class="txt-red">1 điểm phần trăm lãi suất</span> tương đương khoảng <span class="txt-red">10 triệu đồng tiền lãi/năm</span> (chưa tính các chi phí khác).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 5: PHẦN 2B - BĐS & LÃI SUẤT: TÁC ĐỘNG TÚI TIỀN & QUAN ĐIỂM      -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide5">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • CHIẾN LƯỢC NGƯỜI MUA NHÀ &amp; CỔ PHIẾU ĐỊA ỐC</span>
+        <h1>BẤT ĐỘNG SẢN — TÁC ĐỘNG TÚI TIỀN &amp; QUAN ĐIỂM GIẢI NGÂN</h1>
+      </div>
+      <span class="sub-tag">Trang 5 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-2">
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>NGƯỜI MUA ĐỂ Ở</span><span>ƯU TIÊN DÒNG TIỀN</span></div>
+          <div class="b-card-body">
+            <div>• Nên ưu tiên khả năng trả nợ ở <span class="txt-red">mức lãi suất sau ưu đãi (11–15%/năm)</span>, không chỉ nhìn con số ưu đãi ban đầu <span class="txt-green">9–10%/năm</span>.</div>
+            <div>• Ví dụ thực tế: Vay <span class="txt-blue">1 tỷ đồng</span>, chênh <span class="txt-red">1% lãi suất = ~10 triệu đồng tiền lãi/năm</span> trước các chi phí khác.</div>
+          </div>
+        </div>
+
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>NHÀ ĐẦU TƯ MUA ĐI BÁN LẠI</span><span>RỦI RO ĐÒN BẨY</span></div>
+          <div class="b-card-body">
+            <div>• <span class="txt-red">Dòng tiền cho thuê không đủ bù lãi vay</span> (11–14%/năm) và chi phí vốn cao vẫn là rủi ro chính ăn mòn tài sản.</div>
+            <div>• Thanh khoản thị trường yếu khiến việc thoát hàng gặp khó khăn nếu cần tiền gấp.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="war-strip amber">
+        <div class="badge-num" style="background:#b45309;">⚖️</div>
+        <div>
+          <span class="pill pill-red">QUAN ĐIỂM CỔ PHIẾU BĐS</span>
+          Có thể <span class="txt-green">giải ngân có chọn lọc</span>, nhưng <span class="txt-red">KHÔNG NÊN “TẤT TAY”</span> vào nhóm bất động sản lúc này. Dù có dòng tiền chọn lọc ở một số doanh nghiệp nền tảng tốt, song <span class="txt-red">chi phí vốn cao, áp lực trái phiếu đáo hạn và thanh khoản yếu</span> khiến rủi ro phân hóa rất lớn.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 6: PHẦN 2C - VÌ SAO VẪN CÓ CƠ HỘI Ở NHÓM BẤT ĐỘNG SẢN           -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide6">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • TÍN HIỆU TÍCH CỰC CHỌN LỌC PHIÊN 17/11</span>
+        <h1>CỔ PHIẾU BẤT ĐỘNG SẢN: VÌ SAO VẪN CÓ CƠ HỘI?</h1>
+      </div>
+      <span class="sub-tag">Trang 6 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-3" style="flex:1;">
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>1. DIỄN BIẾN PHIÊN 17/11</span><span>+1,38%</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-green">KDH +4% • CEO +3%</div>
+            <div>• Phiên 17/11, nhóm bất động sản tăng <span class="txt-green">1,38%</span>, với <span class="txt-green">KDH tăng gần 4%</span>, <span class="txt-green">CEO gần 3%</span>, <span class="txt-green">DXG và DIG tăng gần 2%</span>.</div>
+            <div>• Dòng tiền đang ưu tiên doanh nghiệp có dự án thực, dòng tiền bán hàng và cơ cấu nợ tương đối tốt.</div>
+          </div>
+        </div>
+
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>2. KHUYẾN NGHỊ MUA KDH</span><span>BSC RESEARCH</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-green">18.400 đ/cp (+17,6%)</div>
+            <div>• CTCK BSC duy trì khuyến nghị mua <span class="txt-green">KDH</span> với giá mục tiêu <span class="txt-green">18.400 đồng/cổ phiếu</span>, tương ứng tiềm năng tăng khoảng <span class="txt-green">17,6%</span>.</div>
+            <div>• <em>Lưu ý:</em> Đây là tín hiệu tích cực cho một doanh nghiệp cụ thể, <span class="txt-red">không phải cho toàn ngành</span>.</div>
+          </div>
+        </div>
+
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>3. NHÓM BĐS – HẠ TẦNG</span><span>WATCHLIST</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-blue">DXG, CII, TCH</div>
+            <div>• Một số CTCK đưa nhóm bất động sản–hạ tầng vào danh sách theo dõi, gồm <span class="txt-blue">DXG, CII và TCH</span>.</div>
+            <div>• Đây là quan điểm chọn lọc từng cổ phiếu riêng lẻ, <span class="txt-red">không phải lời kêu gọi mua toàn ngành</span>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-green" style="font-size:15px; padding:5px 14px;">ĐIỂM MẤU CHỐT</span>
+        <div>Cơ hội chỉ xuất hiện ở <span class="txt-green">thiểu số doanh nghiệp có dự án sạch &amp; cơ cấu nợ lành mạnh</span> — tuyệt đối không đánh đồng cả ngành BĐS.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 7: PHẦN 2D - RỦI RO CẦN ĐẶT LÊN TRƯỚC Ở NHÓM BẤT ĐỘNG SẢN       -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide7">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • BOM NỢ TRÁI PHIẾU &amp; SỰ PHÂN HÓA KHỐC LIỆT</span>
+        <h1>CỔ PHIẾU BẤT ĐỘNG SẢN: 4 RỦI RO CẦN ĐẶT LÊN TRƯỚC</h1>
+      </div>
+      <span class="sub-tag">Trang 7 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="war-strip red">
+        <div class="badge-num" style="background:#dc2626;">1</div>
+        <div>
+          <span class="pill pill-red">ÁP LỰC NỢ ĐÁO HẠN CAO</span>
+          Khoảng <span class="txt-red">47.000 tỷ đồng</span> trái phiếu bất động sản đáo hạn trong quý IV/2026, và tính từ tháng 8 đến tháng 12 có khoảng <span class="txt-red">59.000 tỷ đồng</span> trái phiếu đến hạn.
+        </div>
+      </div>
+
+      <div class="war-strip amber">
+        <div class="badge-num" style="background:#d97706;">2</div>
+        <div>
+          <span class="pill pill-amber">CHI PHÍ HUY ĐỘNG MỚI ĐẮT ĐỎ</span>
+          Lãi suất coupon bình quân trái phiếu BĐS phát hành mới trong quý III/2026 ghi nhận ở mức <span class="txt-red">11,5%/năm</span>; một số nguồn ghi nhận lên tới <span class="txt-red">12,5%/năm</span>.
+        </div>
+      </div>
+
+      <div class="war-strip red">
+        <div class="badge-num" style="background:#b91c1c;">3</div>
+        <div>
+          <span class="pill pill-red">CHÍNH PHỦ GIÁM SÁT SÁT SAO</span>
+          Chính phủ yêu cầu báo cáo “sức khỏe” thị trường BĐS trong tháng 11, trong bối cảnh khoảng <span class="txt-red">235.000 tỷ đồng</span> trái phiếu đáo hạn trong 12 tháng tới — cơ quan quản lý đang theo dõi sát rủi ro dòng tiền ngành.
+        </div>
+      </div>
+
+      <div class="war-strip blue">
+        <div class="badge-num" style="background:#1d4ed8;">4</div>
+        <div>
+          <span class="pill pill-blue">THỊ TRƯỜNG PHÂN HÓA MẠNH</span>
+          <span class="txt-red">VIC và nhiều mã hệ sinh thái Vingroup, NLG, KBC điều chỉnh</span>, trong khi chỉ một số mã BĐS tăng. Mua theo “nhóm ngành” dễ gặp rủi ro chọn sai doanh nghiệp.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 8: PHẦN 2E - CÁCH GIẢI NGÂN HỢP LÝ THEO HỒ SƠ NHÀ ĐẦU TƯ        -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide8">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • MA TRẬN PHÂN BỔ VỐN THEO KHẨU VỊ RỦI RO</span>
+        <h1>CÁCH GIẢI NGÂN HỢP LÝ THEO HỒ SƠ NHÀ ĐẦU TƯ</h1>
+      </div>
+      <span class="sub-tag">Trang 8 / 22</span>
+    </div>
+
+    <div class="content">
+      <table class="war-table">
+        <thead>
+          <tr>
+            <th style="width: 30%;">Hồ Sơ Nhà Đầu Tư</th>
+            <th style="width: 70%;">Hành Động Chiến Lược Phù Hợp</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#eff6ff;">
+            <td><span class="pill pill-blue">1. DÀI HẠN</span><br><strong class="txt-blue" style="font-size:19px;">Có tiền nhàn rỗi</strong></td>
+            <td><span class="txt-blue">Chia nhỏ giải ngân</span>, chỉ chọn doanh nghiệp có dự án đang triển khai, dòng tiền bán hàng tốt, nợ trái phiếu kiểm soát được và tỷ lệ đáo hạn gần không quá lớn.</td>
+          </tr>
+          <tr style="background:#fffbeb;">
+            <td><span class="pill pill-amber">2. NGẮN HẠN</span><br><strong class="txt-amber" style="font-size:19px;">Đuổi sóng / Trading</strong></td>
+            <td><span class="txt-red">Chưa nên mua đuổi</span> sau nhịp tăng của KDH, CEO, DXG; kiên nhẫn chờ hồi về vùng hỗ trợ hoặc có tín hiệu thanh khoản và độ rộng thị trường cải thiện.</td>
+          </tr>
+          <tr style="background:#fef2f2;">
+            <td><span class="pill pill-red">3. VỐN NGẮN HẠN</span><br><strong class="txt-red" style="font-size:19px;">Cần tiền trong 6–12 tháng</strong></td>
+            <td><span class="txt-red">Không nên dùng tiền ngắn hạn</span> để giải ngân mạnh vào nhóm này, vì cổ phiếu BĐS rất nhạy cảm với lãi suất, dòng tiền và tin tức nợ trái phiếu.</td>
+          </tr>
+          <tr style="background:#f0fdf4;">
+            <td><span class="pill pill-green">4. GIÁN TIẾP</span><br><strong class="txt-green" style="font-size:19px;">Đầu tư qua quỹ</strong></td>
+            <td>Có thể cân nhắc <span class="txt-green">phân bổ tỷ trọng nhỏ</span>, ưu tiên chọn quỹ có danh mục đa dạng thay vì tập trung vào một cổ phiếu bất động sản.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 9: PHẦN 2F - BỘ LỌC 4 ĐIỂM TRƯỚC KHI MUA & TÁC ĐỘNG TÚI TIỀN    -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide9">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • QUY TẮC KIỂM DUYỆT DOANH NGHIỆP ĐỊA ỐC</span>
+        <h1>BỘ LỌC 4 ĐIỂM TRƯỚC KHI MUA &amp; NGUYÊN TẮC TÚI TIỀN</h1>
+      </div>
+      <span class="sub-tag">Trang 9 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-2" style="flex:1;">
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>1. NỢ ĐÁO HẠN 6–12 THÁNG</span><span>SỐNG CÒN</span></div>
+          <div class="b-card-body">Kiểm tra nợ đến hạn trong <span class="txt-red">6–12 tháng</span> và khả năng tái cấp vốn của doanh nghiệp; ưu tiên công ty <span class="txt-green">không phải đảo nợ liên tục</span>.</div>
+        </div>
+
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>2. DÒNG TIỀN KINH DOANH</span><span>THỰC CHẤT</span></div>
+          <div class="b-card-body">Soi dòng tiền từ hoạt động kinh doanh và doanh thu bàn giao thực tế, <span class="txt-red">thay vì chỉ dựa vào giá trị đất/quỹ đất trên sổ sách</span>.</div>
+        </div>
+
+        <div class="b-card amber-border">
+          <div class="b-card-head head-amber"><span>3. LÃI SUẤT VỐN &amp; CHI PHÍ TÀI CHÍNH</span><span>BIÊN LỢI NHUẬN</span></div>
+          <div class="b-card-body">Đánh giá lãi suất vốn và chi phí tài chính, vì <span class="txt-red">chi phí vốn cao sẽ bào mòn lợi nhuận</span> nếu doanh nghiệp không đẩy nhanh tiến độ bán hàng.</div>
+        </div>
+
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>4. ĐỘ RỘNG CỦA DÒNG TIỀN</span><span>XÁC NHẬN</span></div>
+          <div class="b-card-body">Quan sát độ rộng dòng tiền: nhiều mã trong ngành cùng tăng và thanh khoản tăng, <span class="txt-blue">chứ không chỉ một hai cổ phiếu dẫn dắt</span>.</div>
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-red" style="font-size:15px; padding:5px 14px;">TÁC ĐỘNG TÚI TIỀN</span>
+        <div>Coi đây là <span class="txt-red">vị thế rủi ro trung–cao</span> và giữ tiền mặt. <span class="txt-red">Không dùng đòn bẩy</span>, không dồn vốn vào 1 mã, chỉ tăng tỷ trọng khi <span class="txt-blue">VN-Index giữ vững 1.700–1.720 điểm</span> cùng dòng tiền BĐS lan tỏa rộng hơn.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 10: PHẦN 2G - TIÊU CHÍ LỌC DOANH NGHIỆP BĐS NỢ VAY AN TOÀN      -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide10">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • BỘ TIÊU CHUẨN ĐỊNH LƯỢNG SỨC KHỎE TÀI CHÍNH</span>
+        <h1>5 TIÊU CHÍ LỌC DOANH NGHIỆP BĐS “NỢ VAY AN TOÀN”</h1>
+      </div>
+      <span class="sub-tag">Trang 10 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="war-strip amber" style="padding:8px 16px; font-size:16px;">
+        <div><strong>Lưu ý dữ liệu:</strong> Kết nối dữ liệu tài chính hiện chỉ trả về cấu trúc bảng, chưa truy xuất đủ chỉ số nợ từng mã. Danh sách theo dõi mang tính chọn lọc, <span class="txt-red">không phải khuyến nghị mua</span> — cần đối chiếu BCTC quý mới nhất trước khi giải ngân.</div>
+      </div>
+
+      <div class="war-strip green" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#15803d; width:34px; height:34px; font-size:17px;">1</div>
+        <div><strong class="txt-green">Nợ vay tài chính / Vốn chủ sở hữu (D/E):</strong> Thấp hoặc giảm dần qua các quý; ưu tiên <span class="txt-green">dưới 1,0–1,5 lần</span> tùy mô hình kinh doanh.</div>
+      </div>
+
+      <div class="war-strip green" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#15803d; width:34px; height:34px; font-size:17px;">2</div>
+        <div><strong class="txt-green">Khả năng trả lãi (EBIT / Interest):</strong> Dương và đủ mạnh; tránh doanh nghiệp lợi nhuận hoạt động không đủ trả lãi vay.</div>
+      </div>
+
+      <div class="war-strip blue" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#1d4ed8; width:34px; height:34px; font-size:17px;">3</div>
+        <div><strong class="txt-blue">Thanh khoản ngắn hạn tốt:</strong> Tài sản ngắn hạn / nợ ngắn hạn phải trả <span class="txt-blue">trên 1,0</span>; đặc biệt quan trọng với BĐS vì hàng tồn kho là đất, dự án và nhà ở.</div>
+      </div>
+
+      <div class="war-strip blue" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#1d4ed8; width:34px; height:34px; font-size:17px;">4</div>
+        <div><strong class="txt-blue">Nợ ròng / EBITDA:</strong> Không quá cao; nếu chưa có EBITDA ổn định, cần soi kỹ tiền mặt, dòng tiền kinh doanh và lịch đáo hạn nợ.</div>
+      </div>
+
+      <div class="war-strip red" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#dc2626; width:34px; height:34px; font-size:17px;">5</div>
+        <div><strong class="txt-red">Không phụ thuộc trái phiếu đáo hạn gần:</strong> Vì chi phí tái cấp vốn BĐS đang rất đắt (lãi suất coupon phát hành mới quý III/2026 ở mức <span class="txt-red">11,5% – 12,5%/năm</span>).</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 11: PHẦN 2H - DANH SÁCH ƯU TIÊN THEO DÕI (KDH, CII, TCH, DXG)   -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide11">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • DANH SÁCH THEO DÕI CÓ CHỌN LỌC (WATCHLIST)</span>
+        <h1>4 MÃ BĐS – HẠ TẦNG ƯU TIÊN THEO DÕI</h1>
+      </div>
+      <span class="sub-tag">Trang 11 / 22</span>
+    </div>
+
+    <div class="content">
+      <table class="war-table">
+        <thead>
+          <tr>
+            <th style="width: 13%;">Mã CP</th>
+            <th style="width: 45%;">Lý Do Nằm Trong Danh Sách</th>
+            <th style="width: 42%;">Rủi Ro Bắt Buộc Kiểm Tra</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#f0fdf4;">
+            <td><span class="mega-num txt-green" style="font-size:25px;">KDH</span></td>
+            <td>Có khuyến nghị mua từ BSC, giá mục tiêu <span class="txt-green">18.400 đồng/cp</span>, tiềm năng tăng khoảng <span class="txt-green">17,6%</span>; dòng tiền gần đây tích cực.</td>
+            <td>Kiểm tra tiến độ bàn giao, nợ vay ngắn hạn và giá vốn hàng bán; <span class="txt-red">không nên mua chỉ vì khuyến nghị</span>.</td>
+          </tr>
+          <tr>
+            <td><span class="mega-num txt-blue" style="font-size:25px;">CII</span></td>
+            <td>Nằm trong nhóm BĐS–hạ tầng được một số CTCK theo dõi; mô hình có yếu tố hạ tầng, bớt phụ thuộc hoàn toàn vào bán nhà.</td>
+            <td>Cần xem kỹ <span class="txt-red">dòng tiền đầu tư hạ tầng, nợ dự án</span> và khả năng hoàn vốn.</td>
+          </tr>
+          <tr style="background:#f8fafc;">
+            <td><span class="mega-num txt-blue" style="font-size:25px;">TCH</span></td>
+            <td>Thuộc nhóm BĐS–hạ tầng được nhắc trong danh sách theo dõi có chọn lọc của các CTCK.</td>
+            <td>Xem cơ cấu nợ, dòng tiền từ bất động sản cho thuê và tiến độ triển khai dự án.</td>
+          </tr>
+          <tr style="background:#fffbeb;">
+            <td><span class="mega-num txt-amber" style="font-size:25px;">DXG</span></td>
+            <td>Được nhắc trong nhóm BĐS–hạ tầng có triển vọng theo dõi; cổ phiếu <span class="txt-green">tăng gần 2% phiên 17/11</span>.</td>
+            <td><span class="txt-red">Thường có đòn bẩy cao</span> và nhạy với chu kỳ BĐS; cần xem kỹ nợ ngắn hạn và tiến độ giải ngân dự án.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 12: PHẦN 2I - NHÓM CẦN THẬN TRỌNG                               -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide12">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • VÙNG CẢNH BÁO ĐỎ VỚI CỔ PHIẾU TRỤ &amp; NỢ LỚN</span>
+        <h1>CỔ PHIẾU BẤT ĐỘNG SẢN: NHÓM CẦN THẬN TRỌNG</h1>
+      </div>
+      <span class="sub-tag">Trang 12 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="war-strip red">
+        <div class="badge-num" style="background:#dc2626;">1</div>
+        <div>
+          <span class="pill pill-red">DÒNG TIỀN CHƯA LAN TỎA</span>
+          <span class="txt-red">NLG, KBC và một số mã hệ sinh thái Vingroup vẫn giảm điểm</span> trong phiên 17/11, cho thấy dòng tiền chưa lan tỏa đồng đều trong toàn ngành bất động sản.
+        </div>
+      </div>
+
+      <div class="war-strip red">
+        <div class="badge-num" style="background:#991b1b;">2</div>
+        <div>
+          <span class="pill pill-red">NGUY CƠ BÁN TÀI SẢN / HẠ GIÁ</span>
+          Ngành BĐS chịu áp lực từ <span class="txt-red">47.000 tỷ đồng</span> trái phiếu đáo hạn quý IV/2026 và <span class="txt-red">235.000 tỷ đồng</span> đáo hạn trong 12 tháng tới; doanh nghiệp yếu dòng tiền có nguy cơ phải bán tài sản hoặc hạ giá để thu hồi tiền.
+        </div>
+      </div>
+
+      <div class="war-strip amber">
+        <div class="badge-num" style="background:#b45309;">3</div>
+        <div>
+          <span class="pill pill-amber">KHÔNG ĐÁNH ĐỒNG “NỢ VAY AN TOÀN”</span>
+          Tuyệt đối <span class="txt-red">không nên xếp VIC, VHM, NLG, KBC</span> hay các doanh nghiệp có lượng trái phiếu đáo hạn lớn vào nhóm “nợ vay an toàn” chỉ dựa trên việc giá cổ phiếu tăng ngắn hạn.
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-red" style="font-size:15px; padding:5px 14px;">CẢNH BÁO BẪY GIÁ</span>
+        <div>Giá cổ phiếu hồi phục kỹ thuật không đồng nghĩa với việc áp lực đáo hạn trái phiếu của doanh nghiệp đã được giải quyết.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 13: PHẦN 2K - 5 BƯỚC KIỂM TRA BCTC QUÝ TRƯỚC KHI MUA            -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide13">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 2 • QUY TRÌNH SOI BÁO CÁO TÀI CHÍNH QUÝ MỚI NHẤT</span>
+        <h1>5 BƯỚC KIỂM TRA BCTC QUÝ TRƯỚC KHI XUỐNG TIỀN</h1>
+      </div>
+      <span class="sub-tag">Trang 13 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="war-strip blue" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#1d4ed8; width:34px; height:34px; font-size:17px;">1</div>
+        <div><strong>Nợ vay ngắn hạn + nợ dài hạn:</strong> Đối chiếu trực tiếp với lượng <span class="txt-green">tiền mặt và các khoản đầu tư tài chính ngắn hạn</span> trên bảng cân đối kế toán.</div>
+      </div>
+
+      <div class="war-strip red" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#dc2626; width:34px; height:34px; font-size:17px;">2</div>
+        <div><strong class="txt-red">Lịch đáo hạn trái phiếu &amp; vay ngân hàng trong 6–12 tháng tới:</strong> Đây là <span class="txt-red">rủi ro quan trọng nhất hiện nay</span> quyết định khả năng thanh toán của doanh nghiệp.</div>
+      </div>
+
+      <div class="war-strip amber" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#d97706; width:34px; height:34px; font-size:17px;">3</div>
+        <div><strong>Chi phí lãi vay / Lợi nhuận hoạt động:</strong> Nếu chi phí lãi vay chiếm tỷ trọng quá cao, khả năng trả nợ thực chất rất yếu.</div>
+      </div>
+
+      <div class="war-strip green" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#15803d; width:34px; height:34px; font-size:17px;">4</div>
+        <div><strong class="txt-green">Dòng tiền kinh doanh &amp; doanh thu bàn giao:</strong> Soi tiền thu thật từ khách hàng, thay vì chỉ nhìn lợi nhuận kế toán trên giấy.</div>
+      </div>
+
+      <div class="war-strip blue" style="padding:9px 16px; font-size:17px;">
+        <div class="badge-num" style="background:#0369a1; width:34px; height:34px; font-size:17px;">5</div>
+        <div><strong>Giá trị hàng tồn kho &amp; dự án đang triển khai:</strong> Là tài sản chính nhưng cũng là nguồn rủi ro chôn vốn thanh khoản khi thị trường chậm.</div>
+      </div>
+
+      <div class="wallet-banner" style="padding:9px 16px; font-size:16.5px;">
+        <span class="pill pill-green" style="font-size:14px;">TÁC ĐỘNG TÚI TIỀN</span>
+        <div>Ưu tiên nghiên cứu <span class="txt-green">KDH, CII, TCH</span> trước; thận trọng đòn bẩy ở <span class="txt-amber">DXG</span>. Chia nhỏ vốn, không dùng tiền cần trong 6–12 tháng, chỉ tăng tỷ trọng khi BCTC quý xác nhận dòng tiền tốt.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 14: PHẦN 3 - CHỨNG KHOÁN VIỆT NAM                               -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide14">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 3 • DIỄN BIẾN VN-INDEX &amp; THANH KHOẢN THỊ TRƯỜNG</span>
+        <h1>CHỨNG KHOÁN VIỆT NAM (PHIÊN 17/11 &amp; 18/11)</h1>
+      </div>
+      <span class="sub-tag">Trang 14 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-3" style="flex:1;">
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>ĐÓNG CỬA PHIÊN 17/11</span><span>GIẢM ĐIỂM</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-red">1.726,72 (-10,17đ)</div>
+            <div>• VN-Index giảm <span class="txt-red">10,17 điểm</span> về <span class="txt-red">1.726,72 điểm</span>; HNX-Index giảm mạnh <span class="txt-red">2,48%</span> còn <span class="txt-red">248,6 điểm</span>.</div>
+            <div>• Áp lực bán gia tăng vào phiên chiều trước khi xuất hiện lực cầu mua đáy trở lại cuối phiên.</div>
+          </div>
+        </div>
+
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>KỸ THUẬT PHIÊN 18/11</span><span>RUNG LẮC</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-blue">1.715 – 1.740 điểm</div>
+            <div>• VN-Index dự báo rung lắc quanh vùng <span class="txt-blue">1.715–1.740 điểm</span>.</div>
+            <div>• Vùng hỗ trợ quan trọng nằm tại <span class="txt-green">1.700–1.720 điểm</span>. Dòng tiền còn thận trọng và chưa lan tỏa rộng giữa các nhóm ngành.</div>
+          </div>
+        </div>
+
+        <div class="b-card amber-border">
+          <div class="b-card-head head-amber"><span>THANH KHOẢN THỊ TRƯỜNG</span><span>CHƯA BÁN THÁO</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-amber">Dưới TB 20 Phiên</div>
+            <div>• Thanh khoản tăng so với phiên trước nhưng vẫn <span class="txt-amber">thấp hơn bình quân 20 phiên</span>.</div>
+            <div>• Điều này cho thấy áp lực bán tăng nhưng <span class="txt-green">chưa tạo thành đợt bán tháo lan rộng</span> trên toàn thị trường.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-red" style="font-size:15px; padding:5px 14px;">TÁC ĐỘNG TÚI TIỀN</span>
+        <div>Nhà đầu tư cá nhân <span class="txt-red">tránh tăng tỷ trọng đòn bẩy (margin)</span> khi chỉ số đang kiểm định hỗ trợ; theo dõi sát thanh khoản, mốc <span class="txt-green">1.700–1.720 điểm</span> và độ lan tỏa dòng tiền sang nhóm ngành mới.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 15: PHẦN 4 - THỜI SỰ QUỐC TẾ NỔI BẬT                            -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide15">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 4 • ĐỊA CHÍNH TRỊ TOÀN CẦU, GIÁ DẦU &amp; THƯỢNG ĐỈNH THÂM QUYẾN</span>
+        <h1>THỜI SỰ QUỐC TẾ NỔI BẬT &amp; TÁC ĐỘNG VĨ MÔ</h1>
+      </div>
+      <span class="sub-tag">Trang 15 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-2" style="flex:1;">
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>1. TRUNG ĐÔNG &amp; EO BIỂN HORMUZ</span><span>BRENT 94,01$</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>• Tấn công tàu hàng tại <span class="txt-red">Eo biển Hormuz</span> làm dấy lên lo ngại gián đoạn dòng chảy dầu và LNG (Hormuz từng vận chuyển ~1/5 dầu &amp; LNG toàn cầu trước xung đột Iran).</div>
+            <div>• Giá <span class="txt-red">dầu Brent tăng 1,7% lên khoảng 94,01 USD/thùng</span>.</div>
+          </div>
+        </div>
+
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>2. XUNG ĐỘT NGA – UKRAINE</span><span>TRỪNG PHẠT EU</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>• Xung đột vẫn là điểm nóng với các đợt tấn công vào cơ sở hạ tầng và nhà máy quốc phòng Ukraine.</div>
+            <div>• <span class="txt-red">EU áp thêm lệnh trừng phạt lên 49 ngân hàng Nga</span> và một số doanh nghiệp tài chính thanh toán.</div>
+          </div>
+        </div>
+
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>3. KINH TẾ EUROZONE 2026</span><span>NÂNG DỰ BÁO</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>• <span class="txt-green">EU nâng dự báo tăng trưởng Eurozone năm 2026</span>, cho thấy khu vực chịu đựng tốt hơn dự kiến trước cú sốc năng lượng và xung đột Trung Đông.</div>
+            <div>• Tuy nhiên, lạm phát, giá năng lượng và lãi suất vẫn là rủi ro chính.</div>
+          </div>
+        </div>
+
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>4. THƯỢNG ĐỈNH THÂM QUYẾN</span><span>18 – 19/11</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>• Hội nghị thượng đỉnh châu Á–Thái Bình Dương tại <span class="txt-blue">Thâm Quyến (18–19/11)</span> với kỳ vọng Tổng thống Mỹ <span class="txt-blue">Donald Trump</span> gặp lãnh đạo Trung Quốc và Nga.</div>
+            <div>• Tâm điểm theo dõi vì tác động trực tiếp đến thương mại, địa chính trị và giá năng lượng.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner" style="padding:9px 16px; font-size:16.5px;">
+        <span class="pill pill-amber" style="font-size:14px;">TÁC ĐỘNG TÚI TIỀN</span>
+        <div>Dầu tăng gây áp lực <span class="txt-red">xăng dầu, vận tải, hàng nhập khẩu &amp; lạm phát</span>. Ngược lại, nếu giá dầu hạ nhiệt và Fed dịu giọng lãi suất, <span class="txt-green">giá vàng, chứng khoán và chi phí vay vốn</span> sẽ được hỗ trợ.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 16: PHẦN 5A - XU HƯỚNG VN-INDEX TUẦN TỚI & BỐI CẢNH KỸ THUẬT    -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide16">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 5 • CHỈ BÁO KỸ THUẬT MA10, MA20, STOCHASTIC &amp; NẾN HAMMER</span>
+        <h1>TRIỂN VỌNG VN-INDEX TUẦN TỚI &amp; BỐI CẢNH KỸ THUẬT</h1>
+      </div>
+      <span class="sub-tag">Trang 16 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="war-strip blue">
+        <div class="badge-num" style="background:#1d4ed8;">🧭</div>
+        <div>
+          <span class="pill pill-blue">KỊCH BẢN CƠ SỞ TUẦN TỚI</span>
+          VN-Index nhiều khả năng tiếp tục <span class="txt-blue">tích lũy / giằng co</span> trong vùng <span class="txt-blue">1.700–1.780 điểm</span>, thay vì xác nhận xu hướng tăng rõ ràng. Cặp mốc quyết định là <span class="txt-green">1.720–1.730 điểm (hỗ trợ)</span> và <span class="txt-red">1.755–1.765 điểm (kháng cự)</span>.
+        </div>
+      </div>
+
+      <div class="grid-2" style="flex:1;">
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>TÍN HIỆU SUY YẾU NGẮN HẠN</span><span>GẤU ÁP LỰC</span></div>
+          <div class="b-card-body">
+            <div>• Đóng cửa phiên 17/11 tại <span class="txt-red">1.726,72 điểm (-10,17 điểm)</span>.</div>
+            <div>• Chỉ số đang giao dịch <span class="txt-red">dưới đường MA10 và MA20</span>.</div>
+            <div>• Chỉ báo <span class="txt-red">Stochastic suy yếu và cắt xuống đường tín hiệu</span>, cho thấy động lượng ngắn hạn chưa tích cực.</div>
+          </div>
+        </div>
+
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>TÍN HIỆU CÂN BẰNG CẦU ĐÁY</span><span>BÒ PHÒNG THỦ</span></div>
+          <div class="b-card-body">
+            <div>• Xuất hiện <span class="txt-green">nến Hammer cuối phiên</span> cho thấy lực cầu đỡ giá quanh vùng <span class="txt-green">1.720–1.740 điểm</span>.</div>
+            <div>• <span class="txt-blue">Dải Bollinger thu hẹp</span> — dấu hiệu thị trường đang nén lại để cân bằng trước khi chọn hướng đi mới.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 17: PHẦN 5B - VÙNG GIÁ KỸ THUẬT QUAN TRỌNG (ĐÚNG PHONG CÁCH MẪU)-->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide17">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 5 • BẢN ĐỒ HỖ TRỢ &amp; KHÁNG CỰ VN-INDEX</span>
+        <h1>VÙNG GIÁ KỸ THUẬT QUAN TRỌNG CẦN THEO DÕI</h1>
+      </div>
+      <span class="sub-tag">Trang 17 / 22</span>
+    </div>
+
+    <div class="content" style="gap:8px;">
+      <!-- Biểu đồ nến trực quan ở trên -->
+      <div style="background:#ffffff; border:2px solid #cbd5e1; border-radius:14px; padding:6px 14px; height:175px; position:relative; box-shadow:0 4px 12px rgba(0,0,0,0.06);">
+        <svg viewBox="0 0 1180 155" style="width:100%; height:100%; overflow:visible;">
+          <!-- Dải kháng cự 1.775 - 1.780 -->
+          <rect x="280" y="10" width="900" height="14" fill="#ef4444" fill-opacity="0.25"/>
+          <line x1="280" y1="10" x2="1180" y2="10" stroke="#dc2626" stroke-width="1.5"/>
+          <line x1="280" y1="24" x2="1180" y2="24" stroke="#dc2626" stroke-width="1.5"/>
+          <rect x="995" y="4" width="175" height="24" rx="12" fill="#991b1b"/><text x="1082" y="20" text-anchor="middle" fill="#fff" font-size="14" font-weight="900">1.775 – 1.780</text>
+
+          <!-- Dải kháng cự 1.750 - 1.765 -->
+          <rect x="380" y="38" width="800" height="14" fill="#ef4444" fill-opacity="0.25"/>
+          <line x1="380" y1="38" x2="1180" y2="38" stroke="#dc2626" stroke-width="1.5"/>
+          <line x1="380" y1="52" x2="1180" y2="52" stroke="#dc2626" stroke-width="1.5"/>
+          <rect x="995" y="33" width="175" height="24" rx="12" fill="#dc2626"/><text x="1082" y="49" text-anchor="middle" fill="#fff" font-size="14" font-weight="900">1.750 – 1.765</text>
+
+          <!-- Dải hỗ trợ 1.720 - 1.730 -->
+          <rect x="180" y="102" width="1000" height="14" fill="#16a34a" fill-opacity="0.25"/>
+          <line x1="180" y1="102" x2="1180" y2="102" stroke="#15803d" stroke-width="1.5"/>
+          <line x1="180" y1="116" x2="1180" y2="116" stroke="#15803d" stroke-width="1.5"/>
+          <rect x="995" y="97" width="175" height="24" rx="12" fill="#16a34a"/><text x="1082" y="113" text-anchor="middle" fill="#fff" font-size="14" font-weight="900">1.720 – 1.730</text>
+
+          <!-- Dải hỗ trợ 1.693 - 1.700 -->
+          <rect x="80" y="130" width="1100" height="14" fill="#16a34a" fill-opacity="0.25"/>
+          <line x1="80" y1="130" x2="1180" y2="130" stroke="#15803d" stroke-width="1.5"/>
+          <line x1="80" y1="144" x2="1180" y2="144" stroke="#15803d" stroke-width="1.5"/>
+          <rect x="995" y="125" width="175" height="24" rx="12" fill="#14532d"/><text x="1082" y="141" text-anchor="middle" fill="#fff" font-size="14" font-weight="900">1.693 – 1.700</text>
+
+          <!-- Sóng nến minh họa diễn biến VN-Index -->
+          <g stroke-width="2">
+            <line x1="35" y1="125" x2="35" y2="145" stroke="#16a34a"/><rect x="30" y="130" width="10" height="12" fill="#16a34a"/>
+            <line x1="65" y1="110" x2="65" y2="135" stroke="#16a34a"/><rect x="60" y="115" width="10" height="16" fill="#16a34a"/>
+            <line x1="95" y1="95" x2="95" y2="120" stroke="#16a34a"/><rect x="90" y="100" width="10" height="15" fill="#16a34a"/>
+            <line x1="125" y1="80" x2="125" y2="105" stroke="#16a34a"/><rect x="120" y="84" width="10" height="16" fill="#16a34a"/>
+            <line x1="155" y1="62" x2="155" y2="88" stroke="#16a34a"/><rect x="150" y="66" width="10" height="18" fill="#16a34a"/>
+            <line x1="185" y1="44" x2="185" y2="70" stroke="#16a34a"/><rect x="180" y="48" width="10" height="18" fill="#16a34a"/>
+            <line x1="215" y1="35" x2="215" y2="55" stroke="#dc2626"/><rect x="210" y="40" width="10" height="12" fill="#dc2626"/>
+            <line x1="245" y1="45" x2="245" y2="68" stroke="#dc2626"/><rect x="240" y="50" width="10" height="14" fill="#dc2626"/>
+            <line x1="275" y1="58" x2="275" y2="84" stroke="#dc2626"/><rect x="270" y="63" width="10" height="16" fill="#dc2626"/>
+            <line x1="305" y1="74" x2="305" y2="102" stroke="#dc2626"/><rect x="300" y="79" width="10" height="18" fill="#dc2626"/>
+            <line x1="335" y1="92" x2="335" y2="122" stroke="#dc2626"/><rect x="330" y="96" width="10" height="20" fill="#dc2626"/>
+            <line x1="365" y1="98" x2="365" y2="125" stroke="#16a34a"/><rect x="360" y="102" width="10" height="16" fill="#16a34a"/>
+            <line x1="395" y1="84" x2="395" y2="108" stroke="#16a34a"/><rect x="390" y="88" width="10" height="15" fill="#16a34a"/>
+            <line x1="425" y1="72" x2="425" y2="95" stroke="#16a34a"/><rect x="420" y="76" width="10" height="14" fill="#16a34a"/>
+            <line x1="455" y1="68" x2="455" y2="92" stroke="#dc2626"/><rect x="450" y="74" width="10" height="14" fill="#dc2626"/>
+            <line x1="485" y1="80" x2="485" y2="108" stroke="#dc2626"/><rect x="480" y="86" width="10" height="16" fill="#dc2626"/>
+            <!-- Nến Hammer cuối phiên quanh 1.726 -->
+            <line x1="515" y1="96" x2="515" y2="124" stroke="#16a34a"/><rect x="510" y="98" width="10" height="8" fill="#16a34a"/>
+            <text x="532" y="100" fill="#03254c" font-size="13" font-weight="900">◀ Đóng cửa 1.726,72đ (Nến Hammer)</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- 4 Thẻ Vùng Giá Chiến Lược (2 Hỗ trợ Xanh + 2 Kháng cự Đỏ) -->
+      <div class="grid-2" style="gap:10px; flex:1;">
+        <!-- Hỗ trợ 1 -->
+        <div class="b-card green-border">
+          <div class="b-card-head head-green" style="padding:5px 14px; font-size:17px;"><span>HỖ TRỢ 1: 1.693 – 1.700</span><span>ĐÁY THÁNG 10</span></div>
+          <div class="b-card-body" style="padding:8px 14px; font-size:15.5px; gap:4px;">
+            <div><span class="pill pill-green">Ý Nghĩa</span> Hỗ trợ quan trọng, gần đáy của tháng 10.</div>
+            <div><span class="pill pill-blue">Kịch Bản</span> Mất vùng này làm tăng rủi ro kiểm định <span class="txt-red">1.680</span>; tiếp tục mất có thể hướng về <span class="txt-red">1.655 – 1.660</span>.</div>
+          </div>
+        </div>
+
+        <!-- Kháng cự 1 -->
+        <div class="b-card red-border">
+          <div class="b-card-head head-red" style="padding:5px 14px; font-size:17px;"><span>KHÁNG CỰ 1: 1.750 – 1.765</span><span>NGẮN HẠN</span></div>
+          <div class="b-card-body" style="padding:8px 14px; font-size:15.5px; gap:4px;">
+            <div><span class="pill pill-red">Ý Nghĩa</span> Kháng cự ngắn hạn, cần thanh khoản tốt để vượt qua.</div>
+            <div><span class="pill pill-blue">Kịch Bản</span> Vượt có thanh khoản mở đường cho mục tiêu <span class="txt-green">1.780 – 1.800</span>.</div>
+          </div>
+        </div>
+
+        <!-- Hỗ trợ 2 -->
+        <div class="b-card green-border">
+          <div class="b-card-head head-green" style="padding:5px 14px; font-size:17px;"><span>HỖ TRỢ 2: 1.720 – 1.730</span><span>NGẮN HẠN</span></div>
+          <div class="b-card-body" style="padding:8px 14px; font-size:15.5px; gap:4px;">
+            <div><span class="pill pill-green">Ý Nghĩa</span> Hỗ trợ ngắn hạn, trùng vùng giá đóng cửa gần đây.</div>
+            <div><span class="pill pill-blue">Kịch Bản</span> Giữ được vùng này giúp chỉ số tiếp tục tích lũy quanh <span class="txt-blue">1.730 – 1.750</span>.</div>
+          </div>
+        </div>
+
+        <!-- Kháng cự 2 -->
+        <div class="b-card red-border">
+          <div class="b-card-head head-red" style="padding:5px 14px; font-size:17px;"><span>KHÁNG CỰ 2: 1.775 – 1.780</span><span>MẠNH HƠN</span></div>
+          <div class="b-card-body" style="padding:8px 14px; font-size:15.5px; gap:4px;">
+            <div><span class="pill pill-red">Ý Nghĩa</span> Kháng cự mạnh hơn phía trên vùng tích lũy.</div>
+            <div><span class="pill pill-blue">Kịch Bản</span> Phá vỡ và giữ trên vùng này mới đủ cơ sở nói về <span class="txt-green">xu hướng tăng mới</span>.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 18: PHẦN 5C - BA KỊCH BẢN TUẦN TỚI                              -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide18">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 5 • DỰ BÁO XÁC SUẤT &amp; MỤC TIÊU ĐIỂM SỐ</span>
+        <h1>BA KỊCH BẢN DIỄN BIẾN VN-INDEX TUẦN TỚI</h1>
+      </div>
+      <span class="sub-tag">Trang 18 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-3" style="flex:1;">
+        <!-- Kịch bản 1: Tích lũy -->
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>1. TÍCH LŨY (CƠ SỞ)</span><span>XÁC SUẤT CAO</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-blue">1.700 – 1.780đ</div>
+            <div><span class="pill pill-blue">Điều Kiện</span> VN-Index dao động giằng co quanh vùng <span class="txt-blue">1.720–1.750 điểm</span>, thanh khoản chưa bùng nổ.</div>
+            <div><span class="pill pill-amber">Mục Tiêu</span> Biên độ phổ biến <span class="txt-blue">1.700–1.780</span>; đây là kịch bản được nhiều CTCK định giá xác suất cao nhất.</div>
+          </div>
+        </div>
+
+        <!-- Kịch bản 2: Phục hồi -->
+        <div class="b-card green-border">
+          <div class="b-card-head head-green"><span>2. PHỤC HỒI TĂNG</span><span>BÒ BỨT PHÁ</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-green">1.780 → 1.800đ</div>
+            <div><span class="pill pill-green">Điều Kiện</span> Đóng cửa dứt khoát trên <span class="txt-green">1.755–1.765 điểm</span> kèm thanh khoản tăng, độ rộng thị trường cải thiện.</div>
+            <div><span class="pill pill-green">Mục Tiêu</span> Tiến lên kiểm định mốc <span class="txt-green">1.780</span>, sau đó hướng tới <span class="txt-green">1.800 điểm</span>.</div>
+          </div>
+        </div>
+
+        <!-- Kịch bản 3: Điều chỉnh -->
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>3. ĐIỀU CHỈNH GIẢM</span><span>GẤU ÁP ĐẢO</span></div>
+          <div class="b-card-body">
+            <div class="mega-num txt-red">1.680 → 1.655đ</div>
+            <div><span class="pill pill-red">Điều Kiện</span> Đánh mất vùng hỗ trợ <span class="txt-red">1.693–1.700 điểm</span> và không hồi phục nhanh trở lại.</div>
+            <div><span class="pill pill-red">Rủi Ro</span> Kiểm định <span class="txt-red">1.680 điểm</span>; trường hợp xấu hơn rơi về vùng <span class="txt-red">1.655–1.660 điểm</span>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner">
+        <span class="pill pill-blue" style="font-size:15px; padding:5px 14px;">KIM CHỈ NAM</span>
+        <div>Hành động theo tín hiệu xác nhận của thị trường tại hai chốt chặn <span class="txt-green">1.700 điểm (Sàn)</span> và <span class="txt-red">1.765 điểm (Trần)</span> — không đoán đỉnh đáy khi thanh khoản chưa bùng nổ.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 19: PHẦN 5D - TÍN HIỆU MUA-BÁN & ĐIỀU KIỆN ĐỂ CÓ XU HƯỚNG TĂNG  -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide19">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 5 • KỶ LUẬT ĐI LỆNH &amp; BỘ 3 ĐIỀU KIỆN XÁC NHẬN SÓNG</span>
+        <h1>TÍN HIỆU MUA–BÁN &amp; ĐIỀU KIỆN ĐỂ CÓ XU HƯỚNG TĂNG</h1>
+      </div>
+      <span class="sub-tag">Trang 19 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-2" style="flex:1;">
+        <!-- Cột trái: Tín hiệu Mua - Bán -->
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>TÍN HIỆU MUA – BÁN CỤ THỂ</span><span>HÀNH ĐỘNG</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div><span class="pill pill-red">KHÔNG MUA ĐUỔI</span> Khi VN-Index mới tiến gần <span class="txt-red">1.750–1.765</span> mà thanh khoản chưa tăng rõ — cần phiên tăng mạnh và dòng tiền lan rộng xác nhận.</div>
+            <div><span class="pill pill-green">MUA PHÂN BỔ</span> Cân nhắc giải ngân từng phần khi giá về <span class="txt-green">1.700–1.720</span> nhưng vẫn giữ cấu trúc tăng dần đáy và không đóng cửa dưới <span class="txt-red">1.693</span>.</div>
+            <div><span class="pill pill-red">CẮT GIẢM TỶ TRỌNG</span> Hạ tỷ trọng ngay nếu chỉ số mất <span class="txt-red">1.693–1.700</span> kèm thanh khoản cao, tránh rủi ro rơi về <span class="txt-red">1.680</span> hoặc sâu hơn.</div>
+          </div>
+        </div>
+
+        <!-- Cột phải: 3 Điều kiện xu hướng tăng -->
+        <div class="b-card amber-border">
+          <div class="b-card-head head-amber"><span>3 ĐIỀU KIỆN CÓ XU HƯỚNG TĂNG BỀN</span><span>CHƯA ĐẠT</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div><strong>Thị trường cần đồng thời hội tụ đủ 3 yếu tố:</strong></div>
+            <div><span class="txt-blue">(1)</span> VN-Index vượt và giữ vững trên <span class="txt-green">1.755–1.765 điểm</span>;</div>
+            <div><span class="txt-blue">(2)</span> Thanh khoản tăng vượt <span class="txt-green">trung bình 20 phiên</span>;</div>
+            <div><span class="txt-blue">(3)</span> Dòng tiền lan tỏa từ nhóm vốn hóa lớn sang các nhóm ngành khác.</div>
+            <div style="background:#fef3c7; padding:8px 12px; border-radius:10px; border:1px solid #f59e0b; font-size:15.5px;">
+              <strong>Hiện trạng:</strong> Chỉ báo <span class="txt-amber">RSI và MACD đi ngang</span>, dòng tiền còn phân hóa nên chưa đủ cơ sở xác nhận đợt tăng bền.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner" style="padding:9px 16px; font-size:16.5px;">
+        <span class="pill pill-red" style="font-size:14px;">TÁC ĐỘNG TÚI TIỀN</span>
+        <div><strong>Nhà đầu tư dài hạn:</strong> Vùng <span class="txt-green">1.700–1.720</span> là cơ hội chia nhỏ lệnh, giữ tiền mặt dự phòng nếu mất 1.700. <strong>Nhà giao dịch ngắn hạn:</strong> Mua tại <span class="txt-red">1.755–1.765</span> khi chưa có xác nhận có nguy cơ “mua đỉnh ngắn hạn” rất cao.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 20: PHẦN 6A - NHÓM ĐANG HÚT TIỀN (PHẦN 1)                       -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide20">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 6 • DÒNG TIỀN PHÒNG THỦ &amp; PHÂN HÓA THEO NGÀNH</span>
+        <h1>DÒNG TIỀN NGÀNH: NHÓM ĐANG HÚT TIỀN (PHẦN 1)</h1>
+      </div>
+      <span class="sub-tag">Trang 20 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="war-strip blue" style="padding:9px 16px; font-size:16.5px;">
+        <div><strong>Bức tranh chung:</strong> Dòng tiền chưa tập trung vào một ngành dẫn dắt rõ ràng, mà phân hóa nghiêng về nhóm phòng thủ: <span class="txt-green">điện–năng lượng, BĐS chọn lọc, tiêu dùng thiết yếu và chứng khoán</span> — phản ánh giai đoạn tích lũy thay vì tăng đồng thuận.</div>
+      </div>
+
+      <table class="war-table">
+        <thead>
+          <tr>
+            <th style="width: 23%;">Nhóm Ngành</th>
+            <th style="width: 40%;">Diễn Biến Gần Nhất (Phiên 17/11)</th>
+            <th style="width: 37%;">Điểm Cần Lưu Ý</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#f0fdf4;">
+            <td><strong class="txt-green" style="font-size:18.5px;">Điện, năng lượng &amp; hạ tầng</strong></td>
+            <td>Nhóm <span class="txt-green">tăng mạnh nhất phiên 17/11</span>; tiền tìm đến cổ phiếu điện, nước–môi trường và xây dựng. <span class="txt-green">POW tăng 3,11%</span> (GTGD <span class="txt-blue">219,3 tỷ đồng</span>).</td>
+            <td>Được xem là “vùng trú ẩn” khi biến động; tuy nhiên một số mã đã tăng nhanh, cần chú ý <span class="txt-red">rủi ro điều chỉnh</span>.</td>
+          </tr>
+          <tr>
+            <td><strong class="txt-blue" style="font-size:18.5px;">Bất động sản chọn lọc</strong></td>
+            <td>Nhóm tăng <span class="txt-green">1,38%</span> phiên 17/11, chủ yếu nhờ <span class="txt-blue">VIC</span>; <span class="txt-green">KDH gần 4%, CEO gần 3%, DXG và DIG ~2%</span>.</td>
+            <td>Dòng tiền <span class="txt-red">chưa lan tỏa toàn ngành</span>: NLG, KBC và nhiều mã hệ sinh thái Vingroup vẫn giảm.</td>
+          </tr>
+          <tr style="background:#f8fafc;">
+            <td><strong class="txt-green" style="font-size:18.5px;">Tiêu dùng thiết yếu</strong></td>
+            <td>MSN, MCH, DBC, VHC, HGI, KDC tăng điểm; <span class="txt-green">MCH tăng 1,38%</span> và là mã tăng mạnh nhất rổ VN30.</td>
+            <td>Tính phòng thủ cao, nhưng mức tăng phụ thuộc khá nhiều vào vài mã lớn như <span class="txt-amber">MCH</span>.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 21: PHẦN 6B - NHÓM ĐANG HÚT TIỀN (PHẦN 2)                       -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide21">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 6 • DIỄN BIẾN NHÓM TÀI CHÍNH – CHỨNG KHOÁN &amp; NGÂN HÀNG</span>
+        <h1>DÒNG TIỀN NGÀNH: NHÓM ĐANG HÚT TIỀN (PHẦN 2)</h1>
+      </div>
+      <span class="sub-tag">Trang 21 / 22</span>
+    </div>
+
+    <div class="content">
+      <table class="war-table">
+        <thead>
+          <tr>
+            <th style="width: 24%;">Nhóm Ngành</th>
+            <th style="width: 38%;">Diễn Biến Gần Nhất</th>
+            <th style="width: 38%;">Điểm Cần Lưu Ý</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#eff6ff;">
+            <td><strong class="txt-blue" style="font-size:20px;">Chứng khoán</strong></td>
+            <td>Một phần dòng tiền quay lại, với <span class="txt-green">STB tăng 1,12%</span>; các mã <span class="txt-green">VCK, TCX, SHS, CTS</span> tăng giá tích cực.</td>
+            <td>Các mã đầu ngành lớn như <span class="txt-amber">HCM, SSI, MBS</span> chỉ neo quanh tham chiếu, nên <span class="txt-red">chưa phải xu hướng tăng đồng thuận</span> của cả ngành.</td>
+          </tr>
+          <tr style="background:#fffbeb;">
+            <td><strong class="txt-amber" style="font-size:20px;">Tài chính ngân hàng</strong></td>
+            <td><span class="txt-green">STB, SHS</span> tăng hơn 1%; <span class="txt-green">HDB, MSB, VIX, VND, VCI</span> giữ được sắc xanh.</td>
+            <td>Ngành phân hóa mạnh: <span class="txt-red">LPB, BID, TCB, VPB, ACB giảm điểm</span>; đây là nhóm then chốt để thị trường hồi phục nhưng <span class="txt-red">chưa dẫn dắt</span>.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="war-strip amber">
+        <div class="badge-num" style="background:#d97706;">🏦</div>
+        <div>
+          <span class="pill pill-amber">VAI TRÒ NHÓM VUA</span>
+          Ngân hàng và Chứng khoán là hai nhóm xung kích quyết định khả năng bứt phá của VN-Index. Khi <span class="txt-red">BID, TCB, VPB, ACB, SSI, HCM</span> chưa đồng thuận tăng, thị trường khó tạo sóng lớn.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TRANG 22: PHẦN 6C - NHÓM CHỊU ÁP LỰC, CÁCH ĐỌC DÒNG TIỀN & KẾT LUẬN   -->
+  <!-- ===================================================================== -->
+  <div class="slide-container" id="slide22">
+    <div class="war-header">
+      <div class="war-header-left">
+        <span class="war-header-kicker">MỤC 6 • VÙNG XẢ HÀNG MẠNH &amp; TỔNG KẾT CHIẾN LƯỢC</span>
+        <h1>NHÓM CHỊU ÁP LỰC BÁN, CÁCH ĐỌC DÒNG TIỀN &amp; KẾT LUẬN</h1>
+      </div>
+      <span class="sub-tag">Trang 22 / 22</span>
+    </div>
+
+    <div class="content">
+      <div class="grid-2" style="flex:1;">
+        <!-- Cột trái: Nhóm chịu áp lực bán -->
+        <div class="b-card red-border">
+          <div class="b-card-head head-red"><span>NHÓM CHỊU ÁP LỰC BÁN MẠNH (17/11)</span><span>ĐỎ LỬA</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>• <strong class="txt-red">Dầu khí (-3,83%):</strong> Gây áp lực lớn nhất lên VN-Index phiên 17/11; năng lượng và hóa chất cũng điều chỉnh rõ.</div>
+            <div>• <strong class="txt-red">Công nghệ, phần cứng &amp; phần mềm:</strong> Chịu bán mạnh — phần cứng–thiết bị <span class="txt-red">giảm 7,04%</span>, phần mềm–dịch vụ <span class="txt-red">giảm 1,80%</span>.</div>
+            <div>• <strong class="txt-red">Nhóm giảm khác:</strong> Viễn thông, bảo hiểm, tiện ích và vận tải đồng loạt giảm điểm, cho thấy áp lực bán lan rộng.</div>
+          </div>
+        </div>
+
+        <!-- Cột phải: Cách đọc dòng tiền -->
+        <div class="b-card blue-border">
+          <div class="b-card-head head-blue"><span>CÁCH ĐỌC DÒNG TIỀN THỊ TRƯỜNG</span><span>CẢNH GIÁC</span></div>
+          <div class="b-card-body" style="font-size:16.5px;">
+            <div>• <strong class="txt-amber">Độ rộng thị trường yếu:</strong> Ngay cả nhóm “tăng điểm” như BĐS hay thực phẩm–đồ uống cũng chủ yếu nhờ một vài cổ phiếu lớn, thay vì số đông cổ phiếu trong ngành cùng tăng.</div>
+            <div>• <strong class="txt-blue">Hiệu ứng kéo trụ &amp; Midcap:</strong> <span class="txt-blue">VIC đóng góp ~10 điểm</span> cho VN-Index trong một phiên gần đây, trong khi dòng tiền dịch chuyển sang nhóm <span class="txt-green">Midcap</span> và các ngành ít nhạy vĩ mô như <span class="txt-green">điện, logistics</span>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wallet-banner" style="padding:10px 18px; font-size:16.5px;">
+        <span class="pill pill-red" style="font-size:14.5px; padding:5px 14px;">KẾT LUẬN TÚI TIỀN</span>
+        <div>Ưu tiên cổ phiếu có <span class="txt-green">thanh khoản thực &amp; động lực cơ bản</span>, tránh mua đuổi ngành tăng cục bộ. Nếu VN-Index giữ <span class="txt-green">1.700–1.720</span> và <span class="txt-blue">Ngân hàng, Chứng khoán</span> tăng kèm thanh khoản tốt, dòng tiền sẽ lan tỏa; ngược lại rủi ro <span class="txt-red">“xanh vỏ đỏ lòng”</span> vẫn rất lớn.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- THANH CÔNG CỤ GIẢNG BÀI NỔI PHÍA TRÊN (LẬT TRANG + BÚT VẼ + IN ẢNH)   -->
+  <!-- ===================================================================== -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <select class="jump-select" id="slideSelector" onchange="jumpToSlide(this.value)" title="Chọn nhanh trang slide"></select>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#475569;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ef4444;" onclick="setColor('#ef4444')" title="Mực Đỏ Báo Động"></div>
+    <div class="color-dot" style="background:#2563eb;" onclick="setColor('#2563eb')" title="Mực Xanh Dương"></div>
+    <div class="color-dot" style="background:#16a34a;" onclick="setColor('#16a34a')" title="Mực Xanh Lá"></div>
+    <div class="color-dot" style="background:#f59e0b;" onclick="setColor('#f59e0b')" title="Mực Vàng"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét</button>
+    <span style="color:#475569;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh PNG</button>
+  </div>
+
+<script>
+  let currentSlide = 1;
+  const totalSlides = 22;
+
+  // Khởi tạo danh sách chọn nhanh 22 trang
+  const slideTitles = [
+    "1. Bìa Tổng Quan 18/11/2026",
+    "2. Giá Vàng SJC & Thế Giới",
+    "3. Vàng: Tác Động Túi Tiền",
+    "4. BĐS & Lãi Suất Ngân Hàng",
+    "5. BĐS: Chiến Lược Giải Ngân",
+    "6. BĐS: Điểm Sáng Chọn Lọc",
+    "7. BĐS: 4 Rủi Ro Trái Phiếu",
+    "8. BĐS: Hồ Sơ Nhà Đầu Tư",
+    "9. BĐS: Bộ Lọc 4 Điểm",
+    "10. BĐS: 5 Tiêu Chí Nợ An Toàn",
+    "11. Watchlist: KDH, CII, TCH, DXG",
+    "12. BĐS: Nhóm Cần Thận Trọng",
+    "13. 5 Bước Soi BCTC Quý",
+    "14. Chứng Khoán VN 17–18/11",
+    "15. Thời Sự Quốc Tế & Dầu Brent",
+    "16. Triển Vọng VN-Index Tuần Tới",
+    "17. Vùng Giá Kỹ Thuật Quan Trọng",
+    "18. 3 Kịch Bản VN-Index Tuần Tới",
+    "19. Tín Hiệu Mua-Bán & Xu Hướng",
+    "20. Dòng Tiền Ngành (Phần 1)",
+    "21. Dòng Tiền Ngành (Phần 2)",
+    "22. Nhóm Chịu Áp Lực & Kết Luận"
+  ];
+
+  const selector = document.getElementById('slideSelector');
+  slideTitles.forEach((title, idx) => {
+    const opt = document.createElement('option');
+    opt.value = idx + 1;
+    opt.textContent = `Trang ${idx + 1}/22 • ${title.replace(/^\d+\.\s*/, '')}`;
+    selector.appendChild(opt);
+  });
+
+  // Tự động thu phóng khung 1280x720 vừa khít mọi màn hình
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 24) / 1280,
+      (window.innerHeight - 74) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  function showSlide(n) {
+    const target = Math.max(1, Math.min(totalSlides, Number(n)));
+    currentSlide = target;
+    for (let i = 1; i <= totalSlides; i++) {
+      document.getElementById('slide' + i).classList.remove('active');
+    }
+    document.getElementById('slide' + target).classList.add('active');
+    selector.value = target;
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function jumpToSlide(val) { showSlide(val); }
+  function nextSlide() { if (currentSlide < totalSlides) showSlide(currentSlide + 1); }
+  function prevSlide() { if (currentSlide > 1) showSlide(currentSlide - 1); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Bảng vẽ phủ kín 100% toàn màn hình để giảng bài trực tiếp
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ef4444';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4.5;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Xuất ảnh PNG sắc nét 16:9 (1280x720) gộp cả đồ họa slide & nét bút vẽ
+  async function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất...';
+    bar.style.visibility = 'hidden';
+
+    const prevTransform = slideEl.style.transform;
+    const rectBefore = slideEl.getBoundingClientRect();
+    slideEl.style.transform = 'scale(1)';
+
+    try {
+      const renderedSlide = await html2canvas(slideEl, {
+        scale: 2,
+        useCORS: true,
+        width: 1280,
+        height: 720,
+        backgroundColor: '#e0f2fe'
+      });
+
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 2560;
+      finalCanvas.height = 1440;
+      const fCtx = finalCanvas.getContext('2d');
+
+      fCtx.drawImage(renderedSlide, 0, 0, 2560, 1440);
+      fCtx.drawImage(
+        canvas,
+        rectBefore.left, rectBefore.top, rectBefore.width, rectBefore.height,
+        0, 0, 2560, 1440
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png', 1.0);
+      link.download = `Mat_Lenh_San_Tin_18_11_2026_Trang_${currentSlide}.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } finally {
+      slideEl.style.transform = prevTransform;
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh PNG';
+    }
+  }
+</script>
+</body>
+</html>
