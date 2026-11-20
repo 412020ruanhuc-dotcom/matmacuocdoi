@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mật Mã Cuộc Đời: Tuổi Giáp Tuất 1994 Năm 2027 Đinh Mùi (Zalo 0789.414.153)</title>
+<style>
+  /* Thiết lập cơ bản và font chữ dễ đọc trên mọi thiết bị */
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Khung Slide ngang tỷ lệ chuẩn 16:9 (1280x720) theo đúng mẫu chuẩn */
+  .slide-container {
+    width: 1280px;
+    height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 10px 30px rgba(0, 0, 0, 0.7);
+    position: relative;
+    padding: 18px 38px 16px 38px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-origin: center center;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Phần đầu mỗi trang slide */
+  .header {
+    text-align: center;
+    border-bottom: 3px solid #b8860b;
+    padding-bottom: 7px;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .header h1 {
+    color: #8b0000;
+    font-size: 32px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    text-shadow: 1px 1px 0px #fff;
+    line-height: 1.15;
+  }
+  .header p {
+    color: #1e5618;
+    font-size: 19px;
+    font-weight: 800;
+    margin-top: 3px;
+  }
+  .zodiac-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff8dc;
+    border: 2px solid #b8860b;
+    color: #8b0000;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* Chân trang thương hiệu Mật Mã Cuộc Đời */
+  .slide-footer {
+    border-top: 2px solid #d4af37;
+    padding-top: 5px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15.5px;
+    font-weight: 800;
+    color: #7a1c1c;
+  }
+  .brand-pill {
+    background: #8b0000;
+    color: #ffd700;
+    padding: 2px 12px;
+    border-radius: 14px;
+    border: 1.5px solid #d4af37;
+    font-weight: 900;
+    font-size: 15px;
+  }
+
+  /* Khu vực nội dung chính của từng trang */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+  }
+  .rule-box {
+    background: #fffdf5;
+    border: 2.5px solid #d4af37;
+    border-left: 10px solid #8b0000;
+    padding: 11px 16px;
+    border-radius: 12px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.38;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .icon-gold-round {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5a2b, #b8860b);
+    border: 3px solid #f5deb3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    flex-shrink: 0;
+  }
+
+  strong, b { font-weight: 900; }
+  .highlight-red { color: #b22222; font-weight: 900; }
+  .highlight-green { color: #166516; font-weight: 900; }
+  .highlight-blue { color: #003d99; font-weight: 900; }
+
+  /* Lưới chia 2 cột & 3 cột */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 13px; }
+  .card {
+    background: #ffffff;
+    border: 2.5px solid #c5a059;
+    border-radius: 12px;
+    padding: 11px 15px;
+    font-size: 18.5px;
+    font-weight: 700;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.08);
+    line-height: 1.38;
+  }
+  .badge {
+    background: radial-gradient(circle, #d93829, #8b0000);
+    border: 2.5px solid #f0c95c;
+    color: #fff;
+    font-weight: 900;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .badge-diamond {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, #1b4f9c, #0d2b5c);
+    border: 2.5px solid #90cdf4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 5px;
+  }
+  .badge-diamond span {
+    transform: rotate(-45deg);
+    color: #fff;
+    font-weight: 900;
+    font-size: 17px;
+  }
+
+  /* Khung Ví dụ / Khuyến nghị & Thẻ kết quả */
+  .example-box {
+    background: #eef7ee;
+    border: 3px dashed #2e7d32;
+    border-radius: 14px;
+    padding: 11px 16px;
+    font-size: 18.5px;
+    font-weight: 700;
+    color: #143d14;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .example-box.warn {
+    background: #fff4f4;
+    border-color: #b22222;
+    color: #4a0d0d;
+  }
+  .example-box.info {
+    background: #eef5ff;
+    border-color: #1b4f9c;
+    color: #0d2b5c;
+  }
+  .icon-house-round {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1e6b1e;
+    border: 3px solid #d4af37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .icon-house-round.red { background: #8b0000; }
+  .icon-house-round.blue { background: #1b4f9c; }
+
+  .result-tag {
+    display: inline-block;
+    background: linear-gradient(90deg, #165b33, #247a48);
+    color: #fff;
+    padding: 3px 11px;
+    border-radius: 8px;
+    border: 2px solid #f0c95c;
+    font-weight: 900;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .result-tag.bad { background: #b22222; border-color: #f0c95c; }
+  .result-tag.blue { background: #1b4f9c; border-color: #f0c95c; }
+
+  /* Bảng tra cứu chuẩn */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-size: 17px;
+    font-weight: 700;
+  }
+  th {
+    background: #8b0000;
+    color: #fff;
+    padding: 8px 10px;
+    border: 2px solid #b8860b;
+    font-weight: 900;
+    font-size: 18px;
+  }
+  td {
+    padding: 7px 10px;
+    border: 2px solid #d4af37;
+    text-align: center;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.32;
+  }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  /* Thẻ bước & Băng rôn nhấn mạnh */
+  .step-card {
+    background: #fff;
+    border: 2.5px solid #2e7d32;
+    border-radius: 12px;
+    padding: 11px 15px;
+    text-align: left;
+  }
+  .step-card h3 {
+    background: #8b0000;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin-bottom: 7px;
+    font-size: 18.5px;
+    font-weight: 900;
+    text-align: center;
+  }
+  .step-card p {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.38;
+  }
+  .ratio-banner {
+    background: linear-gradient(135deg, #8b0000, #b22222);
+    border: 3px solid #f0c95c;
+    border-radius: 14px;
+    padding: 12px 18px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .ratio-banner .big-num {
+    font-size: 25px;
+    font-weight: 900;
+    color: #ffd700;
+    margin-bottom: 3px;
+  }
+
+  /* Bảng vẽ & Thanh công cụ nổi phía trên */
+  #drawCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    pointer-events: none;
+    touch-action: none;
+  }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+
+  .toolbar {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92);
+    padding: 6px 16px;
+    border-radius: 30px;
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    z-index: 100;
+    border: 1px solid #888;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    max-width: 96vw;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .toolbar button {
+    background: #333;
+    color: #fff;
+    border: 1px solid #777;
+    padding: 5px 12px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  .toolbar button:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000; border-color: #fff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .toolbar button.btn-print:disabled { background: #666; cursor: wait; }
+  .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid #fff; }
+  .page-indicator { color: #ffd700; font-weight: bold; font-size: 15px; margin: 0 4px; }
+
+  /* Hộp thông báo trạng thái nhẹ nhàng (không dùng alert) */
+  .toast-msg {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 20, 0.92);
+    color: #ffd700;
+    border: 2px solid #d4af37;
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 800;
+    z-index: 120;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .toast-msg.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+  <!-- TRANG 1: TỔNG QUAN TUỔI GIÁP TUẤT 1994 NĂM 2027 ĐINH MÙI -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>MẬT MÃ CUỘC ĐỜI: TUỔI GIÁP TUẤT 1994 NĂM 2027 <span class="zodiac-tag">🐕 34 TUỔI MỤ</span></h1>
+      <p>Trang 1 / 20: Tổng Quan Vận Trình Năm Đinh Mùi • Nạp Âm Sơn Đầu Hỏa • Kết Bạn Zalo: 0789.414.153</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">TUỔI GIÁP TUẤT 1994 • NĂM ĐINH MÙI 2027 • 34 TUỔI MỤ</div>
+        <div style="font-size: 18.5px; font-weight: 800;">Luận giải 2 lớp: <strong>Tử Vi Truyền Thống</strong> (Sao – Hạn – Vận Niên – Tháng) &amp; <strong>Ứng Dụng Hiện Đại</strong> (Cung Sanh – Cung Phi Bát Trạch – Từ Trường Con Số)</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3>7 Nội Dung Luận Giải Chi Tiết</h3>
+          <p>• <strong>1.</strong> Sao Hạn Nam Mạng &amp; <strong>2.</strong> Sao Hạn Nữ Mạng.<br>
+          • <strong>3.</strong> Cách Hóa Giải thực tế &amp; <strong>4.</strong> Tuyệt Chiêu Kích Tài Lộc.<br>
+          • <strong>5.</strong> Cung Sanh &amp; Hôn Nhân • <strong>6.</strong> Cung Phi Bát Trạch &amp; Gia Đạo.<br>
+          • <strong>7.</strong> Từ Trường Con Số trong cuộc sống (Ngũ Quỷ, Tuyệt Mệnh, Lục Sát, Họa Hại).</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1e6b1e; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Ý Nghĩa Sao Hạn &amp; Chìa Khóa Chuyển Hóa</h3>
+          <p>• <strong>Ý nghĩa Sao Hạn Bổn Mạng:</strong> Hệ thống sao hạn năm 2027 là sự soi chiếu vận trình bổn mạng tuổi Giáp Tuất 1994, nạp âm <strong>Sơn Đầu Hỏa</strong>.<br>
+          • <strong>Chìa khóa chuyển hóa:</strong> Hiểu rõ sao tốt – sao xấu, Cung Sanh, Cung Phi Bát Trạch và từ trường con số quanh mình giúp anh chị biết rõ mình đang ở đâu, cần điều chỉnh gì và cần tránh điều gì.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🧭</div>
+        <div>
+          <strong>Tử vi chân chính không phải để gây sợ hãi, ép cúng bái hay phụ thuộc vào thầy:</strong> Tử vi chân chính là để giúp con người <strong>hiểu rõ số phận, nhận ra nguyên nhân và tự thay đổi</strong> theo hướng tích cực để sống tốt hơn.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Luận Giải Vận Mệnh Tuổi Giáp Tuất 1994 Năm 2027 Đinh Mùi • Kết bạn Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 2: ĐÁNH GIÁ CHUNG THIÊN CAN VÀ ĐỊA CHI NĂM 2027 -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>ĐÁNH GIÁ CHUNG THIÊN CAN &amp; ĐỊA CHI NĂM 2027 <span class="zodiac-tag">🐕 ĐINH MÙI</span></h1>
+      <p>Trang 2 / 20: Soi Chiếu Can Chi, Ngũ Hành Bản Mệnh Và Cách Hóa Giải Chủ Động</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">1. Thiên Can: Giáp Mộc Sinh Đinh Hỏa</h3>
+          <p>• Tuổi Giáp Tuất 1994 có Thiên Can <strong>Giáp (hành Mộc)</strong>.<br>
+          • Năm 2027 có Thiên Can <strong>Đinh (hành Hỏa)</strong>.<br>
+          • Theo ngũ hành, <strong>Mộc sinh Hỏa</strong> (tương sinh thuận khí).<br>
+          • Về yếu tố <strong>Thiên Thời</strong>, người tuổi Giáp Tuất vẫn nhận được dòng năng lượng kết nối, nỗ lực được ghi nhận và có cơ hội được quý nhân hỗ trợ.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">2. Địa Chi: Tuất Gặp Mùi (Tương Hình – Tương Phá)</h3>
+          <p>• Tuổi Giáp Tuất (con Chó) gặp năm Mùi 2027 (con Dê).<br>
+          • <strong>Tuất và Mùi</strong> có quan hệ <strong>tương hình, tương phá</strong> (Tam hình Sửu – Mùi – Tuất) ➔ Năm 2027 dễ có biến động, hiểu lầm, mâu thuẫn hoặc kế hoạch thay đổi.<br>
+          • <em>Điểm sáng kiểm chứng:</em> Năm 2027 tuổi 34 <strong>không phạm Tam Tai, không phạm Kim Lâu</strong>, Hoang Ốc vào cung <strong>Nhất Cát</strong>.</p>
+        </div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #1b4f9c;">
+        <div class="icon-gold-round">⚖️</div>
+        <div>
+          <strong>Điều cần lưu ý:</strong> Quan hệ Tuất và Mùi <strong>không có nghĩa là năm xấu hoàn toàn</strong> (dù nạp âm Sơn Đầu Hỏa gặp năm Thiên Hà Thủy có sự tiết chế). Đây là năm rèn luyện <strong>sự kiên nhẫn, sự rõ ràng và khả năng kiểm soát cảm xúc</strong>.
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🛡️</div>
+        <div>
+          <strong>Cách hóa giải thiết thực:</strong> Giữ tâm bình an, nói năng ôn hòa, tránh tranh cãi vô ích. Trong công việc, tiền bạc và tình cảm, luôn có <strong>thỏa thuận rõ ràng, giữ chứng từ</strong> và <strong>không quyết định vội vàng</strong>.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Giáp Tuất 1994 (Sơn Đầu Hỏa) • Năm 2027 Đinh Mùi (Thiên Hà Thủy) • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 3: TUYỆT CHIÊU KÍCH TÀI LỘC NĂM 2027 -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>TUYỆT CHIÊU KÍCH TÀI LỘC NĂM ĐINH MÙI 2027 <span class="zodiac-tag">💰 CHIÊU TÀI</span></h1>
+      <p>Trang 3 / 20: Phương Vị Tài Lộc Chuẩn Năm 2027 &amp; Cách Bài Trí Không Gian Đón Khí Tốt</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e; font-size: 18.5px;">
+        <div class="icon-gold-round">🧭</div>
+        <div>
+          <strong>Đối chiếu Phương Vị Tài Lộc năm Đinh Mùi 2027:</strong><br>
+          • <strong>Hướng Tây Nam (Cung Thân – Lục Bạch Quý Nhân):</strong> Giữ sạch sẽ, sáng sủa, thông thoáng, <strong>tránh động thổ</strong> (do sơn Mùi Tây Nam có Thái Tuế tọa).<br>
+          • <strong>Bổ sung chuẩn Tử Vi &amp; Phi Tinh 2027:</strong> <strong>Lộc Tồn Can Đinh</strong> đóng tại <strong>Cung Ngọ (Chính Nam)</strong> • <strong>Bát Bạch Tài Vị</strong> đóng tại <strong>Hướng Đông Nam</strong> (vượng tài lộc, điền trạch).
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Cách 1: Đặt Vật Phẩm Chiêu Tài</h3>
+          <p>• Có thể đặt tượng hoặc tranh mang ý nghĩa tài lộc như:<br>
+          &nbsp;&nbsp;– <strong>Tượng Thần Tài</strong> hoặc <strong>Tỳ Hưu</strong>.<br>
+          &nbsp;&nbsp;– <strong>Tranh / Tượng Ngựa Mã Đáo Thành Công</strong>.<br>
+          &nbsp;&nbsp;– <strong>Cây Kim Ngân</strong> xanh tốt.<br>
+          • Đặt trang trọng tại phương vị đón cát khí của phòng khách hoặc văn phòng (Tây Nam gọn gàng tĩnh tại; kết hợp kích tài mạnh tại <strong>Đông Nam</strong> và <strong>Chính Nam</strong>).</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">Cách 2: Giữ Không Gian Sạch Sẽ</h3>
+          <p>• <strong>Không để khu vực Tây Nam</strong> (và các cung tài lộc Đông Nam, Chính Nam) bừa bộn, ẩm thấp hoặc tối tăm.<br>
+          • Không khí lưu thông tốt, không gian gọn gàng, sáng sủa giúp tạo cảm giác thuận lợi.<br>
+          • Giúp anh chị <strong>tập trung hơn trong công việc</strong> và duy trì nguồn năng lượng, tinh thần tích cực mỗi ngày.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">💡</div>
+        <div>
+          <strong>Lưu ý bổ trợ cốt lõi:</strong> Vật phẩm phong thủy chỉ mang tính hỗ trợ tinh thần và tạo thói quen sắp xếp không gian tốt. Yếu tố quyết định tài lộc vẫn là <strong>làm việc có kế hoạch, chi tiêu hợp lý và giữ uy tín trong hợp tác</strong>.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đối chiếu chuẩn Lộc Tồn Can Đinh (Ngọ – Nam) &amp; Phi Tinh 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 4: TỬ VI NAM MẠNG GIÁP TUẤT 1994 – VẬN NIÊN 34 TUỔI NĂM 2027 -->
+  <div class="slide-container" id="slide4">
+    <div class="header">
+      <h1>TỬ VI NAM MẠNG GIÁP TUẤT 1994 NĂM 2027 <span class="zodiac-tag">👨 34 TUỔI MỤ</span></h1>
+      <p>Trang 4 / 20: Tổng Quan Vận Niên Nam Mạng – 4 Chữ “GIÓ LỚN SÓNG CAO”</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">VẬN TRÌNH NAM MẠNG 34 TUỔI: “GIÓ LỚN SÓNG CAO”</div>
+        <div style="font-size: 19px; font-weight: 800;">Sao Chiếu Mệnh: <strong>SAO KẾ ĐÔ</strong> • Hạn Niên: <strong>HẠN ĐỊA VÕNG</strong> • Phương châm: Làm Chậm – Làm Chắc</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Ý Nghĩa Thử Thách Năm 2027</h3>
+          <p>• Nam mạng Giáp Tuất 1994 trong năm 2027 có <strong>tài năng và nhiều ý tưởng</strong>, nhưng dễ gặp trở ngại tạm thời.<br>
+          • Có thể phát sinh áp lực về <strong>tiền bạc, công việc, hợp tác</strong> hoặc mâu thuẫn trong các mối quan hệ xung quanh.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">Điểm Trọng Yếu Cần Lưu Ý</h3>
+          <p>• Bộ đôi <strong>Sao Kế Đô</strong> và <strong>Hạn Địa Võng</strong> là lời nhắc nhở nam mạng cần đặc biệt thận trọng trong:<br>
+          &nbsp;&nbsp;– Lời ăn tiếng nói hàng ngày.<br>
+          &nbsp;&nbsp;– Giấy tờ, hợp đồng và các quyết định đầu tư.<br>
+          &nbsp;&nbsp;– Các mối quan hệ hợp tác làm ăn.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">⚓</div>
+        <div>
+          <strong>Lời khuyên hành động:</strong> Mọi việc nên <strong>làm chậm, làm chắc, tránh mạo hiểm</strong>. Không cho vay lớn, không đứng ra bảo lãnh, không đầu tư theo đám đông hay ký kết khi chưa hiểu rõ. Khi biết kiên nhẫn và xử lý đúng cách, khó khăn sẽ dần được hóa giải và cơ hội mới sẽ mở ra.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Tử Vi Nam Mạng Giáp Tuất 1994 Năm Đinh Mùi 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 5: NAM MẠNG 1994 – SAO KẾ ĐÔ VÀ HẠN ĐỊA VÕNG -->
+  <div class="slide-container" id="slide5">
+    <div class="header">
+      <h1>NAM MẠNG 1994: SAO KẾ ĐÔ &amp; HẠN ĐỊA VÕNG <span class="zodiac-tag">⚠️ CẦN THẬN TRỌNG</span></h1>
+      <p>Trang 5 / 20: Nhận Diện Đầy Đủ Tác Động Của Sao Chiếu Mệnh Và Hạn Tuổi Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">1. Sao Kế Đô (Hung Tinh – Cần Giữ Mình)</h3>
+          <p>• <strong>Tính chất:</strong> Kế Đô là sao mang tính chất cần thận trọng (theo Cửu Diệu thuộc <strong>hành Thổ</strong>), thường liên quan đến tiền bạc, giấy tờ, tranh cãi, mệt mỏi và các rủi ro không mong muốn.<br><br>
+          • <strong>Nam mạng 1994 cần đề phòng:</strong><br>
+          &nbsp;&nbsp;1. Hao hụt tiền bạc bất ngờ.<br>
+          &nbsp;&nbsp;2. Tranh chấp, hiểu lầm hoặc bị người khác gây phiền.<br>
+          &nbsp;&nbsp;3. Sức khỏe giảm sút do làm việc quá sức.<br>
+          &nbsp;&nbsp;4. Các vấn đề liên quan đến hợp đồng, vay mượn hoặc bảo lãnh.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #8b0000; background: #fffdf5;">
+          <h3 style="background: #8b0000;">2. Hạn Địa Võng (Tai Tiếng &amp; Áp Lực)</h3>
+          <p>• <strong>Tính chất:</strong> Địa Võng là hạn cần chú ý về tai tiếng, hiểu lầm, giấy tờ và tranh chấp; đồng thời liên quan mật thiết đến áp lực tinh thần, lo lắng và thiếu ngủ.<br><br>
+          • <strong>Nam mạng 1994 cần đề phòng:</strong><br>
+          &nbsp;&nbsp;1. Tin đồn, lời nói thiếu kiểm chứng.<br>
+          &nbsp;&nbsp;2. Hợp đồng, khoản vay, bảo lãnh hoặc cam kết mập mờ.<br>
+          &nbsp;&nbsp;3. Tranh chấp với đối tác, bạn bè hoặc người thân.<br>
+          &nbsp;&nbsp;4. Căng thẳng kéo dài ảnh hưởng trực tiếp đến sức khỏe.</p>
+        </div>
+      </div>
+
+      <div class="example-box info">
+        <div class="icon-house-round blue">📌</div>
+        <div>
+          <strong>Điểm sáng từ kinh nghiệm dân gian:</strong> Nam mạng gặp sao Kế Đô thường nhẹ hơn nữ mạng; đặc biệt nếu có cơ hội <strong>đi công tác, mở rộng làm ăn phương xa</strong> một cách bài bản, minh bạch thì lại dễ gặp lộc mang về.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Luận Giải Chi Tiết Sao Kế Đô &amp; Hạn Địa Võng Nam Mạng 1994 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 6: NAM MẠNG 1994 – BÍ QUYẾT HÓA GIẢI SAO KẾ ĐÔ -->
+  <div class="slide-container" id="slide6">
+    <div class="header">
+      <h1>NAM MẠNG 1994: BÍ QUYẾT HÓA GIẢI SAO KẾ ĐÔ <span class="zodiac-tag">🛡️ CHỦ ĐỘNG</span></h1>
+      <p>Trang 6 / 20: Ba Nguyên Tắc Vàng Ứng Xử, Quản Trị Tài Chính Và Lưu Ý Trang Phục</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card" style="border-color: #2e7d32;">
+          <h3 style="background: #1e6b1e;">1. Giữ Tiền &amp; Tránh Mạo Hiểm</h3>
+          <p>• Năm 2027 nên ưu tiên <strong>tiết kiệm, giảm nợ và xây dựng quỹ dự phòng</strong>.<br>
+          • <strong>Không</strong> đầu tư mạo hiểm.<br>
+          • <strong>Không</strong> cho vay lớn.<br>
+          • <strong>Không</strong> đứng ra bảo lãnh thay người khác.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">2. Cẩn Trọng Lời Nói &amp; Giấy Tờ</h3>
+          <p>• Trước khi ký bất kỳ hợp đồng nào cần <strong>đọc kỹ từng điều khoản</strong>.<br>
+          • <strong>Không tin vào lời hứa suông</strong>.<br>
+          • Mọi thỏa thuận quan trọng đều phải lập thành <strong>văn bản rõ ràng</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3 style="background: #8b0000;">3. Giữ Sức Khỏe &amp; Tinh Thần</h3>
+          <p>• Ngủ đủ giấc, ăn uống điều độ, vận động nhẹ nhàng.<br>
+          • Không làm việc quá sức, không quyết định khi đang căng thẳng.<br>
+          • Đi chùa, thiền, hít thở sâu hoặc trò chuyện với người tin cậy để giảm áp lực.</p>
+        </div>
+      </div>
+
+      <div class="rule-box" style="border-left-color: #b8860b;">
+        <div class="icon-gold-round">👔</div>
+        <div>
+          <strong>Lưu ý về trang phục &amp; trang sức (đối chiếu chuẩn Cửu Diệu):</strong><br>
+          • Theo Cửu Diệu cổ điển, <strong>Sao Kế Đô thuộc hành Thổ</strong> (nhiều tài liệu hiện đại cũng lưu ý tương tác với hành Kim do Thổ sinh xuất làm hao tiết khí).<br>
+          • Nam mạng 1994 nên <strong>hạn chế mặc quá nhiều đồ màu trắng hoặc đeo quá nhiều trang sức bằng kim loại quý</strong> khi đi ra ngoài; ưu tiên ăn mặc <strong>giản dị, kín đáo và cẩn trọng</strong> để tránh mất mát, rủi ro không cần thiết.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Giải Hạn Bằng Trí Tuệ &amp; Kỷ Luật Cho Nam Mạng Giáp Tuất 1994 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 7: NAM MẠNG 1994 – THÁNG KỴ VÀ NGHI THỨC CÚNG SAO -->
+  <div class="slide-container" id="slide7">
+    <div class="header">
+      <h1>NAM MẠNG 1994: THÁNG KỴ &amp; NGHI THỨC CÚNG SAO <span class="zodiac-tag">🕯️ KẾ ĐÔ</span></h1>
+      <p>Trang 7 / 20: Thời Điểm Cần Đặc Biệt Phòng Ngừa &amp; Tổng Kết Hành Động Nam Mạng</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Tháng Kỵ Nhất: Tháng 9 Âm Lịch (Lưu Ý Thêm Tháng 3 ÂL)</h3>
+          <p>• Trong năm 2027, <strong>tháng 9 âm lịch</strong> là tháng cần đặc biệt lưu ý nhất đối với nam mạng gặp sao Kế Đô (kết hợp cẩn trọng <strong>tháng 3 âm lịch</strong> theo sách Cửu Diệu).<br>
+          • Trong giai đoạn này nên:<br>
+          &nbsp;&nbsp;– Giữ gìn sức khỏe, nghỉ ngơi đầy đủ.<br>
+          &nbsp;&nbsp;– Hạn chế đi xa không cần thiết.<br>
+          &nbsp;&nbsp;– <strong>Không ký kết hợp đồng lớn</strong> và <strong>không xuất tiền đầu tư mạo hiểm</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">Ngày Cúng Sao Kế Đô (Chuẩn Cửu Diệu)</h3>
+          <p>• Nếu muốn làm lễ nghinh sao giải hạn cho an tâm, nam mạng tiến hành theo chuẩn sách Tử Vi vào <strong>ngày 18 âm lịch</strong> hàng tháng (giờ 13h–15h hoặc 21h–23h; thắp <strong>21 ngọn nến</strong>, bài vị giấy vàng ghi <em>“Địa Cung Thần Vĩ Kế Đô Tinh Quân”</em>).<br>
+          • <strong>Hướng hành lễ:</strong> Quay về <strong>hướng Chính Tây</strong>, giữ lòng thành kính, hướng thiện và cầu bình an cho gia đạo cùng bổn mạng.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">📋</div>
+        <div>
+          <strong>Tóm tắt 4 chữ vàng cho Nam Mạng 1994 năm 2027:</strong><br>
+          <strong>(1)</strong> Giữ tiền, tránh mạo hiểm • <strong>(2)</strong> Cẩn trọng lời nói &amp; giấy tờ • <strong>(3)</strong> Chăm sóc sức khỏe &amp; tinh thần • <strong>(4)</strong> Thận trọng tháng 9 (và tháng 3) âm lịch.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đối chiếu chuẩn Cửu Diệu: Kế Đô cúng ngày 18 ÂL, hướng Tây • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 8: TỬ VI NỮ MẠNG GIÁP TUẤT 1994 – VẬN NIÊN 34 TUỔI NĂM 2027 -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>TỬ VI NỮ MẠNG GIÁP TUẤT 1994 NĂM 2027 <span class="zodiac-tag">👩 34 TUỔI MỤ</span></h1>
+      <p>Trang 8 / 20: Tổng Quan Vận Niên Nữ Mạng – 4 Chữ “MẶT TRỜI TỎA SÁNG”</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner" style="background: linear-gradient(135deg, #165b33, #1e7a44);">
+        <div class="big-num">VẬN TRÌNH NỮ MẠNG 34 TUỔI: “MẶT TRỜI TỎA SÁNG”</div>
+        <div style="font-size: 19px; font-weight: 800;">Sao Chiếu Mệnh: <strong>CÁT TINH THÁI DƯƠNG</strong> • Hạn Niên: <strong>HẠN ĐỊA VÕNG</strong> • Phương châm: Chủ Động – Chọn Lọc</div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">1. Ý Nghĩa Cơ Hội</h3>
+          <p>Nữ mạng Giáp Tuất 1994 năm 2027 gặp <strong>Sao Thái Dương</strong> – ngôi sao mang năng lượng tích cực, đem lại cơ hội về <strong>danh tiếng, sự ghi nhận, quý nhân</strong> và khả năng phát triển bản thân vượt bậc.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">2. Quy Luật Thành Công</h3>
+          <p>Cơ hội đến khi người nữ <strong>chủ động học hỏi, mở rộng mối quan hệ</strong> và trình bày rõ năng lực của mình. Tuy nhiên cần <strong>chọn lọc cơ hội</strong>, tránh tin lời hứa suông hay quyết định tài chính theo cảm xúc.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #8b0000; background: #fffdf5;">
+          <h3 style="background: #8b0000;">3. Bí Quyết Nữ Mạng</h3>
+          <p>• <strong>Tự tin nhưng khiêm tốn.</strong><br>
+          • Hỏi ý kiến người có kinh nghiệm trước các quyết định lớn.<br>
+          • Giữ vững <strong>sự cân bằng</strong> giữa công việc, gia đình và sức khỏe.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Tử Vi Nữ Mạng Giáp Tuất 1994 Năm Đinh Mùi 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 9: NỮ MẠNG 1994 – ĐÓN CÁT TINH SAO THÁI DƯƠNG -->
+  <div class="slide-container" id="slide9">
+    <div class="header">
+      <h1>NỮ MẠNG 1994: ĐÓN CÁT TINH SAO THÁI DƯƠNG <span class="zodiac-tag">☀️ NHẬT TINH</span></h1>
+      <p>Trang 9 / 20: Tin Mừng Năm 2027 – Ba Lĩnh Vực Tỏa Sáng Của Nữ Mạng Giáp Tuất</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">☀️</div>
+        <div>
+          <strong>TIN MỪNG NỮ MẠNG 1994 – GẶP CÁT TINH SAO THÁI DƯƠNG:</strong> Sao Thái Dương là đệ nhất cát tinh thuộc hành Hỏa, ngôi sao mang lại <strong>ánh sáng, danh tiếng, sự minh bạch và cơ hội phát triển</strong> mạnh mẽ trong năm 2027.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card" style="border-color: #2e7d32;">
+          <h3 style="background: #1e6b1e;">1. Danh Tiếng &amp; Sự Ghi Nhận</h3>
+          <p>Sao Thái Dương giúp người nữ <strong>dễ được ghi nhận</strong> trong công việc, học tập hoặc các hoạt động xã hội.<br><br>
+          Đây là năm rất phù hợp để <strong>thể hiện năng lực, học thêm kỹ năng mới và xây dựng uy tín cá nhân</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">2. Quý Nhân &amp; Cơ Hội</h3>
+          <p>Sao Thái Dương thường mang đến <strong>quý nhân, người có kinh nghiệm hoặc người có vị thế</strong> sẵn sàng hỗ trợ.<br><br>
+          Nữ mạng nên <strong>chủ động kết nối</strong>, tham gia các hoạt động chuyên môn và không ngại đề xuất ý tưởng.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b8860b;">
+          <h3 style="background: #8b0000;">3. Công Việc &amp; Tài Lộc</h3>
+          <p>Công việc có thể thuận lợi hơn rõ rệt nếu nữ mạng biết <strong>chọn đúng hướng và kiên trì thực hiện</strong>.<br><br>
+          Tài lộc tăng trưởng bền vững qua <strong>công việc, kỹ năng chuyên môn, hợp tác</strong> hoặc các cơ hội minh bạch.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đón Vận Sáng Sao Thái Dương Cho Nữ Mạng Giáp Tuất 1994 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 10: NỮ MẠNG 1994 – 3 LƯU Ý KHI GẶP SAO THÁI DƯƠNG -->
+  <div class="slide-container" id="slide10">
+    <div class="header">
+      <h1>NỮ MẠNG 1994: 3 LƯU Ý KHI GẶP SAO THÁI DƯƠNG <span class="zodiac-tag">⚖️ TỈNH TÁO</span></h1>
+      <p>Trang 10 / 20: Khai Thác Tối Đa Cát Khí Mà Vẫn Kiểm Soát Tốt Rủi Ro &amp; Sức Khỏe</p>
+    </div>
+    <div class="content">
+      <div class="card" style="border-color: #b22222; background: #fff8f8;">
+        <div class="badge">1</div>
+        <div>
+          <strong>Không Nên Tin Vào Lời Hứa Suông:</strong> Sao Thái Dương mang lại nhiều cơ hội đẹp, nhưng cũng dễ khiến người ta tin vào những lời hứa hoa mỹ. Nữ mạng cần <strong>kiểm chứng thông tin kỹ lưỡng</strong>, tránh đầu tư mạo hiểm và tuyệt đối không hợp tác khi điều khoản chưa rõ ràng.
+        </div>
+      </div>
+
+      <div class="card" style="border-color: #1b4f9c; background: #f0f7ff;">
+        <div class="badge" style="background: #1b4f9c;">2</div>
+        <div>
+          <strong>Chú Ý Sức Khỏe Mắt, Tim Mạch &amp; Áp Lực Tinh Thần:</strong> Người gặp sao Thái Dương cần quan tâm đặc biệt đến <strong>mắt, huyết áp, tim mạch và giấc ngủ</strong>. Khi làm việc với cường độ cao dễ căng thẳng, nên chủ động dành thời gian nghỉ ngơi và chăm sóc bản thân.
+        </div>
+      </div>
+
+      <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+        <div class="badge" style="background: #1e6b1e;">3</div>
+        <div>
+          <strong>Tương Tác Ngũ Hành Thủy Và Hỏa:</strong> Sao Thái Dương thuộc <strong>hành Hỏa</strong>, trong khi năm 2027 Đinh Mùi mang nạp âm <strong>Thiên Hà Thủy</strong>. Hỏa và Thủy có quan hệ tương khắc, vì vậy cơ hội tốt vẫn cần được khai thác một cách cẩn trọng.
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🌟</div>
+        <div>
+          <strong>Chìa khóa phát huy Sao Thái Dương:</strong> Nữ mạng nên làm việc <strong>từ tốn, có kế hoạch bài bản và không vội vàng</strong>. Khi có sự chuẩn bị chu đáo, ánh sáng của sao Thái Dương sẽ phát huy tác dụng rõ rệt và bền vững nhất.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Ba Lưu Ý Trọng Tâm Khi Nữ Mạng 1994 Đón Sao Thái Dương • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 11: NỮ MẠNG 1994 – HẠN ĐỊA VÕNG, THÁNG KỴ VÀ CÚNG SAO -->
+  <div class="slide-container" id="slide11">
+    <div class="header">
+      <h1>NỮ MẠNG 1994: HẠN ĐỊA VÕNG, THÁNG KỴ &amp; CÚNG SAO <span class="zodiac-tag">🕯️ THÁI DƯƠNG</span></h1>
+      <p>Trang 11 / 20: Phòng Tránh Rủi Ro Pháp Lý – Lời Nói &amp; Nghi Thức Nghinh Sao Chuẩn</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #b22222;">
+        <div class="icon-gold-round">🕸️</div>
+        <div>
+          <strong>Hạn Niên Nữ Mạng – Hạn Địa Võng:</strong> Cần chú ý về <strong>tai tiếng, hiểu lầm, giấy tờ và tranh chấp</strong>. Nữ mạng nên cẩn trọng trong lời nói (đặc biệt chuyện gia đình, tiền bạc, mối quan hệ). <strong>Vị trí tác động:</strong> Liên quan đến tinh thần, giấc ngủ và áp lực ➔ Giữ tâm bình an, tránh lo lắng quá mức, không để người khác chi phối quyết định của mình.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Tháng Kỵ Nhất: Tháng 3, Tháng 6 &amp; Tháng 10 ÂL</h3>
+          <p>• Trong năm 2027, nữ mạng 1994 cần đặc biệt thận trọng vào <strong>tháng 3, tháng 6 và tháng 10 âm lịch</strong> (đây cũng là các nhịp năng lượng mạnh của Thái Dương với nữ giới).<br>
+          • Trong những tháng này nên:<br>
+          &nbsp;&nbsp;– <strong>Tránh tranh cãi</strong>, giữ hòa khí.<br>
+          &nbsp;&nbsp;– Hạn chế ký kết hợp đồng lớn khi chưa kiểm chứng.<br>
+          &nbsp;&nbsp;– Cẩn trọng khi di chuyển, đi lại.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Ngày Cúng Sao Thái Dương: Ngày 27 Âm Lịch</h3>
+          <p>• Nếu muốn làm lễ nghinh sao cầu bình an, tạ ơn cát tinh, nữ mạng tiến hành vào <strong>ngày 27 âm lịch</strong> hàng tháng (giờ 21h–23h, thắp <strong>12 ngọn nến</strong>, bài vị giấy vàng ghi <em>“Nhật Cung Thái Dương Thiên Tử Tinh Quân”</em>).<br>
+          • <strong>Hướng hành lễ chuẩn Cửu Diệu:</strong> Quay về <strong>hướng Chính Đông</strong> (phương mặt trời mọc), giữ lòng thành kính, hướng thiện và cầu bình an cho gia đạo, bổn mạng.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đối chiếu chuẩn Cửu Diệu: Thái Dương cúng ngày 27 ÂL, hướng Chính Đông • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 12: VÌ SAO TUỔI GIÁP TUẤT 1994 DỄ LY THÂN, LY HÔN? -->
+  <div class="slide-container" id="slide12">
+    <div class="header">
+      <h1>VÌ SAO TUỔI GIÁP TUẤT 1994 DỄ LY THÂN, LY HÔN? <span class="zodiac-tag">💔 MẤU CHỐT 1</span></h1>
+      <p>Trang 12 / 20: Góc Nhìn 3 Lớp – Cung Sanh, Cung Phi Bát Trạch Và Từ Trường Con Số</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 9px 16px; font-size: 18.5px;">
+        <div class="icon-gold-round">🔍</div>
+        <div>
+          <strong>Vấn đề mấu chốt cần nêu bật:</strong> Trong thực tế, tuổi Giáp Tuất 1994 đang có tỷ lệ ly thân và ly hôn cao. Điều này không do một nguyên nhân duy nhất, mà đến từ <strong>sự cộng hưởng của 3 yếu tố</strong> dưới đây:
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3>1. Nguyên Nhân: Cung Sanh</h3>
+          <p>• Xem <strong>hôn nhân, duyên phận và sự hòa hợp</strong> giữa hai người.<br>
+          • Khi không thuận: Dễ hiểu nhau chậm, mâu thuẫn nhỏ kéo dài thành lớn.<br>
+          • <em>Nguy hiểm nhất không phải cãi nhau 1 lần, mà là không biết cách nói chuyện, lắng nghe và sửa sai.</em></p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">2. Nguyên Nhân: Cung Phi Bát Trạch</h3>
+          <p>• Xem <strong>nhà cửa, gia đạo, làm ăn và sự ổn định</strong> (Nam 1994: <strong>Càn Kim</strong>; Nữ 1994: <strong>Ly Hỏa</strong>).<br>
+          • Khi không thuận: Dễ áp lực tiền bạc, chỗ ở, công việc, bất hòa.<br>
+          • <em>Nhà cửa &amp; tài chính không ổn khiến người trong nhà mệt mỏi, cáu gắt, vợ chồng xa cách.</em></p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">3. Nguyên Nhân: Từ Trường Con Số</h3>
+          <p>• Số điện thoại, tài khoản, số nhà, ngày sinh, biển số xe tạo từ trường tác động tâm trạng &amp; quyết định.<br>
+          • Các tổ hợp <strong>Ngũ Quỷ, Tuyệt Mệnh, Lục Sát, Họa Hại</strong> dễ làm tăng lo lắng, hiểu lầm, mâu thuẫn và khó khăn trong tình cảm, gia đình, làm ăn.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Phân Tích Đa Chiều Hôn Nhân Tuổi Giáp Tuất 1994 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 13: CUNG SANH VÀ HÔN NHÂN TUỔI GIÁP TUẤT 1994 -->
+  <div class="slide-container" id="slide13">
+    <div class="header">
+      <h1>CUNG SANH VÀ HÔN NHÂN TUỔI GIÁP TUẤT 1994 <span class="zodiac-tag">💑 HÒA HỢP</span></h1>
+      <p>Trang 13 / 20: Nhận Diện Tác Động Của Cung Sanh Khi Thuận Và Khi Không Thuận</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1b4f9c;">
+        <div class="icon-gold-round">💞</div>
+        <div>
+          <strong>Cung Sanh là gì?</strong> Cung Sanh là cung dùng để xem <strong>sự hòa hợp giữa hai người trong hôn nhân</strong>. Đây là yếu tố quan trọng giúp lý giải vì sao có cặp đôi dễ đồng hành bền lâu, trong khi cặp đôi khác lại dễ xa cách.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Khi Cung Sanh Thuận</h3>
+          <p>• Hai người <strong>dễ thông cảm</strong> và thấu hiểu cho nhau.<br>
+          • Dễ cùng nhau ngồi lại <strong>giải quyết vấn đề</strong>.<br>
+          • Dễ xây dựng một <strong>tổ ấm ổn định, ấm êm</strong>.<br>
+          • Dễ đồng lòng cùng nhau <strong>phát triển về tài chính và sự nghiệp</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Khi Cung Sanh Không Thuận</h3>
+          <p>• Hai người <strong>dễ hiểu lầm nhau</strong> từ những việc nhỏ.<br>
+          • Dễ để <strong>mâu thuẫn nhỏ kéo dài</strong> mà không tháo gỡ.<br>
+          • Dễ thiếu sự tôn trọng và <strong>không gian riêng</strong> cho nhau.<br>
+          • Dễ để <strong>người thứ ba, áp lực gia đình hoặc tiền bạc</strong> chen vào làm rạn nứt mối quan hệ.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">❤️</div>
+        <div>
+          <strong>Điều quan trọng cần ghi nhớ:</strong> Cung Sanh <strong>không quyết định tất cả</strong>. Chính <strong>cách hai người đối xử, tôn trọng và lắng nghe nhau mỗi ngày</strong> mới là yếu tố quyết định hạnh phúc lâu dài.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Ứng Dụng Cung Sanh Để Xây Dựng Hôn Nhân Bền Vững • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 14: CUNG PHI BÁT VÀ GIA ĐẠO TUỔI GIÁP TUẤT 1994 -->
+  <div class="slide-container" id="slide14">
+    <div class="header">
+      <h1>CUNG PHI BÁT TRẠCH VÀ GIA ĐẠO TUỔI GIÁP TUẤT 1994 <span class="zodiac-tag">🏠 AN CƯ</span></h1>
+      <p>Trang 14 / 20: Nền Tảng Nhà Cửa, Tài Chính Và Sự Ổn Định Cuộc Sống</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="border-left-color: #1e6b1e;">
+        <div class="icon-gold-round">🏡</div>
+        <div>
+          <strong>Cung Phi Bát Trạch là gì?</strong> Là cung dùng để xem <strong>nhà cửa, gia đạo, làm ăn và sự ổn định cuộc sống</strong> – ảnh hưởng trực tiếp đến cảm giác an toàn và hạnh phúc gia đình. <em>(Kiểm chứng Bát Trạch 1994: Nam cung <strong>Càn – Kim</strong> thuộc Tây Tứ Mệnh; Nữ cung <strong>Ly – Hỏa</strong> thuộc Đông Tứ Mệnh; nếu Nam – Nữ cùng tuổi 1994 kết hợp dễ gặp cung phi tương khắc Tuyệt Mệnh nên càng cần hóa giải bằng cách sống &amp; bố trí nhà cửa).</em>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Khi Cung Phi Bát Trạch Thuận</h3>
+          <p>• <strong>Nhà cửa ổn định</strong>, ít biến động chỗ ở.<br>
+          • <strong>Tài chính dễ tích lũy</strong>, giữ được thành quả.<br>
+          • <strong>Công việc và hợp tác</strong> diễn ra thuận lợi.<br>
+          • <strong>Gia đạo dễ hòa thuận</strong>, trong ấm ngoài êm.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">Khi Cung Phi Bát Trạch Không Thuận</h3>
+          <p>• Dễ <strong>thay đổi chỗ ở</strong> hoặc môi trường sống liên tục.<br>
+          • Dễ <strong>hao hụt tiền bạc</strong> ngoài dự tính.<br>
+          • Dễ gặp <strong>áp lực trong làm ăn hoặc hợp tác</strong>.<br>
+          • Dễ phát sinh <strong>mâu thuẫn, căng thẳng</strong> trong gia đình.</p>
+        </div>
+      </div>
+
+      <div class="example-box info">
+        <div class="icon-house-round blue">🔑</div>
+        <div>
+          <strong>Điều cần nhớ:</strong> Nhà cửa không chỉ là nơi ở. Nhà cửa còn là <strong>nơi tạo cảm giác an toàn, nơi nuôi dưỡng tình cảm</strong> và là nền tảng quyết định <strong>chất lượng cuộc sống</strong> của mỗi gia đình.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Cung Phi Bát Trạch: Nam 1994 Cung Càn (Kim) • Nữ 1994 Cung Ly (Hỏa) • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 15: TỪ TRƯỜNG CON SỐ VÀ ẢNH HƯỞNG ĐẾN HÔN NHÂN, GIA ĐÌNH, LÀM ĂN -->
+  <div class="slide-container" id="slide15">
+    <div class="header">
+      <h1>TỪ TRƯỜNG CON SỐ TRONG ĐỜI SỐNG HIỆN ĐẠI <span class="zodiac-tag">🔢 NĂNG LƯỢNG SỐ</span></h1>
+      <p>Trang 15 / 20: Nhận Diện 4 Tổ Hợp Số Cần Lưu Ý Và Tác Động Đến Tâm Trạng, Quan Hệ</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 10px 16px; font-size: 18.5px;">
+        <div class="icon-gold-round">📱</div>
+        <div>
+          <strong>Con số quanh ta mỗi ngày:</strong> Trong thời hiện đại, con số xuất hiện liên tục qua <strong>số điện thoại, số tài khoản, số nhà, ngày sinh, biển số xe</strong>... Theo quan điểm năng lượng số, các tổ hợp số tạo thành từ trường tác động đến tâm trạng, quyết định và mối quan hệ.
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">4 Tổ Hợp Từ Trường Số Cần Lưu Ý</h3>
+          <p style="line-height: 1.55;">
+            • <span class="result-tag bad">1. NGŨ QUỶ</span> – Dễ bất an, biến động, suy nghĩ cực đoan.<br>
+            • <span class="result-tag bad">2. TUYỆT MỆNH</span> – Dễ mạo hiểm, căng thẳng tài chính &amp; tình cảm.<br>
+            • <span class="result-tag bad">3. LỤC SÁT</span> – Dễ nhạy cảm, hiểu lầm, rắc rối quan hệ.<br>
+            • <span class="result-tag bad">4. HỌA HẠI</span> – Dễ khẩu thiệt, tranh cãi, lời qua tiếng lại.
+          </p>
+        </div>
+
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">5 Ảnh Hưởng Thường Thấy</h3>
+          <p>• Dễ <strong>lo lắng, căng thẳng hoặc mất ngủ</strong>.<br>
+          • Dễ <strong>hiểu lầm trong tình cảm và gia đình</strong>.<br>
+          • Dễ gặp <strong>khó khăn trong làm ăn, hợp tác hoặc tiền bạc</strong>.<br>
+          • Dễ <strong>mệt mỏi, thiếu kiên nhẫn và cáu gắt</strong>.<br>
+          • Dễ để <strong>mâu thuẫn nhỏ trở thành vấn đề lớn</strong>.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">💡</div>
+        <div>
+          <strong>Điều cần nhớ:</strong> Con số <strong>không quyết định số phận</strong>. Nhưng con số có thể ảnh hưởng đến <strong>thói quen, tâm trạng và cách con người phản ứng</strong> trước các tình huống trong cuộc sống.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Nhận Diện Từ Trường Số Điện Thoại &amp; Đời Sống • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 16: VÌ SAO NHIỀU BẠN NỮ TUỔI GIÁP TUẤT 1994 CHƯA LẬP GIA ĐÌNH? -->
+  <div class="slide-container" id="slide16">
+    <div class="header">
+      <h1>VÌ SAO NHIỀU NỮ GIÁP TUẤT 1994 CHƯA LẬP GIA ĐÌNH? <span class="zodiac-tag">🌸 MẤU CHỐT 2</span></h1>
+      <p>Trang 16 / 20: Bốn Nguyên Nhân Chính &amp; Góc Nhìn Tôn Trọng Sự Tự Chủ Của Phụ Nữ</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="card">
+          <div class="badge">1</div>
+          <div><strong>Nguyên nhân 1 – Cung Sanh:</strong> Khi cung Sanh không thuận, hành trình tìm người phù hợp dễ kéo dài. Có thể gặp nhiều người nhưng khó tìm được người thật sự hợp về <strong>giá trị sống, cách sống và trách nhiệm</strong>.</div>
+        </div>
+
+        <div class="card">
+          <div class="badge">2</div>
+          <div><strong>Nguyên nhân 2 – Cung Phi Bát Trạch:</strong> Khi cung Phi Bát chưa thuận, cuộc sống dễ thiếu ổn định về nhà cửa, tài chính hoặc công việc. Khi chưa có nền tảng vững vàng, nhiều bạn nữ <strong>chủ động chọn chậm lại, không vội kết hôn</strong>.</div>
+        </div>
+
+        <div class="card">
+          <div class="badge">3</div>
+          <div><strong>Nguyên nhân 3 – Từ Trường Con Số:</strong> Các tổ hợp <strong>Ngũ Quỷ, Tuyệt Mệnh, Lục Sát, Họa Hại</strong> có thể ảnh hưởng tâm trạng, sự tự tin và khả năng duy trì quan hệ. Khi tâm trạng bất ổn dễ chọn sai người hoặc bỏ lỡ người phù hợp.</div>
+        </div>
+
+        <div class="card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <div class="badge" style="background: #1b4f9c;">4</div>
+          <div><strong>Nguyên nhân 4 – Lựa Chọn Cá Nhân:</strong> Muốn ổn định công việc, thu nhập, chỗ ở trước; <strong>không kết hôn vì áp lực tuổi tác, gia đình hay so sánh</strong>; hoặc từng tổn thương nên cần thời gian tin tưởng lại.</div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🌷</div>
+        <div>
+          <strong>Điều cần nhớ:</strong> Nhiều bạn nữ 1994 chưa kết hôn không phải vì không xứng đáng có hạnh phúc, và <strong>chưa lập gia đình không phải là thất bại</strong>. Điều quan trọng là cuộc sống ổn định, mối quan hệ tôn trọng lẫn nhau và <strong>tự chủ về tài chính, sức khỏe, cảm xúc</strong>.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Thấu Hiểu &amp; Đồng Hành Cùng Nữ Mạng Giáp Tuất 1994 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 17: GIẢI PHÁP TỰ HÓA GIẢI VÀ CẢI THIỆN HÔN NHÂN, GIA ĐÌNH, LÀM ĂN -->
+  <div class="slide-container" id="slide17">
+    <div class="header">
+      <h1>5 GIẢI PHÁP TỰ HÓA GIẢI &amp; CẢI THIỆN CUỘC SỐNG <span class="zodiac-tag">🔑 TỰ CHỦ</span></h1>
+      <p>Trang 17 / 20: Cải Thiện Hôn Nhân, Gia Đình Và Làm Ăn Bền Vững Cho Tuổi Giáp Tuất 1994</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card" style="border-color: #1b4f9c;">
+          <h3 style="background: #1b4f9c;">1. Hiểu Rõ Cung Sanh</h3>
+          <p>• Đang yêu hoặc đã kết hôn: Dành thời gian <strong>nói chuyện thẳng thắn</strong>.<br>
+          • Không để mâu thuẫn tích tụ.<br>
+          • Nói rõ điều mình cần, lắng nghe đối phương và cùng tìm giải pháp.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #2e7d32;">
+          <h3 style="background: #1e6b1e;">2. Củng Cố Cung Phi Bát</h3>
+          <p>• Giữ nhà cửa <strong>gọn gàng, sạch sẽ, thông thoáng</strong>.<br>
+          • Không để nợ nần kéo dài.<br>
+          • Không hợp tác làm ăn khi chưa rõ ràng; thỏa thuận quan trọng phải có văn bản.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3 style="background: #8b0000;">3. Kiểm Tra Từ Trường Số</h3>
+          <p>• Nếu số điện thoại hoặc số quan trọng chứa nhiều <strong>Ngũ Quỷ, Tuyệt Mệnh, Lục Sát, Họa Hại</strong>, nên cân nhắc điều chỉnh.<br>
+          • Không quá lo lắng; ưu tiên số cân bằng, dễ nhớ, tạo cảm giác tích cực.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card" style="border-color: #2e7d32; background: #eef7ee;">
+          <div class="badge" style="background: #1e6b1e;">4</div>
+          <div><strong>Tự Chủ Tài Chính &amp; Sức Khỏe:</strong> Xây quỹ dự phòng • Có kế hoạch chi tiêu • Duy trì thói quen rèn luyện sức khỏe • Có người tin cậy để chia sẻ khi khó khăn.</div>
+        </div>
+
+        <div class="card" style="border-color: #b8860b; background: #fffdf5;">
+          <div class="badge">5</div>
+          <div><strong>Sống Thiện Lành &amp; Giữ Uy Tín:</strong> Giữ lời hứa • Không nói xấu người khác • Không tham gia chuyện người thứ ba • Giữ sự tôn trọng trong mọi mối quan hệ.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Tự Nhìn Rõ – Tự Điều Chỉnh – Tự Hóa Giải Tích Cực • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 18: BẢNG SO SÁNH NHANH NAM MẠNG VÀ NỮ MẠNG 2027 -->
+  <div class="slide-container" id="slide18">
+    <div class="header">
+      <h1>BẢNG SO SÁNH NHANH NAM MẠNG &amp; NỮ MẠNG 2027 <span class="zodiac-tag">📊 TRA CỨU</span></h1>
+      <p>Trang 18 / 20: Đối Chiếu Toàn Diện 7 Tiêu Chí Cốt Lõi Tuổi Giáp Tuất 1994 Năm Đinh Mùi</p>
+    </div>
+    <div class="content">
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 22%;">Tiêu Chí So Sánh</th>
+            <th style="width: 39%;">Nam Mạng Giáp Tuất 1994</th>
+            <th style="width: 39%;">Nữ Mạng Giáp Tuất 1994</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Tuổi Mụ &amp; Can Chi</strong></td>
+            <td colspan="2"><strong>34 tuổi mụ</strong> • Thiên Can <strong>Giáp Mộc sinh Đinh Hỏa</strong> (tiếp năng lượng) • Địa Chi <strong>Tuất gặp Mùi</strong> (lưu ý tương hình, tương phá)</td>
+          </tr>
+          <tr>
+            <td><strong>Vận Niên Tổng Quan</strong></td>
+            <td><span class="result-tag bad">Gió Lớn Sóng Cao</span><br>Kiên nhẫn, giữ ổn định, tránh mạo hiểm</td>
+            <td><span class="result-tag">Mặt Trời Tỏa Sáng</span><br>Chủ động, chọn lọc cơ hội, giữ cân bằng</td>
+          </tr>
+          <tr>
+            <td><strong>Sao Chiếu Mệnh</strong></td>
+            <td><strong>Sao Kế Đô</strong> (Thổ tinh – cần giữ mình)<br>Thận trọng tiền bạc, giấy tờ, tranh chấp, sức khỏe</td>
+            <td><strong>Sao Thái Dương</strong> (Hỏa tinh – cát tinh)<br>Cơ hội danh tiếng, quý nhân, công việc, phát triển</td>
+          </tr>
+          <tr>
+            <td><strong>Hạn Niên</strong></td>
+            <td><strong>Hạn Địa Võng:</strong> Chú ý tai tiếng, hợp đồng, tranh chấp và áp lực tinh thần</td>
+            <td><strong>Hạn Địa Võng:</strong> Chú ý lời nói, mối quan hệ, sức khỏe tinh thần và rủi ro pháp lý</td>
+          </tr>
+          <tr>
+            <td><strong>Tháng Kỵ Trong Năm</strong></td>
+            <td><strong>Tháng 9 âm lịch</strong> (lưu ý thêm Tháng 3 ÂL)</td>
+            <td><strong>Tháng 3, Tháng 6 và Tháng 10 âm lịch</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Ngày Cúng Sao (Chuẩn)</strong></td>
+            <td><strong>Ngày 18 âm lịch</strong> hàng tháng (Hướng Chính Tây)</td>
+            <td><strong>Ngày 27 âm lịch</strong> hàng tháng (Hướng Chính Đông)</td>
+          </tr>
+          <tr>
+            <td><strong>Vấn Đề Đặc Biệt</strong></td>
+            <td colspan="2">Chú ý <strong>Cung Sanh, Cung Phi Bát</strong> (Nam Càn – Nữ Ly) và <strong>Từ Trường Con Số</strong> ảnh hưởng hôn nhân, gia đình, làm ăn</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Bảng Tra Cứu Chuẩn Sao Hạn Tuổi Giáp Tuất 1994 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 19: 4 HÀNH ĐỘNG CẢI VẬN VÀNG NĂM ĐINH MÙI 2027 -->
+  <div class="slide-container" id="slide19">
+    <div class="header">
+      <h1>4 HÀNH ĐỘNG CẢI VẬN VÀNG NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🏆 HÀNH ĐỘNG</span></h1>
+      <p>Trang 19 / 20: Biến Nhận Thức Đúng Đắn Thành Kết Quả Bình An &amp; Bền Vững</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #1b4f9c; background: #f0f7ff;">
+          <h3 style="background: #1b4f9c;">1. Giữ Tâm Bình An</h3>
+          <p>• Năm 2027 dễ phát sinh biến động và hiểu lầm do khí hình phá Tuất – Mùi.<br>
+          • <strong>Giữ tâm bình an, nói năng ôn hòa và tránh tranh cãi vô ích</strong> chính là tấm khiên bảo vệ bản thân tốt nhất.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #2e7d32; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">2. Làm Việc Có Kế Hoạch</h3>
+          <p>• Tuyệt đối <strong>không vội vàng, không đầu tư mạo hiểm</strong>.<br>
+          • Mọi quyết định quan trọng đều cần có <strong>kế hoạch cụ thể, có dữ liệu kiểm chứng</strong> và tham khảo góp ý từ người tin cậy.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b22222; background: #fff8f8;">
+          <h3 style="background: #b22222;">3. Cẩn Trọng Tiền Bạc &amp; Giấy Tờ</h3>
+          <p>• <strong>Không cho vay lớn, không bảo lãnh, không đầu tư theo đám đông</strong>.<br>
+          • Mọi hợp đồng, khoản vay hay hợp tác làm ăn bắt buộc phải lập <strong>văn bản rõ ràng, minh bạch</strong>.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #b8860b; background: #fffdf5;">
+          <h3 style="background: #8b0000;">4. Tu Tập &amp; Làm Việc Thiện</h3>
+          <p>• Sống thiện lành, <strong>báo hiếu cha mẹ</strong>, giúp đỡ người khó khăn và giữ lời nói đúng đắn.<br>
+          • Khi <strong>phước đức tăng trưởng</strong>, vận xấu tự nhiên giảm nhẹ và cơ hội tốt sẽ dễ dàng tìm đến hơn.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Bốn Trụ Cột Cải Vận Thiết Thực Cho Tuổi Giáp Tuất 1994 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 20: TỔNG KẾT VẬN TRÌNH TUỔI GIÁP TUẤT 1994 NĂM 2027 -->
+  <div class="slide-container" id="slide20">
+    <div class="header">
+      <h1>TỔNG KẾT VẬN TRÌNH TUỔI GIÁP TUẤT 1994 NĂM 2027 <span class="zodiac-tag">🐕 BÌNH AN</span></h1>
+      <p>Trang 20 / 20: Kim Chỉ Nam Tự Chủ Vận Mệnh • Kênh Mật Mã Cuộc Đời (Zalo: 0789.414.153)</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">“HIỂU RÕ SỐ PHẬN – TỰ CHỦ ĐỔI ĐỜI – SỐNG THIỆN LÀNH”</div>
+        <div style="font-size: 18.5px; font-weight: 800;">Năm Đinh Mùi 2027 tuy có thử thách từ quan hệ Tuất – Mùi nhưng luôn mở ra cơ hội cho người biết chuẩn bị &amp; kiên trì!</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card" style="border-color: #8b0000;">
+          <h3>Lời Nhắn Gửi Tuổi Giáp Tuất 1994</h3>
+          <p>• <strong>Nam mạng:</strong> Giữ tiền, giữ lời và tránh mạo hiểm.<br>
+          • <strong>Nữ mạng:</strong> Chủ động đón cơ hội, nhưng phải chọn lọc và không vội vàng.<br>
+          • <strong>Cả nam và nữ:</strong> Giữ tâm bình an, chăm sóc sức khỏe, cẩn trọng giấy tờ và sống thiện lành.</p>
+        </div>
+
+        <div class="step-card" style="border-color: #1e6b1e; background: #eef7ee;">
+          <h3 style="background: #1e6b1e;">Tự Chủ Vận Mệnh – Không Mê Tín</h3>
+          <p>• Đặc biệt lưu tâm <strong>Cung Sanh, Cung Phi Bát Trạch và Từ Trường Con Số</strong> – các yếu tố ảnh hưởng sâu sắc đến hôn nhân, gia đình, làm ăn.<br>
+          • <strong>Không cần phụ thuộc vào thầy, không sợ hãi, không cúng bái mê tín</strong> – chỉ cần sống đúng, làm đúng và giữ tâm thiện lành.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🙏</div>
+        <div>
+          <strong>Lời chúc từ Mật Mã Cuộc Đời:</strong> Chúc anh chị tuổi <strong>Giáp Tuất 1994</strong> bước sang năm <strong>2027 Đinh Mùi</strong> luôn <strong>bình an, gia đạo hòa thuận, tài lộc hanh thông và mọi việc thuận lợi!</strong> (Kết bạn giao lưu: <strong>Zalo 0789.414.153</strong>)
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Kết Bạn Giao Lưu &amp; Chiêm Nghiệm • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- THANH CÔNG CỤ ĐIỀU KHIỂN NỔI PHÍA TRÊN -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 20</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bật Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa Nét Vẽ</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+  <!-- Hộp thông báo trạng thái xuất ảnh -->
+  <div class="toast-msg" id="toastMsg">Đã lưu ảnh Slide thành công!</div>
+
+<script>
+  // Quản lý chuyển trang slide
+  let currentSlide = 1;
+  const totalSlides = 20;
+
+  // Hiển thị thông báo nhẹ thay thế hoàn toàn alert()
+  function showToast(message) {
+    const toast = document.getElementById('toastMsg');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2400);
+  }
+
+  // Tự động thu phóng khung ngang 1280x720 cho vừa khít màn hình mọi thiết bị
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1280,
+      (window.innerHeight - 75) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  function showSlide(n) {
+    for (let i = 1; i <= totalSlides; i++) {
+      const el = document.getElementById('slide' + i);
+      if (el) el.classList.remove('active');
+    }
+    const target = document.getElementById('slide' + n);
+    if (target) target.classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${n} / ${totalSlides}`;
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function nextSlide() {
+    if (currentSlide < totalSlides) {
+      currentSlide++;
+      showSlide(currentSlide);
+    }
+  }
+
+  function prevSlide() {
+    if (currentSlide > 1) {
+      currentSlide--;
+      showSlide(currentSlide);
+    }
+  }
+
+  // Điều khiển bằng phím mũi tên trái/phải
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Hỗ trợ vuốt cảm ứng (swipe) chuyển slide khi không bật chế độ vẽ
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    if (drawMode || e.touches.length !== 1) return;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (drawMode || e.changedTouches.length !== 1) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (dx < -60) nextSlide();
+    if (dx > 60) prevSlide();
+  }, { passive: true });
+
+  // Bảng vẽ phủ kín toàn màn hình để chú thích khi giảng bài/quay video
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ (Bấm để tắt)';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bật Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Xuất ảnh ngang tỷ lệ 16:9 (1280x720) kèm toàn bộ nét bút vẽ offline 100%
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất ảnh...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    try {
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 1280;
+      finalCanvas.height = 720;
+      const fCtx = finalCanvas.getContext('2d');
+
+      const slideCanvas = renderSlideNative(slideEl);
+      fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+      const rect = slideEl.getBoundingClientRect();
+      fCtx.drawImage(
+        canvas,
+        rect.left, rect.top, rect.width, rect.height,
+        0, 0, 1280, 720
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png');
+      link.download = `Mat_Ma_Cuoc_Doi_Giap_Tuat_1994_2027_Trang_${currentSlide}_16x9.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast(`Đã xuất ảnh Trang ${currentSlide} / ${totalSlides} (1280x720)!`);
+    } catch (err) {
+      showToast('Không thể xuất ảnh trên trình duyệt này, vui lòng thử lại.');
+    } finally {
+      restoreToolbar();
+    }
+  }
+
+  // Bộ vẽ Slide ngang 1280x720 trực tiếp lên Canvas (không cần mạng internet)
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1280 / baseRect.width;
+
+    // Nền chuyển sắc vàng kem sang trọng
+    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    bgGrad.addColorStop(0, '#fdf8e8');
+    bgGrad.addColorStop(1, '#f5ebd1');
+    g.fillStyle = bgGrad;
+    g.fillRect(0, 0, 1280, 720);
+
+    // Khung viền ngoài vàng đồng và viền trong đỏ đô
+    g.lineWidth = 24;
+    g.strokeStyle = '#b8860b';
+    g.strokeRect(0, 0, 1280, 720);
+
+    g.lineWidth = 4;
+    g.strokeStyle = '#8b0000';
+    g.strokeRect(14, 14, 1252, 692);
+
+    // Vẽ toàn bộ khung thẻ, bảng, tiêu đề, băng rôn và huy hiệu
+    const boxes = slideEl.querySelectorAll(
+      '.header, .slide-footer, .brand-pill, .rule-box, .card, .example-box, th, td, .step-card, .step-card h3, .ratio-banner, .badge, .badge-diamond, .result-tag, .icon-gold-round, .icon-house-round, .zodiac-tag'
+    );
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
+      const st = window.getComputedStyle(el);
+
+      g.save();
+      if (el.classList.contains('badge-diamond')) {
+        g.translate(x + w / 2, y + h / 2);
+        g.rotate((45 * Math.PI) / 180);
+        g.fillStyle = '#1b4f9c';
+        g.beginPath();
+        g.roundRect(-18, -18, 36, 36, 8);
+        g.fill();
+        g.lineWidth = 2.5;
+        g.strokeStyle = '#90cdf4';
+        g.stroke();
+        g.restore();
+        return;
+      }
+
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) {
+        fill = el.style.backgroundColor || '#b22222';
+      } else if (el.classList.contains('icon-gold-round')) {
+        fill = '#9c6b28';
+      } else if (el.classList.contains('ratio-banner')) {
+        fill = el.style.background && el.style.background.includes('165b33') ? '#1a6b3c' : '#991111';
+      } else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : '#1b693c';
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
+        g.stroke();
+      } else if (el.classList.contains('slide-footer')) {
+        g.strokeStyle = '#d4af37';
+        g.lineWidth = 2;
+        g.beginPath();
+        g.moveTo(x, y);
+        g.lineTo(x + w, y);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+      g.restore();
+    });
+
+    // Vẽ sắc nét toàn bộ văn bản theo đúng vị trí đo trên DOM
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match[0].length);
+        const rr = range.getBoundingClientRect();
+        if (rr.width === 0) continue;
+
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match[0], tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
