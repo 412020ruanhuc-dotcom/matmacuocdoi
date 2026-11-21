@@ -1,0 +1,1917 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mật Mã Cuộc Đời: Tử Vi Bính Dần 1986 Năm Đinh Mùi 2027 (Zalo 0789.414.153)</title>
+<style>
+  /* Thiết lập nền tảng: chữ đậm nét, tương phản cao, thoáng mắt */
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  body {
+    background-color: #161616;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Khung Slide ngang tỷ lệ chuẩn 16:9 (1280x720) theo đúng mẫu chuẩn Mật Mã Cuộc Đời */
+  .slide-container {
+    width: 1280px;
+    height: 720px;
+    background: linear-gradient(135deg, #fdf8e8 0%, #f5ebd1 100%);
+    border: 12px solid #b8860b;
+    box-shadow: inset 0 0 0 4px #8b0000, 0 12px 32px rgba(0, 0, 0, 0.75);
+    position: relative;
+    padding: 16px 34px 14px 34px;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    transform-origin: center center;
+  }
+  .slide-container.active { display: flex; }
+
+  /* Phần đầu mỗi trang slide */
+  .header {
+    text-align: center;
+    border-bottom: 3px solid #b8860b;
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .header h1 {
+    color: #8b0000;
+    font-size: 31px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    text-shadow: 1px 1px 0px #ffffff;
+    line-height: 1.15;
+  }
+  .header p {
+    color: #165b16;
+    font-size: 18.5px;
+    font-weight: 800;
+    margin-top: 3px;
+  }
+  .zodiac-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #fff8dc;
+    border: 2px solid #b8860b;
+    color: #8b0000;
+    padding: 2px 12px;
+    border-radius: 20px;
+    font-size: 15.5px;
+    font-weight: 900;
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* Chân trang thương hiệu Mật Mã Cuộc Đời */
+  .slide-footer {
+    border-top: 2px solid #d4af37;
+    padding-top: 5px;
+    margin-top: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 800;
+    color: #7a1c1c;
+  }
+  .brand-pill {
+    background: #8b0000;
+    color: #ffd700;
+    padding: 2px 12px;
+    border-radius: 14px;
+    border: 1.5px solid #d4af37;
+    font-weight: 900;
+    font-size: 14.5px;
+  }
+
+  /* Khu vực nội dung chính */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+  }
+
+  strong, b { font-weight: 900; }
+  .highlight-red { color: #b22222; font-weight: 900; }
+  .highlight-green { color: #166516; font-weight: 900; }
+  .highlight-blue { color: #003d99; font-weight: 900; }
+
+  /* Băng rôn nhấn mạnh */
+  .ratio-banner {
+    background: linear-gradient(135deg, #8b0000, #b22222);
+    border: 3px solid #f0c95c;
+    border-radius: 14px;
+    padding: 11px 18px;
+    color: #ffffff;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .ratio-banner.green { background: linear-gradient(135deg, #165b33, #1e7a44); }
+  .ratio-banner.blue { background: linear-gradient(135deg, #133c7a, #1b4f9c); }
+  .ratio-banner .big-num {
+    font-size: 24px;
+    font-weight: 900;
+    color: #ffd700;
+    margin-bottom: 3px;
+    letter-spacing: 0.3px;
+  }
+  .ratio-banner .sub-text {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.35;
+  }
+
+  /* Hộp nguyên tắc / dẫn nhập */
+  .rule-box {
+    background: #fffdf5;
+    border: 2.5px solid #d4af37;
+    border-left: 10px solid #8b0000;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 18.5px;
+    font-weight: 700;
+    color: #141414;
+    line-height: 1.38;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .rule-box.green { border-left-color: #1e6b1e; }
+  .rule-box.blue { border-left-color: #1b4f9c; }
+  .icon-gold-round {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b5a2b, #b8860b);
+    border: 3px solid #f5deb3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  /* Lưới chia cột thoáng mắt */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 13px; }
+
+  /* Thẻ nội dung tiêu chuẩn */
+  .card {
+    background: #ffffff;
+    border: 2.5px solid #c5a059;
+    border-radius: 12px;
+    padding: 11px 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #141414;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.08);
+    line-height: 1.38;
+  }
+  .badge {
+    background: radial-gradient(circle, #d93829, #8b0000);
+    border: 2.5px solid #f0c95c;
+    color: #ffffff;
+    font-weight: 900;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .badge.green { background: #1e6b1e; }
+  .badge.blue { background: #1b4f9c; }
+
+  /* Thẻ bước / nhóm chuyên đề */
+  .step-card {
+    background: #ffffff;
+    border: 2.5px solid #2e7d32;
+    border-radius: 12px;
+    padding: 11px 15px;
+    text-align: left;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.07);
+  }
+  .step-card.red { border-color: #b22222; background: #fff9f9; }
+  .step-card.green { border-color: #1e6b1e; background: #f2fbf2; }
+  .step-card.blue { border-color: #1b4f9c; background: #f2f7ff; }
+  .step-card.gold { border-color: #b8860b; background: #fffdf4; }
+  .step-card h3 {
+    background: #8b0000;
+    color: #ffffff;
+    padding: 6px 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 900;
+    text-align: center;
+  }
+  .step-card.green h3 { background: #1e6b1e; }
+  .step-card.blue h3 { background: #1b4f9c; }
+  .step-card.red h3 { background: #b22222; }
+  .step-card p {
+    font-size: 17.5px;
+    font-weight: 700;
+    color: #141414;
+    line-height: 1.4;
+  }
+
+  /* Hộp khuyến nghị / lời khuyên nổi bật */
+  .example-box {
+    background: #eef7ee;
+    border: 3px dashed #2e7d32;
+    border-radius: 14px;
+    padding: 10px 16px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #103810;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+  }
+  .example-box.warn { background: #fff4f4; border-color: #b22222; color: #4a0d0d; }
+  .example-box.info { background: #eef5ff; border-color: #1b4f9c; color: #0d2b5c; }
+  .icon-house-round {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #1e6b1e;
+    border: 3px solid #d4af37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+    flex-shrink: 0;
+  }
+  .icon-house-round.red { background: #8b0000; }
+  .icon-house-round.blue { background: #1b4f9c; }
+
+  /* Khung thơ Đại Sấm Ký & Cổ Thư */
+  .poem-box {
+    background: #fffdf5;
+    border: 3px solid #b8860b;
+    border-radius: 14px;
+    padding: 12px 18px;
+    text-align: center;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  .poem-box h3 {
+    background: #8b0000;
+    color: #ffd700;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 18.5px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+  .poem-lines {
+    font-size: 19px;
+    font-weight: 800;
+    color: #2b1408;
+    line-height: 1.56;
+    font-style: italic;
+  }
+  .quote-verse {
+    background: #fdf6e3;
+    border: 2px dashed #b8860b;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin: 6px 0 8px 0;
+    font-size: 17px;
+    font-weight: 800;
+    font-style: italic;
+    color: #7a1212;
+    line-height: 1.38;
+    text-align: center;
+  }
+
+  /* Khung luận giải từng tháng (2 tháng / trang cực kỳ thoáng, chữ đậm nét) */
+  .season-bar {
+    background: linear-gradient(90deg, #8b0000, #a82222);
+    color: #ffd700;
+    border: 2px solid #f0c95c;
+    border-radius: 10px;
+    padding: 6px 16px;
+    font-size: 17.5px;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+  .season-bar.green { background: linear-gradient(90deg, #165b33, #1e7a44); }
+  .season-bar.blue { background: linear-gradient(90deg, #133c7a, #1b4f9c); }
+
+  .month-card {
+    background: #ffffff;
+    border: 2.5px solid #c5a059;
+    border-radius: 14px;
+    padding: 11px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 7px;
+    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  .month-card.alert { border-color: #b22222; background: #fffafa; }
+  .month-card.great { border-color: #1e6b1e; background: #f5fcf5; }
+  .month-card.steady { border-color: #1b4f9c; background: #f6faff; }
+
+  .month-header {
+    background: #8b0000;
+    color: #ffffff;
+    padding: 7px 12px;
+    border-radius: 9px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .month-card.alert .month-header { background: #b22222; }
+  .month-card.great .month-header { background: #166534; }
+  .month-card.steady .month-header { background: #1b4f9c; }
+  .month-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: #ffffff;
+  }
+  .status-pill {
+    background: #ffd700;
+    color: #4a0d0d;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .month-body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+    justify-content: center;
+  }
+  .m-item {
+    font-size: 16.8px;
+    font-weight: 700;
+    color: #141414;
+    line-height: 1.36;
+  }
+  .m-label {
+    color: #8b0000;
+    font-weight: 900;
+  }
+  .month-card.great .m-label { color: #165b16; }
+  .month-card.steady .m-label { color: #0f3d85; }
+
+  .rx-box {
+    background: #eef7ee;
+    border: 2px dashed #2e7d32;
+    border-radius: 10px;
+    padding: 7px 11px;
+    font-size: 16.5px;
+    font-weight: 800;
+    color: #113c11;
+    line-height: 1.34;
+  }
+  .month-card.alert .rx-box {
+    background: #fff2f2;
+    border-color: #b22222;
+    color: #5c0f0f;
+  }
+
+  /* Bảng tra cứu chuẩn */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 17.5px;
+    font-weight: 700;
+  }
+  th {
+    background: #8b0000;
+    color: #ffffff;
+    padding: 8px 10px;
+    border: 2px solid #b8860b;
+    font-weight: 900;
+    font-size: 18px;
+  }
+  td {
+    padding: 7px 10px;
+    border: 2px solid #d4af37;
+    text-align: center;
+    font-weight: 800;
+    color: #141414;
+    line-height: 1.34;
+  }
+  tr:nth-child(even) { background: #fdf6e3; }
+
+  .result-tag {
+    display: inline-block;
+    background: linear-gradient(90deg, #165b33, #247a48);
+    color: #ffffff;
+    padding: 2px 10px;
+    border-radius: 8px;
+    border: 2px solid #f0c95c;
+    font-weight: 900;
+    font-size: 15.5px;
+    white-space: nowrap;
+  }
+  .result-tag.bad { background: #b22222; }
+  .result-tag.blue { background: #1b4f9c; }
+
+  /* Bảng vẽ & Thanh công cụ nổi phía trên */
+  #drawCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 50;
+    pointer-events: none;
+    touch-action: none;
+  }
+  #drawCanvas.drawing-mode { pointer-events: auto; cursor: crosshair; }
+
+  .toolbar {
+    position: fixed;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(18, 18, 18, 0.94);
+    padding: 6px 14px;
+    border-radius: 30px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    z-index: 100;
+    border: 1.5px solid #999;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.55);
+    max-width: 97vw;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .toolbar button, .toolbar select {
+    background: #333;
+    color: #ffffff;
+    border: 1px solid #777;
+    padding: 5px 11px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: bold;
+  }
+  .toolbar button:hover, .toolbar select:hover { background: #555; }
+  .toolbar button.active-tool { background: #d4af37; color: #000000; border-color: #ffffff; }
+  .toolbar button.btn-print { background: #1e6b1e; border-color: #66bb6a; }
+  .toolbar button.btn-print:disabled { background: #666; cursor: wait; }
+  .color-dot { width: 21px; height: 21px; border-radius: 50%; cursor: pointer; border: 2px solid #ffffff; }
+  .page-indicator { color: #ffd700; font-weight: 900; font-size: 14.5px; margin: 0 2px; }
+
+  /* Hộp thông báo nhẹ (không dùng alert) */
+  .toast-msg {
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(18, 18, 18, 0.94);
+    color: #ffd700;
+    border: 2px solid #d4af37;
+    padding: 8px 18px;
+    border-radius: 24px;
+    font-size: 15px;
+    font-weight: 800;
+    z-index: 120;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .toast-msg.show { opacity: 1; }
+</style>
+</head>
+<body>
+
+  <!-- TRANG 1: MỞ ĐẦU – TỔNG QUAN TUỔI BÍNH DẦN 1986 NĂM ĐINH MÙI 2027 -->
+  <div class="slide-container active" id="slide1">
+    <div class="header">
+      <h1>TỬ VI BÍNH DẦN 1986 NĂM ĐINH MÙI 2027 <span class="zodiac-tag">🐅 42 TUỔI MỤ</span></h1>
+      <p>Trang 1 / 24: Lư Trung Hỏa Gặp Thiên Hà Thủy – Khúc Cua Định Đoạt Cơ Đồ Tuổi Tứ Thập</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">BÍNH DẦN 1986 (LƯ TRUNG HỎA – SƠN LÂM CHI HỔ) • NĂM ĐINH MÙI 2027</div>
+        <div class="sub-text">Cột mốc 42 tuổi mụ “Tứ Thập Bất Hoặc” • Kinh Dịch – Can Chi Thông Luận – Triết Lý “Đạo Của Nước”</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card gold">
+          <h3>Vị Thế Tuổi 42 “Tứ Thập Bất Hoặc”</h3>
+          <p>• Chào quý anh, quý chị <strong>Bính Dần 1986</strong> (Lư Trung Hỏa – Lửa Trong Lò / Hổ Trong Rừng)!<br>
+          • Bước sang năm <strong>Đinh Mùi 2027</strong>, bạn chính thức chạm mốc <strong>42 tuổi mụ</strong> – độ chín muồi nhất của đời người.<br>
+          • Bạn đang đứng tại đỉnh dốc của <strong>sự nghiệp, tài chính</strong>, gánh vác trọng trách <strong>trụ cột kinh tế</strong>, nuôi dạy con cái đang tuổi lớn và báo hiếu cha mẹ già.</p>
+        </div>
+
+        <div class="step-card red">
+          <h3>Nhìn Lại Năm Bính Ngọ 2026 Vừa Qua</h3>
+          <p>• Năm <strong>Bính Ngọ 2026</strong> mang Hỏa khí cực thịnh, <strong>Dần – Ngọ Bán Hợp Tam Hợp Hỏa Cục</strong> kích hoạt ngọn lửa Lư Trung Hỏa bốc cháy ngùn ngụt.<br>
+          • Bạn đã trải qua một năm <strong>bận rộn đến kiệt sức</strong>, nhiều kế hoạch lớn triển khai với cường độ cao.<br>
+          • Chi tiêu dòng tiền rất mạnh, cảm xúc có nhiều lúc <strong>nóng nảy, bất an</strong> vì quá tải.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🔥</div>
+        <div>
+          <strong>Bức tranh Đinh Mùi 2027 (Thiên Hà Thủy) – Kiểm chứng chuẩn Tử Vi:</strong> Mở ra cục diện tôi rèn bản lĩnh đầy kịch tính nhưng là <strong>bệ phóng vững chãi</strong> nếu biết nương thời thế. Điểm sáng lớn: Tuổi Dần <strong>bình hòa với Thái Tuế Mùi</strong> (không xung, không hình, không hại, không phá), <strong>không phạm Tam Tai</strong>, có phúc tinh <strong>Long Đức</strong> nâng đỡ <em>(lưu ý tuổi 42 phạm Kim Lâu Thê nếu xây dựng/cưới hỏi nên tính kỹ)</em>.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Luận Giải Toàn Diện Tuổi Bính Dần 1986 Năm Đinh Mùi 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 2: 3 TRỤ CỘT VẬN TRÌNH 2027 & BẢNG NGŨ HÀNH 12 ĐỊA CHI -->
+  <div class="slide-container" id="slide2">
+    <div class="header">
+      <h1>CỤC DIỆN NẠP ÂM – CAN CHI – CỬU DIỆU NĂM 2027 <span class="zodiac-tag">⚖️ 3 TRỤ CỘT</span></h1>
+      <p>Trang 2 / 24: Phân Tích Khí Số Năm Đinh Mùi &amp; Quy Chuẩn Ngũ Hành 12 Địa Chi</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card blue">
+          <h3>1. Nạp Âm: Hỏa Lò Đón Mưa Trời</h3>
+          <p><strong>Lư Trung Hỏa</strong> (lửa có lò gang che chắn, bền bỉ, cháy đượm) gặp <strong>Thiên Hà Thủy</strong> (mưa trên trời) giúp tưới mát, làm dịu cái nóng khô khốc năm cũ ➔ <strong>Cân bằng tâm tính, sáng suốt và thâm trầm</strong> hơn trong các nước cờ lớn.</p>
+        </div>
+
+        <div class="step-card green">
+          <h3>2. Can Chi: Bính Đinh – Dần Mùi</h3>
+          <p>• <strong>Can Bính Hỏa gặp Đinh Hỏa:</strong> Hỏa hòa Hỏa (Tỷ Kiếp đồng hành ấm áp, bạn bè sẻ chia gánh vác).<br>
+          • <strong>Chi Dần (Dương Mộc) gặp Mùi (Âm Thổ):</strong> Mộc khắc Thổ nhập <strong>Mộc Khố</strong> ➔ Gom tụ tài sản, thu hồi vốn liếng, tích lũy điền sản dài hạn.</p>
+        </div>
+
+        <div class="step-card red">
+          <h3>3. Cửu Diệu Niên Hạn Tuổi 42</h3>
+          <p>• <strong>Nam mạng:</strong> Sao <strong>VÂN HỚN</strong> (Hỏa tinh chủ nóng nảy, khẩu thiệt thị phi) – Hạn <strong>THIÊN LA</strong> (tâm bệnh, áp lực định hướng, mâu thuẫn gia đạo).<br>
+          • <strong>Nữ mạng:</strong> Sao <strong>LA HẦU</strong> (hung tinh khẩu thiệt, tai tiếng) – Hạn <strong>DIÊM VƯƠNG</strong> (đắc tài kinh doanh nhưng kỵ huyết khí, phụ khoa).</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th colspan="5">LƯU Ý NGŨ HÀNH 5 HÀNH (KIM – MỘC – THỦY – HỎA – THỔ) CỦA 12 ĐỊA CHI</th>
+          </tr>
+          <tr>
+            <th style="background:#1e6b1e;">🌿 HÀNH MỘC</th>
+            <th style="background:#8b5a2b;">⛰️ HÀNH THỔ</th>
+            <th style="background:#555555;">⚔️ HÀNH KIM</th>
+            <th style="background:#b22222;">🔥 HÀNH HỎA</th>
+            <th style="background:#1b4f9c;">💧 HÀNH THỦY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Dần – Mão</strong></td>
+            <td><strong>Thìn – Tuất – Sửu – Mùi</strong></td>
+            <td><strong>Thân – Dậu</strong></td>
+            <td><strong>Ngọ – Tỵ</strong></td>
+            <td><strong>Tý – Hợi</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Bính Dần 1986 • Cửu Diệu Đã Kiểm Chứng: Nam Vân Hớn – Thiên La | Nữ La Hầu – Diêm Vương • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 3: ĐẠI SẤM KÝ 12 THÁNG BÍNH DẦN 1986 NĂM ĐINH MÙI 2027 -->
+  <div class="slide-container" id="slide3">
+    <div class="header">
+      <h1>ĐẠI SẤM KÝ 12 THÁNG: BÍNH DẦN 1986 NĂM 2027 <span class="zodiac-tag">📜 THƠ SẤM KÝ</span></h1>
+      <p>Trang 3 / 24: Bính Đinh Đồng Hành Hỏa Khí Ấm Êm • Dần Mộc Đắc Vị Khai Khố Mùi Thổ</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 8px 16px; font-size: 17.5px;">
+        <div class="icon-gold-round">📜</div>
+        <div>
+          <strong>Thiên can:</strong> Bính Đinh đồng hành Hỏa khí ấm êm • <strong>Địa chi:</strong> Dần Mộc đắc vị khai khố Mùi Thổ • <strong>Nạp âm:</strong> Lư Trung Hỏa ngộ Thiên Hà Thủy – <em>Lửa lò rèn thép, mưa trời làm dịu phong ba!</em>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="poem-box">
+          <h3>KHAI MỞ TỔNG CỤC TUỔI 42 NĂM ĐINH MÙI</h3>
+          <div class="poem-lines">
+            Bốn mươi hai (42) tuổi chí vững vàng,<br>
+            Hổ gầm một tiếng rạng non ngàn.<br>
+            Bính Đinh hòa hợp, bền công đạo,<br>
+            Mùi Thổ khai kho, tích bạc vàng.<br>
+            Vân Hớn nam nhân toan kiềm chế,<br>
+            Thiên La tâm định, vượt gian nan.<br>
+            La Hầu nữ giới phòng tai tiếng,<br>
+            Diêm Vương đắc lộc, sáng vẻ vang!
+          </div>
+        </div>
+
+        <div class="poem-box" style="border-color: #1e6b1e;">
+          <h3 style="background: #165b33;">NHỊP ĐIỆU 12 THÁNG ÂM LỊCH NĂM 2027</h3>
+          <div class="poem-lines" style="font-size: 18px; line-height: 1.48;">
+            Tháng Giêng Dần Bản, khai cơ nghiệp,<br>
+            Tháng Hai Mão Mộc, vượng gia an.<br>
+            Tháng Ba Thìn Thổ, gom tài khí,<br>
+            Tháng Tư Tỵ Hình, cẩn thận bàn.<br>
+            Tháng Năm Ngọ Tam Hợp bừng danh phận,<br>
+            Tháng Sáu Mùi Thổ, phúc an khang!<br>
+            Tháng Bảy Thân Xung, toan giữ chặt,<br>
+            Tháng Tám Dậu Kim, lộc vẻ vang.<br>
+            Tháng Chín Tuất Tam Hợp đắc lợi lớn,<br>
+            Tháng Mười Hợi Lục Hợp, ấm gia tràng.<br>
+            Mười một Tý Thủy, nguồn sinh dưỡng,<br>
+            Tháng Chạp Sửu khép, trọn vẻ vang!
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Sấm Ký 12 Tháng Tuổi Bính Dần 1986 Năm Đinh Mùi 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 4: PHẦN I – BẢN THỂ HỌC KHÍ SỐ TUỔI BÍNH DẦN 1986 -->
+  <div class="slide-container" id="slide4">
+    <div class="header">
+      <h1>PHẦN I: BẢN THỂ HỌC KHÍ SỐ TUỔI BÍNH DẦN 1986 <span class="zodiac-tag">🔥 LƯ TRUNG HỎA</span></h1>
+      <p>Trang 4 / 24: Phẫu Thuật Bản Tính “Lửa Trong Lò Rèn” &amp; Cốt Cách “Sơn Lâm Chi Hổ”</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card gold">
+          <h3>1. Bản Chất Nạp Âm “Lư Trung Hỏa”</h3>
+          <p>• Trong 60 hoa giáp, Bính Dần và Đinh Mão mang nạp âm <strong>Lư Trung Hỏa</strong> – ngọn lửa trong lò rèn đúc kim loại, được nuôi bằng củi gỗ <strong>Dần Mộc</strong> vô tận.<br>
+          • Có sức nóng khủng khiếp, chuyên dùng tôi rèn sắt thép thành bảo kiếm sắc bén ➔ Tính cách <strong>nhiệt huyết, thẳng thắn, quyết đoán, dám nghĩ dám làm</strong> và có khí phách bậc tướng soái.</p>
+        </div>
+
+        <div class="step-card green">
+          <h3>2. Đặc Tính Cốt Cách “Sơn Lâm Chi Hổ”</h3>
+          <p>• Người tuổi Bính Dần (<em>Hổ trong rừng sâu</em>) <strong>thông minh, quả cảm, độc lập tác chiến cao</strong>, ghét sự luồn cúi và có lòng tự trọng ngút ngàn.<br>
+          • Ở tuổi 42, bạn đã vượt qua giai đoạn nông nổi tuổi trẻ, tích lũy độ dày về <strong>vốn sống, năng lực điều hành</strong> và khát khao khẳng định vị thế thủ lĩnh trong tổ chức hoặc doanh nghiệp.</p>
+        </div>
+
+        <div class="step-card red">
+          <h3>3. Tử Huyệt Bản Tính Cần Khắc Phục</h3>
+          <p>• Vì là ngọn lửa lò bốc cao nên dễ mắc tật <strong>nóng nảy, thiếu kiên nhẫn</strong> khi thấy người khác chậm chạp hơn mình.<br>
+          • Bản tính bộc trực, thích nói thẳng đôi khi làm mất lòng cấp dưới và đối tác. Trước áp lực dồn dập dễ <strong>“cháy hết mình”</strong> dẫn đến kiệt sức cả thể chất lẫn tinh thần.</p>
+        </div>
+
+        <div class="step-card blue">
+          <h3>4. Thế Cờ Can Chi: Bính (Dương Hỏa) – Dần (Dương Mộc)</h3>
+          <p>• <strong>Chi sinh Can (Dần Mộc sinh Bính Hỏa):</strong> Đây là cách cục đại quý <em>“Địa chi sinh Thiên can”</em> – gốc rễ nuôi cành ngọn vững bền.<br>
+          • Trời sinh có <strong>phúc khí và quý nhân phù trợ</strong>; cuộc đời dù trải qua bao phen ba đào chìm nổi vẫn luôn ngẩng cao đầu đứng dậy tái tạo cơ đồ.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Phần I: Giải Mã Gốc Rễ Bản Mệnh Tuổi Bính Dần 1986 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 5: PHẦN I – TƯƠNG TÁC VĨ MÔ NĂM 2027 & CUNG PHI BÁT TRẠCH -->
+  <div class="slide-container" id="slide5">
+    <div class="header">
+      <h1>TƯƠNG TÁC VĨ MÔ 2027 &amp; CUNG PHI BÁT TRẠCH <span class="zodiac-tag">🧭 THỦY HỎA KÝ TẾ</span></h1>
+      <p>Trang 5 / 24: Lửa Lò Gặp Mưa Trời – Mộc Đắc Khố Tụ Tài – Hướng Hợp Nam &amp; Nữ 1986</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card blue">
+          <h3>1. Thủy Hỏa Ký Tế</h3>
+          <p><strong>Lư Trung Hỏa gặp Thiên Hà Thủy:</strong> Lửa được lò gang bảo bọc gặp nước mưa trời thanh khiết không hề bị dập tắt, mà đóng vai trò <strong>nước làm nguội thép vừa tôi luyện</strong> tạo thành thanh bảo kiếm sắc bén ➔ Kiểm soát cảm xúc tốt, quyết định sáng suốt.</p>
+        </div>
+
+        <div class="step-card green">
+          <h3>2. Dần Gặp Mùi: Mộc Đắc Khố</h3>
+          <p>Trong dịch lý, <strong>Mùi (Thổ) chính là kho tàng của hành Mộc</strong>. Cục diện Mộc đắc khố biểu thị cho việc cất giữ thành quả ➔ Năm 2027 là <strong>thời cơ vàng thu hồi công nợ, chốt lời đầu tư, mua sắm nhà đất</strong> và củng cố tài chính vững như bàn thạch.</p>
+        </div>
+
+        <div class="step-card gold">
+          <h3>3. Bính Hỏa Gặp Đinh Hỏa</h3>
+          <p>Can bản mệnh <strong>Bính Hỏa</strong> gặp can lưu niên <strong>Đinh Hỏa</strong> tạo thế <strong>Đồng Hành San Sẻ</strong> ➔ Bạn nhận được sự hỗ trợ chân thành từ bạn bè đồng niên, đồng nghiệp thân thiết; không còn phải <em>“đơn thương độc mã”</em> gánh vác mọi chuyện.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="example-box info">
+          <div class="icon-house-round blue">👨</div>
+          <div>
+            <strong>Cung Phi Bát Trạch NAM MẠNG 1986:</strong> Thuộc <strong>Cung Khôn (hành Thổ – Tây Tứ Mệnh)</strong>.<br>
+            • Hướng bàn làm việc &amp; phòng ngủ hợp nhất: <strong>Đông Bắc (Sinh Khí) • Tây Bắc (Diên Niên) • Tây (Thiên Y) • Tây Nam (Phục Vị)</strong>.
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="icon-house-round">👩</div>
+          <div>
+            <strong>Cung Phi Bát Trạch NỮ MẠNG 1986:</strong> Thuộc <strong>Cung Khảm (hành Thủy – Đông Tứ Mệnh)</strong>.<br>
+            • Hướng bàn làm việc &amp; phòng ngủ hợp nhất: <strong>Đông Nam (Sinh Khí) • Đông (Thiên Y) • Nam (Diên Niên) • Bắc (Phục Vị)</strong>.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Kiểm Chứng Chuẩn Bát Trạch: Nam 1986 Cung Khôn (Thổ) • Nữ 1986 Cung Khảm (Thủy) • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 6: PHẦN I – GIẢI MÃ CỬU DIỆU NAM MẠNG (SAO VÂN HỚN – HẠN THIÊN LA) -->
+  <div class="slide-container" id="slide6">
+    <div class="header">
+      <h1>GIẢI MÃ SAO HẠN NAM MẠNG 1986 (42 TUỔI MỤ) <span class="zodiac-tag">👨 VÂN HỚN – THIÊN LA</span></h1>
+      <p>Trang 6 / 24: Luận Giải Chuẩn Cổ Thư Về Sao Vân Hớn Và Hạn Thiên La Năm Đinh Mùi 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card red">
+          <h3>1. Sao VÂN HỚN (Văn Hớn – Hỏa Tinh)</h3>
+          <div class="quote-verse">
+            “Vân Hớn sao ấy chẳng hay<br>
+            Đầu năm tranh chấp, đắng cay muôn phần<br>
+            Tháng hai tháng tám phân vân<br>
+            Thị phi tai tiếng, giữ thân cho tròn.”
+          </div>
+          <p>• <strong>Tính chất:</strong> Hung tinh hành Hỏa, chủ về <strong>nóng nảy, khẩu thiệt thị phi</strong>.<br>
+          • <strong>Tác động tuổi 42:</strong> Nam Bính Dần giữ vị trí quản lý hoặc kinh doanh riêng dễ bất đồng gay gắt với cấp trên, đối tác ➔ Cần <strong>giữ cái đầu lạnh, tránh tranh cãi tay đôi</strong>.<br>
+          • <strong>Tháng kỵ nhất:</strong> <strong>Tháng 2 và Tháng 8 Âm lịch</strong>.</p>
+        </div>
+
+        <div class="step-card blue">
+          <h3>2. Hạn THIÊN LA (Lưới Trời Bủa Vây)</h3>
+          <div class="quote-verse" style="color: #0d2b5c; border-color: #1b4f9c; background: #eef5ff;">
+            “Thiên La hạn ấy quỷ ma<br>
+            Quấy rầy đau ốm, xót xa tâm hồn<br>
+            Vợ chồng cách trở bồn chồn<br>
+            Lời qua tiếng lại, bực tồn trong tâm.”
+          </div>
+          <p>• <strong>Tử huyệt Hạn Thiên La (Khủng hoảng tuổi trung niên):</strong> Ở ngưỡng 42 tuổi, người đàn ông gánh trên vai quá nhiều kỳ vọng.<br>
+          • Hạn Thiên La mang đến <strong>mệt mỏi tâm trí, mất ngủ vì lo toan tiền bạc, áp lực nuôi dạy con cái</strong> và dễ nảy sinh <strong>mâu thuẫn vợ chồng</strong> do thiếu sự sẻ chia.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">🛡️</div>
+        <div>
+          <strong>Chìa khóa vượt ải cho Nam Bính Dần 1986:</strong> Sao Vân Hớn thuộc Hỏa gặp bản mệnh Lư Trung Hỏa rất dễ bùng lửa giận. Hãy chủ động <strong>hạ hỏa cái tôi, chia sẻ áp lực với vợ con</strong> và tuyệt đối không ký kết hay tranh luận lớn lúc mất bình tĩnh!
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Giải Mã Hệ Thống Cửu Diệu Nam Mạng Bính Dần 1986 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 7: PHẦN I – GIẢI MÃ CỬU DIỆU NỮ MẠNG (SAO LA HẦU – HẠN DIÊM VƯƠNG) -->
+  <div class="slide-container" id="slide7">
+    <div class="header">
+      <h1>GIẢI MÃ SAO HẠN NỮ MẠNG 1986 (42 TUỔI MỤ) <span class="zodiac-tag">👩 LA HẦU – DIÊM VƯƠNG</span></h1>
+      <p>Trang 7 / 24: Luận Giải Chuẩn Cổ Thư Về Sao La Hầu Và Hạn Diêm Vương Năm Đinh Mùi 2027</p>
+    </div>
+    <div class="content">
+      <div class="grid-2">
+        <div class="step-card red">
+          <h3>1. Sao LA HẦU (Đệ Nhất Hung Tinh Khẩu Thiệt)</h3>
+          <div class="quote-verse">
+            “La Hầu quấy nhiễu chẳng yên<br>
+            Đầu năm tranh chấp, lụy phiền đôi bên<br>
+            Tháng giêng tháng bảy đảo điên<br>
+            Thị phi khẩu thiệt, muộn phiền âu lo.”
+          </div>
+          <p>• <strong>Tính chất:</strong> Hung tinh hành Kim, chủ về <strong>điều tiếng gièm pha sau lưng, tiểu nhân ganh ghét</strong> hoặc vướng vào tranh chấp giấy tờ, hợp đồng nơi công sở.<br>
+          • <strong>Tháng kỵ nhất:</strong> <strong>Tháng Giêng (Tháng 1) và Tháng 7 Âm lịch</strong>.<br>
+          • <em>(Kiểm chứng: La Hầu thường nhẹ hơn với nữ so với nam, nhưng vẫn tuyệt đối giữ kín lời và chặt chẽ giấy tờ!)</em></p>
+        </div>
+
+        <div class="step-card green">
+          <h3>2. Hạn DIÊM VƯƠNG (Kỵ Huyết Khí – Đắc Tài Lộc)</h3>
+          <div class="quote-verse" style="color: #143d14; border-color: #1e6b1e; background: #eef7ee;">
+            “Diêm Vương thưa kiện ai bằng<br>
+            Đầu đuôi chưa ngã, đã mang vạ vào<br>
+            Đàn bà thai sản tổn hao<br>
+            Đàn ông đắc lợi, tiền vào như mưa.”
+          </div>
+          <p>• <strong>Tử huyệt sức khỏe:</strong> Nữ tuổi 42 cần đặc biệt chăm sóc <strong>sức khỏe phụ nữ</strong>: kinh nguyệt không đều, thiếu máu do suy nghĩ nhiều, huyết áp dao động, thai sản.<br>
+          • <strong>Cơ hội vàng:</strong> Về mặt <strong>kinh doanh buôn bán</strong>, hạn Diêm Vương lại <strong>kích hoạt lộc buôn bán cực mạnh</strong> nếu biết tỉnh táo nắm bắt!</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">💎</div>
+        <div>
+          <strong>Chìa khóa vượt ải cho Nữ Bính Dần 1986:</strong> Khóa chặt cửa thị phi (<em>“Im lặng là vàng”</em>), tuyệt đối không đứng tên bảo lãnh giấy tờ giùm người khác, chăm sóc kỹ khí huyết và <strong>tận dụng trực giác nhạy bén để thu lộc kinh doanh</strong>!
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Giải Mã Hệ Thống Cửu Diệu Nữ Mạng Bính Dần 1986 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 8: PHẦN II – NAM MẠNG 1986: THÁNG 1 & THÁNG 2 ÂM LỊCH -->
+  <div class="slide-container" id="slide8">
+    <div class="header">
+      <h1>PHẦN II: VẬN TRÌNH NAM MẠNG 1986 (THÁNG 1 &amp; THÁNG 2) <span class="zodiac-tag">👨 KHỞI XUÂN</span></h1>
+      <p>Trang 8 / 24: Sao Vân Hớn – Hạn Thiên La – Mệnh Lư Trung Hỏa – Cung Khôn</p>
+    </div>
+    <div class="content">
+      <div class="season-bar">🌸 MÙA XUÂN: KHỞI XUÂN ĐẮC KHÍ, VƯỢT CỬA ẢI SAO VÂN HỚN THÁNG HAI</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 1 ÂL (NHÂM DẦN) – BẢN MỆNH VƯỢNG KHÍ</span>
+            <span class="status-pill">🟢 KHỞI ĐẦU TỐT</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> Khởi đầu năm mới với phong thái tự tin, đĩnh đạc. Chủ động triển khai kế hoạch đầu năm, khẳng định uy tín vững vàng trước tập thể và đối tác.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Dòng tiền hanh thông từ các khoản lộc xuân may mắn. Chi tiêu mừng tuổi gia đình và tiếp khách chu tất.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Gia đình ấm êm, vợ chồng đồng lòng hướng về mục tiêu mới.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Thể trạng tốt; chú ý <strong>không lái xe sau khi uống bia rượu</strong> trong các bữa tiệc tân niên.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Xuất hành mùng 2 hoặc mùng 4 về hướng Đông Bắc (Sinh Khí); ghi chép rõ ràng mục tiêu tài chính năm 42 tuổi.</div>
+        </div>
+
+        <div class="month-card alert">
+          <div class="month-header">
+            <span class="month-title">THÁNG 2 ÂL (QUÝ MÃO) – VÂN HỚN PHỤC KÍCH</span>
+            <span class="status-pill">🔴 BÁO ĐỘNG ĐỎ</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> <strong>BÁO ĐỘNG ĐỎ TRANH CÃI NÓNG NẢY!</strong> Trúng tháng kỵ số 1 của sao Vân Hớn. Dễ bất đồng gay gắt với đối tác hoặc cấp trên ➔ Hãy nhớ: <strong>điềm tĩnh là vũ khí chiến thắng tối thượng</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Chi tiêu nhiều khoản phát sinh ngoài kế hoạch. Tránh mua sắm bốc đồng theo cảm xúc.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Thiên La quấy nhiễu tâm trí khiến bạn hay cáu bẳn vô cớ với vợ con. Cần học cách kiềm chế.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Đau đầu, mất ngủ do áp lực công việc đè nặng.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tối ngày 29 Âm lịch làm lễ nghinh an hóa giải sao Vân Hớn; tập thói quen chạy bộ hoặc tập gym giải tỏa bực bội.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nam Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 9: PHẦN II – NAM MẠNG 1986: THÁNG 3 & THÁNG 4 ÂM LỊCH -->
+  <div class="slide-container" id="slide9">
+    <div class="header">
+      <h1>PHẦN II: VẬN TRÌNH NAM MẠNG 1986 (THÁNG 3 &amp; THÁNG 4) <span class="zodiac-tag">👨 CHUYỂN GIAO</span></h1>
+      <p>Trang 9 / 24: Cuối Xuân Ổn Định Quỹ Đạo – Đầu Hạ Thận Trọng Dần Tỵ Tương Hại</p>
+    </div>
+    <div class="content">
+      <div class="season-bar blue">🌿 GIAO MÙA XUÂN – HẠ: VỮNG VÀNG TÍCH LŨY, NHẪN NHỊN VƯỢT TƯƠNG HẠI</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card steady">
+          <div class="month-header">
+            <span class="month-title">THÁNG 3 ÂL (GIÁP THÌN) – ỔN ĐỊNH QUỸ ĐẠO</span>
+            <span class="status-pill">🔵 BÌNH AN – TÍCH LŨY</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> Mọi xung đột tháng trước lắng xuống hoàn toàn. Công việc đi vào quỹ đạo ổn định, bạn thể hiện sự chắc chắn và tinh thần trách nhiệm cao.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Thu nhập ổn định, bắt đầu có khoản tiền tích lũy vững cho các dự án quý 2.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Hòa thuận, hai vợ chồng cùng nhau chia sẻ việc nhà và chăm lo con cái.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Khá tốt, chú ý <strong>ăn uống đúng giờ</strong> để tránh đau dạ dày tái phát.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Rà soát lại tiến độ công việc quý 1; trích một khoản tiền gửi tiết kiệm an toàn.</div>
+        </div>
+
+        <div class="month-card alert">
+          <div class="month-header">
+            <span class="month-title">THÁNG 4 ÂL (ẤT TỴ) – DẦN TỴ TƯƠNG HẠI</span>
+            <span class="status-pill">🟠 CẨN TRỌNG GIẤY TỜ</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> Dần – Tỵ phạm <strong>Tương Hại</strong> nhắc nhở thận trọng trong ký kết hợp đồng hoặc bàn giao công việc. Có cạnh tranh ngầm nơi công sở ➔ Làm việc <strong>chuẩn chỉ trên giấy tờ</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Chi tiêu nhiều khoản cho sửa chữa đồ dùng gia đình hoặc xe cộ.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Dễ xảy ra giận hờn nhỏ giữa hai vợ chồng. Cần chủ động nhường nhịn nhau.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Cẩn thận va quẹt nhẹ khi đi lại trên đường trơn trượt.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Áp dụng nguyên tắc “Nhẫn nhịn là vàng”; kiểm tra xe cộ cẩn thận trước khi đi xa.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nam Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 10: PHẦN II – NAM MẠNG 1986: THÁNG 5 & THÁNG 6 ÂM LỊCH -->
+  <div class="slide-container" id="slide10">
+    <div class="header">
+      <h1>PHẦN II: VẬN TRÌNH NAM MẠNG 1986 (THÁNG 5 &amp; THÁNG 6) <span class="zodiac-tag">👨 ĐẠI CÁT MÙA HẠ</span></h1>
+      <p>Trang 10 / 24: Tam Hợp Hỏa Cục Bùng Nổ Danh Vọng – Mùi Thổ Nhập Khố Thu Hoạch Lớn</p>
+    </div>
+    <div class="content">
+      <div class="season-bar green">☀️ MÙA HẠ: TAM HỢP BÙNG NỔ DANH VỌNG – ĐẮC TÀI RỰC RỠ THÁNG SÁU</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 5 ÂL (BÍNH NGỌ) – TAM HỢP HỎA CỤC</span>
+            <span class="status-pill">🟢 ĐỈNH CAO BỨT PHÁ</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> <strong>ĐỈNH CAO BỨT PHÁ MÙA HÈ!</strong> Cát khí Dần – Ngọ Bán Hợp bùng nổ rực rỡ. Hoàn thành xuất sắc chỉ tiêu, ký được hợp đồng lớn hoặc được giao trọng trách mới đầy tiềm năng.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>TÀI LỘC TĂNG TIẾN!</strong> Dòng tiền về tài khoản dồi dào từ nhiều nguồn, thu nhập tăng vọt.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Gia đình hòa thuận, con cái ngoan ngoãn, đón nhận nhiều tin vui.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Thể lực dồi dào, tinh thần phấn chấn, tràn đầy nhiệt huyết.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tự tin đẩy mạnh các kế hoạch kinh doanh lớn; trích một phần lợi nhuận mua tài sản tích lũy an toàn.</div>
+        </div>
+
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 6 ÂL (ĐINH MÙI) – MÙI THỔ NHẬP KHỐ</span>
+            <span class="status-pill">🟢 ĐẠI CÁT TỤ TÀI</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> <strong>Mùi Thổ là Mộc khố</strong> cất giữ tài sản cho Dần Mộc. Công việc phát triển ổn định, vị thế của bạn được củng cố vững chắc.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>THU HOẠCH TÀI CHÍNH LỚN!</strong> Thu hồi vốn liếng, nhận tiền thưởng hoặc lợi nhuận đầu tư, két sắt gia đình dồi dào.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Gia đạo ấm êm, hai vợ chồng cùng nhau lên kế hoạch sắm sửa nhà đất.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Rất tốt, ăn ngon ngủ yên.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Khóa chặt dòng tiền vào tài sản an toàn; giữ tinh thần điềm đạm, khiêm nhường.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nam Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 11: PHẦN II – NAM MẠNG 1986: THÁNG 7 & THÁNG 8 ÂM LỊCH -->
+  <div class="slide-container" id="slide11">
+    <div class="header">
+      <h1>PHẦN II: VẬN TRÌNH NAM MẠNG 1986 (THÁNG 7 &amp; THÁNG 8) <span class="zodiac-tag">👨 PHÒNG THỦ</span></h1>
+      <p>Trang 11 / 24: Hai Cửa Ải Khó Nhất Mùa Thu – Dần Thân Trực Xung &amp; Vân Hớn Tái Kỵ</p>
+    </div>
+    <div class="content">
+      <div class="season-bar">🍂 MÙA THU: VƯỢT CỬA ẢI DẦN THÂN TRỰC XUNG &amp; ĐỐI DIỆN SAO VÂN HỚN THÁNG TÁM</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card alert">
+          <div class="month-header">
+            <span class="month-title">THÁNG 7 ÂL (MẬU THÂN) – DẦN THÂN TRỰC XUNG</span>
+            <span class="status-pill">🔴 BÁO ĐỘNG ĐỎ</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> <strong>BÁO ĐỘNG ĐỎ XUNG ĐỘT &amp; ĐI LẠI!</strong> Kim – Mộc giao chiến, tiến độ thay đổi bất ngờ, đối tác gây khó dễ. <strong>Tuyệt đối không manh động đổi việc hay mở rộng kinh doanh</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Hao tài tốn của cho việc phát sinh ngoài ý muốn; <strong>tuyệt đối không cho vay mượn tiền bạc</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Mâu thuẫn gia đình dễ bùng phát gay gắt. Giữ cái đầu lạnh để bảo vệ hòa khí.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Cẩn thận va quẹt xe cộ khi tham gia giao thông; tránh tắm biển nơi sóng lớn.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Đi chùa cầu an dịp lễ Vu Lan; hạn chế đi xa đường dài lúc đêm muộn.</div>
+        </div>
+
+        <div class="month-card alert">
+          <div class="month-header">
+            <span class="month-title">THÁNG 8 ÂL (KỶ DẬU) – SAO VÂN HỚN TÁI KỴ</span>
+            <span class="status-pill">🔴 THỬ THÁCH CẢM XÚC</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> <strong>THỬ THÁCH VỀ CẢM XÚC!</strong> Trúng tháng kỵ thứ 2 của sao Vân Hớn. Dễ bất mãn, nóng nảy khi kế hoạch chưa như ý ➔ <strong>Nhẫn nại là cảnh giới cao nhất của bản lĩnh tuổi tứ tuần</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Cẩn thận hao tài tốn của cho những việc không tên; <strong>không đầu tư mạo hiểm</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Vợ chồng cần nhường nhịn nhau, tránh to tiếng làm tổn thương tình cảm.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Mất ngủ, đau nửa đầu do suy nghĩ lan man; hạn Thiên La nhắc: <strong>không suy nghĩ tiêu cực</strong>.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tập thiền hoặc nghe nhạc không lời trước khi ngủ; tạm rời xa mạng xã hội vài ngày để định tâm.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nam Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 12: PHẦN II – NAM MẠNG 1986: THÁNG 9 & THÁNG 10 ÂM LỊCH -->
+  <div class="slide-container" id="slide12">
+    <div class="header">
+      <h1>PHẦN II: VẬN TRÌNH NAM MẠNG 1986 (THÁNG 9 &amp; THÁNG 10) <span class="zodiac-tag">👨 ĐỈNH CAO 2027</span></h1>
+      <p>Trang 12 / 24: Tam Hợp Quét Sạch U Ám – Lục Hợp Hóa Mộc Bứt Phá Danh Vọng Đỉnh Cao</p>
+    </div>
+    <div class="content">
+      <div class="season-bar green">🏆 TĂNG TỐC VỀ ĐÍCH: TAM HỢP THÁNG CHÍN – LỤC HỢP TOÀN THẮNG THÁNG MƯỜI</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 9 ÂL (CANH TUẤT) – TAM HỢP CỰC CÁT</span>
+            <span class="status-pill">🟢 TỎA SÁNG MÙA THU</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> <strong>THỜI KHẮC TỎA SÁNG!</strong> Dần – Ngọ – Tuất Tam Hợp mang phước lộc lớn, quét sạch u ám 2 tháng trước. Công việc trơn tru, lấy lại sự tự tin và quyền uy người thủ lĩnh.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>TIỀN BẠC DỒI DÀO!</strong> Thu nhập tăng vọt, nhận tiền thưởng dự án hoặc lợi nhuận buôn bán lớn.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Hạnh phúc viên mãn, con cái ngoan ngoãn đạt thành tích tốt.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Thể trạng hồi phục tốt, khí sắc hồng hào.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tự tin tăng tốc các dự án quan trọng; trích một phần tiền làm từ thiện bồi đắp phước đức.</div>
+        </div>
+
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 10 ÂL (TÂN HỢI) – LỤC HỢP HÓA MỘC</span>
+            <span class="status-pill">🌟 ĐỈNH CAO DANH VỌNG</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> <strong>ĐỈNH CAO DANH VỌNG NĂM 2027!</strong> Dần – Hợi Lục Hợp mang quý nhân nâng đỡ toàn diện: ký hợp đồng chiến lược, cấp trên tín nhiệm tuyệt đối, mở cửa thăng tiến năm mới.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>KÉT SẮT ĐẦY TÀI LỘC!</strong> Tiền bạc đổ về tài khoản dồi dào, bắt đầu chuẩn bị sắm Tết đề huề.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Gia đình ấm êm, đón nhận nhiều tin vui từ dòng họ.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Tuyệt hảo, tinh thần sảng khoái, ăn ngon ngủ yên.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tăng tốc hoàn thành xuất sắc mục tiêu cuối năm; duy trì thói quen tập luyện thể thao mỗi ngày.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nam Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 13: PHẦN II – NAM MẠNG 1986: THÁNG 11 & THÁNG 12 ÂM LỊCH -->
+  <div class="slide-container" id="slide13">
+    <div class="header">
+      <h1>PHẦN II: VẬN TRÌNH NAM MẠNG 1986 (THÁNG 11 &amp; THÁNG 12) <span class="zodiac-tag">👨 VIÊN MÃN</span></h1>
+      <p>Trang 13 / 24: Thủy Khí Sinh Dần Mộc – Khép Lại Tuổi 42 Với Cơ Đồ Vững Chắc</p>
+    </div>
+    <div class="content">
+      <div class="season-bar blue">❄️ MÙA ĐÔNG: NGUỒN THỦY SINH DƯỠNG – TOÀN THẮNG TRỌN VẸN KHÉP LẠI NĂM ĐINH MÙI</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card steady">
+          <div class="month-header">
+            <span class="month-title">THÁNG 11 ÂL (NHÂM TÝ) – THỦY SINH DẦN MỘC</span>
+            <span class="status-pill">🔵 SUÔN SẺ – ỔN ĐỊNH</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> Nguồn Thủy khí mát lành nuôi dưỡng Dần Mộc phát triển mạnh mẽ. Công việc cuối năm diễn ra suôn sẻ, đúng lộ trình.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Nguồn tài chính vững vàng, thu chi cân đối hợp lý.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Gia đạo hòa thuận, vợ chồng gắn kết yêu thương sâu sắc.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Khá tốt, chú ý giữ ấm cơ thể khi trời hanh hao, rét buốt. <strong>Hạn Thiên La hoàn toàn bị đẩy lùi</strong>.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Quyết toán dứt điểm các khoản nợ cũ nếu có; uống trà gừng mật ong ấm mỗi sáng.</div>
+        </div>
+
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 12 ÂL (QUÝ SỬU) – VIÊN MÃN CUỐI NĂM</span>
+            <span class="status-pill">🟢 TRỌN VẸN VẺ VANG</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Sự nghiệp &amp; Công danh:</span> Hoàn thành xuất sắc mọi mục tiêu năm Đinh Mùi 2027. Khép lại tuổi 42 với <strong>cơ đồ vững chắc, bản lĩnh tôi luyện sắc bén</strong> và vị thế vững vàng.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Két sắt đầy ắp tài lộc, nhận thưởng Tết hậu hĩnh, chi tiêu sắm Tết hoan hỷ cho hai bên nội ngoại không phải bận tâm.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Con cháu quây quần đông đủ quanh mâm cơm tất niên, đón xuân ấm áp sum vầy.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Hạn Thiên La:</span> Bình an, thần thái an nhiên tự tại đón chào mùa xuân mới.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Nghỉ ngơi tĩnh dưỡng, tận hưởng trọn vẹn thành quả ngọt ngào sau một năm kiên cường bứt phá!</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Hoàn Thành 12 Tháng Nam Mạng Bính Dần 1986 • Tiếp Theo: 12 Tháng Nữ Mạng • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 14: PHẦN III – NỮ MẠNG 1986: THÁNG 1 & THÁNG 2 ÂM LỊCH -->
+  <div class="slide-container" id="slide14">
+    <div class="header">
+      <h1>PHẦN III: VẬN TRÌNH NỮ MẠNG 1986 (THÁNG 1 &amp; THÁNG 2) <span class="zodiac-tag">👩 KHỞI XUÂN</span></h1>
+      <p>Trang 14 / 24: Sao La Hầu – Hạn Diêm Vương – Mệnh Lư Trung Hỏa – Cung Khảm</p>
+    </div>
+    <div class="content">
+      <div class="season-bar">🌸 MÙA XUÂN: VƯỢT CỬA ẢI ĐẠI KỴ SAO LA HẦU THÁNG GIÊNG – MỘC KHÍ TRỢ LỰC THÁNG HAI</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card alert">
+          <div class="month-header">
+            <span class="month-title">THÁNG 1 ÂL (NHÂM DẦN) – ĐẠI KỴ LA HẦU</span>
+            <span class="status-pill">🔴 BÁO ĐỘNG THỊ PHI</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> <strong>BÁO ĐỘNG ĐỎ VỀ THỊ PHI!</strong> Trúng tháng kỵ số 1 của La Hầu kết hợp Bản Mệnh Dần. Dễ hiểu lầm, có kẻ ganh ghét soi mói ➔ <strong>Tuyệt đối không buôn chuyện công sở</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Chi tiêu nhiều cho sắm sửa làm đẹp đầu năm. Quản lý chặt ngân sách, tránh mua sắm bốc đồng.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Dễ tranh cãi, giận hờn vô cớ với bạn đời. Hãy học cách lắng nghe và kiểm soát cảm xúc.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Chú ý đau đầu, chóng mặt; không lái xe khi cơ thể mệt mỏi.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Xuất hành mùng 2/mùng 4 hướng Đông Nam (Sinh Khí); tối mùng 8 ÂL cúng giải La Hầu; giữ nguyên tắc “Im lặng là vàng”.</div>
+        </div>
+
+        <div class="month-card steady">
+          <div class="month-header">
+            <span class="month-title">THÁNG 2 ÂL (QUÝ MÃO) – MỘC KHÍ TRỢ LỰC</span>
+            <span class="status-pill">🔵 TƯƠI SÁNG TRỞ LẠI</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> <strong>Mão Mộc tiếp thêm sinh khí</strong>, quét sạch đám mây u ám tháng Giêng. Bạn tìm lại sự tươi tắn, khéo léo trong giao tiếp, công việc tiến triển thuận lợi trở lại.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Nguồn tài chính ổn định, thu nhập đều đặn từ công việc chính.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Bình yên, hai vợ chồng cùng nhau chăm lo cho gia đình nhỏ.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Khá tốt, da dẻ hồng hào, tinh thần sảng khoái.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Uống nước ấm mỗi sáng; trau chuốt lại tác phong công sở tự tin, thanh lịch.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nữ Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 15: PHẦN III – NỮ MẠNG 1986: THÁNG 3 & THÁNG 4 ÂM LỊCH -->
+  <div class="slide-container" id="slide15">
+    <div class="header">
+      <h1>PHẦN III: VẬN TRÌNH NỮ MẠNG 1986 (THÁNG 3 &amp; THÁNG 4) <span class="zodiac-tag">👩 KHỞI SẮC</span></h1>
+      <p>Trang 15 / 24: Hạn Diêm Vương Kích Hoạt Đắc Tài Tháng Ba – Giữ Lời Tháng Tư Tương Hại</p>
+    </div>
+    <div class="content">
+      <div class="season-bar blue">🌿 GIAO MÙA XUÂN – HẠ: ĐÓN LỘC BUÔN BÁN THÁNG BA, TRÁNH TRANH LUẬN THÁNG TƯ</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 3 ÂL (GIÁP THÌN) – TÀI LỘC KHỞI SẮC</span>
+            <span class="status-pill">🟢 ĐẮC TÀI KINH DOANH</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> Công việc diễn ra suôn sẻ, đúng lộ trình. Bạn thể hiện sự đảm đang, khéo léo trong việc cơ quan lẫn việc nhà.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>TÀI LỘC KHỞI SẮC!</strong> Hạn Diêm Vương kích hoạt năng lực <strong>đắc tài trong kinh doanh buôn bán</strong>, tiền bạc về tài khoản đều đặn.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Gia đình hòa thuận, con cái ngoan ngoãn vâng lời.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Tốt, ăn ngon ngủ kỹ.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Duy trì lối sống lành mạnh; trích tiền tiết kiệm tích lũy an toàn cho gia đình.</div>
+        </div>
+
+        <div class="month-card alert">
+          <div class="month-header">
+            <span class="month-title">THÁNG 4 ÂL (ẤT TỴ) – DẦN TỴ TƯƠNG HẠI</span>
+            <span class="status-pill">🟠 CẨN TRỌNG LỜI NÓI</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> Dần – Tỵ phạm <strong>Tương Hại</strong> nhắc nhở cẩn trọng trong lời ăn tiếng nói. <strong>Tránh tranh luận tay đôi với đồng nghiệp nữ</strong> nơi công sở.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Chi tiêu nhiều khoản cho mua sắm gia đình. Cần lên kế hoạch kiểm soát chi tiêu cá nhân.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Dễ suy nghĩ vu vơ, nhạy cảm quá mức làm nảy sinh giận hờn nhỏ trong nhà.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Cẩn thận trơn trượt té ngã; chú ý đau nửa đầu khi thời tiết thay đổi.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Chia sẻ thẳng thắn cảm xúc với bạn đời để tránh hiểu lầm; uống trà hoa cúc ấm an thần.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nữ Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 16: PHẦN III – NỮ MẠNG 1986: THÁNG 5 & THÁNG 6 ÂM LỊCH -->
+  <div class="slide-container" id="slide16">
+    <div class="header">
+      <h1>PHẦN III: VẬN TRÌNH NỮ MẠNG 1986 (THÁNG 5 &amp; THÁNG 6) <span class="zodiac-tag">👩 TIỀN VÀO ĐẦY TÚI</span></h1>
+      <p>Trang 16 / 24: Tam Hợp Đắc Tài Mùa Hạ – Mùi Thổ Nhập Khố Tích Lũy Vững Vàng</p>
+    </div>
+    <div class="content">
+      <div class="season-bar green">☀️ MÙA HẠ: TAM HỢP TỎA SÁNG THÁNG NĂM – TIỀN VÀO ĐẦY TÚI THÁNG SÁU</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 5 ÂL (BÍNH NGỌ) – TAM HỢP CỰC CÁT</span>
+            <span class="status-pill">🟢 TỎA SÁNG RỰC RỠ</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> <strong>THỜI KHẮC TỎA SÁNG MÙA HÈ!</strong> Cát khí Dần – Ngọ Bán Hợp mang phước lộc lớn. Công việc kinh doanh buôn bán hoặc dự án đạt kết quả xuất sắc ngoài mong đợi.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>TIỀN BẠC DỒI DÀO!</strong> Thu nhập tăng vọt, nhận tiền thưởng lớn và lộc may mắn bất ngờ đổ về tài khoản.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Hạnh phúc viên mãn, gia đình tràn ngập tiếng cười.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Tuyệt hảo, tinh thần minh mẫn, tràn ngập niềm vui sống.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tự tin triển khai các kế hoạch kinh doanh mới; tự thưởng cho mình một món quà nhỏ để khích lệ bản thân.</div>
+        </div>
+
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 6 ÂL (ĐINH MÙI) – MÙI THỔ NHẬP KHỐ</span>
+            <span class="status-pill">🟢 TÀI CHÍNH VỮNG VÀNG</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> <strong>Mùi Thổ là kho tài lộc</strong> của Dần Mộc. Bạn hoàn thành xuất sắc mọi chỉ tiêu, được đồng nghiệp nể phục và cấp trên đánh giá rất cao.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>TÀI CHÍNH VỮNG VÀNG!</strong> Dòng tiền dồi dào, sổ tiết kiệm tích lũy gia tăng rõ rệt.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Bình yên, tình cảm lứa đôi son sắt, mặn nồng.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Rất tốt, thần thái tươi tắn, ngủ ngon giấc.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Trích tiền mua tài sản tích lũy an toàn; duy trì thói quen tập yoga hoặc đi bộ nhẹ nhàng.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nữ Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 17: PHẦN III – NỮ MẠNG 1986: THÁNG 7 & THÁNG 8 ÂM LỊCH -->
+  <div class="slide-container" id="slide17">
+    <div class="header">
+      <h1>PHẦN III: VẬN TRÌNH NỮ MẠNG 1986 (THÁNG 7 &amp; THÁNG 8) <span class="zodiac-tag">👩 VƯỢT CỬA ẢI</span></h1>
+      <p>Trang 17 / 24: Đại Kỵ La Hầu Trùng Dần Thân Xung Tháng Bảy – Rạng Ngời Hồi Phục Tháng Tám</p>
+    </div>
+    <div class="content">
+      <div class="season-bar">🍂 MÙA THU: VƯỢT CỬA ẢI SAO LA HẦU &amp; DẦN THÂN XUNG – HỒI PHỤC MẠNH MẼ THÁNG TÁM</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card alert">
+          <div class="month-header">
+            <span class="month-title">THÁNG 7 ÂL (MẬU THÂN) – ĐẠI KỴ KÉP</span>
+            <span class="status-pill">🔴 BÁO ĐỘNG ĐỎ</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> <strong>BÁO ĐỘNG ĐỎ THỊ PHI &amp; TÂM LÝ!</strong> Trúng tháng kỵ thứ 2 của <strong>La Hầu trùng Dần – Thân Trực Xung</strong>. Áp lực đè nặng, dễ vướng khẩu thiệt, hiểu lầm lời nói.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Dễ chi tiêu giải tỏa căng thẳng. <strong>Tuyệt đối không cho người khác vay mượn tiền bạc</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Dễ cãi vã, chiến tranh lạnh vì chuyện vụn vặt. Bình tĩnh kiềm chế lời lúc giận dữ.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> <strong>CẨN TRỌNG DIÊM VƯƠNG!</strong> Chăm sóc sức khỏe phụ nữ, kinh nguyệt không đều; tránh thức khuya máy tính; cẩn thận đường trơn trượt.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Áp dụng “Bịt tai qua rừng gai”, im lặng trước thị phi; đi chùa cầu an lễ Vu Lan báo hiếu cha mẹ; ăn thanh đạm.</div>
+        </div>
+
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 8 ÂL (KỶ DẬU) – TÀI LỘC HỒI PHỤC</span>
+            <span class="status-pill">🟢 RẠNG NGỜI TRỞ LẠI</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> Kim khí sắc bén nâng đỡ, <strong>mọi thị phi tháng 7 tan biến hoàn toàn</strong>. Tìm lại sự tự tin và nét rạng ngời vốn có; công việc thuận lợi, cấp trên tín nhiệm.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>TÀI LỘC HỒI PHỤC!</strong> Tiền bạc về tài khoản đều đặn, bù đắp nhanh chóng cho các khoản chi trước đó.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Vợ chồng làm lành, hai người gắn kết yêu thương sâu sắc hơn sau thử thách.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Thể trạng hồi phục tốt, da dẻ mịn màng, thần thái tươi tắn trở lại.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tự tin triển khai các kế hoạch mới; trích một phần tiền lợi nhuận làm từ thiện.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nữ Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 18: PHẦN III – NỮ MẠNG 1986: THÁNG 9 & THÁNG 10 ÂM LỊCH -->
+  <div class="slide-container" id="slide18">
+    <div class="header">
+      <h1>PHẦN III: VẬN TRÌNH NỮ MẠNG 1986 (THÁNG 9 &amp; THÁNG 10) <span class="zodiac-tag">👩 BỘI THU</span></h1>
+      <p>Trang 18 / 24: Tam Hợp Đỉnh Cao Tài Lộc Tháng Chín – Lục Hợp Thành Công Rực Rỡ Tháng Mười</p>
+    </div>
+    <div class="content">
+      <div class="season-bar green">🏆 MÙA VỤ BỘI THU: TIỀN VÀO NHƯ NƯỚC THÁNG CHÍN – QUÝ NHÂN NÂNG ĐỠ THÁNG MƯỜI</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 9 ÂL (CANH TUẤT) – TAM HỢP ĐỈNH CAO</span>
+            <span class="status-pill">🌟 DỒI DÀO NHẤT NĂM</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> <strong>MÙA VỤ BỘI THU MÙA THU!</strong> Dần – Ngọ – Tuất Tam Hợp mang phước lộc lớn. Bạn khẳng định năng lực điều hành xuất sắc, được mọi người nể phục và quý mến.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>KÉT SẮT ĐẦY TÀI LỘC!</strong> Tiền bạc vào nhà như nước, tài chính <strong>dồi dào bậc nhất trong năm</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Hạnh phúc viên mãn, gia đình tràn ngập tiếng cười.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Rất tốt, tinh thần thư thái, ăn ngon ngủ sâu.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Tự tin tăng tốc các dự án buôn bán; dành thời gian chăm sóc và gắn kết gia đình nhỏ.</div>
+        </div>
+
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 10 ÂL (TÂN HỢI) – LỤC HỢP CỰC CÁT</span>
+            <span class="status-pill">🟢 THÀNH CÔNG RỰC RỠ</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> <strong>THÀNH CÔNG RỰC RỠ!</strong> Dần – Hợi Lục Hợp mang quý nhân tương trợ, công việc trơn tru. Bạn khéo léo sắp xếp việc công – việc tư chu toàn, khẳng định bản lĩnh phụ nữ thành đạt.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> <strong>TIỀN VÀO ĐẦY TÚI!</strong> Thu nhập tăng trưởng vượt bậc, có khoản tiền thưởng dự án lớn đổ về tài khoản.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Tình cảm gia đình ngọt ngào, gắn kết yêu thương sâu sắc.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Rất tốt, thần thái rạng ngời. <strong>Hạn Diêm Vương hoàn toàn bị đẩy lùi</strong>.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Lên kế hoạch tổng kết công việc cuối năm; tự thưởng cho bản thân một chuyến nghỉ dưỡng ngắn ngày.</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đại Phẫu 12 Tháng Nữ Mạng Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 19: PHẦN III – NỮ MẠNG 1986: THÁNG 11 & THÁNG 12 ÂM LỊCH -->
+  <div class="slide-container" id="slide19">
+    <div class="header">
+      <h1>PHẦN III: VẬN TRÌNH NỮ MẠNG 1986 (THÁNG 11 &amp; THÁNG 12) <span class="zodiac-tag">👩 VIÊN MÃN</span></h1>
+      <p>Trang 19 / 24: Thủy Khí Gột Rửa Áp Lực – Khép Lại Năm Đinh Mùi Đủ Đầy &amp; Rạng Rỡ</p>
+    </div>
+    <div class="content">
+      <div class="season-bar blue">❄️ MÙA ĐÔNG: LỤC HỢP NÂNG ĐỠ – THỦY KHÍ MÁT LÀNH – VIÊN MÃN ĐÓN XUÂN MỚI</div>
+      <div class="grid-2" style="flex: 1;">
+        <div class="month-card steady">
+          <div class="month-header">
+            <span class="month-title">THÁNG 11 ÂL (NHÂM TÝ) – THỦY KHÍ MÁT LÀNH</span>
+            <span class="status-pill">🔵 NHẸ NHÀNG – ĐĨNH ĐẠC</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> Nguồn Thủy khí mát lành gột rửa mọi áp lực. Công việc cuối năm bận rộn nhưng bạn vẫn xử lý nhẹ nhàng, đĩnh đạc.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Dòng tiền dồi dào, chuẩn bị sắm Tết đề huề mà không phải bận tâm suy nghĩ.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Gia đình ấm áp, con cháu sum vầy bên mẹ.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Chú ý <strong>giữ ấm cơ thể</strong> khi trời chuyển rét buốt; <strong>không tắm gội quá muộn</strong>.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Ngâm chân nước gừng ấm mỗi tối; quyết toán dứt điểm các khoản nợ cũ.</div>
+        </div>
+
+        <div class="month-card great">
+          <div class="month-header">
+            <span class="month-title">THÁNG 12 ÂL (QUÝ SỬU) – VIÊN MÃN KHÉP NĂM</span>
+            <span class="status-pill">🟢 AN NHIÊN ĐÓN XUÂN</span>
+          </div>
+          <div class="month-body">
+            <div class="m-item"><span class="m-label">• Gia đạo &amp; Cuộc sống:</span> Hoàn thành xuất sắc mọi mục tiêu năm Đinh Mùi 2027. Khép lại tuổi 42 với <strong>gia đạo viên mãn, vị thế vững chắc và nền tảng tài chính dồi dào</strong>.</div>
+            <div class="m-item"><span class="m-label">• Tài chính &amp; Tiền bạc:</span> Két sắt đầy ắp tài lộc, chi tiêu sắm Tết hoan hỷ cho con cái và gia đình hai bên nội ngoại không phải lo nghĩ.</div>
+            <div class="m-item"><span class="m-label">• Tình cảm &amp; Gia đạo:</span> Con cháu quây quần đông đủ quanh mâm cơm tất niên, đón xuân ấm áp sum vầy.</div>
+            <div class="m-item"><span class="m-label">• Sức khỏe &amp; Diêm Vương:</span> Bình an, thần thái an nhiên tự tại đón chào mùa xuân mới.</div>
+          </div>
+          <div class="rx-box">💊 Kê đơn thực chiến: Nghỉ ngơi tĩnh dưỡng, tận hưởng trọn vẹn thành quả ngọt ngào sau một năm kiên cường gặt hái thành công!</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Hoàn Thành 12 Tháng Nữ Mạng Bính Dần 1986 • Tiếp Theo: Chiến Lược Cải Mệnh • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 20: PHẦN IV – HÓA GIẢI SAO VÂN HỚN & HẠN THIÊN LA (CHO NAM MẠNG) -->
+  <div class="slide-container" id="slide20">
+    <div class="header">
+      <h1>PHẦN IV: CHIẾN LƯỢC CẢI MỆNH CHO NAM MẠNG 1986 <span class="zodiac-tag">👨 GIẢI VÂN HỚN</span></h1>
+      <p>Trang 20 / 24: Giải Pháp Thực Chiến Chuyển Hóa Sao Vân Hớn &amp; Hạn Thiên La Năm 2027</p>
+    </div>
+    <div class="content">
+      <div class="rule-box" style="padding: 9px 16px; font-size: 17.5px;">
+        <div class="icon-gold-round">🎯</div>
+        <div>
+          <strong>Mục tiêu Phần IV (“Chạm Đất” dựa trên Đạo của Nước):</strong> Chuyển hóa triệt để năng lượng <strong>Sao Vân Hớn – Hạn Thiên La (Nam)</strong>, <strong>Sao La Hầu – Hạn Diêm Vương (Nữ)</strong> và cửa ải <strong>Dần Thân Trực Xung (tháng 7)</strong> bằng 4 nhóm giải pháp thực chiến.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="step-card red">
+          <h3>1. Kỷ Luật “Hạ Hỏa Cái Tôi”</h3>
+          <p>• Vân Hớn chủ sự nóng nảy, hiếu thắng. Ở tuổi 42 trụ cột, bài học lớn nhất là: <strong>bớt đôi co hơn thua</strong> với đồng nghiệp hay đối tác.<br>
+          • Hãy lấy <strong>sự điềm tĩnh và kết quả công việc thực tế</strong> làm câu trả lời thuyết phục nhất.</p>
+        </div>
+
+        <div class="step-card blue">
+          <h3>2. Trị Tận Gốc Tâm Bệnh Thiên La</h3>
+          <p>• Chống <strong>Overthinking</strong> (suy nghĩ quá mức): Khi lo lắng tương lai hay áp lực tiền bạc, hãy <strong>chia nhỏ mục tiêu thành từng hành động cụ thể hàng ngày</strong>.<br>
+          • Tích cực thể thao, chạy bộ làm sạch tâm trí; <strong>tránh giam mình trong phòng kín lướt mạng xã hội thâu đêm</strong>.</p>
+        </div>
+
+        <div class="step-card gold">
+          <h3>3. Nghi Thức Dâng Sao Vân Hớn</h3>
+          <p>• <strong>Thời gian:</strong> Tối ngày <strong>29 Âm lịch</strong> hàng tháng (đặc biệt <strong>tháng 2 và tháng 8 ÂL</strong>).<br>
+          • <strong>Lễ vật &amp; Hướng:</strong> Thắp <strong>15 ngọn nến/đèn</strong>, bài vị giấy đỏ, quay mặt về <strong>hướng Chính Nam</strong>.<br>
+          • <strong>Khấn chuẩn:</strong> <em>“Nam Phương Bính Đinh Hỏa Đức Tinh Quân”</em> cầu bình an, giải trừ nóng nảy khẩu thiệt.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đối Chiếu Chuẩn Cổ Thư: Sao Vân Hớn – Ngày 29 ÂL – 15 Nến – Hướng Chính Nam • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 21: PHẦN IV – HÓA GIẢI SAO LA HẦU & HẠN DIÊM VƯƠNG (CHO NỮ MẠNG) -->
+  <div class="slide-container" id="slide21">
+    <div class="header">
+      <h1>PHẦN IV: CHIẾN LƯỢC CẢI MỆNH CHO NỮ MẠNG 1986 <span class="zodiac-tag">👩 GIẢI LA HẦU</span></h1>
+      <p>Trang 21 / 24: Giải Pháp Thực Chiến Chuyển Hóa Sao La Hầu &amp; Đắc Tài Hạn Diêm Vương</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card red">
+          <h3>1. “Uốn Lưỡi Bảy Lần Trước Khi Nói”</h3>
+          <p>• La Hầu là sao khẩu thiệt thị phi. <strong>Lệnh sinh tử cho nữ 1986:</strong><br>
+          • Tuyệt đối <strong>không tham gia nhóm buôn chuyện</strong> nói xấu đồng nghiệp.<br>
+          • Không đăng status ẩn ý, than vãn công sở hay tình cảm lên mạng xã hội.<br>
+          • <strong>Càng kín tiếng thì càng an toàn!</strong></p>
+        </div>
+
+        <div class="step-card green">
+          <h3>2. Chăm Sức Khỏe &amp; Tận Dụng Đắc Tài</h3>
+          <p>• <strong>Bảo vệ sức khỏe phụ nữ:</strong> Đi khám tổng quát định kỳ; uống nhiều nước ấm, ăn nhiều rau xanh và <strong>không thức khuya</strong>.<br>
+          • <strong>Kích hoạt mặt tốt Diêm Vương:</strong> Tận dụng trực giác nhạy bén để <strong>đẩy mạnh kinh doanh buôn bán</strong>, kích hoạt tối đa năng lực “đắc tài”.</p>
+        </div>
+
+        <div class="step-card blue">
+          <h3>3. Nghi Thức Dâng Sao La Hầu (Chuẩn)</h3>
+          <p>• <strong>Thời gian:</strong> Tối ngày <strong>mùng 8 Âm lịch</strong> hàng tháng (đặc biệt <strong>tháng Giêng và tháng 7 ÂL</strong>).<br>
+          • <strong>Lễ vật &amp; Hướng:</strong> Thắp <strong>9 ngọn nến/đèn</strong>, bài vị giấy vàng, quay mặt về <strong>hướng Chính Bắc</strong>.<br>
+          • <strong>Khấn chuẩn Cửu Diệu:</strong> <em>“Thiên Cung Thần Thủ La Hầu Đức Tinh Quân”</em> cầu bình an, giải trừ thị phi.</p>
+        </div>
+      </div>
+
+      <div class="example-box info">
+        <div class="icon-house-round blue">✅</div>
+        <div>
+          <strong>Điểm chuẩn hóa quý giá từ Mật Mã Cuộc Đời:</strong> Theo văn khấn Cửu Diệu cổ truyền, danh hiệu bài vị <strong>Sao La Hầu</strong> chuẩn xác là <strong>“Thiên Cung Thần Thủ La Hầu Đức Tinh Quân”</strong> <em>(tránh nhầm sang danh hiệu “Bắc Phương Nhâm Quý Thủy Đức Tinh Quân” vốn là của Sao Thủy Diệu ngày 21 ÂL)</em>.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Đối Chiếu Chuẩn Cửu Diệu: Sao La Hầu – Ngày Mùng 8 ÂL – 9 Nến – Hướng Chính Bắc • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 22: PHẦN IV – VẬN DỤNG TRIẾT LÝ "ĐẠO CỦA NƯỚC" -->
+  <div class="slide-container" id="slide22">
+    <div class="header">
+      <h1>TRIẾT LÝ “ĐẠO CỦA NƯỚC” TÔI LUYỆN LỬA LÒ RÈN <span class="zodiac-tag">💧 THƯỢNG THIỆN</span></h1>
+      <p>Trang 22 / 24: Lấy Nhu Thắng Cương – Hòa Nhập Thiên Nhiên – Cảnh Giới Tuổi Tứ Thập</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner blue">
+        <div class="big-num">LÃO TỬ DẠY: “THƯỢNG THIỆN NHƯỢC THỦY”</div>
+        <div class="sub-text">“Thủy thiện lợi vạn vật nhi bất tranh, xử chúng nhân chi sở ố, cố cơ vu Đạo.”</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card gold">
+          <h3>1. Lửa Lò Rèn Cần Nước Làm Nguội Thép</h3>
+          <p>• Bản chất của Bính Dần là <strong>Lư Trung Hỏa</strong> – ngọn lửa trong lò rèn. Lửa muốn rèn nên thanh bảo kiếm sắc bén thì bắt buộc phải có <strong>nước làm nguội</strong>.<br>
+          • Dòng nước mưa trời <strong>Thiên Hà Thủy</strong> năm 2027 chính là dòng nước làm nguội giúp thanh thép của bạn <strong>kết tinh độ bền chắc tuyệt đối</strong>.</p>
+        </div>
+
+        <div class="step-card blue">
+          <h3>2. Sức Mạnh Lớn Nhất Ở Tuổi 42: Nhu Thuận &amp; Điềm Đạm</h3>
+          <p>• Ở tuổi 42, sức mạnh lớn nhất không phải là sự sắc sảo phô trương bên ngoài, mà là <strong>Sự Nhu Thuận và Điềm Đạm</strong>.<br>
+          • Nước luôn chảy về chỗ trũng, nuôi dưỡng vạn vật mà không tranh giành hơn thua.<br>
+          • Hãy học cách <strong>lắng nghe, hạ thấp cái tôi</strong>, dùng sự mềm mại hóa giải xung đột <strong>Dần – Thân Trực Xung</strong>.</p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🌊</div>
+        <div>
+          <strong>Chân lý giữ lửa cơ đồ:</strong> Càng <strong>điềm đạm, bao dung</strong> bao nhiêu thì ngọn lửa <strong>Lư Trung Hỏa</strong> trong người tuổi Bính Dần 1986 càng ấm áp, vững chãi và <strong>tỏa sáng bền lâu</strong> bấy nhiêu!
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Ứng Dụng Đạo Của Nước Để Biến Thử Thách Thành Nội Lực • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 23: PHẦN IV – PHONG THỦY VI MÔ KHÔNG GIAN SỐNG & LÀM VIỆC NĂM 2027 -->
+  <div class="slide-container" id="slide23">
+    <div class="header">
+      <h1>PHONG THỦY VI MÔ KHÔNG GIAN SỐNG &amp; LÀM VIỆC 2027 <span class="zodiac-tag">🧭 KÍCH CÁT</span></h1>
+      <p>Trang 23 / 24: Màu Sắc Trợ Mệnh – Vật Phẩm Hộ Thân – Hướng Bàn Làm Việc Nam &amp; Nữ 1986</p>
+    </div>
+    <div class="content">
+      <div class="grid-3">
+        <div class="step-card green">
+          <h3>1. Màu Sắc Trợ Mệnh 2027</h3>
+          <p>• <strong>Nên dùng (Mộc thông quan):</strong> <strong>Xanh lá cây</strong> tạo thế <em>“Thủy sinh Mộc – Mộc sinh Hỏa”</em>, chuyển hóa mưa trời thành nguồn sinh dưỡng cho lửa lò.<br>
+          • <strong>Tăng bản khí (Hỏa):</strong> <strong>Đỏ, Cam, Hồng, Tím</strong>.<br>
+          • <strong>Hạn chế:</strong> Tránh mặc nguyên cây <strong>Đen, Xanh nước biển</strong> (Thủy dập lửa) khi đàm phán quan trọng.</p>
+        </div>
+
+        <div class="step-card gold">
+          <h3>2. Vật Phẩm Phong Thủy Hộ Thân</h3>
+          <p>• <strong>Nam mạng (Cung Khôn):</strong> Đeo vòng <strong>Thạch anh tóc xanh, Ngọc Cẩm Thạch tự nhiên</strong> hoặc <strong>Đá Mắt Hổ vàng nâu</strong> giúp bổ sung Mộc khí sinh Hỏa, an định tâm thần, dịu tính bộc trực trước Thiên La – Vân Hớn.<br>
+          • <strong>Nữ mạng (Cung Khảm):</strong> Đeo vòng <strong>Thạch anh đen, Thạch anh tóc đen</strong> hoặc <strong>Aquamarine xanh biển</strong> dưỡng trường khí Thủy thuần khiết, dịu tâm trí, giải thị phi La Hầu – bảo vệ sức khỏe Diêm Vương.</p>
+        </div>
+
+        <div class="step-card blue">
+          <h3>3. Phương Vị Bàn Làm Việc</h3>
+          <p>• <strong>Nam mạng (Tây Tứ Mệnh):</strong> Bàn làm việc quay mặt về <strong>Đông Bắc (Sinh Khí)</strong> hoặc <strong>Tây Bắc (Diên Niên)</strong> ➔ Thu hút quý nhân, khai thông định hướng nghề nghiệp.<br>
+          • <strong>Nữ mạng (Đông Tứ Mệnh):</strong> Bàn làm việc quay mặt về <strong>Đông Nam (Sinh Khí)</strong> hoặc <strong>Đông (Thiên Y)</strong> ➔ Tinh thần tỉnh táo, sáng suốt, bảo vệ hòa hợp quan hệ.</p>
+        </div>
+      </div>
+
+      <div class="example-box warn">
+        <div class="icon-house-round red">🧭</div>
+        <div>
+          <strong>Bổ sung chuẩn Phi Tinh &amp; Lộc Tồn năm Đinh Mùi 2027:</strong> <strong>Lộc Tồn Can Đinh</strong> đóng <strong>Chính Nam</strong> (sao Tứ Lục Văn Xương rất đẹp đặt bàn học con cái) • <strong>Cửu Tử đương vượng</strong> nhập Trung Cung • <strong>Ngũ Hoàng Đại Sát đóng Chính Bắc</strong> ➔ Tuyệt đối <strong>tránh động thổ, khoan đục khu vực Chính Bắc</strong> trong năm 2027!
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Phong Thủy Ứng Dụng Chuẩn Xác Cho Gia Chủ Bính Dần 1986 Năm 2027 • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- TRANG 24: LỜI KẾT & THÔNG ĐIỆP TỐI THƯỢNG TỪ MẬT MÃ CUỘC ĐỜI -->
+  <div class="slide-container" id="slide24">
+    <div class="header">
+      <h1>LỜI KẾT &amp; THÔNG ĐIỆP TỐI THƯỢNG – MẬT MÃ CUỘC ĐỜI <span class="zodiac-tag">🐅 HỔ GẦM VANG BÓNG</span></h1>
+      <p>Trang 24 / 24: Số Phận Nằm Trong Tay Bạn • Kênh Mật Mã Cuộc Đời (Kết Bạn Zalo: 0789.414.153)</p>
+    </div>
+    <div class="content">
+      <div class="ratio-banner">
+        <div class="big-num">SỐ PHẬN NẰM TRONG TAY BẠN – CHỦ ĐỘNG BỨT PHÁ TUỔI 42!</div>
+        <div class="sub-text">Sơn Lâm Chi Hổ • Lư Trung Hỏa Gặp Thiên Hà Thủy • Dần Mộc Nhập Khố Mùi Thổ Khẳng Định Vị Thế Thủ Lĩnh</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="step-card gold">
+          <h3>Thông Điệp Từ Mật Mã Cuộc Đời</h3>
+          <p>• Những thử thách của sao <strong>Vân Hớn, La Hầu</strong> hay cửa ải <strong>Dần Thân Trực Xung</strong> chỉ là <strong>viên đá thử vàng</strong> rèn giũa bản lĩnh người trụ cột.<br>
+          • Hãy khắc sâu nguyên lý <strong>“ĐẠO CỦA NƯỚC”</strong>: Hạ thấp cái tôi, dùng sự khiêm nhường để lắng nghe và sự kiên định để tích lũy nội lực.<br>
+          • Giữ tâm ấm áp và sáng trong, bạn nhất định biến năm Đinh Mùi 2027 thành <strong>bệ phóng huy hoàng nhất</strong> cho chặng đường phía trước!</p>
+        </div>
+
+        <div class="step-card blue">
+          <h3>Tứ Trụ Cá Nhân &amp; Bước Ngoặt 2026 – 2027</h3>
+          <p>• Bản đại phẫu trên là bức tranh vĩ mô chuẩn xác đối chiếu giữa <strong>Lục Thập Hoa Giáp, Cửu Diệu Niên Hạn và Kinh Dịch cổ truyền</strong>.<br>
+          • Tuy nhiên, vận trình mỗi cá nhân còn chịu ảnh hưởng sâu sắc bởi <strong>Tứ Trụ (Giờ – Ngày – Tháng sinh thực tế)</strong> và phong thủy ngôi nhà đang ở.<br>
+          • Đứng trước bước ngoặt tuổi 42 (<em>thăng tiến, mở rộng kinh doanh, tái cấu trúc tài chính, hôn nhân</em>), <strong>đừng nhắm mắt bước đi trong bóng tối!</strong></p>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="icon-house-round">🙏</div>
+        <div>
+          <strong>Lời chúc từ Kênh Mật Mã Cuộc Đời:</strong> Chúc quý anh chị <strong>Bính Dần 1986</strong> một năm mới <strong>chân cứng đá mềm, hổ gầm vang bóng, cơ đồ thăng hoa, vạn sự hanh thông!</strong> • Kết nối giao lưu &amp; luận giải: <strong>Zalo 0789.414.153</strong>.
+        </div>
+      </div>
+    </div>
+    <div class="slide-footer">
+      <span class="brand-pill">MẬT MÃ CUỘC ĐỜI</span>
+      <span>Chúc Quý Anh Chị Bính Dần 1986 Năm Đinh Mùi 2027 Bình An – Thịnh Vượng • Zalo: 0789.414.153</span>
+    </div>
+  </div>
+
+  <!-- THANH CÔNG CỤ ĐIỀU KHIỂN NỔI PHÍA TRÊN -->
+  <div class="toolbar" id="mainToolbar">
+    <button onclick="prevSlide()">◀ Trang trước</button>
+    <span class="page-indicator" id="pageText">Trang 1 / 24</span>
+    <button onclick="nextSlide()">Trang sau ▶</button>
+    <select id="slideSelect" onchange="jumpToSlide(this.value)" title="Chuyển nhanh đến trang">
+      <option value="1">1. Tổng quan 1986</option>
+      <option value="2">2. Can Chi &amp; 12 Địa Chi</option>
+      <option value="3">3. Đại Sấm Ký 12 Tháng</option>
+      <option value="4">4. Bản thể Lư Trung Hỏa</option>
+      <option value="5">5. Vĩ mô 2027 &amp; Cung Phi</option>
+      <option value="6">6. Nam: Vân Hớn – Thiên La</option>
+      <option value="7">7. Nữ: La Hầu – Diêm Vương</option>
+      <option value="8">8. Nam: Tháng 1 &amp; 2</option>
+      <option value="9">9. Nam: Tháng 3 &amp; 4</option>
+      <option value="10">10. Nam: Tháng 5 &amp; 6</option>
+      <option value="11">11. Nam: Tháng 7 &amp; 8</option>
+      <option value="12">12. Nam: Tháng 9 &amp; 10</option>
+      <option value="13">13. Nam: Tháng 11 &amp; 12</option>
+      <option value="14">14. Nữ: Tháng 1 &amp; 2</option>
+      <option value="15">15. Nữ: Tháng 3 &amp; 4</option>
+      <option value="16">16. Nữ: Tháng 5 &amp; 6</option>
+      <option value="17">17. Nữ: Tháng 7 &amp; 8</option>
+      <option value="18">18. Nữ: Tháng 9 &amp; 10</option>
+      <option value="19">19. Nữ: Tháng 11 &amp; 12</option>
+      <option value="20">20. Giải hạn Nam mạng</option>
+      <option value="21">21. Giải hạn Nữ mạng</option>
+      <option value="22">22. Triết lý Đạo Của Nước</option>
+      <option value="23">23. Phong thủy Vi mô 2027</option>
+      <option value="24">24. Lời kết Mật Mã Cuộc Đời</option>
+    </select>
+    <span style="color:#777;">|</span>
+    <button id="btnPen" onclick="toggleDraw()">✏️ Bút Vẽ</button>
+    <div class="color-dot" style="background:#ff0000;" onclick="setColor('#ff0000')" title="Mực Đỏ"></div>
+    <div class="color-dot" style="background:#0055ff;" onclick="setColor('#0055ff')" title="Mực Xanh"></div>
+    <div class="color-dot" style="background:#008000;" onclick="setColor('#008000')" title="Mực Xanh Lá"></div>
+    <button onclick="clearCanvas()">🗑️ Xóa</button>
+    <span style="color:#777;">|</span>
+    <button class="btn-print" id="btnPrint" onclick="exportSlideImage()">📸 In Ra Ảnh</button>
+  </div>
+
+  <!-- Hộp thông báo trạng thái xuất ảnh (không dùng alert) -->
+  <div class="toast-msg" id="toastMsg">Đã xuất ảnh Slide thành công!</div>
+
+<script>
+  // Quản lý trạng thái trang hiện tại trong bộ 24 slide
+  let currentSlide = 1;
+  const totalSlides = 24;
+
+  // Hiển thị thông báo trạng thái êm ái
+  function showToast(message) {
+    const toast = document.getElementById('toastMsg');
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(window._toastTimer);
+    window._toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2400);
+  }
+
+  // Tự động thu phóng khung ngang chuẩn 16:9 (1280x720) vừa khít mọi màn hình
+  function fitSlideToScreen() {
+    const scale = Math.min(
+      (window.innerWidth - 20) / 1280,
+      (window.innerHeight - 75) / 720,
+      1
+    );
+    document.querySelectorAll('.slide-container').forEach(el => {
+      el.style.transform = `scale(${scale})`;
+    });
+  }
+  window.addEventListener('resize', fitSlideToScreen);
+  fitSlideToScreen();
+
+  // Hiển thị đúng trang n và đồng bộ thanh điều khiển
+  function showSlide(n) {
+    const idx = Math.max(1, Math.min(totalSlides, Number(n) || 1));
+    currentSlide = idx;
+    for (let i = 1; i <= totalSlides; i++) {
+      const el = document.getElementById('slide' + i);
+      if (el) el.classList.remove('active');
+    }
+    const target = document.getElementById('slide' + idx);
+    if (target) target.classList.add('active');
+    document.getElementById('pageText').innerText = `Trang ${idx} / ${totalSlides}`;
+    const sel = document.getElementById('slideSelect');
+    if (sel) sel.value = String(idx);
+    clearCanvas();
+    fitSlideToScreen();
+  }
+
+  function jumpToSlide(val) {
+    showSlide(val);
+  }
+
+  function nextSlide() {
+    if (currentSlide < totalSlides) showSlide(currentSlide + 1);
+  }
+
+  function prevSlide() {
+    if (currentSlide > 1) showSlide(currentSlide - 1);
+  }
+
+  // Điều khiển bằng phím mũi tên trái / phải
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Hỗ trợ vuốt cảm ứng (swipe) chuyển trang trên máy tính bảng / điện thoại
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => {
+    if (drawMode || e.touches.length !== 1) return;
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', (e) => {
+    if (drawMode || e.changedTouches.length !== 1) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (dx < -60) nextSlide();
+    if (dx > 60) prevSlide();
+  }, { passive: true });
+
+  // Bảng vẽ phủ kín 100% màn hình phục vụ chú thích khi quay video
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawCanvas';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let isDrawing = false, drawMode = false, penColor = '#ff0000';
+
+  function toggleDraw() {
+    drawMode = !drawMode;
+    const btn = document.getElementById('btnPen');
+    if (drawMode) {
+      canvas.classList.add('drawing-mode');
+      btn.classList.add('active-tool');
+      btn.innerText = '✏️ Đang Vẽ';
+    } else {
+      canvas.classList.remove('drawing-mode');
+      btn.classList.remove('active-tool');
+      btn.innerText = '✏️ Bút Vẽ';
+    }
+  }
+
+  function setColor(color) {
+    penColor = color;
+    if (!drawMode) toggleDraw();
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (!drawMode) return;
+    isDrawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX, e.clientY);
+  });
+
+  canvas.addEventListener('pointermove', (e) => {
+    if (!isDrawing || !drawMode) return;
+    ctx.lineWidth = 4;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.strokeStyle = penColor;
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.stroke();
+  });
+
+  canvas.addEventListener('pointerup', () => { isDrawing = false; });
+  canvas.addEventListener('pointercancel', () => { isDrawing = false; });
+
+  // Hàm xuất ảnh ngang tỷ lệ 16:9 (1280x720) kèm toàn bộ nét bút vẽ offline 100%
+  function exportSlideImage() {
+    const slideEl = document.getElementById('slide' + currentSlide);
+    const bar = document.getElementById('mainToolbar');
+    const btnPrint = document.getElementById('btnPrint');
+
+    btnPrint.disabled = true;
+    btnPrint.innerText = '⏳ Đang xuất...';
+    bar.style.visibility = 'hidden';
+
+    const restoreToolbar = () => {
+      bar.style.visibility = 'visible';
+      btnPrint.disabled = false;
+      btnPrint.innerText = '📸 In Ra Ảnh';
+    };
+
+    try {
+      const finalCanvas = document.createElement('canvas');
+      finalCanvas.width = 1280;
+      finalCanvas.height = 720;
+      const fCtx = finalCanvas.getContext('2d');
+
+      const slideCanvas = renderSlideNative(slideEl);
+      fCtx.drawImage(slideCanvas, 0, 0, 1280, 720);
+
+      const rect = slideEl.getBoundingClientRect();
+      fCtx.drawImage(
+        canvas,
+        rect.left, rect.top, rect.width, rect.height,
+        0, 0, 1280, 720
+      );
+
+      const link = document.createElement('a');
+      link.href = finalCanvas.toDataURL('image/png');
+      link.download = `Mat_Ma_Cuoc_Doi_Binh_Dan_1986_2027_Trang_${currentSlide}_16x9.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast(`Đã xuất ảnh Trang ${currentSlide} / ${totalSlides} (1280x720)!`);
+    } catch (err) {
+      showToast('Không thể xuất ảnh trên trình duyệt này, vui lòng thử lại.');
+    } finally {
+      restoreToolbar();
+    }
+  }
+
+  // Bộ vẽ Slide ngang 1280x720 sắc nét trực tiếp lên Canvas (hoạt động hoàn toàn offline)
+  function renderSlideNative(slideEl) {
+    const c = document.createElement('canvas');
+    c.width = 1280;
+    c.height = 720;
+    const g = c.getContext('2d');
+    const baseRect = slideEl.getBoundingClientRect();
+    const scaleFactor = 1280 / baseRect.width;
+
+    // Nền chuyển sắc vàng kem sang trọng
+    const bgGrad = g.createLinearGradient(0, 0, 1280, 720);
+    bgGrad.addColorStop(0, '#fdf8e8');
+    bgGrad.addColorStop(1, '#f5ebd1');
+    g.fillStyle = bgGrad;
+    g.fillRect(0, 0, 1280, 720);
+
+    // Viền ngoài vàng đồng và viền trong đỏ đô
+    g.lineWidth = 24;
+    g.strokeStyle = '#b8860b';
+    g.strokeRect(0, 0, 1280, 720);
+
+    g.lineWidth = 4;
+    g.strokeStyle = '#8b0000';
+    g.strokeRect(14, 14, 1252, 692);
+
+    // Vẽ đầy đủ tất cả khung thẻ, bảng, tiêu đề, thơ, thẻ tháng và huy hiệu
+    const boxes = slideEl.querySelectorAll(
+      '.header, .slide-footer, .brand-pill, .ratio-banner, .season-bar, .rule-box, .card, .example-box, .poem-box, .poem-box h3, .quote-verse, .month-card, .month-header, .status-pill, .rx-box, th, td, .step-card, .step-card h3, .badge, .result-tag, .icon-gold-round, .icon-house-round, .zodiac-tag'
+    );
+    boxes.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      const x = (r.left - baseRect.left) * scaleFactor;
+      const y = (r.top - baseRect.top) * scaleFactor;
+      const w = r.width * scaleFactor;
+      const h = r.height * scaleFactor;
+      const st = window.getComputedStyle(el);
+
+      g.save();
+      let fill = st.backgroundColor;
+      if (el.classList.contains('badge')) {
+        fill = el.classList.contains('green') ? '#1e6b1e' : (el.classList.contains('blue') ? '#1b4f9c' : '#b22222');
+      } else if (el.classList.contains('icon-gold-round')) {
+        fill = '#9c6b28';
+      } else if (el.classList.contains('ratio-banner')) {
+        fill = el.classList.contains('blue') ? '#17458c' : (el.classList.contains('green') ? '#1a6b3c' : '#991111');
+      } else if (el.classList.contains('season-bar')) {
+        fill = el.classList.contains('blue') ? '#17458c' : (el.classList.contains('green') ? '#1a6b3c' : '#991111');
+      } else if (el.classList.contains('result-tag')) {
+        fill = el.classList.contains('bad') ? '#b22222' : (el.classList.contains('blue') ? '#1b4f9c' : '#1b693c');
+      }
+
+      if (fill && fill !== 'rgba(0, 0, 0, 0)' && fill !== 'transparent') {
+        g.fillStyle = fill;
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.fill();
+      }
+
+      if (el.classList.contains('header')) {
+        g.strokeStyle = '#b8860b';
+        g.lineWidth = 3;
+        g.beginPath();
+        g.moveTo(x, y + h);
+        g.lineTo(x + w, y + h);
+        g.stroke();
+      } else if (el.classList.contains('slide-footer')) {
+        g.strokeStyle = '#d4af37';
+        g.lineWidth = 2;
+        g.beginPath();
+        g.moveTo(x, y);
+        g.lineTo(x + w, y);
+        g.stroke();
+      } else if (parseFloat(st.borderWidth) > 0 && st.borderStyle !== 'none') {
+        g.strokeStyle = st.borderColor;
+        g.lineWidth = parseFloat(st.borderWidth);
+        if (st.borderStyle === 'dashed') g.setLineDash([8, 6]);
+        g.beginPath();
+        g.roundRect(x, y, w, h, parseFloat(st.borderRadius) || 0);
+        g.stroke();
+      }
+      g.restore();
+    });
+
+    // Vẽ sắc nét toàn bộ văn bản theo đúng tọa độ hiển thị trên màn hình
+    const walker = document.createTreeWalker(slideEl, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const rawText = node.nodeValue;
+      if (!rawText || !rawText.trim()) continue;
+      const parent = node.parentElement;
+      const st = window.getComputedStyle(parent);
+
+      g.fillStyle = st.color;
+      g.font = `${st.fontStyle} ${st.fontWeight} ${st.fontSize} ${st.fontFamily}`;
+      g.textBaseline = 'top';
+
+      const regex = /\S+/g;
+      let match;
+      while ((match = regex.exec(rawText)) !== null) {
+        const range = document.createRange();
+        range.setStart(node, match.index);
+        range.setEnd(node, match.index + match[0].length);
+        const rr = range.getBoundingClientRect();
+        if (rr.width === 0) continue;
+
+        const tx = (rr.left - baseRect.left) * scaleFactor;
+        const ty = (rr.top - baseRect.top) * scaleFactor;
+        g.fillText(match[0], tx, ty);
+      }
+    }
+    return c;
+  }
+</script>
+</body>
+</html>
