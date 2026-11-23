@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phân Tích Chuyên Sâu: Giá Vàng Về 3.500 USD/oz - Khi Nào Về Bờ?</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,800;1,900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+    * { box-sizing: border-box; font-family: 'Be Vietnam Pro', sans-serif; }
+    body { background-color: #020617; overflow: hidden; user-select: none; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Khung Slide chuẩn 16:9 (1280x720) phong cách Phòng Phân Tích Chiến Lược */
+    .slide-wrapper {
+        width: 1280px; height: 720px;
+        transform-origin: top left;
+        background: radial-gradient(circle at 50% 25%, #172554 0%, #090d16 60%, #020617 100%);
+        box-shadow: inset 0 0 0 4px #eab308, 0 25px 60px rgba(0,0,0,0.95);
+        position: relative; overflow: hidden;
+    }
+
+    .slide-content {
+        display: none; width: 100%; height: 100%; position: absolute; inset: 0;
+        flex-direction: column; justify-content: space-between; padding: 24px 38px 22px 38px;
+    }
+    .slide-content.active { display: flex; }
+
+    /* Lưới kỹ thuật nền */
+    .tech-grid {
+        position: absolute; inset: 0; opacity: 0.14; pointer-events: none;
+        background-image: linear-gradient(to right, #eab308 1px, transparent 1px),
+                          linear-gradient(to bottom, #eab308 1px, transparent 1px);
+        background-size: 44px 44px;
+    }
+
+    /* Hiệu ứng phát sáng */
+    .glow-gold { text-shadow: 0 4px 22px rgba(250, 204, 21, 0.65); }
+    .glow-red { text-shadow: 0 4px 22px rgba(239, 68, 68, 0.75); }
+    .glow-green { text-shadow: 0 4px 22px rgba(34, 197, 94, 0.65); }
+    .glow-blue { text-shadow: 0 4px 22px rgba(56, 189, 248, 0.65); }
+
+    /* Khối thẻ nội dung sắc nét */
+    .panel-box {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.90) 0%, rgba(7, 11, 22, 0.96) 100%);
+        border: 1.5px solid rgba(148, 163, 184, 0.25);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    }
+
+    /* Thanh cuộn kịch bản */
+    .teleprompter::-webkit-scrollbar { width: 8px; }
+    .teleprompter::-webkit-scrollbar-track { background: #0f172a; }
+    .teleprompter::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+</style>
+</head>
+<body class="flex h-screen w-screen text-slate-100">
+
+    <!-- ===================================================================== -->
+    <!-- CỘT TRÁI: SÂN KHẤU SLIDE TRÌNH CHIẾU (16:9) & BÚT VẼ                 -->
+    <!-- ===================================================================== -->
+    <div class="flex-1 flex flex-col relative border-r-2 border-slate-800">
+        
+        <!-- Thanh Điều Khiển Nổi -->
+        <div class="h-14 bg-slate-950 border-b border-slate-800 flex items-center justify-between px-4 z-30 shrink-0 gap-2">
+            <div class="flex items-center gap-2">
+                <button onclick="prevSlide()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 px-3 py-1.5 rounded-lg font-extrabold text-xs transition cursor-pointer">◀ TRƯỚC</button>
+                <span id="slide-counter" class="font-black text-amber-400 text-sm px-1.5 mono">01 / 10</span>
+                <button onclick="nextSlide()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-3 py-1.5 rounded-lg font-black text-xs transition cursor-pointer">SAU ▶</button>
+            </div>
+            
+            <div class="flex items-center gap-2.5">
+                <!-- Nút chèn ảnh Bò/Gấu 3D thật của người dùng lên trang bìa -->
+                <label class="bg-indigo-950 hover:bg-indigo-900 border border-indigo-500 text-indigo-200 px-2.5 py-1.5 rounded-lg font-bold text-xs cursor-pointer transition" title="Chèn ảnh Bò-Gấu 3D đẹp của bạn vào Slide 1">
+                    🖼️ Chèn Ảnh Bò/Gấu
+                    <input type="file" accept="image/*" onchange="uploadHeroImage(event)" class="hidden">
+                </label>
+
+                <div class="flex items-center gap-1.5 bg-slate-900 border border-slate-700 px-2.5 py-1 rounded-full">
+                    <button id="btnPen" onclick="toggleDraw()" class="text-xs font-extrabold text-slate-300 hover:text-white mr-1 cursor-pointer">✏️ Bút Vẽ</button>
+                    <div class="w-4 h-4 rounded-full bg-red-500 cursor-pointer border border-white" onclick="setColor('#ef4444')" title="Đỏ"></div>
+                    <div class="w-4 h-4 rounded-full bg-amber-400 cursor-pointer border border-white" onclick="setColor('#facc15')" title="Vàng"></div>
+                    <div class="w-4 h-4 rounded-full bg-emerald-400 cursor-pointer border border-white" onclick="setColor('#4ade80')" title="Xanh lá"></div>
+                    <button onclick="clearCanvas()" class="text-xs font-bold text-slate-400 hover:text-rose-400 ml-1 cursor-pointer" title="Xóa nét vẽ">🗑️</button>
+                </div>
+
+                <button onclick="exportSlide()" id="exportBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 rounded-lg font-extrabold text-xs transition shadow-lg cursor-pointer">📸 TẢI ẢNH PNG</button>
+            </div>
+        </div>
+
+        <!-- Vùng Căn Giữa Khung Hình 1280x720 -->
+        <div class="flex-1 overflow-hidden relative flex justify-center items-center bg-[#02040a]" id="preview-container">
+            <div id="slide-wrapper" class="slide-wrapper">
+                <div class="tech-grid"></div>
+                <canvas id="drawCanvas" width="1280" height="720" class="absolute inset-0 z-50 pointer-events-none"></canvas>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 1: BÌA CHUYÊN ĐỀ & BỐI CẢNH TỔNG QUAN                 -->
+                <!-- =========================================================== -->
+                <div class="slide-content active" id="slide1">
+                    <div class="flex justify-between items-center z-10 border-b border-amber-500/30 pb-3">
+                        <span class="bg-amber-500/20 border border-amber-400 text-amber-300 px-4 py-1 rounded-full text-xs font-black tracking-widest uppercase">CHUYÊN ĐỀ PHÂN TÍCH VĨ MÔ & KIM LOẠI QUÝ</span>
+                        <span class="text-slate-400 font-bold text-xs tracking-wider uppercase">DỮ LIỆU QUỐC TẾ & VIỆT NAM</span>
+                    </div>
+
+                    <div class="flex-1 flex items-center gap-8 z-10 my-2">
+                        <!-- Cột trái: Tiêu đề lớn & 3 Câu hỏi cốt lõi -->
+                        <div class="flex-1 flex flex-col justify-center">
+                            <div class="inline-block bg-red-600 text-white font-black text-sm px-3.5 py-1 rounded-md uppercase tracking-wider w-fit mb-3">
+                                CÚ SẬP NGOÀI DỰ ĐOÁN CỦA ĐA SỐ CHUYÊN GIA
+                            </div>
+                            <h1 class="text-5xl font-black text-amber-400 glow-gold uppercase leading-[1.15] italic mb-4">
+                                VÀNG THẾ GIỚI VỀ <span class="text-red-500 glow-red mono">3.500$</span><br>
+                                LÊN TIẾP HAY RƠI SÂU?
+                            </h1>
+                            <div class="bg-red-950/75 border-l-4 border-red-500 p-4 rounded-r-xl mb-5">
+                                <div class="text-xl font-black text-white">
+                                    Người mua vàng trong 1 năm qua: <span class="text-rose-400">HÒA HOẶC LỖ NẶNG</span>
+                                </div>
+                                <div class="text-base font-semibold text-slate-300 mt-1">
+                                    Đu đỉnh trên <span class="text-amber-300 font-bold">5.000 USD/oz</span> (tương đương <span class="text-amber-300 font-bold">180 – 190 triệu đ/lượng</span> tại VN) — Mất bao lâu để về bờ?
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-3 text-center">
+                                <div class="panel-box border-amber-500/50 rounded-xl p-3">
+                                    <div class="text-xs text-slate-400 font-bold uppercase">Đỉnh Tháng 1</div>
+                                    <div class="text-2xl font-black text-amber-400 mono">5.600$</div>
+                                </div>
+                                <div class="panel-box border-sky-500/50 rounded-xl p-3">
+                                    <div class="text-xs text-slate-400 font-bold uppercase">6 Tháng Trước</div>
+                                    <div class="text-2xl font-black text-sky-400 mono">4.200$</div>
+                                </div>
+                                <div class="panel-box border-red-500/80 bg-red-950/30 rounded-xl p-3">
+                                    <div class="text-xs text-rose-300 font-bold uppercase">Hiện Tại</div>
+                                    <div class="text-2xl font-black text-red-500 mono">3.500$</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột phải: Khung Biểu Đồ Nến Giảm Sâu (Hoặc Ảnh Bò/Gấu 3D của người dùng) -->
+                        <div class="w-[460px] h-[390px] panel-box border-amber-500/50 rounded-2xl p-4 flex flex-col justify-between relative overflow-hidden">
+                            <img id="custom-hero-img" class="hidden absolute inset-0 w-full h-full object-cover z-20" alt="Hero Mascot">
+                            <div class="flex justify-between items-center text-xs font-extrabold text-slate-400 uppercase z-10">
+                                <span>XAU/USD • CHU KỲ ĐIỀU CHỈNH</span>
+                                <span class="text-red-400 mono">-2.100 USD (-37.5%)</span>
+                            </div>
+                            <svg viewBox="0 0 420 290" class="w-full h-[290px] z-10">
+                                <line x1="20" y1="40" x2="400" y2="40" stroke="#334155" stroke-dasharray="4 4"/>
+                                <line x1="20" y1="145" x2="400" y2="145" stroke="#334155" stroke-dasharray="4 4"/>
+                                <line x1="20" y1="250" x2="400" y2="250" stroke="#334155" stroke-dasharray="4 4"/>
+                                <!-- Nến mô phỏng cú rơi từ 5600 về 3500 -->
+                                <g stroke-width="2">
+                                    <line x1="45" y1="25" x2="45" y2="65" stroke="#eab308"/><rect x="38" y="32" width="14" height="24" fill="#eab308"/>
+                                    <line x1="85" y1="45" x2="85" y2="95" stroke="#ef4444"/><rect x="78" y="52" width="14" height="35" fill="#ef4444"/>
+                                    <line x1="125" y1="80" x2="125" y2="130" stroke="#ef4444"/><rect x="118" y="86" width="14" height="38" fill="#ef4444"/>
+                                    <line x1="165" y1="115" x2="165" y2="160" stroke="#ef4444"/><rect x="158" y="122" width="14" height="30" fill="#ef4444"/>
+                                    <line x1="205" y1="130" x2="205" y2="165" stroke="#22c55e"/><rect x="198" y="138" width="14" height="18" fill="#22c55e"/>
+                                    <line x1="245" y1="120" x2="245" y2="155" stroke="#22c55e"/><rect x="238" y="126" width="14" height="20" fill="#22c55e"/>
+                                    <line x1="285" y1="135" x2="285" y2="195" stroke="#ef4444"/><rect x="278" y="142" width="14" height="45" fill="#ef4444"/>
+                                    <line x1="325" y1="180" x2="325" y2="235" stroke="#ef4444"/><rect x="318" y="186" width="14" height="42" fill="#ef4444"/>
+                                    <line x1="365" y1="215" x2="365" y2="265" stroke="#ef4444"/><rect x="358" y="224" width="14" height="32" fill="#ef4444"/>
+                                </g>
+                                <path d="M45,42 L165,142 L245,132 L365,248" fill="none" stroke="#facc15" stroke-width="2.5" stroke-dasharray="5 3"/>
+                                <text x="65" y="34" fill="#fde047" font-size="13" font-weight="900">5.600$ (Đỉnh T1)</text>
+                                <text x="200" y="114" fill="#4ade80" font-size="12" font-weight="800">4.200$ (6 tháng trước)</text>
+                                <text x="275" y="276" fill="#f87171" font-size="14" font-weight="900">3.500$ (Hiện tại)</text>
+                            </svg>
+                            <div class="text-[11.5px] text-slate-400 font-semibold text-center z-10">
+                                Kiến thức kinh tế thế giới ảnh hưởng trực tiếp đến túi tiền mỗi gia đình
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-500/15 border border-amber-400/50 rounded-xl px-6 py-2.5 text-center z-10">
+                        <span class="text-amber-300 font-extrabold text-base">💡 THÔNG ĐIỆP MỞ ĐẦU:</span>
+                        <span class="text-slate-200 font-semibold text-base ml-2">Vàng lên hay xuống là bài toán vĩ mô toàn cầu — không quan tâm chuyện thế giới vẫn có thể mất tiền như thường!</span>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 2: GIẢI MÃ NGHỊCH LÝ CHIẾN TRANH IRAN & GIÁ DẦU 124$    -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide2">
+                    <div class="flex justify-between items-center border-b-2 border-amber-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-amber-400 uppercase italic">1. GIẢI MÃ NGHỊCH LÝ: VÌ SAO CHIẾN TRANH & DẦU 124$ KHÔNG CỨU NỔI ĐỈNH?</h2>
+                        <span class="bg-blue-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">NHÌN LẠI 6 THÁNG TRƯỚC</span>
+                    </div>
+
+                    <div class="flex-1 flex gap-6 items-center z-10 my-2">
+                        <!-- Biểu đồ so sánh nghịch lý Vàng vs Dầu -->
+                        <div class="w-3/5 h-full panel-box border-orange-500/50 rounded-2xl p-5 flex flex-col justify-between">
+                            <div class="text-sm font-black text-orange-300 uppercase">DIỄN BIẾN THỰC TẾ: KHI MỌI TIN XẤU NHẤT ĐÃ XẢY RA</div>
+                            <svg viewBox="0 0 640 310" class="w-full h-[265px]">
+                                <line x1="40" y1="40" x2="600" y2="40" stroke="#334155" stroke-dasharray="4 4"/>
+                                <line x1="40" y1="150" x2="600" y2="150" stroke="#334155" stroke-dasharray="4 4"/>
+                                <line x1="40" y1="260" x2="600" y2="260" stroke="#334155" stroke-dasharray="4 4"/>
+
+                                <!-- Đường Giá Dầu (Màu cam tăng vọt gấp đôi) -->
+                                <path d="M60,235 L220,225 L380,65 L560,115" fill="none" stroke="#f97316" stroke-width="5"/>
+                                <circle cx="60" cy="235" r="7" fill="#f97316"/>
+                                <text x="65" y="220" fill="#fdba74" font-size="13" font-weight="900">Dầu thô: 60$/thùng</text>
+                                <circle cx="380" cy="65" r="9" fill="#f97316" stroke="#fff" stroke-width="2"/>
+                                <rect x="275" y="22" width="220" height="28" rx="6" fill="#ea580c"/>
+                                <text x="385" y="41" text-anchor="middle" fill="#fff" font-size="13.5" font-weight="900">CHIẾN TRANH IRAN: DẦU 124$ (x2)</text>
+
+                                <!-- Đường Giá Vàng (Màu vàng rơi từ 5600 xuống 4200 rồi 3500) -->
+                                <path d="M60,48 L220,155 L380,145 L560,255" fill="none" stroke="#facc15" stroke-width="5"/>
+                                <circle cx="60" cy="48" r="8" fill="#facc15"/>
+                                <text x="75" y="54" fill="#fde047" font-size="14" font-weight="900">Vàng: 5.600$ (Chưa có chiến tranh)</text>
+                                <circle cx="220" cy="155" r="8" fill="#38bdf8"/>
+                                <text x="130" y="180" fill="#7dd3fc" font-size="13" font-weight="900">4.200$ (6 tháng trước)</text>
+                                <circle cx="380" cy="145" r="8" fill="#ef4444"/>
+                                <text x="395" y="148" fill="#fca5a5" font-size="12.5" font-weight="800">Không phá nổi đỉnh 5.600$!</text>
+                                <circle cx="560" cy="255" r="9" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+                                <text x="485" y="282" fill="#f87171" font-size="14" font-weight="900">Rơi về 3.500$</text>
+                            </svg>
+                            <div class="text-xs font-bold text-slate-300 bg-slate-900/90 p-2.5 rounded-lg border border-slate-700">
+                                <strong>Logic cốt lõi:</strong> Đỉnh 5.600$ lập hồi tháng 1 khi <em>chưa hề có chiến tranh Iran</em>. Khi chiến tranh nổ ra đẩy giá dầu tăng gấp đôi, chi phí sản xuất & vận tải toàn cầu bùng nổ mà vàng vẫn không vượt nổi đỉnh cũ!
+                            </div>
+                        </div>
+
+                        <!-- Cột giải trình 3 luận điểm bên phải -->
+                        <div class="w-2/5 h-full flex flex-col justify-between gap-3">
+                            <div class="panel-box border-amber-500/60 rounded-xl p-4 flex-1 flex flex-col justify-center">
+                                <div class="text-amber-400 font-black text-base uppercase mb-1">1. QUY LUẬT TÂM LÝ ĐÁM ĐÔNG</div>
+                                <p class="text-sm text-slate-200 leading-relaxed">
+                                    Cách đây 6 tháng khi vàng về <span class="text-sky-400 font-bold">4.200$</span>, số đông vẫn tin vàng sẽ bật lên <span class="text-amber-300 font-bold">6.000$ – 7.000$</span> (VN lên <span class="text-amber-300 font-bold">200 – 250 triệu/lượng</span>). Thực tế đã chứng minh điều ngược lại.
+                                </p>
+                            </div>
+
+                            <div class="panel-box border-red-500/60 rounded-xl p-4 flex-1 flex flex-col justify-center">
+                                <div class="text-rose-400 font-black text-base uppercase mb-1">2. ĐỈNH CỦA TIN XẤU ĐÃ QUA</div>
+                                <p class="text-sm text-slate-200 leading-relaxed">
+                                    Những quốc gia có nguy cơ xung đột cơ bản đều đã xảy ra; nguồn dầu mỏ ("máu của nền kinh tế") đã đội giá từ <span class="text-orange-400 font-bold">60$ lên 124$</span>. Khó còn biến cố nào tồi tệ hơn để đẩy vàng vượt 5.600$.
+                                </p>
+                            </div>
+
+                            <div class="panel-box border-emerald-500/60 rounded-xl p-4 flex-1 flex flex-col justify-center">
+                                <div class="text-emerald-400 font-black text-base uppercase mb-1">3. XU HƯỚNG HÒA BÌNH & ỔN ĐỊNH</div>
+                                <p class="text-sm text-slate-200 leading-relaxed">
+                                    Đánh nhau mãi rồi cũng phải dừng lại. Khi thế giới dần ổn định, vàng chỉ còn chịu tác động nhẹ từ lạm phát tiền tệ dài hạn nên <strong>khó tăng sốc, chủ yếu giảm hoặc đi ngang</strong>.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 3: LỰC ĐÈ SỐ 1 & 2 — LÃI SUẤT FED, TRÁI PHIẾU & USD   -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide3">
+                    <div class="flex justify-between items-center border-b-2 border-red-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-rose-400 uppercase italic">2. NGUYÊN NHÂN VĨ MÔ (PHẦN 1): LÃI SUẤT FED, TRÁI PHIẾU MỸ & ĐỒNG USD</h2>
+                        <span class="bg-red-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">LỰC ĐÈ NẶNG NHẤT LÊN GIÁ VÀNG</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 flex-1 z-10 my-2">
+                        <!-- Cột trái: Lãi suất Fed & Trái phiếu Mỹ -->
+                        <div class="panel-box border-red-500 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xl font-black text-rose-400 uppercase">1. LÃI SUẤT FED & TRÁI PHIẾU MỸ</span>
+                                    <span class="bg-red-600/30 border border-red-500 text-rose-300 px-3 py-0.5 rounded-full text-xs font-black">ĐÈ NẶNG NHẤT</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3 my-3">
+                                    <div class="bg-red-950/60 border border-red-500/50 p-3.5 rounded-xl text-center">
+                                        <div class="text-xs text-rose-300 font-bold uppercase">Lạm Phát Mỹ Hiện Tại</div>
+                                        <div class="text-4xl font-black text-red-400 mono">3,7%</div>
+                                        <div class="text-[11px] text-slate-300">Gần gấp đôi mục tiêu 2,0%</div>
+                                    </div>
+                                    <div class="bg-amber-950/60 border border-amber-500/50 p-3.5 rounded-xl text-center">
+                                        <div class="text-xs text-amber-300 font-bold uppercase">Lãi Thực Trái Phiếu Mỹ</div>
+                                        <div class="text-4xl font-black text-amber-400 mono">Đỉnh 20 Năm</div>
+                                        <div class="text-[11px] text-slate-300">Đã trừ đi lạm phát</div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2.5 text-[15px] text-slate-200 leading-relaxed">
+                                    <div>• <strong>Chính sách Fed:</strong> Thị trường gần như chắc chắn Fed tăng tiếp lãi suất vào <span class="text-rose-400 font-bold">tháng 12</span> (thậm chí có thành viên muốn tăng gấp đôi bình thường) và kéo dài sang năm sau.</div>
+                                    <div>• <strong>Bài toán so sánh dòng tiền:</strong> Vàng <em>không đẻ ra lãi</em>. Trong khi bỏ <span class="text-amber-300 font-bold">1 tỷ đồng</span> vào Trái phiếu Chính phủ Mỹ mỗi năm thu về ngay <span class="text-emerald-400 font-bold">29 triệu đồng tiền lãi thực (bằng USD)</span>!</div>
+                                </div>
+                            </div>
+                            <div class="bg-red-900/40 border border-red-500/50 p-3 rounded-xl text-center text-sm font-black text-rose-200">
+                                ➔ Chừng nào lãi suất còn tăng, dòng tiền còn chảy mạnh khỏi vàng!
+                            </div>
+                        </div>
+
+                        <!-- Cột phải: Đồng USD mạnh nhất 1.5 năm -->
+                        <div class="panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <span class="text-xl font-black text-amber-400 uppercase">2. SỨC MẠNH ĐỒNG ĐÔ LA MỸ (USD)</span>
+                                    <span class="bg-amber-500/20 border border-amber-400 text-amber-300 px-3 py-0.5 rounded-full text-xs font-black">ĐỈNH >1,5 NĂM</span>
+                                </div>
+
+                                <!-- Biểu đồ cột so sánh sức hấp dẫn tài sản -->
+                                <div class="bg-slate-950/90 border border-slate-800 rounded-xl p-4 my-3">
+                                    <div class="text-xs font-bold text-slate-400 uppercase mb-2">SO SÁNH LỢI TỨC THỰC KHI NẮM GIỮ (1 TỶ ĐỒNG / NĂM)</div>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <div class="flex justify-between text-xs font-bold mb-1">
+                                                <span class="text-emerald-400">Trái phiếu Chính phủ Mỹ (USD)</span>
+                                                <span class="text-emerald-400 mono">+29.000.000 VNĐ/năm (Lãi thực)</span>
+                                            </div>
+                                            <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden">
+                                                <div class="bg-emerald-500 h-full w-[88%]"></div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="flex justify-between text-xs font-bold mb-1">
+                                                <span class="text-rose-400">Nắm giữ Vàng vật chất</span>
+                                                <span class="text-rose-400 mono">0 VNĐ/năm (Không sinh lãi)</span>
+                                            </div>
+                                            <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden">
+                                                <div class="bg-red-500 h-full w-[4%]"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2.5 text-[15px] text-slate-200 leading-relaxed">
+                                    <div>• <strong>Cơ chế tỷ giá:</strong> Lãi suất Mỹ tăng kéo đồng USD lên mức mạnh nhất trong hơn <span class="text-amber-300 font-bold">1,5 năm qua</span>.</div>
+                                    <div>• <strong>Tác động kép:</strong> Vì vàng được định giá bằng USD trên toàn cầu, khi đồng USD tăng giá sẽ làm vàng trở nên đắt đỏ hơn đối với nhà đầu tư cầm các đồng tiền khác, bóp nghẹt lực cầu mua vàng quốc tế.</div>
+                                </div>
+                            </div>
+                            <div class="bg-amber-900/30 border border-amber-500/50 p-3 rounded-xl text-center text-sm font-black text-amber-200">
+                                ➔ USD mạnh + Lãi thực dương = Kẻ thù truyền kiếp của giá vàng!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 4: LỰC ĐÈ SỐ 3 & 4 — CHỨNG KHOÁN MỸ & CUNG CẦU THỰC TẾ -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide4">
+                    <div class="flex justify-between items-center border-b-2 border-sky-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-sky-400 uppercase italic">3. NGUYÊN NHÂN VĨ MÔ (PHẦN 2): THÁO CHẠY BÙ LỖ & CUNG VƯỢT CẦU</h2>
+                        <span class="bg-sky-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">DÒNG TIỀN ĐẦU CƠ & THỊ TRƯỜNG VẬT CHẤT</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 flex-1 z-10 my-2">
+                        <!-- Cột 3: Chứng khoán Mỹ & Rút vốn 20 tỷ USD -->
+                        <div class="panel-box border-sky-500 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="text-xl font-black text-sky-400 uppercase mb-3">3. BÁN VÀNG BÙ LỖ CHỨNG KHOÁN MỸ</div>
+                                <div class="bg-red-950/60 border-2 border-red-500 rounded-2xl p-4 text-center my-3">
+                                    <div class="text-xs font-bold text-rose-300 uppercase">DÒNG VỐN RÚT KHỎI VÀNG (< 1 THÁNG)</div>
+                                    <div class="text-5xl font-black text-red-400 mono my-1">-20 TỶ USD</div>
+                                    <div class="text-base font-black text-amber-300">Tương đương ~500.000 Tỷ Đồng Việt Nam!</div>
+                                </div>
+                                <div class="space-y-2.5 text-[15px] text-slate-200 leading-relaxed">
+                                    <div>• <strong>Hiệu ứng dây chuyền:</strong> Chứng khoán Mỹ lao dốc mạnh, đặc biệt là nhóm <span class="text-rose-400 font-bold">cổ phiếu công nghệ (Tech)</span>.</div>
+                                    <div>• <strong>Áp lực giải chấp (Margin Call):</strong> Nhiều nhà đầu tư vay tiền đánh cổ phiếu công nghệ bị thua lỗ buộc phải bán thứ dễ thanh khoản nhất để nộp tiền bù vào — và đó chính là <strong>Vàng</strong>.</div>
+                                    <div>• Giới đầu cơ trên sàn phái sinh cũng đồng loạt cắt giảm mạnh vị thế mua.</div>
+                                </div>
+                            </div>
+                            <div class="bg-sky-900/40 border border-sky-500/50 p-3 rounded-xl text-center text-sm font-black text-sky-200">
+                                ➔ Vàng bị biến thành "cây ATM rút tiền mặt" cứu danh mục cổ phiếu!
+                            </div>
+                        </div>
+
+                        <!-- Cột 4: Cung mỏ tăng vs Cầu trang sức đáy -->
+                        <div class="panel-box border-purple-500 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="text-xl font-black text-purple-400 uppercase mb-3">4. MẤT CÂN ĐỐI CUNG – CẦU VẬT CHẤT</div>
+                                <div class="grid grid-cols-2 gap-3 my-3">
+                                    <div class="bg-emerald-950/50 border border-emerald-500/60 p-4 rounded-xl text-center">
+                                        <div class="text-xs font-bold text-emerald-300 uppercase">NGUỒN CUNG MỎ</div>
+                                        <div class="text-3xl font-black text-emerald-400 my-1">TĂNG MẠNH</div>
+                                        <div class="text-xs text-slate-300">Khai thác được quá nhiều</div>
+                                    </div>
+                                    <div class="bg-red-950/50 border border-red-500/60 p-4 rounded-xl text-center">
+                                        <div class="text-xs font-bold text-rose-300 uppercase">CẦU TRANG SỨC</div>
+                                        <div class="text-3xl font-black text-red-400 my-1">THẤP KỶ LỤC</div>
+                                        <div class="text-xs text-slate-300">Thấp nhất từ trước đến nay</div>
+                                    </div>
+                                </div>
+                                <div class="space-y-2.5 text-[15px] text-slate-200 leading-relaxed">
+                                    <div>• <strong>Người dân thắt chặt chi tiêu:</strong> Giá vàng neo cao khiến người dân hạn chế mua sắm, nhu cầu vàng trang sức rơi xuống mức thấp lịch sử.</div>
+                                    <div>• <strong>Sản lượng khai thác bùng nổ:</strong> Các tập đoàn khai mỏ đẩy mạnh sản lượng khi giá bán vẫn có biên lợi nhuận tốt.</div>
+                                    <div>• <strong>Quy luật kinh tế:</strong> Khi <em>Cung quá nhiều mà Cầu quá yếu</em>, giá vàng rất khó có động lực bứt phá lên lại vùng đỉnh.</div>
+                                </div>
+                            </div>
+                            <div class="bg-purple-900/40 border border-purple-500/50 p-3 rounded-xl text-center text-sm font-black text-purple-200">
+                                ➔ Cung thừa – Cầu thiếu triệt tiêu động lực tăng giá tự nhiên!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 5: BÀN CỜ CÁC NGÂN HÀNG TRUNG ƯƠNG LỚN                -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide5">
+                    <div class="flex justify-between items-center border-b-2 border-emerald-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-emerald-400 uppercase italic">4. ĐỘNG THÁI CÁC CƯỜNG QUỐC: AI ĐANG MUA, AI ĐANG BÁN?</h2>
+                        <span class="bg-emerald-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">VAI TRÒ CỦA NGÂN HÀNG TRUNG ƯƠNG</span>
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-4 flex-1 z-10 my-2">
+                        <!-- Mỹ -->
+                        <div class="panel-box border-slate-500 rounded-2xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-2 mb-3">
+                                    <span class="text-xl font-black text-white">1. HOA KỲ (MỸ)</span>
+                                    <span class="bg-slate-700 text-amber-300 px-2 py-0.5 rounded text-xs font-black">ĐỨNG YÊN</span>
+                                </div>
+                                <div class="text-sm text-slate-200 space-y-2 leading-relaxed">
+                                    <div>• Sở hữu <strong>kho dự trữ vàng lớn nhất thế giới</strong>.</div>
+                                    <div>• Không mua thêm và cũng không bán ra thị trường.</div>
+                                    <div>• Điều khiển giá vàng gián tiếp thông qua <strong>Lãi suất Fed và đồng USD</strong>.</div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-bold text-slate-400 bg-slate-900 p-2 rounded-lg text-center">Tác động gián tiếp cực lớn</div>
+                        </div>
+
+                        <!-- Nga -->
+                        <div class="panel-box border-red-500 rounded-2xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-red-900/60 pb-2 mb-3">
+                                    <span class="text-xl font-black text-rose-400">2. LIÊN BANG NGA</span>
+                                    <span class="bg-red-600 text-white px-2 py-0.5 rounded text-xs font-black">XẢ BÁN</span>
+                                </div>
+                                <div class="text-sm text-slate-200 space-y-2 leading-relaxed">
+                                    <div>• Bán vàng <strong>liên tục suốt gần 1 năm qua</strong> ra thị trường.</div>
+                                    <div>• Mục đích: Bù đắp thâm hụt ngân sách nặng nề do chi phí chiến tranh kéo dài.</div>
+                                    <div>• Tạo thêm nguồn cung trực tiếp đè lên thị trường.</div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-bold text-rose-300 bg-red-950/60 p-2 rounded-lg text-center">Nguồn cung bán ròng liên tục</div>
+                        </div>
+
+                        <!-- Trung Quốc -->
+                        <div class="panel-box border-emerald-500 rounded-2xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-emerald-900/60 pb-2 mb-3">
+                                    <span class="text-xl font-black text-emerald-400">3. TRUNG QUỐC</span>
+                                    <span class="bg-emerald-600 text-white px-2 py-0.5 rounded text-xs font-black">MUA GOM</span>
+                                </div>
+                                <div class="text-sm text-slate-200 space-y-2 leading-relaxed">
+                                    <div>• Mua vàng liên tục <strong>2 năm qua</strong> (gần đây mua mạnh nhất trong 3 năm).</div>
+                                    <div>• <strong>Chiến thuật:</strong> Chỉ mua mạnh nhất khi <em>giá rẻ</em> để đỡ vàng không rơi quá sâu, <strong>không phải lực đẩy vàng lên đỉnh</strong>.</div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-bold text-emerald-300 bg-emerald-950/60 p-2 rounded-lg text-center">Đóng vai trò "Đỡ Đáy"</div>
+                        </div>
+
+                        <!-- Ba Lan -->
+                        <div class="panel-box border-amber-500 rounded-2xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-amber-900/60 pb-2 mb-3">
+                                    <span class="text-xl font-black text-amber-400">4. BA LAN</span>
+                                    <span class="bg-amber-600 text-white px-2 py-0.5 rounded text-xs font-black">DỪNG MUA</span>
+                                </div>
+                                <div class="text-sm text-slate-200 space-y-2 leading-relaxed">
+                                    <div>• Là một trong những quốc gia mua nhiều vàng nhất những năm vừa qua.</div>
+                                    <div>• Hiện đã <strong>đạt mục tiêu dự trữ</strong> quốc gia nên sắp tới sẽ không mua nhiều nữa.</div>
+                                </div>
+                            </div>
+                            <div class="text-xs font-bold text-amber-300 bg-amber-950/60 p-2 rounded-lg text-center">Mất đi một lực cầu lớn</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 border-l-4 border-emerald-400 px-5 py-2.5 rounded-r-xl text-sm font-semibold text-slate-200 z-10">
+                        <strong class="text-emerald-400">TỔNG KẾT KHỐI NHTW:</strong> Các Ngân hàng Trung ương vẫn là lực đỡ lớn nhất giữ cho vàng không sụp đổ quá sâu, nhưng họ chỉ gom vùng giá thấp chứ không đẩy giá phá đỉnh.
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 6: RỦI RO ĐẶC THÙ TẠI VIỆT NAM — CHÊNH LỆCH 22 TRIỆU  -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide6">
+                    <div class="flex justify-between items-center border-b-2 border-red-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-amber-400 uppercase italic">5. BÁO ĐỘNG ĐỎ TẠI VIỆT NAM: CHÊNH LỆCH +22 TRIỆU ĐỒNG/LƯỢNG</h2>
+                        <span class="bg-red-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">RỦI RO KÉP CHO NGƯỜI CẦM VÀNG MIẾNG</span>
+                    </div>
+
+                    <div class="flex-1 flex gap-6 items-center z-10 my-2">
+                        <!-- Biểu đồ so sánh sự đảo chiều chênh lệch VN vs TG -->
+                        <div class="w-1/2 h-full panel-box border-amber-500/60 rounded-2xl p-6 flex flex-col justify-between">
+                            <div class="text-base font-black text-amber-300 uppercase">BIẾN ĐỘNG CHÊNH LỆCH GIÁ VÀNG VIỆT NAM – THẾ GIỚI</div>
+                            <div class="space-y-5 my-2">
+                                <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                                    <div class="flex justify-between text-sm font-bold text-slate-400 mb-2">
+                                        <span>Cách đây vài tháng</span>
+                                        <span class="text-emerald-400 font-black">THẤP HƠN THẾ GIỚI</span>
+                                    </div>
+                                    <div class="w-full bg-slate-800 h-5 rounded-full overflow-hidden flex items-center px-2">
+                                        <div class="bg-emerald-500 h-3 w-[35%] rounded-full"></div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-red-950/50 p-4 rounded-xl border-2 border-red-500">
+                                    <div class="flex justify-between text-sm font-bold text-rose-200 mb-2">
+                                        <span>Hiện tại (Vàng miếng trong nước)</span>
+                                        <span class="text-red-400 font-black mono text-lg">+22.000.000 Đ/LƯỢNG</span>
+                                    </div>
+                                    <div class="w-full bg-slate-900 h-6 rounded-full overflow-hidden flex items-center px-1">
+                                        <div class="bg-gradient-to-r from-amber-500 to-red-600 h-4 w-[95%] rounded-full"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-slate-300 font-semibold italic">
+                                *Từ trạng thái thấp hơn thế giới cách đây vài tháng, giá vàng miếng trong nước đã vọt lên cao hơn quy đổi quốc tế tới 22 triệu đồng/lượng.
+                            </div>
+                        </div>
+
+                        <!-- Cơ chế mất tiền dù vàng thế giới đứng im -->
+                        <div class="w-1/2 h-full flex flex-col justify-between gap-4">
+                            <div class="panel-box border-red-500 rounded-2xl p-5 flex-1 flex flex-col justify-center">
+                                <div class="text-lg font-black text-rose-400 uppercase mb-2">CƠ CHẾ "THẾ GIỚI ĐỨNG IM — VIỆT NAM VẪN GIẢM"</div>
+                                <p class="text-[15.5px] text-slate-200 leading-relaxed">
+                                    Khi khoảng chênh lệch bị kéo giãn tới <span class="text-amber-300 font-black">22 triệu đồng/lượng</span>, chỉ cần cơ quan quản lý điều tiết hoặc cung cầu nội địa hạ nhiệt để <strong>khoảng chênh này co lại</strong>, thì ngay cả khi <em>giá vàng thế giới nằm im không giảm</em>, giá vàng Việt Nam vẫn sẽ tự động sụt giảm mạnh!
+                                </p>
+                            </div>
+
+                            <div class="panel-box border-amber-500 rounded-2xl p-5 flex-1 flex flex-col justify-center">
+                                <div class="text-lg font-black text-amber-400 uppercase mb-2">THỰC TRẠNG NGƯỜI ĐU ĐỈNH TẠI VIỆT NAM</div>
+                                <p class="text-[15.5px] text-slate-200 leading-relaxed">
+                                    Những nhà đầu tư đã mua vàng miếng ở vùng <span class="text-rose-400 font-black">180 – 190 triệu đồng/lượng</span> đang chịu thiệt hại kép: vừa lỗ do giá vàng thế giới rơi từ 5.600$ về 3.500$, vừa gánh rủi ro co hẹp chênh lệch nội – ngoại.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 7: 2 KỊCH BẢN ĐỐI ĐẦU SẮP TỚI                         -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide7">
+                    <div class="flex justify-between items-center border-b-2 border-amber-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-amber-400 uppercase italic">6. TỔNG HỢP ĐIỀU KIỆN: KHI NÀO VÀNG TĂNG — KHI NÀO GIẢM TIẾP?</h2>
+                        <span class="bg-blue-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">2 KỊCH BẢN BIẾN ĐỘNG</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 flex-1 z-10 my-2">
+                        <!-- Kịch bản TĂNG -->
+                        <div class="panel-box border-emerald-500 bg-emerald-950/20 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-emerald-600 text-white font-black text-lg px-4 py-2 rounded-xl uppercase text-center mb-4">
+                                    KỊCH BẢN 1: ĐIỀU KIỆN ĐỂ VÀNG TĂNG LẠI
+                                </div>
+                                <div class="space-y-3.5 text-[15.5px] text-slate-200 leading-relaxed">
+                                    <div class="bg-slate-900/90 border border-emerald-500/40 p-3.5 rounded-xl">
+                                        <strong class="text-emerald-400">1. Giá dầu giảm sâu (Eo biển Hormuz mở lại):</strong><br>
+                                        Nếu tuyến vận tải dầu khí tại Eo biển Hormuz hoạt động bình thường trở lại, giá dầu sẽ rẻ hơn nữa ➔ Kéo lạm phát Mỹ hạ nhiệt ➔ Fed dừng tăng và bắt đầu hạ lãi suất ➔ Tiền rút khỏi trái phiếu quay lại mua vàng.
+                                    </div>
+                                    <div class="bg-slate-900/90 border border-emerald-500/40 p-3.5 rounded-xl">
+                                        <strong class="text-emerald-400">2. Cổ phiếu công nghệ Mỹ sụp đổ mạnh hơn:</strong><br>
+                                        Nếu thị trường chứng khoán công nghệ rơi vào khủng hoảng sâu hơn nữa, một phần dòng tiền phòng thủ sẽ tìm về vàng để trú ẩn.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-emerald-900/50 border border-emerald-400 p-3 rounded-xl text-center font-black text-emerald-300 text-base">
+                                Sang năm sau có thể hồi phục vùng: 4.000$ – 5.000$
+                            </div>
+                        </div>
+
+                        <!-- Kịch bản GIẢM -->
+                        <div class="panel-box border-red-500 bg-red-950/20 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="bg-red-600 text-white font-black text-lg px-4 py-2 rounded-xl uppercase text-center mb-4">
+                                    KỊCH BẢN 2: ĐIỀU KIỆN LÀM VÀNG GIẢM TIẾP
+                                </div>
+                                <div class="space-y-3.5 text-[15.5px] text-slate-200 leading-relaxed">
+                                    <div class="bg-slate-900/90 border border-red-500/40 p-3.5 rounded-xl">
+                                        <strong class="text-rose-400">1. Lạm phát Mỹ lì lợm & Fed thắt chặt kéo dài:</strong><br>
+                                        Nếu lạm phát không chịu hạ xuống mức mục tiêu 2%, Fed buộc phải giữ lãi suất cao kéo dài sang năm sau, tiếp tục bóp nghẹt sức hấp dẫn của vàng.
+                                    </div>
+                                    <div class="bg-slate-900/90 border border-red-500/40 p-3.5 rounded-xl">
+                                        <strong class="text-rose-400">2. Các quỹ đầu tư tiếp tục xả kho kỷ lục:</strong><br>
+                                        Lượng vàng mà các quỹ đầu tư toàn cầu đang nắm giữ vẫn ở mức kỷ lục; nếu họ tiếp tục bán ròng ra thị trường, áp lực giảm giá còn rất lớn.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-red-900/50 border border-red-400 p-3 rounded-xl text-center font-black text-rose-300 text-base">
+                                Nếu thủng mốc 3.500$ ➔ Nguy cơ lùi về 3.200 USD/oz
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 8: THAM CHIẾU DỰ BÁO CÁC NGÂN HÀNG LỚN & PHỐ WALL     -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide8">
+                    <div class="flex justify-between items-center border-b-2 border-purple-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-purple-300 uppercase italic">7. GÓC NHÌN ĐỊNH CHẾ TÀI CHÍNH QUỐC TẾ & PHỐ WALL</h2>
+                        <span class="bg-purple-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">THAM CHIẾU ĐA CHIỀU</span>
+                    </div>
+
+                    <div class="flex-1 flex flex-col justify-between gap-4 z-10 my-2">
+                        <div class="grid grid-cols-3 gap-5 flex-1">
+                            <!-- Khảo sát Phố Wall -->
+                            <div class="panel-box border-red-500/70 rounded-2xl p-5 flex flex-col justify-between">
+                                <div>
+                                    <div class="text-rose-400 font-black text-lg uppercase border-b border-slate-700 pb-2 mb-3">1. KHẢO SÁT PHỐ WALL</div>
+                                    <div class="text-3xl font-black text-red-400 mono mb-2">3.500$ → 3.200$</div>
+                                    <p class="text-sm text-slate-200 leading-relaxed">
+                                        Khảo sát hàng tuần cho thấy phần lớn chuyên gia Phố Wall dự báo vàng <strong>vẫn đang trong xu hướng giảm</strong>. Nếu đánh mất mốc hỗ trợ 3.500$, giá có thể lùi sâu về <span class="text-rose-400 font-bold">3.200 USD/oz</span>.
+                                    </p>
+                                </div>
+                                <div class="text-xs font-bold text-rose-300 bg-red-950/60 p-2 rounded-lg text-center">Xu hướng ngắn hạn: Tiêu cực</div>
+                            </div>
+
+                            <!-- JP Morgan & Morgan Stanley -->
+                            <div class="panel-box border-amber-500/70 rounded-2xl p-5 flex flex-col justify-between">
+                                <div>
+                                    <div class="text-amber-400 font-black text-lg uppercase border-b border-slate-700 pb-2 mb-3">2. JP MORGAN & MORGAN STANLEY</div>
+                                    <div class="text-3xl font-black text-amber-400 mono mb-2">4.500$ – 5.200$</div>
+                                    <p class="text-sm text-slate-200 leading-relaxed">
+                                        Dự báo đến <strong>cuối năm 2027</strong>, giá vàng mới chỉ hồi phục quanh vùng <span class="text-amber-300 font-bold">4.500$ – 5.200$</span> (các ngân hàng lớn khác dự báo khoảng 4.600$ cuối năm 2027).
+                                    </p>
+                                </div>
+                                <div class="text-xs font-bold text-amber-300 bg-amber-950/60 p-2 rounded-lg text-center">Mục tiêu cuối năm 2027</div>
+                            </div>
+
+                            <!-- Mốc 2028 -->
+                            <div class="panel-box border-emerald-500/70 rounded-2xl p-5 flex flex-col justify-between">
+                                <div>
+                                    <div class="text-emerald-400 font-black text-lg uppercase border-b border-slate-700 pb-2 mb-3">3. KỊCH BẢN QUAY VỀ 5.600$</div>
+                                    <div class="text-3xl font-black text-emerald-400 mono mb-2">SỚM NHẤT 2028</div>
+                                    <p class="text-sm text-slate-200 leading-relaxed">
+                                        Các ngân hàng lớn nhận định phải đến <strong>năm 2028</strong> vàng mới có cơ hội quay về mốc đỉnh <span class="text-emerald-400 font-bold">5.600$</span> — với điều kiện bắt buộc là <em>Fed phải hạ lãi suất mạnh và USD suy yếu</em>.
+                                    </p>
+                                </div>
+                                <div class="text-xs font-bold text-emerald-300 bg-emerald-950/60 p-2 rounded-lg text-center">Không ai dự báo về đỉnh trong 2 năm tới</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900/95 border border-purple-400/50 rounded-xl p-3.5 text-sm text-slate-200">
+                            <strong class="text-purple-300">Góc nhìn khách quan:</strong> Trong tất cả các nguồn tin uy tín quốc tế, <strong>không có ai dự báo vàng về lại 5.600$ trong 2 năm tới</strong> (thậm chí có thể mất tới 10 năm). Tuy nhiên cũng cần tỉnh táo: ngay cả các "ông lớn" như JP Morgan hay Goldman Sachs đôi khi vẫn dự báo sai bình thường (như từng dự báo vàng lên 6.000$ rồi mới hạ nhưng thực tế đã không xảy ra).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 9: NHẬN ĐỊNH CỦA CÁC CHUYÊN GIA VIỆT NAM              -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide9">
+                    <div class="flex justify-between items-center border-b-2 border-sky-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-sky-400 uppercase italic">8. GÓC NHÌN CHUYÊN GIA TÀI CHÍNH TẠI VIỆT NAM</h2>
+                        <span class="bg-sky-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">KHUYẾN NGHỊ HÀNH ĐỘNG</span>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 flex-1 z-10 my-2">
+                        <!-- TS Nguyễn Trí Hiếu -->
+                        <div class="panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-3 mb-4">
+                                    <div>
+                                        <div class="text-xs font-bold text-amber-300 uppercase">CHUYÊN GIA TÀI CHÍNH – NGÂN HÀNG</div>
+                                        <div class="text-2xl font-black text-white">TS. NGUYỄN TRÍ HIẾU</div>
+                                    </div>
+                                    <span class="bg-amber-500 text-slate-950 font-black px-3 py-1 rounded-lg text-sm">MỤC TIÊU: 4.200$</span>
+                                </div>
+                                <div class="space-y-3 text-[16px] text-slate-200 leading-relaxed">
+                                    <div>• <strong>Về khả năng phục hồi:</strong> Vàng khó sớm quay trở lại vùng đỉnh cũ, nhưng cũng khó giảm sâu về mức 3.000 USD/oz.</div>
+                                    <div>• <strong>Vùng cân bằng dự kiến:</strong> Giá vàng nhiều khả năng sẽ hồi phục và dao động quanh mức <span class="text-amber-300 font-black">4.200 USD/ounce</span>.</div>
+                                </div>
+                            </div>
+                            <div class="bg-red-950/70 border border-red-500 p-4 rounded-xl text-center">
+                                <span class="text-rose-300 font-black text-base uppercase">KHUYẾN NGHỊ:</span>
+                                <span class="text-white font-bold text-base ml-1">Ai đang mua vàng giá cao nên cân nhắc <span class="text-rose-400 underline">CẮT LỖ</span>!</span>
+                            </div>
+                        </div>
+
+                        <!-- Chuyên gia Trần Duy Phương -->
+                        <div class="panel-box border-red-500 rounded-2xl p-6 flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between border-b border-slate-700 pb-3 mb-4">
+                                    <div>
+                                        <div class="text-xs font-bold text-rose-300 uppercase">CHUYÊN GIA THỊ TRƯỜNG VÀNG</div>
+                                        <div class="text-2xl font-black text-white">ÔNG TRẦN DUY PHƯƠNG</div>
+                                    </div>
+                                    <span class="bg-red-600 text-white font-black px-3 py-1 rounded-lg text-sm">QUANH 3.500$</span>
+                                </div>
+                                <div class="space-y-3 text-[16px] text-slate-200 leading-relaxed">
+                                    <div>• <strong>Giai đoạn từ nay đến họp Fed tháng 12:</strong> Giá vàng có thể tiếp tục đi ngang quanh mốc <span class="text-rose-400 font-black">3.500 USD/ounce</span>, thậm chí có thể <strong>giảm thêm một chút</strong>.</div>
+                                    <div>• <strong>Tâm lý đầu tư:</strong> Nhà đầu tư tuyệt đối không nên kỳ vọng giá vàng sẽ sớm quay lại vùng đỉnh cũ.</div>
+                                </div>
+                            </div>
+                            <div class="bg-amber-950/70 border border-amber-500 p-4 rounded-xl text-center">
+                                <span class="text-amber-300 font-black text-base uppercase">KHUYẾN NGHỊ:</span>
+                                <span class="text-white font-bold text-base ml-1">Thận trọng trước cuộc họp lãi suất Fed tháng 12!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- =========================================================== -->
+                <!-- SLIDE 10: BÀI HỌC LỊCH SỬ 28 NĂM & 9 NĂM — KẾT LUẬN VỀ BỜ   -->
+                <!-- =========================================================== -->
+                <div class="slide-content" id="slide10">
+                    <div class="flex justify-between items-center border-b-2 border-amber-500/40 pb-2.5 z-10">
+                        <h2 class="text-2xl font-black text-amber-400 uppercase italic">9. BÀI HỌC LỊCH SỬ: NGƯỜI ĐU ĐỈNH VÀNG BAO LÂU MỚI VỀ BỜ?</h2>
+                        <span class="bg-red-600 text-white px-3.5 py-1 rounded-lg font-black text-xs">LỊCH SỬ ĐÃ CHỨNG MINH 2 LẦN</span>
+                    </div>
+
+                    <div class="flex-1 flex flex-col justify-between gap-4 z-10 my-2">
+                        <!-- Trục thời gian lịch sử 2 lần sập đỉnh -->
+                        <div class="grid grid-cols-2 gap-6 flex-1">
+                            <!-- Lần 1: 1980 -> 2008 -->
+                            <div class="panel-box border-red-500 rounded-2xl p-6 flex flex-col justify-between">
+                                <div class="flex justify-between items-center">
+                                    <span class="bg-red-600 text-white font-black px-3 py-1 rounded text-sm">LỊCH SỬ LẦN 1</span>
+                                    <span class="text-rose-300 font-bold text-base mono">1980 ➔ 2008</span>
+                                </div>
+                                <div class="text-center my-2">
+                                    <div class="text-7xl font-black text-red-500 glow-red mono">28 NĂM</div>
+                                    <div class="text-lg font-bold text-white mt-2">Đỉnh năm 1980 mất gần 3 thập kỷ mới vượt lại được!</div>
+                                </div>
+                                <div class="text-sm text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                                    Những nhà đầu tư mua vàng ở đỉnh năm 1980 đã phải chờ đợi ròng rã suốt <strong>28 năm trời</strong> (đến tận năm 2008) giá vàng thế giới mới quay về hòa vốn.
+                                </div>
+                            </div>
+
+                            <!-- Lần 2: 2011 -> 2020 -->
+                            <div class="panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-between">
+                                <div class="flex justify-between items-center">
+                                    <span class="bg-amber-500 text-slate-950 font-black px-3 py-1 rounded text-sm">LỊCH SỬ LẦN 2</span>
+                                    <span class="text-amber-300 font-bold text-base mono">2011 ➔ 2020</span>
+                                </div>
+                                <div class="text-center my-2">
+                                    <div class="text-7xl font-black text-amber-400 glow-gold mono">9 NĂM</div>
+                                    <div class="text-lg font-bold text-white mt-2">Đỉnh năm 2011 mất tròn 9 năm để quay về bờ!</div>
+                                </div>
+                                <div class="text-sm text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800">
+                                    Sau khi lập đỉnh năm 2011, giá vàng lao dốc và đi ngang kéo dài; phải mất đúng <strong>9 năm sau</strong> (năm 2020) mới quay về được mốc giá cũ.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Khung kết luận cuối cùng -->
+                        <div class="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-slate-950 rounded-2xl px-6 py-3.5 flex items-center justify-between shadow-2xl">
+                            <div>
+                                <div class="text-xs font-black uppercase tracking-wider text-slate-900">TỔNG KẾT CHO NGƯỜI MUA TRÊN 5.000$ (VN: 180 – 190 TRIỆU/LƯỢNG)</div>
+                                <div class="text-xl font-black">Thời gian về bờ: Nhanh thì <span class="bg-slate-950 text-amber-300 px-2.5 py-0.5 rounded mono">2 – 3 NĂM</span> • Lâu có thể là <span class="bg-red-700 text-white px-2.5 py-0.5 rounded mono">9 NĂM</span> hoặc <span class="bg-red-900 text-white px-2.5 py-0.5 rounded mono">28 NĂM</span>!</div>
+                            </div>
+                            <div class="text-right font-black text-base uppercase border-l-2 border-slate-900/30 pl-4">
+                                Còn bạn nghĩ sao?<br><span class="text-red-800">Vàng sẽ TĂNG hay GIẢM?</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- CỘT PHẢI: KỊCH BẢN MC CHI TIẾT & XUẤT FILE WORD                       -->
+    <!-- ===================================================================== -->
+    <div class="w-[450px] bg-slate-900 border-l-2 border-slate-800 flex flex-col h-full shrink-0 z-20">
+        <div class="p-3.5 bg-slate-950 border-b border-slate-800 flex items-center justify-between gap-2">
+            <div>
+                <h2 class="text-sm font-black text-amber-400 uppercase tracking-wider">🎙️ Kịch Bản Giải Trình Chi Tiết</h2>
+                <p class="text-[11px] text-slate-400 mt-0.5">Tự động khớp theo từng trang Slide bên trái</p>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <button onclick="copyScript()" id="copyBtn" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-xs font-bold px-2.5 py-1.5 rounded-lg text-slate-200 cursor-pointer">📋 Copy</button>
+                <button onclick="downloadWordScript()" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-extrabold px-2.5 py-1.5 rounded-lg cursor-pointer shadow">📄 Tải File Word</button>
+            </div>
+        </div>
+        
+        <div id="script-content" class="flex-1 overflow-y-auto p-6 text-[17.5px] leading-[1.68] text-slate-200 teleprompter font-medium space-y-4 select-text">
+            <!-- Nội dung kịch bản load theo Slide -->
+        </div>
+    </div>
+
+<script>
+    const totalSlides = 10;
+    let currentSlide = 1;
+
+    // Kịch bản chi tiết từng trang, giữ nguyên toàn bộ lập luận, ví dụ và số liệu của bạn
+    const scripts = {
+        1: `
+            <p>Chào các bạn! Mấy hôm nay giá vàng đã xuống đến mức mà có lẽ nhiều người không thể tin được. Phần lớn những ai mua vàng trong một năm qua hầu như đều quay về hòa hoặc là lỗ. Nhiều chuyên gia thậm chí còn không tin rằng vàng thế giới có thể về đến mức <span class="text-red-400 font-extrabold">3.500 USD/ounce</span>.</p>
+            <p>Thế thì liệu giá vàng sắp tới sẽ lên hay xuống? Tương lai lâu dài có thể sẽ ra sao? Chúng ta hãy thử cùng tìm hiểu các bạn nhé!</p>
+            <p>Nhiều bạn bảo là quan tâm đến chuyện thế giới làm gì, có ảnh hưởng gì đến chúng ta đâu. Thế nhưng mà một lần nữa các bạn lại thấy giá vàng xuống khiến cho rất nhiều người mất tiền. Chuyện vàng lên hay xuống đều là vấn đề không chỉ của Việt Nam mà là chuyện của cả thế giới. Không quan tâm đến vấn đề thế giới thì chúng ta vẫn có thể mất tiền một cách bình thường. Bởi vậy cuộc sống này, theo mình thì kiến thức nó không đơn thuần chỉ là những cái khoa học, mà nó là tập hợp của tất cả những kiến thức có thể ảnh hưởng trực tiếp đến cuộc sống và túi tiền của chúng ta.</p>
+        `,
+        2: `
+            <p>Thế thì quay lại với giá vàng cách đây khoảng 6 tháng, mình có làm một cái video nói về giá vàng. Đợt đó mình phân tích giá vàng lúc đó đang ở thời điểm <span class="text-sky-400 font-extrabold">4.200 USD</span> — đây là mình nói theo giá vàng tây, giá vàng quốc tế cho các bạn dễ hình dung. Lần đó giá vàng nó rơi về 4.200$ từ cái đỉnh cao nhất là <span class="text-amber-300 font-extrabold">5.600$</span> vào tháng 1.</p>
+            <p>Thời điểm đó mình nói rằng có những ai mua vàng ở đỉnh hoặc thậm chí là trên 5.000$ thì chắc là phải chờ rất lâu mới hòa vốn, hoặc gọi vui là "về bờ". Nhiều người tin rằng giá vàng chỉ xuống một chút rồi lại phá đỉnh 5.600$, có thể sẽ lên 6.000$, 7.000$, hay ở Việt Nam từ 170 triệu có thể lên 180, 190, thậm chí là 200 – 250 triệu/lượng.</p>
+            <p>Nhưng mình thì không nghĩ như vậy! Vì thứ nhất: vàng thường lên giá khi tình hình kinh tế bất ổn, chiến tranh xảy ra. Thế nhưng đầu tháng 1 là <strong>chưa có xảy ra chiến tranh với Iran</strong> mà vàng đã lên 5.600$ rồi. Đến khi <span class="text-orange-400 font-extrabold">chiến tranh Iran xảy ra</span>, làm giá dầu tăng cao từ <span class="text-orange-400 font-extrabold">60$ lên đến 124$/thùng</span> (tức là tăng gấp đôi), các nền kinh tế trên thế giới đều khó khăn, chi phí sản xuất, vận tải, buôn bán đội lên quá nhiều — vậy mà vàng còn đi xuống, không vượt nổi đỉnh 5.600$.</p>
+            <p>Mọi thứ tồi tệ đến mức như vậy mà vàng không phá đỉnh được, thì tương lai mọi thứ hòa bình ổn định, đánh nhau mãi rồi cũng phải dừng — giá vàng chỉ có khả năng giảm chứ khó mà tăng được nữa. Và đến hiện tại, giá vàng đã về đúng <span class="text-red-400 font-extrabold">3.500 USD</span>!</p>
+        `,
+        3: `
+            <p>Vấn đề bây giờ là vàng sẽ xuống tiếp hay là lên lại? Chúng ta hãy cùng xem còn những thông tin vĩ mô gì để phân tích:</p>
+            <p><strong class="text-rose-400">Đầu tiên là lãi suất — đây là thứ đang đè giá vàng nặng nhất:</strong> Lạm phát ở Mỹ hiện tại đang là <span class="text-red-400 font-extrabold">3,7%</span>, gần gấp đôi mục tiêu 2%, nên Ngân hàng Trung ương Mỹ (Fed) đã tăng lãi suất. Thị trường gần như chắc chắn Fed sẽ tăng tiếp vào <span class="text-rose-400 font-extrabold">tháng 12</span>, thậm chí có thành viên còn muốn tăng mạnh gấp đôi bình thường, và nhiều người cho rằng chu kỳ tăng này sẽ kéo dài đến năm sau.</p>
+            <p>Lãi suất cao thì cầm vàng rất thiệt vì vàng <strong>không có đẻ ra lãi</strong>. Hiện nay Trái phiếu Chính phủ Mỹ đang trả lãi rất cao, <span class="text-amber-300 font-extrabold">cao nhất trong 20 năm qua</span> kể cả sau khi đã trừ đi lạm phát. Bỏ <span class="text-amber-300 font-extrabold">1 tỷ đồng</span> vào đó thì mỗi năm có được <span class="text-emerald-400 font-extrabold">29 triệu đồng tiền lãi</span> (tính theo tiền đô la), trong khi cầm vàng thì không có đồng nào. Thế nên chừng nào lãi suất còn tăng thì tiền còn chảy khỏi vàng nhiều hơn.</p>
+            <p><strong class="text-amber-400">Vấn đề thứ hai là đồng USD:</strong> Đồng đô la Mỹ cũng đang mạnh nhất trong hơn 1,5 năm qua, khiến vàng định giá bằng USD trở nên đắt đỏ hơn với người cầm đồng tiền khác.</p>
+        `,
+        4: `
+            <p><strong class="text-sky-400">Vấn đề thứ ba là chứng khoán Mỹ lao dốc:</strong> Nhất là các cổ phiếu công nghệ giảm rất mạnh. Nhiều nhà đầu tư vay tiền để đầu tư cổ phiếu thì khi thua lỗ sẽ buộc phải bán thứ dễ bán nhất để nộp tiền bù vào — và đó chính là <strong>vàng</strong>. Chỉ trong chưa đầy một tháng, gần <span class="text-red-400 font-extrabold">20 tỷ đô la (tức khoảng 500.000 tỷ đồng)</span> đã bị rút khỏi thị trường vàng. Giới đầu cơ cũng đang cắt bớt vị thế.</p>
+            <p><strong class="text-purple-400">Cái thứ tư nữa là bài toán cung – cầu vật chất:</strong> Người dân ít mua đi vì giá vẫn còn cao, nhu cầu trang sức bằng vàng đang xuống <span class="text-red-400 font-extrabold">thấp nhất từ trước đến nay</span>. Trong khi đó, các mỏ vàng trên thế giới lại khai thác được quá nhiều. Cung thì nhiều mà cầu thì yếu nên giá vàng khả năng rất khó lên.</p>
+        `,
+        5: `
+            <p>Tuy nhiên, chúng ta phải quan tâm một vấn đề nữa đó là <strong>các nước lớn đang mua hay bán vàng</strong>:</p>
+            <p>• <strong class="text-white">Mỹ:</strong> Có kho vàng lớn nhất thế giới nhưng không mua cũng không bán; Mỹ ảnh hưởng đến vàng chủ yếu qua lãi suất và đồng đô la.</p>
+            <p>• <strong class="text-rose-400">Nga:</strong> Đang bán vàng liên tục suốt gần một năm qua để bù đắp thâm hụt ngân sách vì chiến tranh.</p>
+            <p>• <strong class="text-emerald-400">Trung Quốc:</strong> Ngược lại, Trung Quốc vẫn đang mua vàng liên tục 2 năm qua (gần đây còn mua nhiều nhất trong 3 năm). Nhiều nước khác cũng mua nên các Ngân hàng Trung ương vẫn là lực đỡ lớn nhất của vàng. Nhưng các bạn để ý: <em>họ mua mạnh nhất khi giá rẻ</em> — tức là họ giữ cho vàng không rơi quá sâu, chứ không phải là lực đẩy để vàng lên đỉnh.</p>
+            <p>• <strong class="text-amber-400">Ba Lan:</strong> Cũng là một nước mua nhiều vàng nhất những năm vừa qua, nhưng hiện đã đạt mục tiêu dự trữ của mình rồi, tức là sắp tới họ cũng sẽ không mua nhiều nữa.</p>
+        `,
+        6: `
+            <p>Riêng tại thị trường <span class="text-amber-300 font-extrabold">Việt Nam</span>, có một rủi ro đặc thù mà người nắm giữ vàng miếng bắt buộc phải lưu ý:</p>
+            <p>Hiện nay, giá vàng miếng trong nước đang cao hơn giá vàng thế giới tới <span class="text-red-400 font-extrabold">22 triệu đồng một lượng</span> — trong khi cách đây vài tháng giá trong nước còn thấp hơn giá thế giới!</p>
+            <p>Thế nên nếu thời gian tới cái khoảng chênh lệch 22 triệu này co lại, thì có nghĩa là ngay cả khi <strong>giá vàng thế giới nằm im</strong> không biến động, giá vàng Việt Nam cũng sẽ tự động giảm xuống!</p>
+        `,
+        7: `
+            <p>Thế thì tóm lại là sắp tới có cái gì khiến giá vàng tăng trở lại?</p>
+            <p><strong class="text-emerald-400">Đầu tiên là giá dầu:</strong> Trong tháng vừa rồi dầu đã giảm khá mạnh. Nếu <span class="text-emerald-400 font-extrabold">Eo biển Hormuz</span> mở lại bình thường thì dầu sẽ còn rẻ nữa. Dầu rẻ thì lạm phát phải giảm, Fed sẽ dừng tăng lãi suất rồi đến lúc lãi suất hạ thì người ta sẽ rút tiền từ trái phiếu để chuyển sang mua vàng.</p>
+            <p><strong class="text-emerald-400">Thứ hai:</strong> Nếu cổ phiếu công nghệ sụp mạnh hơn nữa thì một phần tiền sẽ tìm về vàng để trú ẩn.</p>
+            <p><strong class="text-rose-400">Còn cái gì có thể làm vàng giảm tiếp?</strong> Đó là nếu lạm phát không chịu giảm và Fed tăng lãi suất kéo dài. Đồng thời, lượng vàng mà các quỹ đầu tư đang nắm giữ vẫn ở mức kỷ lục — nếu họ tiếp tục bán ra thì áp lực giảm giá còn rất lớn.</p>
+        `,
+        8: `
+            <p>Đôi khi các bạn sẽ thấy một kênh YouTube phân tích nhận định về vấn đề vàng của thế giới thì cũng chưa chắc đã tin lắm. Thế thì mình có tìm thêm tham khảo nguồn thông tin của các chuyên gia và định chế lớn trên thế giới để cung cấp thêm góc nhìn cho các bạn:</p>
+            <p>• Một khảo sát hàng tuần cho thấy phần lớn chuyên gia ở <strong class="text-rose-400">Phố Wall</strong> dự báo vàng vẫn đang giảm. Nhiều người cho rằng nếu vàng thủng mốc <span class="text-red-400 font-extrabold">3.500$</span> thì nó có thể quay về mức <span class="text-red-400 font-extrabold">3.200$</span>.</p>
+            <p>• Các ngân hàng lớn thì dự báo đến cuối năm 2027 vàng sẽ tăng lên khoảng <span class="text-amber-300 font-extrabold">4.600$</span>, và đến <span class="text-emerald-400 font-extrabold">năm 2028</span> mới quay về mốc 5.600$ với điều kiện là Fed phải hạ lãi suất. Các ngân hàng lớn như <strong class="text-amber-300">JP Morgan</strong> hay <strong class="text-amber-300">Morgan Stanley</strong> dự báo đến cuối năm 2027 vàng chỉ khoảng 4.500$ đến 5.200$.</p>
+            <p>Nói chung trong các nguồn tin uy tín mình tìm được thì <strong>không có ai dự báo vàng sẽ về lại mốc 5.600$ trong khoảng 2 năm tới</strong> (và mình nghĩ khả năng có khi phải 10 năm). Nhưng thực ra ngay cả các ngân hàng lớn đôi khi vẫn đoán sai bình thường — JP Morgan từng dự báo vàng có thể lên đến 6.000$ rồi mới hạ, hay Goldman Sachs cũng dự báo sai.</p>
+        `,
+        9: `
+            <p>Còn ở Việt Nam thì các chuyên gia nhận định thế nào?</p>
+            <p>• <strong class="text-amber-300">Tiến sĩ Nguyễn Trí Hiếu</strong> cho rằng vàng khó sớm trở lại vùng đỉnh nhưng cũng khó giảm sâu về mức 3.000$, và nhiều khả năng sẽ hồi quanh mức <span class="text-amber-300 font-extrabold">4.200 USD</span>. Ông khuyên là ai mua vàng giá cao thì nên cân nhắc <span class="text-rose-400 font-extrabold">cắt lỗ</span>.</p>
+            <p>• <strong class="text-rose-400">Chuyên gia vàng Trần Duy Phương</strong> thì cho rằng từ giờ đến cuộc họp của Fed tháng 12, vàng có thể đi quanh mốc <span class="text-rose-400 font-extrabold">3.500$</span>, thậm chí giảm thêm một chút, và không nên kỳ vọng giá sẽ quay lại đỉnh.</p>
+        `,
+        10: `
+            <p>Thế thì tổng hợp lại chúng ta có: từ giờ đến cuối năm vàng vẫn còn chịu áp lực vì Fed đang tăng lãi suất, đô la mạnh và chứng khoán rất bất ổn. Sang năm sau nếu dầu tiếp tục rẻ đi, lạm phát hạ và Fed dừng tăng lãi suất thì vàng có thể hồi lên <span class="text-amber-300 font-extrabold">4.000$ đến 5.000$</span>.</p>
+            <p>Nhưng để quay lại mốc đỉnh <span class="text-red-400 font-extrabold">5.600$</span> thì có khi rất là lâu vì cần Fed hạ lãi suất mạnh, đô la yếu đi và tiền đầu tư đổ ngược lại — theo các ngân hàng lớn thì sớm nhất phải đến năm 2028.</p>
+            <p>Lịch sử thì cũng đã chứng minh hai lần rồi: Đỉnh năm <span class="text-red-400 font-extrabold">1980</span> nó phải mất tới <span class="text-red-400 font-extrabold">28 năm</span> mới vượt lại được cái đỉnh cũ (tức là đến tận năm 2008). Rồi đến đỉnh năm <span class="text-amber-300 font-extrabold">2011</span> nó lại mất giá và phải <span class="text-amber-300 font-extrabold">9 năm sau</span> mới về lại được mốc đó.</p>
+            <p>Thế nên là ai đã mua vàng ở mức trên 5.000$, hay ai ở Việt Nam mua khoảng <span class="text-amber-300 font-extrabold">180 – 190 triệu đồng/lượng</span> thì chúng ta có thể rất lâu mới về bờ: nếu mà nhanh thì 2–3 năm, còn nếu mà lâu thì có thể là 9 năm hoặc thậm chí 28 năm như năm 1980. Liệu các bạn nghĩ vàng sẽ tăng hay giảm? Hãy cùng chia sẻ quan điểm của mình các bạn nhé!</p>
+        `
+    };
+
+    function updateView() {
+        for (let i = 1; i <= totalSlides; i++) {
+            document.getElementById('slide' + i).classList.remove('active');
+        }
+        document.getElementById('slide' + currentSlide).classList.add('active');
+        document.getElementById('slide-counter').innerText = String(currentSlide).padStart(2, '0') + " / " + totalSlides;
+        document.getElementById('script-content').innerHTML = scripts[currentSlide];
+        document.getElementById('script-content').scrollTop = 0;
+        clearCanvas();
+    }
+
+    function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; updateView(); } }
+    function prevSlide() { if (currentSlide > 1) { currentSlide--; updateView(); } }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    function fitSlide() {
+        const container = document.getElementById('preview-container');
+        const wrapper = document.getElementById('slide-wrapper');
+        if (!container || !wrapper) return;
+        const scale = Math.min((container.clientWidth - 20) / 1280, (container.clientHeight - 20) / 720);
+        wrapper.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', fitSlide);
+
+    // Chèn ảnh Bò/Gấu 3D thật của người dùng vào Slide 1
+    function uploadHeroImage(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const img = document.getElementById('custom-hero-img');
+            img.src = e.target.result;
+            img.classList.remove('hidden');
+            currentSlide = 1;
+            updateView();
+        };
+        reader.readAsDataURL(file);
+    }
+
+    // Bút vẽ chỉ điểm trực tiếp trên slide
+    const canvas = document.getElementById('drawCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false, drawMode = false, penColor = '#ef4444';
+
+    function toggleDraw() {
+        drawMode = !drawMode;
+        const btn = document.getElementById('btnPen');
+        if (drawMode) {
+            canvas.classList.remove('pointer-events-none');
+            canvas.classList.add('cursor-crosshair');
+            btn.classList.add('text-amber-400');
+            btn.innerText = '✏️ Đang Vẽ...';
+        } else {
+            canvas.classList.add('pointer-events-none');
+            canvas.classList.remove('cursor-crosshair');
+            btn.classList.remove('text-amber-400');
+            btn.innerText = '✏️ Bút Vẽ';
+        }
+    }
+
+    function setColor(color) { penColor = color; if (!drawMode) toggleDraw(); }
+    function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+
+    function getMousePos(evt) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (evt.clientX - rect.left) * (canvas.width / rect.width),
+            y: (evt.clientY - rect.top) * (canvas.height / rect.height)
+        };
+    }
+
+    canvas.addEventListener('pointerdown', (e) => {
+        if (!drawMode) return;
+        isDrawing = true;
+        const pos = getMousePos(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+    });
+    canvas.addEventListener('pointermove', (e) => {
+        if (!isDrawing || !drawMode) return;
+        const pos = getMousePos(e);
+        ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.strokeStyle = penColor;
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+    });
+    canvas.addEventListener('pointerup', () => isDrawing = false);
+    canvas.addEventListener('pointercancel', () => isDrawing = false);
+
+    // Copy kịch bản trang hiện tại
+    function copyScript() {
+        const text = document.getElementById('script-content').innerText;
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        const btn = document.getElementById('copyBtn');
+        btn.innerText = '✅ Đã Copy';
+        setTimeout(() => btn.innerText = '📋 Copy', 2000);
+    }
+
+    // Xuất toàn bộ kịch bản 10 trang thành file Word (.doc) để đọc khi quay video
+    function downloadWordScript() {
+        let htmlBody = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Kịch Bản Phân Tích Giá Vàng 3.500 USD/oz</title></head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.6; font-size: 14pt;">
+        <h1 style="color: #b91c1c; text-align: center;">KỊCH BẢN GIẢI TRÌNH CHI TIẾT: GIÁ VÀNG VỀ 3.500 USD/OZ — KHI NÀO VỀ BỜ?</h1>
+        <hr/>`;
+
+        for (let i = 1; i <= totalSlides; i++) {
+            const cleanText = scripts[i].replace(/<span[^>]*>/g, '<b>').replace(/<\/span>/g, '</b>');
+            htmlBody += `<h3 style="color: #1e3a8a; background: #f1f5f9; padding: 6px 10px;">SLIDE ${i} / ${totalSlides}</h3>${cleanText}<br/>`;
+        }
+        htmlBody += `</body></html>`;
+
+        const blob = new Blob(['\ufeff', htmlBody], { type: 'application/msword' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Kich_Ban_Phan_Tich_Gia_Vang_3500.doc';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
+    // Xuất ảnh Slide PNG 2K sắc nét
+    async function exportSlide() {
+        const slideWrapper = document.getElementById('slide-wrapper');
+        const btn = document.getElementById('exportBtn');
+        btn.disabled = true;
+        btn.innerText = '⏳ Đang xuất...';
+        const prevTransform = slideWrapper.style.transform;
+        slideWrapper.style.transform = 'scale(1)';
+
+        try {
+            const rendered = await html2canvas(slideWrapper, {
+                scale: 2, useCORS: true, backgroundColor: '#090d16'
+            });
+            const link = document.createElement('a');
+            link.download = `Phan_Tich_Vang_3500_Slide_${currentSlide}.png`;
+            link.href = rendered.toDataURL('image/png', 1.0);
+            link.click();
+        } finally {
+            slideWrapper.style.transform = prevTransform;
+            btn.disabled = false;
+            btn.innerText = '📸 TẢI ẢNH PNG';
+        }
+    }
+
+    window.onload = () => { updateView(); fitSlide(); };
+</script>
+</body>
+</html>
