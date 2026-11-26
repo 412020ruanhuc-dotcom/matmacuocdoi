@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8 Câu Chuyện Tư Duy Kinh Doanh - Bản Full Màn Hình Chuẩn Livestream OBS</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,800;1,900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+    * { box-sizing: border-box; font-family: 'Be Vietnam Pro', sans-serif; }
+    body {
+        background-color: #02040a;
+        margin: 0; padding: 0;
+        width: 100vw; height: 100vh;
+        display: flex; justify-content: center; align-items: center;
+        overflow: hidden; user-select: none;
+    }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Khung Slide chuẩn 16:9 (1280x720) căn giữa tuyệt đối 100% màn hình */
+    .slide-wrapper {
+        width: 1280px; height: 720px;
+        transform-origin: center center;
+        background: radial-gradient(circle at 50% 20%, #172554 0%, #090d16 65%, #020617 100%);
+        box-shadow: inset 0 0 0 4px #eab308, 0 20px 50px rgba(0,0,0,0.95);
+        position: relative; overflow: hidden;
+        flex-shrink: 0;
+    }
+
+    .slide-content {
+        display: none; width: 100%; height: 100%; position: absolute; inset: 0;
+        flex-direction: column; justify-content: space-between; padding: 28px 46px 24px 46px;
+    }
+    .slide-content.active { display: flex; }
+
+    .tech-grid {
+        position: absolute; inset: 0; opacity: 0.12; pointer-events: none;
+        background-image: linear-gradient(to right, #38bdf8 1px, transparent 1px),
+                          linear-gradient(to bottom, #38bdf8 1px, transparent 1px);
+        background-size: 46px 46px;
+    }
+
+    .glow-gold { text-shadow: 0 4px 22px rgba(250, 204, 21, 0.65); }
+    .glow-red { text-shadow: 0 4px 22px rgba(239, 68, 68, 0.75); }
+    .glow-green { text-shadow: 0 4px 22px rgba(34, 197, 94, 0.65); }
+    .glow-blue { text-shadow: 0 4px 22px rgba(56, 189, 248, 0.65); }
+
+    .panel-box {
+        background: linear-gradient(180deg, rgba(15, 23, 42, 0.92) 0%, rgba(7, 11, 22, 0.97) 100%);
+        border: 1.5px solid rgba(148, 163, 184, 0.28);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.65);
+    }
+
+    /* Thanh công cụ nổi tự động mờ khi không rê chuột để không vướng khung hình OBS */
+    .floating-toolbar {
+        position: fixed; top: 10px; left: 50%; transform: translateX(-50%);
+        background: rgba(2, 6, 23, 0.94); border: 1.5px solid rgba(234, 179, 8, 0.6);
+        padding: 6px 16px; border-radius: 999px;
+        display: flex; align-items: center; gap: 10px; z-index: 100;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+        opacity: 0.25; transition: opacity 0.25s ease;
+    }
+    .floating-toolbar:hover, .floating-toolbar.pinned { opacity: 1; }
+</style>
+</head>
+<body class="text-slate-100">
+
+    <!-- ===================================================================== -->
+    <!-- THANH CÔNG CỤ NỔI (RÊ CHUỘT VÀO SẼ HIỆN RÕ, RỜI CHUỘT TỰ MỜ ĐI)       -->
+    <!-- ===================================================================== -->
+    <div class="floating-toolbar pinned" id="topToolbar">
+        <button onclick="prevSlide()" class="bg-slate-800 hover:bg-slate-700 border border-slate-600 px-3 py-1 rounded-full font-extrabold text-xs transition cursor-pointer">◀ Trước</button>
+        <select id="slideSelector" onchange="jumpToSlide(this.value)" class="bg-slate-900 border border-amber-500/60 text-amber-400 font-black text-xs px-2.5 py-1 rounded-full cursor-pointer"></select>
+        <button onclick="nextSlide()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-3 py-1 rounded-full font-black text-xs transition cursor-pointer">Sau ▶</button>
+        
+        <span class="text-slate-600">|</span>
+
+        <div class="flex items-center gap-1.5">
+            <button id="btnPen" onclick="toggleDraw()" class="text-xs font-extrabold text-slate-300 hover:text-white px-2 py-1 rounded-full bg-slate-800 cursor-pointer">✏️ Bút Vẽ</button>
+            <div class="w-4 h-4 rounded-full bg-red-500 cursor-pointer border border-white" onclick="setColor('#ef4444')" title="Mực Đỏ"></div>
+            <div class="w-4 h-4 rounded-full bg-amber-400 cursor-pointer border border-white" onclick="setColor('#facc15')" title="Mực Vàng"></div>
+            <div class="w-4 h-4 rounded-full bg-emerald-400 cursor-pointer border border-white" onclick="setColor('#4ade80')" title="Mực Xanh Lá"></div>
+            <div class="w-4 h-4 rounded-full bg-sky-400 cursor-pointer border border-white" onclick="setColor('#38bdf8')" title="Mực Xanh Dương"></div>
+            <button onclick="clearCanvas()" class="text-xs font-bold text-slate-400 hover:text-rose-400 cursor-pointer" title="Xóa nét vẽ">🗑️</button>
+        </div>
+
+        <span class="text-slate-600">|</span>
+
+        <!-- Nút xuất kịch bản riêng ra ngoài & xuất ảnh -->
+        <button onclick="downloadWordScript()" class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded-full font-extrabold text-xs cursor-pointer" title="Tải file Word kịch bản đầy đủ để đọc riêng">📄 Tải Kịch Bản Word</button>
+        <button onclick="printScriptPDF()" class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 rounded-full font-extrabold text-xs cursor-pointer" title="Mở cửa sổ in/lưu PDF kịch bản riêng">🖨️ Lưu Kịch Bản PDF</button>
+        <button onclick="exportSlide()" id="exportBtn" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1 rounded-full font-extrabold text-xs cursor-pointer">📸 Xuất Ảnh PNG</button>
+        <button onclick="togglePinToolbar()" id="pinBtn" class="text-xs text-amber-300 hover:text-white font-bold cursor-pointer" title="Bật/tắt chế độ tự ẩn thanh công cụ khi quay OBS">👁️ Ẩn/Hiện</button>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- KHUNG SLIDE DUY NHẤT 16:9 (1280x720) CĂN CHÍNH GIỮA TOÀN MÀN HÌNH     -->
+    <!-- ===================================================================== -->
+    <div id="slide-wrapper" class="slide-wrapper">
+        <div class="tech-grid"></div>
+        <canvas id="drawCanvas" width="1280" height="720" class="absolute inset-0 z-50 pointer-events-none"></canvas>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 1 (TRANG 1 - 3): KHỞI NGHIỆP & 3 CÂU NÓI VÀNG    -->
+        <!-- =========================================================== -->
+        <div class="slide-content active" id="slide1">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 01 / 08 • BẢN CHẤT CỦA LÀM GIÀU</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 01 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-6">
+                <h1 class="text-[52px] font-black text-amber-400 glow-gold uppercase leading-[1.15] italic mb-6">
+                    CHỈ CÓ KINH DOANH MỚI KIẾM ĐƯỢC<br>
+                    <span class="text-white">VÀI TRĂM TRIỆU</span> ĐẾN <span class="text-emerald-400 glow-green">HÀNG TỶ ĐỒNG</span>
+                </h1>
+
+                <div class="grid grid-cols-2 gap-8 w-full max-w-[1060px] my-3">
+                    <div class="panel-box border-red-500/70 bg-red-950/20 rounded-2xl p-6 text-left">
+                        <div class="text-rose-400 font-black text-xl uppercase mb-3">❌ GIỚI HẠN CỦA LÀM THUÊ</div>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Chỉ dựa vào đi làm công ty hay giao đồ ăn thì rất khó kiếm được nhiều tiền — cùng lắm chỉ giải quyết được vấn đề <strong>cơm áo gạo tiền</strong>.
+                        </p>
+                    </div>
+
+                    <div class="panel-box border-emerald-500/70 bg-emerald-950/20 rounded-2xl p-6 text-left">
+                        <div class="text-emerald-400 font-black text-xl uppercase mb-3">✅ CƠ HỘI CỦA KINH DOANH</div>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Kinh doanh không phải là liều lĩnh, mà là <strong>chọn đúng cách chơi, phục vụ đúng người, sao chép đúng mô hình và kiểm soát rủi ro</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-500/20 border border-amber-400 rounded-xl px-6 py-3 text-center z-10 text-base font-black text-amber-300">
+                "Thà ra vỉa hè bán hàng chứ không đi làm thuê chịu khổ — Thà ngủ dưới sàn cũng phải làm ông chủ!"
+            </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide-content" id="slide2">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 01 / 08 • HAI NGUYÊN TẮC ĐẦU TIÊN</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 02 / 24</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 flex-1 z-10 my-4">
+                <div class="panel-box border-amber-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-sm uppercase mb-2">CÂU NÓI THỨ NHẤT</div>
+                        <h2 class="text-3xl font-black text-white uppercase mb-4">NHẤT ĐỊNH PHẢI KIẾM TIỀN TỪ NGƯỜI GIÀU</h2>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Tiền của người nghèo rất khó kiếm và không kiếm được nhiều vì bản thân họ đã thiếu thốn nên phải tính toán chi li từng đồng.
+                        </p>
+                    </div>
+                    <div class="bg-amber-950/70 border border-amber-500 p-4 rounded-xl text-base text-amber-200 font-bold">
+                        💎 Người giàu mua <strong>trải nghiệm, cảm giác và thể diện</strong>. Bạn phục vụ ai sẽ quyết định bạn kiếm được bao nhiêu tiền!
+                    </div>
+                </div>
+
+                <div class="panel-box border-sky-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="text-sky-400 font-black text-sm uppercase mb-2">CÂU NÓI THỨ HAI</div>
+                        <h2 class="text-3xl font-black text-white uppercase mb-4">ĐỪNG VỘI ĐỔI MỚI — HÃY SAO CHÉP MÔ HÌNH</h2>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Đa số người khởi nghiệp thất bại không phải vì lười, mà vì có quá nhiều ý tưởng tự mày mò lối đi riêng.
+                        </p>
+                    </div>
+                    <div class="bg-sky-950/70 border border-sky-500 p-4 rounded-xl text-base text-sky-200 font-bold">
+                        🚀 Bắt chước một người có thu nhập hàng triệu mỗi năm, dù chỉ làm được <span class="text-amber-300 text-xl font-black">60%</span> cũng tốt hơn tự mò mẫm trong hỗn loạn!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide-content" id="slide3">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 01 / 08 • NGUYÊN TẮC SỐ 3: QUẢN TRỊ VỐN</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 03 / 24</span>
+            </div>
+
+            <div class="flex-1 flex gap-8 items-center z-10 my-4">
+                <div class="w-1/2 h-full panel-box border-red-500 bg-red-950/20 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-red-600 text-white text-xs font-black px-3 py-1 rounded uppercase">SAI LẦM CHẾT NGƯỜI</span>
+                        <h3 class="text-3xl font-black text-rose-400 mt-3 mb-4 uppercase">"TẤT TAY" VAY VỐN LỚN NGAY TỪ ĐẦU</h3>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Vừa bắt đầu đã mua nhà, mua xe, vay vốn lớn khởi nghiệp. Nghe có vẻ rất nhiệt huyết, nhưng <strong>chỉ cần thất bại một lần là bạn không thể gượng dậy được</strong>.
+                        </p>
+                    </div>
+                    <div class="text-rose-300 font-black text-base">❌ Đánh cược toàn bộ tương lai vào một ván bài chưa kiểm chứng</div>
+                </div>
+
+                <div class="w-1/2 h-full panel-box border-emerald-500 bg-emerald-950/20 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-emerald-600 text-white text-xs font-black px-3 py-1 rounded uppercase">CÁCH CHƠI THÔNG MINH</span>
+                        <h3 class="text-3xl font-black text-emerald-400 mt-3 mb-4 uppercase">KHỞI NGHIỆP VỚI ÍT VỐN — THỬ SAI CHI PHÍ THẤP</h3>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Dùng vài nghìn, vài chục nghìn để từ từ thử nghiệm và phát triển lên.
+                        </p>
+                    </div>
+                    <div class="bg-emerald-950/80 border border-emerald-400 p-4 rounded-xl text-base text-emerald-200 font-bold">
+                        ✅ Làm được thì đó là năng lực — Không làm được thì vẫn còn vốn để bắt đầu lại!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 2 (TRANG 4 - 6): KIẾM 1 TỶ/NĂM & CHẶN LỖ RÒ      -->
+        <!-- =========================================================== -->
+        <div class="slide-content" id="slide4">
+            <div class="flex justify-between items-center border-b border-sky-500/40 pb-3 z-10">
+                <span class="bg-sky-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 02 / 08 • BÀI TOÁN THU NHẬP 1 TỶ / NĂM</span>
+                <span class="text-sky-400 font-black text-sm mono">TRANG 04 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-6">
+                <div class="text-xl font-black text-sky-400 uppercase mb-2">MUỐN KIẾM ĐƯỢC 1 TỶ ĐỒNG MỖI NĂM</div>
+                <h1 class="text-5xl font-black text-white uppercase leading-tight mb-8">
+                    ĐỪNG CHỈ CỐ GẮNG CHĂM CHỈ HƠN —<br>
+                    <span class="text-amber-400 glow-gold">HÃY BƯỚC VÀO CÔNG VIỆC CÓ KHẢ NĂNG TẠO RA 1 TỶ!</span>
+                </h1>
+
+                <div class="grid grid-cols-2 gap-8 w-full max-w-[1060px]">
+                    <div class="panel-box border-rose-500/70 rounded-2xl p-6 text-left">
+                        <div class="text-rose-400 font-black text-lg uppercase mb-2">CẤU TRÚC THU NHẬP GIỚI HẠN</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Nhiều người dành cả tuổi trẻ làm những công việc mà ngay từ đầu mức trần đã bị khóa cứng. Dù nỗ lực gấp đôi, gấp ba người khác thì thu nhập tối đa vẫn dừng ở một ngưỡng nhất định.
+                        </p>
+                    </div>
+
+                    <div class="panel-box border-emerald-500/70 rounded-2xl p-6 text-left">
+                        <div class="text-emerald-400 font-black text-lg uppercase mb-2">CHỌN ĐÚNG CUỘC CHƠI NGAY TỪ ĐẦU</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Khi đặt mình vào một môi trường không tạo ra giá trị lớn, càng nỗ lực bạn cũng chỉ đang tối ưu một giới hạn vốn đã tồn tại.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 -->
+        <div class="slide-content" id="slide5">
+            <div class="flex justify-between items-center border-b border-sky-500/40 pb-3 z-10">
+                <span class="bg-sky-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 02 / 08 • ẨN DỤ BẮT CUA HOÀNG ĐẾ</span>
+                <span class="text-sky-400 font-black text-sm mono">TRANG 05 / 24</span>
+            </div>
+
+            <div class="flex-1 flex gap-8 items-center z-10 my-3">
+                <div class="w-1/2 h-full panel-box border-red-500 rounded-2xl p-7 flex flex-col justify-between text-center">
+                    <div class="text-6xl mt-2">🪣</div>
+                    <h3 class="text-3xl font-black text-rose-400 uppercase">ĐÁNH BẮT TRONG CÁI AO NHỎ</h3>
+                    <p class="text-lg text-slate-200 leading-relaxed">
+                        Dù bạn sở hữu dụng cụ đắt tiền hay thức trắng nhiều đêm kiên trì đánh bắt, kết quả vẫn bằng 0 — bởi ngay từ đầu <strong>nơi đó đã không có thứ bạn tìm kiếm</strong>!
+                    </p>
+                    <div class="bg-red-950/70 p-3 rounded-xl text-sm font-black text-rose-300">Nỗ lực sai môi trường = Lãng phí tuổi trẻ</div>
+                </div>
+
+                <div class="w-1/2 h-full panel-box border-emerald-500 rounded-2xl p-7 flex flex-col justify-between text-center">
+                    <div class="text-6xl mt-2">🌊🦀</div>
+                    <h3 class="text-3xl font-black text-emerald-400 uppercase">ĐẾN ĐÚNG VÙNG BIỂN CUA HOÀNG ĐẾ</h3>
+                    <p class="text-lg text-slate-200 leading-relaxed">
+                        Lựa chọn đúng ngành nghề, đúng thị trường và đúng mô hình kinh doanh quan trọng hơn việc chỉ biết cắm đầu làm việc chăm chỉ.
+                    </p>
+                    <div class="bg-emerald-950/70 p-3 rounded-xl text-sm font-black text-emerald-300">Đúng vùng biển = Giá trị bùng nổ</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 -->
+        <div class="slide-content" id="slide6">
+            <div class="flex justify-between items-center border-b border-sky-500/40 pb-3 z-10">
+                <span class="bg-sky-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 02 / 08 • DOANH THU TĂNG NHƯNG LỢI NHUẬN GIẢM</span>
+                <span class="text-sky-400 font-black text-sm mono">TRANG 06 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-between gap-5 z-10 my-3">
+                <div class="text-center">
+                    <h2 class="text-3xl font-black text-rose-400 uppercase">DOANH NGHIỆP ĐANG ÂM THẦM "CHẢY MÁU" Ở 3 KHOẢN CHI PHÍ</h2>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6 flex-1">
+                    <div class="panel-box border-sky-500 rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="text-sky-400 font-black text-xl uppercase">1. CHI PHÍ HÀNG HÓA</div>
+                        <p class="text-base text-slate-200 leading-relaxed">Giá vốn nhập hàng, hao hụt tồn kho và định giá bán chưa tối ưu.</p>
+                        <div class="text-xs font-bold text-sky-300 bg-sky-950/60 p-2.5 rounded-lg text-center">Soi biên lợi nhuận từng mã</div>
+                    </div>
+
+                    <div class="panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="text-amber-400 font-black text-xl uppercase">2. CHI PHÍ NHÂN SỰ</div>
+                        <p class="text-base text-slate-200 leading-relaxed">Quỹ lương phình to nhanh hơn tốc độ tăng trưởng doanh thu thực tế.</p>
+                        <div class="text-xs font-bold text-amber-300 bg-amber-950/60 p-2.5 rounded-lg text-center">Đo hiệu suất trên từng đầu người</div>
+                    </div>
+
+                    <div class="panel-box border-red-500 bg-red-950/20 rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="text-rose-400 font-black text-xl uppercase">3. TÌM KIẾM KHÁCH HÀNG</div>
+                        <p class="text-base text-slate-200 leading-relaxed">Khoản đau đầu nhất: Bỏ rất nhiều tiền quảng cáo nhưng kết quả không như kỳ vọng.</p>
+                        <div class="text-xs font-bold text-rose-300 bg-red-950/60 p-2.5 rounded-lg text-center">Phải biết đồng nào đang sinh lời</div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border-l-4 border-amber-400 px-6 py-3 rounded-r-xl text-base font-bold text-amber-300">
+                    💡 Chủ doanh nghiệp không cần giỏi kế toán, nhưng nhất định phải biết đọc số liệu (Doanh thu – Chi phí – Lợi nhuận – Dòng tiền) thay vì điều hành bằng cảm tính!
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 3 (TRANG 7 - 9): BỐN CHỮ "TIỀN CẦN GIỮ ẤM"       -->
+        <!-- =========================================================== -->
+        <div class="slide-content" id="slide7">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 03 / 08 • KHI LẦN ĐẦU CÓ 50 – 100 TRIỆU</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 07 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-8">
+                <div class="text-lg font-black text-amber-300 uppercase tracking-widest mb-3">BÀI HỌC TỪ NGƯỜI CHỊ LÀM KINH DOANH HƠN 15 NĂM</div>
+                <div class="text-[76px] font-black text-amber-400 glow-gold uppercase leading-none my-4">
+                    "TIỀN CẦN GIỮ ẤM"
+                </div>
+                <p class="text-2xl text-white font-bold max-w-[920px] leading-relaxed mt-4 mb-8">
+                    Tiền bạc không phải dùng để chứng minh bạn giàu có — mà là để giúp bạn trở nên <span class="text-emerald-400">vững vàng và cứng cỏi hơn</span>!
+                </p>
+
+                <div class="bg-red-950/70 border-2 border-red-500 rounded-2xl px-8 py-4 text-lg font-bold text-rose-200 max-w-[900px]">
+                    ⚠️ Đừng vừa chạm mốc 50 – 100 triệu đã vội đổi điện thoại đời mới, mua đồng hồ đắt tiền hay ăn uống sang chảnh để rồi tài khoản lại về 0!
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 -->
+        <div class="slide-content" id="slide8">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 03 / 08 • SỰ TỰ TIN ĐẾN TỪ SỐ DƯ TÀI KHOẢN</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 08 / 24</span>
+            </div>
+
+            <div class="flex-1 flex gap-8 items-center z-10 my-3">
+                <div class="w-1/2 h-full panel-box border-emerald-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="text-emerald-400 font-black text-xl uppercase mb-3">KHI TRONG TÚI CÓ 50 – 100 TRIỆU</div>
+                        <ul class="space-y-4 text-lg text-slate-200 leading-relaxed">
+                            <li>• Lúc xin nghỉ việc với sếp, <strong>sống lưng của bạn tự nhiên sẽ thẳng</strong>.</li>
+                            <li>• Khi từ chối những người tồi tệ, <strong>ánh mắt của bạn vô cùng bình tĩnh</strong>.</li>
+                            <li>• Khi bị ép làm thêm cuối tuần vô lý, bạn đủ bản lĩnh để từ chối đàng hoàng.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-emerald-950/70 p-3.5 rounded-xl text-sm font-black text-emerald-300 text-center">Số dư tài khoản chống đỡ cho sống lưng của bạn</div>
+                </div>
+
+                <div class="w-1/2 h-full panel-box border-red-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="text-rose-400 font-black text-xl uppercase mb-3">KHI TIÊU SẠCH TIỀN ĐỂ SƯỚNG CHỐC LÁT</div>
+                        <ul class="space-y-4 text-lg text-slate-200 leading-relaxed">
+                            <li>• Tháng sau tiền thuê nhà còn phải tính toán từng đồng.</li>
+                            <li>• Sợ mất việc, sợ mất lòng lãnh đạo nên không bao giờ dám nói "Không".</li>
+                            <li>• Luôn thiếu đi sự tự tin và phải thỏa hiệp với những điều bất công.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-950/70 p-3.5 rounded-xl text-sm font-black text-rose-300 text-center">Không có vốn liếng = Mất quyền lựa chọn</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 -->
+        <div class="slide-content" id="slide9">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 03 / 08 • ĐỊNH NGHĨA NGƯỜI THỰC SỰ CÓ TIỀN</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 09 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-10">
+                <div class="panel-box border-amber-400 rounded-3xl p-10 max-w-[1020px] space-y-6">
+                    <p class="text-3xl font-black text-white leading-snug">
+                        "Người thực sự có tiền không phải nhìn xem họ đi xe gì, mang túi xách gì — mà nhìn xem <span class="text-amber-400 glow-gold">họ có dám nói KHÔNG hay không</span>!"
+                    </p>
+                    <div class="h-[2px] w-48 bg-amber-500/40 mx-auto"></div>
+                    <p class="text-2xl font-bold text-emerald-300 leading-relaxed">
+                        Tiền nằm trong tay không phải để chứng minh cho người khác thấy bạn giàu có, mà là để <strong>những lúc cần phải cúi đầu, bạn có quyền lựa chọn không cúi đầu</strong>!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 4 (TRANG 10 - 12): 3 CẤP ĐỘ KIẾM TIỀN (100TR/THÁNG)-->
+        <!-- =========================================================== -->
+        <div class="slide-content" id="slide10">
+            <div class="flex justify-between items-center border-b border-purple-500/40 pb-3 z-10">
+                <span class="bg-purple-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 04 / 08 • THANG TIẾN HÓA THU NHẬP 100 TRIỆU / THÁNG</span>
+                <span class="text-purple-300 font-black text-sm mono">TRANG 10 / 24</span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 flex-1 z-10 my-4">
+                <div class="panel-box border-slate-500 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="text-slate-400 font-black text-sm uppercase">CẤP ĐỘ 1</div>
+                        <h3 class="text-2xl font-black text-white mt-2 mb-4">KIẾM TIỀN BẰNG SỨC LAO ĐỘNG</h3>
+                        <p class="text-base text-slate-300 leading-relaxed">
+                            Bán thời gian và sức lực làm theo công việc được giao. Ai trả tiền thì nghe lời người đó. Thời gian có hạn nên thu nhập bị khóa trần.
+                        </p>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-xl text-xs font-bold text-slate-400 text-center">Đổi giờ lấy tiền</div>
+                </div>
+
+                <div class="panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-sm uppercase">CẤP ĐỘ 2</div>
+                        <h3 class="text-2xl font-black text-amber-300 mt-2 mb-4">TÌM MỌI CÁCH ĐỂ KIẾM TIỀN</h3>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Biết chớp thời cơ ngắn hạn, xoay sở kiếm lời từ cơ hội trước mắt (hàng theo mùa). Thắng nhờ <strong>tốc độ và biết điểm dừng</strong>.
+                        </p>
+                    </div>
+                    <div class="bg-amber-950/60 p-3 rounded-xl text-xs font-bold text-amber-300 text-center">Đổi sự nhạy bén lấy tiền</div>
+                </div>
+
+                <div class="panel-box border-emerald-500 bg-emerald-950/20 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="text-emerald-400 font-black text-sm uppercase">CẤP ĐỘ 3</div>
+                        <h3 class="text-2xl font-black text-emerald-400 mt-2 mb-4">LÀM RA TIỀN TỪ LỢI THẾ RIÊNG</h3>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Sở hữu tài sản riêng khó thay thế: <strong>tệp người theo dõi, danh tiếng, quan hệ</strong>. Biết thuê người giỏi hơn hỗ trợ để nhân bản giá trị.
+                        </p>
+                    </div>
+                    <div class="bg-emerald-950/80 p-3 rounded-xl text-xs font-black text-emerald-300 text-center">Dùng đòn bẩy con người &amp; uy tín</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 -->
+        <div class="slide-content" id="slide11">
+            <div class="flex justify-between items-center border-b border-purple-500/40 pb-3 z-10">
+                <span class="bg-purple-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 04 / 08 • KỶ LUẬT Ở CẤP ĐỘ 2: CHỚP THỜI CƠ</span>
+                <span class="text-purple-300 font-black text-sm mono">TRANG 11 / 24</span>
+            </div>
+
+            <div class="flex-1 flex gap-8 items-center z-10 my-3">
+                <div class="w-1/2 h-full panel-box border-amber-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-amber-500 text-slate-950 text-xs font-black px-3 py-1 rounded uppercase">VÍ DỤ THỰC TẾ</span>
+                        <h3 class="text-2xl font-black text-white mt-3 mb-4">NHẬP HÀNG THEO MÙA KIẾM VÀI TRIỆU/NGÀY</h3>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Bạn nhập ít hàng theo mùa về bán, mỗi ngày kiếm 300–500 nghìn, có ngày vài triệu. Điểm cốt lõi của kiểu kiếm tiền này là <strong>tốc độ</strong>: thấy cơ hội là nắm bắt ngay, kiếm xong một đợt rồi biết lúc nào nên rút lui.
+                        </p>
+                    </div>
+                    <div class="text-amber-300 font-bold text-sm">⚡ Nhanh nhạy nhưng phải tuân thủ tuyệt đối luật chơi pháp luật</div>
+                </div>
+
+                <div class="w-1/2 h-full panel-box border-red-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <span class="bg-red-600 text-white text-xs font-black px-3 py-1 rounded uppercase">CẠM BẪY LÒNG THAM</span>
+                        <h3 class="text-2xl font-black text-rose-400 mt-3 mb-4">KHÔNG BIẾT ĐIỂM DỪNG KHI ĐÃ CÓ LỜI</h3>
+                        <p class="text-lg text-slate-200 leading-relaxed">
+                            Nếu thấy lời rồi tham muốn ngày nào cũng kiếm vài chục triệu, cứ thế ôm thêm hàng mà không biết kiềm chế thì rất dễ gặp rắc rối tồn kho và mất sạch lãi.
+                        </p>
+                    </div>
+                    <div class="text-emerald-300 font-bold text-sm">✅ Muốn đi đường dài: Phải chuẩn hóa quy trình và bàn giao công việc</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12 -->
+        <div class="slide-content" id="slide12">
+            <div class="flex justify-between items-center border-b border-purple-500/40 pb-3 z-10">
+                <span class="bg-purple-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 04 / 08 • ĐỈNH CAO CẤP ĐỘ 3: LÀM RA TIỀN</span>
+                <span class="text-purple-300 font-black text-sm mono">TRANG 12 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-between gap-6 z-10 my-3">
+                <div class="grid grid-cols-3 gap-6 flex-1">
+                    <div class="panel-box border-sky-500 rounded-2xl p-6 text-center flex flex-col justify-center">
+                        <div class="text-5xl mb-3">📣</div>
+                        <div class="text-xl font-black text-sky-400 uppercase mb-2">LƯỢNG NGƯỜI THEO DÕI</div>
+                        <p class="text-base text-slate-200">Đưa sản phẩm, dịch vụ tới đúng những người thực sự đang có nhu cầu.</p>
+                    </div>
+
+                    <div class="panel-box border-amber-500 rounded-2xl p-6 text-center flex flex-col justify-center">
+                        <div class="text-5xl mb-3">👑</div>
+                        <div class="text-xl font-black text-amber-400 uppercase mb-2">DANH TIẾNG &amp; UY TÍN</div>
+                        <p class="text-base text-slate-200">Dùng uy tín cá nhân để mở khóa những thương vụ hợp tác giá trị cao.</p>
+                    </div>
+
+                    <div class="panel-box border-emerald-500 rounded-2xl p-6 text-center flex flex-col justify-center">
+                        <div class="text-5xl mb-3">🤝</div>
+                        <div class="text-xl font-black text-emerald-400 uppercase mb-2">MẠNG LƯỚI &amp; ĐỘI NGŨ</div>
+                        <p class="text-base text-slate-200">Không cần tự giỏi mọi kỹ năng — biết thuê người chuyên môn giỏi hơn hỗ trợ mình.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-900 via-indigo-900 to-purple-900 border border-purple-400 rounded-2xl p-4 text-center text-lg font-bold text-white">
+                    "Đôi khi vì khó khăn nhất thời ta phải tạm thỏa hiệp, nhưng hãy luôn tin rằng: <strong>Rồi sẽ có ngày gió lớn nổi lên đưa ta bay vạn dặm giữa trời cao!</strong>"
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 5 (TRANG 13 - 15): MẤT HỨNG THÚ & PHỤC HỒI       -->
+        <!-- =========================================================== -->
+        <div class="slide-content" id="slide13">
+            <div class="flex justify-between items-center border-b border-sky-500/40 pb-3 z-10">
+                <span class="bg-sky-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 05 / 08 • NHẬN DIỆN VÒNG LẶP KIỆT SỨC</span>
+                <span class="text-sky-400 font-black text-sm mono">TRANG 13 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-6">
+                <h2 class="text-4xl font-black text-sky-400 uppercase mb-6">KHI BẠN BẮT ĐẦU MẤT HỨNG THÚ VỚI MỌI THỨ</h2>
+                <div class="panel-box border-red-500/70 rounded-3xl p-8 max-w-[1000px] space-y-5">
+                    <div class="text-2xl font-black text-rose-400">
+                        Mở mắt xem điện thoại ➔ Đi làm ➔ Tối về lướt điện thoại, cày phim, chơi game
+                    </div>
+                    <p class="text-lg text-slate-200 leading-relaxed">
+                        Đừng vội tìm thêm kích thích ảo để lấp đầy sự trống rỗng — <strong>càng xem càng trống rỗng thì bạn cần dừng lại</strong>. Cũng đừng vội trách mình lười biếng: mất hứng thú có thể là dấu hiệu của căng thẳng, kiệt sức hoặc trầm cảm (nếu kéo dài trên 2 tuần, hãy tìm chuyên gia tâm lý).
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14 -->
+        <div class="slide-content" id="slide14">
+            <div class="flex justify-between items-center border-b border-sky-500/40 pb-3 z-10">
+                <span class="bg-sky-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 05 / 08 • 3 VIỆC NHỎ PHÁ VỠ THÓI QUEN LẶP LẠI</span>
+                <span class="text-sky-400 font-black text-sm mono">TRANG 14 / 24</span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 flex-1 z-10 my-4">
+                <div class="panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-xl uppercase mb-3">1. GIẢM THỨ CHIẾM SỰ CHÚ Ý</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Tắt thông báo không cần thiết, đặt điện thoại ra xa lúc ăn cơm và trước khi đi ngủ. Đừng để vừa mở mắt đã bị cuốn vào chuyện của người khác.
+                        </p>
+                    </div>
+                    <div class="bg-amber-950/60 p-3 rounded-xl text-xs font-bold text-amber-300 text-center">Dành lại thời gian không nhìn màn hình</div>
+                </div>
+
+                <div class="panel-box border-sky-500 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="text-sky-400 font-black text-xl uppercase mb-3">2. THỬ MỘT VIỆC NHỎ MỚI MẺ</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Đi bộ một đoạn đường mới 10 phút, nấu một món chưa từng nấu, gọi cho một người bạn cũ lâu ngày chưa trò chuyện.
+                        </p>
+                    </div>
+                    <div class="bg-sky-950/60 p-3 rounded-xl text-xs font-bold text-sky-300 text-center">Kết nối lại với đời sống quanh mình</div>
+                </div>
+
+                <div class="panel-box border-emerald-500 rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="text-emerald-400 font-black text-xl uppercase mb-3">3. MỤC TIÊU VỪA SỨC 15 PHÚT</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Đừng hứa thay đổi cả cuộc đời. Hãy chia mục tiêu nhỏ đến mức hôm nay làm được ngay (15 phút thực hành kỹ năng, làm xong phần đầu dự án).
+                        </p>
+                    </div>
+                    <div class="bg-emerald-950/60 p-3 rounded-xl text-xs font-bold text-emerald-300 text-center">Biết mỗi ngày mình đang bước về đâu</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15 -->
+        <div class="slide-content" id="slide15">
+            <div class="flex justify-between items-center border-b border-sky-500/40 pb-3 z-10">
+                <span class="bg-sky-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 05 / 08 • QUY LUẬT HÀNH ĐỘNG & HỨNG THÚ</span>
+                <span class="text-sky-400 font-black text-sm mono">TRANG 15 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-10">
+                <div class="panel-box border-emerald-400 rounded-3xl p-10 max-w-[1020px] space-y-6">
+                    <h3 class="text-3xl font-black text-emerald-400 uppercase">
+                        "HỨNG THÚ KHÔNG PHẢI LÚC NÀO CŨNG ĐẾN TRƯỚC HÀNH ĐỘNG"
+                    </h3>
+                    <p class="text-xl text-slate-200 leading-relaxed">
+                        Đừng so tốc độ của mình với những video thành công hào nhoáng của người khác, cũng đừng xem một ngày mệt mỏi là bằng chứng rằng mình đã thất bại.
+                    </p>
+                    <div class="bg-slate-950 border border-slate-700 p-4 rounded-xl text-base font-bold text-amber-300">
+                        Giữ giờ ngủ đều đặn • Ăn uống đầy đủ • Bắt đầu bằng một việc rất nhỏ rồi xem cảm giác của mình thay đổi!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 6 (TRANG 16 - 18): KÍNH SỢ ĐỒNG TIỀN             -->
+        <!-- =========================================================== -->
+        <div class="slide-content" id="slide16">
+            <div class="flex justify-between items-center border-b border-red-500/40 pb-3 z-10">
+                <span class="bg-red-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 06 / 08 • KÍNH SỢ TIỀN BẠC KHI THU NHẬP CAO</span>
+                <span class="text-rose-400 font-black text-sm mono">TRANG 16 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-8">
+                <h1 class="text-5xl font-black text-rose-400 glow-red uppercase leading-tight mb-6">
+                    ĐỪNG ĐEM THU NHẬP CAO NHẤT THỜI<br>
+                    <span class="text-white">COI THÀNH CHỖ DỰA CẢ ĐỜI!</span>
+                </h1>
+                <div class="panel-box border-amber-500/70 rounded-2xl p-8 max-w-[980px] space-y-4">
+                    <p class="text-2xl font-black text-amber-300">
+                        "Khi gió thổi lên, ai cũng nghĩ mình tài giỏi. Nhưng khi gió ngừng thổi, người ngã chật vật nhất lại là người thực sự nghĩ rằng mình biết bay!"
+                    </p>
+                    <p class="text-lg text-slate-300">
+                        Ngành nghề sẽ thay đổi, công ty có thể cắt giảm nhân sự — những ngày thuận buồm xuôi gió không bao giờ kéo dài mãi mãi.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 17 -->
+        <div class="slide-content" id="slide17">
+            <div class="flex justify-between items-center border-b border-red-500/40 pb-3 z-10">
+                <span class="bg-red-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 06 / 08 • BIỂU ĐỒ BẪY LƯƠNG 8 TRIỆU ➔ 20 TRIỆU</span>
+                <span class="text-rose-400 font-black text-sm mono">TRANG 17 / 24</span>
+            </div>
+
+            <div class="flex-1 flex gap-6 items-center z-10 my-3">
+                <div class="w-[62%] h-full panel-box border-red-500/60 rounded-2xl p-5 flex flex-col justify-between">
+                    <div class="text-sm font-black text-rose-300 uppercase">BIỂU ĐỒ GHIM CHI PHÍ VÀO ĐỈNH THU NHẬP</div>
+                    <svg viewBox="0 0 620 270" class="w-full h-[240px]">
+                        <line x1="40" y1="230" x2="590" y2="230" stroke="#64748b" stroke-width="2"/>
+                        <line x1="40" y1="25" x2="40" y2="230" stroke="#64748b" stroke-width="2"/>
+                        <path d="M60,190 L270,55 L540,170" fill="none" stroke="#38bdf8" stroke-width="5"/>
+                        <circle cx="60" cy="190" r="8" fill="#38bdf8"/><text x="75" y="198" fill="#7dd3fc" font-size="14" font-weight="900">Lương 8 Triệu</text>
+                        <circle cx="270" cy="55" r="9" fill="#fde047"/><text x="270" y="38" text-anchor="middle" fill="#fde047" font-size="15" font-weight="900">Tăng lên 20 Triệu</text>
+                        <circle cx="540" cy="170" r="9" fill="#ef4444"/><text x="500" y="198" text-anchor="middle" fill="#f87171" font-size="14" font-weight="900">Giảm 50% còn 10Tr</text>
+                        <path d="M60,210 L270,82 L560,82" fill="none" stroke="#ef4444" stroke-width="4" stroke-dasharray="6 4"/>
+                        <text x="425" y="70" fill="#fca5a5" font-size="13.5" font-weight="900">Thuê phòng 5Tr + Nợ mua nhà, xe (Cố định!)</text>
+                        <polygon points="325,82 540,82 540,170" fill="#ef4444" fill-opacity="0.32"/>
+                        <text x="460" y="122" fill="#ffffff" font-size="15" font-weight="900">KẸT NỢ NẶNG</text>
+                    </svg>
+                </div>
+
+                <div class="w-[38%] h-full panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-between">
+                    <div class="text-amber-400 font-black text-xl uppercase">ẢO GIÁC CỦA SỰ NỞ MÀY NỞ MẶT</div>
+                    <p class="text-base text-slate-200 leading-relaxed">
+                        Lương tăng 8 triệu lên 20 triệu lập tức đổi phòng thuê 2 triệu lên 5 triệu, mua điện thoại đời mới, gánh thêm nợ mua nhà, mua xe.
+                    </p>
+                    <div class="bg-red-950/70 border border-red-500 p-4 rounded-xl text-sm font-bold text-rose-200">
+                        Đến khi thu nhập giảm một nửa mà tiền trả nợ vẫn nguyên như cũ mới hiểu: những thứ từng giúp mình nở mày nở mặt lại đang bóp nghẹt mình!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 18 -->
+        <div class="slide-content" id="slide18">
+            <div class="flex justify-between items-center border-b border-red-500/40 pb-3 z-10">
+                <span class="bg-red-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 06 / 08 • TIỀN TIẾT KIỆM LÀ TẤM ĐỆM GIẢM XÓC</span>
+                <span class="text-rose-400 font-black text-sm mono">TRANG 18 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-between gap-6 z-10 my-3">
+                <div class="grid grid-cols-3 gap-6 flex-1">
+                    <div class="panel-box border-sky-500 rounded-2xl p-6 flex flex-col justify-center text-center">
+                        <div class="text-5xl mb-3">🧭</div>
+                        <div class="text-xl font-black text-sky-400 uppercase mb-2">KHI CÔNG VIỆC TRỤC TRẶC</div>
+                        <p class="text-base text-slate-200">Bạn có đủ thời gian bình tĩnh tìm hướng đi mới mà không bị hoảng loạn.</p>
+                    </div>
+
+                    <div class="panel-box border-amber-500 rounded-2xl p-6 flex flex-col justify-center text-center">
+                        <div class="text-5xl mb-3">🏥</div>
+                        <div class="text-xl font-black text-amber-400 uppercase mb-2">KHI GIA ĐÌNH CÓ VIỆC ĐỘT XUẤT</div>
+                        <p class="text-base text-slate-200">Bạn bớt phải chạy khắp nơi cúi đầu vay mượn trong lúc cấp bách.</p>
+                    </div>
+
+                    <div class="panel-box border-emerald-500 rounded-2xl p-6 flex flex-col justify-center text-center">
+                        <div class="text-5xl mb-3">🛡️</div>
+                        <div class="text-xl font-black text-emerald-400 uppercase mb-2">KHI CẦN NGHỈ NGƠI</div>
+                        <p class="text-base text-slate-200">Bạn có thể dừng lại mà không bị tiền nhà, tiền trả góp đẩy đi.</p>
+                    </div>
+                </div>
+
+                <div class="bg-slate-900 border border-amber-400 rounded-2xl p-4 text-center text-base font-bold text-amber-300">
+                    Từ tiết kiệm sang xa hoa thì dễ, từ xa hoa trở lại tiết kiệm mới khó — Điều giúp bạn đứng vững là giữ được bao nhiêu để chống đỡ lúc sóng gió!
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 7 (TRANG 19 - 21): HỌC CÁCH KIẾM TIỀN THỰC CHIẾN -->
+        <!-- =========================================================== -->
+        <div class="slide-content" id="slide19">
+            <div class="flex justify-between items-center border-b border-emerald-500/40 pb-3 z-10">
+                <span class="bg-emerald-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 07 / 08 • HỌC TẬP VS KIẾM TIỀN</span>
+                <span class="text-emerald-400 font-black text-sm mono">TRANG 19 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center items-center text-center z-10 px-8">
+                <h1 class="text-5xl font-black text-emerald-400 glow-green uppercase leading-tight mb-6">
+                    THỊ TRƯỜNG KHÔNG TRẢ TIỀN VÌ BẠN CỐ GẮNG —<br>
+                    <span class="text-white">NGƯỜI TA TRẢ TIỀN VÌ BẠN GIẢI QUYẾT ĐƯỢC VẤN ĐỀ!</span>
+                </h1>
+
+                <div class="grid grid-cols-2 gap-8 w-full max-w-[1020px] mt-4">
+                    <div class="panel-box border-amber-500/70 rounded-2xl p-6 text-left">
+                        <div class="text-amber-400 font-black text-lg uppercase mb-2">ĐỪNG LẤY VIỆC HỌC LÀM CỚ NÉ TRÁNH</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Nhiều người học mãi nhưng không dám làm, cứ đợi mình "đủ giỏi, đủ kiến thức, đủ tự tin" — kết quả là cơ hội đi qua mà bản thân vẫn đứng yên.
+                        </p>
+                    </div>
+
+                    <div class="panel-box border-sky-500/70 rounded-2xl p-6 text-left">
+                        <div class="text-sky-400 font-black text-lg uppercase mb-2">HỌC CÁI GÌ VÀ DÙNG ĐƯỢC ĐẾN ĐÂU</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Không phải học không có ích, mà học rồi phải đem ra sử dụng được thì mới biến thành thu nhập!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 20 -->
+        <div class="slide-content" id="slide20">
+            <div class="flex justify-between items-center border-b border-emerald-500/40 pb-3 z-10">
+                <span class="bg-emerald-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 07 / 08 • SỰ THẬT THƯƠNG MẠI & CÁCH SỬA LỖI</span>
+                <span class="text-emerald-400 font-black text-sm mono">TRANG 20 / 24</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 flex-1 z-10 my-4">
+                <div class="panel-box border-sky-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="text-sky-400 font-black text-xl uppercase mb-3">1. DÁM THỬ — LIÊN TỤC SỬA VẤN ĐỀ</div>
+                        <ul class="space-y-4 text-base text-slate-200 leading-relaxed">
+                            <li>• Làm video ngắn không ai xem ➔ Hãy nghiên cứu cách mở đầu, chọn đề tài và chỉnh sửa nội dung.</li>
+                            <li>• Bán hàng không có khách ➔ Hãy xem lại sản phẩm, giá bán và nhu cầu người mua.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-sky-950/70 p-3.5 rounded-xl text-sm font-bold text-sky-300">Mỗi lần giải quyết được 1 vấn đề, bạn mạnh hơn hôm qua 1 chút</div>
+                </div>
+
+                <div class="panel-box border-amber-500 rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="text-amber-400 font-black text-xl uppercase mb-3">2. NHÌN RÕ SỰ THẬT THƯƠNG MẠI</div>
+                        <ul class="space-y-4 text-base text-slate-200 leading-relaxed">
+                            <li>• Bạn nghĩ mình làm ra thứ rất tốt, nhưng <strong>khách hàng có thực sự cần không</strong>?</li>
+                            <li>• Bạn cho rằng giá như vậy đã rẻ, nhưng <strong>người mua có thấy đáng tiền không</strong>?</li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-950/70 p-3.5 rounded-xl text-sm font-bold text-amber-300">Đừng hỏi mình biết làm gì — Hãy hỏi người khác đang cần gì!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 21 -->
+        <div class="slide-content" id="slide21">
+            <div class="flex justify-between items-center border-b border-emerald-500/40 pb-3 z-10">
+                <span class="bg-emerald-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 07 / 08 • HỌC MỘT CHÚT — DÙNG MỘT CHÚT</span>
+                <span class="text-emerald-400 font-black text-sm mono">TRANG 21 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-between gap-6 z-10 my-3">
+                <div class="grid grid-cols-2 gap-6 flex-1">
+                    <div class="panel-box border-emerald-500 rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="text-emerald-400 font-black text-xl uppercase">THỬ NGHIỆM QUY MÔ NHỎ</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Muốn bán hàng hãy thử lượng nhỏ trước khi nhập cả kho; muốn làm dịch vụ hãy phục vụ vài khách trước. Dùng khoản tiền mình chịu được nếu mất để lấy phản hồi thực tế từ thị trường.
+                        </p>
+                        <div class="text-xs font-bold text-emerald-300 bg-emerald-950/60 p-3 rounded-xl">Không dốc hết tiền tiết kiệm vào ý tưởng chưa kiểm chứng</div>
+                    </div>
+
+                    <div class="panel-box border-red-500 rounded-2xl p-6 flex flex-col justify-between">
+                        <div class="text-rose-400 font-black text-xl uppercase">CÁCH HỌC TỪ NGƯỜI THÀNH CÔNG</div>
+                        <p class="text-base text-slate-200 leading-relaxed">
+                            Đừng chỉ nhìn họ khoe doanh thu hoành tráng. Hãy soi kỹ: <strong>họ bán cho ai, giải quyết vấn đề gì, tốn bao nhiêu chi phí và còn lại bao nhiêu lợi nhuận</strong>!
+                        </p>
+                        <div class="text-xs font-bold text-rose-300 bg-red-950/60 p-3 rounded-xl">Học một chút ➔ Dùng một chút ➔ Rút kinh nghiệm</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- =========================================================== -->
+        <!-- CÂU CHUYỆN 8 (TRANG 22 - 24): 60 NGÀY RÈN TƯ DUY DOANH NHÂN -->
+        <!-- =========================================================== -->
+        <div class="slide-content" id="slide22">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 08 / 08 • 3 NHẬN THỨC & 4 BƯỚC BẮT ĐẦU</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 22 / 24</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-6 flex-1 z-10 my-3">
+                <div class="panel-box border-amber-500/70 rounded-2xl p-6 flex flex-col justify-between">
+                    <div class="text-lg font-black text-amber-400 uppercase border-b border-slate-700 pb-2">3 NHẬN THỨC THAY ĐỔI GÓC NHÌN</div>
+                    <div class="space-y-3.5 text-base text-slate-200">
+                        <div><strong>1. Trường học vs Xã hội:</strong> Trường học chấm điểm bài thi; xã hội trả tiền cho khả năng giải quyết vấn đề.</div>
+                        <div><strong>2. Nhìn từ góc độ khách hàng:</strong> Thấy tài xế chờ bốc hàng đói bụng mà không có quán cơm, anh quản lý kho kết nối quán cơm hộp gần đó để nhận hoa hồng (<em>0 đồng thuê mặt bằng, 0 đồng nhập hàng</em>).</div>
+                        <div><strong>3. Tập đưa ra kết luận:</strong> Sau mỗi video kinh doanh, tự hỏi mô hình đó kiếm tiền thế nào, chi phí ở đâu?</div>
+                    </div>
+                </div>
+
+                <div class="panel-box border-emerald-500/70 rounded-2xl p-6 flex flex-col justify-between">
+                    <div class="text-lg font-black text-emerald-400 uppercase border-b border-slate-700 pb-2">4 VIỆC ĐƠN GIẢN ĐỂ BẮT ĐẦU TỪ CON SỐ 0</div>
+                    <div class="space-y-3 text-base text-slate-200">
+                        <div class="bg-slate-900 p-3 rounded-xl"><strong class="text-amber-400">1. Liệt kê kỹ năng:</strong> Biến kỹ năng đang có thành sản phẩm hoặc dịch vụ.</div>
+                        <div class="bg-slate-900 p-3 rounded-xl"><strong class="text-sky-400">2. Thử nghiệm nhỏ:</strong> Tìm khách đầu tiên trước khi thuê mặt bằng hay nhập kho.</div>
+                        <div class="bg-slate-900 p-3 rounded-xl"><strong class="text-rose-400">3. Theo dõi kết quả:</strong> Xem khách có mua không và sửa lỗi sản phẩm ngay.</div>
+                        <div class="bg-slate-900 p-3 rounded-xl"><strong class="text-emerald-400">4. Quan sát người giỏi:</strong> Học cách họ tìm khách, định giá và vận hành.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 23 -->
+        <div class="slide-content" id="slide23">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 08 / 08 • 60 NGÀY RÈN 5 THÓI QUEN DOANH NHÂN</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 23 / 24</span>
+            </div>
+
+            <div class="grid grid-cols-3 gap-5 flex-1 z-10 my-3">
+                <div class="panel-box border-amber-500 rounded-2xl p-5 flex flex-col justify-between">
+                    <div class="text-amber-400 font-black text-lg uppercase">1. NHÌN LỢI NHUẬN SAU GIÁ BÁN</div>
+                    <p class="text-sm text-slate-200 leading-relaxed">
+                        Mua ly cà phê <strong>40.000đ</strong>, đừng chỉ nghĩ đắt hay rẻ. Hãy ước tính nguyên liệu, mặt bằng, nhân viên hết bao nhiêu — <strong>chủ quán còn lại bao nhiêu lãi</strong>?
+                    </p>
+                    <div class="text-xs font-bold text-amber-300 bg-amber-950/60 p-2 rounded text-center">Nhìn phía sau mỗi mức giá</div>
+                </div>
+
+                <div class="panel-box border-sky-500 rounded-2xl p-5 flex flex-col justify-between">
+                    <div class="text-sky-400 font-black text-lg uppercase">2. TÌM KHOẢNG TRỐNG CUNG CẦU</div>
+                    <p class="text-sm text-slate-200 leading-relaxed">
+                        Dành 20 phút quan sát khu đông khách xem họ bực gì: <strong>chờ quá lâu, thiếu chỗ đậu xe, hay cần bữa ăn nhanh</strong>? Cơ hội nằm ở chỗ đối thủ chưa phục vụ tốt.
+                    </p>
+                    <div class="text-xs font-bold text-sky-300 bg-sky-950/60 p-2 rounded text-center">Ghi lại 3 nỗi đau của khách</div>
+                </div>
+
+                <div class="panel-box border-emerald-500 rounded-2xl p-5 flex flex-col justify-between">
+                    <div class="text-emerald-400 font-black text-lg uppercase">3. HỎI AI SẼ TRẢ TIỀN</div>
+                    <p class="text-sm text-slate-200 leading-relaxed">
+                        Đặt 3 câu hỏi: <strong>Ai mua? Vì sao cần? Sẵn sàng trả bao nhiêu?</strong> (Ví dụ: mua bình giữ nhiệt để tiết kiệm tiền mua nước bên ngoài).
+                    </p>
+                    <div class="text-xs font-bold text-emerald-300 bg-emerald-950/60 p-2 rounded text-center">Hiểu đúng động cơ mua hàng</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-5 z-10">
+                <div class="panel-box border-purple-500 rounded-xl p-4">
+                    <strong class="text-purple-400 uppercase">4. Theo dõi dòng chảy tiền:</strong> Chia chi tiêu tháng trước thành 2 nhóm: <em>Tiêu dùng trước mắt</em> vs <em>Đầu tư nâng cao năng lực &amp; công cụ tạo giá trị tương lai</em>.
+                </div>
+                <div class="panel-box border-rose-500 rounded-xl p-4">
+                    <strong class="text-rose-400 uppercase">5. Biến thông tin thành phán đoán:</strong> Dành 30 giây sau mỗi bài viết tự hỏi: mô hình này có hợp với mình không và rủi ro nằm ở đâu?
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 24 -->
+        <div class="slide-content" id="slide24">
+            <div class="flex justify-between items-center border-b border-amber-500/40 pb-3 z-10">
+                <span class="bg-amber-500 text-slate-950 px-4 py-1 rounded-full text-xs font-black uppercase">CÂU CHUYỆN 08 / 08 • TỔNG KẾT TOÀN BỘ 8 CÂU CHUYỆN</span>
+                <span class="text-amber-400 font-black text-sm mono">TRANG 24 / 24</span>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-between gap-6 z-10 my-3">
+                <div class="grid grid-cols-2 gap-8 flex-1">
+                    <div class="panel-box border-slate-600 rounded-2xl p-7 flex flex-col justify-center">
+                        <div class="text-slate-400 font-black text-2xl uppercase mb-4">👁️ CON MẮT NGƯỜI LÀM THUÊ</div>
+                        <ul class="space-y-3 text-lg text-slate-300">
+                            <li>• Chỉ thấy <strong>công việc được giao</strong> và <strong>mức lương cố định</strong>.</li>
+                            <li>• Làm kho 3 năm chỉ biết bốc xếp hàng hóa.</li>
+                            <li>• Có tiền là tiêu sạch để chứng minh bản thân.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel-box border-amber-400 bg-gradient-to-br from-slate-900 to-amber-950/30 rounded-2xl p-7 flex flex-col justify-center">
+                        <div class="text-amber-400 font-black text-2xl uppercase mb-4">🦅 CON MẮT NGƯỜI LÀM CHỦ</div>
+                        <ul class="space-y-3 text-lg text-white">
+                            <li>• Chú ý đến <strong>khách hàng, chi phí, nhu cầu, dòng tiền và khoảng trống thị trường</strong>.</li>
+                            <li>• Biến bất tiện của tài xế chờ hàng thành nguồn thu 0 đồng vốn.</li>
+                            <li>• Giữ ấm tiền mặt để làm chủ quyền lựa chọn cuộc đời.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-slate-950 rounded-2xl px-8 py-4 text-center shadow-2xl">
+                    <div class="text-xl font-black uppercase">
+                        Không yêu cầu vốn lớn hay quan hệ rộng — Điều bạn cần trước tiên là thay đổi cách quan sát và suy nghĩ!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+    const totalSlides = 24;
+    let currentSlide = 1;
+
+    const slideTitles = [
+        "1. [Chuyện 1] Chỉ kinh doanh mới kiếm hàng tỷ",
+        "2. [Chuyện 1] Kiếm tiền người giàu & Sao chép",
+        "3. [Chuyện 1] Khởi nghiệp ít vốn & Thử sai",
+        "4. [Chuyện 2] Công việc tạo ra 1 tỷ/năm",
+        "5. [Chuyện 2] Ẩn dụ Bắt cua hoàng đế",
+        "6. [Chuyện 2] Chặn chảy máu ở 3 khoản chi phí",
+        "7. [Chuyện 3] Bốn chữ vàng: Tiền cần giữ ấm",
+        "8. [Chuyện 3] Số dư 50-100tr giúp thẳng sống lưng",
+        "9. [Chuyện 3] Quyền lựa chọn không cúi đầu",
+        "10. [Chuyện 4] 3 cấp độ kiếm tiền 100tr/tháng",
+        "11. [Chuyện 4] Kỷ luật chớp thời cơ ngắn hạn",
+        "12. [Chuyện 4] Làm ra tiền từ lợi thế riêng",
+        "13. [Chuyện 5] Vòng lặp trống rỗng & Mất hứng thú",
+        "14. [Chuyện 5] 3 việc nhỏ phá vỡ thói quen cũ",
+        "15. [Chuyện 5] Hành động nhỏ kéo hứng thú về",
+        "16. [Chuyện 6] Kính sợ tiền bạc khi gió thổi lên",
+        "17. [Chuyện 6] Bẫy lạm phát lối sống 8tr -> 20tr",
+        "18. [Chuyện 6] Tiền tiết kiệm là tấm đệm giảm xóc",
+        "19. [Chuyện 7] Thị trường trả tiền cho giải pháp",
+        "20. [Chuyện 7] Dám thử dám sai & Sự thật thương mại",
+        "21. [Chuyện 7] Học một chút - Dùng một chút",
+        "22. [Chuyện 8] 3 nhận thức & 4 bước bắt đầu",
+        "23. [Chuyện 8] 60 ngày rèn 5 thói quen doanh nhân",
+        "24. [Chuyện 8] Tổng kết: Đôi mắt người làm chủ"
+    ];
+
+    const selector = document.getElementById('slideSelector');
+    slideTitles.forEach((title, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx + 1;
+        opt.textContent = title;
+        selector.appendChild(opt);
+    });
+
+    // Kịch bản chi tiết đầy đủ để xuất ra file Word / PDF riêng cho bạn đọc
+    const scripts = {
+        1: `<p><strong>Câu chuyện 1:</strong> Chỉ có kinh doanh mới có cơ hội kiếm được vài trăm triệu đến hàng tỷ đồng. Chỉ dựa vào làm thuê, giao đồ ăn hay đi làm công ty thì rất khó để thực sự kiếm được nhiều tiền — cùng lắm chỉ giải quyết được vấn đề cơm áo gạo tiền.</p><p>Người xưa có một câu nói rất thẳng thắn: <em>"Thà ra vỉa hè bán hàng chứ không đi làm thuê chịu khổ, thà ngủ dưới sàn cũng phải làm ông chủ"</em>. Kinh doanh không phải là liều lĩnh, mà là chọn đúng cách chơi, phục vụ đúng người, sao chép đúng mô hình và kiểm soát rủi ro.</p>`,
+        2: `<p>Muốn kinh doanh tốt không thể tách rời ba câu nói này:</p><p><strong>Thứ nhất: Nhất định phải kiếm tiền từ người giàu.</strong> Tiền của người nghèo rất khó kiếm, cũng không kiếm được nhiều vì bản thân họ đã không có tiền lại còn phải tính toán chi li. Nhưng người giàu thì khác: họ mua trải nghiệm, mua cảm giác và thể diện. Bạn phục vụ ai sẽ quyết định bạn kiếm được bao nhiêu tiền.</p><p><strong>Thứ hai: Đừng vừa bắt đầu đã nghĩ đến việc đổi mới.</strong> Đa số người khởi nghiệp thất bại không phải vì không nỗ lực, mà vì có quá nhiều ý tưởng. Những thứ thị trường đã chứng minh hiệu quả thì bạn không làm, lại cứ tự mình mày mò một lối đi riêng. Người thực sự thông minh đều bắt chước một mô hình kiếm được tiền trước rồi từ từ tối ưu hóa nó. Bạn bắt chước một người có thu nhập hàng triệu mỗi năm dù chỉ làm được 60% thì cũng tốt hơn nhiều so với việc tự mò mẫm trong hỗn loạn.</p>`,
+        3: `<p><strong>Thứ ba: Nhất định phải khởi nghiệp với ít vốn.</strong> Sai lầm lớn nhất của người bình thường là vừa bắt đầu đã tất tay mua nhà, mua xe, vay vốn khởi nghiệp. Nghe có vẻ rất nhiệt huyết, nhưng chỉ cần thất bại một lần là bạn không thể gượng dậy được.</p><p>Người thực sự thông minh đều thử sai với chi phí thấp, dùng vài nghìn vài chục nghìn để từ từ phát triển lên. Làm được thì đó là năng lực, không làm được thì vẫn có thể bắt đầu lại.</p>`,
+        4: `<p><strong>Câu chuyện 2:</strong> Nếu bạn muốn kiếm được một tỷ đồng mỗi năm thì điều đầu tiên cần làm không phải là cố gắng làm việc chăm chỉ hơn, mà là bước vào một công việc có khả năng mang lại cho bạn một tỷ đồng mỗi năm. Nghe thì rất đơn giản nhưng rất ít người thực sự dành thời gian suy nghĩ nghiêm túc về điều này.</p><p>Nhiều người dành cả tuổi trẻ để làm những công việc mà ngay từ đầu cấu trúc thu nhập đã có giới hạn. Dù bạn nỗ lực gấp đôi hay gấp ba người khác, mức thu nhập tối đa vẫn chỉ dừng ở một ngưỡng nhất định. Vì thế vấn đề không nằm ở việc chưa đủ chăm chỉ, mà nằm ở việc chọn sai cuộc chơi ngay từ đầu.</p>`,
+        5: `<p>Khi bạn đặt mình vào một môi trường không có khả năng tạo ra giá trị lớn, càng nỗ lực bạn cũng chỉ đang tối ưu một giới hạn vốn đã tồn tại.</p><p>Hãy tưởng tượng bạn muốn bắt được <strong>cua hoàng đế</strong>: điều quan trọng nhất không phải là sở hữu những dụng cụ đánh bắt đắt tiền hay thức trắng nhiều đêm, mà là phải đến đúng vùng biển nơi cua hoàng đế sinh sống. Nếu bạn cứ kiên trì đánh bắt trong một cái ao nhỏ thì dù cố gắng đến mấy cũng không thể có được kết quả mong muốn. Kiếm tiền cũng vậy: lựa chọn đúng ngành nghề, đúng thị trường và đúng mô hình kinh doanh quan trọng hơn việc chỉ biết chăm chỉ làm việc.</p>`,
+        6: `<p>Doanh thu ngày càng tăng nhưng lợi nhuận lại sụt giảm — rất có thể doanh nghiệp của bạn đang âm thầm chảy máu ở một khoản chi phí mà bạn chưa từng chú ý đến.</p><p>Trong kinh doanh có ba khoản chi phí mà gần như doanh nghiệp nào cũng phải đối mặt: <strong>chi phí nhân sự, chi phí hàng hóa và chi phí tìm kiếm khách hàng</strong> (khoản khiến nhiều chủ doanh nghiệp đau đầu nhất). Sai lầm lớn nhất là không biết khoản chi nào đang tạo ra lợi nhuận và khoản chi nào đang bào mòn doanh nghiệp. Người làm chủ không nhất thiết phải giỏi kế toán nhưng nhất định phải có tư duy tài chính, đọc báo cáo và số liệu để đưa ra quyết định kịp thời.</p>`,
+        7: `<p><strong>Câu chuyện 3:</strong> Khi trong túi bạn lần đầu tiên chạm được vào số tiền 50 triệu hay 100 triệu, hãy nhớ kỹ: tuyệt đối đừng vội tiêu nó. Trước đây tôi cũng từng như vậy, tích góp được 30 triệu là muốn đổi điện thoại mới, mua áo khoác đắt tiền hay rủ bạn bè ăn một bữa thật ngon.</p><p>Sau này tôi gặp một người chị đã làm kinh doanh hơn 15 năm, chị ấy nói một câu làm thay đổi hoàn toàn nhận thức về đồng tiền: <em>"Ngay bây giờ bạn hãy viết xuống 4 chữ: TIỀN CẦN GIỮ ẤM. Tiền bạc không phải dùng để chứng minh bạn giàu có, mà là để giúp bạn trở nên vững vàng và cứng cỏi hơn."</em></p>`,
+        8: `<p>Thời còn đi làm công sở, tôi nhận thưởng giữa năm 80 triệu, lần đầu tiên tài khoản vượt mốc 100 triệu và hào hứng muốn mua một chiếc đồng hồ thật tốt. Chị ấy hỏi: <em>"Nếu bây giờ em nghỉ việc, em có thể trụ được bao nhiêu tháng? Em đem 80 triệu này tiêu đi để sung sướng trong chốc lát hay để nằm yên trong tài khoản làm chỗ dựa cho mình thì tốt hơn?"</em></p><p>Khi trong túi lúc nào cũng có thể rút ra 50 triệu hay 100 triệu, lúc xin nghỉ việc với sếp sống lưng của bạn tự nhiên sẽ thẳng; khi từ chối những người tồi tệ ánh mắt bạn sẽ vô cùng bình tĩnh. Sau đó công ty đột ngột yêu cầu tôi làm thêm cuối tuần với giọng điệu hách dịch, nhớ đến số tiền trong tài khoản tôi đã bình tĩnh từ chối và lãnh đạo phải đồng ý!</p>`,
+        9: `<p>Trước đây tôi luôn nghĩ từ chối người khác là một loại năng lực, sau này mới hiểu từ chối người khác đôi khi cũng cần có vốn liếng.</p><p>Người chị ấy từng nói: <em>"Người thực sự có tiền không phải nhìn xem họ đi xe gì, mang túi xách gì, mà nhìn xem họ có dám nói không hay không. Tiền nằm trong tay em không phải để chứng minh cho người khác thấy em giàu có, mà là để những lúc cần phải cúi đầu, em có quyền lựa chọn không cúi đầu."</em> Mỗi đồng tiền tích góp hôm nay đều là sự tự tin của bạn trong tương lai.</p>`,
+        10: `<p><strong>Câu chuyện 4:</strong> Nếu thu nhập mỗi tháng của bạn vẫn chưa đạt mức 100 triệu thì nhất định phải hiểu rõ ba khái niệm: thế nào là <strong>kiếm tiền bằng sức lao động</strong>, thế nào là <strong>tìm mọi cách để kiếm tiền</strong>, và thế nào là <strong>làm ra tiền</strong>.</p><p>Thứ nhất, kiếm tiền bằng sức lao động là cách làm chủ yếu dựa vào thời gian và sức lực, làm theo công việc được giao, ai trả tiền cho mình thì nghe lời người đó, nhiều nhất chỉ cố gắng thương lượng thêm một chút quyền lợi cho bản thân.</p>`,
+        11: `<p>Thứ hai là <strong>tìm mọi cách để kiếm tiền</strong>: đó là kiểu làm ăn biết chớp thời cơ, tìm cách xoay sở kiếm lời từ những cơ hội trước mắt, làm một thời gian rồi lại chuyển sang cơ hội khác (miễn không vượt qua ranh giới pháp luật và phải biết điểm dừng khi đã có lời).</p><p>Ví dụ bạn nhập một ít hàng theo mùa về bán, mỗi ngày kiếm 300–500 nghìn, có ngày vài triệu. Nhưng nếu thấy lời rồi muốn ngày nào cũng kiếm vài chục triệu, cứ thế ôm thêm hàng mà không biết kiềm chế thì rất dễ gặp rắc rối. Điểm cốt lõi là tốc độ, và sau đó từng bước hoàn thiện quy trình, bàn giao công việc để chuyển sang kinh doanh bài bản lâu dài.</p>`,
+        12: `<p>Cuối cùng là khái niệm thứ ba: <strong>làm ra tiền</strong> bản chất là sở hữu một lợi thế riêng mà người khác khó thay thế: có lượng người theo dõi để đưa sản phẩm tới người cần, có danh tiếng uy tín để tạo cơ hội làm ăn, có mạng lưới quan hệ để hợp tác.</p><p>Đến lúc này bạn không nhất thiết phải tự mình giỏi mọi kỹ năng bởi có thể thuê những người có chuyên môn tốt hơn hỗ trợ mình. Dù đang ở giai đoạn nào, hãy luôn tin rằng rồi sẽ có ngày gió lớn nổi lên đưa ta bay vạn dặm giữa trời cao!</p>`,
+        13: `<p><strong>Câu chuyện 5:</strong> Khi bạn bắt đầu mất hứng thú với mọi thứ, đừng vội tìm thêm kích thích để lấp đầy sự trống rỗng. Những việc từng yêu thích giờ chỉ muốn làm cho xong, mỗi ngày trôi qua như một vòng lặp: mở mắt xem điện thoại, đi làm về nhà lại lướt điện thoại, xem thêm video, chơi thêm game, cày thêm một bộ phim.</p><p>Nếu càng xem càng trống rỗng có lẽ bạn cần dừng lại. Đừng vội trách mình lười biếng: mất hứng thú có thể liên quan đến căng thẳng, kiệt sức hoặc trầm cảm (nếu kéo dài khoảng 2 tuần hoặc ảnh hưởng rõ đến sinh hoạt, hãy tìm chuyên gia sức khỏe tâm thần).</p>`,
+        14: `<p>Còn với những thói quen đang khiến ngày nào cũng giống ngày nào, bạn có thể bắt đầu thay đổi từ ba việc nhỏ:</p><p><strong>Thứ nhất:</strong> Giảm bớt thứ đang chiếm hết sự chú ý. Tắt thông báo không cần thiết, đặt điện thoại xa lúc ăn và trước khi ngủ để giành lại khoảng thời gian không phải liên tục nhìn màn hình.</p><p><strong>Thứ hai:</strong> Thử một việc nhỏ khác với thường ngày — đi bộ một đoạn đường mới 10 phút, nấu một món chưa từng nấu, gọi cho một người bạn đã lâu không trò chuyện để kết nối lại với cuộc sống.</p><p><strong>Thứ ba:</strong> Chọn một mục tiêu vừa sức chia nhỏ đến mức hôm nay có thể bắt tay vào (dành 15 phút thực hành kỹ năng, làm xong phần đầu tiên của dự án).</p>`,
+        15: `<p>Đừng so tốc độ của mình với những đoạn video thành công của người khác, cũng đừng xem một ngày mệt mỏi là bằng chứng rằng mình đã thất bại.</p><p>Hứng thú không phải lúc nào cũng đến trước hành động — đôi khi bạn cần bắt đầu bằng một việc rất nhỏ rồi xem cảm giác của mình thay đổi thế nào. Giữ giờ ngủ đều đặn, ăn uống đầy đủ và cho bản thân thời gian điều chỉnh từng bước.</p>`,
+        16: `<p><strong>Câu chuyện 6:</strong> Vào lúc thu nhập của bạn tốt, bạn nhất định phải có sự kính sợ đối với tiền bạc. Đừng đem thu nhập cao nhất thời coi thành chỗ dựa cả đời.</p><p>Rất nhiều người mắc phải một ảo giác: hôm nay kiếm được nhiều, ngày mai chắc chắn còn kiếm được nhiều hơn. Nhưng ngành nghề sẽ thay đổi, công ty có thể cắt giảm nhân sự và những ngày thuận buồm xuôi gió không kéo dài mãi. Khi gió thổi lên ai cũng nghĩ mình tài giỏi, nhưng khi gió ngừng thổi, người ngã chật vật nhất lại là người thực sự nghĩ rằng mình biết bay!</p>`,
+        17: `<p>Lương từ 8 triệu tăng lên 20 triệu lập tức đổi phòng thuê từ 2 triệu lên 5 triệu, điện thoại phải đời mới, ăn uống phải sang hơn, có thêm thu nhập là gánh thêm khoản vay mua nhà, mua xe — cuối cùng kiếm nhiều hơn nhưng chẳng giữ lại được bao nhiêu.</p><p>Họ đem chi phí sinh hoạt nhiều năm trong tương lai ghim chặt vào mức thu nhập cao nhất ở hiện tại. Đến khi thu nhập giảm một nửa, tiền trả nợ vẫn nguyên như cũ mới hiểu những thứ từng giúp mình nở mày nở mặt lại đang khiến mình khốn đốn.</p>`,
+        18: `<p>Kính sợ tiền bạc không phải là bảo bạn sống keo kiệt, mà là đừng kéo ham muốn lên quá cao khi đang thuận lợi. Tiền tiết kiệm không chỉ là một dãy số trong ngân hàng — nó là <strong>tấm đệm giảm xóc cho cuộc đời bạn</strong>: khi công việc trục trặc bạn có thời gian tìm hướng đi mới; khi gia đình có việc đột xuất bạn bớt phải chạy khắp nơi vay mượn; khi cần nghỉ ngơi bạn có thể dừng lại mà không bị tiền nhà, tiền trả góp đẩy đi.</p><p>Từ tiết kiệm sang xa hoa thì dễ, từ xa hoa trở lại tiết kiệm mới khó — điều giúp bạn đứng vững không chỉ là kiếm nhanh thế nào lúc đỉnh cao, mà còn là giữ được bao nhiêu để chống đỡ lúc sóng gió.</p>`,
+        19: `<p><strong>Câu chuyện 7:</strong> Hôm nay chúng ta nói về học cách kiếm tiền. Có người học hành vất vả nhiều năm thu nhập vẫn không bằng người biết nắm bắt cơ hội. Học tập quan trọng, nhưng học cái gì và dùng được đến đâu còn quan trọng hơn học nhiều bao nhiêu.</p><p>Đừng lấy việc học làm cớ né tránh thực tế: thị trường không trả tiền chỉ vì bạn đã cố gắng, người ta trả tiền vì bạn <strong>giải quyết được vấn đề</strong>, sản phẩm của bạn đáp ứng đúng nhu cầu và làm tốt hơn những lựa chọn khác.</p>`,
+        20: `<p><strong>Thứ nhất:</strong> Muốn kiếm tiền phải dám thử dám sai. Nhiều người học mãi nhưng không dám làm, cứ đợi mình đủ giỏi, đủ tự tin, kết quả là cơ hội đi qua. Muốn làm video ngắn mà không ai xem hãy nghiên cứu cách mở đầu và chỉnh sửa nội dung; muốn bán hàng mà không có khách hãy xem lại sản phẩm, giá bán và nhu cầu người mua.</p><p><strong>Thứ hai:</strong> Kiếm tiền buộc bạn nhìn rõ sự thật về thương mại. Đừng chỉ hỏi mình biết làm gì, hãy hỏi người khác đang cần gì. Bạn nghĩ mình làm ra thứ rất tốt và giá rẻ, nhưng người mua có thấy đáng tiền không mới là quan trọng.</p>`,
+        21: `<p><strong>Thứ ba:</strong> Học một chút, dùng một chút rồi điều chỉnh. Muốn bán hàng hãy thử lượng nhỏ trước khi nhập cả kho; muốn làm dịch vụ hãy thử phục vụ vài khách để hiểu họ cần gì. Dùng khoản tiền mình chịu được nếu mất để thử thị trường, không phải dốc hết tiền tiết kiệm vào một ý tưởng chưa ai kiểm chứng.</p><p>Đồng thời khi học từ những người đã có kết quả, đừng chỉ nhìn họ khoe doanh thu — hãy xem họ bán cho ai, giải quyết vấn đề gì, tốn bao nhiêu chi phí và còn lại bao nhiêu lợi nhuận. Kiến thức không tự biến thành thu nhập, bạn phải là người đem nó ra sử dụng.</p>`,
+        22: `<p><strong>Câu chuyện 8:</strong> Có ba nhận thức có thể thay đổi hoàn toàn cách bạn nhìn thế giới: (1) Trường học kiểm tra xem bạn có biết làm bài hay không, còn xã hội kiểm tra xem bạn có giải quyết được vấn đề hay không; (2) Hãy học cách nhìn thế giới từ góc độ của khách hàng — như anh quản lý kho thấy tài xế chờ bốc hàng phải ăn đồ khô đã kết nối họ với quán cơm hộp gần đó để ăn hoa hồng mà không cần mở quán hay nhập hàng; (3) Đừng chỉ tiếp nhận thông tin mà phải tập đưa ra kết luận.</p><p>Người bình thường có thể bắt đầu từ 4 việc đơn giản: Liệt kê kỹ năng đang có để biến thành sản phẩm/dịch vụ ➔ Thử nghiệm quy mô nhỏ tìm khách đầu tiên ➔ Theo dõi kết quả sửa lỗi ➔ Quan sát người làm tốt trong ngành để học cách định giá và vận hành.</p>`,
+        23: `<p>Không ai sinh ra đã là doanh nhân. Chỉ cần kiên trì thực hành trong khoảng <strong>60 ngày</strong> năm điều sau, bạn sẽ hình thành góc nhìn của một người làm chủ:</p><p>1. <strong>Tập nhìn lợi nhuận thay vì chỉ nhìn giá bán:</strong> Mua ly cà phê 40.000đ, hãy thử ước tính nguyên liệu, mặt bằng, nhân viên hết bao nhiêu và chủ quán còn lại bao nhiêu lãi.</p><p>2. <strong>Tập tìm khoảng trống cung cầu:</strong> Dành 20 phút quan sát khu đông khách xem họ bất tiện gì (chờ lâu, thiếu chỗ đậu xe, thiếu bữa ăn nhanh) để tìm cơ hội.</p><p>3. <strong>Luôn hỏi ai sẽ trả tiền:</strong> Ai mua, vì sao cần và sẵn sàng trả bao nhiêu (như mua bình giữ nhiệt để tiết kiệm tiền mua nước ngoài).</p><p>4. <strong>Theo dõi dòng chảy của tiền:</strong> Chia chi tiêu tháng trước thành nhóm tiêu dùng trước mắt và nhóm đầu tư nâng cao năng lực tương lai.</p><p>5. <strong>Tập biến thông tin thành phán đoán:</strong> Dành 30 giây sau mỗi bài viết tự hỏi mô hình này có hợp với mình không.</p>`,
+        24: `<p>Anh quản lý kho đã làm việc ở đó suốt 3 năm nhưng chỉ đến khi bắt đầu nhìn mọi thứ bằng tư duy kinh doanh, anh mới nhận ra cơ hội kiếm thêm thu nhập ngay trước mắt mà không cần vốn lớn hay quan hệ rộng.</p><p>Nếu nhìn thế giới bằng con mắt của <strong>người làm thuê</strong>, bạn chỉ thấy công việc và mức lương. Nhưng nếu nhìn bằng con mắt của <strong>người kinh doanh</strong>, bạn sẽ bắt đầu chú ý đến khách hàng, chi phí, nhu cầu, dòng tiền và những khoảng trống chưa được đáp ứng!</p>`
+    };
+
+    function updateView() {
+        for (let i = 1; i <= totalSlides; i++) {
+            document.getElementById('slide' + i).classList.remove('active');
+        }
+        document.getElementById('slide' + currentSlide).classList.add('active');
+        selector.value = currentSlide;
+        clearCanvas();
+    }
+
+    function jumpToSlide(val) { currentSlide = Number(val); updateView(); }
+    function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; updateView(); } }
+    function prevSlide() { if (currentSlide > 1) { currentSlide--; updateView(); } }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Tự động co giãn khung hình 16:9 vừa khít 100% cửa sổ màn hình
+    function fitSlide() {
+        const wrapper = document.getElementById('slide-wrapper');
+        if (!wrapper) return;
+        const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+        wrapper.style.transform = `scale(${scale})`;
+    }
+    window.addEventListener('resize', fitSlide);
+
+    // Bật/tắt chế độ tự mờ thanh công cụ khi quay OBS
+    function togglePinToolbar() {
+        const bar = document.getElementById('topToolbar');
+        bar.classList.toggle('pinned');
+    }
+
+    // Bút vẽ chỉ điểm trực tiếp trên slide
+    const canvas = document.getElementById('drawCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false, drawMode = false, penColor = '#ef4444';
+
+    function toggleDraw() {
+        drawMode = !drawMode;
+        const btn = document.getElementById('btnPen');
+        if (drawMode) {
+            canvas.classList.remove('pointer-events-none');
+            canvas.classList.add('cursor-crosshair');
+            btn.classList.add('text-amber-400');
+            btn.innerText = '✏️ Đang Vẽ...';
+        } else {
+            canvas.classList.add('pointer-events-none');
+            canvas.classList.remove('cursor-crosshair');
+            btn.classList.remove('text-amber-400');
+            btn.innerText = '✏️ Bút Vẽ';
+        }
+    }
+
+    function setColor(color) { penColor = color; if (!drawMode) toggleDraw(); }
+    function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+
+    function getMousePos(evt) {
+        const rect = canvas.getBoundingClientRect();
+        return {
+            x: (evt.clientX - rect.left) * (canvas.width / rect.width),
+            y: (evt.clientY - rect.top) * (canvas.height / rect.height)
+        };
+    }
+
+    canvas.addEventListener('pointerdown', (e) => {
+        if (!drawMode) return;
+        isDrawing = true;
+        const pos = getMousePos(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+    });
+    canvas.addEventListener('pointermove', (e) => {
+        if (!isDrawing || !drawMode) return;
+        const pos = getMousePos(e);
+        ctx.lineWidth = 5; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+        ctx.strokeStyle = penColor;
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+    });
+    canvas.addEventListener('pointerup', () => isDrawing = false);
+    canvas.addEventListener('pointercancel', () => isDrawing = false);
+
+    // Xuất kịch bản thành file Word (.doc) để bạn mở đọc bên ngoài OBS
+    function downloadWordScript() {
+        let htmlBody = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+        <head><meta charset='utf-8'><title>Kịch Bản 8 Câu Chuyện Tư Duy Kinh Doanh</title></head>
+        <body style="font-family: Arial, sans-serif; line-height: 1.65; font-size: 14pt;">
+        <h1 style="color: #b45309; text-align: center;">KỊCH BẢN GIẢNG BÀI: 8 CÂU CHUYỆN TƯ DUY KINH DOANH &amp; LÀM CHỦ (24 SLIDE)</h1>
+        <hr/>`;
+
+        for (let i = 1; i <= totalSlides; i++) {
+            htmlBody += `<h3 style="color: #1e3a8a; background: #f8fafc; padding: 6px 10px;">SLIDE ${i} / ${totalSlides} — ${slideTitles[i-1]}</h3>${scripts[i]}<br/>`;
+        }
+        htmlBody += `</body></html>`;
+
+        const blob = new Blob(['\ufeff', htmlBody], { type: 'application/msword' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Kich_Ban_8_Cau_Chuyen_Kinh_Doanh_24_Slide.doc';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+    }
+
+    // Mở cửa sổ in / lưu PDF kịch bản riêng biệt
+    function printScriptPDF() {
+        const win = window.open('', '_blank', 'width=900,height=700');
+        let html = `<html><head><title>Kịch Bản 8 Câu Chuyện Kinh Doanh (Bản In PDF)</title>
+        <style>body{font-family:Arial,sans-serif;line-height:1.65;padding:30px;font-size:15pt;color:#0f172a;} h1{text-align:center;color:#b45309;} h3{background:#f1f5f9;padding:8px 12px;color:#1e3a8a;border-left:5px solid #2563eb;margin-top:24px;}</style>
+        </head><body><h1>KỊCH BẢN GIẢNG BÀI: 8 CÂU CHUYỆN TƯ DUY KINH DOANH (24 SLIDE)</h1>`;
+        for (let i = 1; i <= totalSlides; i++) {
+            html += `<h3>SLIDE ${i} / ${totalSlides} — ${slideTitles[i-1]}</h3>${scripts[i]}`;
+        }
+        html += `<script>window.onload = function(){ window.print(); }<\/script></body></html>`;
+        win.document.write(html);
+        win.document.close();
+    }
+
+    // Xuất ảnh Slide PNG sắc nét
+    async function exportSlide() {
+        const slideWrapper = document.getElementById('slide-wrapper');
+        const bar = document.getElementById('topToolbar');
+        const btn = document.getElementById('exportBtn');
+        btn.disabled = true;
+        btn.innerText = '⏳ Đang xuất...';
+        bar.style.visibility = 'hidden';
+
+        const prevTransform = slideWrapper.style.transform;
+        slideWrapper.style.transform = 'scale(1)';
+
+        try {
+            const rendered = await html2canvas(slideWrapper, {
+                scale: 2, useCORS: true, backgroundColor: '#090d16'
+            });
+            const link = document.createElement('a');
+            link.download = `8_Cau_Chuyen_Kinh_Doanh_Slide_${currentSlide}.png`;
+            link.href = rendered.toDataURL('image/png', 1.0);
+            link.click();
+        } finally {
+            slideWrapper.style.transform = prevTransform;
+            bar.style.visibility = 'visible';
+            btn.disabled = false;
+            btn.innerText = '📸 Xuất Ảnh PNG';
+        }
+    }
+
+    window.onload = () => { updateView(); fitSlide(); };
+</script>
+</body>
+</html>
